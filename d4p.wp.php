@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_WP_Functions
-Version: v1.9.1
+Version: v1.9.3
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/libs/d4plib/
