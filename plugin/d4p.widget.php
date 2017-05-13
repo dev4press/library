@@ -25,8 +25,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!class_exists('d4pLib_Widget')) {
-    class d4pLib_Widget extends WP_Widget {
+if (!class_exists('d4p_widget_core')) {
+    class d4p_widget_core extends WP_Widget {
         public $widget_domain = 'dev4press_widgets';
 
         public $selective_refresh = true;
