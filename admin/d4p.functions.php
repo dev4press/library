@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Functions
-Version: v1.9.6
+Version: v2.0
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/libs/d4plib/
