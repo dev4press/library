@@ -114,6 +114,7 @@
 
 .d4plib-widget-tabs .d4plib-widget-tab:focus {
     box-shadow: none;
+    background-color: #eee;
 }
 
 .d4plib-widget-tabs .d4plib-widget-tab.d4plib-tab-active {

@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Class_Shortcodes
-Version: v1.9.3
+Version: v1.9.6
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/libs/d4plib/

@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Sanitize
-Version: v1.9.3
+Version: v1.9.6
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/libs/d4plib/
@@ -104,5 +104,159 @@ if (!function_exists('d4p_ids_from_string')) {
         $ids = array_filter($ids);
 
         return $ids;
+    }
+}
+
+if (!function_exists('d4p_kses_expanded_list_of_tags')) {
+    function d4p_kses_expanded_list_of_tags() {
+        return array(
+            'a' => array(
+                'class' => true,
+                'href' => true,
+                'title' => true,
+                'rel' => true,
+                'class' => true,
+                'style' => true,
+                'target' => true
+            ),
+            'abbr' => array(),
+            'blockquote' => array(
+                'class' => true,
+                'style' => true,
+                'cite' => true
+            ),
+            'div' => array(
+                'class' => true,
+                'style' => true
+            ),
+            'span' => array(
+                'class' => true,
+                'style' => true
+            ),
+            'code' => array(
+                'class' => true,
+                'style' => true
+            ),
+            'pre' => array(
+                'class' => true,
+                'style' => true
+            ),
+            'em' => array(
+                'class' => true,
+                'style' => true
+            ),
+            'i' => array(
+                'class' => true,
+                'style' => true
+            ),
+            'b' => array(
+                'class' => true,
+                'style' => true
+            ),
+            'strong' => array(
+                'class' => true,
+                'style' => true
+            ),
+            'del' => array(
+                'datetime' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'h1' => array(
+                'align' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'h2' => array(
+                'align' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'h3' => array(
+                'align' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'h4' => array(
+                'align' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'h5' => array(
+                'align' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'h6' => array(
+                'align' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'ul' => array(
+                'class' => true,
+                'style' => true
+            ),
+            'ol' => array(
+                'class' => true,
+                'style' => true,
+                'start' => true
+            ),
+            'li' => array(
+                'class' => true,
+                'style' => true
+            ),
+            'img' => array(
+                'class' => true,
+                'style' => true,
+                'src' => true,
+                'border' => true,
+                'alt' => true,
+                'height' => true,
+                'width' => true
+            ),
+            'table' => array(
+                'align' => true,
+                'bgcolor' => true,
+                'border' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'tbody' => array(
+                'align' => true,
+                'valign' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'td' => array(
+                'align' => true,
+                'valign' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'tfoot' => array(
+                'align' => true,
+                'valign' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'th' => array(
+                'align' => true,
+                'valign' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'thead' => array(
+                'align' => true,
+                'valign' => true,
+                'class' => true,
+                'style' => true
+            ),
+            'tr' => array(
+                'align' => true,
+                'valign' => true,
+                'class' => true,
+                'style' => true
+            )
+        );
     }
 }

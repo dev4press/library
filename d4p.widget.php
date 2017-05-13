@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Widget
-Version: v1.9.3
+Version: v1.9.6
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/libs/d4plib/
@@ -124,7 +124,13 @@ if (!class_exists('d4pLib_Widget')) {
             }
         }
 
-        function get_defaults() {
+        public function get_tabkey($tab) {
+            $key = $this->get_field_id('tab-'.$tab);
+
+            return str_replace(array('_', ' '), array('-', '-'), $key);
+        }
+
+        public function get_defaults() {
             return $this->defaults;
         }
 

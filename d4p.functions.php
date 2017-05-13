@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Functions
-Version: v1.9.3
+Version: v1.9.6
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/libs/d4plib/
@@ -293,5 +293,17 @@ if (!function_exists('d4p_is_datetime_valid')) {
     function d4p_is_datetime_valid($date, $format = 'Y-m-d H:i:s') {
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;
+    }
+}
+
+if (!function_exists('d4p_mysql_date')) {
+    function d4p_mysql_date($time) {
+        return date('Y-m-d H:i:s', $time);
+    }
+}
+
+if (!function_exists('d4p_mysql_datetime_format')) {
+    function d4p_mysql_datetime_format() {
+        return 'Y-m-d H:i:s';
     }
 }

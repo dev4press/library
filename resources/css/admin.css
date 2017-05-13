@@ -10,6 +10,14 @@
     margin: 10px 10px 0 2px;
 }
 
+.d4p-sr-only{
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0)
+}
+
 .d4p-wrap a,
 .d4p-wrap a:focus,
 .d4p-wrap input:focus,
@@ -393,6 +401,7 @@
 .d4p-field-number,
 .d4p-field-integer,
 .d4p-setting-integer input,
+.d4p-setting-absint input,
 .d4p-setting-numeric input,
 .d4p-setting-number input {
     width: 32%;
@@ -1080,6 +1089,7 @@
     .d4p-field-number,
     .d4p-field-integer,
     .d4p-setting-integer input,
+    .d4p-setting-absint input,
     .d4p-setting-numeric input,
     .d4p-setting-number input {
         width: 100%;
