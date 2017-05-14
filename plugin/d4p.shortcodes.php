@@ -25,8 +25,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!class_exists('d4pShortcodes')) {
-    abstract class d4pShortcodes {
+if (!class_exists('d4p_shortcodes_core')) {
+    abstract class d4p_shortcodes_core {
         public $shortcake = '';
         public $shortcake_full = '';
         public $shortcake_title = 'Dev4Press';
