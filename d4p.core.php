@@ -2,10 +2,10 @@
 
 /*
 Name:    d4pLib_Core
-Version: v2.0
+Version: v2.0.1
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
-Website: https://www.dev4press.com/libs/d4plib/
+Website: https://www.dev4press.com/
 
 == Copyright ==
 Copyright 2008 - 2017 Milan Petrovic (email: milan@gdragon.info)

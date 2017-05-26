@@ -1,0 +1,10 @@
+=== Dev4Press Library ===
+== Changelog ==
+
+= Version 2.0.1 - 2017.05.27 =
+* New: added readme and changelog files 
+* Updated: styling for responsive checkboxes
+
+= Version 2.0 - 2017.05.18 =
+* New: switched to Git
+* Removed: units librarie

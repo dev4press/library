@@ -2,10 +2,10 @@
 
 /*
 Name:    d4pLib_Class_Pretty_Print_R
-Version: v2.0
+Version: v2.0.1
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
-Website: https://www.dev4press.com/libs/d4plib/
+Website: https://www.dev4press.com/
 
 == Acknowledgment ==
 Class 'd4p_pretty_print_r' is based on the 'nice_r' class.
