@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Class_DateTime
-Version: v2.0.1
+Version: v2.0.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
