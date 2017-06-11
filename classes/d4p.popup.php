@@ -25,8 +25,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!class_exists('d4pAnimatedPopup')) {
-    class d4pAnimatedPopup {
+if (!class_exists('d4p_object_animated_popup')) {
+    class d4p_object_animated_popup {
         public $url = '';
 
         public function __construct($url) {
@@ -36,8 +36,8 @@ if (!class_exists('d4pAnimatedPopup')) {
         public function enqueue_files() {
             wp_enqueue_script('jquery');
 
-            wp_enqueue_style('d4p-animated-popup', $this->url.'resources/libs/animated-popup/popup.css', array(), D4P_VERSION);
-            wp_enqueue_script('d4p-animated-popup', $this->url.'resources/libs/animated-popup/popup.js', array('jquery'), D4P_VERSION);
+            wp_enqueue_style('d4p-animated-popup', $this->url.'animated-popup/popup.css', array(), D4P_VERSION);
+            wp_enqueue_script('d4p-animated-popup', $this->url.'animated-popup/popup.js', array('jquery'), D4P_VERSION);
         }
 
         public function effects() {
