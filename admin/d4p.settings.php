@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Settings
-Version: v2.0.2
+Version: v2.0.3
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -38,6 +38,7 @@ if (!class_exists('d4pSettingType')) {
         const TEXTAREA = 'textarea';
         const SLUG = 'slug';
         const SLUG_EXT = 'slug_ext';
+        const SLUG_SLASH = 'slug_slash';
         const PASSWORD = 'password';
         const FILE = 'file';
         const TEXT_HTML = 'text_html';
@@ -76,6 +77,7 @@ if (!class_exists('d4pSettingType')) {
             'textarea' => self::TEXTAREA,
             'slug' => self::SLUG,
             'slug_ext' => self::SLUG_EXT,
+            'slug_slash' => self::SLUG_SLASH,
             'password' => self::PASSWORD,
             'file' => self::FILE,
             'text_html' => self::TEXT_HTML,
@@ -395,6 +397,10 @@ if (!class_exists('d4pSettingsRender')) {
             $this->draw_text($element, $value, $name_base, $id_base);
         }
 
+        private function draw_slug_slash($element, $value, $name_base, $id_base) {
+            $this->draw_text($element, $value, $name_base, $id_base);
+        }
+
         private function draw_link($element, $value, $name_base, $id_base) {
             if (!isset($element->args['placeholder'])) {
                 $element->args['placeholder'] = 'http://';
@@ -672,6 +678,13 @@ if (!class_exists('d4pSettingsProcess')) {
             return $list;
         }
 
+        public function slug_slashes($key) {
+            $key = strtolower($key);
+            $key = preg_replace('/[^a-z0-9.\/_\-]/', '', $key);
+
+            return $key;
+        }
+   
         public function process_single($setting, $post) {
             $input = $setting->input;
             $key = $setting->name;
@@ -768,6 +781,9 @@ if (!class_exists('d4pSettingsProcess')) {
                     break;
                 case 'slug_ext':
                     $value = d4p_sanitize_key_expanded($post[$key]);
+                    break;
+                case 'slug_slash':
+                    $value = $this->slug_slashes($post[$key]);
                     break;
                 case 'link':
                     $value = d4p_sanitize_basic($post[$key]);

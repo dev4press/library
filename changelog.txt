@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.0.3 - 2017.06.27 =
+* Added: settings object type for slug with slashes
+* Removed: pretty print library to new library
+
 = Version 2.0.2 - 2017.06.17 =
 * Updated: some core classes renamed
 * Updated: several minor changes

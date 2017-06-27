@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Functions
-Version: v2.0.2
+Version: v2.0.3
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
