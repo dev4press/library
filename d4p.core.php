@@ -2,10 +2,10 @@
 
 /*
 Name:    d4pLib_Core
-Version: v2.0
+Version: v2.0.4
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
-Website: https://www.dev4press.com/libs/d4plib/
+Website: https://www.dev4press.com/
 
 == Copyright ==
 Copyright 2008 - 2017 Milan Petrovic (email: milan@gdragon.info)
@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 if (!defined('D4P_VERSION')) { 
-    define('D4P_VERSION', '2.0');
-    define('D4P_BUILD', '2310');
+    define('D4P_VERSION', '2.0.4');
+    define('D4P_BUILD', '2321');
 }
 
 if (!defined('D4P_FONTAWESOME')) { 

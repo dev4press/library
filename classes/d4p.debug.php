@@ -5,7 +5,7 @@ Name:    d4pLib_Class_Debug
 Version: v1.9.3
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
-Website: https://www.dev4press.com/libs/d4plib/
+Website: https://www.dev4press.com/
 
 == Copyright ==
 Copyright 2008 - 2017 Milan Petrovic (email: milan@gdragon.info)

@@ -2,10 +2,10 @@
 
 /*
 Name:    d4pLib_Access
-Version: v2.0
+Version: v2.0.4
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
-Website: https://www.dev4press.com/libs/d4plib/
+Website: https://www.dev4press.com/
 
 == Copyright ==
 Copyright 2008 - 2017 Milan Petrovic (email: milan@gdragon.info)
@@ -74,31 +74,37 @@ if (!function_exists('d4p_current_url_path')) {
     }
 }
 
+if (!function_exists('d4p_current_url_request')) {
+    function d4p_current_url_request() {
+        $pathinfo = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '';
+        list($pathinfo) = explode('?', $pathinfo);
+        $pathinfo = str_replace('%', '%25', $pathinfo);
+
+        $request = explode('?', $_SERVER['REQUEST_URI']);
+        $req_uri = $request[0];
+        $req_query = isset($request[1]) ? $request[1] : false;
+        $home_path = trim(parse_url(home_url(), PHP_URL_PATH), '/');
+        $home_path_regex = sprintf('|^%s|i', preg_quote($home_path, '|'));
+
+        $req_uri = str_replace($pathinfo, '', $req_uri);
+        $req_uri = trim($req_uri, '/');
+        $req_uri = preg_replace($home_path_regex, '', $req_uri);
+        $req_uri = trim($req_uri, '/');
+
+        $url_request = $req_uri;
+
+        if ($req_query !== false) {
+            $url_request.= '?'.$req_query;
+        }
+
+        return $url_request;
+    }
+}
+
 if (!function_exists('d4p_current_url')) {
     function d4p_current_url($use_wp = true) {
         if ($use_wp) {
-            $pathinfo = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '';
-            list($pathinfo) = explode('?', $pathinfo);
-            $pathinfo = str_replace('%', '%25', $pathinfo);
-
-            $request = explode('?', $_SERVER['REQUEST_URI']);
-            $req_uri = $request[0];
-            $req_query = isset($request[1]) ? $request[1] : false;
-            $home_path = trim(parse_url(home_url(), PHP_URL_PATH), '/');
-            $home_path_regex = sprintf('|^%s|i', preg_quote($home_path, '|'));
-
-            $req_uri = str_replace($pathinfo, '', $req_uri);
-            $req_uri = trim($req_uri, '/');
-            $req_uri = preg_replace($home_path_regex, '', $req_uri);
-            $req_uri = trim($req_uri, '/');
-
-            $url_request = $req_uri;
-
-            if ($req_query !== false) {
-                $url_request.= '?'.$req_query;
-            }
-
-            return home_url($url_request);
+            return home_url(d4p_current_url_request());
         } else {
             $s = empty($_SERVER['HTTPS']) ? '' : ($_SERVER['HTTPS'] == 'on') ? 's' : '';
             $protocol = d4p_strleft(strtolower($_SERVER['SERVER_PROTOCOL']), '/').$s;

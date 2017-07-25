@@ -1009,6 +1009,10 @@
         padding: 0 10px 10px 0;
     }
 
+    .d4p-group-inner input[type="checkbox"].widefat {
+        width: 25px;
+    }
+
     .d4p-content-right .d4p-update-info {
     }
 }
