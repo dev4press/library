@@ -307,3 +307,33 @@ if (!function_exists('d4p_mysql_datetime_format')) {
         return 'Y-m-d H:i:s';
     }
 }
+
+if (!function_exists('d4p_url_campaign_tracking')) {
+    function d4p_url_campaign_tracking($url, $campaign = '', $medium = '', $content = '', $term = '', $source = null) {
+        if (!empty($campaign)) {
+            $url = add_query_arg('utm_campaign', $campaign, $url);
+        }
+
+        if (!empty($medium)) {
+            $url = add_query_arg('utm_medium', $medium, $url);
+        }
+
+        if (!empty($content)) {
+            $url = add_query_arg('utm_content', $content, $url);
+        }
+
+        if (!empty($term)) {
+            $url = add_query_arg('utm_term', $term, $url);
+        }
+
+        if (is_null($source)) {
+            $source = parse_url(get_bloginfo('url'), PHP_URL_HOST);
+        }
+
+        if (!empty($source)) {
+            $url = add_query_arg('utm_source', $source, $url);
+        }
+
+        return $url;
+    }
+}
