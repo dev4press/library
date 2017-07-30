@@ -4,6 +4,14 @@ var d4plib_widgets;
 ;(function($, window, document, undefined) {
     d4plib_widgets = {
         init: function() {
+            $(document).on("click", ".d4p-check-uncheck a", function(e){
+                e.preventDefault();
+
+                var checkall = $(this).attr("href").substr(1) === "checkall";
+
+                $(this).parent().parent().find("input[type=checkbox]").prop("checked", checkall);
+            });
+
             $(document).on("click", ".d4plib-widget-tab", function(e){
                 e.preventDefault();
 

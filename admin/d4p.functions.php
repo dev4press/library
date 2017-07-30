@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Functions
-Version: v2.0.4
+Version: v2.0.5
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -237,6 +237,74 @@ if (!function_exists('d4p_render_checkradios')) {
             $render.= sprintf('<label><input type="%s" id="%s" value="%s" name="%s"%s class="widefat" />%s</label>', 
                     $multi ? 'checkbox' : 'radio', $id, $real_value, $name, $sel, $title);
         }
+
+        $render.= '</div>';
+
+        if ($echo) {
+            echo $render;
+        } else {
+            return $render;
+        }
+    }
+}
+
+if (!function_exists('d4p_render_checkradios_hierarchy')) {
+    function d4p_render_checkradios_hierarchy($values, $args = array(), $attr = array()) {
+        $defaults = array(
+            'selected' => '', 'name' => '', 'id' => '', 'class' => '', 
+            'style' => '', 'multi' => true, 'echo' => true, 'readonly' => false);
+        $args = wp_parse_args($args, $defaults);
+        extract($args);
+
+        $render = '<div class="d4p-setting-checkboxes">';
+        $attributes = array();
+        $selected = (array)$selected;
+        $associative = d4p_is_array_associative($values);
+        $id = d4p_html_id_from_name($name, $id);
+
+        if ($class != '') {
+            $attributes[] = 'class="'.$class.'"';
+        }
+
+        if ($style != '') {
+            $attributes[] = 'style="'.$style.'"';
+        }
+
+        if ($readonly) {
+            $attributes[] = 'readonly';
+        }
+
+        foreach ($attr as $key => $value) {
+            $attributes[] = $key.'="'.esc_attr($value).'"';
+        }
+
+        $name = $multi ? $name.'[]' : $name;
+
+        if ($id != '') {
+            $attributes[] = 'id="'.$id.'"';
+        }
+
+        if ($name != '') {
+            $attributes[] = 'name="'.$name.'"';
+        }
+
+        if ($multi) {
+            $render.= '<div class="d4p-check-uncheck">';
+
+            $render.= '<a href="#checkall">'.__("Check All", "d4plib").'</a>';
+            $render.= ' | <a href="#uncheckall">'.__("Uncheck All", "d4plib").'</a>';
+
+            $render.= '</div>';
+        }
+
+        $walker = new d4pCheckboxRadioWalker();
+        $input = $multi ? 'checkbox' : 'radio';
+
+        $render.= '<div class="d4p-content-wrapper">';
+            $render.= '<ul class="d4p-wrapper-hierarchy">';
+            $render.= $walker->walk($values, 0, array('input' => $input, 'id' => $id, 'name' => $name, 'selected' => $selected));
+            $render.= '</ul>';
+        $render.= '</div>';
 
         $render.= '</div>';
 

@@ -186,3 +186,33 @@
 .d4plib-widget .wp-picker-container .iris-picker .iris-square {
     margin-right: 10px;
 }
+
+.d4plib-widget .d4p-wrapper-hierarchy {
+    margin: 0;
+}
+
+.d4plib-widget .d4p-wrapper-hierarchy li {
+    margin: 2px 0;
+}
+
+.d4plib-widget .d4p-wrapper-hierarchy li label {
+    font-weight: normal;
+}
+
+.d4plib-widget .d4p-wrapper-hierarchy ul.children {
+    margin-left: 12px;
+}
+
+.d4plib-widget .d4p-content-wrapper {
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    max-height: 160px;
+    overflow: auto;
+}
+
+.d4plib-widget .d4p-check-uncheck {
+    font-size: .9em;
+    padding: 0 0 5px;
+    margin: 0 0 5px;
+    border-bottom: 1px dotted #cccccc;
+}

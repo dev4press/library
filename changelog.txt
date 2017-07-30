@@ -1,8 +1,11 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 2.0.5 - 2017.07.25 =
+= Version 2.0.5 - 2017.08.02 =
+* Added: function to render hierarchical checkboxes control
+* Added: styling for the hierarchical checkboxes for widgets
 * Added: function to format URL for campaign
+* Added: admin related file with the walkers classes
 
 = Version 2.0.4 - 2017.07.04 =
 * Added: GeoIP class

@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Settings
-Version: v2.0.4
+Version: v2.0.5
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -804,58 +804,6 @@ if (!class_exists('d4pSettingsProcess')) {
             }
 
             return $value;
-        }
-    }
-}
-
-if (!class_exists('d4pCheckboxRadioWalker')) {
-    class d4pCheckboxRadioWalker extends Walker {
-        public $tree_type = 'settings';
-
-        public $db_fields = array('parent' => 'parent', 'id' => 'id');
-
-        public function start_lvl(&$output, $depth = 0, $args = array()) {
-            $indent = str_repeat("\t", $depth);
-            $output.= "\n$indent<ul class='children'>\n";
-        }
-
-        public function end_lvl(&$output, $depth = 0, $args = array()) {
-            $indent = str_repeat("\t", $depth);
-            $output.= "$indent</ul>\n";
-        }
-
-        public function start_el(&$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
-            if ($depth) {
-                $indent = str_repeat("\t", $depth);
-            } else {
-                $indent = '';
-            }
-
-            $css_class = array(
-                'option-item', 
-                'option-item-parent-'.$page->parent, 
-                'option-item'.$page->id);
-
-            $css_classes = implode(' ', $css_class);
-
-            $args['input'] = empty($args['input']) ? 'checkbox' : $args['input'];
-
-            $selected = in_array($page->id, $args['selected']) ? ' checked="checked"' : '';
-
-            $output.= $indent.sprintf(
-                '<li class="%s"><label><input type="%s" value="%s" name="%s%s"%s class="widefat" />%s</label>',
-                $css_classes,
-                $args['input'],
-                $page->id,
-                $args['name'],
-                $args['input'] == 'checkbox' ? '[]' : '',
-                $selected,
-                $page->title
-            );
-        }
-
-        public function end_el(&$output, $page, $depth = 0, $args = array()) {
-            $output.= "</li>\n";
         }
     }
 }
