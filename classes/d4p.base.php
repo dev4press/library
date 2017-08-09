@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Class_Base
-Version: v2.0.5
+Version: v2.0.6
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
