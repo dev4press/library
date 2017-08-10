@@ -46,6 +46,16 @@ if (!class_exists('d4p_cache_core')) {
             return $group.'::'.$key;
         }
 
+        private function _real_key($group, $key) {
+            $key =  $this->_key($group, $key);
+
+            if (is_multisite()) {
+                $key = get_current_blog_id().':'.$key;
+            }
+
+            return $key;
+        }
+
         public function add($group, $key, $data, $expire = 0) {
             return wp_cache_add($this->_key($group, $key), $data, $this->store, $expire);
         }
@@ -74,7 +84,7 @@ if (!class_exists('d4p_cache_core')) {
         public function in($group, $key) {
             global $wp_object_cache;
 
-            return isset($wp_object_cache->cache[$this->store][$this->_key($group, $key)]);
+            return isset($wp_object_cache->cache[$this->store][$this->_real_key($group, $key)]);
         }
 
         /** @global WP_Object_Cache $wp_object_cache */
