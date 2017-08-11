@@ -147,6 +147,7 @@ if (!function_exists('d4p_set_user_transient')) {
 }
 
 if (!function_exists('d4p_cache_flush')) {
+    /** @global wpdb $wpdb */
     function d4p_cache_flush($cache = true, $queries = true) {
         if ($cache) {
             wp_cache_flush();
@@ -552,6 +553,21 @@ if (!function_exists('d4p_add_action')) {
 
         foreach ($tags as $tag) {
             add_action($tag, $function_to_add, $priority, $accepted_args);
+        }
+    }
+}
+
+if (!function_exists('d4p_cache_posts_by_ids')) {
+    /** @global wpdb $wpdb */
+    function d4p_cache_posts_by_ids($posts) {
+        global $wpdb;
+
+        $sql = 'SELECT * FROM '.$wpdb->posts.' WHERE ID IN ('.join(',', (array)$posts).')';
+        $raw = $wpdb->get_results($sql);
+
+        foreach ($raw as $_post) {
+            $_post = sanitize_post($_post, 'raw');
+            wp_cache_add($_post->ID, $_post, 'posts');
         }
     }
 }

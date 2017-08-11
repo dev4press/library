@@ -3,6 +3,7 @@
 
 = Version 2.0.6 - 2017.08.15 =
 * Added: Object cache class
+* Added: Function to cache posts by ID
 
 = Version 2.0.5 - 2017.08.02 =
 * Added: function to render hierarchical checkboxes control
