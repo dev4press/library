@@ -1,5 +1,5 @@
 === Dev4Press Library ===
-Version: v2.0.7
+Version: v2.1
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
