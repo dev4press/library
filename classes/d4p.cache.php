@@ -29,7 +29,9 @@ if (!class_exists('d4p_cache_core')) {
     abstract class d4p_cache_core {
         public $store = 'd4plib';
 
-        public function __construct() {}
+        public function __construct() {
+            $this->clear();
+        }
 
         private function _key($group, $key) {
             return $group.'::'.$key;

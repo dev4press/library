@@ -64,8 +64,6 @@ if (!class_exists('d4p_core_object_cache')) {
         }
 
         protected function _exists($key, $group) {
-            $key = $this->_key($key, $group);
-
             return isset($this->cache[$group]) && (isset($this->cache[$group][$key]) || array_key_exists($key, $this->cache[$group]));
         }
 
@@ -162,6 +160,9 @@ if (!class_exists('d4p_core_object_cache')) {
         }
 
         public function in($key, $group = 'default') {
+            $group = $this->_group($group);
+            $key = $this->_key($key, $group);
+
             return $this->_exists($key, $group);
         }
 
