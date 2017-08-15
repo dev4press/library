@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Class_Cache
-Version: v2.0.6
+Version: v2.0.7
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -29,82 +29,40 @@ if (!class_exists('d4p_cache_core')) {
     abstract class d4p_cache_core {
         public $store = 'd4plib';
 
-        private $cache_hits = 0;
-        private $cache_misses = 0;
-
         public function __construct() {}
-
-        private function _hit() {
-            $this->cache_hits++;
-        }
-
-        private function _miss() {
-            $this->cache_misses++;
-        }
 
         private function _key($group, $key) {
             return $group.'::'.$key;
         }
 
-        private function _real_key($group, $key) {
-            $key =  $this->_key($group, $key);
-
-            if (is_multisite()) {
-                $key = get_current_blog_id().':'.$key;
-            }
-
-            return $key;
+        public function add($group, $key, $data) {
+            return d4p_object_cache()->add($this->_key($group, $key), $data, $this->store);
         }
 
-        public function add($group, $key, $data, $expire = 0) {
-            return wp_cache_add($this->_key($group, $key), $data, $this->store, $expire);
-        }
-
-        public function set($group, $key, $data, $expire = 0) {
-            return wp_cache_set($this->_key($group, $key), $data, $this->store, $expire);
+        public function set($group, $key, $data) {
+            return d4p_object_cache()->set($this->_key($group, $key), $data, $this->store);
         }
 
         public function get($group, $key, $default = false) {
-            $obj = wp_cache_get($this->_key($group, $key), $this->store);
-
-            if ($obj === false) {
-                $this->_miss();
-            } else {
-                $this->_hit();
-            }
+            $obj = d4p_object_cache()->get($this->_key($group, $key), $this->store);
 
             return $obj === false ? $default : $obj;
         }
 
         public function delete($group, $key) {
-            return wp_cache_delete($this->_key($group, $key), $this->store);
+            return d4p_object_cache()->delete($this->_key($group, $key), $this->store);
         }
 
-        /** @global WP_Object_Cache $wp_object_cache */
         public function in($group, $key) {
-            global $wp_object_cache;
-
-            return isset($wp_object_cache->cache[$this->store][$this->_real_key($group, $key)]);
+            return d4p_object_cache()->in($this->_key($group, $key), $this->store);
         }
 
-        /** @global WP_Object_Cache $wp_object_cache */
         public function clear() {
-            global $wp_object_cache;
-
-            if (isset($wp_object_cache->cache[$this->store])) {
-                unset($wp_object_cache->cache[$this->store]);
-            }
+            d4p_object_cache()->flush($this->store);
         }
 
-        /** @global WP_Object_Cache $wp_object_cache */
         public function storage() {
-            global $wp_object_cache;
-            
-            if (isset($wp_object_cache->cache[$this->store])) {
-                return $wp_object_cache->cache[$this->store];
-            }
-
-            return array();
+            return d4p_object_cache()->get_group($this->store);
         }
     }
 }

@@ -1,8 +1,11 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 2.0.6 - 2017.08.15 =
-* Added: Object cache class
+= Version 2.0.7 - 2017.08.15 =
+* Added: Dedicated Object Cache class
+
+= Version 2.0.6 - 2017.08.12 =
+* Added: Cache Core class
 * Added: Function to cache posts by ID
 
 = Version 2.0.5 - 2017.08.02 =

@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Sanitize
-Version: v2.0.6
+Version: v2.0.7
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/

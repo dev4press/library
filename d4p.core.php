@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Core
-Version: v2.0.6
+Version: v2.0.7
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 if (!defined('D4P_VERSION')) { 
-    define('D4P_VERSION', '2.0.6');
-    define('D4P_BUILD', '2330');
+    define('D4P_VERSION', '2.0.7');
+    define('D4P_BUILD', '2332');
 }
 
 if (!defined('D4P_FONTAWESOME')) { 
@@ -100,6 +100,14 @@ if (!function_exists('d4p_includes')) {
                 d4p_include($item, '', $base_path);
             }
         }
+    }
+}
+
+if (!function_exists('d4p_load_object_cache')) {
+    function d4p_load_object_cache($base_path = '') {
+        d4p_include('object-cache', 'classes', $base_path);
+
+        d4p_object_cache_init();
     }
 }
 
