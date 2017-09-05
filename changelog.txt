@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.1.1 - 2017.09.05 =
+* Updated: Request handling for GEOIP objects
+* Fixed: Request processing for GEOIP objects
+
 = Version 2.1 - 2017.08.15 =
 * Added: Dedicated Object Cache class
 

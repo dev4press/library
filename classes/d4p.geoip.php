@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_GEOIP
-Version: v2.1
+Version: v2.1.1
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -27,6 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 if (!class_exists('d4p_core_geoip')) {
     class d4p_core_geoip {
+        public $error_code = null;
+        public $error_message = null;
+
         public $ip = '';
         public $country_code = '';
         public $country_name = '';
@@ -47,6 +50,10 @@ if (!class_exists('d4p_core_geoip')) {
                 }
             }
         }
+
+        public function is_error() {
+            return is_array($this->error);
+        }
     }
 }
 
@@ -62,6 +69,8 @@ if (!class_exists('d4p_base_geoip')) {
         public $_expire = 14;
 
         public $_cache_hit = false;
+
+        public $_user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:56.0) Gecko/20100101 Firefox/56.0';
 
         /** @var d4p_core_geoip */
         public $_data = null;
@@ -153,7 +162,10 @@ if (!class_exists('d4p_base_geoip')) {
             }
 
             if ($get) {
-                $raw = wp_remote_get($this->url());
+                $raw = wp_remote_get($this->url(), array(
+                    'httpversion' => '1.1',
+                    'user-agent' => $this->_user_agent
+                ));
 
                 if (!is_wp_error($raw) && $raw['response']['code'] == '200') {
                     $code = $this->process($raw['body']);
@@ -161,6 +173,10 @@ if (!class_exists('d4p_base_geoip')) {
                     if ($this->_expire > 0) {
                         set_site_transient($key, $code, $this->_expire * DAY_IN_SECONDS);
                     }
+                } else {
+                    $code = array(
+                        'error_code' => $raw['response']['code'], 
+                        'error_message' => $raw['response']['message']);
                 }
             }
 
@@ -196,32 +212,7 @@ if (!class_exists('d4p_freegeoip_geoip')) {
         }
 
         protected function process($body) {
-            $convert = array(
-                'ip' => 'ip',
-                'countryCode' => 'country_code',
-                'countryName' => 'country_name',
-                'regionCode' => 'region_code',
-                'regionName' => 'region_name',
-                'city' => 'city',
-                'latitude' => 'latitude',
-                'longitude' => 'longitude',
-                'continentCode' => 'continent_code'
-            );
-
-            $raw = (array)json_decode($body);
-
-            $code = array();
-
-            foreach ($raw as $key => $value) {
-                $ck = substr($key, 10);
-
-                if (isset($convert[$ck])) {
-                    $real = $convert[$ck];
-                    $code[$real] = $value;
-                }
-            }
-
-            return $code;
+            return (array)json_decode($body);
         }
     }
 }
@@ -249,7 +240,32 @@ if (!class_exists('d4p_geoplugin_geoip')) {
         }
 
         protected function process($body) {
-            return (array)json_decode($body);
+            $convert = array(
+                'ip' => 'ip',
+                'countryCode' => 'country_code',
+                'countryName' => 'country_name',
+                'regionCode' => 'region_code',
+                'regionName' => 'region_name',
+                'city' => 'city',
+                'latitude' => 'latitude',
+                'longitude' => 'longitude',
+                'continentCode' => 'continent_code'
+            );
+
+            $raw = (array)json_decode($body);
+
+            $code = array();
+
+            foreach ($raw as $key => $value) {
+                $ck = substr($key, 10);
+
+                if (isset($convert[$ck])) {
+                    $real = $convert[$ck];
+                    $code[$real] = $value;
+                }
+            }
+
+            return $code;
         }
     }
 }
