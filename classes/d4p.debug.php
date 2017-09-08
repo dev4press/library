@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Class_Debug
-Version: v1.9.3
+Version: v2.1.1
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/

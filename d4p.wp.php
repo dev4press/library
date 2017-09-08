@@ -287,13 +287,10 @@ if (!function_exists('d4p_list_user_roles')) {
     function d4p_list_user_roles() {
         $roles = array();
 
-        global $wp_roles;
-	$all_roles = $wp_roles->roles;
-
-        foreach ($all_roles as $role => $details) {
+        foreach (wp_roles()->roles as $role => $details) {
             $roles[$role] = translate_user_role($details['name']);
         }
-        
+
         return $roles;
     }
 }
