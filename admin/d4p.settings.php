@@ -355,7 +355,7 @@ if (!class_exists('d4pSettingsRender')) {
 
         private function draw_bool($element, $value, $name_base, $id_base = '') {
             $selected = $value == 1 || $value === true ? ' checked="checked"' : '';
-            $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
+            $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly="readonly" disabled="disabled"' : '';
             $label = isset($element->args['label']) && $element->args['label'] != '' ? $element->args['label'] : 'Enabled';
 
             echo sprintf('<label for="%s"><input%s type="checkbox" name="%s" id="%s"%s class="widefat" /><span class="d4p-accessibility-show-for-sr">%s: </span>%s</label>',
