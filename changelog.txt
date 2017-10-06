@@ -1,6 +1,11 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.1.2 - 2017.10.06 =
+* Updated: Minor changes to the Settings rendering
+* Updated: Few other minor updates to functions
+* Updated: POT Translation file
+
 = Version 2.1.1 - 2017.09.05 =
 * Updated: Request handling for GEOIP objects
 * Fixed: Request processing for GEOIP objects

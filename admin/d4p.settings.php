@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Settings
-Version: v2.1.1
+Version: v2.1.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -315,8 +315,8 @@ if (!class_exists('d4pSettingsRender')) {
 
                 echo "<div class='d4plib-images-image'>";
                 echo "<input type='hidden' value='".$id."' name='".$name_base."[]' />";
-                echo "<a class='button d4plib-button-action d4plib-images-remove' aria-label='".__("Remove")."'><i aria-hidden='true' class='fa fa-ban'></i></a>";
-                echo "<a class='button d4plib-button-action d4plib-images-preview' aria-label='".__("Preview")."'><i aria-hidden='true' class='fa fa-search'></i></a>";
+                echo "<a class='button d4plib-button-action d4plib-images-remove' aria-label='".__("Remove", "d4plib")."'><i aria-hidden='true' class='fa fa-ban'></i></a>";
+                echo "<a class='button d4plib-button-action d4plib-images-preview' aria-label='".__("Preview", "d4plib")."'><i aria-hidden='true' class='fa fa-search'></i></a>";
                 echo "<span class='d4plib-image-name'>".$title."</span>";
                 echo "<img src='".$url."' />";
                 echo "</div>";
