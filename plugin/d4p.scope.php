@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    d4pLib_Class_Plugin
-Version: v2.1.2
+Name:    d4pLib - Classes - Scope
+Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -25,8 +25,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!class_exists('d4p_scope_core')) {
-    abstract class d4p_scope_core {
+if (!class_exists('d4p_core_scope')) {
+    abstract class d4p_core_scope {
         private $scope = 'blog';
 
         private $multisite = false;

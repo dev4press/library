@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_WP_Functions
-Version: v2.1.2
+Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -103,64 +103,6 @@ if (!function_exists('d4p_gmt_offset')) {
         }
 
         return $offset === false ? 0 : $offset;
-    }
-}
-
-if (!function_exists('d4p_delete_user_transient')) {
-    function d4p_delete_user_transient($user_id, $transient) {
-        $transient_option = '_transient_'.$transient;
-        $transient_timeout = '_transient_timeout_'.$transient;
-
-        delete_user_meta($user_id, $transient_option);
-        delete_user_meta($user_id, $transient_timeout);
-    }
-}
-
-if (!function_exists('d4p_get_user_transient')) {
-    function d4p_get_user_transient($user_id, $transient) {
-        $transient_option = '_transient_'.$transient;
-        $transient_timeout = '_transient_timeout_'.$transient;
-
-        if (get_user_meta($user_id, $transient_timeout, true) < time()) {
-            delete_user_meta($user_id, $transient_option);
-            delete_user_meta($user_id, $transient_timeout);
-            return false;
-        }
-
-        return get_user_meta($user_id, $transient_option, true);
-    }
-}
-
-if (!function_exists('d4p_set_user_transient')) {
-    function d4p_set_user_transient($user_id, $transient, $value, $expiration = 86400) {
-        $transient_option = '_transient_'.$transient;
-        $transient_timeout = '_transient_timeout_'.$transient;
-
-        if (get_user_meta($user_id, $transient_option, true) != '') {
-            delete_user_meta($user_id, $transient_option);
-            delete_user_meta($user_id, $transient_timeout);
-        }
-
-        add_user_meta($user_id, $transient_timeout, time() + $expiration, true);
-        add_user_meta($user_id, $transient_option, $value, true);
-    }
-}
-
-if (!function_exists('d4p_cache_flush')) {
-    /** @global wpdb $wpdb */
-    function d4p_cache_flush($cache = true, $queries = true) {
-        if ($cache) {
-            wp_cache_flush();
-        }
-
-        if ($queries) {
-            global $wpdb;
-
-            if (is_array($wpdb->queries) && !empty($wpdb->queries)) {
-                unset($wpdb->queries);
-                $wpdb->queries = array();
-            }
-        }
     }
 }
 
@@ -554,18 +496,14 @@ if (!function_exists('d4p_add_action')) {
     }
 }
 
-if (!function_exists('d4p_cache_posts_by_ids')) {
-    /** @global wpdb $wpdb */
-    function d4p_cache_posts_by_ids($posts) {
-        global $wpdb;
+if (!function_exists('d4p_is_oembed_link')) {
+    function d4p_is_oembed_link($url) {
+        require_once(ABSPATH.WPINC.'/class-oembed.php');
 
-        $sql = 'SELECT * FROM '.$wpdb->posts.' WHERE ID IN ('.join(',', (array)$posts).')';
-        $raw = $wpdb->get_results($sql);
+        $oembed = _wp_oembed_get_object();
+        $result = $oembed->get_html($url);
 
-        foreach ($raw as $_post) {
-            $_post = sanitize_post($_post, 'raw');
-            wp_cache_add($_post->ID, $_post, 'posts');
-        }
+        return $result === false ? false : true;
     }
 }
 
@@ -578,14 +516,6 @@ if (!function_exists('wp_redirect_self')) {
 if (!function_exists('wp_redirect_referer')) {
     function wp_redirect_referer() {
         wp_redirect($_REQUEST['_wp_http_referer']);
-    }
-}
-
-if (!function_exists('wp_flush_rewrite_rules')) {
-    function wp_flush_rewrite_rules() {
-        global $wp_rewrite;
-
-        $wp_rewrite->flush_rules();
     }
 }
 

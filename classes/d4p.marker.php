@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    d4pLib_Class_Marker
-Version: v2.1.2
+Name:    d4pLib - Classes - Marker
+Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -25,8 +25,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!class_exists('d4p_marker_core')) {
-    class d4p_marker_core {
+if (!class_exists('d4p_core_marker')) {
+    class d4p_core_marker {
         public $begin = 'BEGIN';
         public $end = 'END';
 

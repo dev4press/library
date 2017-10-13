@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    d4pLib_File
-Version: v2.1.2
+Name:    d4pLib - Functions - File Download
+Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/

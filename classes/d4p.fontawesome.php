@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    d4pLib_Class_Fontawesome
-Version: v2.1.2
+Name:    d4pLib - Classes - Fontawesome
+Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -25,8 +25,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!class_exists('d4pFontawesome')) {
-    class d4pFontawesome {
+if (!class_exists('d4p_object_fontawesome')) {
+    class d4p_object_fontawesome {
         public $version = '4.7';
         public $cdn = 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 

@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    d4pLib_Class_Object_Cache
-Version: v2.1.2
+Name:    d4pLib - Classes - Object Cache
+Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/

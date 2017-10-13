@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    d4pLib_Four
-Version: v2.1.2
+Name:    d4pLib - Classes - Four Core
+Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/

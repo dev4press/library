@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    d4pLib_Class_Base
-Version: v2.1.2
+Name:    d4pLib - Classes - Class
+Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -25,8 +25,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!class_exists('d4pClass')) {
-    class d4pClass {
+if (!class_exists('d4p_class')) {
+    class d4p_class {
         function __construct($args = array()) {
             if (is_array($args) && !empty($args)) {
                 $this->from_array($args);

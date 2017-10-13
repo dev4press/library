@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.2 - 2017.10.25 =
+* New: Refactored names of various classes
+* New: Improved organization of the library
+
 = Version 2.1.2 - 2017.10.06 =
 * Updated: Minor changes to the Settings rendering
 * Updated: Few other minor updates to functions

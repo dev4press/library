@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    d4pLib_Cache
-Version: v2.1.2
+Name:    d4pLib - Functions - Transient Cache - Database Query
+Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
