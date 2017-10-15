@@ -327,8 +327,8 @@ if (!function_exists('d4p_url_campaign_tracking')) {
     }
 }
 
-if (!function_exists('d4p_icon_class')) {
-    function d4p_icon_class($name, $extra = array()) {
+if (!function_exists('d4p_get_icon_class')) {
+    function d4p_get_icon_class($name, $extra = array()) {
         $class = '';
         $d4p = false; 
         $dashicons = false;
@@ -364,7 +364,7 @@ if (!function_exists('d4p_render_icon')) {
         }
 
         $extra = $fw ? 'fw' : '';
-        $classes = d4p_icon_class($name, $extra).' '.$class;
+        $classes = d4p_get_icon_class($name, $extra).' '.$class;
 
         $icon.= ' class="'.trim($classes).'"';
 

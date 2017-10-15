@@ -24,87 +24,66 @@ i.d4p-icon {
 /* Icons */
 .d4p-logo-dev4press:before {
     content: "\e90c";
-    color: #9ba1a6;
 }
 .d4p-logo-dev4press-light:before {
     content: "\e90d";
-    color: #9ba1a6;
 }
 .d4p-logo-xscape2:before {
     content: "\e90e";
-    color: #9ba1a6;
 }
 .d4p-logo-buddypress:before {
     content: "\e908";
-    color: #9ba1a6;
 }
 .d4p-logo-bbpress:before {
     content: "\e907";
-    color: #9ba1a6;
 }
 .d4p-icon-bbpress-forum:before {
     content: "\e909";
-    color: #9ba1a6;
 }
 .d4p-icon-bbpress-reply:before {
     content: "\e90a";
-    color: #9ba1a6;
 }
 .d4p-icon-bbpress-topic:before {
     content: "\e90b";
-    color: #9ba1a6;
 }
 .d4p-icon-snowflake:before {
     content: "\e90f";
-    color: #9ba1a6;
 }
 .d4p-plugin-icon-gd-bbpress-toolbox:before {
     content: "\e900";
-    color: #9ba1a6;
 }
 .d4p-plugin-icon-gd-content-tools:before {
     content: "\e901";
-    color: #9ca2a7;
 }
 .d4p-plugin-icon-gd-crumbs-navigator:before {
     content: "\e902";
-    color: #9ba1a6;
 }
 .d4p-plugin-icon-gd-knowledge-base:before {
     content: "\e903";
-    color: #9ba1a6;
 }
 .d4p-plugin-icon-gd-press-tools:before {
     content: "\e904";
-    color: #9ea3a8;
 }
 .d4p-plugin-icon-gd-seo-toolbox:before {
     content: "\e905";
-    color: #9ba1a6;
 }
 .d4p-plugin-icon-gd-webfonts-toolbox:before {
     content: "\e906";
-    color: #9ea3a8;
 }
 .d4p-plugin-icon-gd-topic-prefix:before {
     content: "\e910";
-    color: #9ea3a8;
 }
 .d4p-plugin-icon-gd-rating-system:before {
     content: "\e911";
-    color: #9ea3a8;
 }
 .d4p-plugin-icon-gd-security-toolbox:before {
     content: "\e912";
-    color: #9ea3a8;
 }
 .d4p-plugin-icon-gd-swift-navigator:before {
     content: "\e914";
-    color: #9ea3a8;
 }
 .d4p-plugin-icon-gd-topic-polls:before {
     content: "\e913";
-    color: #9ea3a8;
 }
 
 /* Sizing */
