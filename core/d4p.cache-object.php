@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    d4pLib - Classes - Object Cache
+Name:    d4pLib - Core - Object Cache
 Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info

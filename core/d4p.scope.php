@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    d4pLib - Classes - Scope
+Name:    d4pLib - Core - Scope
 Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    d4pLib_Class_WPDB
+Name:    d4pLib - Core - WPDB Core
 Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
@@ -23,10 +23,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+== Changes ==
+- found_rows -> get_found_rows
 */
 
-if (!class_exists('d4p_wpdb')) {
-    abstract class d4p_wpdb {
+if (!class_exists('d4p_wpdb_core')) {
+    abstract class d4p_wpdb_core {
         public $db_site = array();
         public $db;
 
@@ -36,6 +39,7 @@ if (!class_exists('d4p_wpdb')) {
         public $_metas = array();
 
         protected $_meta_translate = array();
+        protected $_queries_log = array();
 
         public function __construct() {
             $this->init();
@@ -144,50 +148,108 @@ if (!class_exists('d4p_wpdb')) {
             return $this->wpdb()->insert_id;
         }
 
-        public function query($query) {
-            return $this->wpdb()->query($query);
-        }
-
-        public function found_rows() {
+        public function get_found_rows() {
             return $this->get_var('SELECT FOUND_ROWS()');
         }
 
+        public function save_queries() {
+            return defined('SAVEQUERIES') && SAVEQUERIES;
+        }
+
+        public function log_get_queries() {
+            return $this->_queries_log;
+        }
+
+        public function log_get_elapsed_time() {
+            $time = 0;
+
+            foreach ($this->_queries_log as $q) {
+                $time+= $q[1];
+            }
+
+            return $time;
+        }
+
+        public function query($query) {
+            $_value = $this->wpdb()->query($query);
+
+            $this->_copy_logged_query();
+
+            return $_value;
+        }
+
         public function run($query = null, $output = OBJECT) {
-            return $this->wpdb()->get_results($query, $output);
+            $_value = $this->wpdb()->get_results($query, $output);
+
+            $this->_copy_logged_query();
+
+            return $_value;
         }
 
         public function run_and_index($query, $field, $output = OBJECT) {
             $raw = $this->wpdb()->get_results($query, $output);
 
-            return $this->index($raw, $field);
+            $_value = $this->index($raw, $field);
+
+            $this->_copy_logged_query();
+
+            return $_value;
         }
 
         public function get_var($query, $x = 0, $y = 0) {
-            return $this->wpdb()->get_var($query, $x, $y);
+            $_value = $this->wpdb()->get_var($query, $x, $y);
+
+            $this->_copy_logged_query();
+
+            return $_value;
         }
 
         public function get_row($query = null, $output = OBJECT, $y = 0) {
-            return $this->wpdb()->get_row($query, $output, $y);
+            $_value = $this->wpdb()->get_row($query, $output, $y);
+
+            $this->_copy_logged_query();
+
+            return $_value;
         }
 
         public function get_col($query = null , $x = 0) {
-            return $this->wpdb()->get_col($query, $x);
+            $_value = $this->wpdb()->get_col($query, $x);
+
+            $this->_copy_logged_query();
+
+            return $_value;
         }
 
         public function get_results($query = null, $output = OBJECT) {
-            return $this->wpdb()->get_results($query, $output);
+            $_value = $this->wpdb()->get_results($query, $output);
+
+            $this->_copy_logged_query();
+
+            return $_value;
         }
 
         public function insert($table, $data, $format = null) {
-            return $this->wpdb()->insert($table, $data, $format);
+            $_value = $this->wpdb()->insert($table, $data, $format);
+
+            $this->_copy_logged_query();
+
+            return $_value;
         }
 
         public function update($table, $data, $where, $format = null, $where_format = null) {
-            return $this->wpdb()->update($table, $data, $where, $format, $where_format);
+            $_value = $this->wpdb()->update($table, $data, $where, $format, $where_format);
+
+            $this->_copy_logged_query();
+
+            return $_value;
         }
 
         public function delete($table, $where, $where_format = null) {
-            return $this->wpdb()->delete($table, $where, $where_format);
+            $_value = $this->wpdb()->delete($table, $where, $where_format);
+
+            $this->_copy_logged_query();
+
+            return $_value;
         }
 
         public function prepare($query, $args) {
@@ -268,6 +330,13 @@ if (!class_exists('d4p_wpdb')) {
             global $wpdb;
 
             return $wpdb;
+        }
+
+        protected function _copy_logged_query() {
+            if ($this->save_queries()) {
+                $id = count($this->wpdb()->queries) - 1;
+                $this->_queries_log[] = $this->wpdb()->queries[$id];
+            }
         }
     }
 }

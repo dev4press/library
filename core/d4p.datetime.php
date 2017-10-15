@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    d4pLib_Class_DateTime
+Name:    d4pLib - Core - DateTime
 Version: v2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
