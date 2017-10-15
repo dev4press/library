@@ -334,7 +334,7 @@ if (!function_exists('d4p_icon_class')) {
         $dashicons = false;
 
         if (substr($name, 0, 3) == 'd4p') {
-            $class.= 'd4pi '.$name;
+            $class.= 'd4p-icon '.$name;
             $d4p = true;
         } else if (substr($name, 0, 9) == 'dashicons') {
             $class.= 'dashicons '.$name;
@@ -347,7 +347,7 @@ if (!function_exists('d4p_icon_class')) {
             $extra = (array)$extra;
 
             foreach ($extra as $key) {
-                $class.= ' '.($d4p ? 'd4pi' : 'fa').'-'.$key;
+                $class.= ' '.($d4p ? 'd4p-icon' : 'fa').'-'.$key;
             }
         }
 

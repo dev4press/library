@@ -108,21 +108,21 @@ i.d4p-icon {
 }
 
 /* Sizing */
-.gdbbx-lg {
+.d4p-icon-lg {
     font-size: 1.33333333em;
     line-height: 0.75em;
     vertical-align: -15%;
 }
 
-.gdbbx-2x {
+.d4p-icon-2x {
     font-size: 2em;
 }
 
-.gdbbx-3x {
+.d4p-icon-3x {
     font-size: 3em;
 }
 
-.gdbbx-4x {
+.d4p-icon-4x {
     font-size: 4em;
 }
 
