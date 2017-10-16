@@ -49,6 +49,9 @@ i.d4p-icon {
 .d4p-icon-snowflake:before {
     content: "\e90f";
 }
+.d4p-plugin-icon-bars:before {
+    content: "\e912";
+}
 .d4p-plugin-icon-gd-bbpress-toolbox:before {
     content: "\e900";
 }
@@ -70,6 +73,9 @@ i.d4p-icon {
 .d4p-plugin-icon-gd-webfonts-toolbox:before {
     content: "\e906";
 }
+.d4p-plugin-icon-gd-clever-widgets:before {
+    content: "\e913";
+}
 .d4p-plugin-icon-gd-topic-prefix:before {
     content: "\e910";
 }
@@ -77,13 +83,13 @@ i.d4p-icon {
     content: "\e911";
 }
 .d4p-plugin-icon-gd-security-toolbox:before {
-    content: "\e912";
+    content: "\e915";
+}
+.d4p-plugin-icon-gd-topic-polls:before {
+    content: "\e916";
 }
 .d4p-plugin-icon-gd-swift-navigator:before {
     content: "\e914";
-}
-.d4p-plugin-icon-gd-topic-polls:before {
-    content: "\e913";
 }
 
 /* Sizing */
