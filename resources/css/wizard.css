@@ -87,3 +87,10 @@
     border-radius: 2px;
     padding: 20px;
 }
+
+.d4p-wizard-panel .d4p-wizard-panel-footer {
+    margin: 20px 0 0;
+    padding: 20px 0 0;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
