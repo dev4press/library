@@ -86,6 +86,7 @@
     border: 1px solid #ddd;
     border-radius: 2px;
     padding: 20px;
+    font-size: 15px;
 }
 
 .d4p-wizard-panel .d4p-wizard-panel-footer {
@@ -93,4 +94,53 @@
     padding: 20px 0 0;
     border-top: 1px solid #ddd;
     text-align: center;
+}
+
+.d4p-wizard-panel p {
+    margin: 1em 0;
+    font-size: inherit;
+}
+
+.d4p-wizard-panel p:first-child {
+    margin-top: 0;
+}
+
+.d4p-wizard-panel p:last-child {
+    margin-bottom: 0;
+}
+
+.d4p-wizard-option-block {
+    margin: 20px 0 0;
+    padding: 20px 0 0;
+    border-top: 1px solid #ddd;
+}
+
+.d4p-wizard-option-block p {
+    font-size: 16px;
+    margin: 0 0 6px;
+    font-weight: bold;
+}
+
+.d4p-wizard-option-block em {
+    font-size: 14px;
+    display: block;
+    margin: 0 0 10px;
+}
+
+.d4p-wizard-option-block > div {
+    padding-left: 10px;
+    border-left: 6px solid #ddd;
+}
+
+.d4p-wizard-option-block.d4p-wizard-block-yesno span {
+    display: inline-block;
+    line-height: 22px;
+}
+
+.d4p-wizard-option-block.d4p-wizard-block-yesno span:first-of-type {
+    margin-right: 16px;
+}
+
+.d4p-wizard-option-block.d4p-wizard-block-yesno span label {
+    vertical-align: top;
 }
