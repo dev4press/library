@@ -144,3 +144,8 @@
 .d4p-wizard-option-block.d4p-wizard-block-yesno span label {
     vertical-align: top;
 }
+
+.d4p-wizard-option-block.d4p-wizard-block-select span label {
+    display: block;
+    margin-bottom: 4px;
+}
