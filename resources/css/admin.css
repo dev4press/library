@@ -1195,6 +1195,47 @@
     margin: 5px 0 0;
 }
 
+.d4p-page-about .d4p-about-minor {
+    margin: 0 0 40px;
+    border-bottom: 1px solid #ddd;
+}
+
+.d4p-page-about .d4p-about-minor h3 {
+    font-size: 18px;
+}
+
+.d4p-page-about .d4p-about-minor p {
+    font-size: 14px;
+}
+
+.d4p-whatsnew-section {
+    margin: 0 0 40px;
+    padding: 0 0 40px;
+    border-bottom: 1px solid #ddd;
+}
+
+.d4p-whatsnew-heading .d4p-layout-grid {
+    max-width: 800px; 
+    width: 90%; 
+    margin: 56px auto 0;
+}
+
+.d4p-whatsnew-heading .d4p-layout-grid h2 {
+    font-size: 56px;
+    font-weight: 100;
+    margin: 0 0 20px;
+    line-height: 1;
+}
+
+.d4p-whatsnew-heading .d4p-layout-grid p {
+    font-size: 16px;
+}
+
+.d4p-whatsnew-heading .d4p-layout-grid p.lead-description {
+    font-size: 28px;
+    font-weight: 300;
+}
+
 @media screen and (max-width: 1280px) {
     .d4p-content-right .d4p-update-info {
         float: none;
@@ -1343,6 +1384,10 @@
     .d4p-setting-absint input,
     .d4p-setting-numeric input,
     .d4p-setting-number input {
+        width: 100%;
+    }
+
+    .d4p-whatsnew-heading .d4p-layout-grid {
         width: 100%;
     }
 }

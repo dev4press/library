@@ -1,9 +1,12 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 2.2 - 2017.10.25 =
+= Version 2.2 - 2017.11.08 =
 * New: Refactored names of various classes
 * New: Improved organization of the library
+* New: Simple CSS grid layout
+* New: Setup Wizard resources
+* New: Shared about page template for plugins
 
 = Version 2.1.2 - 2017.10.06 =
 * Updated: Minor changes to the Settings rendering
