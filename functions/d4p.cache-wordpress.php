@@ -57,6 +57,7 @@ if (!function_exists('d4p_posts_cache_by_ids')) {
         global $wpdb;
 
         $posts = _get_non_cached_ids($posts, 'posts');
+        $posts = array_filter($posts);
 
         if (!empty($posts)) {
             $sql = 'SELECT * FROM '.$wpdb->posts.' WHERE ID IN ('.join(',', (array)$posts).')';
