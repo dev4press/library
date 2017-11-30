@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Core - WPDB Core
-Version: v2.2
+Version: v2.2.1
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -116,21 +116,26 @@ if (!class_exists('d4p_wpdb_core')) {
             return $ids;
         }
 
-        public function build_query($sql) {
+        public function build_query($sql, $calc_found_rows = true) {
             $defaults = array(
                 'select' => array(),
                 'from' => array(),
                 'where' => array(),
+                'group' => '',
                 'order' => '',
                 'limit' => ''
             );
 
             $sql = wp_parse_args($sql, $defaults);
 
-            $_build = 'SELECT SQL_CALC_FOUND_ROWS '.join(', ', $sql['select']).' FROM '.join(' ', $sql['from']);
+            $_build = 'SELECT'.($calc_found_rows ? ' SQL_CALC_FOUND_ROWS' : '').' '.join(', ', $sql['select']).' FROM '.join(' ', $sql['from']);
 
             if (!empty($sql['where'])) {
                 $_build.= ' WHERE '.join(' AND ', $sql['where']);
+            }
+
+            if (!empty($sql['group'])) {
+                $_build.= ' GROUP BY '.$sql['group'];
             }
 
             if (!empty($sql['order'])) {

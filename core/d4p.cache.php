@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Core - Cache Core
-Version: v2.2
+Version: v2.2.1
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/

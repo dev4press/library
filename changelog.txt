@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.2.1 - 2017.12.01 =
+* Updated: Improvements to WPDB wrapper class
+* Updated: Improvements to datetime class
+
 = Version 2.2 - 2017.11.08 =
 * New: Refactored names of various classes
 * New: Improved organization of the library

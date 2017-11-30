@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Core - DateTime
-Version: v2.2
+Version: v2.2.1
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
@@ -37,6 +37,17 @@ if (!class_exists('d4p_datetime_core')) {
             }
 
             return $offset === false ? 0 : $offset;
+        }
+
+        public function formatted_offset($offset = null) {
+            if (is_null($offset)) {
+                $offset = $this->offset();
+            }
+
+            $hours = intval($offset);
+            $minutes = absint(($offset - floor($offset)) * 60);
+
+            return sprintf('%+03d:%02d', $hours, $minutes);
         }
 
         public function timestamp_local_to_gmt($local) {
