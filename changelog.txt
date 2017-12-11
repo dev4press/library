@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.2.2 - 2017.12.25 =
+* New: Interface support for RTL
+
 = Version 2.2.1 - 2017.12.01 =
 * Updated: Improvements to WPDB wrapper class
 * Updated: Improvements to datetime class

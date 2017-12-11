@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Classes - Object Sort
-Version: v2.2.1
+Version: v2.2.2
 Author:  Milan Petrovic
 Email:   milan@gdragon.info
 Website: https://www.dev4press.com/
