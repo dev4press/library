@@ -2,13 +2,13 @@
 
 /*
 Name:    d4pLib_Admin_Settings
-Version: v2.2.2
+Version: v2.2.3
 Author:  Milan Petrovic
-Email:   milan@gdragon.info
+Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2017 Milan Petrovic (email: milan@gdragon.info)
+Copyright 2008 - 2018 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -64,6 +64,7 @@ if (!class_exists('d4pSettingType')) {
 
         const EXPANDABLE_PAIRS = 'expandable_pairs';
         const EXPANDABLE_TEXT = 'expandable_text';
+        const EXPANDABLE_RAW = 'expandable_raw';
 
         public static $_values = array(
             'info' => self::INFO,
@@ -632,6 +633,10 @@ if (!class_exists('d4pSettingsRender')) {
             echo '</li>';
         }
 
+        private function draw_expandable_raw($element, $value, $name_base, $id_base = '') {
+            $this->draw_expandable_text($element, $value, $name_base, $id_base);
+        }
+
         private function draw_expandable_text($element, $value, $name_base, $id_base = '') {
             echo '<ol>';
 
@@ -696,6 +701,19 @@ if (!class_exists('d4pSettingsProcess')) {
                 case 'hr':
                 case 'custom':
                     $value = null;
+                    break;
+                case 'expandable_raw':
+                    $value = array();
+
+                    foreach ($post[$key] as $id => $data) {
+                        if ($id > 0) {
+                            $_val = trim(stripslashes($data['value']));
+
+                            if ($_val != '') {
+                                $value[] = $_val;
+                            }
+                        }
+                    }
                     break;
                 case 'expandable_text':
                     $value = array();

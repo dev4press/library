@@ -2,13 +2,13 @@
 
 /*
 Name:    d4pLib_Core
-Version: v2.2.2
+Version: v2.2.3
 Author:  Milan Petrovic
-Email:   milan@gdragon.info
+Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2017 Milan Petrovic (email: milan@gdragon.info)
+Copyright 2008 - 2018 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 if (!defined('D4P_VERSION')) { 
-    define('D4P_VERSION', '2.2.2');
-    define('D4P_BUILD', '2372');
+    define('D4P_VERSION', '2.2.3');
+    define('D4P_BUILD', '2381');
 }
 
 if (!defined('D4P_FONTAWESOME')) { 

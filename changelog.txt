@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.2.3 - 2018.01.08 =
+* New: Settings Field - Expandable Raw Text
+* Updated: Minor changes to the JavaScript files
+
 = Version 2.2.2 - 2017.12.25 =
 * New: Interface support for RTL
 

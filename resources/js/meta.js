@@ -7,18 +7,19 @@ var d4plib_metabox;
             $(".d4plib-metabox-wrapper .wp-tab-bar a").click(function(e){
                 e.preventDefault();
 
-                var tab = $(this).attr("href").substr(1);
+                var tab = $(this).attr("href").substr(1),
+                    wrap = $(this).closest(".d4plib-metabox-wrapper");
 
                 $(this).closest("ul").find("li").removeClass("wp-tab-active");
                 $(this).parent().addClass("wp-tab-active");
 
-                $(this).closest(".d4plib-metabox-wrapper").find(".wp-tab-panel")
-                                                          .removeClass("tabs-panel-active")
-                                                          .addClass("tabs-panel-inactive");
+                wrap.find(".wp-tab-panel")
+                    .removeClass("tabs-panel-active")
+                    .addClass("tabs-panel-inactive");
 
-                $(this).closest(".d4plib-metabox-wrapper").find("#" + tab)
-                                                          .removeClass("tabs-panel-inactive")
-                                                          .addClass("tabs-panel-active");
+                wrap.find("#" + tab)
+                    .removeClass("tabs-panel-inactive")
+                    .addClass("tabs-panel-active");
             });
 
             $(".d4plib-metabox-check-uncheck a").click(function(e){
