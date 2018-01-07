@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Settings
-Version: v2.2.3
+Version: v2.2.4
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
