@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_WP_Functions
-Version: v2.2.4
+Version: v2.2.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

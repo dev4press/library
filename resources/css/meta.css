@@ -34,12 +34,41 @@
     vertical-align: top;
 }
 
-.d4plib-metabox-wrapper select {
-    min-width: 180px;
-    display: block;
+.d4plib-metabox-wrapper p label {
+    display: inline-block;
+    margin-bottom: 2px;
 }
 
-#side-sortables .d4plib-metabox-wrapper select {
+.d4plib-metabox-wrapper input.widefat,
+.d4plib-metabox-wrapper textarea.widefat {
+    min-width: 200px;
+    max-width: 100%;
+    display: block;
+    padding: 4px;
+    line-height: 28px;
+    vertical-align: middle;
+}
+
+.d4plib-metabox-wrapper input.widefat {
+    height: 32px;
+}
+
+.d4plib-metabox-wrapper input[type="text"].widefat {
+    width: 100%;
+}
+
+.d4plib-metabox-wrapper select.widefat {
+    width: auto;
+    min-width: 200px;
+    max-width: 100%;
+    display: block;
+    padding: 4px;
+    line-height: 28px;
+    vertical-align: middle;
+    height: 32px;
+}
+
+#side-sortables .d4plib-metabox-wrapper select.widefat {
     width: 100%;
 }
 
