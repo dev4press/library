@@ -39,7 +39,8 @@
     margin-bottom: 2px;
 }
 
-.d4plib-metabox-wrapper input.widefat,
+.d4plib-metabox-wrapper input[type="number"].widefat,
+.d4plib-metabox-wrapper input[type="text"].widefat,
 .d4plib-metabox-wrapper textarea.widefat {
     min-width: 200px;
     max-width: 100%;
@@ -49,7 +50,8 @@
     vertical-align: middle;
 }
 
-.d4plib-metabox-wrapper input.widefat {
+.d4plib-metabox-wrapper input[type="number"].widefat,
+.d4plib-metabox-wrapper input[type="text"].widefat {
     height: 32px;
 }
 
