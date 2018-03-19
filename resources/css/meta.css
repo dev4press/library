@@ -1,3 +1,10 @@
+.d4plib-metabox-wrapper,
+.d4plib-metabox-wrapper *,
+.edit-post-meta-boxes-area .d4plib-metabox-wrapper,
+.edit-post-meta-boxes-area .d4plib-metabox-wrapper * {
+    box-sizing: border-box;
+}
+
 .d4plib-metabox-wrapper .wp-tab-bar {
     margin: 12px 0 -1px;
 }

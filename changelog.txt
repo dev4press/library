@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.2.7 - 2018.03.20 =
+* Updated: Few more metabox styling updates
+
 = Version 2.2.6 - 2018.03.14 =
 * Updated: Few more metabox styling updates
 

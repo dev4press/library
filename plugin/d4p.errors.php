@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Class_Errors
-Version: v2.2.6
+Version: v2.2.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
