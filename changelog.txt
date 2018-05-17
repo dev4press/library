@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.3 - 2018.05.24 =
+* New: Several new icons in font
+* Updated: Font with icons rebuilt
+
 = Version 2.2.7 - 2018.03.20 =
 * Updated: Few more metabox styling updates
 

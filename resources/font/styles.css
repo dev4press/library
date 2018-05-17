@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'dev4press';
-    src: url('fonts/dev4press.eot?v220.2350');
-    src: url('fonts/dev4press.eot?v220.2350#iefix') format('embedded-opentype'),
-         url('fonts/dev4press.ttf?v220.2350') format('truetype'),
-         url('fonts/dev4press.woff?v220.2350') format('woff'),
-         url('fonts/dev4press.svg?v220.2350#dev4press') format('svg');
+    src: url('fonts/dev4press.eot?v230.2400');
+    src: url('fonts/dev4press.eot?v230.2400#iefix') format('embedded-opentype'),
+         url('fonts/dev4press.ttf?v230.2400') format('truetype'),
+         url('fonts/dev4press.woff?v230.2400') format('woff'),
+         url('fonts/dev4press.svg?v230.2400#dev4press') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -23,73 +23,85 @@ i.d4p-icon {
 
 /* Icons */
 .d4p-logo-dev4press:before {
-    content: "\e90c";
+    content: "\e914";
 }
 .d4p-logo-dev4press-light:before {
-    content: "\e90d";
+    content: "\e915";
 }
 .d4p-logo-xscape2:before {
-    content: "\e90e";
+    content: "\e918";
 }
 .d4p-logo-buddypress:before {
-    content: "\e908";
+    content: "\e913";
 }
 .d4p-logo-bbpress:before {
-    content: "\e907";
-}
-.d4p-icon-bbpress-forum:before {
-    content: "\e909";
-}
-.d4p-icon-bbpress-reply:before {
-    content: "\e90a";
-}
-.d4p-icon-bbpress-topic:before {
-    content: "\e90b";
-}
-.d4p-icon-snowflake:before {
     content: "\e90f";
 }
-.d4p-plugin-icon-bars:before {
+.d4p-icon-bbpress-forum:before {
+    content: "\e910";
+}
+.d4p-icon-bbpress-reply:before {
+    content: "\e911";
+}
+.d4p-icon-bbpress-topic:before {
     content: "\e912";
+}
+.d4p-logo-php:before {
+    content: "\e90d";
+}
+.d4p-logo-woo:before {
+    content: "\e919";
+}
+.d4p-logo-jquery:before {
+    content: "\e91a";
+}
+.d4p-icon-snowflake:before {
+    content: "\e917";
+}
+.d4p-icon-responsive:before {
+    content: "\e90e";
+}
+.d4p-plugin-icon-bars:before {
+    content: "\e916";
 }
 .d4p-plugin-icon-gd-bbpress-toolbox:before {
     content: "\e900";
 }
-.d4p-plugin-icon-gd-content-tools:before {
+.d4p-plugin-icon-gd-clever-widgets:before {
     content: "\e901";
 }
-.d4p-plugin-icon-gd-crumbs-navigator:before {
+.d4p-plugin-icon-gd-content-tools:before {
     content: "\e902";
 }
-.d4p-plugin-icon-gd-knowledge-base:before {
+.d4p-plugin-icon-gd-crumbs-navigator:before {
     content: "\e903";
 }
-.d4p-plugin-icon-gd-press-tools:before {
+.d4p-plugin-icon-gd-knowledge-base:before {
     content: "\e904";
 }
-.d4p-plugin-icon-gd-seo-toolbox:before {
+.d4p-plugin-icon-gd-press-tools:before {
     content: "\e905";
 }
-.d4p-plugin-icon-gd-webfonts-toolbox:before {
+.d4p-plugin-icon-gd-rating-system:before {
     content: "\e906";
 }
-.d4p-plugin-icon-gd-clever-widgets:before {
-    content: "\e913";
-}
-.d4p-plugin-icon-gd-topic-prefix:before {
-    content: "\e910";
-}
-.d4p-plugin-icon-gd-rating-system:before {
-    content: "\e911";
-}
 .d4p-plugin-icon-gd-security-toolbox:before {
-    content: "\e915";
+    content: "\e907";
 }
-.d4p-plugin-icon-gd-topic-polls:before {
-    content: "\e916";
+.d4p-plugin-icon-gd-seo-toolbox:before {
+    content: "\e908";
 }
 .d4p-plugin-icon-gd-swift-navigator:before {
-    content: "\e914";
+    content: "\e909";
+}
+.d4p-plugin-icon-gd-topic-polls:before {
+    content: "\e90a";
+}
+.d4p-plugin-icon-gd-topic-prefix:before {
+    content: "\e90b";
+}
+.d4p-plugin-icon-gd-webfonts-toolbox:before {
+    content: "\e90c";
 }
 
 /* Sizing */
