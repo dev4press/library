@@ -10,12 +10,11 @@
 }
 
 i.d4p-icon {
-    font-family: 'dev4press' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
+    font:normal normal normal 14px/1 dev4press;
+    font-size: inherit;
     text-transform: none;
+    display: inline-block;
+    speak: none;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -48,6 +47,9 @@ i.d4p-icon {
 }
 .d4p-logo-php:before {
     content: "\e90d";
+}
+.d4p-logo-php-light:before {
+    content: "\e91b";
 }
 .d4p-logo-woo:before {
     content: "\e919";
