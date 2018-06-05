@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.3.1 - 2018.06.05 =
+* New: Cookies library, version 2.2.0
+
 = Version 2.3 - 2018.05.24 =
 * New: Several new icons in font
 * Updated: Font with icons rebuilt
