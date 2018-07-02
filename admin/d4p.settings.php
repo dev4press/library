@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Settings
-Version: v2.3.2
+Version: v2.3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -161,38 +161,44 @@ if (!class_exists('d4pSettingsRender')) {
 
         public function render() {
             foreach ($this->groups as $group => $obj) {
-                $args = isset($obj['args']) ? $obj['args'] : array();
+                if (isset($obj['type']) && $obj['type'] == 'separator') {
+                    echo '<div class="d4p-group-separator">';
+                        echo '<h3><span>'.$obj['label'].'</span></h3>';
+                    echo '</div>';
+                } else {
+                    $args = isset($obj['args']) ? $obj['args'] : array();
 
-                $classes = array('d4p-group', 'd4p-group-'.$group);
+                    $classes = array('d4p-group', 'd4p-group-'.$group);
 
-                if (isset($args['hidden']) && $args['hidden']) {
-                    $classes[] = 'd4p-hidden-group';
-                }
-
-                if (isset($args['class']) && $args['class'] != '') {
-                    $classes[] = $args['class'];
-                }
-
-                echo '<div class="'.join(' ', $classes).'" id="d4p-group-'.$group.'">';
-                    $kb = isset($obj['kb']) ? str_replace('%url%', $obj['kb']['url'], $this->kb) : '';
-
-                    if ($kb != '') {
-                        $kb = '<a class="d4p-kb-group" href="'.$kb.'" target="_blank">'.$obj['kb']['label'].'</a>';
+                    if (isset($args['hidden']) && $args['hidden']) {
+                        $classes[] = 'd4p-hidden-group';
                     }
 
-                    echo '<h3>'.$obj['name'].$kb.'</h3>';
-                    echo '<div class="d4p-group-inner">';
-                        echo '<table class="form-table d4p-settings-table">';
-                            echo '<tbody>';
+                    if (isset($args['class']) && $args['class'] != '') {
+                        $classes[] = $args['class'];
+                    }
 
-                                foreach ($obj['settings'] as $setting) {
-                                    $this->render_option($setting, $group);
-                                }
+                    echo '<div class="'.join(' ', $classes).'" id="d4p-group-'.$group.'">';
+                        $kb = isset($obj['kb']) ? str_replace('%url%', $obj['kb']['url'], $this->kb) : '';
 
-                            echo '</tbody>';
-                        echo '</table>';
+                        if ($kb != '') {
+                            $kb = '<a class="d4p-kb-group" href="'.$kb.'" target="_blank">'.$obj['kb']['label'].'</a>';
+                        }
+
+                        echo '<h3>'.$obj['name'].$kb.'</h3>';
+                        echo '<div class="d4p-group-inner">';
+                            echo '<table class="form-table d4p-settings-table">';
+                                echo '<tbody>';
+
+                                    foreach ($obj['settings'] as $setting) {
+                                        $this->render_option($setting, $group);
+                                    }
+
+                                echo '</tbody>';
+                            echo '</table>';
+                        echo '</div>';
                     echo '</div>';
-                echo '</div>';
+                }
             }
         }
 

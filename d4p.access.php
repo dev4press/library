@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Access
-Version: v2.3.2
+Version: v2.3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

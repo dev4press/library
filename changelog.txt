@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.3.3 - 2018.07.11 =
+* New: Improvements to the admin settings rendering
+
 = Version 2.3.2 - 2018.06.18 =
 * New: Function to sanitize file path
 
