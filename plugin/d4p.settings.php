@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    d4pLib_Class_Admin
-Version: v2.3.3
+Name:    d4pLib - Class - Settings Core
+Version: v2.3.4
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

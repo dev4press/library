@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.3.4 - 2018.07.15 =
+* New: Improvements to the metabox styling
+* Updated: Various minor updates and tweaks
+
 = Version 2.3.3 - 2018.07.11 =
 * New: Improvements to the admin settings rendering
 
