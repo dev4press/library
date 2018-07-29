@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.3.5 - 2018.07.30 =
+* New: Added 18 translations
+
 = Version 2.3.4 - 2018.07.15 =
 * New: Improvements to the metabox styling
 * Updated: Various minor updates and tweaks
