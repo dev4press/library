@@ -1,50 +1,50 @@
 #: admin/d4p.functions.php:226
 #: admin/d4p.functions.php:293
-#: admin/d4p.settings.php:505
-#: admin/d4p.settings.php:540
+#: admin/d4p.settings.php:512
+#: admin/d4p.settings.php:547
 msgid "Check All"
 msgstr ""
 
 #: admin/d4p.functions.php:227
 #: admin/d4p.functions.php:294
-#: admin/d4p.settings.php:506
-#: admin/d4p.settings.php:541
+#: admin/d4p.settings.php:513
+#: admin/d4p.settings.php:548
 msgid "Uncheck All"
 msgstr ""
 
-#: admin/d4p.settings.php:303
+#: admin/d4p.settings.php:310
 msgid "Add Image"
 msgstr ""
 
-#: admin/d4p.settings.php:307
+#: admin/d4p.settings.php:314
 msgid "No images selected."
 msgstr ""
 
-#: admin/d4p.settings.php:317
+#: admin/d4p.settings.php:324
 msgid "Remove"
 msgstr ""
 
-#: admin/d4p.settings.php:318
+#: admin/d4p.settings.php:325
 msgid "Preview"
 msgstr ""
 
-#: admin/d4p.settings.php:331
+#: admin/d4p.settings.php:338
 msgid "Select Image"
 msgstr ""
 
-#: admin/d4p.settings.php:332
+#: admin/d4p.settings.php:339
 msgid "Show Image"
 msgstr ""
 
-#: admin/d4p.settings.php:333
+#: admin/d4p.settings.php:340
 msgid "Clear Image"
 msgstr ""
 
-#: admin/d4p.settings.php:336
+#: admin/d4p.settings.php:343
 msgid "Image not selected."
 msgstr ""
 
-#: admin/d4p.settings.php:647
+#: admin/d4p.settings.php:658
 msgid "Add New Value"
 msgstr ""
 
