@@ -114,8 +114,10 @@ var d4plib_admin;
             $(document).on("click", ".d4p-setting-expandable_pairs .button-secondary", function(e){
                 e.preventDefault();
 
-                $(this).parent().fadeOut(function(){
-                    $(this).remove();
+                var li = $(this).parent();
+
+                li.fadeOut(200, function(){
+                    li.remove();
                 });
             });
 
@@ -181,8 +183,10 @@ var d4plib_admin;
             expendable_text_remove: function(ths, e) {
                 e.preventDefault();
 
-                $(ths).parent().fadeOut(function(){
-                    $(ths).remove();
+                var li = $(ths).parent();
+
+                li.fadeOut(200, function(){
+                    li.remove();
                 });
             },
             expendable_text_add: function(ths, e, cls) {

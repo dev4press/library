@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.3.6 - 2018.08.15 =
+* Fix: Some minor JavaScript problems
+
 = Version 2.3.5 - 2018.07.30 =
 * New: Added 18 translations
 
