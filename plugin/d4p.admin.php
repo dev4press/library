@@ -34,6 +34,7 @@ if (!class_exists('d4p_admin_core')) {
 
         public $page = false;
         public $panel = false;
+        public $task = false;
         public $action = false;
 
         public $menu_items;
