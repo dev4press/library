@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'dev4press';
-    src: url('fonts/dev4press.eot?v230.2400');
-    src: url('fonts/dev4press.eot?v230.2400#iefix') format('embedded-opentype'),
-         url('fonts/dev4press.ttf?v230.2400') format('truetype'),
-         url('fonts/dev4press.woff?v230.2400') format('woff'),
-         url('fonts/dev4press.svg?v230.2400#dev4press') format('svg');
+    src: url('fonts/dev4press.eot?v237.2431');
+    src: url('fonts/dev4press.eot?v237.2431#iefix') format('embedded-opentype'),
+         url('fonts/dev4press.ttf?v237.2431') format('truetype'),
+         url('fonts/dev4press.woff?v237.2431') format('woff'),
+         url('fonts/dev4press.svg?v237.2431#dev4press') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -81,6 +81,10 @@ i.d4p-icon {
 .d4p-plugin-icon-gd-knowledge-base:before {
     content: "\e904";
 }
+.d4p-plugin-icon-gd-power-search:before,
+.d4p-plugin-icon-gd-power-search-for-bbpress:before {
+    content: "\e91c";
+}
 .d4p-plugin-icon-gd-press-tools:before {
     content: "\e905";
 }
@@ -96,10 +100,12 @@ i.d4p-icon {
 .d4p-plugin-icon-gd-swift-navigator:before {
     content: "\e909";
 }
-.d4p-plugin-icon-gd-topic-polls:before {
+.d4p-plugin-icon-gd-topic-polls:before,
+.d4p-plugin-icon-gd-topic-polls-for-bbpress:before {
     content: "\e90a";
 }
-.d4p-plugin-icon-gd-topic-prefix:before {
+.d4p-plugin-icon-gd-topic-prefix:before,
+.d4p-plugin-icon-gd-topic-prefix-for-bbpress:before {
     content: "\e90b";
 }
 .d4p-plugin-icon-gd-webfonts-toolbox:before {

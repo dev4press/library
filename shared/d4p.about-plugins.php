@@ -39,6 +39,13 @@ $_plugins = array(
         "color" => "#3c6d29",
     ),
     array(
+        "code" => "gd-power-search-for-bbpress",
+        "name" => "GD Power Search for bbPress",
+        "description" => "Enhanced and powerful search for bbPress powered forums, with options to filter results by post author, forums, publication period, topic tags and few other things.",
+        "punchline" => "Advanced search for bbPress powered forums",
+        "color" => "#670240",
+    ),
+    array(
         "code" => "gd-press-tools",
         "name" => "GD Press Tools",
         "description" => "Collection of various administration, backup, cleanup, debug, events logging, tweaks and other useful tools and addons that can help with everyday tasks and optimization.",

@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.3.7 - 2018.08.15 =
+* New: Icon for GD Power Search Pro plugin
+* New: About includes GD Power Search Pro plugin
+
 = Version 2.3.6 - 2018.08.15 =
 * Fix: Some minor JavaScript problems
 
