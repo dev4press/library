@@ -36,6 +36,8 @@ if (!class_exists('d4p_core_four')) {
             'gd-topic-prefix/gd-topic-prefix.php' => '56',
             'gd-social-sharing/gd-social-sharing.php' => '52',
             'gd-bbpress-toolbox/gd-bbpress-toolbox.php' => '29',
+            'gd-quantum-theme-for-bbpress/gd-quantum-theme-for-bbpress.php' => '69',
+            'gd-power-search-for-bbpress/gd-power-search-for-bbpress.php' => '72',
             'gd-swift-navigator/gd-swift-navigator.php' => '38',
             'gd-crumbs-navigator/gd-crumbs-navigator.php' => '39',
             'gd-knowledge-base/gd-knowledge-base.php' => '46',
@@ -142,7 +144,7 @@ if (!class_exists('d4p_core_four')) {
                             $render.= '<h6 style="background-color: '.$plugin->color_dark.';"><a target="_blank" href="'.$this->_url($plugin->url_home, $panel).'">'.$plugin->name.'</a></h6>';
                             $render.= '<div class="dev4press-plugin-inner">';
                                 $render.= '<div class="dev4press-plugin-thumb">';
-                                    $render.= '<a target="_blank" href="'.$this->_url($plugin->url_home, $panel).'"><img src="'.$plugin->url_icon.'" alt="'.$plugin->name.'" /></a>';
+                                    $render.= '<a target="_blank" href="'.$this->_url($plugin->url_home, $panel).'"><i class="d4p-icon d4p-plugin-icon-'.$plugin->code.'"></i></a>';
                                 $render.= '</div>';
                                 $render.= '<em>'.$plugin->description.'</em>';
                                 $render.= '<div class="dev4press-plugin-links">';
