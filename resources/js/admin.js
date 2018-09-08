@@ -77,7 +77,9 @@ var d4plib_admin;
             });
         },
         settings: function() {
-            d4plib_media_image.init();
+            if (typeof d4plib_media_image !== 'undefined' && d4plib_media_image !== null) {
+                d4plib_media_image.init();
+            }
 
             $(".d4p-setting-number input, .d4p-field-number").numeric();
             $(".d4p-setting-integer input, .d4p-field-integer").numeric({decimalPlaces: 0, negative: false});

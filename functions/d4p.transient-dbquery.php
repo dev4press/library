@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Functions - Transient Cache - Database Query
-Version: v2.3.7
+Version: v2.4
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
