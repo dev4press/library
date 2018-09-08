@@ -12,6 +12,10 @@ msgstr ""
 msgid "Uncheck All"
 msgstr ""
 
+#: admin/d4p.settings.php:366
+msgid "Enabled"
+msgstr ""
+
 #: admin/d4p.settings.php:310
 msgid "Add Image"
 msgstr ""

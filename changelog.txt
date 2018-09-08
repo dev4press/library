@@ -6,6 +6,8 @@
 * New: About includes GD Power Search Pro plugin
 * Updated: Various minor updates and tweaks
 * Fix: Some dependencies issues in JavaScript
+* Fix: Broken file names for all translations
+* Fix: Some strings not avaiable for translation
 
 = Version 2.3.6 - 2018.08.15 =
 * Fix: Some minor JavaScript problems
