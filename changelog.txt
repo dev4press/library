@@ -5,6 +5,7 @@
 * New: Icon for GD Power Search Pro plugin
 * New: About includes GD Power Search Pro plugin
 * Updated: Various minor updates and tweaks
+* Updated: Several small styling updates
 * Fix: Some dependencies issues in JavaScript
 * Fix: Broken file names for all translations
 * Fix: Some strings not avaiable for translation
@@ -101,4 +102,4 @@
 
 = Version 2.0 - 2017.05.18 =
 * New: switched to Git
-* Removed: units librarie
+* Removed: units library
