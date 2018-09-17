@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.4.1 - 2018.09.18 =
+* New: More Dev4Press Addons and Club icons
+
 = Version 2.4 - 2018.09.10 =
 * New: Icon for GD Power Search Pro plugin
 * New: About includes GD Power Search Pro plugin
