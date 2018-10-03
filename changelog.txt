@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.4.2 - 2018.10.08 =
+* Updated: Few styling updates and changes
+
 = Version 2.4.1 - 2018.09.18 =
 * New: More Dev4Press Addons and Club icons
 

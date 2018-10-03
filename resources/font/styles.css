@@ -88,7 +88,8 @@ i.d4p-icon {
 .d4p-plugin-icon-gd-press-tools:before {
   content: "\e905";
 }
-.d4p-plugin-icon-gd-rating-system:before {
+.d4p-plugin-icon-gd-rating-system:before,
+.d4p-plugin-icon-gd-rating-system-lite:before {
   content: "\e906";
 }
 .d4p-plugin-icon-gd-security-toolbox:before {
@@ -101,6 +102,7 @@ i.d4p-icon {
   content: "\e909";
 }
 .d4p-plugin-icon-gd-topic-polls:before,
+.d4p-plugin-icon-gd-topic-polls-lite:before,
 .d4p-plugin-icon-gd-topic-polls-for-bbpress:before {
   content: "\e90a";
 }
@@ -108,10 +110,12 @@ i.d4p-icon {
 .d4p-plugin-icon-gd-topic-prefix-for-bbpress:before {
   content: "\e90b";
 }
-.d4p-plugin-icon-gd-webfonts-toolbox:before {
+.d4p-plugin-icon-gd-webfonts-toolbox:before,
+.d4p-plugin-icon-gd-webfonts-toolbox-lite:before {
   content: "\e90c";
 }
-.d4p-plugin-dev4press-updater:before {
+.d4p-plugin-dev4press-updater:before,
+.d4p-plugin-icon-dev4press-updater:before {
   content: "\e91d";
 }
 .d4p-plugin-icon-gd-bbpress-tools:before {
