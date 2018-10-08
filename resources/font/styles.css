@@ -127,12 +127,15 @@ i.d4p-icon {
 .d4p-plugin-icon-gd-pages-navigator:before {
   content: "\e920";
 }
+.d4p-club-icon-gd-bbpress-club:before,
 .d4p-club-icon-bbpress:before {
   content: "\e921";
 }
+.d4p-club-icon-gd-rating-club:before,
 .d4p-club-icon-rating:before {
   content: "\e922";
 }
+.d4p-club-icon-gd-dev4press-plugins:before,
 .d4p-club-icon-dev4press:before {
   content: "\e923";
 }

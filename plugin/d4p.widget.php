@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Class - Widget Core
-Version: v2.4.1
+Version: v2.4.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
