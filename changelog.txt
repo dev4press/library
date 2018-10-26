@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.4.3 - 2018.10.29 =
+* Updated: Main plugin class with new locale methods
+
 = Version 2.4.2 - 2018.10.08 =
 * Updated: Few styling updates and changes
 
