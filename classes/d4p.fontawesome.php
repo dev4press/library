@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Classes - Fontawesome
-Version: v2.4.3
+Version: v2.4.4
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

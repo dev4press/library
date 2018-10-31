@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.4.4 - 2018.11.05 =
+* New: Built-in cacert.pem file for CURL operations
+* New: Constant for the path to the cacert.pem file
+
 = Version 2.4.3 - 2018.10.29 =
 * Updated: Main plugin class with new locale methods
 

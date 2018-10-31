@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Classes - Four Core
-Version: v2.4.3
+Version: v2.4.4
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -116,7 +116,7 @@ if (!class_exists('d4p_core_four')) {
 
             $data = get_site_transient($key);
 
-            if ($data === false) {
+            if ($data === false || is_null($data) || empty($data)) {
                 $url = $this->_request_url('recommend');
 
                 $data = $this->_request($url);
@@ -132,7 +132,7 @@ if (!class_exists('d4p_core_four')) {
         public function ad_render($panel = 'update') {
             $render = '';
 
-            if ($this->ad !== false && $this->ad->plugins !== false && is_array($this->ad->plugins) && !empty($this->ad->plugins)) {
+            if (!is_null($this->ad) && $this->ad !== false && isset($this->ad->plugins) && $this->ad->plugins !== false && is_array($this->ad->plugins) && !empty($this->ad->plugins)) {
                 $plugins = (array)$this->ad->plugins;
 
                 if ($plugins) {

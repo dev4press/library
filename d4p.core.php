@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Core
-Version: v2.4.3
+Version: v2.4.4
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 if (!defined('D4P_VERSION')) { 
-    define('D4P_VERSION', '2.4.3');
-    define('D4P_BUILD', '2459');
+    define('D4P_VERSION', '2.4.4');
+    define('D4P_BUILD', '2460');
 }
 
 if (!defined('D4P_FONTAWESOME')) { 
@@ -75,6 +75,14 @@ if (!defined('D4P_DEBUG')) {
 
 if (!defined('D4P_SCRIPT_DEBUG')) { 
     define('D4P_SCRIPT_DEBUG', defined('SCRIPT_DEBUG') && SCRIPT_DEBUG);
+}
+
+if (!defined('D4PLIB_PATH')) {
+    define('D4PLIB_PATH', dirname(__FILE__).'/');
+}
+
+if (!defined('D4PLIB_CACERT_PATH')) {
+    define('D4PLIB_CACERT_PATH', D4PLIB_PATH.'resources/curl/cacert.pem');
 }
 
 if (!function_exists('d4p_include')) {
