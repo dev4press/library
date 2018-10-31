@@ -77,12 +77,8 @@ if (!defined('D4P_SCRIPT_DEBUG')) {
     define('D4P_SCRIPT_DEBUG', defined('SCRIPT_DEBUG') && SCRIPT_DEBUG);
 }
 
-if (!defined('D4PLIB_PATH')) {
-    define('D4PLIB_PATH', dirname(__FILE__).'/');
-}
-
 if (!defined('D4PLIB_CACERT_PATH')) {
-    define('D4PLIB_CACERT_PATH', D4PLIB_PATH.'resources/curl/cacert.pem');
+    define('D4PLIB_CACERT_PATH', dirname(__FILE__).'/resources/curl/cacert.pem');
 }
 
 if (!function_exists('d4p_include')) {
