@@ -253,7 +253,7 @@ if (!class_exists('d4p_geojsio_geoip')) {
         private $_user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:56.0) Gecko/20100101 Firefox/56.0';
 
         public function __construct($ips, $expire = 14, $user_agent = null) {
-            $this->_ips = (array)$ips;
+            $this->_ips = array_unique((array)$ips);
             $this->_expire = $expire;
 
             if (!is_null($user_agent)) {
