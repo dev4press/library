@@ -122,13 +122,31 @@ if (!function_exists('d4p_current_url')) {
     }
 }
 
-if (!function_exists('d4p_get_domain_name')) {
-    function d4p_get_domain_name($url) {
-        $host = parse_url($url, PHP_URL_HOST);
-        $part = explode('.', $host);
+if (!function_exists('d4p_get_domain_name_from_url')) {
+    function d4p_get_domain_name_from_url($url) {
+        return parse_url($url, PHP_URL_HOST);
+    }
+}
 
-        $build = array_slice($part, -2, 2);
+if (!function_exists('d4p_is_local_domain')) {
+    function d4p_is_local_domain($domain) {
+        $domain = strtolower($domain);
+        $domain = trim($domain, '.');
 
-        return $build[0].'.'.$build[1];
+        $tlds = array('local', 'localhost', 'test', 'invalid', 'example');
+
+        if (in_array($domain, $tlds)) {
+            return true;
+        }
+
+        foreach ($tlds as $name) {
+            $tld = '.'.$name;
+
+            if (substr_compare($domain, $tld, -strlen($tld)) === 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

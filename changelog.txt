@@ -7,6 +7,7 @@
 * Updated: Renamed class 'd4p_core_ip' to 'd4p_core_ips'
 * Updated: Updated list of CloudFare IPv4 and IPv6 ranges
 * Fix: Problems with some of the access functions
+* Fix: Function to get domain from URL not always working
 
 = Version 2.4.4 - 2018.11.05 =
 * New: Built-in cacert.pem file for CURL operations
