@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Sanitize
-Version: v2.4.4
+Version: v2.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -135,6 +135,7 @@ if (!function_exists('d4p_kses_expanded_list_of_tags')) {
                 'rel' => true,
                 'class' => true,
                 'style' => true,
+                'download' => true,
                 'target' => true
             ),
             'abbr' => array(),

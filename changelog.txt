@@ -1,6 +1,13 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.5 - 2018.11.12 =
+* New: Functions to check if IP is in private range
+* New: Functions to check if URL is on local domain
+* Updated: Renamed class 'd4p_core_ip' to 'd4p_core_ips'
+* Updated: Updated list of CloudFare IPv4 and IPv6 ranges
+* Fix: Problems with some of the access functions
+
 = Version 2.4.4 - 2018.11.05 =
 * New: Built-in cacert.pem file for CURL operations
 * New: Constant for the path to the cacert.pem file

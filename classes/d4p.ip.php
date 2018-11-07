@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Classes - IP Core
-Version: v2.4.4
+Version: v2.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -25,31 +25,43 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!class_exists('d4p_core_ip')) {
-    class d4p_core_ip {
+if (!class_exists('d4p_core_ips')) {
+    class d4p_core_ips {
+        protected static $private_ipv4 = array(
+            '10.0.0.0/8',
+            '127.0.0.0/8',
+            '172.16.0.0/12',
+            '192.168.0.0/16'
+        );
+
+        protected static $private_ipv6 = array(
+            'fd00::/8'
+        );
+
         protected static $cloudflare_ipv4 = array(
-            '199.27.128.0/21',
-            '173.245.48.0/20',
             '103.21.244.0/22',
             '103.22.200.0/22',
             '103.31.4.0/22',
-            '141.101.64.0/18',
-            '108.162.192.0/18',
-            '190.93.240.0/20',
-            '188.114.96.0/20',
-            '197.234.240.0/22',
-            '198.41.128.0/17',
-            '162.158.0.0/15',
             '104.16.0.0/12',
-            '172.64.0.0/13'
+            '108.162.192.0/18',
+            '131.0.72.0/22',
+            '141.101.64.0/18',
+            '162.158.0.0/15',
+            '172.64.0.0/13',
+            '173.245.48.0/20',
+            '188.114.96.0/20',
+            '190.93.240.0/20',
+            '197.234.240.0/22',
+            '198.41.128.0/17'
         );
 
         protected static $cloudflare_ipv6 = array(
             '2400:cb00::/32',
+            '2405:b500::/32',
             '2606:4700::/32',
             '2803:f800::/32',
-            '2405:b500::/32',
-            '2405:8100::/32'
+            '2c0f:f248::/32',
+            '2a06:98c0::/29'
         );
 
         public static function is_ipv4_in_range($ip, $range) {
@@ -206,6 +218,28 @@ if (!class_exists('d4p_core_ip')) {
             return base_convert($r_ip, 2, 10); 
         }
 
+        public static function is_private_ip($ip = null) {
+            if (is_null($ip)) {
+                $ip = d4p_core_ips::get_visitor_ip();
+            }
+
+            if (strpos($ip, ':') === false) {
+                foreach (d4p_core_ips::$private_ipv4 as $cf) {
+                    if (d4p_core_ips::is_ipv4_in_range($ip, $cf)) {
+                        return true;
+                    }
+                }
+            } else {
+                foreach (d4p_core_ips::$private_ipv6 as $cf) {
+                    if (d4p_core_ips::is_ipv6_in_range($ip, $cf)) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public static function is_cloudflare_ip($ip = null) {
             if (is_null($ip)) {
                 if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
@@ -220,14 +254,14 @@ if (!class_exists('d4p_core_ip')) {
             }
 
             if (strpos($ip, ':') === false) {
-                foreach (d4p_core_ip::$cloudflare_ipv4 as $cf) {
-                    if (d4p_core_ip::is_ipv4_in_range($ip, $cf)) {
+                foreach (d4p_core_ips::$cloudflare_ipv4 as $cf) {
+                    if (d4p_core_ips::is_ipv4_in_range($ip, $cf)) {
                         return true;
                     }
                 }
             } else {
-                foreach (d4p_core_ip::$cloudflare_ipv6 as $cf) {
-                    if (d4p_core_ip::is_ipv6_in_range($ip, $cf)) {
+                foreach (d4p_core_ips::$cloudflare_ipv6 as $cf) {
+                    if (d4p_core_ips::is_ipv6_in_range($ip, $cf)) {
                         return true;
                     }
                 }
@@ -237,7 +271,7 @@ if (!class_exists('d4p_core_ip')) {
         }
 
         public static function get_server_ip() {
-            $ip = d4p_core_ip::validate_ip($_SERVER['SERVER_ADDR']);
+            $ip = d4p_core_ips::validate_ip($_SERVER['SERVER_ADDR']);
 
             if ($ip == '::1') {
                 $ip = '127.0.0.1';
@@ -260,8 +294,8 @@ if (!class_exists('d4p_core_ip')) {
         }
 
         public static function get_visitor_ip($no_local_or_protected = false) {
-            if (d4p_core_ip::is_cloudflare_ip()) {
-                return d4p_core_ip::validate_ip($_SERVER['HTTP_CF_CONNECTING_IP'], true);
+            if (d4p_core_ips::is_cloudflare_ip()) {
+                return d4p_core_ips::validate_ip($_SERVER['HTTP_CF_CONNECTING_IP'], true);
             }
 
             $keys = array('HTTP_CLIENT_IP', 'HTTP_X_REAL_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR');
@@ -275,12 +309,12 @@ if (!class_exists('d4p_core_ip')) {
             }
 
             if ($no_local_or_protected) {
-                $ip = d4p_core_ip::validate_ip($ip, true);
+                $ip = d4p_core_ips::validate_ip($ip, true);
             } else {
                 if ($ip == '::1') {
                     $ip = '127.0.0.1';
                 } else if ($ip != '') {
-                    $ip = d4p_core_ip::cleanup_ip($ip);
+                    $ip = d4p_core_ips::cleanup_ip($ip);
                 }
             }
 
