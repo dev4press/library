@@ -12,10 +12,6 @@ msgstr ""
 msgid "Uncheck All"
 msgstr ""
 
-#: admin/d4p.settings.php:366
-msgid "Enabled"
-msgstr ""
-
 #: admin/d4p.settings.php:310
 msgid "Add Image"
 msgstr ""
@@ -48,39 +44,41 @@ msgstr ""
 msgid "Image not selected."
 msgstr ""
 
+#: admin/d4p.settings.php:365
+msgid "Enabled"
+msgstr ""
+
 #: admin/d4p.settings.php:658
 msgid "Add New Value"
 msgstr ""
 
-#: classes/d4p.geoip.php:84
-msgid "Localhost IP's can't be geolocated."
+#: classes/d4p.geoip.php:79
+#: classes/d4p.geoip.php:79
+msgid "Localhost or Private IP"
 msgstr ""
 
-#: classes/d4p.geoip.php:135
-msgid "Localhost"
-msgstr ""
-
-#: classes/d4p.geoip.php:139
+#: classes/d4p.geoip.php:83
+#: classes/d4p.geoip.php:83
 msgid "IP can't be geolocated."
 msgstr ""
 
-#: plugin/d4p.admin.php:113
+#: plugin/d4p.admin.php:114
 msgid "Home Page"
 msgstr ""
 
-#: plugin/d4p.admin.php:114
+#: plugin/d4p.admin.php:115
 msgid "Knowledge Base"
 msgstr ""
 
-#: plugin/d4p.admin.php:115
+#: plugin/d4p.admin.php:116
 msgid "Support Forum"
 msgstr ""
 
-#: plugin/d4p.admin.php:125
+#: plugin/d4p.admin.php:126
 msgid "Getting Help"
 msgstr ""
 
-#: plugin/d4p.admin.php:126
+#: plugin/d4p.admin.php:127
 msgid "To get help with this plugin, you can start with Knowledge Base list of frequently asked questions and articles. If you have any questions, or you want to report a bug, or you have a suggestion, you can use support forum. All important links for this are on the right side of this help dialog."
 msgstr ""
 

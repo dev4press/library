@@ -4,8 +4,12 @@
 = Version 2.5 - 2018.11.12 =
 * New: Functions to check if IP is in private range
 * New: Functions to check if URL is on local domain
+* New: Japanese (ja) translation
+* New: Croatian (hr) translation
+* New: Austrian German (de_AT) translation
 * Updated: Renamed class 'd4p_core_ip' to 'd4p_core_ips'
 * Updated: Updated list of CloudFare IPv4 and IPv6 ranges
+* Updated: All existing translation files
 * Fix: Problems with some of the access functions
 * Fix: Function to get domain from URL not always working
 
