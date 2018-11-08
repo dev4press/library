@@ -35,6 +35,7 @@ if (!class_exists('d4p_core_ips')) {
         );
 
         protected static $private_ipv6 = array(
+            '::1/128',
             'fd00::/8'
         );
 
