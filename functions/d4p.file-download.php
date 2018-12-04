@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Functions - File Download
-Version: v2.5
+Version: v2.5.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -26,9 +26,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 if (!function_exists('d4p_readfile')) {
-    function d4p_readfile($file_path, $part_size = 2, $return_size = true) {
-        $part_size = $part_size * 1024 * 1024;
+    function d4p_readfile($file_path, $part_size_mb = 2, $return_size = true) {
         $counter = 0;
+        $part_size = $part_size_mb * 1024 * 1024;
+
         $handle = fopen($file_path, 'rb');
         if ($handle === false) {
             return false;
@@ -56,14 +57,18 @@ if (!function_exists('d4p_readfile')) {
 }
 
 if (!function_exists('d4p_download_simple')) {
-    function d4p_download_simple($file_path, $args = array(), $gdr_readfile = true) {
+    function d4p_download_simple($file_path, $file_name = null, $gdr_readfile = true) {
+        if (is_null($file_name)) {
+            $file_name = basename($file_path);
+        }
+
         header("Pragma: public");
         header("Expires: 0");
         header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
         header("Content-Type: application/force-download");
         header("Content-Type: application/octet-stream");
         header("Content-Type: application/download");
-        header("Content-Disposition: attachment; filename=".basename($file_path).";");
+        header("Content-Disposition: attachment; filename=".$file_name.";");
         header("Content-Transfer-Encoding: binary");
         header("Content-Length: ".filesize($file_path));
 
@@ -76,7 +81,11 @@ if (!function_exists('d4p_download_simple')) {
 }
 
 if (!function_exists('d4p_download_resume')) {
-    function d4p_download_resume($file_path) {
+    function d4p_download_resume($file_path, $file_name = null) {
+        if (is_null($file_name)) {
+            $file_name = basename($file_path);
+        }
+
         $fp = @fopen($file_path, 'rb');
 
         $size = filesize($file_path);
@@ -90,7 +99,7 @@ if (!function_exists('d4p_download_resume')) {
         header("Content-Type: application/force-download");
         header("Content-Type: application/octet-stream");
         header("Content-Type: application/download");
-        header("Content-Disposition: attachment; filename=".basename($file_path).";");
+        header("Content-Disposition: attachment; filename=".$file_name.";");
         header("Content-Transfer-Encoding: binary");
         header("Accept-Ranges: 0-$length");
 

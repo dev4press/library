@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.5.1 - 2018.12.10 =
+* Updated: Improvements to both download file functions
+
 = Version 2.5 - 2018.11.12 =
 * New: Functions to check if IP is in private range
 * New: Functions to check if URL is on local domain
