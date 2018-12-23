@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.5.2 - 2018.12.27 =
+* Improved: CSS minification method and degree
+* Fix: Settings prefix problem get function with dynamic sttings
+
 = Version 2.5.1 - 2018.12.10 =
 * Updated: Improvements to both download file functions
 

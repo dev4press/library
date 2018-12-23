@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Walkers
-Version: v2.5.1
+Version: v2.5.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

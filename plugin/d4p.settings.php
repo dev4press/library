@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Class - Settings Core
-Version: v2.5.1
+Version: v2.5.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -191,7 +191,7 @@ if (!class_exists('d4p_settings_core')) {
         }
 
         public function prefix_get($prefix, $group = 'settings') {
-            $settings = array_keys($this->group($group));
+            $settings = array_merge(array_keys($this->settings[$group]), array_keys($this->current[$group]));
 
             $results = array();
 
