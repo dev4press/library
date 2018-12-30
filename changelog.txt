@@ -1,8 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 2.5.2 - 2018.12.27 =
+= Version 2.5.2 - 2018.12.30 =
 * Improved: CSS minification method and degree
+* Updated: Built-in cacert.pem 20181205
 * Fix: Settings prefix problem get function with dynamic sttings
 
 = Version 2.5.1 - 2018.12.10 =
