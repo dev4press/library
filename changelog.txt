@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.5.3 - 2019.01.28 =
+* New: Global variable with WordPress version
+* New: Functions to check for ClassicPress
+
 = Version 2.5.2 - 2018.12.30 =
 * Improved: CSS minification method and degree
 * Updated: Built-in cacert.pem 20181205

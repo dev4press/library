@@ -1,6 +1,6 @@
 === Dev4Press Library ===
-Version: v2.5.2
-Build:   2450
+Version: v2.5.3
+Build:   2455
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -11,4 +11,9 @@ Website: https://www.dev4press.com/
 
 == WordPress Requirements ==
 * WordPress: 4.5 or newer
+
+== WordPress Requirements ==
+* ClassicPress: 1.0 or newer
+
+== Optional ==
 * bbPress 2.5 or newer

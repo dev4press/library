@@ -2,13 +2,13 @@
 
 /*
 Name:    d4pLib_WP_Functions
-Version: v2.5.2
+Version: v2.5.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2018 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2019 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -524,5 +524,12 @@ if (!function_exists('wp_get_attachment_image_url')) {
         $image = wp_get_attachment_image_src($attachment_id, $size, $icon);
 
         return isset($image['0']) ? $image['0'] : false;
+    }
+}
+
+if (!function_exists('d4p_is_classicpress')) {
+    function d4p_is_classicpress() {
+        return function_exists('classicpress_version') && 
+               function_exists('classicpress_version_short');
     }
 }

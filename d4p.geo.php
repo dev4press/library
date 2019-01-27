@@ -2,13 +2,13 @@
 
 /*
 Name:    d4pLib_Geo
-Version: v2.5.2
+Version: v2.5.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2018 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2019 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

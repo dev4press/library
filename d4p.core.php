@@ -2,13 +2,13 @@
 
 /*
 Name:    d4pLib_Core
-Version: v2.5.2
+Version: v2.5.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2018 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2019 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 if (!defined('D4P_VERSION')) { 
-    define('D4P_VERSION', '2.5.2');
-    define('D4P_BUILD', '2450');
+    define('D4P_VERSION', '2.5.3');
+    define('D4P_BUILD', '2455');
 }
 
 if (!defined('D4P_FONTAWESOME')) { 
@@ -75,6 +75,12 @@ if (!defined('D4P_DEBUG')) {
 
 if (!defined('D4P_SCRIPT_DEBUG')) { 
     define('D4P_SCRIPT_DEBUG', defined('SCRIPT_DEBUG') && SCRIPT_DEBUG);
+}
+
+if (!defined('D4P_WP_VERSION')) {
+    global $wp_version;
+
+    define('D4P_WP_VERSION', $wp_version);
 }
 
 if (!defined('D4PLIB_CACERT_PATH')) {
