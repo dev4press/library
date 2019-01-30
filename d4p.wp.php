@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_WP_Functions
-Version: v2.5.3
+Version: v2.5.4
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -420,7 +420,7 @@ if (!function_exists('d4p_is_login_page')) {
 
         if ($login_page) {
             if ($action != '') {
-                $real_action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'login';
+                $real_action = isset($_REQUEST['action']) ? sanitize_text_field($_REQUEST['action']) : 'login';
                 return $real_action == $action;
             }
 
@@ -515,7 +515,7 @@ if (!function_exists('wp_redirect_self')) {
 
 if (!function_exists('wp_redirect_referer')) {
     function wp_redirect_referer() {
-        wp_redirect($_REQUEST['_wp_http_referer']);
+        wp_redirect(wp_get_referer());
     }
 }
 

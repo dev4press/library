@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Class - Admin Core
-Version: v2.5.3
+Version: v2.5.4
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
