@@ -61,10 +61,10 @@ if (!class_exists('d4pCheckboxRadioWalker')) {
 
             $output.= $indent.sprintf(
                 '<li class="%s"><label><input type="%s" value="%s" name="%s%s"%s class="widefat" />%s</label>',
-                $css_classes,
-                $args['input'],
-                $page->id,
-                $args['name'],
+                esc_attr($css_classes),
+                esc_attr($args['input']),
+                esc_attr($page->id),
+                esc_attr($args['name']),
                 $args['input'] == 'checkbox' ? '[]' : '',
                 $selected,
                 $page->title
