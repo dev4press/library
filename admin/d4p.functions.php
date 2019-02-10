@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Functions
-Version: v2.5.4
+Version: v2.5.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -248,8 +248,8 @@ if (!function_exists('d4p_render_checkradios')) {
     }
 }
 
-if (!function_exists('d4p_render_checkradios_hierarchy')) {
-    function d4p_render_checkradios_hierarchy($values, $args = array(), $attr = array()) {
+if (!function_exists('d4p_render_checkradios_with_hierarchy')) {
+    function d4p_render_checkradios_with_hierarchy($values, $args = array(), $attr = array()) {
         $defaults = array(
             'selected' => '', 'name' => '', 'id' => '', 'class' => '', 
             'style' => '', 'multi' => true, 'echo' => true, 'readonly' => false);
@@ -277,8 +277,6 @@ if (!function_exists('d4p_render_checkradios_hierarchy')) {
         foreach ($attr as $key => $value) {
             $attributes[] = $key.'="'.esc_attr($value).'"';
         }
-
-        $name = $multi ? $name.'[]' : $name;
 
         if ($id != '') {
             $attributes[] = 'id="'.esc_attr($id).'"';

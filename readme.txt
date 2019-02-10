@@ -1,6 +1,6 @@
 === Dev4Press Library ===
-Version: v2.5.4
-Build:   2458
+Version: v2.5.5
+Build:   2460
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

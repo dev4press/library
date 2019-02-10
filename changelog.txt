@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.5.5 - 2019.02.11 =
+* Fix: Problem with checkbox/radio hierarchical rendering function
+
 = Version 2.5.4 - 2019.01.30 =
 * Updated: Built-in cacert.pem 20190123
 * Edit: Few minor changes to some of the functions

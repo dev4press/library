@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Features - Animated Popup
-Version: v2.5.4
+Version: v2.5.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
