@@ -1,6 +1,12 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.6 - 2019.03.04 =
+* Edit: Updated Flags list and sprites
+* Edit: Reorganized some JS files
+* Edit: Separate directory for third-party JS libraries
+* Edit: Improved minification of CSS and JS files
+
 = Version 2.5.5 - 2019.02.11 =
 * Fix: Problem with checkbox/radio hierarchical rendering function
 

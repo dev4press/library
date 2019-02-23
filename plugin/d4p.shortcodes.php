@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Class - Shortcodes Core
-Version: v2.5.5
+Version: v2.6
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
