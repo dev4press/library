@@ -3,10 +3,6 @@
     display: table;
 }
 
-.d4p-clearfix.d4p-clearfix-before:before {
-    clear: both;
-}
-
 .d4p-clearfix:after {
     clear: both;
 }
