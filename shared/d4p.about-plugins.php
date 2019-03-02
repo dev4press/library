@@ -46,6 +46,13 @@ $_plugins = array(
         "color" => "#670240",
     ),
     array(
+        "code" => "gd-quantum-theme-for-bbpress",
+        "name" => "GD Quantum Theme for bbPress",
+        "description" => "Responsive and modern theme to fully replace default bbPress theme templates and styles, with multiple colour schemes and Customizer integration for more control.",
+        "punchline" => "New theme for bbPress powered forums",
+        "color" => "#D67500",
+    ),
+    array(
         "code" => "gd-press-tools",
         "name" => "GD Press Tools",
         "description" => "Collection of various administration, backup, cleanup, debug, events logging, tweaks and other useful tools and addons that can help with everyday tasks and optimization.",
