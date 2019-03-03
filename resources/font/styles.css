@@ -85,6 +85,10 @@ i.d4p-icon {
 .d4p-plugin-icon-gd-power-search-for-bbpress:before {
     content: "\e91c";
 }
+.d4p-plugin-gd-quantum-theme:before,
+.d4p-plugin-gd-quantum-theme-for-bbpress:before {
+    content: "\e933";
+}
 .d4p-plugin-icon-gd-press-tools:before {
   content: "\e905";
 }
