@@ -131,6 +131,9 @@ i.d4p-icon {
 .d4p-plugin-icon-gd-pages-navigator:before {
   content: "\e920";
 }
+.d4p-plugin-icon-gd-security-headers:before {
+    content: "\e934";
+}
 .d4p-club-icon-gd-bbpress-club:before,
 .d4p-club-icon-bbpress:before {
   content: "\e921";

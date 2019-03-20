@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Functions
-Version: v2.6
+Version: v2.6.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -375,5 +375,17 @@ if (!function_exists('d4p_render_icon')) {
         $icon.= '></'.$tag.'>';
 
         return $icon;
+    }
+}
+
+if (!function_exists('d4p_user_agent')) {
+    function d4p_user_agent() {
+        if (isset($_SERVER['HTTP_USER_AGENT'])) {
+            $user_agent = d4p_sanitize_basic(trim($_SERVER['HTTP_USER_AGENT']));
+
+            return $user_agent;
+        }
+
+        return '';
     }
 }

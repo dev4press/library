@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.6.1 - 2019.03.22 =
+* New: Function to get user agent
+* Edit: Updated font with new icons
+
 = Version 2.6 - 2019.03.04 =
 * Edit: Updated Flags list and sprites
 * Edit: Reorganized some JS files
