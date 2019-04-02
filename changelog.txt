@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.6.2 - 2019.03.03 =
+* New: JS LimitKeyPress library
+
 = Version 2.6.1 - 2019.03.22 =
 * New: Function to get user agent
 * Edit: Updated font with new icons
