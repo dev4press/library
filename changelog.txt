@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.6.3 - 2019.04.18 =
+* Edit: Updated font with new icons
+
 = Version 2.6.2 - 2019.04.03 =
 * New: JS LimitKeyPress library
 

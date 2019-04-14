@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'dev4press';
-    src: url('fonts/dev4press.eot?v260.2600');
-    src: url('fonts/dev4press.eot?v260.2600#iefix') format('embedded-opentype'),
-         url('fonts/dev4press.ttf?v260.2600') format('truetype'),
-         url('fonts/dev4press.woff?v260.2600') format('woff'),
-         url('fonts/dev4press.svg?v260.2600#dev4press') format('svg');
+    src: url('fonts/dev4press.eot?v263.2630');
+    src: url('fonts/dev4press.eot?v263.2630#iefix') format('embedded-opentype'),
+         url('fonts/dev4press.ttf?v263.2630') format('truetype'),
+         url('fonts/dev4press.woff?v263.2630') format('woff'),
+         url('fonts/dev4press.svg?v263.2630#dev4press') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -133,6 +133,9 @@ i.d4p-icon {
 }
 .d4p-plugin-icon-gd-security-headers:before {
     content: "\e934";
+}
+.d4p-plugin-icon-gd-mail-queue:before {
+    content: "\e935";
 }
 .d4p-club-icon-gd-bbpress-club:before,
 .d4p-club-icon-bbpress:before {

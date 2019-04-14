@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Core
-Version: v2.6.2
+Version: v2.6.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 if (!defined('D4P_VERSION')) { 
-    define('D4P_VERSION', '2.6.2');
-    define('D4P_BUILD', '2620');
+    define('D4P_VERSION', '2.6.3');
+    define('D4P_BUILD', '2630');
 }
 
 if (!defined('D4P_FONTAWESOME')) { 
