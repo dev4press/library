@@ -46,6 +46,8 @@ if (!class_exists('d4pSettingType')) {
         const RICH = 'rich';
         const BLOCK = 'block';
         const HTML = 'html';
+        const CODE = 'code';
+        const EMAIL = 'email';
         const LINK = 'link';
         const CHECKBOXES = 'checkboxes';
         const CHECKBOXES_HIERARCHY = 'checkboxes_hierarchy';
@@ -86,6 +88,8 @@ if (!class_exists('d4pSettingType')) {
             'rich' => self::RICH,
             'block' => self::BLOCK,
             'html' => self::HTML,
+            'code' => self::CODE,
+            'email' => self::EMAIL,
             'link' => self::LINK,
             'checkboxes' => self::CHECKBOXES,
             'checkboxes_hierarchy' => self::CHECKBOXES_HIERARCHY,
@@ -392,6 +396,28 @@ if (!class_exists('d4pSettingsRender')) {
             $this->draw_html($element, join(D4P_EOL, $value), $name_base, $id_base);
         }
 
+        private function draw_code($element, $value, $name_base, $id_base) {
+            $mode = isset($element->args['mode']) && $element->args['mode'] ? $element->args['mode'] : 'htmlmixed';
+
+            wp_enqueue_code_editor(array('type' => 'text/html'));
+
+            $this->draw_html($element, $value, $name_base, $id_base);
+
+            echo '<script type="text/javascript">
+(function($){
+    $(function(){
+        var editorSettings = wp.codeEditor.defaultSettings ? _.clone(wp.codeEditor.defaultSettings) : {};
+
+        editorSettings.codemirror = _.extend({}, editorSettings.codemirror, 
+            { indentWithTabs: false, indentUnit: 2, tabSize: 2, mode: \''.$mode.'\' }
+        );
+
+        var editor = wp.codeEditor.initialize($(\'#'.$id_base.'\'), editorSettings);                        
+    });
+})(jQuery);
+</script>';
+        }
+
         private function draw_textarea($element, $value, $name_base, $id_base) {
             $this->draw_html($element, $value, $name_base, $id_base);
         }
@@ -413,6 +439,10 @@ if (!class_exists('d4pSettingsRender')) {
                 $element->args['placeholder'] = 'http://';
             }
 
+            $this->draw_text($element, $value, $name_base, $id_base);
+        }
+
+        private function draw_email($element, $value, $name_base, $id_base) {
             $this->draw_text($element, $value, $name_base, $id_base);
         }
 
@@ -752,6 +782,7 @@ if (!class_exists('d4pSettingsProcess')) {
                     $value = d4p_sanitize_basic($post[$key]['x']).'x'.d4p_sanitize_basic($post[$key]['y']);
                     break;
                 case 'html':
+                case 'code':
                 case 'text_html':
                 case 'text_rich':
                     $value = d4p_sanitize_html($post[$key]);
@@ -811,6 +842,9 @@ if (!class_exists('d4pSettingsProcess')) {
                     break;
                 case 'link':
                     $value = d4p_sanitize_basic($post[$key]);
+                    break;
+                case 'email':
+                    $value = sanitize_email($post[$key]);
                     break;
                 default:
                 case 'text':

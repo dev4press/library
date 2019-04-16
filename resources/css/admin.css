@@ -417,6 +417,10 @@
     height: 32px;
 }
 
+.d4p-group-inner .d4p-setting-code > .CodeMirror {
+    border: 1px solid #dddddd;
+}
+
 .d4p-field-unit {
     margin-left: 8px;
 }

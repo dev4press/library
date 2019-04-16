@@ -2,6 +2,7 @@
 == Changelog ==
 
 = Version 2.6.3 - 2019.04.18 =
+* New: Added extra fields for the Settings pages
 * Edit: Updated font with new icons
 
 = Version 2.6.2 - 2019.04.03 =
