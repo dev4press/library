@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Core - WPDB Core
-Version: v2.6.3
+Version: v2.6.4
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -27,6 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 == Changes ==
 - found_rows -> get_found_rows
 */
+
+if (!defined( 'ABSPATH')) { exit; }
 
 if (!class_exists('d4p_wpdb_core')) {
     abstract class d4p_wpdb_core {

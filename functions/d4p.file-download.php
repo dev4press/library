@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Functions - File Download
-Version: v2.6.3
+Version: v2.6.4
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,6 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+if (!defined( 'ABSPATH')) { exit; }
 
 if (!function_exists('d4p_readfile')) {
     function d4p_readfile($file_path, $part_size_mb = 2, $return_size = true) {

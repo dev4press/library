@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Functions
-Version: v2.6.3
+Version: v2.6.4
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,6 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+if (!defined( 'ABSPATH')) { exit; }
 
 if (!function_exists('d4p_split_textarea_to_list')) {
     function d4p_split_textarea_to_list($value, $empty_lines = false) {
