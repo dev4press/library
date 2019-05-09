@@ -1,8 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 2.6.4 - 2019.05.16 =
+= Version 2.6.4 - 2019.05.22 =
 * Edit: Protect all files against direct loading
+* Edit: Various styling improvements and updates
 
 = Version 2.6.3 - 2019.04.18 =
 * New: Added extra fields for the Settings pages
