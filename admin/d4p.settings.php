@@ -707,12 +707,16 @@ if (!class_exists('d4pSettingsProcess')) {
             $this->settings = $settings;
         }
 
-        public function process() {
+        public function process($request = false) {
             $list = array();
+
+            if ($request === false) {
+            	$request = $_REQUEST;
+            }
 
             foreach ($this->settings as $setting) {
                 if ($setting->type != '_') {
-                    $post = isset($_REQUEST[$this->base][$setting->type]) ? $_REQUEST[$this->base][$setting->type] : array();
+                    $post = isset($request[$this->base][$setting->type]) ? $request[$this->base][$setting->type] : array();
 
                     $list[$setting->type][$setting->name] = $this->process_single($setting, $post);
                 }
