@@ -5,6 +5,7 @@
 * Edit: Few updates to the settings save processing
 * Edit: Protect all files against direct loading
 * Edit: Various styling improvements and updates
+* Fix: Few minor fixes in the settings rendering
 
 = Version 2.6.3 - 2019.04.18 =
 * New: Added extra fields for the Settings pages

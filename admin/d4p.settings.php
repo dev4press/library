@@ -681,9 +681,12 @@ if (!class_exists('d4pSettingsRender')) {
             $this->_text_element($name_base.'[0]', $id_base.'_0', 0, '', $element, true);
 
             $i = 1;
-            foreach ($value as $val) {
-                $this->_text_element($name_base.'['.$i.']', $id_base.'_'.$i, $i, $val, $element);
-                $i++;
+
+            if (array($value) && !empty($value)) {
+	            foreach ( $value as $val ) {
+		            $this->_text_element( $name_base . '[' . $i . ']', $id_base . '_' . $i, $i, $val, $element );
+		            $i ++;
+	            }
             }
 
             echo '</ol>';
