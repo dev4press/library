@@ -107,7 +107,7 @@ if (!function_exists('d4p_sanitize_basic_array')) {
         $output = array();
 
         foreach ($input as $key => $value) {
-            $output[$key] = d4p_sanitize_basic($value);
+            $output[$key] = d4p_sanitize_basic($value, $strip_shortcodes);
         }
 
         return $output;
@@ -135,7 +135,6 @@ if (!function_exists('d4p_kses_expanded_list_of_tags')) {
                 'href' => true,
                 'title' => true,
                 'rel' => true,
-                'class' => true,
                 'style' => true,
                 'download' => true,
                 'target' => true
