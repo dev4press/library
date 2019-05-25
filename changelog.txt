@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.6.5 - 2019.05.28 =
+* Updated: Built-in cacert.pem 20190515
+
 = Version 2.6.4 - 2019.05.23 =
 * Edit: Few updates to the settings save processing
 * Edit: Protect all files against direct loading
