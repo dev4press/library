@@ -23,6 +23,10 @@
     border-collapse: collapse;
 }
 
+.d4plib-widget table.no-margin {
+    margin: 0;
+}
+
 .d4plib-widget table label {
     display: block;
     font-size: 13px;
@@ -79,10 +83,20 @@
     width: 49%;
 }
 
+.d4plib-widget table .cell-three-left,
+.d4plib-widget table .cell-three-middle,
+.d4plib-widget table .cell-three-right {
+    width: 32%;
+}
+
+.d4plib-widget table .cell-three-middle,
+.d4plib-widget table .cell-three-left,
 .d4plib-widget table .cell-left {
     padding-right: 1%;
 }
 
+.d4plib-widget table .cell-three-middle,
+.d4plib-widget table .cell-three-right,
 .d4plib-widget table .cell-right {
     padding-left: 1%;
 }

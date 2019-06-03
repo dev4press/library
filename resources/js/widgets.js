@@ -43,11 +43,13 @@ var d4plib_widgets;
             });
 
             $(document).on("change", ".d4plib-div-switch", function(){
-                var method = $(this).val(), 
+                var method = $(this).val(),
+                    prefix = $(this).data().hasOwnProperty("prefix") ? $(this).data("prefix") : '',
+                    block = prefix === "" ? ".d4p-div-block" : ".d4p-div-block-" + prefix,
                     parent = $(this).closest(".widget-content");
 
-                $(".d4p-div-block", parent).hide();
-                $(".d4p-div-block-" + method, parent).show();
+                $(block, parent).hide();
+                $(block + "-" + method, parent).show();
             });
 
             $(document).on("change", ".d4plib-block-switch", function(e){
