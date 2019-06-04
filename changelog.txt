@@ -1,11 +1,12 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 2.6.6 - 2019.06.06 =
+= Version 2.7 - 2019.06.06 =
 * New: Font includes WOFF2 version
 * Updated: Font using better addons icons
 * Updated: Widget script for settings switching
 * Updated: Styling improvements for widgets
+* Updated: Various minor PHP code updates
 
 = Version 2.6.5 - 2019.05.28 =
 * Updated: Built-in cacert.pem 20190515

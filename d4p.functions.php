@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Functions
-Version: v2.6.6
+Version: v2.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -72,7 +72,6 @@ if (!function_exists('d4p_scan_dir')) {
         $filter = !in_array($filter, array('folders', 'files', 'all')) ? 'files' : $filter;
         $path = str_replace('\\', '/', $path);
 
-        $files = array();
         $final = array();
 
         if (file_exists($path)) {
@@ -107,7 +106,6 @@ if (!function_exists('d4p_scan_dir')) {
 if (!function_exists('d4p_file_size_format')) {
     function d4p_file_size_format($size, $decimals = 2) {
         $_size = intval($size);
-        $unit = '';
 
         if (strlen($_size) <= 9 && strlen($_size) >= 7) {
             $_size = number_format($_size / 1048576, $decimals);

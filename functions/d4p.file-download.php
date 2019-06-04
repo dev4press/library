@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Functions - File Download
-Version: v2.6.6
+Version: v2.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -106,7 +106,6 @@ if (!function_exists('d4p_download_resume')) {
         header("Accept-Ranges: 0-$length");
 
         if (isset($_SERVER['HTTP_RANGE'])) {
-            $c_start = $start;
             $c_end = $end;
 
             list(, $range) = explode('=', $_SERVER['HTTP_RANGE'], 2);

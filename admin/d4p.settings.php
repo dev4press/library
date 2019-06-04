@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Settings
-Version: v2.6.6
+Version: v2.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -98,7 +98,7 @@ if (!class_exists('d4pSettingType')) {
             'radios' => self::RADIOS,
             'radios_hierarchy' => self::RADIOS_HIERARCHY,
             'select' => self::SELECT,
-            'select_multi' => self::MULTI,
+            'select_multi' => self::SELECT_MULTI,
             'group' => self::GROUP,
             'group_multi' => self::GROUP_MULTI,
             'number' => self::NUMBER,
