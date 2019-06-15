@@ -462,8 +462,9 @@ if (!class_exists('d4pSettingsRender')) {
 
         private function draw_password($element, $value, $name_base, $id_base) {
             $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
+            $autocomplete = isset($element->args['autocomplete']) ? d4p_sanitize_slug($element->args['autocomplete']) : 'off';
 
-            echo sprintf('<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="password" name="%s" id="%s" value="%s" class="widefat" autocomplete="off" />',
+            echo sprintf('<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="password" name="%s" id="%s" value="%s" class="widefat" autocomplete="'.$autocomplete.'" />',
                     $id_base, $element->title, $readonly, esc_attr($name_base), esc_attr($id_base), esc_attr($value));
         }
 
