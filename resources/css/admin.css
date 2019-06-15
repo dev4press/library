@@ -1073,6 +1073,11 @@
     margin-right: 15px;
 }
 
+.d4p-group-dashboard-card.d4p-double-card {
+    width: calc(100% - 15px);
+    max-width: 1215px;
+}
+
 .d4p-group-dashboard-card .d4p-group-stats {
     border-bottom: 1px solid #eee;
     padding: 8px 12px;
