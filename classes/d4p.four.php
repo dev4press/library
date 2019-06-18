@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Classes - Four Core
-Version: v2.7.1
+Version: v2.7.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

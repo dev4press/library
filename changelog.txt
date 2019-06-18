@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.7.2 - 2019.06.18 =
+* Updated: Some minor updates to styling
+
 = Version 2.7.1 - 2019.06.14 =
 * New: JS and CSS for new Controls libraries
 
