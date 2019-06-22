@@ -39,6 +39,13 @@ $_plugins = array(
         "color" => "#3c6d29",
     ),
     array(
+        "code" => "gd-mail-queue",
+        "name" => "GD Mail Queue",
+        "description" => "Intercept wp_mail function, convert emails to HTML and implements flexible mail queue system for sending emails, with support for email sending engines and services.",
+        "punchline" => "Queue based, enhanced email sending system",
+        "color" => "#773355",
+    ),
+    array(
         "code" => "gd-power-search-for-bbpress",
         "name" => "GD Power Search for bbPress",
         "description" => "Enhanced and powerful search for bbPress powered forums, with options to filter results by post author, forums, publication period, topic tags and few other things.",
