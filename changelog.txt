@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.7.4 - 2019.06.30 =
+* Updated: New and updated product icons
+
 = Version 2.7.3 - 2019.06.24 =
 * Updated: New and updated product icons
 
