@@ -2,6 +2,7 @@
 == Changelog ==
 
 = Version 2.7.4 - 2019.06.30 =
+* Updated: Rendering of the KB settings buttons
 * Updated: New and updated product icons
 
 = Version 2.7.3 - 2019.06.24 =

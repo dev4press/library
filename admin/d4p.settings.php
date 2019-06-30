@@ -155,7 +155,7 @@ if (!class_exists('d4pSettingElement')) {
 if (!class_exists('d4pSettingsRender')) {
     class d4pSettingsRender {
         public $base = 'd4pvalue';
-        public $kb = 'https://support.dev4press.com/kb/article/%url%/';
+        public $kb = 'https://support.dev4press.com/kb/%type%/%url%/';
 
         public $panel;
         public $groups;
@@ -188,6 +188,9 @@ if (!class_exists('d4pSettingsRender')) {
                         $kb = isset($obj['kb']) ? str_replace('%url%', $obj['kb']['url'], $this->kb) : '';
 
                         if ($kb != '') {
+                            $type = isset($obj['kb']['type']) ? $obj['kb']['type'] : 'article';
+                            $kb = str_replace('%type%', $type, $kb);
+
                             $kb = '<a class="d4p-kb-group" href="'.$kb.'" target="_blank">'.$obj['kb']['label'].'</a>';
                         }
 
