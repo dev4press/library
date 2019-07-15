@@ -2,6 +2,10 @@
 == Changelog ==
 
 = Version 2.7.5 - 2019.07.22 =
+* Updated: HTML5 rendering for email and URL options
+* Updated: Expandable text option can set custom type
+* Updated: Text option can set custom type
+* Updated: Various small styling improvements
 * Fix: Few minor fixes for responsive admin side styling
 
 = Version 2.7.4 - 2019.06.30 =

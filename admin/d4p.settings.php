@@ -444,23 +444,24 @@ if (!class_exists('d4pSettingsRender')) {
                 $element->args['placeholder'] = 'http://';
             }
 
-            $this->draw_text($element, $value, $name_base, $id_base);
+            $this->draw_text($element, $value, $name_base, $id_base, 'url');
         }
 
         private function draw_email($element, $value, $name_base, $id_base) {
-            $this->draw_text($element, $value, $name_base, $id_base);
+            $this->draw_text($element, $value, $name_base, $id_base, 'email');
         }
 
         private function draw_text_html($element, $value, $name_base, $id_base) {
             $this->draw_text($element, $value, $name_base, $id_base);
         }
 
-        private function draw_text($element, $value, $name_base, $id_base) {
+        private function draw_text($element, $value, $name_base, $id_base, $type = 'text') {
             $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
             $placeholder = isset($element->args['placeholder']) && !empty($element->args['placeholder']) ? ' placeholder="'.$element->args['placeholder'].'"' : '';
+            $type = isset($element->args['type']) && !empty($element->args['type']) ? $element->args['type'] : $type;
 
-            echo sprintf('<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s%s type="text" name="%s" id="%s" value="%s" class="widefat" />',
-                    $id_base, $element->title, $readonly, $placeholder, esc_attr($name_base), esc_attr($id_base), esc_attr($value));
+            echo sprintf('<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s%s type="%s" name="%s" id="%s" value="%s" class="widefat" />',
+                    $id_base, $element->title, $readonly, $placeholder, $type, esc_attr($name_base), esc_attr($id_base), esc_attr($value));
         }
 
         private function draw_password($element, $value, $name_base, $id_base) {
@@ -658,6 +659,7 @@ if (!class_exists('d4pSettingsRender')) {
 
             $button = isset($element->args['label_buttom_remove']) && $element->args['label_buttom_remove'] != '';
             $button_width = isset($element->args['width_button_remove']) ? intval($element->args['width_button_remove']) : 100;
+            $type = isset($element->args['type']) && !empty($element->args['type']) ? $element->args['type'] : 'text';
 
             $style_input = '';
             $style_button = '';
@@ -666,7 +668,7 @@ if (!class_exists('d4pSettingsRender')) {
                 $style_button = ' style="width: '.$button_width.'px;"';
             }
 
-            echo '<input type="text" name="'.esc_attr($name).'[value]" id="'.esc_attr($id).'_value" value="'.esc_attr($value).'" class="widefat"'.$style_input.' />';
+            echo '<input type="'.$type.'" name="'.esc_attr($name).'[value]" id="'.esc_attr($id).'_value" value="'.esc_attr($value).'" class="widefat"'.$style_input.' />';
 
             if ($button) {
                 echo '<a role="button" class="button-secondary" href="#"'.$style_button.'>'.$element->args['label_buttom_remove'].'</a>';

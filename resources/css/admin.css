@@ -419,6 +419,8 @@
 }
 
 .d4p-group-inner input[type="text"],
+.d4p-group-inner input[type="email"],
+.d4p-group-inner input[type="url"],
 .d4p-group-inner input[type="password"] {
     line-height: 24px;
 }
