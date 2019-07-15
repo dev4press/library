@@ -1348,17 +1348,14 @@
 }
 
 @media screen and (max-width: 800px) {
-    .d4p-header {
-        margin-top: 15px;
-    }
-
     .d4p-plugin {
         display: none;
     }
 
     .d4p-group-inner .form-table th,
     .d4p-options-panel,
-    .d4p-group {
+    .d4p-group,
+    .d4p-group.d4p-double-card {
         width: 100%;
     }
 
@@ -1444,6 +1441,7 @@
 
     .d4p-navigator {
         width: 100%;
+        margin-top: -15px;
     }
 
     .d4p-navigator ul li.d4p-nav-button {

@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.7.5 - 2019.07.22 =
+* Fix: Few minor fixes for responsive admin side styling
+
 = Version 2.7.4 - 2019.06.30 =
 * Updated: Rendering of the KB settings buttons
 * Updated: New and updated product icons
