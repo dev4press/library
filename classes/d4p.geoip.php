@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Features - Geo IP
-Version: v2.7.5
+Version: v2.7.6
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

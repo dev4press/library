@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Classes - Class
-Version: v2.7.5
+Version: v2.7.6
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

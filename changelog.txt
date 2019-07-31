@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.7.6 - 2019.08.05 =
+* New: Function to check if request is POST
+
 = Version 2.7.5 - 2019.07.22 =
 * Updated: HTML5 rendering for email and URL options
 * Updated: Expandable text option can set custom type
