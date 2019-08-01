@@ -718,6 +718,20 @@
     height: auto;
 }
 
+.d4p-section-toggle.d4p-free-height .form-table {
+    margin: 0;
+}
+
+.d4p-section-toggle.d4p-free-height .form-table > tbody > tr > * {
+    line-height: 22px;
+    width: auto;
+    padding: 2px 0;
+}
+
+.d4p-section-toggle.d4p-free-height .form-table code {
+    font-style: normal;
+}
+
 .d4p-content-topinfo {
     text-align: left;
     background: #ffffff;
