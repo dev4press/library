@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.7.7 - 2019.09.05 =
+* Updated: Built-in cacert.pem 20190828
+
 = Version 2.7.6 - 2019.08.05 =
 * New: Function to check if request is POST
 * New: Function to return data as JSON and die()
