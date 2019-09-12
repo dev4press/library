@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Core - DateTime
-Version: v2.7.7
+Version: v2.7.8
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
