@@ -55,7 +55,7 @@ if (!class_exists('d4p_grid')) {
 
         public function get_row_classes($item) {
             return array();
-	}
+	    }
 
         public function single_row($item) {
             $classes = $this->get_row_classes($item);
@@ -63,7 +63,7 @@ if (!class_exists('d4p_grid')) {
             echo '<tr'.(empty($classes) ? '' : ' class="'.join(' ', $classes).'"').'>';
             $this->single_row_columns($item);
             echo '</tr>';
-	}
+	    }
 
         public function column_default($item, $column_name){
             return $item->$column_name;
