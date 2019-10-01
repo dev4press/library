@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.7.9 - 2019.10.02 =
+* New: Customizer - Divider control
+
 = Version 2.7.8 - 2019.09.16 =
 * New: Additional jQuery libraries
 * Updated: Minor styling improvements
