@@ -136,7 +136,7 @@ if (!class_exists('d4p_admin_core_basic')) {
 
         public function plugin_actions($links, $file) {
             if ($file == $this->plugin_name()) {
-                $settings_link = '<a href="'.$this->current_url(false, false).'">'.__("Settings", "gd-members-directory-for-bbpress").'</a>';
+                $settings_link = '<a href="'.$this->current_url(false, false).'">'.__("Settings", "d4plib").'</a>';
                 array_unshift($links, $settings_link);
             }
 
@@ -145,8 +145,8 @@ if (!class_exists('d4p_admin_core_basic')) {
 
         public function plugin_links($links, $file) {
             if ($file == $this->plugin_name()) {
-                $links[] = '<a target="_blank" href="https://support.dev4press.com/kb/product/'.$this->plugin.'/">'.__("Knowledge Base", "gd-members-directory-for-bbpress").'</a>';
-                $links[] = '<a target="_blank" href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/">'.__("Support Forum", "gd-members-directory-for-bbpress").'</a>';
+                $links[] = '<a target="_blank" href="https://support.dev4press.com/kb/product/'.$this->plugin.'/">'.__("Knowledge Base", "d4plib").'</a>';
+                $links[] = '<a target="_blank" href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/">'.__("Support Forum", "d4plib").'</a>';
             }
 
             return $links;
@@ -155,8 +155,8 @@ if (!class_exists('d4p_admin_core_basic')) {
         public function install_notice() {
             if (current_user_can('install_plugins') && $this->page === false) {
                 echo '<div class="updated"><p>';
-                echo sprintf(__("%s is activated and it needs to finish installation.", "gd-clever-widgets"), $this->title());
-                echo ' <a href="options-general.php?page='.$this->plugin.'">'.__("Click Here", "gd-clever-widgets").'</a>.';
+                echo sprintf(__("%s is activated and it needs to finish installation.", "d4plib"), $this->title());
+                echo ' <a href="options-general.php?page='.$this->plugin.'">'.__("Click Here", "d4plib").'</a>.';
                 echo '</p></div>';
             }
         }
@@ -164,8 +164,8 @@ if (!class_exists('d4p_admin_core_basic')) {
         public function update_notice() {
             if (current_user_can('install_plugins') && $this->page === false) {
                 echo '<div class="updated"><p>';
-                echo sprintf(__("%s is updated, and you need to review the update process.", "gd-clever-widgets"), $this->title());
-                echo ' <a href="options-general.php?page='.$this->plugin.'">'.__("Click Here", "gd-clever-widgets").'</a>.';
+                echo sprintf(__("%s is updated, and you need to review the update process.", "d4plib"), $this->title());
+                echo ' <a href="options-general.php?page='.$this->plugin.'">'.__("Click Here", "d4plib").'</a>.';
                 echo '</p></div>';
             }
         }
@@ -195,10 +195,10 @@ if (!class_exists('d4p_admin_core_basic')) {
             wp_enqueue_script('d4plib-admin', $this->file('js', 'admin', true), array('d4plib-shared'), d4p_library_enqueue_ver(), true);
 
             wp_localize_script('d4plib-shared', 'd4plib_admin_data', array(
-                'string_media_image_title' => __("Select Image", "gd-clever-widgets"),
-                'string_media_image_button' => __("Use Selected Image", "gd-clever-widgets"),
-                'string_are_you_sure' => __("Are you sure you want to do this?", "gd-clever-widgets"),
-                'string_image_not_selected' => __("Image not selected.", "gd-clever-widgets")
+                'string_media_image_title' => __("Select Image", "d4plib"),
+                'string_media_image_button' => __("Use Selected Image", "d4plib"),
+                'string_are_you_sure' => __("Are you sure you want to do this?", "d4plib"),
+                'string_image_not_selected' => __("Image not selected.", "d4plib")
             ));
 
             if ($this->panel == 'about') {
