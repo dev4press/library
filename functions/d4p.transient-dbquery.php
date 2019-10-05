@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Functions - Transient Cache - Database Query
-Version: v2.7.9
+Version: v2.8.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!defined( 'ABSPATH')) { exit; }
+if (!defined('ABSPATH')) { exit; }
 
 if (!function_exists('d4p_transient_sql_query')) {
     function d4p_transient_sql_query($query, $key, $method, $output = OBJECT, $x = 0, $y = 0, $ttl = 86400) {

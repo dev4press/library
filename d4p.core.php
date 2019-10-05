@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Core
-Version: v2.7.9
+Version: v2.8.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -25,11 +25,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!defined( 'ABSPATH')) { exit; }
+if (!defined('ABSPATH')) { exit; }
 
 if (!defined('D4P_VERSION')) { 
-    define('D4P_VERSION', '2.7.9');
-    define('D4P_BUILD', '2790');
+    define('D4P_VERSION', '2.8.0');
+    define('D4P_BUILD', '2800');
 }
 
 if (!defined('D4P_FONTAWESOME')) { 
@@ -131,6 +131,12 @@ if (!function_exists('d4p_has_plugin')) {
         $plugin = $name.'/'.$name.'.php';
 
         return d4p_is_plugin_active($plugin);
+    }
+}
+
+if (!function_exists('d4p_library_enqueue_ver')) {
+    function d4p_library_enqueue_ver() {
+        return D4P_VERSION.'.'.D4P_BUILD;
     }
 }
 

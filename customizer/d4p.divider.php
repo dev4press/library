@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Customizer - Divider
-Version: v2.7.9
+Version: v2.8.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
