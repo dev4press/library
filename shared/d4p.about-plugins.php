@@ -46,6 +46,13 @@ $_plugins = array(
         "color" => "#773355",
     ),
     array(
+        "code" => "gd-members-directory-for-bbpress",
+        "name" => "GD Members Directory for bbPress",
+        "description" => "Easy to use plugin for adding forum members directory page into bbPress powered forums including members filtering and additional widgets for listing members in the sidebar.",
+        "punchline" => "Members Directory for bbPress powered forums",
+        "color" => "#057C8C",
+    ),
+    array(
         "code" => "gd-power-search-for-bbpress",
         "name" => "GD Power Search for bbPress",
         "description" => "Enhanced and powerful search for bbPress powered forums, with options to filter results by post author, forums, publication period, topic tags and few other things.",
