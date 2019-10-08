@@ -4,6 +4,7 @@
 = Version 2.8.0 - 2019.10.14 =
 * New: Plugin admin Basic class
 * New: Plugin admin Options class
+* Updated: New and updated product icons
 
 = Version 2.7.9 - 2019.10.02 =
 * New: Customizer - Divider control
