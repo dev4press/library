@@ -207,11 +207,14 @@ if (!class_exists('d4p_admin_core_basic')) {
         }
 
         protected function enqueue_dev4press_library_widgets() {
-            wp_enqueue_script('suggest');
             wp_enqueue_style('wp-color-picker');
 
-            wp_enqueue_style('d4plib-widgets', $this->file('css', 'widgets', true), array(),  d4p_library_enqueue_ver());
-            wp_enqueue_script('d4plib-widgets', $this->file('js', 'widgets', true), array('jquery', 'wp-color-picker'),  d4p_library_enqueue_ver(), true);
+            wp_enqueue_script('suggest');
+            wp_enqueue_script('wp-color-picker');
+            wp_enqueue_script('jquery-ui-sortable');
+
+            wp_enqueue_style('d4plib-widgets', $this->file('css', 'widgets', true), array('wp-color-picker'),  d4p_library_enqueue_ver());
+            wp_enqueue_script('d4plib-widgets', $this->file('js', 'widgets', true), array('jquery', 'suggest', 'wp-color-picker', 'jquery-ui-sortable'),  d4p_library_enqueue_ver(), true);
         }
 
         abstract public function title();
