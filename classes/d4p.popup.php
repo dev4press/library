@@ -38,8 +38,8 @@ if (!class_exists('d4p_object_animated_popup')) {
         public function enqueue_files() {
             wp_enqueue_script('jquery');
 
-            wp_enqueue_style('d4p-animated-popup', $this->url.'animated-popup/popup.css', array(), D4P_VERSION);
-            wp_enqueue_script('d4p-animated-popup', $this->url.'animated-popup/popup.js', array('jquery'), D4P_VERSION);
+            wp_enqueue_style('d4p-animated-popup', $this->url.'animated-popup/popup.min.css', array(), D4P_VERSION);
+            wp_enqueue_script('d4p-animated-popup', $this->url.'animated-popup/popup.min.js', array('jquery'), D4P_VERSION);
         }
 
         public function effects() {
