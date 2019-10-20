@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.8.1 - 2019.10.21 =
+* Updated: Built-in cacert.pem 20191016
+
 = Version 2.8.0 - 2019.10.14 =
 * New: Plugin admin Basic class
 * New: Plugin admin Options class
