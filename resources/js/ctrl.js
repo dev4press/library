@@ -1,9 +1,10 @@
 /*jslint regexp: true, nomen: true, undef: true, sloppy: true, eqeq: true, vars: true, white: true, plusplus: true, maxerr: 50, indent: 4 */
 
 ;(function($, window, document, undefined) {
-    window.dev4press = window.dev4press || {};
+    window.wp = window.wp || {};
+    window.wp.dev4press = window.wp.dev4press || {};
 
-    window.dev4press.tabs = {
+    window.wp.dev4press.tabs = {
         run: function() {
             $(document).on("click", ".d4p-ctrl-tabs button[role='tab']", function (e) {
                 var tabs = $(this).parent(),
@@ -30,5 +31,5 @@
         }
     };
 
-    window.dev4press.tabs.run();
+    window.wp.dev4press.tabs.run();
 })(jQuery, window, document);

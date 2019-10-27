@@ -1,6 +1,12 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.8.2 - 2019.11.14 =
+* New: Customizer - Slider control
+* New: Customizer - Notice control
+* New: Customizer - Link section
+* New: Customizer - CSS and JS files
+
 = Version 2.8.1 - 2019.10.21 =
 * Updated: Built-in cacert.pem 20191016
 

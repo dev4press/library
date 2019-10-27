@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Customizer - Divider
-Version: v2.8.1
+Version: v2.8.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -28,17 +28,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 if (!defined('ABSPATH')) exit;
 
 class d4p_customizer_ctrl_divider extends WP_Customize_Control {
-    protected function render_content() {
-        $input_id         = '_customize-input-' . $this->id;
-        $description_id   = '_customize-description-' . $this->id;
+    public $type = 'd4p-ctrl-divider';
 
+    protected function render_content() {
         ?>
         <hr />
         <?php if ( ! empty( $this->label ) ) : ?>
-            <label for="<?php echo esc_attr( $input_id ); ?>" class="customize-control-title"><?php echo esc_html( $this->label ); ?></label>
+            <label for="_customize-input-<?php echo esc_attr( $this->id ); ?>" class="customize-control-title"><?php echo esc_html( $this->label ); ?></label>
         <?php endif;
         if ( ! empty( $this->description ) ) : ?>
-            <span id="<?php echo esc_attr( $description_id ); ?>" class="description customize-control-description"><?php echo $this->description; ?></span>
+            <span id="_customize-description-<?php echo esc_attr( $this->id ); ?>" class="description customize-control-description"><?php echo $this->description; ?></span>
         <?php endif;
     }
 }

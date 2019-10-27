@@ -1,8 +1,10 @@
 /*jslint regexp: true, nomen: true, undef: true, sloppy: true, eqeq: true, vars: true, white: true, plusplus: true, maxerr: 50, indent: 4 */
-var d4plib_wizard;
 
 ;(function($, window, document, undefined) {
-    d4plib_wizard = {
+    window.wp = window.wp || {};
+    window.wp.dev4press = window.wp.dev4press || {};
+
+    window.wp.dev4press.wizard = {
         init: function() {
             $(".gdbbx-wizard-connect-switch").change(function(){
                 var connect = $(this).val() === "yes",
@@ -17,5 +19,5 @@ var d4plib_wizard;
         }
     };
 
-    d4plib_wizard.init();
+    window.wp.dev4press.wizard.init();
 })(jQuery, window, document);
