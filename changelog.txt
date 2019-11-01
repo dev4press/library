@@ -9,6 +9,7 @@
 * New: Customizer - CSS and JS files
 * New: Customizer Base Class
 * Updated: Function for icon rendering
+* Fix: Few issues with the numerical settings fields
 
 = Version 2.8.1 - 2019.10.21 =
 * Updated: Built-in cacert.pem 20191016

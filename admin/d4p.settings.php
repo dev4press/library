@@ -501,12 +501,12 @@ if (!class_exists('d4pSettingsRender')) {
         private function draw_number($element, $value, $name_base, $id_base) {
             $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
 
-            $min = isset($element->args['min']) ? ' min="'.floatval($element->args['min']).'"' : '';
-            $max = isset($element->args['max']) ? ' max="'.floatval($element->args['max']).'"' : '';
-            $step = isset($element->args['step']) ? ' step="'.floatval($element->args['step']).'"' : '';
+            $min = isset($element->args['min']) ? ' min="'.esc_attr(floatval($element->args['min'])).'"' : '';
+            $max = isset($element->args['max']) ? ' max="'.esc_attr(floatval($element->args['max'])).'"' : '';
+            $step = isset($element->args['step']) ? ' step="'.esc_attr(floatval($element->args['step'])).'"' : '';
 
             echo sprintf('<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="number" name="%s" id="%s" value="%s" class="widefat"%s%s%s />',
-                    $id_base, $element->title, $readonly, esc_attr($name_base), esc_attr($id_base), esc_attr($value), esc_attr($min), esc_attr($max), esc_attr($step));
+                    $id_base, $element->title, $readonly, esc_attr($name_base), esc_attr($id_base), esc_attr($value), $min, $max, $step);
 
             if (isset($element->args['label_unit'])) {
                 echo '<span class="d4p-field-unit">'.$element->args['label_unit'].'</span>';
