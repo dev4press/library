@@ -330,7 +330,7 @@ if (!function_exists('d4p_url_campaign_tracking')) {
 if (!function_exists('d4p_get_icon_class')) {
     function d4p_get_icon_class($name, $extra = array()) {
         $class = '';
-        $d4p = false; 
+        $d4p = false;
         $dashicons = false;
 
         if (substr($name, 0, 3) == 'd4p') {
@@ -339,6 +339,8 @@ if (!function_exists('d4p_get_icon_class')) {
         } else if (substr($name, 0, 9) == 'dashicons') {
             $class.= 'dashicons '.$name;
             $dashicons = true;
+        } else if (strpos($name, ' ') > 0) {
+            $class.= $name;
         } else {
             $class.= 'fa fa-'.$name;
         }
