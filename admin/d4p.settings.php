@@ -773,7 +773,7 @@ if (!class_exists('d4pSettingsProcess')) {
                         if ($id > 0) {
                             $_val = d4p_sanitize_basic($data['value']);
 
-                            if ($_val != '') {
+                            if (!empty($_val)) {
                                 $value[] = $_val;
                             }
                         }
@@ -787,7 +787,7 @@ if (!class_exists('d4pSettingsProcess')) {
                             $_key = d4p_sanitize_basic($data['key']);
                             $_val = d4p_sanitize_basic($data['value']);
 
-                            if ($_key != '' && $_val != '') {
+                            if (!empty($_key) && !empty($_val)) {
                                 $value[$_key] = $_val;
                             }
                         }
