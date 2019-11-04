@@ -373,9 +373,10 @@ if (!class_exists('d4pSettingsRender')) {
             $selected = $value == 1 || $value === true ? ' checked="checked"' : '';
             $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly="readonly" disabled="disabled"' : '';
             $label = isset($element->args['label']) && $element->args['label'] != '' ? $element->args['label'] : __("Enabled", "d4plib");
+            $value = isset($element->args['value']) && $element->args['value'] != '' ? $element->args['value'] : 'on';
 
-            echo sprintf('<label for="%s"><input%s type="checkbox" name="%s" id="%s"%s class="widefat" /><span class="d4p-accessibility-show-for-sr">%s: </span>%s</label>',
-                    esc_attr($id_base), $readonly, esc_attr($name_base), esc_attr($id_base), $selected, $element->title, $label);
+            echo sprintf('<label for="%s"><input%s type="checkbox" name="%s" id="%s"%s class="widefat" value="%s" /><span class="d4p-accessibility-show-for-sr">%s: </span>%s</label>',
+                    esc_attr($id_base), $readonly, esc_attr($name_base), esc_attr($id_base), $selected, $value, $element->title, $label);
         }
 
         private function draw_html($element, $value, $name_base, $id_base) {
