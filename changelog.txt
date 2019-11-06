@@ -1,7 +1,12 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 2.8.2 - 2019.11.14 =
+= Version 2.9 - 2019.11.14 =
+* New: Autoloader Function
+* New: Dev4Press Namespace
+* New: Dev4Press Namespace: Pixabay Service
+* New: Dev4Press Namespace: Pexels Service
+* New: Dev4Press Namespace: Remote Image to Library
 * New: Customizer - Slider control
 * New: Customizer - Alpha Color control
 * New: Customizer - Notice control

@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Class_Grid
-Version: v2.8.2
+Version: v2.9.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
