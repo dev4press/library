@@ -27,6 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Service\Media;
 
+use WP_Error;
+
 class Pixabay {
     private $_api_key;
     private $_api_url = 'https://pixabay.com/api/';
@@ -70,7 +72,7 @@ class Pixabay {
             return $this->_format_image($response->hits[0]);
         }
 
-        return new \WP_Error('not_found', __("Specified image ID not found."));
+        return new WP_Error('not_found', __("Specified image ID not found."));
     }
 
     public function images($args = array()) {
@@ -142,7 +144,7 @@ class Pixabay {
             return $this->_format_video($response->hits[0]);
         }
 
-        return new \WP_Error('not_found', __("Specified video ID not found."));
+        return new WP_Error('not_found', __("Specified video ID not found."));
     }
 
     public function videos($args = array()) {

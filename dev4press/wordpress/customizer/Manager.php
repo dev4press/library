@@ -36,7 +36,6 @@ abstract class Manager {
     protected $_prefix = 'd4p-';
     protected $_panel = 'dev4press-panel';
     protected $_defaults = array();
-    protected $_controls = array();
 
     public function __construct() {
         $this->_init();
@@ -47,7 +46,7 @@ abstract class Manager {
         $this->_is_debug = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG;
     }
 
-    /** @return WP_Customize_Manager */
+    /** @return \WP_Customize_Manager */
     public function c() {
         global $wp_customize;
 
@@ -86,14 +85,10 @@ abstract class Manager {
 
     public function enqueue() {
         wp_enqueue_style('d4p-customizer', $this->_file('css', 'customizer', true), array(), D4P_VERSION);
-        wp_enqueue_script('d4p-customizer', $this->_file('js', 'customizer', true), array('jquery','customize-preview'), D4P_VERSION, true);
+        wp_enqueue_script('d4p-customizer', $this->_file('js', 'customizer', true), array('jquery', 'customize-preview'), D4P_VERSION, true);
     }
 
     public function register() {
-        foreach ($this->_controls as $ctrl) {
-            d4p_include($ctrl, 'customizer', $this->_lib_path);
-        }
-
         $this->_panels();
         $this->_sections();
         $this->_settings();
@@ -132,10 +127,10 @@ abstract class Manager {
         $get = $this->_lib_url.'resources/'.$type.'/'.$name;
 
         if (!$this->_is_debug && $min) {
-            $get.= '.min';
+            $get .= '.min';
         }
 
-        $get.= '.'.($type == 'libraries' ? 'js' : $type);
+        $get .= '.'.($type == 'libraries' ? 'js' : $type);
 
         return $get;
     }
@@ -143,7 +138,10 @@ abstract class Manager {
     abstract protected function _init();
 
     abstract protected function _panels();
+
     abstract protected function _sections();
+
     abstract protected function _settings();
+
     abstract protected function _controls();
 }

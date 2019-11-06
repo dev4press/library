@@ -52,11 +52,11 @@ class Notice extends \WP_Customize_Section {
 
         ?>
         <div class="d4p-notice-ctrl">
-            <?php if( !empty( $this->label ) ) { ?>
-                <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+            <?php if (!empty($this->label)) { ?>
+                <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
             <?php } ?>
-            <?php if( !empty( $this->description ) ) { ?>
-                <span class="customize-control-description"><?php echo wp_kses( $this->description, $allowed_html ); ?></span>
+            <?php if (!empty($this->description)) { ?>
+                <span class="customize-control-description"><?php echo wp_kses($this->description, $allowed_html); ?></span>
             <?php } ?>
         </div>
         <?php

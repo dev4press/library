@@ -35,13 +35,15 @@ class Link extends \WP_Customize_Section {
     public $textcolor = '';
 
     protected function render() {
-        $_back = !empty( $this->backcolor ) ? esc_attr( $this->backcolor ) : '#ffffff';
-        $_text = !empty( $this->textcolor ) ? esc_attr( $this->textcolor ) : '#555d66';
+        $_back = !empty($this->backcolor) ? esc_attr($this->backcolor) : '#ffffff';
+        $_text = !empty($this->textcolor) ? esc_attr($this->textcolor) : '#555d66';
 
         ?>
-        <li id="accordion-section-<?php echo esc_attr( $this->type ); ?>" class="d4p-link-section accordion-section control-section control-section-<?php echo esc_attr( $this->id ); ?> cannot-expand">
-            <h3 class="d4p-link-section-title" <?php echo ' style="color:'.$_text.';border-left-color:' . $_back .';border-right-color:' . $_back .';"'; ?>>
-                <a href="<?php echo esc_url( $this->url); ?>" target="_blank"<?php echo ' style="background-color:' . $_back . ';color:' . $_text .';"'; ?>><?php echo esc_html( $this->title ); ?></a>
+        <li id="accordion-section-<?php echo esc_attr($this->type); ?>"
+            class="d4p-link-section accordion-section control-section control-section-<?php echo esc_attr($this->id); ?> cannot-expand">
+            <h3 class="d4p-link-section-title" <?php echo ' style="color:'.$_text.';border-left-color:'.$_back.';border-right-color:'.$_back.';"'; ?>>
+                <a href="<?php echo esc_url($this->url); ?>"
+                   target="_blank"<?php echo ' style="background-color:'.$_back.';color:'.$_text.';"'; ?>><?php echo esc_html($this->title); ?></a>
             </h3>
         </li>
         <?php

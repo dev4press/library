@@ -27,6 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\WordPress\Media;
 
+use WP_Error;
+
 class RemoteImageToMediaLibrary {
     public $url;
     public $ext;
@@ -119,12 +121,12 @@ class RemoteImageToMediaLibrary {
         $mime_type = wp_check_filetype($this->file, $this->_mimes);
 
         $file = array(
-            'name'     => $this->_title_for_name ?
+            'name' => $this->_title_for_name ?
                 $this->data['slug'].'.'.$this->ext : $this->file,
-            'type'     => $mime_type['type'],
+            'type' => $mime_type['type'],
             'tmp_name' => $temp,
-            'error'    => 0,
-            'size'     => filesize($temp)
+            'error' => 0,
+            'size' => filesize($temp)
         );
 
         $overrides = array(
@@ -137,7 +139,7 @@ class RemoteImageToMediaLibrary {
         $attr = wp_handle_sideload($file, $overrides);
 
         if (isset($attr['error'])) {
-            return new \WP_Error('sideload_error', $attr['error']);
+            return new WP_Error('sideload_error', $attr['error']);
         }
 
         return $attr;

@@ -45,16 +45,16 @@ class AlphaColor extends \WP_Customize_Section {
     public function __construct($manager, $id, $args = array(), $options = array()) {
         parent::__construct($manager, $id, $args);
 
-        $this->attributes.= 'data-default-color="'.esc_attr($this->value()).'"';
-        $this->attributes.= 'data-alpha="'.(isset($this->input_attrs['alpha']) ? $this->input_attrs['alpha'] : 'true').'"';
-        $this->attributes.= 'data-reset-alpha="'.(isset($this->input_attrs['resetalpha']) ? $this->input_attrs['resetalpha'] : 'true').'"';
-        $this->attributes.= 'data-custom-width="0"';
+        $this->attributes .= 'data-default-color="'.esc_attr($this->value()).'"';
+        $this->attributes .= 'data-alpha="'.(isset($this->input_attrs['alpha']) ? $this->input_attrs['alpha'] : 'true').'"';
+        $this->attributes .= 'data-reset-alpha="'.(isset($this->input_attrs['resetalpha']) ? $this->input_attrs['resetalpha'] : 'true').'"';
+        $this->attributes .= 'data-custom-width="0"';
     }
 
     public function to_json() {
         parent::to_json();
 
-        $this->json['colorpickerpalette'] = isset( $this->input_attrs['palette'] ) ? $this->input_attrs['palette'] : $this->defaultPalette;
+        $this->json['colorpickerpalette'] = isset($this->input_attrs['palette']) ? $this->input_attrs['palette'] : $this->defaultPalette;
     }
 
     public function render_content() {
@@ -66,7 +66,9 @@ class AlphaColor extends \WP_Customize_Section {
             <?php if (!empty($this->description)) { ?>
                 <span class="customize-control-description"><?php echo esc_html($this->description); ?></span>
             <?php } ?>
-            <input type="text" class="color-picker" id="<?php echo esc_attr($this->id); ?>" name="<?php echo esc_attr($this->id); ?>" value="<?php echo esc_attr($this->value()); ?>" class="customize-control-colorpicker-alpha-color" <?php echo $this->attributes; ?> <?php $this->link(); ?> />
+            <input type="text" class="color-picker" id="<?php echo esc_attr($this->id); ?>"
+                   name="<?php echo esc_attr($this->id); ?>" value="<?php echo esc_attr($this->value()); ?>"
+                   class="customize-control-colorpicker-alpha-color" <?php echo $this->attributes; ?> <?php $this->link(); ?> />
         </div>
         <?php
     }
