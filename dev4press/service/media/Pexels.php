@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\Services\Media\Pexels
+Name:    Dev4Press\Service\Media\Pexels
 Version: v2.9.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -25,7 +25,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-namespace Dev4Press\Services\Media;
+namespace Dev4Press\Service\Media;
 
 class Pexels {
     private $_api_key;
