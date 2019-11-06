@@ -27,7 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\WordPress\Customizer\Control;
 
-class Notice extends \WP_Customize_Section {
+use Dev4Press\WordPress\Customizer\Control;
+
+class Notice extends Control {
     public $type = 'd4p-ctrl-notice';
 
     public function render_content() {

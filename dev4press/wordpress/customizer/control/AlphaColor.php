@@ -27,7 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\WordPress\Customizer\Control;
 
-class AlphaColor extends \WP_Customize_Section {
+use Dev4Press\WordPress\Customizer\Control;
+
+class AlphaColor extends Control {
     public $type = 'd4p-ctrl-alpha-color';
 
     public $attributes = "";
@@ -59,7 +61,7 @@ class AlphaColor extends \WP_Customize_Section {
 
     public function render_content() {
         ?>
-        <div class="wpcolorpicker_alpha_color_control">
+        <div class="wpcolorpicker_alpha_color_control d4p-ctrl-alpha-color">
             <?php if (!empty($this->label)) { ?>
                 <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
             <?php } ?>
@@ -69,6 +71,8 @@ class AlphaColor extends \WP_Customize_Section {
             <input type="text" class="color-picker" id="<?php echo esc_attr($this->id); ?>"
                    name="<?php echo esc_attr($this->id); ?>" value="<?php echo esc_attr($this->value()); ?>"
                    class="customize-control-colorpicker-alpha-color" <?php echo $this->attributes; ?> <?php $this->link(); ?> />
+            <span class="picker-reset dashicons dashicons-image-rotate"
+                  picker-reset-value="<?php echo esc_attr($this->default_value()); ?>"></span>
         </div>
         <?php
     }

@@ -84,8 +84,9 @@ abstract class Manager {
     }
 
     public function enqueue() {
-        wp_enqueue_style('d4p-customizer', $this->_file('css', 'customizer', true), array(), D4P_VERSION);
-        wp_enqueue_script('d4p-customizer', $this->_file('js', 'customizer', true), array('jquery', 'customize-preview'), D4P_VERSION, true);
+        wp_enqueue_style('d4p-customizer', $this->_file('css', 'customizer', true), array('wp-color-picker'), D4P_VERSION);
+        wp_enqueue_script('d4p-wp-color-picker-alpha', $this->_file('libraries', 'wp-color-picker-alpha.min', false), array('wp-color-picker'), D4P_VERSION, true);
+        wp_enqueue_script('d4p-customizer', $this->_file('js', 'customizer', true), array('jquery', 'customize-preview', 'd4p-wp-color-picker-alpha'), D4P_VERSION, true);
     }
 
     public function register() {

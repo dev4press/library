@@ -122,16 +122,6 @@
     z-index: 2;
 }
 
-.d4p-slider-ctrl .dashicons-image-rotate {
-    margin-top: 10px;
-    color: #d4d4d4;
-    size: 16px;
-}
-
-.d4p-slider-ctrl .dashicons-image-rotate:hover {
-    color: #a7a7a7;
-}
-
 #customize-theme-controls .d4p-link-section-title {
     font-size: 14px;
     border-bottom: 1px solid #ddd;
@@ -167,4 +157,25 @@
     padding: 12px 15px 15px;
     line-height: 21px;
     text-decoration: none;
+}
+
+
+.d4p-ctrl-alpha-color .picker-reset {
+    float: right;
+    cursor: pointer;
+}
+
+.d4p-ctrl-alpha-color  .dashicons-image-rotate,
+.d4p-slider-ctrl .dashicons-image-rotate {
+    margin-top: 10px;
+    color: #d4d4d4;
+    size: 16px;
+}
+
+.d4p-ctrl-alpha-color  .dashicons-image-rotate {
+    margin-top: 3px
+}
+
+.d4p-slider-ctrl .dashicons-image-rotate:hover {
+    color: #a7a7a7;
 }

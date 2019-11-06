@@ -6,7 +6,16 @@
 
     window.wp.dev4press.customizer = {
         run: function() {
+            wp.dev4press.customizer.alpha_color();
             wp.dev4press.customizer.slider();
+        },
+        alpha_color: function() {
+            $(".picker-reset").on("click", function() {
+                var resetValue = $(this).attr("picker-reset-value"),
+                    picker = $(this).parent().find("input.wp-color-picker");
+
+                picker.wpColorPicker("color", resetValue);
+            });
         },
         slider: function() {
             $(".d4p-slider-ctrl").each(function(){

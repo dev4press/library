@@ -27,7 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\WordPress\Customizer\Control;
 
-class Slider extends \WP_Customize_Section {
+use Dev4Press\WordPress\Customizer\Control;
+
+class Slider extends Control {
     public $type = 'd4p-ctrl-slider';
 
     public function render_content() {
@@ -43,7 +45,7 @@ class Slider extends \WP_Customize_Section {
                  slider-max-value="<?php echo esc_attr($this->input_attrs['max']); ?>"
                  slider-step-value="<?php echo esc_attr($this->input_attrs['step']); ?>"></div>
             <span class="slider-reset dashicons dashicons-image-rotate"
-                  slider-reset-value="<?php echo esc_attr($this->value()); ?>"></span>
+                  slider-reset-value="<?php echo esc_attr($this->default_value()); ?>"></span>
 
             <?php if (!empty($this->description)) { ?>
                 <span class="customize-control-description"><?php echo $this->description; ?></span>
