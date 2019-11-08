@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Plugins;
 
-class Information {
+abstract class Information {
     public $code = '';
 
     public $version = '';
