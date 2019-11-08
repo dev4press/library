@@ -146,3 +146,7 @@ include(dirname(__FILE__).'/functions/wordpress.php');
 include(dirname(__FILE__).'/functions/sanitize.php');
 include(dirname(__FILE__).'/functions/access.php');
 include(dirname(__FILE__).'/functions/debug.php');
+
+if (D4P_ADMIN) {
+    include(dirname(__FILE__).'/functions/admin.php');
+}
