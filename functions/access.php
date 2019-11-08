@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    d4pLib_Access
+Name:    Base Library Functions: Access
 Version: v2.9.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -25,53 +25,55 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+use Dev4Press\Plugin\Helpers\IP;
+
 if (!defined('ABSPATH')) { exit; }
 
 if (!function_exists('d4p_is_ip_in_range')) {
     function d4p_is_ip_in_range($ip, $range) {
-        return d4p_core_ips::is_ipv4_in_range($ip, $range);
+        return IP::is_ipv4_in_range($ip, $range);
     }
 }
 
 if (!function_exists('d4p_is_ip6_in_range')) {
     function d4p_is_ip6_in_range($ip, $range) {
-        return d4p_core_ips::is_ipv6_in_range($ip, $range);
+        return IP::is_ipv6_in_range($ip, $range);
     }
 }
 
 if (!function_exists('d4p_is_cloudflare_ip')) {
     function d4p_is_cloudflare_ip($ip = null) {
-        return d4p_core_ips::is_cloudflare_ip($ip);
+        return IP::is_cloudflare_ip($ip);
     }
 }
 
 if (!function_exists('d4p_is_private_ip')) {
     function d4p_is_private_ip($ip = null) {
-        return d4p_core_ips::is_private_ip($ip);
+        return IP::is_private_ip($ip);
     }
 }
 
 if (!function_exists('d4p_visitor_ip')) {
     function d4p_visitor_ip($no_local_or_protected = false) {
-        return d4p_core_ips::get_visitor_ip($no_local_or_protected);
+        return IP::get_visitor_ip($no_local_or_protected);
     }
 }
 
 if (!function_exists('d4p_validate_ip')) {
     function d4p_validate_ip($ip, $no_local_or_protected = false) {
-        return d4p_core_ips::validate_ip($ip, $no_local_or_protected);
+        return IP::validate_ip($ip, $no_local_or_protected);
     }
 }
 
 if (!function_exists('d4p_ip_cleanup')) {
     function d4p_ip_cleanup($ip) {
-        return d4p_core_ips::cleanup_ip($ip);
+        return IP::cleanup_ip($ip);
     }
 }
 
 if (!function_exists('d4p_server_ip')) {
     function d4p_server_ip() {
-        return d4p_core_ips::get_server_ip();
+        return IP::get_server_ip();
     }
 }
 
@@ -80,6 +82,12 @@ if (!function_exists('d4p_current_url_path')) {
         $uri = $_SERVER['REQUEST_URI'];
 
         return parse_url($uri, PHP_URL_PATH);
+    }
+}
+
+if (!function_exists('d4p_get_ip_whois')) {
+    function d4p_get_ip_whois($ip = '') {
+        return IP::get_ip_whois($ip);
     }
 }
 

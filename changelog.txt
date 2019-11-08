@@ -4,15 +4,8 @@
 = Version 2.9 - 2019.11.14 =
 * New: Autoloader Function
 * New: Dev4Press Namespace
-* New: Dev4Press Namespace: Pixabay Service
-* New: Dev4Press Namespace: Pexels Service
-* New: Dev4Press Namespace: Remote Image to Library
-* New: Customizer - Slider control
-* New: Customizer - Alpha Color control
-* New: Customizer - Notice control
-* New: Customizer - Link section
-* New: Customizer - CSS and JS files
-* New: Customizer Base Class
+* New: Dev4Press Customizer Controls
+* New: A lot of core reogranization
 * Updated: Function for icon rendering
 * Updated: Minor settings object changes
 * Fix: Few issues with the numerical settings fields

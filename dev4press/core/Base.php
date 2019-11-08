@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    d4pLib - Customizer - Divider
+Name:    Dev4Press\Core\Base
 Version: v2.9.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -25,19 +25,30 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!defined('ABSPATH')) exit;
+Namespace Dev4Press\Core;
 
-class d4p_customizer_ctrl_divider extends WP_Customize_Control {
-    public $type = 'd4p-ctrl-divider';
+class Base {
+    function __construct($args = array()) {
+        if (is_array($args) && !empty($args)) {
+            $this->from_array($args);
+        }
+    }
 
-    protected function render_content() {
-        ?>
-        <hr />
-        <?php if ( ! empty( $this->label ) ) : ?>
-            <label for="_customize-input-<?php echo esc_attr( $this->id ); ?>" class="customize-control-title"><?php echo esc_html( $this->label ); ?></label>
-        <?php endif;
-        if ( ! empty( $this->description ) ) : ?>
-            <span id="_customize-description-<?php echo esc_attr( $this->id ); ?>" class="description customize-control-description"><?php echo $this->description; ?></span>
-        <?php endif;
+    function __clone() {
+        foreach ($this as $key => $val) {
+            if (is_object($val) || (is_array($val))){
+                $this->{$key} = unserialize(serialize($val));
+            }
+        }
+    }
+
+    public function to_array() {
+        return (array)$this;
+    }
+
+    public function from_array($args) {
+        foreach ($args as $key => $value) {
+            $this->$key = $value;
+        }
     }
 }

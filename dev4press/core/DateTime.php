@@ -27,6 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core;
 
+if (!defined('ABSPATH')) { exit; }
+
 class DateTime {
     private $_mysql_format = 'Y-m-d H:i:s';
 

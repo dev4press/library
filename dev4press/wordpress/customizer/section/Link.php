@@ -27,6 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\WordPress\Customizer\Section;
 
+if (!defined('ABSPATH')) { exit; }
+
 class Link extends \WP_Customize_Section {
     public $type = 'd4p-section-link';
 

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    d4pLib_Debug
+Name:    Dev4Press\Plugin\Helpers\Debug
 Version: v2.9.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -25,30 +25,101 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+namespace Dev4Press\Plugin\Helpers;
+
 if (!defined('ABSPATH')) { exit; }
 
-if (!function_exists('d4p_error_log')) {
-    function d4p_error_log($log, $title = '') {
-        d4p_debug::error_log($log, $title);
-    }
-}
+class Debug {
+    public static function error_log($log, $title = '') {
+        if (true === WP_DEBUG) {
+            $print = '';
 
-if (!function_exists('d4p_print_r')) {
-    function d4p_print_r($obj, $pre = true, $title = '', $before = '', $after = '') {
-        d4p_debug::print_r($obj, $pre, $title, $before, $after);
-    }
-}
+            if ($title != '') {
+                $print.= '<<<< '.$title."\r\n";
+            }
 
-if (!function_exists('d4p_print_hooks')) {
-    function d4p_print_hooks($filter = false, $destination = 'print') {
-        d4p_debug::print_hooks($filter, $destination);
-    }
-}
+            $print.= print_r($log, true);
 
-if (!function_exists('d4p_debug_print_page_summary')) {
-    function d4p_debug_print_page_summary() {
+            error_log($print);
+        }
+    }
+
+    public static function print_r($obj, $pre = true, $title = '', $before = '', $after = '') {
+        echo $before.D4P_EOL;
+
+        if ($pre) {
+            echo '<pre style="padding: 5px; font-size: 12px; background: #fff; border: 1px solid #000; color: #000;">';
+
+            if ($title != '') {
+                echo '&gt;&gt;&gt;&gt;&nbsp;<strong>'.$title.'</strong>&nbsp;&lt;&lt;&lt;&lt;&lt;<br/><br/>';
+            }
+        } else {
+            if ($title != '') {
+                echo "<<<< ".$title." >>>>\r\n\r\n";
+            }
+        }
+
+        print_r($obj);
+
+        if ($pre) {
+            echo '</pre>';
+        }
+
+        echo $after.D4P_EOL;
+    }
+
+    public static function print_hooks($filter = false, $destination = 'print') {
+        global $wp_filter;
+
+        $skip = empty($filter);
+
+        foreach ($wp_filter as $tag => $hook) {
+            if ($skip || false !== strpos($tag, $filter)) {
+                self::print_hook($tag, $hook, $destination);
+            }
+        }
+    }
+
+    public static function print_hook($tag, $hook, $destination = 'print') {
+        ksort($hook);
+
+        $print = array();
+
+        foreach ($hook as $priority => $functions) {
+            foreach ($functions as $function) {
+                $line = $priority.' : ';
+
+                $callback = $function['function'];
+
+                if (is_string($callback)) {
+                    $line.= $callback;
+                } elseif (is_a($callback, 'Closure')) {
+                    $closure = new ReflectionFunction($callback);
+                    $line.= 'closure from '.$closure->getFileName(). '::'.$closure->getStartLine();
+                } elseif (is_string($callback[0])) {
+                    $line.= $callback[0].'::'.$callback[1];
+                } elseif (is_object( $callback[0])) {
+                    $line.= get_class($callback[0]).'->'.$callback[1];
+                }
+
+                if ($function['accepted_args'] == 1) {
+                    $line.= " ({$function['accepted_args']})";
+                }
+
+                $print[] = $line;
+            }
+        }
+
+        if ($destination == 'log') {
+            self::error_log($print, $tag);
+        } else {
+            self::print_r($print, true, $tag);
+        }
+    }
+
+    public static function print_page_summary() {
         global $wpdb;
-        
+
         echo D4P_EOL;
         echo '<!-- '.__("SQL Queries", "d4plib").'           : ';
         echo $wpdb->num_queries;
@@ -71,10 +142,8 @@ if (!function_exists('d4p_debug_print_page_summary')) {
 
         echo D4P_EOL;
     }
-}
 
-if (!function_exists('d4p_debug_print_query_conditions')) {
-    function d4p_debug_print_query_conditions() {
+    public static function print_query_conditions() {
         global $wp_query;
 
         echo D4P_EOL;
@@ -104,15 +173,13 @@ if (!function_exists('d4p_debug_print_query_conditions')) {
                 $false.= $line;
             }
         }
-        
+
         echo $true.D4P_EOL.$false;
 
         echo D4P_EOL;
     }
-}
 
-if (!function_exists('d4p_debug_print_page_request')) {
-    function d4p_debug_print_page_request() {
+    public static function print_page_request() {
         global $wp, $template;
 
         echo D4P_EOL;

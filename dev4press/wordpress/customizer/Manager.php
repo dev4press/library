@@ -27,6 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\WordPress\Customizer;
 
+if (!defined('ABSPATH')) { exit; }
+
 abstract class Manager {
     protected $_is_debug = false;
 

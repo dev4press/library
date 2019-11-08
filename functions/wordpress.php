@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    d4pLib_WP_Functions
+Name:    Base Library Functions: WordPress
 Version: v2.9.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,7 +24,6 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-
 if (!defined('ABSPATH')) { exit; }
 
 if (!function_exists('is_wplogin_page')) {
@@ -552,5 +551,21 @@ if (!function_exists('d4p_json_die')) {
         }
 
         die(wp_json_encode($data));
+    }
+}
+
+if (!function_exists('wp_flush_rewrite_rules')) {
+    function wp_flush_rewrite_rules() {
+        global $wp_rewrite;
+
+        $wp_rewrite->flush_rules();
+    }
+}
+
+if (!function_exists('d4p_has_plugin')) {
+    function d4p_has_plugin($name) {
+        $plugin = $name.'/'.$name.'.php';
+
+        return d4p_is_plugin_active($plugin);
     }
 }

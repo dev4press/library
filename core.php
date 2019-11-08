@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    d4pLib_Core
+Name:    Dev4Press Core Loader
 Version: v2.9.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -97,9 +97,15 @@ if (!function_exists('d4p_include')) {
             $path.= $directory.'/';
         }
 
-        $path.= 'd4p.'.$name.'.php';
+        $require = $path.'d4p.'.$name.'.php';
 
-        require_once($path);
+        if (file_exists($require)) {
+            require_once($require);
+        } else {
+            $require = $path.$name.'.php';
+
+            require_once($require);
+        }
     }
 }
 
@@ -126,24 +132,17 @@ if (!function_exists('d4p_prepare_object_cache')) {
     }
 }
 
-if (!function_exists('d4p_has_plugin')) {
-    function d4p_has_plugin($name) {
-        $plugin = $name.'/'.$name.'.php';
-
-        return d4p_is_plugin_active($plugin);
-    }
-}
-
 if (!function_exists('d4p_library_enqueue_ver')) {
     function d4p_library_enqueue_ver() {
         return D4P_VERSION.'.'.D4P_BUILD;
     }
 }
 
-if (D4P_DEBUG) {
-    d4p_include('debug', 'classes');
-    d4p_include('debug');
-}
-
 include(dirname(__FILE__).'/autoload.php');
-include(dirname(__FILE__).'/functions.php');
+
+include(dirname(__FILE__).'/functions/bridge.php');
+include(dirname(__FILE__).'/functions/helpers.php');
+include(dirname(__FILE__).'/functions/wordpress.php');
+include(dirname(__FILE__).'/functions/sanitize.php');
+include(dirname(__FILE__).'/functions/access.php');
+include(dirname(__FILE__).'/functions/debug.php');

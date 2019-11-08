@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    d4pLib_Functions
+Name:    Base Library Functions: Helpers
 Version: v2.9.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com

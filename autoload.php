@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Class Autoloader Function
+Name:    Dev4Press Core Autoloader
 Version: v2.9.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
