@@ -24,7 +24,8 @@ class Information {
     public $update = false;
     public $previous = 0;
 
-    function __construct() { }
+    function __construct() {
+    }
 
     public function to_array() {
         return (array)$this;

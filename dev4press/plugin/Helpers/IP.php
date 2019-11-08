@@ -27,7 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Plugin\Helpers;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class IP {
     protected static $private_ipv4 = array(
@@ -81,7 +83,7 @@ class IP {
             } else {
                 $x = explode('.', $range);
 
-                while(count($x) < 4) {
+                while (count($x) < 4) {
                     $x[] = '0';
                 }
 
@@ -97,8 +99,8 @@ class IP {
                 $range_dec = ip2long($range);
                 $ip_dec = ip2long($ip);
 
-                $wildcard_dec = pow(2, (32-$netmask)) - 1;
-                $netmask_dec = ~ $wildcard_dec;
+                $wildcard_dec = pow(2, (32 - $netmask)) - 1;
+                $netmask_dec = ~$wildcard_dec;
 
                 return (($ip_dec & $netmask_dec) == ($range_dec & $netmask_dec));
             }
@@ -167,7 +169,7 @@ class IP {
     }
 
     public static function get_full_ipv6($ip) {
-        $pieces = explode ('/', $ip, 2);
+        $pieces = explode('/', $ip, 2);
         $left_piece = $pieces[0];
         $right_piece = null;
 
@@ -183,7 +185,7 @@ class IP {
         }
 
         $main_ip_pieces = explode(':', $main_ip_piece);
-        foreach($main_ip_pieces as $key => $val) {
+        foreach ($main_ip_pieces as $key => $val) {
             $main_ip_pieces[$key] = str_pad($val, 4, '0', STR_PAD_LEFT);
         }
 
@@ -210,14 +212,14 @@ class IP {
 
     public static function ip2long6($ip) {
         if (substr_count($ip, '::')) {
-            $ip = str_replace('::', str_repeat(':0000', 8 - substr_count($ip, ':')) . ':', $ip);
+            $ip = str_replace('::', str_repeat(':0000', 8 - substr_count($ip, ':')).':', $ip);
         }
 
         $ip = explode(':', $ip);
 
         $r_ip = '';
         foreach ($ip as $v) {
-            $r_ip.= str_pad(base_convert($v, 16, 2), 16, 0, STR_PAD_LEFT);
+            $r_ip .= str_pad(base_convert($v, 16, 2), 16, 0, STR_PAD_LEFT);
         }
 
         return base_convert($r_ip, 2, 10);
@@ -355,11 +357,11 @@ class IP {
             $_ip = trim($_ip);
 
             if ($no_local_or_protected) {
-                if (filter_var($_ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false){
+                if (filter_var($_ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false) {
                     return $_ip;
                 }
             } else {
-                if (filter_var($_ip, FILTER_VALIDATE_IP) !== false){
+                if (filter_var($_ip, FILTER_VALIDATE_IP) !== false) {
                     return $_ip;
                 }
             }
@@ -384,7 +386,7 @@ class IP {
 
             $out = '';
             while (!feof($fp)) {
-                $out.= fgets($fp);
+                $out .= fgets($fp);
             }
 
             fclose($fp);

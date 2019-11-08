@@ -27,13 +27,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Plugin\Helpers;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class ObjectsSort {
     public $properties;
     public $sorted;
 
-    public function  __construct($objects_array, $properties = array(), $uasort = false) {
+    public function __construct($objects_array, $properties = array(), $uasort = false) {
         $properties = (array)$properties;
 
         if (count($properties) > 0) {

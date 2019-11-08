@@ -27,12 +27,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class DateTime {
     private $_mysql_format = 'Y-m-d H:i:s';
 
-    public function __construct() {}
+    public function __construct() {
+    }
 
     public static function instance() {
         static $_d4p_core_datetime = false;

@@ -29,7 +29,9 @@ namespace Dev4Press\Service\Media;
 
 use WP_Error;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class Pixabay {
     private $_api_key;

@@ -29,7 +29,9 @@ namespace Dev4Press\WordPress\Customizer\Control;
 
 use Dev4Press\WordPress\Customizer\Control;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class Divider extends Control {
     public $type = 'd4p-ctrl-divider';

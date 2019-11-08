@@ -27,7 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Plugin\Helpers;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class Download {
     private $_file_path;
@@ -71,7 +73,7 @@ class Download {
             flush();
 
             if ($return_size) {
-                $counter+= strlen($buffer);
+                $counter += strlen($buffer);
             }
         }
 
@@ -157,7 +159,7 @@ class Download {
         header("Content-Length: ".$length);
 
         $buffer = 1024 * 8;
-        while(!feof($fp) && ($p = ftell($fp)) <= $end) {
+        while (!feof($fp) && ($p = ftell($fp)) <= $end) {
             if ($p + $buffer > $end) {
                 $buffer = $end - $p + 1;
             }

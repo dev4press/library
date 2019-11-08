@@ -27,7 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 Namespace Dev4Press\Service\GEOIP;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class Location {
     public $status = 'invalid';
@@ -57,10 +59,10 @@ class Location {
         $location = '';
 
         if ($this->status == 'active' && isset($this->country_name) && !empty($this->country_name)) {
-            $location.= $this->country_name;
+            $location .= $this->country_name;
 
             if (isset($this->city) && !empty($this->city)) {
-                $location.= ', '.$this->city;
+                $location .= ', '.$this->city;
             }
         }
 

@@ -27,9 +27,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\WordPress\Customizer;
 
-if (!defined('ABSPATH')) { exit; }
+use WP_Customize_Control;
 
-class Control extends \WP_Customize_Control {
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+class Control extends WP_Customize_Control {
     final public function default_value($setting_key = 'default') {
         if (isset($this->settings[$setting_key])) {
             return $this->settings[$setting_key]->default;

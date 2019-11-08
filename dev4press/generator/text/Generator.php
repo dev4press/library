@@ -31,7 +31,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Generator\Text;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 abstract class Generator {
     protected $first = false;
@@ -45,7 +47,8 @@ abstract class Generator {
     protected $paragraph_mean = 5.8;
     protected $paragraph_dev = 1.93;
 
-    public function __construct() {}
+    public function __construct() {
+    }
 
     public function word($tags = false) {
         return $this->words(1, $tags);
@@ -137,8 +140,7 @@ abstract class Generator {
             $this->words = $this->first + $this->words;
 
             $this->first = false;
-        }
-        else {
+        } else {
             shuffle($this->words);
         }
     }
@@ -148,9 +150,9 @@ abstract class Generator {
             $words = count($sentence);
 
             if ($words > 4) {
-                $mean    = log($words, 6);
+                $mean = log($words, 6);
                 $std_dev = $mean / 6;
-                $commas  = round($this->gauss($mean, $std_dev));
+                $commas = round($this->gauss($mean, $std_dev));
 
                 for ($i = 1; $i <= $commas; $i++) {
                     $word = round($i * $words / ($commas + 1));
@@ -161,7 +163,7 @@ abstract class Generator {
                 }
             }
 
-            $sentences[$key] = ucfirst(implode(' ', $sentence) . '.');
+            $sentences[$key] = ucfirst(implode(' ', $sentence).'.');
         }
     }
 

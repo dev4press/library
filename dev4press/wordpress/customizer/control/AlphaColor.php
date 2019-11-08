@@ -29,7 +29,9 @@ namespace Dev4Press\WordPress\Customizer\Control;
 
 use Dev4Press\WordPress\Customizer\Control;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class AlphaColor extends Control {
     public $type = 'd4p-ctrl-alpha-color';
@@ -77,5 +79,6 @@ class AlphaColor extends Control {
                   picker-reset-value="<?php echo esc_attr($this->default_value()); ?>"></span>
         </div>
         <?php
+
     }
 }

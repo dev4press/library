@@ -27,7 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Plugin\Helpers;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class Debug {
     public static function error_log($log, $title = '') {
@@ -35,10 +37,10 @@ class Debug {
             $print = '';
 
             if ($title != '') {
-                $print.= '<<<< '.$title."\r\n";
+                $print .= '<<<< '.$title."\r\n";
             }
 
-            $print.= print_r($log, true);
+            $print .= print_r($log, true);
 
             error_log($print);
         }
@@ -92,18 +94,18 @@ class Debug {
                 $callback = $function['function'];
 
                 if (is_string($callback)) {
-                    $line.= $callback;
-                } elseif (is_a($callback, 'Closure')) {
+                    $line .= $callback;
+                } else if (is_a($callback, 'Closure')) {
                     $closure = new ReflectionFunction($callback);
-                    $line.= 'closure from '.$closure->getFileName(). '::'.$closure->getStartLine();
-                } elseif (is_string($callback[0])) {
-                    $line.= $callback[0].'::'.$callback[1];
-                } elseif (is_object( $callback[0])) {
-                    $line.= get_class($callback[0]).'->'.$callback[1];
+                    $line .= 'closure from '.$closure->getFileName().'::'.$closure->getStartLine();
+                } else if (is_string($callback[0])) {
+                    $line .= $callback[0].'::'.$callback[1];
+                } else if (is_object($callback[0])) {
+                    $line .= get_class($callback[0]).'->'.$callback[1];
                 }
 
                 if ($function['accepted_args'] == 1) {
-                    $line.= " ({$function['accepted_args']})";
+                    $line .= " ({$function['accepted_args']})";
                 }
 
                 $print[] = $line;
@@ -155,9 +157,9 @@ class Debug {
                 $line = '<!-- '.$key.': '.($value ? 'true' : 'false').' -->'.D4P_EOL;
 
                 if ($value) {
-                    $true.= $line;
+                    $true .= $line;
                 } else {
-                    $false.= $line;
+                    $false .= $line;
                 }
             }
         }
@@ -168,9 +170,9 @@ class Debug {
             $line = '<!-- '.$key.': '.($value ? 'true' : 'false').' -->'.D4P_EOL;
 
             if ($value) {
-                $true.= $line;
+                $true .= $line;
             } else {
-                $false.= $line;
+                $false .= $line;
             }
         }
 

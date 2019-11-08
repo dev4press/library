@@ -27,7 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\API;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class Four {
     private $plugins = array(
@@ -153,32 +155,32 @@ class Four {
 
             if ($plugins) {
                 $render = '<div id="dev4press-recommend">';
-                $render.= '<h5>Recommended Plugins</h5>';
+                $render .= '<h5>Recommended Plugins</h5>';
 
                 foreach ($plugins as $plugin) {
-                    $render.= '<div class="dev4press-recommend-plugin" style="border-color: '.$plugin->color_dark.'; background-color: '.$plugin->color.'">';
-                        $render.= '<h6 style="background-color: '.$plugin->color_dark.';"><a target="_blank" href="'.$this->_url($plugin->url_home, $panel).'">'.$plugin->name.'</a></h6>';
-                        $render.= '<div class="dev4press-plugin-inner">';
-                            $render.= '<div class="dev4press-plugin-thumb">';
-                                $render.= '<a target="_blank" href="'.$this->_url($plugin->url_home, $panel).'"><i class="d4p-icon d4p-plugin-icon-'.$plugin->code.'"></i></a>';
-                            $render.= '</div>';
-                            $render.= '<em>'.$plugin->description.'</em>';
-                            $render.= '<div class="dev4press-plugin-links">';
-                                $render.= '<a target="_blank" class="button-primary dev4press-buynow" href="'.$this->_url($plugin->url_buy, $panel).'">Buy Now</a>';
+                    $render .= '<div class="dev4press-recommend-plugin" style="border-color: '.$plugin->color_dark.'; background-color: '.$plugin->color.'">';
+                    $render .= '<h6 style="background-color: '.$plugin->color_dark.';"><a target="_blank" href="'.$this->_url($plugin->url_home, $panel).'">'.$plugin->name.'</a></h6>';
+                    $render .= '<div class="dev4press-plugin-inner">';
+                    $render .= '<div class="dev4press-plugin-thumb">';
+                    $render .= '<a target="_blank" href="'.$this->_url($plugin->url_home, $panel).'"><i class="d4p-icon d4p-plugin-icon-'.$plugin->code.'"></i></a>';
+                    $render .= '</div>';
+                    $render .= '<em>'.$plugin->description.'</em>';
+                    $render .= '<div class="dev4press-plugin-links">';
+                    $render .= '<a target="_blank" class="button-primary dev4press-buynow" href="'.$this->_url($plugin->url_buy, $panel).'">Buy Now</a>';
 
-                                if ($plugin->url_micro != '') {
-                                    $render.= '<a target="_blank" class="button-secondary" href="'.$this->_url($plugin->url_micro, $panel).'">Home Page</a>';
-                                }
+                    if ($plugin->url_micro != '') {
+                        $render .= '<a target="_blank" class="button-secondary" href="'.$this->_url($plugin->url_micro, $panel).'">Home Page</a>';
+                    }
 
-                                if ($plugin->url_demo != '') {
-                                    $render.= '<a target="_blank" class="button-secondary" href="'.$this->_url($plugin->url_demo, $panel).'">View Demo</a>';
-                                }
-                            $render.= '</div>';
-                        $render.= '</div>';
-                    $render.= '</div>';
+                    if ($plugin->url_demo != '') {
+                        $render .= '<a target="_blank" class="button-secondary" href="'.$this->_url($plugin->url_demo, $panel).'">View Demo</a>';
+                    }
+                    $render .= '</div>';
+                    $render .= '</div>';
+                    $render .= '</div>';
                 }
 
-                $render.= '</div>';
+                $render .= '</div>';
             }
         }
 
@@ -199,19 +201,19 @@ class Four {
 
     private function _header_validate() {
         return $this->data['api'].'::'.
-               $this->data['lic'];
+            $this->data['lic'];
     }
 
     private function _header_origin() {
         return $this->data['url'].'::'.
-               $this->data['multisite'];
+            $this->data['multisite'];
     }
 
     private function _header_product() {
         return $this->data['type'].'::'.
-               $this->data['name'].'::'.
-               $this->data['version'].'::'.
-               $this->data['build'];
+            $this->data['name'].'::'.
+            $this->data['version'].'::'.
+            $this->data['build'];
     }
 
     private function _has_bbpress() {

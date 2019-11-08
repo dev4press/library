@@ -29,7 +29,9 @@ namespace Dev4Press\WordPress\Customizer\Control;
 
 use Dev4Press\WordPress\Customizer\Control;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class Notice extends Control {
     public $type = 'd4p-ctrl-notice';
@@ -64,5 +66,6 @@ class Notice extends Control {
             <?php } ?>
         </div>
         <?php
+
     }
 }

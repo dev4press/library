@@ -36,7 +36,7 @@ class Base {
 
     function __clone() {
         foreach ($this as $key => $val) {
-            if (is_object($val) || (is_array($val))){
+            if (is_object($val) || (is_array($val))) {
                 $this->{$key} = unserialize(serialize($val));
             }
         }
