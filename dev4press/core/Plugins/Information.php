@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev4Press\Plugin;
+namespace Dev4Press\Core\Plugins;
 
 class Information {
     public $code = '';

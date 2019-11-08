@@ -25,8 +25,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-use Dev4Press\Plugin\Helpers\ObjectsSort;
-use Dev4Press\Plugin\Helpers\Download;
+use Dev4Press\Core\Helpers\Download;
+use Dev4Press\Core\Helpers\ObjectsSort;
 use Dev4Press\WordPress\Media\RemoteImageToMediaLibrary;
 
 if (!function_exists('d4p_remote_image_to_media_library')) {

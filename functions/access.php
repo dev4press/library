@@ -25,7 +25,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-use Dev4Press\Plugin\Helpers\IP;
+use Dev4Press\Core\Helpers\IP;
 
 if (!defined('ABSPATH')) { exit; }
 
