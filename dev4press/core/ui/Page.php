@@ -18,7 +18,7 @@ abstract class Page {
 
         $class = get_called_class();
 
-        if (!$instance[$class]) {
+        if (!isset($instance[$class])) {
             $instance[$class] = new $class();
         }
 
