@@ -104,7 +104,9 @@ if (!function_exists('d4p_include')) {
         } else {
             $require = $path.$name.'.php';
 
-            require_once($require);
+            if (file_exists($require)) {
+                require_once($require);
+            }
         }
     }
 }
@@ -146,6 +148,8 @@ include(dirname(__FILE__).'/functions/wordpress.php');
 include(dirname(__FILE__).'/functions/sanitize.php');
 include(dirname(__FILE__).'/functions/access.php');
 include(dirname(__FILE__).'/functions/debug.php');
+
+include(dirname(__FILE__).'/functions/deprecated.php');
 
 if (D4P_ADMIN) {
     include(dirname(__FILE__).'/functions/admin.php');

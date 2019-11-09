@@ -87,6 +87,16 @@
     overflow: hidden;
 }
 
+.d4p-navigator li.d4p-nav-button > a i.d4p-icon {
+    vertical-align: top;
+    margin-top: 2px;
+}
+
+.d4p-navigator li.d4p-nav-button ul i.d4p-icon {
+    vertical-align: top;
+    margin-top: 6px;
+}
+
 .d4p-navigator li {
     margin: 0;
 }

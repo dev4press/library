@@ -55,8 +55,7 @@ if (!function_exists('d4p_replace_tags_in_content')) {
 
 if (!function_exists('d4p_is_array_associative')) {
     function d4p_is_array_associative($array) {
-        return is_array($array) && 
-               (0 !== count(array_diff_key($array, array_keys(array_keys($array)))) || count($array) == 0);
+        return is_array($array) && (0 !== count(array_diff_key($array, array_keys(array_keys($array)))) || count($array) == 0);
     }
 }
 
@@ -235,9 +234,9 @@ if (!function_exists('d4p_slug_to_name')) {
 
 if (!function_exists('d4p_has_gravatar')) {
     function d4p_has_gravatar($email) {
-	$hash = md5(strtolower(trim($email)));
+	    $hash = md5(strtolower(trim($email)));
 
-	$url = 'http://www.gravatar.com/avatar/'.$hash.'?d=404';
+	    $url = 'https://www.gravatar.com/avatar/'.$hash.'?d=404';
         $headers = get_headers($url);
 
         return preg_match("/200/", $headers[0]) == 1;
@@ -324,59 +323,6 @@ if (!function_exists('d4p_url_campaign_tracking')) {
         }
 
         return $url;
-    }
-}
-
-if (!function_exists('d4p_get_icon_class')) {
-    function d4p_get_icon_class($name, $extra = array()) {
-        $class = '';
-        $d4p = false;
-        $dashicons = false;
-
-        if (substr($name, 0, 3) == 'd4p') {
-            $class.= 'd4p-icon '.$name;
-            $d4p = true;
-        } else if (substr($name, 0, 9) == 'dashicons') {
-            $class.= 'dashicons '.$name;
-            $dashicons = true;
-        } else if (strpos($name, ' ') > 0) {
-            $class.= $name;
-        } else {
-            $class.= 'fa fa-'.$name;
-        }
-
-        if (!empty($extra) && !$dashicons) {
-            $extra = (array)$extra;
-
-            foreach ($extra as $key) {
-                $class.= ' '.($d4p ? 'd4p-icon' : 'fa').'-'.$key;
-            }
-        }
-
-        return $class;
-    }
-}
-
-if (!function_exists('d4p_render_icon')) {
-    function d4p_render_icon($name, $tag = 'i', $aria_hidden = true, $fw = false, $class = '', $attr = array()) {
-        $icon = '<'.$tag;
-
-        if ($aria_hidden) {
-            $icon.= ' aria-hidden="true"';
-        }
-
-        $extra = $fw ? 'fw' : '';
-        $classes = d4p_get_icon_class($name, $extra).' '.$class;
-
-        $icon.= ' class="'.trim($classes).'"';
-
-        foreach ($attr as $key => $value) {
-            $icon.= ' '.$key.'="'.esc_attr($value).'"';
-        }
-
-        $icon.= '></'.$tag.'>';
-
-        return $icon;
     }
 }
 

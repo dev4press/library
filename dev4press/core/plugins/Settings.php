@@ -27,6 +27,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Plugins;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 abstract class Settings {
     public $base = 'd4p';
 
@@ -40,6 +44,24 @@ abstract class Settings {
 
     public function __construct() {
         $this->constructor();
+    }
+
+    /** @return Settings */
+    public static function instance() {
+        static $instance = array();
+
+        $class = get_called_class();
+
+        if (!$instance[$class]) {
+            $instance[$class] = new $class();
+        }
+
+        return $instance[$class];
+    }
+
+    /** @return Information */
+    public function information() {
+        return $this->info;
     }
 
     public function __get($name) {

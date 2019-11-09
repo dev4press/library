@@ -27,6 +27,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Plugins;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 abstract class Information {
     public $code = '';
 
@@ -35,7 +39,6 @@ abstract class Information {
     public $updated = '';
     public $status = '';
     public $edition = '';
-    public $url = '';
     public $released = '';
 
     public $author_name = 'Milan Petrovic';
@@ -49,10 +52,42 @@ abstract class Information {
     public $update = false;
     public $previous = 0;
 
-    function __construct() {
-    }
+    function __construct() {}
 
     public function to_array() {
         return (array)$this;
+    }
+
+    /** @return Information */
+    public static function instance() {
+        static $instance = array();
+
+        $class = get_called_class();
+
+        if (!$instance[$class]) {
+            $instance[$class] = new $class();
+        }
+
+        return $instance[$class];
+    }
+
+    public function name() {
+        return Store::instance()->name($this->code);
+    }
+
+    public function description() {
+        return Store::instance()->description($this->code);
+    }
+
+    public function punchline() {
+        return Store::instance()->punchline($this->code);
+    }
+
+    public function color() {
+        return Store::instance()->color($this->code);
+    }
+
+    public function url() {
+        return Store::instance()->url($this->code);
     }
 }
