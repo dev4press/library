@@ -41,6 +41,8 @@ abstract class Manager {
     protected $_panel = 'dev4press-panel';
     protected $_defaults = array();
 
+    protected $_enqueue_alpha_color = false;
+
     public function __construct() {
         $this->_init();
 
@@ -88,9 +90,18 @@ abstract class Manager {
     }
 
     public function enqueue() {
+        $requirements = array(
+            'jquery',
+            'customize-preview'
+        );
+
+        if ($this->_enqueue_alpha_color) {
+            wp_enqueue_script('d4p-wp-color-picker-alpha', $this->_file('libraries', 'wp-color-picker-alpha.min', false), array('wp-color-picker'), D4P_VERSION, true);
+            $requirements[] = 'd4p-wp-color-picker-alpha';
+        }
+
         wp_enqueue_style('d4p-customizer', $this->_file('css', 'customizer', true), array('wp-color-picker'), D4P_VERSION);
-        wp_enqueue_script('d4p-wp-color-picker-alpha', $this->_file('libraries', 'wp-color-picker-alpha.min', false), array('wp-color-picker'), D4P_VERSION, true);
-        wp_enqueue_script('d4p-customizer', $this->_file('js', 'customizer', true), array('jquery', 'customize-preview', 'd4p-wp-color-picker-alpha'), D4P_VERSION, true);
+        wp_enqueue_script('d4p-customizer', $this->_file('js', 'customizer', true), $requirements, D4P_VERSION, true);
     }
 
     public function register() {
@@ -104,8 +115,20 @@ abstract class Manager {
         return $input ? true : false;
     }
 
+    public function sanitize_color($input, $setting) {
+        if (empty($input)) {
+            $input = $setting->default;
+        }
+
+        return sanitize_hex_color($input);
+    }
+
     public function sanitize_slider($input, $setting) {
         $atts = $setting->manager->get_control($setting->id)->input_attrs;
+
+        if (empty($input)) {
+            $input = $setting->default;
+        }
 
         $min = isset($atts['min']) ? $atts['min'] : $input;
         $max = isset($atts['max']) ? $atts['max'] : $input;
