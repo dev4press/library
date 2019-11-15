@@ -46,7 +46,7 @@ abstract class Information {
 
     public $php = '5.6';
     public $mysql = '5.1';
-    public $wordpress = '4.7';
+    public $wordpress = '4.9';
 
     public $install = false;
     public $update = false;
