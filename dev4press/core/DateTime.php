@@ -34,8 +34,7 @@ if (!defined('ABSPATH')) {
 class DateTime {
     private $_mysql_format = 'Y-m-d H:i:s';
 
-    public function __construct() {
-    }
+    public function __construct() { }
 
     public static function instance() {
         static $_d4p_core_datetime = false;
