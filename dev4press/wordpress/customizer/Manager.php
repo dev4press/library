@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\WordPress\Customizer\Core
-Version: v2.9.0
+Version: v2.9.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

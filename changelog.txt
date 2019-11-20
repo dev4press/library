@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.9.1 - 2019.11.21 =
+* New: More namespacing work done
+* New: Few more shared JS libraries
+
 = Version 2.9 - 2019.11.14 =
 * New: Autoloader Function
 * New: Dev4Press Namespace

@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press Core Loader
-Version: v2.9.0
+Version: v2.9.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -28,8 +28,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 if (!defined('ABSPATH')) { exit; }
 
 if (!defined('D4P_VERSION')) { 
-    define('D4P_VERSION', '2.9.0');
-    define('D4P_BUILD', '2900');
+    define('D4P_VERSION', '2.9.1');
+    define('D4P_BUILD', '2910');
 }
 
 if (!defined('D4P_FONTAWESOME')) { 
