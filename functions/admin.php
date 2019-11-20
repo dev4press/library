@@ -297,7 +297,7 @@ if (!function_exists('d4p_render_checkradios_with_hierarchy')) {
             $render.= '</div>';
         }
 
-        $walker = new d4pCheckboxRadioWalker();
+        $walker = new \Dev4Press\Core\UI\Walker\CheckboxRadio();
         $input = $multi ? 'checkbox' : 'radio';
 
         $render.= '<div class="d4p-content-wrapper">';
