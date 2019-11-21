@@ -156,16 +156,6 @@ abstract class DB {
         return $_build;
     }
 
-    public function log_get_elapsed_time() {
-        $time = 0;
-
-        foreach ($this->_queries_log as $q) {
-            $time+= $q[1];
-        }
-
-        return $time;
-    }
-
     public function query($query) {
         $_value = $this->wpdb()->query($query);
 
@@ -333,8 +323,43 @@ abstract class DB {
         return defined('SAVEQUERIES') && SAVEQUERIES;
     }
 
+    public function enable_save_queries() {
+        if (!defined('SAVEQUERIES')) {
+            define('SAVEQUERIES', true);
+
+            return true;
+        }
+
+        return SAVEQUERIES === true;
+    }
+
     public function log_get_queries() {
         return $this->_queries_log;
+    }
+
+    public function log_get_elapsed_time() {
+        $time = 0;
+
+        foreach ($this->_queries_log as $q) {
+            $time+= $q[1];
+        }
+
+        return $time;
+    }
+
+    public function log_get_last_query($what = 'sql') {
+        if (!empty($this->_queries_log)) {
+            $id = count($this->_queries_log) - 1;
+            $log = $this->_queries_log[$id];
+
+            if ($what == 'sql') {
+                return $log[0];
+            }
+
+            return $log;
+        }
+
+        return false;
     }
 
     public function timestamp($gmt = true) {
