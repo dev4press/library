@@ -27,6 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Plugins;
 
+use Dev4Press\API\Store;
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -47,6 +49,7 @@ abstract class Information {
     public $php = '5.6';
     public $mysql = '5.1';
     public $wordpress = '4.9';
+    public $classicpress = '1.0';
 
     public $install = false;
     public $update = false;

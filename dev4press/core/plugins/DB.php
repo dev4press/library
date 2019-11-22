@@ -44,9 +44,11 @@ abstract class DB {
     protected $_queries_log = array();
 
     public function __construct() {
-        $this->init();
+        if (!empty($this->_tables)) {
+            $this->init();
 
-        add_action('switch_blog', array($this, 'init'));
+            add_action('switch_blog', array($this, 'init'));
+        }
     }
 
     /** @return DB */

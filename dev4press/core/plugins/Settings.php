@@ -70,6 +70,11 @@ abstract class Settings {
         return $this->get($get[1], $get[0]);
     }
 
+    /** @return \Dev4Press\Core\Plugins\Information */
+    public function i() {
+        return $this->info;
+    }
+
     public function init() {
         $this->current['info'] = $this->_settings_get('info');
 
