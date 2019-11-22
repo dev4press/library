@@ -325,6 +325,25 @@ abstract class DB {
         return defined('SAVEQUERIES') && SAVEQUERIES;
     }
 
+    public function gmt_offset() {
+        $offset = get_option('gmt_offset');
+
+        if (empty($offset)) {
+            $offset = wp_timezone_override_offset();
+        }
+
+        return $offset === false ? 0 : $offset;
+    }
+
+    public function get_offset_string() {
+        $offset = $this->gmt_offset();
+
+        $hours = intval($offset);
+        $minutes = absint(($offset - floor($offset)) * 60);
+
+        return sprintf('%+03d:%02d', $hours, $minutes);
+    }
+
     public function enable_save_queries() {
         if (!defined('SAVEQUERIES')) {
             define('SAVEQUERIES', true);

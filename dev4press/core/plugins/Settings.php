@@ -173,7 +173,13 @@ abstract class Settings {
     }
 
     public function set($name, $value, $group = 'settings', $save = false) {
+        $old = isset($this->current[$group][$name]) ? $this->current[$group][$name] : null;
+
         $this->current[$group][$name] = $value;
+
+        if ($old != $value) {
+            do_action($this->base.'_settings_value_changed', $name, $group, $old, $value);
+        }
 
         if ($save) {
             $this->save($group);

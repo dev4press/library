@@ -37,6 +37,7 @@ abstract class Core {
     public $widgets = array();
     public $enqueue = false;
     public $cap = 'activate_plugins';
+    public $svg_icon = '';
     public $plugin = '';
     public $url = '';
 
@@ -44,7 +45,7 @@ abstract class Core {
     public $wp_version;
     public $wp_version_real;
 
-    public $js_locale = array();
+    public $js_info = array();
 
     public function __construct() {
         add_action('plugins_loaded', array($this, 'plugins_loaded'));
@@ -96,10 +97,10 @@ abstract class Core {
     public function locale_js_code($script) {
         $locale = $this->locale();
 
-        if (!empty($locale) && isset($this->js_locale[$script])) {
+        if (!empty($locale) && isset($this->js_info[$script]['locales'])) {
             $code = strtolower(substr($locale, 0, 2));
 
-            if (in_array($code, $this->js_locale[$script])) {
+            if (in_array($code, $$this->js_info[$script]['locales'])) {
                 return $code;
             }
         }

@@ -62,3 +62,33 @@ if (!function_exists('d4p_get_bbpress_major_version_number')) {
         return 0;
     }
 }
+
+if (!function_exists('d4p_get_bbpress_user_roles')) {
+    function d4p_get_bbpress_user_roles() {
+        $roles = array();
+
+        $dynamic_roles = bbp_get_dynamic_roles();
+
+        foreach ($dynamic_roles as $role => $obj) {
+            $roles[$role] = $obj['name'];
+        }
+
+        return $roles;
+    }
+}
+
+if (!function_exists('d4p_get_bbpress_mederator_roles')) {
+    function d4p_get_bbpress_mederator_roles() {
+        $roles = array();
+
+        $dynamic_roles = bbp_get_dynamic_roles();
+
+        foreach ($dynamic_roles as $role => $obj) {
+            if (isset($obj['capabilities']['moderate']) && $obj['capabilities']['moderate']) {
+                $roles[$role] = $obj['name'];
+            }
+        }
+
+        return $roles;
+    }
+}
