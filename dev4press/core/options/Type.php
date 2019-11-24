@@ -83,7 +83,8 @@ class Type {
         'x_by_y' => self::X_BY_Y,
 
         'expandable_pairs' => self::EXPANDABLE_PAIRS,
-        'expandable_text' => self::EXPANDABLE_TEXT
+        'expandable_text' => self::EXPANDABLE_TEXT,
+        'expandable_raw' => self::EXPANDABLE_RAW
     );
 
     public static function to_string($value) {
