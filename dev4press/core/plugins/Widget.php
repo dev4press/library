@@ -2,7 +2,7 @@
 
 namespace Dev4Press\Core\Plugins;
 
-class Widget extends \WP_Widget {
+abstract class Widget extends \WP_Widget {
     public $selective_refresh = true;
 
     public $defaults = array(

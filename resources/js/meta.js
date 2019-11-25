@@ -1,8 +1,10 @@
 /*jslint regexp: true, nomen: true, undef: true, sloppy: true, eqeq: true, vars: true, white: true, plusplus: true, maxerr: 50, indent: 4 */
-var d4plib_metabox;
 
 ;(function($, window, document, undefined) {
-    d4plib_metabox = {
+    window.wp = window.wp || {};
+    window.wp.dev4press = window.wp.dev4press || {};
+
+    window.wp.dev4press.metabox = {
         init: function() {
             $(".d4plib-metabox-wrapper .wp-tab-bar a").click(function(e){
                 e.preventDefault();
@@ -32,5 +34,5 @@ var d4plib_metabox;
         }
     };
 
-    d4plib_metabox.init();
+    wp.dev4press.metabox.init();
 })(jQuery, window, document);

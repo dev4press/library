@@ -1,8 +1,10 @@
 /*jslint regexp: true, nomen: true, undef: true, sloppy: true, eqeq: true, vars: true, white: true, plusplus: true, maxerr: 50, indent: 4 */
-var d4plib_widgets;
 
 ;(function($, window, document, undefined) {
-    d4plib_widgets = {
+    window.wp = window.wp || {};
+    window.wp.dev4press = window.wp.dev4press || {};
+
+    window.wp.dev4press.widgets = {
         init: function() {
             $(document).on("click", ".d4p-check-uncheck a", function(e){
                 e.preventDefault();
@@ -62,7 +64,7 @@ var d4plib_widgets;
             });
 
             $(document).ajaxStop(function() {
-                d4plib_widgets.settings();
+                wp.dev4press.widgets.settings();
             });
         },
         settings: function() {
@@ -72,6 +74,6 @@ var d4plib_widgets;
         }
     };
 
-    d4plib_widgets.init();
-    d4plib_widgets.settings();
+    wp.dev4press.widgets.init();
+    wp.dev4press.widgets.settings();
 })(jQuery, window, document);
