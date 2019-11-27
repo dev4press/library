@@ -2,24 +2,38 @@
 
 namespace Dev4Press\Core\Admin;
 
+use Dev4Press\Core\UI\Enqueue;
+
 if (!defined('ABSPATH')) { exit; }
 
 abstract class Plugin {
     public $menu_cap = 'activate_plugins';
 
-    public $plugin_prefix = '';
     public $plugin = '';
+    public $plugin_prefix = '';
+    public $plugin_menu = '';
+    public $plugin_title = '';
 
     public $url = '';
     public $path = '';
 
     public $is_debug = false;
+    public $is_rtl = false;
 
     public $page = false;
-    public $panel = false;
-    public $task = false;
-    public $action = false;
+    public $panel = '';
+    public $subpanel = '';
 
+    public $screen_id = '';
+
+    /** @var \Dev4Press\Core\UI\Admin\Panel */
+    public $object = null;
+
+    /** @var \Dev4Press\Core\UI\Enqueue */
+    public $enqueue = null;
+
+    public $menu_items = array();
+    public $setup_items = array();
     public $page_ids = array();
 
     function __construct() {
@@ -28,7 +42,8 @@ abstract class Plugin {
         add_filter('plugin_action_links', array($this, 'plugin_actions'), 10, 2);
         add_filter('plugin_row_meta', array($this, 'plugin_links'), 10, 2);
 
-        add_action('plugins_loaded', array($this, 'plugins_loaded'));
+        add_action('plugins_loaded', array($this, 'plugins_loaded'), 20);
+        add_action('after_setup_theme', array($this, 'after_setup_theme'), 20);
     }
 
     /** @return \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin|\Dev4Press\Core\Admin\Menu\Plugin */
@@ -68,6 +83,9 @@ abstract class Plugin {
 
     public function plugins_loaded() {
         $this->is_debug = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG;
+        $this->is_rtl = is_rtl();
+
+        $this->enqueue = Enqueue::instance($this->url.'d4plib/', $this->is_debug);
 
         add_action('admin_init', array($this, 'admin_init'));
         add_action('admin_menu', array($this, 'admin_menu'));
@@ -84,22 +102,8 @@ abstract class Plugin {
         return $this->plugin.'/'.$this->plugin.'.php';
     }
 
-    public function install_notice() {
-        if (current_user_can('install_plugins') && $this->page === false) {
-            echo '<div class="updated"><p>';
-            echo sprintf(__("%s is activated and it needs to finish installation.", "d4plib"), $this->title());
-            echo ' <a href="'.$this->main_url().'">'.__("Click Here", "d4plib").'</a>.';
-            echo '</p></div>';
-        }
-    }
-
-    public function update_notice() {
-        if (current_user_can('install_plugins') && $this->page === false) {
-            echo '<div class="updated"><p>';
-            echo sprintf(__("%s is updated, and you need to review the update process.", "d4plib"), $this->title());
-            echo ' <a href="'.$this->plugin.'">'.__("Click Here", "d4plib").'</a>.';
-            echo '</p></div>';
-        }
+    public function title() {
+        return $this->plugin_title;
     }
 
     public function file($type, $name, $min = true, $base_url = null) {
@@ -123,7 +127,43 @@ abstract class Plugin {
     }
 
     public function load_admin_page() {
+        $this->help_tab_sidebar();
 
+        do_action($this->plugin_prefix.'_load_admin_page');
+
+        if ($this->panel !== false && $this->panel != '') {
+            do_action($this->plugin_prefix.'_load_admin_page_'.$this->panel);
+
+            if ($this->subpanel !== false && $this->subpanel != '') {
+                do_action($this->plugin_prefix.'_load_admin_page_'.$this->panel.'_'.$this->subpanel);
+            }
+        }
+
+        $this->help_tab_getting_help();
+    }
+
+    public function help_tab_sidebar() {
+        $links = apply_filters($this->plugin_prefix.'_admin_help_sidebar_links', array(
+            'home' => '<a target="_blank" href="https://plugins.dev4press.com/'.$this->plugin.'/">'.__("Home Page", "d4plib").'</a>',
+            'kb' => '<a target="_blank" href="https://support.dev4press.com/kb/product/'.$this->plugin.'/">'.__("Knowledge Base", "d4plib").'</a>',
+            'forum' => '<a target="_blank" href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/">'.__("Support Forum", "d4plib").'</a>'
+        ), $this);
+
+        $this->screen()->set_help_sidebar('<p><strong>'.$this->title().'</strong></p><p>'.join('<br/>', $links).'</p>');
+    }
+
+    public function help_tab_getting_help() {
+        do_action($this->plugin_prefix.'_admin_help_tabs_before', $this);
+
+        $this->screen()->add_help_tab(
+            array(
+                'id' => 'd4p-help-info',
+                'title' => __("Getting Help", "d4plib"),
+                'content' => '<p>'.__("To get help with this plugin, you can start with Knowledge Base list of frequently asked questions and articles. If you have any questions, or you want to report a bug, or you have a suggestion, you can use support forum. All important links for this are on the right side of this help dialog.", "d4plib").'</p>'
+            )
+        );
+
+        do_action($this->plugin_prefix.'_admin_help_tabs', $this);
     }
 
     protected function load_postget_back() {
@@ -134,9 +174,79 @@ abstract class Plugin {
         }
     }
 
+    public function install_or_update() {
+        $install = $this->settings()->is_install();
+        $update = $this->settings()->is_update();
+
+        if ($install) {
+            $this->panel = 'install';
+        } else if ($update) {
+            $this->panel = 'update';
+        }
+
+        return $install || $update;
+    }
+
+    public function svg_icon() {
+        return gdpol()->svg_icon;
+    }
+
+    public function global_admin_notices() {
+        if ($this->settings()->is_install()) {
+            add_action('admin_notices', array($this, 'install_notice'));
+        }
+
+        if ($this->settings()->is_update()) {
+            add_action('admin_notices', array($this, 'update_notice'));
+        }
+    }
+
+    public function install_notice() {
+        if (current_user_can('install_plugins') && $this->page === false) {
+            echo '<div class="notice notice-info is-dismissible"><p>';
+            echo sprintf(__("%s is activated and it needs to finish installation.", "d4plib"), $this->title());
+            echo ' <a href="'.$this->main_url().'">'.__("Click Here", "d4plib").'</a>.';
+            echo '</p></div>';
+        }
+    }
+
+    public function update_notice() {
+        if (current_user_can('install_plugins') && $this->page === false) {
+            echo '<div class="notice notice-info is-dismissible"><p>';
+            echo sprintf(__("%s is updated, and you need to review the update process.", "d4plib"), $this->title());
+            echo ' <a href="'.$this->main_url().'">'.__("Click Here", "d4plib").'</a>.';
+            echo '</p></div>';
+        }
+    }
+
+    public function panel_object() {
+        if (isset($this->setup_items[$this->panel])) {
+            return (object)$this->setup_items[$this->panel];
+        } else if (isset($this->menu_items[$this->panel])) {
+            return (object)$this->menu_items[$this->panel];
+        }
+    }
+
+    public function enqueue_scripts($hook) {
+        if ($this->page) {
+            $this->enqueue->wp(true, true);
+            $this->enqueue->js('shared')->js('admin');
+            $this->enqueue->css('font')->css('grid')->css('admin');
+        }
+    }
+
+    public function admin_init() { }
+    public function after_setup_theme() { }
+
+    abstract public function main_url();
+    abstract public function current_url($with_subpanel = true);
+
+    abstract public function admin_menu();
+    abstract public function admin_panel();
+    abstract public function current_screen($screen);
+
+    abstract public function settings();
     abstract public function consturctor();
     abstract public function run_getback();
     abstract public function run_postback();
-    abstract public function main_url();
-    abstract public function current_url($with_panel = true, $with_task = true);
 }

@@ -39,12 +39,12 @@ final class Enqueue {
             'flags' => array('path' => 'css/', 'file' => 'flags', 'ext' => 'css', 'min' => true),
             'font' => array('path' => 'css/', 'file' => 'font', 'ext' => 'css', 'min' => true),
             'grid' => array('path' => 'css/', 'file' => 'grid', 'ext' => 'css', 'min' => true),
-            'admin' => array('path' => 'css/', 'file' => 'admin', 'ext' => 'css', 'min' => true),
             'ctrl' => array('path' => 'css/', 'file' => 'ctrl', 'ext' => 'css', 'min' => true),
             'meta' => array('path' => 'css/', 'file' => 'meta', 'ext' => 'css', 'min' => true),
             'shared' => array('path' => 'css/', 'file' => 'shared', 'ext' => 'css', 'min' => true),
             'widgets' => array('path' => 'css/', 'file' => 'widgets', 'ext' => 'css', 'min' => true),
             'customizer' => array('path' => 'css/', 'file' => 'customizer', 'ext' => 'css', 'min' => true),
+            'admin' => array('path' => 'css/', 'file' => 'admin', 'ext' => 'css', 'min' => true, 'int' => array('shared')),
             'wizard' => array('path' => 'css/', 'file' => 'wizard', 'ext' => 'css', 'min' => true, 'int' => array('admin')),
             'rtl' => array('path' => 'css/', 'file' => 'rtl', 'ext' => 'css', 'min' => true, 'int' => array('admin'))
         )
@@ -55,6 +55,7 @@ final class Enqueue {
         $this->_debug = is_null($debug) ? D4P_SCRIPT_DEBUG : $debug;
     }
 
+    /** @return \Dev4Press\Core\UI\Enqueue */
     public static function instance($base_url, $debug = null) {
         static $_d4p_lib_loader = array();
 
@@ -65,14 +66,37 @@ final class Enqueue {
         return $_d4p_lib_loader[$base_url];
     }
 
+    /** @return \Dev4Press\Core\UI\Enqueue */
     public function js($name) {
         $this->add('js', $name);
 
         return $this;
     }
 
+    /** @return \Dev4Press\Core\UI\Enqueue */
     public function css($name) {
         $this->add('css', $name);
+
+        return $this;
+    }
+
+    public function wp($dialog = false, $color_picker = false, $media = false) {
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('jquery-form');
+
+        if ($dialog) {
+            wp_enqueue_script('wpdialogs');
+            wp_enqueue_style('wp-jquery-ui-dialog');
+        }
+
+        if ($color_picker) {
+            wp_enqueue_script('wp-color-picker');
+            wp_enqueue_style('wp-color-picker');
+        }
+
+        if ($media) {
+            wp_enqueue_media();
+        }
 
         return $this;
     }

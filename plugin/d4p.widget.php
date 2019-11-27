@@ -29,9 +29,8 @@ if (!defined('ABSPATH')) { exit; }
 
 if (!class_exists('d4p_widget_core')) {
     class d4p_widget_core extends WP_Widget {
-        public $widget_domain = 'dev4press_widgets';
-
         public $selective_refresh = true;
+
         public $cache_key = '';
         public $cache_prefix = 'd4p_wdg';
         public $cache_method = 'disabled'; // full, results
@@ -216,7 +215,7 @@ if (!class_exists('d4p_widget_core')) {
         }
 
         public function init() { }
-        
+
         public function prepare($instance, $results) { return $results; }
 
         public function results($instance) { return null; }

@@ -7,21 +7,33 @@ use Dev4Press\Core\Admin\Plugin as BasePlugin;
 abstract class Plugin extends BasePlugin {
     protected $menu = 'options-general.php';
 
-    public function current_url($with_panel = true, $with_task = true) {
-        $page = $this->menu.'?page='.$this->plugin;
+    public function current_url($with_subpanel = true) {
+        $page = $this->main_url();
 
-        if ($with_panel && $this->panel !== false && $this->panel != '') {
+        if ($this->panel !== false && $this->panel != '') {
             $page.= '&panel='.$this->panel;
         }
 
-        if ($with_task && isset($this->task) && $this->task !== false && $this->task != '') {
-            $page.= '&task='.$this->task;
+        if ($with_subpanel && isset($this->subpanel) && $this->subpanel !== false && $this->subpanel != '') {
+            $page.= '&subpanel='.$this->subpanel;
         }
 
         return self_admin_url($page);
     }
 
     public function main_url() {
-        return $this->menu.'?page='.$this->plugin;
+        return self_admin_url($this->menu.'?page='.$this->plugin);
+    }
+
+    public function admin_menu() {
+
+    }
+
+    public function current_screen($screen) {
+
+    }
+
+    public function admin_panel() {
+
     }
 }
