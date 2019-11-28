@@ -32,8 +32,4 @@ abstract class Plugin extends BasePlugin {
     public function current_screen($screen) {
 
     }
-
-    public function admin_panel() {
-
-    }
 }

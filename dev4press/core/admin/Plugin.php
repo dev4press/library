@@ -8,6 +8,7 @@ if (!defined('ABSPATH')) { exit; }
 
 abstract class Plugin {
     public $menu_cap = 'activate_plugins';
+    public $has_widgets = false;
 
     public $plugin = '';
     public $plugin_prefix = '';
@@ -32,6 +33,7 @@ abstract class Plugin {
     /** @var \Dev4Press\Core\UI\Enqueue */
     public $enqueue = null;
 
+    public $enqueue_wp = array();
     public $menu_items = array();
     public $setup_items = array();
     public $page_ids = array();
@@ -65,7 +67,7 @@ abstract class Plugin {
 
     public function plugin_actions($links, $file) {
         if ($file == $this->plugin_name()) {
-            $settings_link = '<a href="'.$this->current_url(false, false).'">'.__("Settings", "d4plib").'</a>';
+            $settings_link = '<a href="'.$this->main_url().'">'.__("Settings", "d4plib").'</a>';
             array_unshift($links, $settings_link);
         }
 
@@ -85,7 +87,7 @@ abstract class Plugin {
         $this->is_debug = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG;
         $this->is_rtl = is_rtl();
 
-        $this->enqueue = Enqueue::instance($this->url.'d4plib/', $this->is_debug);
+        $this->enqueue = Enqueue::instance($this->url.'d4plib/', $this);
 
         add_action('admin_init', array($this, 'admin_init'));
         add_action('admin_menu', array($this, 'admin_menu'));
@@ -94,7 +96,11 @@ abstract class Plugin {
         add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
     }
 
-    public function var_handler() {
+    public function h($hook) {
+        return $this->plugin_prefix.'_'.$hook;
+    }
+
+    public function v() {
         return $this->plugin_prefix.'_handler';
     }
 
@@ -132,10 +138,10 @@ abstract class Plugin {
         do_action($this->plugin_prefix.'_load_admin_page');
 
         if ($this->panel !== false && $this->panel != '') {
-            do_action($this->plugin_prefix.'_load_admin_page_'.$this->panel);
+            do_action($this->h('load_admin_page_'.$this->panel));
 
             if ($this->subpanel !== false && $this->subpanel != '') {
-                do_action($this->plugin_prefix.'_load_admin_page_'.$this->panel.'_'.$this->subpanel);
+                do_action($this->h('load_admin_page_'.$this->panel.'_'.$this->subpanel));
             }
         }
 
@@ -157,9 +163,20 @@ abstract class Plugin {
 
         $this->screen()->add_help_tab(
             array(
-                'id' => 'd4p-help-info',
-                'title' => __("Getting Help", "d4plib"),
-                'content' => '<p>'.__("To get help with this plugin, you can start with Knowledge Base list of frequently asked questions and articles. If you have any questions, or you want to report a bug, or you have a suggestion, you can use support forum. All important links for this are on the right side of this help dialog.", "d4plib").'</p>'
+                'id' => 'd4p-plugin-help-info',
+                'title' => __("Help & Support", "gd-topic-polls"),
+                'content' => '<h2>'.__("Help & Support", "gd-topic-polls").'</h2><p>'.sprintf(__("To get help with %s, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers).", "gd-topic-polls"), $this->title()).
+                    '</p><p><a href="https://support.dev4press.com/kb/product/'.$this->plugin.'/" class="button-primary" target="_blank">'.__("Knowledge Base", "gd-topic-polls").'</a> <a href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/" class="button-secondary" target="_blank">'.__("Support Forum", "gd-topic-polls").'</a></p>'
+            )
+        );
+
+        $this->screen()->add_help_tab(
+            array(
+                'id' => 'd4p-plugin-help-bugs',
+                'title' => __("Found a bug?", "gd-topic-polls"),
+                'content' => '<h2>'.__("Found a bug?", "gd-topic-polls").'</h2><p>'.sprintf(__("If you find a bug in %s, you can report it in the support forum.", "gd-topic-polls"), $this->title()).
+                    '</p><p>'.__("Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger.", "gd-topic-polls").
+                    '</p><p><a href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/" class="button-primary" target="_blank">'.__("Open new topic", "gd-topic-polls").'</a></p>'
             )
         );
 
@@ -167,9 +184,9 @@ abstract class Plugin {
     }
 
     protected function load_postget_back() {
-        if (isset($_POST[$this->var_handler()]) && $_POST[$this->var_handler()] == 'postback') {
+        if (isset($_POST[$this->v()]) && $_POST[$this->v()] == 'postback') {
             $this->run_postback();
-        } else if (isset($_GET[$this->var_handler()]) && $_GET[$this->var_handler()] == 'getback') {
+        } else if (isset($_GET[$this->v()]) && $_GET[$this->v()] == 'getback') {
             $this->run_getback();
         }
     }
@@ -188,7 +205,7 @@ abstract class Plugin {
     }
 
     public function svg_icon() {
-        return gdpol()->svg_icon;
+        return '';
     }
 
     public function global_admin_notices() {
@@ -229,10 +246,47 @@ abstract class Plugin {
 
     public function enqueue_scripts($hook) {
         if ($this->page) {
-            $this->enqueue->wp(true, true);
+            $this->enqueue->wp($this->enqueue_wp);
             $this->enqueue->js('shared')->js('admin');
             $this->enqueue->css('font')->css('grid')->css('admin');
+
+            do_action($this->h('enqueue_scripts'));
         }
+
+        if ($this->has_widgets && $hook == 'widgets.php') {
+            $this->enqueue->js('widgets')->css('widgets');
+
+            do_action($this->h('enqueue_scripts_widgets'));
+        }
+    }
+
+    public function css($name, $min = true, $req = array()) {
+        $url = trailingslashit($this->url).'css/'.$name;
+
+        if (!$this->is_debug && $min) {
+            $url.= '.min';
+        }
+
+        $url.= '.css';
+
+        wp_enqueue_style($this->plugin_prefix.'-'.$name, $url, $req, $this->settings()->file_version());
+    }
+
+    public function js($name, $min = true, $req = array(), $in_footer = true) {
+        $url = trailingslashit($this->url).'js/'.$name;
+
+        if (!$this->is_debug && $min) {
+            $url.= '.min';
+        }
+
+        $url.= '.js';
+
+        wp_enqueue_script($this->plugin_prefix.'-'.$name, $url, $req, $this->settings()->file_version(), $in_footer);
+    }
+
+
+    public function admin_panel() {
+        $this->object->show();
     }
 
     public function admin_init() { }
@@ -242,11 +296,12 @@ abstract class Plugin {
     abstract public function current_url($with_subpanel = true);
 
     abstract public function admin_menu();
-    abstract public function admin_panel();
     abstract public function current_screen($screen);
 
-    abstract public function settings();
     abstract public function consturctor();
     abstract public function run_getback();
     abstract public function run_postback();
+
+    /** @return \Dev4Press\Core\Plugins\Settings */
+    abstract public function settings();
 }

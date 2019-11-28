@@ -5,8 +5,11 @@ namespace Dev4Press\Core\UI;
 if (!defined('ABSPATH')) { exit; }
 
 final class Enqueue {
-    private $_url;
     private $_debug = false;
+    private $_url;
+
+    /** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
+    private $_admin;
 
     private $_loaded = array(
         'js' => array(),
@@ -17,7 +20,7 @@ final class Enqueue {
         'js' => array(
             'admin' => array('path' => 'js/', 'file' => 'admin', 'ext' => 'js', 'min' => true),
             'meta' => array('path' => 'js/', 'file' => 'meta', 'ext' => 'js', 'min' => true),
-            'shared' => array('path' => 'js/', 'file' => 'shared', 'ext' => 'js', 'min' => true),
+            'media' => array('path' => 'js/', 'file' => 'media', 'ext' => 'js', 'min' => true),
             'ctrl' => array('path' => 'js/', 'file' => 'ctrl', 'ext' => 'js', 'min' => true),
             'helpers' => array('path' => 'js/', 'file' => 'helpers', 'ext' => 'js', 'min' => true),
             'customizer' => array('path' => 'js/', 'file' => 'customizer', 'ext' => 'js', 'min' => true),
@@ -50,17 +53,19 @@ final class Enqueue {
         )
     );
 
-    public function __construct($base_url, $debug = null) {
+    public function __construct($base_url, $admin) {
         $this->_url = $base_url;
-        $this->_debug = is_null($debug) ? D4P_SCRIPT_DEBUG : $debug;
+        $this->_admin = $admin;
+
+        $this->_debug = $this->_admin->is_debug;
     }
 
     /** @return \Dev4Press\Core\UI\Enqueue */
-    public static function instance($base_url, $debug = null) {
+    public static function instance($base_url, $admin) {
         static $_d4p_lib_loader = array();
 
         if (!isset($_d4p_lib_loader[$base_url])) {
-            $_d4p_lib_loader[$base_url] = new Enqueue($base_url, $debug);
+            $_d4p_lib_loader[$base_url] = new Enqueue($base_url, $admin);
         }
 
         return $_d4p_lib_loader[$base_url];
@@ -80,21 +85,24 @@ final class Enqueue {
         return $this;
     }
 
-    public function wp($dialog = false, $color_picker = false, $media = false) {
+    public function wp($includes = array()) {
+        $defaults = array('dialog' => false, 'color_picker' => false, 'media' => false);
+        $includes = shortcode_atts($defaults, $includes);
+
         wp_enqueue_script('jquery');
         wp_enqueue_script('jquery-form');
 
-        if ($dialog) {
+        if ($includes['dialog'] === true) {
             wp_enqueue_script('wpdialogs');
             wp_enqueue_style('wp-jquery-ui-dialog');
         }
 
-        if ($color_picker) {
+        if ($includes['color_picker'] === true) {
             wp_enqueue_script('wp-color-picker');
             wp_enqueue_style('wp-color-picker');
         }
 
-        if ($media) {
+        if ($includes['media'] === true) {
             wp_enqueue_media();
         }
 
@@ -125,6 +133,14 @@ final class Enqueue {
                 $this->enqueue($type, $handle, $url, $req, $ver, $footer);
 
                 $this->_loaded[$type][] = $name;
+
+                if ($name == 'admin') {
+                    $this->localize_admin();
+                }
+
+                if ($name == 'media') {
+                    $this->localize_media();
+                }
             }
         }
     }
@@ -151,5 +167,49 @@ final class Enqueue {
         } else if ($type == 'css') {
             wp_enqueue_style($handle, $url, $req, $version);
         }
+    }
+
+    private function localize_admin() {
+        wp_localize_script('d4plib-admin', 'd4plib_admin_data', array(
+            'dialogs' => array(
+                'icons' => array(
+                    'ok' => '<i class="fa fa-check fa-fw" aria-hidden="true"></i> ',
+                    'cancel' => '<i class="fa fa-times fa-fw" aria-hidden="true"></i> ',
+                    'delete' => '<i class="fa fa-trash fa-fw" aria-hidden="true"></i> ',
+                    'disable' => '<i class="fa fa-ban fa-fw" aria-hidden="true"></i> ',
+                    'empty' => '<i class="fa fa-eraser fa-fw" aria-hidden="true"></i> ',
+                ),
+                'buttons' => array(
+                    'ok' => __("OK", "gd-topic-polls"),
+                    'cancel' => __("Cancel", "gd-topic-polls"),
+                    'delete' => __("Delete", "gd-topic-polls"),
+                    'disable' => __("Disable", "gd-topic-polls"),
+                    'empty' => __("Empty", "gd-topic-polls")
+                ),
+                'titles' => array(
+                    'areyousure' => __("Are you sure you want to do this?", "gd-topic-polls")
+                ),
+                'content' => array(
+                    'pleasewait' => __("Please Wait...", "gd-topic-polls")
+                )
+            )
+        ));
+    }
+
+    private function localize_media() {
+        wp_localize_script('d4plib-media', 'd4plib_media_data', array(
+            'strings' => array(
+                'image_remove' => __("Remove", "gd-topic-polls"),
+                'image_preview' => __("Preview", "gd-topic-polls"),
+                'image_title' => __("Select Image", "gd-topic-polls"),
+                'image_button' => __("Use Selected Image", "gd-topic-polls"),
+                'image_not_selected' => __("Image not selected.", "gd-topic-polls"),
+                'are_you_sure' => __("Are you sure you want to do this?", "gd-topic-polls")
+            ),
+            'icons' => array(
+                'remove' => "<i aria-hidden='true' class='fa fa-ban'></i>",
+                'preview' => "<i aria-hidden='true' class='fa fa-search'></i>"
+            )
+        ));
     }
 }

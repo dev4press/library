@@ -59,18 +59,14 @@ abstract class Plugin extends BasePlugin {
 
                 $this->install_or_update();
                 $this->load_postget_back();
+
+                $panel = $this->panel_object();
+                $class = $panel->class;
+
+                $this->object = $class::instance($this);
             }
         }
 
         $this->global_admin_notices();
-    }
-
-    public function admin_panel() {
-        $panel = $this->panel_object();
-        $class = $panel->class;
-
-        $this->object = $class::instance($this);
-
-        d4p_print_r($this);
     }
 }

@@ -13,6 +13,8 @@ abstract class Panel {
 
         add_action('load_'.$this->admin->screen_id, array($this, 'screen_options_show'));
         add_filter('set-screen-option', array($this, 'screen_options_save'), 10, 3);
+
+        add_action($this->h('enqueue_scripts'), array($this, 'enqueue_scripts'));
     }
 
     /** @return Panel */
@@ -28,11 +30,23 @@ abstract class Panel {
         return $instance[$class];
     }
 
-    public function screen_options_show() {
-
+    public function a() {
+        return $this->admin;
     }
+
+    public function h($hook) {
+        return $this->admin->plugin_prefix.'_'.$hook;
+    }
+
+    public function enqueue_scripts() { }
+
+    public function screen_options_show() { }
 
     public function screen_options_save($status, $option, $value) {
         return $status;
+    }
+
+    public function show() {
+        d4p_print_r($this);
     }
 }
