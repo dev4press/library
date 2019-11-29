@@ -180,17 +180,17 @@ final class Enqueue {
                     'empty' => '<i class="d4p-icon d4p-ui-eraser d4p-icon-fw" aria-hidden="true"></i> ',
                 ),
                 'buttons' => array(
-                    'ok' => __("OK", "gd-topic-polls"),
-                    'cancel' => __("Cancel", "gd-topic-polls"),
-                    'delete' => __("Delete", "gd-topic-polls"),
-                    'disable' => __("Disable", "gd-topic-polls"),
-                    'empty' => __("Empty", "gd-topic-polls")
+                    'ok' => __("OK", "d4plib"),
+                    'cancel' => __("Cancel", "d4plib"),
+                    'delete' => __("Delete", "d4plib"),
+                    'disable' => __("Disable", "d4plib"),
+                    'empty' => __("Empty", "d4plib")
                 ),
                 'titles' => array(
-                    'areyousure' => __("Are you sure you want to do this?", "gd-topic-polls")
+                    'areyousure' => __("Are you sure you want to do this?", "d4plib")
                 ),
                 'content' => array(
-                    'pleasewait' => __("Please Wait...", "gd-topic-polls")
+                    'pleasewait' => __("Please Wait...", "d4plib")
                 )
             )
         ));
@@ -199,12 +199,12 @@ final class Enqueue {
     private function localize_media() {
         wp_localize_script('d4plib-media', 'd4plib_media_data', array(
             'strings' => array(
-                'image_remove' => __("Remove", "gd-topic-polls"),
-                'image_preview' => __("Preview", "gd-topic-polls"),
-                'image_title' => __("Select Image", "gd-topic-polls"),
-                'image_button' => __("Use Selected Image", "gd-topic-polls"),
-                'image_not_selected' => __("Image not selected.", "gd-topic-polls"),
-                'are_you_sure' => __("Are you sure you want to do this?", "gd-topic-polls")
+                'image_remove' => __("Remove", "d4plib"),
+                'image_preview' => __("Preview", "d4plib"),
+                'image_title' => __("Select Image", "d4plib"),
+                'image_button' => __("Use Selected Image", "d4plib"),
+                'image_not_selected' => __("Image not selected.", "d4plib"),
+                'are_you_sure' => __("Are you sure you want to do this?", "d4plib")
             ),
             'icons' => array(
                 'remove' => "<i aria-hidden='true' class='d4p-icon d4p-ui-ban d4p-icon-fw'></i>",

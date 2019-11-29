@@ -189,19 +189,19 @@ abstract class Plugin {
         $this->screen()->add_help_tab(
             array(
                 'id' => 'd4p-plugin-help-info',
-                'title' => __("Help & Support", "gd-topic-polls"),
-                'content' => '<h2>'.__("Help & Support", "gd-topic-polls").'</h2><p>'.sprintf(__("To get help with %s, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers).", "gd-topic-polls"), $this->title()).
-                    '</p><p><a href="https://support.dev4press.com/kb/product/'.$this->plugin.'/" class="button-primary" target="_blank">'.__("Knowledge Base", "gd-topic-polls").'</a> <a href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/" class="button-secondary" target="_blank">'.__("Support Forum", "gd-topic-polls").'</a></p>'
+                'title' => __("Help & Support", "d4plib"),
+                'content' => '<h2>'.__("Help & Support", "d4plib").'</h2><p>'.sprintf(__("To get help with %s, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers).", "d4plib"), $this->title()).
+                    '</p><p><a href="https://support.dev4press.com/kb/product/'.$this->plugin.'/" class="button-primary" target="_blank">'.__("Knowledge Base", "d4plib").'</a> <a href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/" class="button-secondary" target="_blank">'.__("Support Forum", "d4plib").'</a></p>'
             )
         );
 
         $this->screen()->add_help_tab(
             array(
                 'id' => 'd4p-plugin-help-bugs',
-                'title' => __("Found a bug?", "gd-topic-polls"),
-                'content' => '<h2>'.__("Found a bug?", "gd-topic-polls").'</h2><p>'.sprintf(__("If you find a bug in %s, you can report it in the support forum.", "gd-topic-polls"), $this->title()).
-                    '</p><p>'.__("Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger.", "gd-topic-polls").
-                    '</p><p><a href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/" class="button-primary" target="_blank">'.__("Open new topic", "gd-topic-polls").'</a></p>'
+                'title' => __("Found a bug?", "d4plib"),
+                'content' => '<h2>'.__("Found a bug?", "d4plib").'</h2><p>'.sprintf(__("If you find a bug in %s, you can report it in the support forum.", "d4plib"), $this->title()).
+                    '</p><p>'.__("Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger.", "d4plib").
+                    '</p><p><a href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/" class="button-primary" target="_blank">'.__("Open new topic", "d4plib").'</a></p>'
             )
         );
 
@@ -320,11 +320,16 @@ abstract class Plugin {
         return $this->path.'d4plib/';
     }
 
+    public function panels() {
+        return $this->setup_items + $this->menu_items;
+    }
+
     public function admin_init() { }
     public function after_setup_theme() { }
 
     abstract public function main_url();
     abstract public function current_url($with_subpanel = true);
+    abstract public function panel_url($panel = 'dashboard', $subpanel = '');
 
     abstract public function admin_menu();
     abstract public function current_screen($screen);

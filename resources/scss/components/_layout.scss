@@ -1,0 +1,139 @@
+.d4p-wrap,
+.d4p-wrap * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.d4p-sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0)
+}
+
+.d4p-wrap {
+    margin: 0 15px 0 0;
+
+    a,
+    :focus {
+        box-shadow: none;
+    }
+
+    .d4p-message {
+        .notice {
+            margin: 0;
+            box-shadow: none;
+            border-top: 0;
+            padding: 15px;
+            font-size: 14px;
+
+            .notice-dismiss {
+                padding: 14px;
+            }
+        }
+    }
+
+    .d4p-header {
+        border-bottom: 1px solid #777777;
+        margin: 35px 0 0;
+        padding: 0 0 10px;
+        height: 45px;
+
+        .d4p-plugin {
+            float: right;
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 30px;
+            letter-spacing: -2px;
+        }
+
+        .d4p-navigator {
+            float: left;
+
+            a {
+                text-decoration: none;
+                color: #0074A2;
+            }
+
+            li {
+                margin: 0;
+            }
+
+            ul {
+                margin: 0;
+
+                li.d4p-nav-button {
+                    margin-right: 30px;
+                    float: left;
+                    position: relative;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+
+                    > a {
+                        position: relative;
+                        display: inline-block;
+                        outline: none;
+                        background: none repeat scroll 0 0 #FFFFFF;
+                        border: 1px solid #DDDDDD;
+                        box-shadow: 1px 1px 1px -1px rgba(0, 0, 0, 0.1);
+                        font-size: 15px;
+                        padding: 7px 10px;
+                        margin: 0;
+                        width: 235px;
+                        white-space: nowrap;
+                        overflow: hidden;
+
+                        i.d4p-icon {
+                            vertical-align: top;
+                            margin-top: 2px;
+                        }
+                    }
+
+                    ul {
+                        display: none;
+                        background: #FFFFFF;
+                        border: 1px solid #DDDDDD;
+                        box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.1);
+                        font-size: 14px;
+                        line-height: 28px;
+                        padding: 5px 0px;
+                        position: absolute;
+                        top: 33px;
+                        width: 235px;
+                        z-index: 100;
+
+                        a {
+                            display: block;
+                            padding: 0 10px;
+
+                            &:hover {
+                                background: #0074A2;
+                                color: #ffffff;
+                            }
+                        }
+
+                        .d4p-nav-current {
+                            display: block;
+                            padding: 0 10px;
+                            background: #444444;
+                            color: #ffffff;
+                        }
+
+                        i.d4p-icon {
+                            vertical-align: top;
+                            margin-top: 6px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .d4p-content {
+
+    }
+}

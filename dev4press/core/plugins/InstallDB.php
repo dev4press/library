@@ -74,12 +74,12 @@ abstract class InstallDB {
                 $columns = $this->wpdb()->get_results("SHOW COLUMNS FROM $table");
 
                 if ($count != count($columns)) {
-                    $result[$table] = array("status" => "error", "msg" => __("Some columns are missing.", "gd-topic-polls"));
+                    $result[$table] = array("status" => "error", "msg" => __("Some columns are missing.", "d4plib"));
                 } else {
                     $result[$table] = array("status" => "ok");
                 }
             } else {
-                $result[$table] = array("status" => "error", "msg" => __("Table is missing.", "gd-topic-polls"));
+                $result[$table] = array("status" => "error", "msg" => __("Table is missing.", "d4plib"));
             }
         }
 

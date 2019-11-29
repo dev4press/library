@@ -65,9 +65,11 @@
                         $(this).next().slideToggle("fast");
                     });
 
-                    setTimeout(function(){
-                        $(".d4p-wrap .updated").slideUp("slow");
-                    }, 4000);
+                    if ($(".d4p-wrap .d4p-message .notice").length > 0) {
+                        setTimeout(function () {
+                            $(".d4p-wrap .d4p-message .notice").slideUp("slow");
+                        }, 10000);
+                    }
                 }
             }
         },

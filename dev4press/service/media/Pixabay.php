@@ -76,7 +76,7 @@ class Pixabay {
             return $this->_format_image($response->hits[0]);
         }
 
-        return new WP_Error('not_found', __("Specified image ID not found."));
+        return new WP_Error('not_found', __("Specified image ID not found.", "d4plib"));
     }
 
     public function images($args = array()) {
@@ -148,7 +148,7 @@ class Pixabay {
             return $this->_format_video($response->hits[0]);
         }
 
-        return new WP_Error('not_found', __("Specified video ID not found."));
+        return new WP_Error('not_found', __("Specified video ID not found.", "d4plib"));
     }
 
     public function videos($args = array()) {

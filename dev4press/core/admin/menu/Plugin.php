@@ -15,6 +15,16 @@ abstract class Plugin extends BasePlugin {
         return self_admin_url($page);
     }
 
+    public function panel_url($panel = 'dashboard', $subpanel = '') {
+        $url = 'admin.url?page='.$this->plugin.'-'.$panel;
+
+        if (!empty($subpanel) && $subpanel != 'index') {
+            $url.= '&subpanel='.$subpanel;
+        }
+
+        return self_admin_url($url);
+    }
+
     public function main_url() {
         return self_admin_url('admin.url?page='.$this->plugin.'-dashboard');
     }
@@ -57,7 +67,7 @@ abstract class Plugin extends BasePlugin {
                     $this->subpanel = d4p_sanitize_slug($_GET['subpanel']);
                 }
 
-                $this->install_or_update();
+                // $this->install_or_update();
                 $this->load_postget_back();
 
                 $panel = $this->panel_object();

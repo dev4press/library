@@ -3,94 +3,318 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 10/05/2019 12:31:40 PM\n"
+"POT-Creation-Date: 11/29/2019 06:04:21 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GD i18n 2.2\n"
 
-#: admin/d4p.functions.php:228
-#: admin/d4p.functions.php:293
-#: admin/d4p.settings.php:549
-#: admin/d4p.settings.php:584
-msgid "Check All"
+#: dev4press/core/admin/Plugin.php:94
+#: plugin/d4p.admin-basic.php:138
+msgid "Settings"
 msgstr ""
 
-#: admin/d4p.functions.php:229
-#: admin/d4p.functions.php:294
-#: admin/d4p.settings.php:550
-#: admin/d4p.settings.php:585
-msgid "Uncheck All"
-msgstr ""
-
-#: admin/d4p.settings.php:319
-msgid "Add Image"
-msgstr ""
-
-#: admin/d4p.settings.php:323
-msgid "No images selected."
-msgstr ""
-
-#: admin/d4p.settings.php:333
-msgid "Remove"
-msgstr ""
-
-#: admin/d4p.settings.php:334
-msgid "Preview"
-msgstr ""
-
-#: admin/d4p.settings.php:347
-#: plugin/d4p.admin-basic.php:197
-msgid "Select Image"
-msgstr ""
-
-#: admin/d4p.settings.php:348
-msgid "Show Image"
-msgstr ""
-
-#: admin/d4p.settings.php:349
-msgid "Clear Image"
-msgstr ""
-
-#: admin/d4p.settings.php:352
-#: plugin/d4p.admin-basic.php:200
-msgid "Image not selected."
-msgstr ""
-
-#: admin/d4p.settings.php:374
-msgid "Enabled"
-msgstr ""
-
-#: admin/d4p.settings.php:699
-msgid "Add New Value"
-msgstr ""
-
-#: classes/d4p.geoip.php:81
-#: classes/d4p.geoip.php:81
-msgid "Localhost or Private IP"
-msgstr ""
-
-#: classes/d4p.geoip.php:85
-#: classes/d4p.geoip.php:85
-msgid "IP can't be geolocated."
-msgstr ""
-
-#: plugin/d4p.admin-basic.php:116
-#: plugin/d4p.admin.php:116
-msgid "Home Page"
-msgstr ""
-
+#: dev4press/core/admin/Plugin.php:103
+#: dev4press/core/admin/Plugin.php:178
+#: dev4press/core/admin/Plugin.php:193
 #: plugin/d4p.admin-basic.php:117
 #: plugin/d4p.admin-basic.php:147
 #: plugin/d4p.admin.php:117
 msgid "Knowledge Base"
 msgstr ""
 
+#: dev4press/core/admin/Plugin.php:104
+#: dev4press/core/admin/Plugin.php:179
+#: dev4press/core/admin/Plugin.php:193
 #: plugin/d4p.admin-basic.php:118
 #: plugin/d4p.admin-basic.php:148
 #: plugin/d4p.admin.php:118
 msgid "Support Forum"
+msgstr ""
+
+#: dev4press/core/admin/Plugin.php:177
+#: plugin/d4p.admin-basic.php:116
+#: plugin/d4p.admin.php:116
+msgid "Home Page"
+msgstr ""
+
+#: dev4press/core/admin/Plugin.php:191
+#: dev4press/core/admin/Plugin.php:192
+msgid "Help & Support"
+msgstr ""
+
+#: dev4press/core/admin/Plugin.php:192
+msgid "To get help with %s, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers)."
+msgstr ""
+
+#: dev4press/core/admin/Plugin.php:200
+#: dev4press/core/admin/Plugin.php:201
+msgid "Found a bug?"
+msgstr ""
+
+#: dev4press/core/admin/Plugin.php:201
+msgid "If you find a bug in %s, you can report it in the support forum."
+msgstr ""
+
+#: dev4press/core/admin/Plugin.php:202
+msgid "Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger."
+msgstr ""
+
+#: dev4press/core/admin/Plugin.php:203
+msgid "Open new topic"
+msgstr ""
+
+#: dev4press/core/admin/Plugin.php:248
+#: plugin/d4p.admin-basic.php:157
+msgid "%s is activated and it needs to finish installation."
+msgstr ""
+
+#: dev4press/core/admin/Plugin.php:249
+#: dev4press/core/admin/Plugin.php:258
+#: plugin/d4p.admin-basic.php:158
+#: plugin/d4p.admin-basic.php:167
+msgid "Click Here"
+msgstr ""
+
+#: dev4press/core/admin/Plugin.php:257
+#: plugin/d4p.admin-basic.php:166
+msgid "%s is updated, and you need to review the update process."
+msgstr ""
+
+#: dev4press/core/helpers/Debug.php:125
+msgid "SQL Queries"
+msgstr ""
+
+#: dev4press/core/helpers/Debug.php:128
+msgid "Total Page Time"
+msgstr ""
+
+#: dev4press/core/helpers/Debug.php:129
+msgid "seconds"
+msgstr ""
+
+#: dev4press/core/helpers/Debug.php:133
+msgid "PHP Memory Peak"
+msgstr ""
+
+#: dev4press/core/helpers/Debug.php:139
+msgid "PHP Memory Final"
+msgstr ""
+
+#: dev4press/core/helpers/Debug.php:187
+msgid "Request"
+msgstr ""
+
+#: dev4press/core/helpers/Debug.php:188
+#: dev4press/core/helpers/Debug.php:191
+#: dev4press/core/helpers/Debug.php:194
+msgid "None"
+msgstr ""
+
+#: dev4press/core/helpers/Debug.php:190
+msgid "Matched Rewrite Rule"
+msgstr ""
+
+#: dev4press/core/helpers/Debug.php:193
+msgid "Matched Rewrite Query"
+msgstr ""
+
+#: dev4press/core/helpers/Debug.php:196
+msgid "Loaded Template"
+msgstr ""
+
+#: dev4press/core/options/Render.php:170
+msgid "Add Image"
+msgstr ""
+
+#: dev4press/core/options/Render.php:174
+msgid "No images selected."
+msgstr ""
+
+#: dev4press/core/options/Render.php:184
+#: dev4press/core/ui/Enqueue.php:201
+msgid "Remove"
+msgstr ""
+
+#: dev4press/core/options/Render.php:185
+#: dev4press/core/ui/Enqueue.php:202
+msgid "Preview"
+msgstr ""
+
+#: dev4press/core/options/Render.php:198
+#: dev4press/core/ui/Enqueue.php:203
+#: plugin/d4p.admin-basic.php:197
+msgid "Select Image"
+msgstr ""
+
+#: dev4press/core/options/Render.php:199
+msgid "Show Image"
+msgstr ""
+
+#: dev4press/core/options/Render.php:200
+msgid "Clear Image"
+msgstr ""
+
+#: dev4press/core/options/Render.php:203
+#: dev4press/core/ui/Enqueue.php:205
+#: plugin/d4p.admin-basic.php:200
+msgid "Image not selected."
+msgstr ""
+
+#: dev4press/core/options/Render.php:225
+msgid "Enabled"
+msgstr ""
+
+#: dev4press/core/options/Render.php:401
+#: dev4press/core/options/Render.php:436
+#: functions/admin.php:228
+#: functions/admin.php:293
+msgid "Check All"
+msgstr ""
+
+#: dev4press/core/options/Render.php:402
+#: dev4press/core/options/Render.php:437
+#: functions/admin.php:229
+#: functions/admin.php:294
+msgid "Uncheck All"
+msgstr ""
+
+#: dev4press/core/options/Render.php:551
+msgid "Add New Value"
+msgstr ""
+
+#: dev4press/core/plugins/InstallDB.php:76
+msgid "Some columns are missing."
+msgstr ""
+
+#: dev4press/core/plugins/InstallDB.php:81
+msgid "Table is missing."
+msgstr ""
+
+#: dev4press/core/ui/admin/PanelAbout.php:13
+msgid "What&#8217;s New"
+msgstr ""
+
+#: dev4press/core/ui/admin/PanelAbout.php:15
+msgid "Info"
+msgstr ""
+
+#: dev4press/core/ui/admin/PanelAbout.php:17
+msgid "Changelog"
+msgstr ""
+
+#: dev4press/core/ui/admin/PanelAbout.php:19
+msgid "Dev4Press"
+msgstr ""
+
+#: dev4press/core/ui/Enqueue.php:182
+msgid "OK"
+msgstr ""
+
+#: dev4press/core/ui/Enqueue.php:183
+msgid "Cancel"
+msgstr ""
+
+#: dev4press/core/ui/Enqueue.php:184
+msgid "Delete"
+msgstr ""
+
+#: dev4press/core/ui/Enqueue.php:185
+msgid "Disable"
+msgstr ""
+
+#: dev4press/core/ui/Enqueue.php:186
+msgid "Empty"
+msgstr ""
+
+#: dev4press/core/ui/Enqueue.php:189
+#: dev4press/core/ui/Enqueue.php:206
+#: plugin/d4p.admin-basic.php:199
+msgid "Are you sure you want to do this?"
+msgstr ""
+
+#: dev4press/core/ui/Enqueue.php:192
+msgid "Please Wait..."
+msgstr ""
+
+#: dev4press/core/ui/Enqueue.php:204
+#: plugin/d4p.admin-basic.php:198
+msgid "Use Selected Image"
+msgstr ""
+
+#: dev4press/service/geoip/Location.php:77
+#: dev4press/service/geoip/Location.php:77
+msgid "Localhost or Private IP"
+msgstr ""
+
+#: dev4press/service/geoip/Location.php:81
+#: dev4press/service/geoip/Location.php:81
+msgid "IP can't be geolocated."
+msgstr ""
+
+#: dev4press/service/media/Pixabay.php:78
+msgid "Specified image ID not found."
+msgstr ""
+
+#: dev4press/service/media/Pixabay.php:150
+msgid "Specified video ID not found."
+msgstr ""
+
+#: forms/fallback.php:0
+msgid "Nothing to show."
+msgstr ""
+
+#: forms/header-about.php:26
+msgid "Welcome to %s&nbsp;%s"
+msgstr ""
+
+#: forms/header-about.php:32
+msgid "Version %s"
+msgstr ""
+
+#: forms/message.php:10
+msgid "Settings are saved."
+msgstr ""
+
+#: forms/message.php:13
+msgid "Import operation completed."
+msgstr ""
+
+#: forms/message.php:16
+msgid "Removal operation completed."
+msgstr ""
+
+#: forms/message.php:20
+msgid "Nothing done."
+msgstr ""
+
+#: forms/message.php:24
+msgid "Nothing removed."
+msgstr ""
+
+#: forms/message.php:27
+msgid "Requested operation is invalid."
+msgstr ""
+
+#: forms/message.php:31
+msgid "Import operation failed."
+msgstr ""
+
+#: functions/wordpress.php:89
+msgid "Clear"
+msgstr ""
+
+#: functions/wordpress.php:90
+msgid "Default"
+msgstr ""
+
+#: functions/wordpress.php:91
+msgid "Select Color"
+msgstr ""
+
+#: functions/wordpress.php:92
+msgid "Current Color"
 msgstr ""
 
 #: plugin/d4p.admin-basic.php:128
@@ -101,88 +325,5 @@ msgstr ""
 #: plugin/d4p.admin-basic.php:129
 #: plugin/d4p.admin.php:129
 msgid "To get help with this plugin, you can start with Knowledge Base list of frequently asked questions and articles. If you have any questions, or you want to report a bug, or you have a suggestion, you can use support forum. All important links for this are on the right side of this help dialog."
-msgstr ""
-
-#: plugin/d4p.admin-basic.php:138
-msgid "Settings"
-msgstr ""
-
-#: plugin/d4p.admin-basic.php:157
-msgid "%s is activated and it needs to finish installation."
-msgstr ""
-
-#: plugin/d4p.admin-basic.php:158
-#: plugin/d4p.admin-basic.php:167
-msgid "Click Here"
-msgstr ""
-
-#: plugin/d4p.admin-basic.php:166
-msgid "%s is updated, and you need to review the update process."
-msgstr ""
-
-#: plugin/d4p.admin-basic.php:198
-msgid "Use Selected Image"
-msgstr ""
-
-#: plugin/d4p.admin-basic.php:199
-msgid "Are you sure you want to do this?"
-msgstr ""
-
-#: d4p.debug.php:52
-msgid "SQL Queries"
-msgstr ""
-
-#: d4p.debug.php:55
-msgid "Total Page Time"
-msgstr ""
-
-#: d4p.debug.php:56
-msgid "seconds"
-msgstr ""
-
-#: d4p.debug.php:60
-msgid "PHP Memory Peak"
-msgstr ""
-
-#: d4p.debug.php:66
-msgid "PHP Memory Final"
-msgstr ""
-
-#: d4p.debug.php:118
-msgid "Request"
-msgstr ""
-
-#: d4p.debug.php:119
-#: d4p.debug.php:122
-#: d4p.debug.php:125
-msgid "None"
-msgstr ""
-
-#: d4p.debug.php:121
-msgid "Matched Rewrite Rule"
-msgstr ""
-
-#: d4p.debug.php:124
-msgid "Matched Rewrite Query"
-msgstr ""
-
-#: d4p.debug.php:127
-msgid "Loaded Template"
-msgstr ""
-
-#: d4p.wp.php:90
-msgid "Clear"
-msgstr ""
-
-#: d4p.wp.php:91
-msgid "Default"
-msgstr ""
-
-#: d4p.wp.php:92
-msgid "Select Color"
-msgstr ""
-
-#: d4p.wp.php:93
-msgid "Current Color"
 msgstr ""
 
