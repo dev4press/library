@@ -3,7 +3,6 @@
   margin: 0;
   border-bottom: 1px solid #666;
 }
-
 .d4p-ctrl-tabs div[role=tablist] button[role=tab] {
   position: relative;
   overflow: visible;
@@ -15,12 +14,10 @@
   font-size: 1.1em;
   font-weight: normal;
 }
-
 .d4p-ctrl-tabs div[role=tablist] button[role=tab][aria-selected=true] {
   border-bottom-color: #666;
   font-weight: bold;
 }
-
 .d4p-ctrl-tabs .d4p-ctrl-tabs-content {
   margin-top: 10px;
 }
