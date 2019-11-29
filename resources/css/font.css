@@ -102,11 +102,23 @@
   content: "\f115";
 }
 
+.d4p-icon.d4p-club-icon-bbpress:before {
+  content: "\f115";
+}
+
 .d4p-icon.d4p-club-icon-gd-dev4press-plugins:before {
   content: "\f116";
 }
 
+.d4p-icon.d4p-club-icon-dev4press:before {
+  content: "\f116";
+}
+
 .d4p-icon.d4p-club-icon-gd-rating-club:before {
+  content: "\f117";
+}
+
+.d4p-icon.d4p-club-icon-rating:before {
   content: "\f117";
 }
 
@@ -210,11 +222,23 @@
   content: "\f130";
 }
 
+.d4p-icon.d4p-plugin-icon-gd-members-directory-for-bbpress:before {
+  content: "\f130";
+}
+
 .d4p-icon.d4p-plugin-icon-gd-pages-navigator:before {
   content: "\f131";
 }
 
 .d4p-icon.d4p-plugin-icon-gd-power-search:before {
+  content: "\f132";
+}
+
+.d4p-icon.d4p-plugin-icon-gd-power-search-for-bbpress-lite:before {
+  content: "\f132";
+}
+
+.d4p-icon.d4p-plugin-icon-gd-power-search-for-bbpress:before {
   content: "\f132";
 }
 
@@ -226,7 +250,15 @@
   content: "\f134";
 }
 
+.d4p-icon.d4p-plugin-icon-gd-quantum-theme-for-bbpress:before {
+  content: "\f134";
+}
+
 .d4p-icon.d4p-plugin-icon-gd-rating-system:before {
+  content: "\f135";
+}
+
+.d4p-icon.d4p-plugin-icon-gd-rating-system-lite:before {
   content: "\f135";
 }
 
@@ -250,11 +282,27 @@
   content: "\f13a";
 }
 
+.d4p-icon.d4p-plugin-icon-gd-topic-polls-lite:before {
+  content: "\f13a";
+}
+
+.d4p-icon.d4p-plugin-icon-gd-topic-polls-for-bbpress:before {
+  content: "\f13a";
+}
+
 .d4p-icon.d4p-plugin-icon-gd-topic-prefix:before {
   content: "\f13b";
 }
 
+.d4p-icon.d4p-plugin-icon-gd-topic-prefix-for-bbpress:before {
+  content: "\f13b";
+}
+
 .d4p-icon.d4p-plugin-icon-gd-webfonts-toolbox:before {
+  content: "\f13c";
+}
+
+.d4p-icon.d4p-plugin-icon-gd-webfonts-toolbox-lite:before {
   content: "\f13c";
 }
 
