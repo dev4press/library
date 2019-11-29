@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press Core Autoloader
+Name:    Base Library Functions: Panel
 Version: v2.9.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -25,24 +25,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!function_exists('d4p_core_library_autoloader_290')) {
-    function d4p_core_library_autoloader_290($class) {
-        $path = dirname(__FILE__).'/';
+use Dev4Press\Core\UI\Admin\Panel;
 
-        $parts = explode('\\', $class);
+if (!defined('ABSPATH')) { exit; }
 
-        $class_name = $parts[count($parts) - 1];
-        unset($parts[count($parts) - 1]);
-
-        $class_namespace = join('/', $parts);
-        $class_namespace = strtolower($class_namespace);
-
-        $path.= $class_namespace.'/'.$class_name.'.php';
-
-        if (file_exists($path)) {
-            include($path);
-        }
+if (!function_exists('d4p_panel')) {
+    /** @return \Dev4Press\Core\UI\Admin\Panel */
+    function d4p_panel() {
+        return Panel::instance();
     }
-
-    spl_autoload_register('d4p_core_library_autoloader_290');
 }

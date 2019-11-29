@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\Core\Plugins\DB
-Version: v2.9.1
+Version: v2.9.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

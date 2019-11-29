@@ -5,8 +5,14 @@ namespace Dev4Press\Core\UI\Admin;
 if (!defined('ABSPATH')) { exit; }
 
 abstract class Panel {
+    static private $_current_instance = null;
+
     /** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
     private $admin = null;
+
+    protected $templates = 'standard';
+    protected $sidebar = true;
+    protected $subpanels = array();
 
     public function __construct($admin) {
         $this->admin = $admin;
@@ -18,16 +24,14 @@ abstract class Panel {
     }
 
     /** @return Panel */
-    public static function instance($admin) {
-        static $instance = array();
-
+    public static function instance($admin = null) {
         $class = get_called_class();
 
-        if (!isset($instance[$class])) {
-            $instance[$class] = new $class($admin);
+        if (is_null(self::$_current_instance) && !is_null($admin)) {
+            self::$_current_instance = new $class($admin);
         }
 
-        return $instance[$class];
+        return self::$_current_instance;
     }
 
     public function a() {
@@ -47,6 +51,22 @@ abstract class Panel {
     }
 
     public function show() {
-        d4p_print_r($this);
+        $this->include_header();
+
+        $this->include_footer();
+    }
+
+    protected function forms_path() {
+        return $this->admin->path.'d4plib/forms/';
+    }
+
+    protected function include_header($name = '') {
+        $name = empty($name) ? $this->templates : $name;
+        include($this->forms_path().'header-'.$name.'.php');
+    }
+
+    protected function include_footer($name = '') {
+        $name = empty($name) ? $this->templates : $name;
+        include($this->forms_path().'footer-'.$name.'.php');
     }
 }
