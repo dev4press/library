@@ -173,11 +173,11 @@ final class Enqueue {
         wp_localize_script('d4plib-admin', 'd4plib_admin_data', array(
             'dialogs' => array(
                 'icons' => array(
-                    'ok' => '<i class="fa fa-check fa-fw" aria-hidden="true"></i> ',
-                    'cancel' => '<i class="fa fa-times fa-fw" aria-hidden="true"></i> ',
-                    'delete' => '<i class="fa fa-trash fa-fw" aria-hidden="true"></i> ',
-                    'disable' => '<i class="fa fa-ban fa-fw" aria-hidden="true"></i> ',
-                    'empty' => '<i class="fa fa-eraser fa-fw" aria-hidden="true"></i> ',
+                    'ok' => '<i class="d4p-icon d4p-ui-check d4p-icon-fw" aria-hidden="true"></i> ',
+                    'cancel' => '<i class="d4p-icon d4p-ui-times d4p-icon-fw" aria-hidden="true"></i> ',
+                    'delete' => '<i class="d4p-icon d4p-ui-trash d4p-icon-fw" aria-hidden="true"></i> ',
+                    'disable' => '<i class="d4p-icon d4p-ui-ban d4p-icon-fw" aria-hidden="true"></i> ',
+                    'empty' => '<i class="d4p-icon d4p-ui-eraser d4p-icon-fw" aria-hidden="true"></i> ',
                 ),
                 'buttons' => array(
                     'ok' => __("OK", "gd-topic-polls"),
@@ -207,8 +207,8 @@ final class Enqueue {
                 'are_you_sure' => __("Are you sure you want to do this?", "gd-topic-polls")
             ),
             'icons' => array(
-                'remove' => "<i aria-hidden='true' class='fa fa-ban'></i>",
-                'preview' => "<i aria-hidden='true' class='fa fa-search'></i>"
+                'remove' => "<i aria-hidden='true' class='d4p-icon d4p-ui-ban d4p-icon-fw'></i>",
+                'preview' => "<i aria-hidden='true' class='d4p-icon d4p-ui-search d4p-icon-fw'></i>"
             )
         ));
     }
