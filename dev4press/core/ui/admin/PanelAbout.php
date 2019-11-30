@@ -22,4 +22,8 @@ class PanelAbout extends Panel {
                 'title' => __("Dev4Press", "d4plib"), 'icon' => 'logo-dev4press')
         );
     }
+
+    public function enqueue_scripts() {
+        $this->a()->enqueue->css('about');
+    }
 }

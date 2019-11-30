@@ -24,6 +24,8 @@ if (!empty($_subpanel)) {
 
 if (d4p_panel()->has_sidebar()) {
     $_classes[] = 'd4p-with-sidebar';
+} else {
+    $_classes[] = 'd4p-full-width';
 }
 
 ?>
@@ -76,4 +78,4 @@ if (d4p_panel()->has_sidebar()) {
         </div>
     </div>
     <?php d4p_panel()->include_messages(); ?>
-    <div class="d4p-content">
+    <div class="d4p-main">

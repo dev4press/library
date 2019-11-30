@@ -273,9 +273,15 @@ abstract class Plugin {
         if ($this->page) {
             $this->enqueue->wp($this->enqueue_wp);
             $this->enqueue->js('shared')->js('admin');
-            $this->enqueue->css('font')->css('grid')->css('admin');
+            $this->enqueue->css('font')->css('grid')->css('admin')->css('options');
+
+            if ($this->is_rtl) {
+                $this->enqueue->css('rtl');
+            }
 
             do_action($this->h('enqueue_scripts'));
+
+            $this->enqueue->css('responsive');
         }
 
         if ($this->has_widgets && $hook == 'widgets.php') {

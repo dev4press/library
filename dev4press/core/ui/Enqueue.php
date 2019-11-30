@@ -40,17 +40,20 @@ final class Enqueue {
             'wpcolorpickeralpha' => array('path' => 'libraries/', 'file' => 'wp-color-picker-alpha.min', 'ver' => '2.1.3', 'ext' => 'js', 'min' => false, 'req' => array('wp-color-picker'))
         ),
         'css' => array(
+            'about' => array('path' => 'css/', 'file' => 'about', 'ext' => 'css', 'min' => true),
             'flags' => array('path' => 'css/', 'file' => 'flags', 'ext' => 'css', 'min' => true),
             'font' => array('path' => 'css/', 'file' => 'font', 'ext' => 'css', 'min' => true),
             'grid' => array('path' => 'css/', 'file' => 'grid', 'ext' => 'css', 'min' => true),
             'ctrl' => array('path' => 'css/', 'file' => 'ctrl', 'ext' => 'css', 'min' => true),
             'meta' => array('path' => 'css/', 'file' => 'meta', 'ext' => 'css', 'min' => true),
+            'options' => array('path' => 'css/', 'file' => 'options', 'ext' => 'css', 'min' => true),
             'shared' => array('path' => 'css/', 'file' => 'shared', 'ext' => 'css', 'min' => true),
             'widgets' => array('path' => 'css/', 'file' => 'widgets', 'ext' => 'css', 'min' => true),
             'customizer' => array('path' => 'css/', 'file' => 'customizer', 'ext' => 'css', 'min' => true),
+            'responsive' => array('path' => 'css/', 'file' => 'responsive', 'ext' => 'css', 'min' => true),
             'admin' => array('path' => 'css/', 'file' => 'admin', 'ext' => 'css', 'min' => true, 'int' => array('shared')),
             'wizard' => array('path' => 'css/', 'file' => 'wizard', 'ext' => 'css', 'min' => true, 'int' => array('admin')),
-            'rtl' => array('path' => 'css/', 'file' => 'rtl', 'ext' => 'css', 'min' => true, 'int' => array('admin'))
+            'rtl' => array('path' => 'css/', 'file' => 'rtl', 'ext' => 'css', 'min' => true)
         )
     );
 

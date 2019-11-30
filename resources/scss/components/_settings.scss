@@ -1,0 +1,27 @@
+.d4p-group-separator {
+    margin: 0;
+    float: left;
+    text-align: left;
+    max-width: 800px;
+    width: 100%;
+    clear: both;
+    overflow: auto;
+
+    h3 {
+        border-bottom: 2px solid #ccc;
+        text-transform: uppercase;
+        margin: 0 0 30px;
+        font-size: 22px;
+        line-height: 24px;
+
+        > span {
+            padding: 0 15px 2px;
+            position: relative;
+            top: 12px;
+            background: #ccc;
+            color: #111;
+            font-weight: bold;
+            margin: 0 0 0 30px;
+        }
+    }
+}
