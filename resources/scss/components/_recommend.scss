@@ -1,0 +1,88 @@
+#dev4press-recommend {
+    margin-left: 10px;
+    float: right;
+    width: 340px;
+
+    > div {
+        background-color: #333333;
+        border: 2px solid #111111;
+        color: #ffffff;
+        padding: 0px;
+        margin-bottom: 10px;
+        width: 340px;
+    }
+
+    a,
+    a:hover {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    h5 {
+        background-color: #777777;
+        color: #ffffff;
+        padding: 7px 0 10px;
+        margin: 0 0 10px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    h6 {
+        font-size: 18px;
+        margin: 0;
+        line-height: 24px;
+        padding: 5px 0 10px;
+        text-align: center;
+    }
+
+    .dev4press-plugin-inner {
+        margin: 10px;
+
+        em {
+            line-height: 18px;
+            font-size: 12px;
+        }
+    }
+
+    .dev4press-plugin-thumb {
+        float: left;
+        margin: 0 10px 10px 0;
+
+        img {
+            width: 92px;
+            height: 92px;
+        }
+
+        i {
+            font-size: 96px;
+            width: 96px;
+            height: 96px;
+            display: block;
+        }
+    }
+
+    .dev4press-plugin-links {
+        clear: both;
+        margin: 10px 0 0;
+        padding: 10px 0 0;
+        border-top: 1px solid #f8f8f8;
+
+        a {
+            margin: 0 1%;
+            width: 31.33%;
+            text-align: center;
+
+            &.button-secondary {
+                color: #111111;
+                box-shadow: none;
+            }
+
+            &.dev4press-buynow {
+                background: #BA0000;
+                box-shadow: none;
+                border-color: #f0f0f0;
+                text-shadow: 0 -1px 1px #990000, 1px 0 1px #990000, 0 1px 1px #990000, -1px 0 1px #990000;
+            }
+        }
+    }
+}

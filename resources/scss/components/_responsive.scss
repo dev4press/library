@@ -1,3 +1,12 @@
+@media screen and (max-width: 1280px) {
+    #dev4press-recommend {
+        float: none;
+        margin: 15px 0 0 0;
+        padding: 15px 0 0 0;
+        border-top: 1px solid #777777;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .d4p-wrap {
         &.d4p-panel-about {
@@ -54,6 +63,48 @@
                 .d4p-layout-grid {
                     width: 100%;
                 }
+            }
+        }
+    }
+
+    #dev4press-recommend {
+        width: 100%;
+
+        > div {
+            width: 100%;
+        }
+
+        .dev4press-plugin-inner em {
+            line-height: 20px;
+            font-size: 14px;
+        }
+    }
+
+    .d4p-navigator {
+        width: 100%;
+        margin-top: -15px;
+
+        ul {
+            li {
+                &.d4p-nav-button {
+                    margin-right: 2%;
+                }
+            }
+        }
+
+        li {
+            &.d4p-nav-button {
+                width: 49%;
+
+                > a {
+                    width: 100%;
+                }
+            }
+        }
+
+        .d4p-nav-button {
+            ul {
+                width: 100%;
             }
         }
     }

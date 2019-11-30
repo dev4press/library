@@ -109,7 +109,7 @@ class Four {
 
     /** @return Four */
     public static function instance($type, $name, $version, $build, $lic = '') {
-        static $_d4p_four = array();
+        static $_d4p_four = null;
 
         if (!isset($_d4p_four)) {
             $_d4p_four = new Four($type, $name, $version, $build, $lic);

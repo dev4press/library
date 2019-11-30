@@ -1,3 +1,11 @@
+@media screen and (max-width: 1280px) {
+  #dev4press-recommend {
+    float: none;
+    margin: 15px 0 0 0;
+    padding: 15px 0 0 0;
+    border-top: 1px solid #777777;
+  }
+}
 @media screen and (max-width: 800px) {
   .d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins .d4p-dev4press-plugin {
     width: 100%;
@@ -32,6 +40,34 @@
     display: inline-block;
   }
   .d4p-wrap.d4p-panel-about .d4p-whatsnew-heading .d4p-layout-grid {
+    width: 100%;
+  }
+
+  #dev4press-recommend {
+    width: 100%;
+  }
+  #dev4press-recommend > div {
+    width: 100%;
+  }
+  #dev4press-recommend .dev4press-plugin-inner em {
+    line-height: 20px;
+    font-size: 14px;
+  }
+
+  .d4p-navigator {
+    width: 100%;
+    margin-top: -15px;
+  }
+  .d4p-navigator ul li.d4p-nav-button {
+    margin-right: 2%;
+  }
+  .d4p-navigator li.d4p-nav-button {
+    width: 49%;
+  }
+  .d4p-navigator li.d4p-nav-button > a {
+    width: 100%;
+  }
+  .d4p-navigator .d4p-nav-button ul {
     width: 100%;
   }
 }
