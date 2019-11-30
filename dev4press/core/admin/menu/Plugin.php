@@ -67,13 +67,15 @@ abstract class Plugin extends BasePlugin {
                     $this->subpanel = d4p_sanitize_slug($_GET['subpanel']);
                 }
 
-                $this->install_or_update();
+                // $this->install_or_update();
                 $this->load_postget_back();
 
                 $panel = $this->panel_object();
                 $class = $panel->class;
 
                 $this->object = $class::instance($this);
+
+                $this->subpanel = $this->object->validate_subpanel($this->subpanel);
             }
         }
 

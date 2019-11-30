@@ -61,6 +61,20 @@ abstract class Panel {
         return $this->sidebar;
     }
 
+    public function validate_subpanel($name) {
+        if (empty($this->subpanels)) {
+            return '';
+        }
+
+        if (isset($this->subpanels[$name])) {
+            return $name;
+        }
+
+        $valid = array_keys($this->subpanels);
+
+        return $valid[0];
+    }
+
     public function enqueue_scripts() { }
 
     public function screen_options_show() { }

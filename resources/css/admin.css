@@ -113,6 +113,64 @@
   vertical-align: top;
   margin-top: 6px;
 }
+.d4p-info-block {
+  margin: 0 0 20px;
+}
+.d4p-info-block > h3 {
+  background: #dfdfdf;
+  color: #111;
+  padding: 5px 10px;
+  margin: 0;
+  line-height: 1.5;
+}
+.d4p-info-block > div {
+  background: #f8f8f8;
+  color: #111;
+  margin: 0;
+  padding: 15px;
+}
+.d4p-info-block > div ul {
+  margin: 0;
+  padding: 0;
+}
+.d4p-info-block.d4p-info-block-changelog h4 {
+  font-size: 1.2em;
+  margin: 0 0 15px;
+}
+.d4p-info-block.d4p-info-block-changelog ul {
+  margin: 0 0 10px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid #ddd;
+}
+.d4p-info-block.d4p-info-block-changelog ul strong {
+  text-transform: uppercase;
+}
+.d4p-info-block.d4p-info-block-changelog ul strong:after {
+  content: ": ";
+}
+.d4p-info-block.d4p-info-block-changelog ul:last-child {
+  padding: 0;
+  margin: 0;
+  border-bottom: 0;
+}
+.d4p-info-block .d4p-block-language {
+  padding: 0 0 10px;
+  margin: 0 0 10px;
+  border-bottom: 1px solid #ddd;
+}
+.d4p-info-block .d4p-block-language h4 {
+  margin: 0 0 5px;
+  font-weight: bold;
+}
+.d4p-info-block .d4p-block-language p {
+  margin: 0;
+}
+.d4p-info-block .d4p-block-language:last-child {
+  padding: 0;
+  margin: 0;
+  border-bottom: 0;
+}
+
 .d4p-content-left {
   float: left;
   padding: 15px 15px 15px 0;

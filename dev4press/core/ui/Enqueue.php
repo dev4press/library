@@ -28,15 +28,16 @@ final class Enqueue {
             'wizard' => array('path' => 'js/', 'file' => 'wizard', 'ext' => 'js', 'min' => true),
             'clipboard' => array('path' => 'libraries/', 'file' => 'clipboard.min', 'ver' => '2.0.4', 'ext' => 'js', 'min' => false),
             'cookies' => array('path' => 'libraries/', 'file' => 'cookies.min', 'ver' => '2.2.1', 'ext' => 'js', 'min' => false),
-            'wp-color-picker-alpha' => array('path' => 'libraries/', 'file' => 'wp-color-picker-alpha.min', 'ver' => '2.1.3', 'ext' => 'js', 'min' => false, 'req' => array('wp-color-picker')),
             'alphanumeric' => array('path' => 'libraries/', 'file' => 'jquery.alphanumeric.min', 'ver' => '2017', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
-            'are-you-sure' => array('path' => 'libraries/', 'file' => 'jquery.are-you-sure.min', 'ver' => '1.9.0', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
+            'areyousure' => array('path' => 'libraries/', 'file' => 'jquery.are-you-sure.min', 'ver' => '1.9.0', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
+            'mark' => array('path' => 'libraries/', 'file' => 'jquery.mark.min', 'ver' => '8.11.1', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
             'fitvids' => array('path' => 'libraries/', 'file' => 'jquery.fitvids.min', 'ver' => '1.2.0', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
             'jqeasycharcounter' => array('path' => 'libraries/', 'file' => 'jquery.jqeasycharcounter.min', 'ver' => '1.0', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
             'limitkeypress' => array('path' => 'libraries/', 'file' => 'jquery.limitkeypress.min', 'ver' => '2016', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
             'numeric' => array('path' => 'libraries/', 'file' => 'jquery.numeric.min', 'ver' => '1.4.1', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
             'select' => array('path' => 'libraries/', 'file' => 'jquery.select.min', 'ver' => '2.2.6', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
-            'textrange' => array('path' => 'libraries/', 'file' => 'jquery.textrange.min', 'ver' => '1.4.0', 'ext' => 'js', 'min' => false, 'req' => array('jquery'))
+            'textrange' => array('path' => 'libraries/', 'file' => 'jquery.textrange.min', 'ver' => '1.4.0', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
+            'wpcolorpickeralpha' => array('path' => 'libraries/', 'file' => 'wp-color-picker-alpha.min', 'ver' => '2.1.3', 'ext' => 'js', 'min' => false, 'req' => array('wp-color-picker'))
         ),
         'css' => array(
             'flags' => array('path' => 'css/', 'file' => 'flags', 'ext' => 'css', 'min' => true),

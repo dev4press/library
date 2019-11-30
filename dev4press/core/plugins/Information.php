@@ -55,6 +55,8 @@ abstract class Information {
     public $update = false;
     public $previous = 0;
 
+    public $translations = array();
+
     function __construct() {}
 
     public function to_array() {
@@ -92,5 +94,24 @@ abstract class Information {
 
     public function url() {
         return Store::instance()->url($this->code);
+    }
+
+    public function system_requirements() {
+        $list = array(
+            'PHP' => $this->php,
+            'MySQL' => $this->mysql
+        );
+
+        if (d4p_is_classicpress()) {
+            $list['ClassiCpress'] = $this->classicpress;
+        } else {
+            $list['WordPress'] = $this->wordpress;
+        }
+
+        if (isset($this->bbpress)) {
+            $list['bbPress'] = $this->bbpress;
+        }
+
+        return $list;
     }
 }
