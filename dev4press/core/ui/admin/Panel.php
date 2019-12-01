@@ -13,8 +13,8 @@ abstract class Panel {
     /** @var \Dev4Press\Core\UI\Admin\Render */
     private $render = null;
 
-    protected $templates = 'standard';
     protected $sidebar = true;
+    protected $form = false;
     protected $subpanels = array();
     protected $render_class = '\\Dev4Press\\Core\\UI\\Admin\\Render';
 
@@ -87,11 +87,19 @@ abstract class Panel {
         $this->include_header();
 
         echo '<div class="d4p-inside-wrapper">';
+            if ($this->form) {
+                echo $this->form_tag_open();
+            }
+
             if ($this->has_sidebar()) {
                 $this->include_sidebar();
             }
 
             $this->include_content();
+
+            if ($this->form) {
+                echo '</form>';
+            }
         echo '</div>';
 
         $this->include_footer();
@@ -106,18 +114,18 @@ abstract class Panel {
     }
 
     public function include_header($name = '') {
-        $name = empty($name) ? $this->templates : $name;
-        $this->load('header-'.$name.'.php');
+        $name = empty($name) ? $this->a()->panel : $name;
+        $this->load('header-'.$name.'.php', 'header.php');
     }
 
     public function include_footer($name = '') {
-        $name = empty($name) ? $this->templates : $name;
-        $this->load('footer-'.$name.'.php');
+        $name = empty($name) ? $this->a()->panel : $name;
+        $this->load('footer-'.$name.'.php', 'footer.php');
     }
 
     public function include_sidebar($name = '') {
-        $name = empty($name) ? ($this->a()->panel == 'dashboard' ? 'dashboard' : $this->templates) : $name;
-        $this->load('sidebar-'.$name.'.php');
+        $name = empty($name) ? $this->a()->panel : $name;
+        $this->load('sidebar-'.$name.'.php', 'sidebar.php');
     }
 
     public function include_messages() {
@@ -125,15 +133,20 @@ abstract class Panel {
     }
 
     public function include_content() {
-        $name = 'content-'.$this->a()->panel;
+        $main = $name = 'content-'.$this->a()->panel;
 
         if (!empty($this->a()->subpanel)) {
             $name.= '-'.$this->a()->subpanel;
         }
 
+        $main.= '.php';
         $name.= '.php';
 
-        $this->load($name);
+        $this->load($name, $main);
+    }
+
+    public function form_tag_open() {
+        return '<form method="post" action="">';
     }
 
     protected function load($name, $fallback = 'fallback.php') {

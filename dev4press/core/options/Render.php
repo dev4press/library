@@ -11,9 +11,26 @@ class Render {
     public $panel;
     public $groups;
 
-    function __construct($panel, $groups) {
+    public function __construct($base) {
+        $this->base = $base;
+    }
+
+    /** @return \Dev4Press\Core\Options\Render */
+    public static function instance($base = 'd4pvalue') {
+        static $render = array();
+
+        if (!isset($render[$base])) {
+            $render[$base] = new Render($base);
+        }
+
+        return $render[$base];
+    }
+
+    public function prepare($panel, $groups) {
         $this->panel = $panel;
         $this->groups = $groups;
+
+        return $this;
     }
 
     public function render() {
@@ -382,7 +399,6 @@ class Render {
     }
 
     private function draw_checkboxes_hierarchy($element, $value, $name_base, $id_base, $multiple = true) {
-        $data = array();
         switch ($element->source) {
             case 'function':
                 $data = call_user_func($element->data);
@@ -416,7 +432,6 @@ class Render {
     }
 
     private function draw_checkboxes($element, $value, $name_base, $id_base, $multiple = true) {
-        $data = array();
         switch ($element->source) {
             case 'function':
                 $data = call_user_func($element->data);

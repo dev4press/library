@@ -16,7 +16,7 @@ abstract class Plugin extends BasePlugin {
     }
 
     public function panel_url($panel = 'dashboard', $subpanel = '') {
-        $url = 'admin.url?page='.$this->plugin.'-'.$panel;
+        $url = 'admin.php?page='.$this->plugin.'-'.$panel;
 
         if (!empty($subpanel) && $subpanel != 'index') {
             $url.= '&subpanel='.$subpanel;

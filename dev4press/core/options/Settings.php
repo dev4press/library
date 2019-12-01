@@ -9,11 +9,27 @@ abstract class Settings {
         $this->init();
     }
 
+    /** @return \Dev4Press\Core\Options\Settings */
+    public static function instance() {
+        static $instance = array();
+
+        $class = get_called_class();
+
+        if (!isset($instance[$class])) {
+            $instance[$class] = new $class();
+        }
+
+        return $instance[$class];
+    }
+
+    public function all() {
+        return $this->settings;
+    }
+
     public function get($panel, $group = '') {
         if ($group == '') {
             return $this->settings[$panel];
-        }
-        else {
+        } else {
             return $this->settings[$panel][$group];
         }
     }

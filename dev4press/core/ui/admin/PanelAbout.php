@@ -3,7 +3,6 @@
 namespace Dev4Press\Core\UI\Admin;
 
 class PanelAbout extends Panel {
-    protected $templates = 'about';
     protected $sidebar = false;
 
     public function __construct($admin) {

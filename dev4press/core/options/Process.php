@@ -8,8 +8,25 @@ class Process {
     public $base = 'd4pvalue';
     public $settings;
 
-    function __construct($settings) {
+    public function __construct($base) {
+        $this->base = $base;
+    }
+
+    /** @return \Dev4Press\Core\Options\Process */
+    public static function instance($base = 'd4pvalue') {
+        static $process = array();
+
+        if (!isset($process[$base])) {
+            $process[$base] = new Process($base);
+        }
+
+        return $process[$base];
+    }
+
+    public function prepare($settings) {
         $this->settings = $settings;
+
+        return $this;
     }
 
     public function process($request = false) {
