@@ -28,6 +28,7 @@ abstract class Panel {
         add_filter('set-screen-option', array($this, 'screen_options_save'), 10, 3);
 
         add_action($this->h('enqueue_scripts'), array($this, 'enqueue_scripts'));
+        add_action($this->h('enqueue_scripts_early'), array($this, 'enqueue_scripts_early'));
     }
 
     /** @return Panel */
@@ -146,7 +147,7 @@ abstract class Panel {
     }
 
     public function form_tag_open() {
-        return '<form method="post" action="">';
+        return '<form method="post" action="" id="'.$this->a()->plugin_prefix.'-form-settings" autocomplete="off">';
     }
 
     protected function load($name, $fallback = 'fallback.php') {

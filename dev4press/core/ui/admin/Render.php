@@ -46,10 +46,38 @@ class Render {
         return $class;
     }
 
-    public function icon($name, $modifiers = array(), $extra_class = '') {
+    public function icon($name = '', $modifiers = array(), $extra_class = '') {
+        if (empty($name)) {
+            return '';
+        }
+
         $icon = '<i aria-hidden="true" class="%s"></i> ';
         $class = $this->icon_class($name, $modifiers, $extra_class);
 
         return sprintf($icon, $class);
+    }
+
+    public function settings_break($label, $icon = '') {
+        $break = $this->div_break();
+        $break.= '<div class="d4p-panel-break d4p-clearfix">';
+        $break.= '<h4 id="settings-break-'.sanitize_key($label).'">'.$this->icon($icon).$label.'</h4>';
+        $break.= '</div>';
+        $break.= $this->div_break();
+
+        return $break;
+    }
+
+    public function settings_group_break($label, $icon = '') {
+        $break = $this->div_break();
+        $break.= '<div class="d4p-panel-group-break d4p-clearfix">';
+        $break.= '<h5 id="settings-group-break-'.sanitize_key($label).'">'.$this->icon($icon).$label.'</h5>';
+        $break.= '</div>';
+        $break.= $this->div_break();
+
+        return $break;
+    }
+
+    public function div_break() {
+        return '<div style="clear: both"></div>';
     }
 }

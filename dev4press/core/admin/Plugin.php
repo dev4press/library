@@ -272,6 +272,9 @@ abstract class Plugin {
     public function enqueue_scripts($hook) {
         if ($this->page) {
             $this->enqueue->wp($this->enqueue_wp);
+
+            do_action($this->h('enqueue_scripts_early'));
+
             $this->enqueue->js('shared')->js('admin');
             $this->enqueue->css('font')->css('grid')->css('admin')->css('options');
 

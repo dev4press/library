@@ -17,4 +17,8 @@ class PanelSettings extends Panel {
 
         wp_nonce_field($group.'-options');
     }
+
+    public function enqueue_scripts_early() {
+        $this->a()->enqueue->js('mark')->js('confirmsubmit');
+    }
 }

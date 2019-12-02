@@ -12,14 +12,22 @@
             wp.dev4press.admin.components.interface.run();
             wp.dev4press.admin.components.scroller.run();
 
-            wp.dev4press.admin.settings.color_picker.run();
-            wp.dev4press.admin.settings.expandables.run();
-            wp.dev4press.admin.settings.toggles.run();
-            wp.dev4press.admin.settings.check_uncheck.run();
+            if (d4plib_admin_data.page.panel === 'settings') {
+                wp.dev4press.admin.panels.settings.run();
+            }
 
             $(window).bind("load resize orientationchange", function(){
                 wp.dev4press.admin.components.scroller.resize();
             });
+        },
+        panels: {
+            settings: {
+                run: function() {
+                    wp.dev4press.admin.settings.init();
+
+                    $("#" + d4plib_admin_data.plugin.prefix + "-form-settings").confirmsubmit();
+                }
+            }
         },
         components: {
             scroller: {
@@ -74,6 +82,12 @@
             }
         },
         settings: {
+            init: function() {
+                wp.dev4press.admin.settings.color_picker.run();
+                wp.dev4press.admin.settings.expandables.run();
+                wp.dev4press.admin.settings.toggles.run();
+                wp.dev4press.admin.settings.check_uncheck.run();
+            },
             color_picker: {
                 run: function() {
                     if ($(".d4p-color-picker").length > 0) {

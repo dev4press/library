@@ -6,7 +6,7 @@ use Dev4Press\Core\Admin\Plugin as BasePlugin;
 
 abstract class Plugin extends BasePlugin {
     public function current_url($with_subpanel = true) {
-        $page = 'admin.url?page='.$this->plugin.'-'.$this->panel;
+        $page = 'admin.php?page='.$this->plugin.'-'.$this->panel;
 
         if ($with_subpanel && isset($this->subpanel) && $this->subpanel !== false && $this->subpanel != '') {
             $page.= '&subpanel='.$this->subpanel;
@@ -26,7 +26,7 @@ abstract class Plugin extends BasePlugin {
     }
 
     public function main_url() {
-        return self_admin_url('admin.url?page='.$this->plugin.'-dashboard');
+        return self_admin_url('admin.php?page='.$this->plugin.'-dashboard');
     }
 
     public function admin_menu() {

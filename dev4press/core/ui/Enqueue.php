@@ -26,10 +26,10 @@ final class Enqueue {
             'customizer' => array('path' => 'js/', 'file' => 'customizer', 'ext' => 'js', 'min' => true),
             'widgets' => array('path' => 'js/', 'file' => 'widgets', 'ext' => 'js', 'min' => true),
             'wizard' => array('path' => 'js/', 'file' => 'wizard', 'ext' => 'js', 'min' => true),
+            'confirmsubmit' => array('path' => 'js/', 'file' => 'confirmsubmit', 'ext' => 'js', 'min' => true),
             'clipboard' => array('path' => 'libraries/', 'file' => 'clipboard.min', 'ver' => '2.0.4', 'ext' => 'js', 'min' => false),
             'cookies' => array('path' => 'libraries/', 'file' => 'cookies.min', 'ver' => '2.2.1', 'ext' => 'js', 'min' => false),
             'alphanumeric' => array('path' => 'libraries/', 'file' => 'jquery.alphanumeric.min', 'ver' => '2017', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
-            'areyousure' => array('path' => 'libraries/', 'file' => 'jquery.are-you-sure.min', 'ver' => '1.9.0', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
             'mark' => array('path' => 'libraries/', 'file' => 'jquery.mark.min', 'ver' => '8.11.1', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
             'fitvids' => array('path' => 'libraries/', 'file' => 'jquery.fitvids.min', 'ver' => '1.2.0', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
             'jqeasycharcounter' => array('path' => 'libraries/', 'file' => 'jquery.jqeasycharcounter.min', 'ver' => '1.0', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
@@ -175,6 +175,14 @@ final class Enqueue {
 
     private function localize_admin() {
         wp_localize_script('d4plib-admin', 'd4plib_admin_data', array(
+            'plugin' => array(
+                'name' => $this->_admin->plugin,
+                'prefix' => $this->_admin->plugin_prefix
+            ),
+            'page' => array(
+                'panel' => $this->_admin->panel,
+                'subpanel' => $this->_admin->subpanel
+            ),
             'dialogs' => array(
                 'icons' => array(
                     'ok' => '<i class="d4p-icon d4p-ui-check d4p-icon-fw" aria-hidden="true"></i> ',

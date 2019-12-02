@@ -21,6 +21,13 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, h4, h5, h6, a {
+    > .#{$font-prefix}-icon {
+        line-height: inherit;
+        vertical-align: bottom;
+    }
+}
+
 /* Icons */
 @each $icon, $char in $icons {
     .#{$font-prefix}-icon.#{$font-prefix}-#{$icon} {

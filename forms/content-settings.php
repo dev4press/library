@@ -2,16 +2,14 @@
 <div class="d4p-content">
     <?php
 
-    d4p_panel()->settings_fields(); ?>
+    d4p_panel()->settings_fields();
 
-    <?php
-
-    $panel = d4p_panel()->a()->subpanel;
+    $subpanel = d4p_panel()->a()->subpanel;
     $class = d4p_panel()->settings_class;
     $options = $class::instance();
-    $groups = $options->get($panel);
+    $groups = $options->get($subpanel);
 
-    Render::instance('gdpolvalue')->prepare($panel, $groups)->render();
+    Render::instance('gdpolvalue')->prepare($subpanel, $groups)->render();
 
     ?>
 </div>
