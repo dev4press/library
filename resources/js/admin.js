@@ -28,35 +28,53 @@
                     $("#" + d4plib_admin_data.plugin.prefix + "-form-settings").confirmsubmit();
 
                     if ($("#d4p-settings-mark").length === 1) {
-                        var $titles = $(".d4p-group > h3"),
-                            $content = $(".d4p-settings-table > tbody > tr");
-
-                        $("#d4p-settings-mark").on("input", function(){
-                            var term = $(this).val();
-
-                            $titles.unmark();
-                            $content.show().unmark();
-
-                            if (term) {
-                                $content.mark(term, {
-                                    done: function() {
-                                        $content.not(":has(mark)").hide();
-                                    }
-                                });
-
-                                $titles.mark(term, {
-                                    done: function() {
-                                        $titles.each(function(idx, el){
-                                            if ($(el).find("mark").length > 0) {
-                                                $(el).parent().find(".d4p-settings-table > tbody > tr").show();
-                                            }
-                                        });
-                                    }
-                                });
-                            }
-                        });
+                        wp.dev4press.admin.panels.settings.mark();
                     }
+                },
+                mark: function() {
+                    $(".d4p-panel-mark button").click(function(){
+                        $("#d4p-settings-mark").val("").trigger("input");
+                    });
 
+                    var $titles = $(".d4p-group > h3"),
+                        $sections = $(".d4p-settings-section > h4"),
+                        $content = $(".d4p-settings-table > tbody > tr");
+
+                    $("#d4p-settings-mark").on("input", function(){
+                        var term = $(this).val();
+
+                        $titles.unmark();
+                        $sections.show().unmark();
+                        $content.show().unmark();
+
+                        if (term) {
+                            $content.mark(term, {
+                                done: function() {
+                                    $content.not(":has(mark)").hide();
+                                }
+                            });
+
+                            $sections.mark(term, {
+                                done: function() {
+                                    $sections.each(function(idx, el) {
+                                        if ($(el).find("mark").length > 0) {
+                                            $(el).parent().find(".d4p-settings-table > tbody > tr").show();
+                                        }
+                                    });
+                                }
+                            });
+
+                            $titles.mark(term, {
+                                done: function() {
+                                    $titles.each(function(idx, el){
+                                        if ($(el).find("mark").length > 0) {
+                                            $(el).parent().find(".d4p-settings-table > tbody > tr").show();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
                 }
             }
         },
