@@ -37,9 +37,34 @@ abstract class Settings {
     public function settings($panel) {
         $list = array();
 
-        foreach ($this->settings[$panel] as $obj) {
-            foreach ($obj['settings'] as $o) {
-                $list[] = $o;
+        if (in_array($panel, array('index', 'full'))) {
+            foreach ($this->settings as $panel) {
+                foreach ($panel as $obj) {
+                    $list = array_merge($list, $this->settings_from_panel($obj));
+                }
+            }
+        } else {
+            foreach ($this->settings[$panel] as $obj) {
+                $list = array_merge($list, $this->settings_from_panel($obj));
+            }
+        }
+
+        return $list;
+    }
+
+    protected function settings_from_panel($obj) {
+        $list = array();
+
+        if (isset($obj['settings'])) {
+            $obj['sections'] = array('label' => '', 'name' => '', 'class' => '', 'settings' => $obj['settings']);
+            unset($obj['settings']);
+        }
+
+        foreach ($obj['sections'] as $s) {
+            foreach ($s['settings'] as $o) {
+                if (!empty($o->type)) {
+                    $list[] = $o;
+                }
             }
         }
 

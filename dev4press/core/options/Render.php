@@ -383,7 +383,7 @@ class Render {
     private function draw_images($element, $value, $name_base, $id_base = '') {
         $value = (array)$value;
 
-        echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-images-add"><i aria-hidden="true" class="fa fa-photo"></i> '.__("Add Image", "d4plib").'</a>';
+        echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-images-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> '.__("Add Image", "d4plib").'</a>';
 
         echo '<div class="d4plib-selected-image" data-name="'.$name_base.'">';
 
@@ -397,8 +397,8 @@ class Render {
 
             echo "<div class='d4plib-images-image'>";
             echo "<input type='hidden' value='".esc_attr($id)."' name='".esc_attr($name_base)."[]' />";
-            echo "<a class='button d4plib-button-action d4plib-images-remove' aria-label='".__("Remove", "d4plib")."'><i aria-hidden='true' class='fa fa-ban'></i></a>";
-            echo "<a class='button d4plib-button-action d4plib-images-preview' aria-label='".__("Preview", "d4plib")."'><i aria-hidden='true' class='fa fa-search'></i></a>";
+            echo "<a class='button d4plib-button-action d4plib-images-remove' aria-label='".__("Remove", "d4plib")."'><i aria-hidden='true' class='d4p-icon d4p-ui-cancel'></i></a>";
+            echo "<a class='button d4plib-button-action d4plib-images-preview' aria-label='".__("Preview", "d4plib")."'><i aria-hidden='true' class='d4p-icon d4p-ui-search'></i></a>";
             echo "<span class='d4plib-image-name'>".$title."</span>";
             echo "<img src='".$url."' />";
             echo "</div>";
@@ -411,9 +411,9 @@ class Render {
         echo sprintf('<input class="d4plib-image" type="hidden" name="%s" id="%s" value="%s" />',
             $name_base, $id_base, esc_attr($value));
 
-        echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-image-add"><i aria-hidden="trye" class="fa fa-photo"></i> '.__("Select Image", "d4plib").'</a>';
-        echo '<a role="button" style="display: '.($value > 0 ? "inline-block" : "none").'" href="#" class="button d4plib-button-inner d4plib-image-preview"><i aria-hidden="true" class="fa fa-search"></i> '.__("Show Image", "d4plib").'</a>';
-        echo '<a role="button" style="display: '.($value > 0 ? "inline-block" : "none").'" href="#" class="button d4plib-button-inner d4plib-image-remove"><i aria-hidden="true" class="fa fa-ban"></i> '.__("Clear Image", "d4plib").'</a>';
+        echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-image-add"><i aria-hidden="trye" class="d4p-icon d4p-ui-photo"></i> '.__("Select Image", "d4plib").'</a>';
+        echo '<a role="button" style="display: '.($value > 0 ? "inline-block" : "none").'" href="#" class="button d4plib-button-inner d4plib-image-preview"><i aria-hidden="true" class="d4p-icon d4p-ui-search"></i> '.__("Show Image", "d4plib").'</a>';
+        echo '<a role="button" style="display: '.($value > 0 ? "inline-block" : "none").'" href="#" class="button d4plib-button-inner d4plib-image-remove"><i aria-hidden="true" class="d4p-icon d4p-ui-cancel"></i> '.__("Clear Image", "d4plib").'</a>';
 
         echo '<div class="d4plib-selected-image">';
         $title = __("Image not selected.", "d4plib"); $url = '';

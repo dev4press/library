@@ -12,17 +12,25 @@
 
         init: function() {
             this.config = $.extend({}, this.defaults, this.options, this.metadata);
-            this.$elem.data("form-state-original", this.$elem.serialize());
+            this.save();
 
-            var $form = this.$elem;
+            var $this = this;
+
+            this.$elem.submit(function() {
+                $this.save();
+            });
 
             $(window).on('beforeunload', function(e) {
-                if ($form.data("form-state-original") !== $form.serialize()) {
+                if ($this.$elem.data("form-state-original") !== $this.$elem.serialize()) {
+                    e.preventDefault();
+                    e.returnValue = '';
+
                     return false;
                 }
-
-                return true;
             });
+        },
+        save: function() {
+            this.$elem.data("form-state-original", this.$elem.serialize());
         }
     };
 
