@@ -112,30 +112,6 @@
         > *:last-child {
             margin-bottom: 0;
         }
-
-        .form-table {
-            margin: 0;
-
-            > tbody {
-                > tr {
-                    > th {
-                        width: 240px;
-                        line-height: 32px;
-                    }
-
-                    > th,
-                    > td {
-                        text-align: left;
-                        padding: 0 10px 10px 0;
-                    }
-
-                    &:last-child th,
-                    &:last-child td {
-                        padding: 0 10px 0 0;
-                    }
-                }
-            }
-        }
     }
 }
 

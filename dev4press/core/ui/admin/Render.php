@@ -60,7 +60,7 @@ class Render {
     public function settings_break($label, $icon = '') {
         $break = $this->div_break();
         $break.= '<div class="d4p-panel-break d4p-clearfix">';
-        $break.= '<h4 id="settings-break-'.sanitize_key($label).'">'.$this->icon($icon).$label.'</h4>';
+        $break.= '<h1 id="settings-break-'.sanitize_key($label).'">'.$this->icon($icon).$label.'</h1>';
         $break.= '</div>';
         $break.= $this->div_break();
 
@@ -70,7 +70,7 @@ class Render {
     public function settings_group_break($label, $icon = '') {
         $break = $this->div_break();
         $break.= '<div class="d4p-panel-group-break d4p-clearfix">';
-        $break.= '<h5 id="settings-group-break-'.sanitize_key($label).'">'.$this->icon($icon).$label.'</h5>';
+        $break.= '<h2 id="settings-group-break-'.sanitize_key($label).'">'.$this->icon($icon).$label.'</h2>';
         $break.= '</div>';
         $break.= $this->div_break();
 

@@ -225,6 +225,12 @@
     }
 }
 
+.d4p-panel-mark {
+    margin: 15px 0 0;
+    padding: 15px 0 0;
+    border-top: 1px solid #DDDDDD;
+}
+
 .d4p-panel-buttons {
     margin: 15px 0 0;
     padding: 15px 0 0;
@@ -253,7 +259,7 @@
     margin: 0 0 15px;
     padding: 0;
 
-    h4 {
+    h1 {
         background-color: #555;
         color: #fff;
         display: inline-block;
@@ -275,7 +281,7 @@
     margin: 0 0 15px;
     padding: 0;
 
-    h5 {
+    h2 {
         background-color: #777;
         color: #fff;
         display: inline-block;

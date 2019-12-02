@@ -23,6 +23,11 @@ $_subpanels = d4p_panel()->subpanels();
         <div class="d4p-panel-info">
             <?php echo $_subpanels[$_subpanel]['info']; ?>
         </div>
+        <?php if ($_subpanel == 'full') { ?>
+            <div class="d4p-panel-mark">
+                <input type="text" class="widefat" id="d4p-settings-mark" />
+            </div>
+        <?php } ?>
         <?php if ($_subpanel != 'index') { ?>
             <div class="d4p-panel-buttons">
                 <input type="submit" value="<?php _e("Save Settings", "gd-topic-polls"); ?>" class="button-primary" />

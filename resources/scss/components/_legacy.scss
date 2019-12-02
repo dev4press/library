@@ -2,23 +2,11 @@
     list-style: inside;
 }
 
-.d4p-group-inner .form-table td em {
-    display: block;
-    margin-top: 5px;
-    padding-top: 5px;
-    border-top: 1px solid #dddddd;
-    font-size: 13px;
-}
-
 .d4p-group-inner input[type="text"],
 .d4p-group-inner input[type="email"],
 .d4p-group-inner input[type="url"],
 .d4p-group-inner input[type="password"] {
     line-height: 24px;
-}
-
-.d4p-group-inner input[type="checkbox"].widefat {
-    width: auto;
 }
 
 .d4p-group-inner select {
@@ -33,21 +21,10 @@
     margin-left: 8px;
 }
 
-.d4p-setting-integer input,
-.d4p-setting-absint input,
-.d4p-setting-numeric input,
-.d4p-setting-number input {
-    width: 32%;
-}
-
 .d4p-setting-checkboxes label,
 .d4p-setting-radios label {
     display: block;
     margin: 0 0 4px;
-}
-
-.d4p-setting-x_by_y input {
-    width: 25%;
 }
 
 .d4p-setting-expandable_raw ol,
@@ -76,25 +53,6 @@
 
 .d4p-setting-expandable_pairs > div input {
     margin: 0 0 5px;
-}
-
-.d4p-setting-hr {
-    position: relative;
-    overflow: auto;
-}
-
-.d4p-setting-hr hr {
-    margin: 12px 0;
-    border-color: #dddddd;
-}
-
-.d4p-setting-hr span {
-    position: absolute;
-    left: 16px;
-    line-height: 26px;
-    padding: 0 16px;
-    background: #dddddd;
-    color: #333333;
 }
 
 .d4p-panel-buttons input.button-primary {

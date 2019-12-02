@@ -26,6 +26,37 @@
                     wp.dev4press.admin.settings.init();
 
                     $("#" + d4plib_admin_data.plugin.prefix + "-form-settings").confirmsubmit();
+
+                    if ($("#d4p-settings-mark").length === 1) {
+                        var $titles = $(".d4p-group > h3"),
+                            $content = $(".d4p-settings-table > tbody > tr");
+
+                        $("#d4p-settings-mark").on("input", function(){
+                            var term = $(this).val();
+
+                            $titles.unmark();
+                            $content.show().unmark();
+
+                            if (term) {
+                                $content.mark(term, {
+                                    done: function() {
+                                        $content.not(":has(mark)").hide();
+                                    }
+                                });
+
+                                $titles.mark(term, {
+                                    done: function() {
+                                        $titles.each(function(idx, el){
+                                            if ($(el).find("mark").length > 0) {
+                                                $(el).parent().find(".d4p-settings-table > tbody > tr").show();
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+
                 }
             }
         },

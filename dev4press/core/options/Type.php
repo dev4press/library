@@ -4,7 +4,6 @@ namespace Dev4Press\Core\Options;
 
 class Type {
     const INFO = 'info';
-    const HR = 'hr';
     const CUSTOM = 'custom';
 
     const IMAGE = 'image';
@@ -46,7 +45,6 @@ class Type {
 
     public static $_values = array(
         'info' => self::INFO,
-        'hr' => self::HR,
         'custom' => self::CUSTOM,
 
         'image' => self::IMAGE,
