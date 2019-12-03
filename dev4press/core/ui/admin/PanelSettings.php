@@ -7,6 +7,19 @@ class PanelSettings extends Panel {
 
     public $settings_class = '';
 
+    public function __construct($admin) {
+        parent::__construct($admin);
+
+        $this->subpanels = array(
+            'index' => array(
+                'title' => __("Settings Index", "gd-topic-polls"), 'icon' => 'ui-cog',
+                'info' => __("All plugin settings are split into several panels, and you access each starting from the right.", "gd-topic-polls")),
+            'full' => array(
+                'title' => __("All Settings", "gd-topic-polls"), 'icon' => 'ui-cogs',
+                'info' => __("All plugin settings are displayed on this page, and you can use live search to find the settings you need.", "gd-topic-polls"))
+        );
+    }
+
     public function settings_fields() {
         $group = $this->a()->plugin.'-settings';
         $action = $this->a()->v();

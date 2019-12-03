@@ -208,6 +208,10 @@
   padding: 15px 0 0;
   border-top: 1px solid #DDDDDD;
 }
+.d4p-panel-mark p {
+  text-align: center;
+  margin: 0 0 5px;
+}
 .d4p-panel-mark button {
   background: none;
   outline: none;
@@ -216,7 +220,7 @@
   padding: 0;
   margin: 0;
   right: 8px;
-  top: 19px;
+  bottom: 8px;
   color: #111;
   cursor: pointer;
 }

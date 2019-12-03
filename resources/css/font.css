@@ -391,96 +391,100 @@ h1 > .d4p-icon, h2 > .d4p-icon, h3 > .d4p-icon, h4 > .d4p-icon, h5 > .d4p-icon, 
   content: "\f150";
 }
 
-.d4p-icon.d4p-ui-magnet:before {
+.d4p-icon.d4p-ui-magic:before {
   content: "\f151";
 }
 
-.d4p-icon.d4p-ui-network:before {
+.d4p-icon.d4p-ui-magnet:before {
   content: "\f152";
 }
 
-.d4p-icon.d4p-ui-paint-brush:before {
+.d4p-icon.d4p-ui-network:before {
   content: "\f153";
 }
 
-.d4p-icon.d4p-ui-palette:before {
+.d4p-icon.d4p-ui-paint-brush:before {
   content: "\f154";
 }
 
-.d4p-icon.d4p-ui-photo:before {
+.d4p-icon.d4p-ui-palette:before {
   content: "\f155";
 }
 
-.d4p-icon.d4p-ui-search:before {
+.d4p-icon.d4p-ui-photo:before {
   content: "\f156";
 }
 
-.d4p-icon.d4p-ui-sliders-base-hor:before {
+.d4p-icon.d4p-ui-search:before {
   content: "\f157";
 }
 
-.d4p-icon.d4p-ui-sliders-base:before {
+.d4p-icon.d4p-ui-sliders-base-hor:before {
   content: "\f158";
 }
 
-.d4p-icon.d4p-ui-sliders-hor:before {
+.d4p-icon.d4p-ui-sliders-base:before {
   content: "\f159";
 }
 
-.d4p-icon.d4p-ui-sliders:before {
+.d4p-icon.d4p-ui-sliders-hor:before {
   content: "\f15a";
 }
 
-.d4p-icon.d4p-ui-star:before {
+.d4p-icon.d4p-ui-sliders:before {
   content: "\f15b";
 }
 
-.d4p-icon.d4p-ui-tag:before {
+.d4p-icon.d4p-ui-star:before {
   content: "\f15c";
 }
 
-.d4p-icon.d4p-ui-tags:before {
+.d4p-icon.d4p-ui-tag:before {
   content: "\f15d";
 }
 
-.d4p-icon.d4p-ui-tasks:before {
+.d4p-icon.d4p-ui-tags:before {
   content: "\f15e";
 }
 
-.d4p-icon.d4p-ui-times:before {
+.d4p-icon.d4p-ui-tasks:before {
   content: "\f15f";
 }
 
-.d4p-icon.d4p-ui-toolbox:before {
+.d4p-icon.d4p-ui-times:before {
   content: "\f160";
 }
 
-.d4p-icon.d4p-ui-tools:before {
+.d4p-icon.d4p-ui-toolbox:before {
   content: "\f161";
 }
 
-.d4p-icon.d4p-ui-traffic:before {
+.d4p-icon.d4p-ui-tools:before {
   content: "\f162";
 }
 
-.d4p-icon.d4p-ui-trash:before {
+.d4p-icon.d4p-ui-traffic:before {
   content: "\f163";
 }
 
-.d4p-icon.d4p-ui-user:before {
+.d4p-icon.d4p-ui-trash:before {
   content: "\f164";
 }
 
-.d4p-icon.d4p-ui-users:before {
+.d4p-icon.d4p-ui-user:before {
   content: "\f165";
 }
 
-.d4p-icon.d4p-ui-video:before {
+.d4p-icon.d4p-ui-users:before {
   content: "\f166";
 }
 
-.d4p-icon.d4p-ui-wrench:before {
+.d4p-icon.d4p-ui-video:before {
   content: "\f167";
+}
+
+.d4p-icon.d4p-ui-wrench:before {
+  content: "\f168";
 }
 
 /* Sizes */

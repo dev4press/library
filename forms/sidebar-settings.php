@@ -25,6 +25,7 @@ $_subpanels = d4p_panel()->subpanels();
         </div>
         <?php if ($_subpanel == 'full') { ?>
             <div class="d4p-panel-mark">
+                <p><?php _e("Search through settings by typing what you need to find in this field."); ?></p>
                 <input type="text" class="widefat" id="d4p-settings-mark" />
                 <button type="button"><i class="d4p-icon d4p-ui-clear" title="<?php esc_attr_e("Clear", "d4plib"); ?>"></i></button>
             </div>
