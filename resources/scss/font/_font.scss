@@ -49,6 +49,16 @@ h1, h2, h3, h4, h5, h6, a {
     text-align: center;
 }
 
+.d4p-icon-pull-left {
+    float: left;
+    margin-right: .3em;
+}
+
+.d4p-icon-pull-right {
+    float: right;
+    margin-left: .3em;
+}
+
 @for $i from 2 to 7 {
     .#{$font-prefix}-icon-#{$i}x {
         font-size: #{$i}em;

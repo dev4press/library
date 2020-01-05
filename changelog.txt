@@ -1,15 +1,22 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 2.9.1 - 2019.11.21 =
-* New: More namespacing work done
-* New: Few more shared JS libraries
-
-= Version 2.9 - 2019.11.14 =
+= Version 3.0 - 2020.01.15 =
 * New: Autoloader Function
 * New: Dev4Press Namespace
 * New: Dev4Press Customizer Controls
 * New: A lot of core reogranization
+* New: Few more shared JS libraries
+* Updated: Function for icon rendering
+* Updated: Minor settings object changes
+* Fix: Few issues with the numerical settings fields
+
+= Version 2.8.3 - 2020.01.01 =
+* Updated: Built-in cacert.pem 20200101
+* Fix: In memory cache issue with the multisite setup
+* Fix: Small issue with PHP 7.4
+
+= Version 2.8.2 - 2019.11.21 =
 * Updated: Function for icon rendering
 * Updated: Minor settings object changes
 * Fix: Few issues with the numerical settings fields
