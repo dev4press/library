@@ -129,6 +129,10 @@ abstract class Plugin {
         return $this->plugin_prefix.'_handler';
     }
 
+    public function n() {
+        return $this->plugin_prefix.'_value';
+    }
+
     public function plugin_name() {
         return $this->plugin.'/'.$this->plugin.'.php';
     }
@@ -322,6 +326,7 @@ abstract class Plugin {
     public function admin_panel() {
         require_once($this->lib_path().'functions/panel.php');
 
+        $this->object->prepare();
         $this->object->show();
     }
 
@@ -331,6 +336,18 @@ abstract class Plugin {
 
     public function panels() {
         return $this->setup_items + $this->menu_items;
+    }
+
+    public function export_url($run = 'export', $nonce = null) {
+        $nonce = is_null($nonce) ? 'dev4press-plugin-'.$this->plugin_prefix : $nonce;
+
+        $url = $this->panel_url('tools');
+
+        $url = add_query_arg($this->v(), 'getback', $url);
+        $url = add_query_arg('run', $run, $url);
+        $url = add_query_arg('_wpnonce', wp_create_nonce($nonce), $url);
+
+        return $url;
     }
 
     public function admin_init() { }

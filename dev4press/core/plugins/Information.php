@@ -114,4 +114,27 @@ abstract class Information {
 
         return $list;
     }
+
+    public function version_full() {
+        $version = $this->version;
+
+        if ($this->status != 'stable') {
+            switch ($this->status) {
+                case 'beta':
+                    $version.= ' '.__("Beta");
+                    break;
+                case 'alpha':
+                    $version.= ' '.__("Alpha");
+                    break;
+                case 'rc':
+                    $version.= ' '.__("RC");
+                    break;
+                case 'nightly':
+                    $version.= ' '.__("Nightly");
+                    break;
+            }
+        }
+
+        return $version;
+    }
 }

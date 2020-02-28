@@ -1,4 +1,5 @@
 <?php $_panel = d4p_panel()->a()->panel_object(); ?>
+
 <div class="d4p-sidebar">
     <div class="d4p-panel-title">
         <?php echo d4p_panel()->r()->icon($_panel->icon); ?>

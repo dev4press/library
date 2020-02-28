@@ -1,4 +1,5 @@
 <?php use Dev4Press\Core\Options\Render; ?>
+
 <div class="d4p-content">
     <?php
 
@@ -9,7 +10,7 @@
     $options = $class::instance();
     $groups = $options->get($subpanel);
 
-    Render::instance('gdpolvalue')->prepare($subpanel, $groups)->render();
+    Render::instance(d4p_panel()->a()->n())->prepare($subpanel, $groups)->render();
 
     ?>
 </div>

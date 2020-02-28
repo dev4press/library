@@ -286,50 +286,51 @@
   font-size: 16px;
 }
 
-/* Dashboard */
-.d4p-plugin-dashboard > * {
-  padding-top: 0;
-}
-
-.d4p-plugin-dashboard .d4p-dashboard-badge {
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge {
   padding: 15px;
   text-align: center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
-
-.d4p-plugin-dashboard .d4p-dashboard-badge * {
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge * {
   color: #ffffff;
 }
-
-.d4p-plugin-dashboard .d4p-dashboard-badge h3 {
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge h3 {
   word-break: keep-all;
   font-weight: 600;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   margin: 5px 0 15px;
   padding: 0;
   text-transform: uppercase;
   line-height: 1.1;
-  font-size: 32px;
+  font-size: 30px;
 }
-
-.d4p-plugin-dashboard .d4p-dashboard-badge .d4p-plugin-logo i {
-  font-size: 140px;
-}
-
-.d4p-plugin-dashboard .d4p-dashboard-badge h5 {
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge h5 {
   margin: 0;
   padding: 10px 0 0;
   border-top: 1px solid #ddd;
   font-size: 1.3em;
   text-align: right;
 }
-
-.d4p-plugin-dashboard .d4p-buttons-group {
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-links-group {
   margin: 15px 0 0;
   padding: 15px 0 0;
-  border-top: 1px solid #DDDDDD;
+  border-top: 1px solid #ddd;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-links-group a {
+  display: block;
+  margin: 0 0 5px;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-links-group a i {
+  font-size: 110%;
+  width: 1.3em;
+  text-align: center;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-links-group a span {
+  font-size: 120%;
+  font-weight: bold;
 }
 
+/* Dashboard */
 .d4p-plugin-dashboard .d4p-buttons-group .button-primary,
 .d4p-plugin-dashboard .d4p-buttons-group .button-secondary {
   width: 100%;

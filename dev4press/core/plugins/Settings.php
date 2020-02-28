@@ -250,6 +250,24 @@ abstract class Settings {
         return json_encode($this->_settings_to_array($list));
     }
 
+    public function export_to_secure_json($list = array()) {
+        $export = $this->_settings_to_array($list);
+
+        $encoded = json_encode($export);
+
+        if ($encoded === false) {
+            return false;
+        }
+
+        $export = array(
+            'ctrl' => md5($encoded),
+            'size' => mb_strlen($encoded),
+            'data' => $encoded
+        );
+
+        return json_encode($export, JSON_PRETTY_PRINT);
+    }
+
     public function export_to_serialized_php($list = array()) {
         return serialize($this->_settings_to_array($list));
     }

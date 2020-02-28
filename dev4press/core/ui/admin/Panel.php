@@ -58,6 +58,10 @@ abstract class Panel {
         return $this->subpanels;
     }
 
+    public function has_form() {
+        return $this->form;
+    }
+
     public function has_sidebar() {
         return $this->sidebar;
     }
@@ -84,11 +88,13 @@ abstract class Panel {
         return $status;
     }
 
+    public function prepare() { }
+
     public function show() {
         $this->include_header();
 
         echo '<div class="d4p-inside-wrapper">';
-            if ($this->form) {
+            if ($this->has_form()) {
                 echo $this->form_tag_open();
             }
 
@@ -98,8 +104,8 @@ abstract class Panel {
 
             $this->include_content();
 
-            if ($this->form) {
-                echo '</form>';
+            if ($this->has_form()) {
+                echo $this->form_tag_close();
             }
         echo '</div>';
 
@@ -148,6 +154,10 @@ abstract class Panel {
 
     public function form_tag_open() {
         return '<form method="post" action="" id="'.$this->a()->plugin_prefix.'-form-settings" autocomplete="off">';
+    }
+
+    public function form_tag_close() {
+        return '</form>';
     }
 
     protected function load($name, $fallback = 'fallback.php') {

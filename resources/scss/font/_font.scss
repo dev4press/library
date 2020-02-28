@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6, a {
     margin-left: .3em;
 }
 
-@for $i from 2 to 7 {
+@for $i from 2 to 11 {
     .#{$font-prefix}-icon-#{$i}x {
         font-size: #{$i}em;
     }

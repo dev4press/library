@@ -679,20 +679,24 @@ h1 > .d4p-icon, h2 > .d4p-icon, h3 > .d4p-icon, h4 > .d4p-icon, h5 > .d4p-icon, 
   content: "\f198";
 }
 
-.d4p-icon.d4p-ui-user:before {
+.d4p-icon.d4p-ui-upload:before {
   content: "\f199";
 }
 
-.d4p-icon.d4p-ui-users:before {
+.d4p-icon.d4p-ui-user:before {
   content: "\f19a";
 }
 
-.d4p-icon.d4p-ui-video:before {
+.d4p-icon.d4p-ui-users:before {
   content: "\f19b";
 }
 
-.d4p-icon.d4p-ui-wrench:before {
+.d4p-icon.d4p-ui-video:before {
   content: "\f19c";
+}
+
+.d4p-icon.d4p-ui-wrench:before {
+  content: "\f19d";
 }
 
 /* Sizes */
@@ -735,6 +739,22 @@ h1 > .d4p-icon, h2 > .d4p-icon, h3 > .d4p-icon, h4 > .d4p-icon, h5 > .d4p-icon, 
 
 .d4p-icon-6x {
   font-size: 6em;
+}
+
+.d4p-icon-7x {
+  font-size: 7em;
+}
+
+.d4p-icon-8x {
+  font-size: 8em;
+}
+
+.d4p-icon-9x {
+  font-size: 9em;
+}
+
+.d4p-icon-10x {
+  font-size: 10em;
 }
 
 /* Rotate */
