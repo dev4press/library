@@ -57,7 +57,7 @@
             wp.dev4press.media.control.images();
         },
         image: function() {
-            $(".d4plib-image-preview").click(function(e){
+            $(document).on("click", ".d4plib-image-preview", function(e){
                 e.preventDefault();
 
                 $(this).parent().find("img").slideToggle(function(){
@@ -67,7 +67,7 @@
                 });
             });
 
-            $(".d4plib-image-remove").click(function(e){
+            $(document).on("click", ".d4plib-image-remove", function(e){
                 e.preventDefault();
 
                 if (confirm(d4plib_media_data.strings.are_you_sure)) {
@@ -79,7 +79,7 @@
                 }
             });
 
-            $(".d4plib-image-add").click(function(e){
+            $(document).on("click", ".d4plib-image-add", function(e){
                 e.preventDefault();
 
                 wp.dev4press.media.control.active_element = $(this).parent();
