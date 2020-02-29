@@ -55,5 +55,23 @@ class PanelTools extends Panel {
         wp_nonce_field($group.'-options');
     }
 
-    public function enqueue_scripts_early() {}
+    public function include_accessibility_control() {
+        $_subpanel = $this->a()->subpanel;
+
+        if (isset($this->subpanels[$_subpanel])) {
+            $method = $this->subpanels[$_subpanel]['method'];
+
+            if (!empty($method)) {
+                echo '<div class="d4p-accessibility-button">';
+
+                if ($method == 'get') {
+                    echo '<a type="button" href="'.$this->subpanels[$_subpanel]['button_url'].'" class="button-primary">'.$this->subpanels[$_subpanel]['button_label'].'</a>';
+                } else if ($method == 'post') {
+                    echo '<input type="submit" value="'.$this->subpanels[$_subpanel]['button_label'].'" class="button-primary" />';
+                }
+
+                echo '</div>';
+            }
+        }
+    }
 }

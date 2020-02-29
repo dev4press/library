@@ -248,14 +248,17 @@ abstract class Settings {
 
     public function import_from_secure_json($import) {
         $ctrl = isset($import['ctrl']) ? $import['ctrl'] : false;
-        $size = isset($import['size']) ? absint($import['size']) : false;
-        $data = isset($import['data']) ? json_decode($import['data'], true) : false;
+        $raw = isset($import['data']) ? $import['data'] : false;
 
-        if ($ctrl && $size && $data) {
-            $ctrl_import = md5($import['data']);
-            $size_import = mb_strlen($import['data']);
+        $data = gzuncompress(base64_decode(urldecode($raw)));
 
-            if ($ctrl_import === $ctrl && $size === $size_import) {
+        if ($ctrl && $data && strlen($ctrl) == 64) {
+            $ctrl = substr($ctrl, 8, 32);
+            $size_import = mb_strlen($data);
+            $ctrl_import = md5($data.$size_import);
+
+            if ($ctrl_import === $ctrl) {
+                $data = json_decode($data);
                 $this->import_from_object($data);
 
                 return true;
@@ -278,10 +281,11 @@ abstract class Settings {
             return false;
         }
 
+        $size = mb_strlen($encoded);
+
         $export = array(
-            'ctrl' => md5($encoded),
-            'size' => mb_strlen($encoded),
-            'data' => $encoded
+            'ctrl' => strtolower(wp_generate_password(8, false)).md5($encoded.$size).strtolower(wp_generate_password(24, false)),
+            'data' => urlencode(base64_encode(gzcompress($encoded, 9)))
         );
 
         return json_encode($export, JSON_PRETTY_PRINT);

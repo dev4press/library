@@ -205,6 +205,21 @@
             text-align: center;
         }
     }
+
+    .d4p-content {
+        .d4p-accessibility-button {
+            margin: 15px 0 0;
+            padding: 15px 0;
+            border-top: 1px solid #777;
+            max-width: 800px;
+            text-align: center;
+            clear: both;
+
+            .button-primary {
+                min-width: 160px;
+            }
+        }
+    }
 }
 
 .d4p-panel-links {

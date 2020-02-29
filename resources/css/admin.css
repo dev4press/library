@@ -184,6 +184,17 @@
 .d4p-wrap .d4p-sidebar .d4p-panel-info {
   text-align: center;
 }
+.d4p-wrap .d4p-content .d4p-accessibility-button {
+  margin: 15px 0 0;
+  padding: 15px 0;
+  border-top: 1px solid #777;
+  max-width: 800px;
+  text-align: center;
+  clear: both;
+}
+.d4p-wrap .d4p-content .d4p-accessibility-button .button-primary {
+  min-width: 160px;
+}
 
 .d4p-panel-links {
   margin: 15px 0 0;
@@ -607,6 +618,12 @@
 .d4p-group-error .d4p-group-inner ul {
   margin: 0;
   list-style: inside;
+}
+
+.d4p-wrap.d4p-with-table .tablenav {
+  height: auto;
+  margin: 10px 0;
+  padding: 0;
 }
 
 .d4p-group.d4p-group-information ul {

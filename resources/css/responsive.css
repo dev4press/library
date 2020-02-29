@@ -15,6 +15,10 @@
   .d4p-wrap .d4p-header .d4p-plugin {
     display: none;
   }
+
+  .d4p-options-panel {
+    width: 100%;
+  }
 }
 @media screen and (max-width: 800px) {
   .d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins .d4p-dev4press-plugin {
@@ -28,6 +32,9 @@
   }
 }
 @media screen and (max-width: 640px) {
+  .d4p-wrap .d4p-header {
+    margin: 50px 0 0;
+  }
   .d4p-wrap.d4p-with-sidebar .d4p-inside-wrapper .d4p-sidebar {
     width: 100%;
     float: none;
@@ -95,61 +102,6 @@
   .d4p-wrap.d4p-panel-about .d4p-about-badge {
     position: relative;
     margin-bottom: 1.5em;
-    width: 100%;
-  }
-}
-/* LEGACY */
-@media screen and (max-width: 800px) {
-  .d4p-group-inner .form-table th,
-.d4p-options-panel,
-.d4p-group,
-.d4p-group.d4p-double-card {
-    width: 100%;
-  }
-
-  .d4p-group-inner .form-table td {
-    padding: 0 10px 15px 0;
-  }
-
-  .d4p-group-inner .form-table > tbody > tr th,
-.d4p-group-inner .form-table > tbody > tr:last-child th {
-    padding: 0 10px 10px 0;
-  }
-
-  .d4p-group-inner input[type=checkbox].widefat {
-    width: 25px;
-  }
-}
-@media screen and (max-width: 640px) {
-  .d4p-return-to-top {
-    display: none;
-  }
-
-  .d4p-panel-index .d4p-panel-title > i,
-.d4p-panel-title > i {
-    font-size: 28px;
-    margin-right: 10px;
-  }
-
-  .d4p-panel-title h3 {
-    font-size: 28px;
-    display: inline-block;
-  }
-
-  .d4p-panel-title {
-    padding: 10px;
-    margin: 0 0 10px;
-  }
-
-  .d4p-panel-info {
-    font-size: 14px;
-    line-height: 20px;
-  }
-
-  .d4p-setting-integer input,
-.d4p-setting-absint input,
-.d4p-setting-numeric input,
-.d4p-setting-number input {
     width: 100%;
   }
 }

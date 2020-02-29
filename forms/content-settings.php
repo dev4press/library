@@ -13,4 +13,6 @@
     Render::instance(d4p_panel()->a()->n())->prepare($subpanel, $groups)->render();
 
     ?>
+
+    <?php d4p_panel()->include_accessibility_control(); ?>
 </div>

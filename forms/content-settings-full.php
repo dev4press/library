@@ -23,4 +23,6 @@
     }
 
     ?>
+
+    <?php d4p_panel()->include_accessibility_control(); ?>
 </div>

@@ -28,6 +28,10 @@ if (d4p_panel()->has_sidebar()) {
     $_classes[] = 'd4p-full-width';
 }
 
+if (isset($_panels[$_panel]['table']) && $_panels[$_panel]['table']) {
+    $_classes[] = 'd4p-with-table';
+}
+
 ?>
 <div class="<?php echo join(' ', $_classes); ?>">
     <div class="d4p-header">

@@ -14,4 +14,6 @@
             <input type="file" name="import_file" />
         </div>
     </div>
+
+    <?php d4p_panel()->include_accessibility_control(); ?>
 </div>
