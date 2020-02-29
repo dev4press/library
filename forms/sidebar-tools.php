@@ -34,7 +34,7 @@ if ($_subpanels[$_subpanel]['method'] == 'post') {
                 <?php } ?>
             </div>
             <div class="d4p-return-to-top">
-                <a href="#wpwrap"><?php _e("Return to top", "gd-topic-polls"); ?></a>
+                <a href="#wpwrap"><?php _e("Return to top", "d4plib"); ?></a>
             </div>
         <?php } ?>
     </div>

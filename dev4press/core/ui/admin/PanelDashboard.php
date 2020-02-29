@@ -17,13 +17,13 @@ class PanelDashboard extends Panel {
                 'icon' => $this->a()->menu_items['settings']['icon'],
                 'class' => 'button-secondary',
                 'url' => $this->a()->panel_url('settings'),
-                'label' => __("Settings")
+                'label' => __("Settings", "d4plib")
             ),
             'tools' => array(
                 'icon' => $this->a()->menu_items['tools']['icon'],
                 'class' => 'button-secondary',
                 'url' => $this->a()->panel_url('tools'),
-                'label' => __("Tools")
+                'label' => __("Tools", "d4plib")
             )
         );
 
@@ -32,7 +32,7 @@ class PanelDashboard extends Panel {
                 'icon' => $this->a()->menu_items['about']['icon'],
                 'class' => 'button-secondary',
                 'url' => $this->a()->panel_url('about'),
-                'label' => __("About")
+                'label' => __("About", "d4plib")
             )
         );
     }

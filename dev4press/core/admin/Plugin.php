@@ -121,22 +121,50 @@ abstract class Plugin {
         add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
     }
 
+    /**
+     * Generate filter or action handle for the specified name, prefixed with plugin prefix and admin.
+     *
+     * @param string $hook
+     *
+     * @return string
+     */
+
     public function h($hook) {
         return $this->plugin_prefix.'_'.$hook;
     }
 
+    /**
+     * Generate string to use for the postback or getback handler.
+     *
+     * @return string
+     */
     public function v() {
         return $this->plugin_prefix.'_handler';
     }
 
+    /**
+     * Generate string to use for the form basic value name.
+     *
+     * @return string
+     */
     public function n() {
         return $this->plugin_prefix.'_value';
     }
 
+    /**
+     * Generate plugin name according to WordPress specification.
+     *
+     * @return string
+     */
     public function plugin_name() {
         return $this->plugin.'/'.$this->plugin.'.php';
     }
 
+    /**
+     * Returns the name of the plugin.
+     *
+     * @return string
+     */
     public function title() {
         return $this->plugin_title;
     }

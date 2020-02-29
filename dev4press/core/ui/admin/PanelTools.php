@@ -8,27 +8,27 @@ class PanelTools extends Panel {
 
         $this->subpanels = array(
             'index' => array(
-                'title' => __("Tools Index", "gd-topic-polls"), 'icon' => 'ui-cog',
+                'title' => __("Tools Index", "d4plib"), 'icon' => 'ui-cog',
                 'method' => '', 'button_label' => '',
-                'info' => __("This panel links all the plugin tools, and you access each starting from the right.", "gd-topic-polls")),
+                'info' => __("This panel links all the plugin tools, and you access each starting from the right.", "d4plib")),
             'updater' => array(
-                'title' => __("Recheck and Update", "gd-topic-polls"), 'icon' => 'ui-sync',
-                'break' => __("Maintenance", "gd-topic-polls"), 'break-icon' => 'ui-chart-bar',
+                'title' => __("Recheck and Update", "d4plib"), 'icon' => 'ui-sync',
+                'break' => __("Maintenance", "d4plib"), 'break-icon' => 'ui-chart-bar',
                 'method' => '', 'button_label' => '',
-                'info' => __("Run the update procedure and recheck plugin setup.", "gd-topic-polls")),
+                'info' => __("Run the update procedure and recheck plugin setup.", "d4plib")),
             'export' => array(
-                'title' => __("Export Settings", "gd-topic-polls"), 'icon' => 'ui-download',
-                'method' => 'get', 'button_label' => __("Export", "gd-topic-polls"),
+                'title' => __("Export Settings", "d4plib"), 'icon' => 'ui-download',
+                'method' => 'get', 'button_label' => __("Export", "d4plib"),
                 'button_url' => $this->a()->export_url(),
-                'info' => __("Export all plugin settings into file.", "gd-topic-polls")),
+                'info' => __("Export all plugin settings into file.", "d4plib")),
             'import' => array(
-                'title' => __("Import Settings", "gd-topic-polls"), 'icon' => 'ui-upload',
-                'method' => 'post', 'button_label' => __("Import", "gd-topic-polls"),
-                'info' => __("Import all plugin settings from export file.", "gd-topic-polls")),
+                'title' => __("Import Settings", "d4plib"), 'icon' => 'ui-upload',
+                'method' => 'post', 'button_label' => __("Import", "d4plib"),
+                'info' => __("Import all plugin settings from export file.", "d4plib")),
             'remove' => array(
-                'title' => __("Reset / Remove", "gd-topic-polls"), 'icon' => 'ui-times',
-                'method' => 'post', 'button_label' => __("Remove", "gd-topic-polls"),
-                'info' => __("Remove selected plugin settings and optionally disable plugin.", "gd-topic-polls"))
+                'title' => __("Reset / Remove", "d4plib"), 'icon' => 'ui-times',
+                'method' => 'post', 'button_label' => __("Remove", "d4plib"),
+                'info' => __("Remove selected plugin settings and optionally disable plugin.", "d4plib"))
         );
     }
 
@@ -55,7 +55,5 @@ class PanelTools extends Panel {
         wp_nonce_field($group.'-options');
     }
 
-    public function enqueue_scripts_early() {
-
-    }
+    public function enqueue_scripts_early() {}
 }

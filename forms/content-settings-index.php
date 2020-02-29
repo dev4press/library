@@ -16,7 +16,7 @@
             <?php echo d4p_panel()->r()->icon($obj['icon']); ?>
             <h5><?php echo $obj['title']; ?></h5>
             <div>
-                <a class="button-primary" href="<?php echo $url; ?>"><?php _e("Settings Panel", "gd-topic-polls"); ?></a>
+                <a class="button-primary" href="<?php echo $url; ?>"><?php _e("Settings Panel", "d4plib"); ?></a>
             </div>
         </div>
 

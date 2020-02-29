@@ -32,9 +32,9 @@ if (isset($_GET['message']) && $_GET['message'] != '') {
             $_message = __("Import operation failed.", "d4plib");
             $_color = 'error';
             break;
-        default:
-            break;
     }
+
+    $msg = apply_filters(d4p_panel()->a()->h('admin_panel_message'), array('message' => $_message, 'color' => $_color));
 }
 
 if ($_message != '') {

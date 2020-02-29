@@ -12,11 +12,11 @@ class PanelSettings extends Panel {
 
         $this->subpanels = array(
             'index' => array(
-                'title' => __("Settings Index", "gd-topic-polls"), 'icon' => 'ui-cog',
-                'info' => __("All plugin settings are split into several panels, and you access each starting from the right.", "gd-topic-polls")),
+                'title' => __("Settings Index", "d4plib"), 'icon' => 'ui-cog',
+                'info' => __("All plugin settings are split into several panels, and you access each starting from the right.", "d4plib")),
             'full' => array(
-                'title' => __("All Settings", "gd-topic-polls"), 'icon' => 'ui-cogs',
-                'info' => __("All plugin settings are displayed on this page, and you can use live search to find the settings you need.", "gd-topic-polls"))
+                'title' => __("All Settings", "d4plib"), 'icon' => 'ui-cogs',
+                'info' => __("All plugin settings are displayed on this page, and you can use live search to find the settings you need.", "d4plib"))
         );
     }
 

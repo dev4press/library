@@ -121,16 +121,16 @@ abstract class Information {
         if ($this->status != 'stable') {
             switch ($this->status) {
                 case 'beta':
-                    $version.= ' '.__("Beta");
+                    $version.= ' '.__("Beta", "d4plib");
                     break;
                 case 'alpha':
-                    $version.= ' '.__("Alpha");
+                    $version.= ' '.__("Alpha", "d4plib");
                     break;
                 case 'rc':
-                    $version.= ' '.__("RC");
+                    $version.= ' '.__("RC", "d4plib");
                     break;
                 case 'nightly':
-                    $version.= ' '.__("Nightly");
+                    $version.= ' '.__("Nightly", "d4plib");
                     break;
             }
         }

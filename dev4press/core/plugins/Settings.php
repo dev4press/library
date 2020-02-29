@@ -246,6 +246,25 @@ abstract class Settings {
         }
     }
 
+    public function import_from_secure_json($import) {
+        $ctrl = isset($import['ctrl']) ? $import['ctrl'] : false;
+        $size = isset($import['size']) ? absint($import['size']) : false;
+        $data = isset($import['data']) ? json_decode($import['data'], true) : false;
+
+        if ($ctrl && $size && $data) {
+            $ctrl_import = md5($import['data']);
+            $size_import = mb_strlen($import['data']);
+
+            if ($ctrl_import === $ctrl && $size === $size_import) {
+                $this->import_from_object($data);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function export_to_json($list = array()) {
         return json_encode($this->_settings_to_array($list));
     }
