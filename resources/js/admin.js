@@ -271,6 +271,24 @@
     };
 
     window.wp.dev4press.dialogs = {
+        storage: {
+            url: ''
+        },
+        classes: function(extra, hide_close) {
+            var cls = "wp-dialog d4p-dialog d4p-dialog-modal";
+
+            if (extra !== "") {
+                cls+= " " + extra;
+            }
+
+            if (typeof hide_close !== "undefined") {
+                if (hide_close) {
+                    cls+= " d4p-dialog-hidex";
+                }
+            }
+
+            return cls;
+        },
         defaults: function() {
             return {
                 width: 480,
@@ -282,9 +300,26 @@
                 closeOnEscape: false,
                 zIndex: 300000,
                 open: function() {
-                    $(".gdpol-button-focus").focus();
+                    $(".button-has-focus").focus();
                 }
             };
+        },
+        icons: function(id, icon_html) {
+            $(id).next().find(".ui-dialog-buttonset button").each(function(){
+                if (typeof icon_html === "undefined") {
+                    var icon = $(this).data("icon");
+
+                    if (icon !== "") {
+                        icon_html = d4plib_admin_data.ui.icons[icon];
+                    } else {
+                        icon_html = "";
+                    }
+                }
+
+                if (icon_html !== "") {
+                    $(this).find("span.ui-button-text").prepend(icon_html);
+                }
+            });
         }
     };
 

@@ -4,16 +4,37 @@
 .d4p-update-info .d4p-install-block {
   margin: 0 0 15px;
 }
-.d4p-update-info .d4p-install-block h3 {
+.d4p-update-info .d4p-install-block h4 {
   margin: 0 0 10px;
 }
-.d4p-update-info .d4p-install-block h4 {
+.d4p-update-info .d4p-install-block h5 {
   margin: 10px 0;
 }
 .d4p-update-info .d4p-install-confirm {
   margin: 15px 0 0;
   padding: 15px 0 0;
   border-top: 1px solid #777;
+}
+
+.d4p-group-updater .d4p-install-block {
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0 0 15px;
+  padding: 0 0 15px;
+  border-bottom: 1px solid #ddd;
+}
+.d4p-group-updater .d4p-install-block h4 {
+  margin: 0 0 10px;
+  font-size: 1.3em;
+}
+.d4p-group-updater .d4p-install-block h5 {
+  margin: 10px 0;
+  font-size: 1.15em;
+}
+.d4p-group-updater .d4p-install-block:last-child {
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
 }
 
 .d4p-wrap,

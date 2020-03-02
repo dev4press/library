@@ -183,8 +183,9 @@ final class Enqueue {
                 'panel' => $this->_admin->panel,
                 'subpanel' => $this->_admin->subpanel
             ),
-            'dialogs' => array(
+            'ui' => array(
                 'icons' => array(
+                    'spinner' => '<i class="d4p-icon d4p-ui-spinner d4p-icon-fw d4p-icon-spin"></i>',
                     'ok' => '<i class="d4p-icon d4p-ui-check d4p-icon-fw" aria-hidden="true"></i> ',
                     'cancel' => '<i class="d4p-icon d4p-ui-times d4p-icon-fw" aria-hidden="true"></i> ',
                     'delete' => '<i class="d4p-icon d4p-ui-trash d4p-icon-fw" aria-hidden="true"></i> ',
@@ -198,10 +199,8 @@ final class Enqueue {
                     'disable' => __("Disable", "d4plib"),
                     'empty' => __("Empty", "d4plib")
                 ),
-                'titles' => array(
-                    'areyousure' => __("Are you sure you want to do this?", "d4plib")
-                ),
-                'content' => array(
+                'messages' => array(
+                    'areyousure' => __("Are you sure you want to do this?", "d4plib"),
                     'pleasewait' => __("Please Wait...", "d4plib")
                 )
             )

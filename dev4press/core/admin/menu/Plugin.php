@@ -38,7 +38,7 @@ abstract class Plugin extends BasePlugin {
             $this->menu_cap,
             $parent,
             array($this, 'admin_panel'),
-            gdpol()->svg_icon);
+            $this->svg_icon());
 
         foreach($this->menu_items as $item => $data) {
             $this->page_ids[] = add_submenu_page($parent,
