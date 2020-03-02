@@ -289,7 +289,21 @@
 
             return cls;
         },
-        defaults: function() {
+        default_button: function(button, has_focus, button_text) {
+            var id = "d4p-dialog-button-id-" + button,
+                cls = "d4p-dialog-button-" + button + (has_focus ? " button-has-focus" : ""),
+                text = typeof button_text !== "undefined" ? button_text : d4plib_admin_data.ui.buttons[button];
+
+            return {
+                id: id,
+                class: cls,
+                text: text,
+                data: {
+                    icon: button
+                }
+            };
+        },
+        default_dialog: function() {
             return {
                 width: 480,
                 height: "auto",
@@ -310,13 +324,9 @@
                     var icon = $(this).data("icon");
 
                     if (icon !== "") {
-                        icon_html = d4plib_admin_data.ui.icons[icon];
-                    } else {
-                        icon_html = "";
+                        $(this).find("span.ui-button-text").prepend(d4plib_admin_data.ui.icons[icon]);
                     }
-                }
-
-                if (icon_html !== "") {
+                } else {
                     $(this).find("span.ui-button-text").prepend(icon_html);
                 }
             });

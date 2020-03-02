@@ -647,6 +647,13 @@
   padding: 0;
 }
 
+.d4p-dialog.d4p-dialog-hidex .ui-dialog-titlebar button {
+  display: none;
+}
+.d4p-dialog .ui-dialog-buttonset .ui-button i.d4p-icon {
+  font-size: 115%;
+}
+
 .d4p-group.d4p-group-information ul {
   list-style: inside;
 }
