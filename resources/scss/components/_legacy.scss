@@ -76,38 +76,6 @@
     margin: 0 0 4px;
 }
 
-.d4p-page-front .d4p-content {
-    margin: 15px 0 0;
-    overflow: auto;
-}
-
-.d4p-front-left {
-    float: left;
-    margin: 0 15px 15px 0;
-}
-
-.d4p-front-right {
-    margin-left: 570px;
-}
-
-.d4p-page-front .d4p-content .d4p-options-panel {
-    width: 320px;
-    height: 118px;
-    margin: 0 15px 14px 0;
-}
-
-.d4p-page-front .d4p-content .d4p-options-panel i {
-    font-size: 5.5em;
-    margin-top: 8px;
-}
-
-.d4p-page-front .d4p-content .d4p-options-panel h5 {
-    font-size: 26px;
-    letter-spacing: -1px;
-    line-height: 30px;
-    margin: 0 0 20px 90px;
-}
-
 .d4p-setting-color .wp-color-result {
     height: 24px;
     padding-left: 36px;
@@ -201,34 +169,6 @@
     border-color: transparent transparent #DD3D36;
 }
 
-.d4p-group .wide-half {
-    width: 49%;
-}
-
-.d4p-group .wide-half-margin {
-    width: 49%;
-    margin-right: 1%;
-}
-
-.d4p-group .wide-third {
-    width: 32%;
-}
-
-.d4p-group .wide-twothird {
-    width: 66%;
-}
-
-.d4p-group .wide-third-margin {
-    margin-right: 1%;
-    vertical-align: middle;
-    width: 32%;
-}
-
-.d4p-group .wide-twothird-margin {
-    width: 66%;
-    margin-right: 1%;
-}
-
 .d4p-settings-item-error th {
     border-left: 3px solid #dd0000 !important;
     padding: 10px !important;
@@ -242,12 +182,4 @@
 
 .d4p-settings-table > tbody > tr > td {
     vertical-align: top;
-}
-
-.d4p-group-inner p:first-of-type {
-    margin-top: 0;
-}
-
-.d4p-group-inner p:last-of-type {
-    margin-bottom: 0;
 }
