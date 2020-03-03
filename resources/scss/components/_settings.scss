@@ -93,6 +93,44 @@
             width: 32%;
         }
 
+        select {
+            max-width: 100%;
+        }
+
+        .d4p-check-uncheck {
+            font-size: .9em;
+            padding: 0 0 5px;
+            margin: 0 0 5px;
+            border-bottom: 1px dotted #cccccc;
+
+            a {
+                text-decoration: none;
+
+                &.d4p-check-all {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .d4p-content-wrapper {
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            max-height: 160px;
+            overflow: auto;
+
+            .d4p-wrapper-hierarchy {
+                margin: 0;
+
+                li {
+                    margin: 2px 0;
+                }
+
+                ul.children {
+                    margin-left: 12px;
+                }
+            }
+        }
+
         div {
             &.d4p-description {
                 margin: 5px 0 0 0;

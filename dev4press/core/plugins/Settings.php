@@ -70,7 +70,7 @@ abstract class Settings {
         return $this->get($get[1], $get[0]);
     }
 
-    /** @return \Dev4Press\Core\Plugins\Information */
+    /** @return Information */
     public function i() {
         return $this->info;
     }

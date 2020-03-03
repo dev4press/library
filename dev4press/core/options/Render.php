@@ -271,12 +271,7 @@ class Render {
         $value = is_null($value) || $value === true ? array_keys($data) : (array)$value;
 
         if ($multiple) {
-            echo '<div class="d4p-check-uncheck">';
-
-            echo '<a href="#checkall">'.__("Check All", "d4plib").'</a>';
-            echo ' | <a href="#uncheckall">'.__("Uncheck All", "d4plib").'</a>';
-
-            echo '</div>';
+            $this->part_check_uncheck_all();
         }
 
         $walker = new CheckboxRadio();
@@ -305,12 +300,7 @@ class Render {
         $associative = d4p_is_array_associative($data);
 
         if ($multiple) {
-            echo '<div class="d4p-check-uncheck">';
-
-            echo '<a href="#checkall">'.__("Check All", "d4plib").'</a>';
-            echo ' | <a href="#uncheckall">'.__("Uncheck All", "d4plib").'</a>';
-
-            echo '</div>';
+            $this->part_check_uncheck_all();
         }
 
         foreach ($data as $key => $title) {
@@ -572,5 +562,14 @@ class Render {
 
     private function draw_expandable_raw($element, $value, $name_base, $id_base = '') {
         $this->draw_expandable_text($element, $value, $name_base, $id_base);
+    }
+
+    private function part_check_uncheck_all() {
+        echo '<div class="d4p-check-uncheck">';
+
+        echo '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> '.__("Check All", "d4plib").'</a>';
+        echo '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> '.__("Uncheck All", "d4plib").'</a>';
+
+        echo '</div>';
     }
 }

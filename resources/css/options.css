@@ -76,6 +76,36 @@
 .d4p-settings-table .d4p-setting-wrapper input[type=number] {
   width: 32%;
 }
+.d4p-settings-table .d4p-setting-wrapper select {
+  max-width: 100%;
+}
+.d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck {
+  font-size: 0.9em;
+  padding: 0 0 5px;
+  margin: 0 0 5px;
+  border-bottom: 1px dotted #cccccc;
+}
+.d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck a {
+  text-decoration: none;
+}
+.d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck a.d4p-check-all {
+  margin-right: 10px;
+}
+.d4p-settings-table .d4p-setting-wrapper .d4p-content-wrapper {
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  max-height: 160px;
+  overflow: auto;
+}
+.d4p-settings-table .d4p-setting-wrapper .d4p-content-wrapper .d4p-wrapper-hierarchy {
+  margin: 0;
+}
+.d4p-settings-table .d4p-setting-wrapper .d4p-content-wrapper .d4p-wrapper-hierarchy li {
+  margin: 2px 0;
+}
+.d4p-settings-table .d4p-setting-wrapper .d4p-content-wrapper .d4p-wrapper-hierarchy ul.children {
+  margin-left: 12px;
+}
 .d4p-settings-table .d4p-setting-wrapper div.d4p-description {
   margin: 5px 0 0 0;
   padding: 5px 0 0 0;

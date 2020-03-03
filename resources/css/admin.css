@@ -667,43 +667,6 @@
   font-size: 115%;
 }
 
-.d4p-setting-wrapper .d4p-check-uncheck {
-  font-size: 0.9em;
-  padding: 0 0 5px;
-  margin: 0 0 5px;
-  border-bottom: 1px dotted #cccccc;
-}
-.d4p-setting-wrapper .d4p-content-wrapper {
-  border: 1px solid #ddd;
-  padding: 5px 10px;
-  max-height: 160px;
-  overflow: auto;
-}
-.d4p-setting-wrapper .d4p-content-wrapper .d4p-wrapper-hierarchy {
-  margin: 0;
-}
-.d4p-setting-wrapper .d4p-content-wrapper .d4p-wrapper-hierarchy li {
-  margin: 2px 0;
-}
-.d4p-setting-wrapper .d4p-content-wrapper .d4p-wrapper-hierarchy ul.children {
-  margin-left: 12px;
-}
-
-.d4p-group.d4p-group-information ul {
-  list-style: inside;
-}
-
-.d4p-group-inner input[type=text],
-.d4p-group-inner input[type=email],
-.d4p-group-inner input[type=url],
-.d4p-group-inner input[type=password] {
-  line-height: 24px;
-}
-
-.d4p-group-inner select {
-  height: 32px;
-}
-
 .d4p-group-inner .d4p-setting-code > .CodeMirror {
   border: 1px solid #dddddd;
 }
@@ -826,38 +789,6 @@
 
 .d4p-section-toggle.d4p-free-height .form-table code {
   font-style: normal;
-}
-
-.d4p-content-topinfo {
-  text-align: left;
-  background: #ffffff;
-  border: 1px solid #dddddd;
-  color: #111111;
-  margin: 0 0 15px 0;
-  overflow: auto;
-  font-size: 12px;
-  padding: 10px;
-  width: 100%;
-}
-
-.d4p-content-topinfo.d4p-topinfo-ok {
-  border-color: #7AD03A;
-  background: #E6FBE4;
-  color: #2C6500;
-}
-
-.d4p-content-topinfo.d4p-topinfo-ok hr {
-  border-color: transparent transparent #7AD03A;
-}
-
-.d4p-content-topinfo.d4p-topinfo-error {
-  border-color: #DD3D36;
-  background: #FBE4E4;
-  color: #652C00;
-}
-
-.d4p-content-topinfo.d4p-topinfo-error hr {
-  border-color: transparent transparent #DD3D36;
 }
 
 .d4p-settings-item-error th {

@@ -90,6 +90,10 @@ abstract class Core {
         load_plugin_textdomain('d4plib', false, $this->plugin.'/d4plib/languages');
     }
 
+    public function js_info_version($name) {
+        return isset($this->js_info[$name]) ? $this->js_info[$name]['version'] : false;
+    }
+
     public function locale() {
         return apply_filters('plugin_locale', get_user_locale(), $this->plugin);
     }
