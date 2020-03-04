@@ -1,15 +1,8 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.0 - 2020.01.15 =
-* New: Autoloader Function
-* New: Dev4Press Namespace
-* New: Dev4Press Customizer Controls
-* New: A lot of core reogranization
-* New: Few more shared JS libraries
-* Updated: Function for icon rendering
-* Updated: Minor settings object changes
-* Fix: Few issues with the numerical settings fields
+= Version 3.0 - 2020.03.06 =
+* New: Fully Rewritten Library
 
 = Version 2.8.3 - 2020.01.01 =
 * Updated: Built-in cacert.pem 20200101

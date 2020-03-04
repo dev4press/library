@@ -2,13 +2,13 @@
 
 /*
 Name:    Base Library Functions: BuddyPress
-Version: v2.9.5
+Version: v3.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2019 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2020 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,5 +37,35 @@ if (!function_exists('d4p_has_buddypress')) {
         } else {
             return false;
         }
+    }
+}
+
+if (!function_exists('d4p_get_buddypress_major_version_code')) {
+    function d4p_get_buddypress_major_version_code() {
+        if (function_exists('bp_get_version')) {
+            $version = bp_get_version();
+
+            return intval(substr(str_replace('.', '', $version), 0, 2));
+        }
+
+        return 0;
+    }
+}
+
+if (!function_exists('d4p_get_buddypress_major_version_number')) {
+    function d4p_get_buddypress_major_version_number($ret = 'number') {
+        if (function_exists('bp_get_version')) {
+            $version = bp_get_version();
+
+            if (isset($version)) {
+                if ($ret == 'number') {
+                    return substr(str_replace('.', '', $version), 0, 2);
+                } else {
+                    return $version;
+                }
+            }
+        }
+
+        return 0;
     }
 }

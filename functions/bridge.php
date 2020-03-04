@@ -2,13 +2,13 @@
 
 /*
 Name:    Base Library Functions: Bridge
-Version: v2.9.5
+Version: v3.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2019 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2020 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+use Dev4Press\Core\Cache\Store;
 use Dev4Press\Core\Helpers\Download;
 use Dev4Press\Core\Helpers\ObjectsSort;
 use Dev4Press\WordPress\Media\RemoteImageToMediaLibrary;
@@ -60,5 +61,11 @@ if (!function_exists('d4p_download_simple')) {
 if (!function_exists('d4p_download_resume')) {
     function d4p_download_resume($file_path, $file_name = null) {
         Download::instance($file_path, $file_name)->resume();
+    }
+}
+
+if (!function_exists('d4p_object_cache')) {
+    function d4p_object_cache() {
+        return Store::instance();
     }
 }

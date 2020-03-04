@@ -2,13 +2,13 @@
 
 /*
 Name:    Dev4Press\Core\Plugins\Information
-Version: v2.9.5
+Version: v3.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2019 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2020 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -47,9 +47,17 @@ abstract class Information {
     public $author_url = 'https://www.dev4press.com/';
 
     public $php = '5.6';
-    public $mysql = '5.1';
-    public $wordpress = '4.9';
-    public $classicpress = '1.0';
+    public $mysql = '5.5';
+
+    public $cms = array(
+        'wordpress' => '4.9',
+        'classicpress' => '1.0'
+    );
+
+    public $plugins = array(
+        'bbpress' => false,
+        'buddypress' => false
+    );
 
     public $install = false;
     public $update = false;
@@ -103,16 +111,24 @@ abstract class Information {
         );
 
         if (d4p_is_classicpress()) {
-            $list['ClassiCpress'] = $this->classicpress;
+            $list['ClassicPress'] = $this->cms['classicpress'];
         } else {
-            $list['WordPress'] = $this->wordpress;
+            $list['WordPress'] = $this->cms['wordpress'];
         }
 
-        if (isset($this->bbpress)) {
-            $list['bbPress'] = $this->bbpress;
+        if (isset($this->plugins['bbpress']) && $this->plugins['bbpress'] !== false) {
+            $list['bbPress'] = $this->plugins['bbpress'];
+        }
+
+        if (isset($this->plugins['buddypress']) && $this->plugins['buddypress'] !== false) {
+            $list['BuddyPress'] = $this->plugins['buddypress'];
         }
 
         return $list;
+    }
+
+    public function requirement_version($name) {
+
     }
 
     public function version_full() {

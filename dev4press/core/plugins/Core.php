@@ -2,13 +2,13 @@
 
 /*
 Name:    Dev4Press\Core\Plugins\Core
-Version: v2.9.5
+Version: v3.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2019 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2020 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -42,8 +42,9 @@ abstract class Core {
     public $url = '';
 
     public $is_debug;
+    public $cms = 'wordpress';
+    public $cms_version;
     public $wp_version;
-    public $wp_version_real;
 
     public $js_info = array();
 
@@ -66,10 +67,16 @@ abstract class Core {
     }
 
     public function plugins_loaded() {
-        global $wp_version;
+        if (d4p_is_classicpress()) {
+            $this->cms = 'classicpress';
+            $this->cms_version = classicpress_version_short();
+        } else {
+            global $wp_version;
 
-        $this->wp_version = substr(str_replace('.', '', $wp_version), 0, 2);
-        $this->wp_version_real = $wp_version;
+            $this->cms_version = $wp_version;
+        }
+
+        $this->wp_version = substr(str_replace('.', '', $this->cms_version), 0, 2);
 
         if (!empty($this->widgets)) {
             add_action('widgets_init', array($this, 'widgets_init'));
@@ -83,6 +90,8 @@ abstract class Core {
 
         $this->load_textdomain();
         $this->init_capabilities();
+
+        $this->run();
     }
 
     public function load_textdomain() {
@@ -157,6 +166,14 @@ abstract class Core {
 
     public function enqueue_scripts() {}
 
+    protected function system_requirements() {
+        $list = array();
+
+
+    }
+
     /** @return \Dev4Press\Core\Plugins\Settings */
     abstract public function s();
+
+    abstract public function run();
 }

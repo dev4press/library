@@ -2,13 +2,13 @@
 
 /*
 Name:    Dev4Press Core Loader
-Version: v2.9.5
+Version: v3.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2019 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2020 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,8 +28,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 if (!defined('ABSPATH')) { exit; }
 
 if (!defined('D4P_VERSION')) { 
-    define('D4P_VERSION', '2.9.5');
-    define('D4P_BUILD', '2950');
+    define('D4P_VERSION', '3.0');
+    define('D4P_BUILD', '3000');
 }
 
 if (!defined('D4P_EOL')) {

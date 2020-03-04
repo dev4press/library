@@ -36,13 +36,15 @@
                         $("#d4p-settings-mark").val("").trigger("input");
                     });
 
-                    var $titles = $(".d4p-group > h3"),
+                    var $groups = $(".d4p-group"),
+                        $titles = $(".d4p-group > h3"),
                         $sections = $(".d4p-settings-section > h4"),
                         $content = $(".d4p-settings-table > tbody > tr");
 
                     $("#d4p-settings-mark").on("input", function(){
                         var term = $(this).val();
 
+                        $groups.show();
                         $titles.unmark();
                         $sections.show().unmark();
                         $content.show().unmark();
@@ -59,6 +61,8 @@
                                     $sections.each(function(idx, el) {
                                         if ($(el).find("mark").length > 0) {
                                             $(el).parent().find(".d4p-settings-table > tbody > tr").show();
+                                        } else {
+                                            $(el).hide();
                                         }
                                     });
                                 }
@@ -71,6 +75,21 @@
                                             $(el).parent().find(".d4p-settings-table > tbody > tr").show();
                                         }
                                     });
+                                }
+                            });
+
+                            $titles.each(function(idx, el){
+                                var $group = $(el).parent(), height = 0,
+                                    $elements = $(".d4p-settings-section", $group);
+
+                                $elements.each(function(i, e) {
+                                    if ($(e).height() > 0) {
+                                        height+= $(e).height();
+                                    }
+                                });
+
+                                if (height === 0) {
+                                    $group.hide();
                                 }
                             });
                         }
