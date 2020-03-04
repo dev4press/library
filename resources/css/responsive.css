@@ -6,6 +6,14 @@
     border-top: 1px solid #777777;
   }
 }
+@media screen and (max-width: 1080px) {
+  .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card {
+    width: 100%;
+  }
+  .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card:nth-child(odd) {
+    margin-right: 0;
+  }
+}
 @media screen and (max-width: 1024px) {
   .d4p-group .d4p-group-inner .form-table > tbody > tr > th {
     width: 30%;

@@ -3,12 +3,16 @@
 }
 .d4p-update-info .d4p-install-block {
   margin: 0 0 15px;
+  font-size: 1em;
+  line-height: 1.5;
 }
 .d4p-update-info .d4p-install-block h4 {
   margin: 0 0 10px;
+  font-size: 1.3em;
 }
 .d4p-update-info .d4p-install-block h5 {
   margin: 10px 0;
+  font-size: 1.15em;
 }
 .d4p-update-info .d4p-install-confirm {
   margin: 15px 0 0;
@@ -17,19 +21,9 @@
 }
 
 .d4p-group-updater .d4p-install-block {
-  font-size: 1em;
-  line-height: 1.5;
   margin: 0 0 15px;
   padding: 0 0 15px;
   border-bottom: 1px solid #ddd;
-}
-.d4p-group-updater .d4p-install-block h4 {
-  margin: 0 0 10px;
-  font-size: 1.3em;
-}
-.d4p-group-updater .d4p-install-block h5 {
-  margin: 10px 0;
-  font-size: 1.15em;
 }
 .d4p-group-updater .d4p-install-block:last-child {
   margin: 0;
@@ -374,62 +368,61 @@
   font-size: 120%;
   font-weight: bold;
 }
-
-/* Dashboard */
-.d4p-plugin-dashboard .d4p-buttons-group .button-primary,
-.d4p-plugin-dashboard .d4p-buttons-group .button-secondary {
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-cards-wrapper {
   width: 100%;
-  font-size: 16px;
-  font-weight: bold;
-  height: 32px;
-  line-height: 28px;
-  margin: 0 0 5px;
+  max-width: 1195px;
 }
-
-.d4p-plugin-dashboard .d4p-buttons-group .button-primary:last-child,
-.d4p-plugin-dashboard .d4p-buttons-group .button-secondary:last-child {
-  margin: 0;
-}
-
-.d4p-group-dashboard-card {
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card {
+  display: block;
+  width: calc((100% - 15px) / 2);
+  max-width: 590px;
+  margin: 0 0 15px;
   clear: none;
-  text-align: left;
-  width: calc(50% - 15px);
-  max-width: 600px;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card:nth-child(odd) {
   margin-right: 15px;
 }
-
-.d4p-group-dashboard-card.d4p-double-card {
-  width: calc(100% - 15px);
-  max-width: 1215px;
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-card-double {
+  float: none;
+  width: 100%;
+  max-width: 1195px;
 }
-
-.d4p-group-dashboard-card .d4p-group-stats {
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-card-double .d4p-group-inner {
+  font-size: 105%;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner {
+  padding: 15px;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner h4 {
+  margin: 0 0 15px;
+  font-size: 1.15em;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul {
+  list-style: none;
+  margin: 0;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li {
+  margin: 3px 0;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-with-bullets {
+  list-style: outside disc;
+  margin-left: 20px;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner .d4p-status-message {
+  font-weight: bold;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header {
   border-bottom: 1px solid #eee;
-  padding: 8px 12px;
+  padding: 10px 15px;
   background: #fafafa;
+  text-align: left;
 }
-
-.d4p-group-dashboard-card .d4p-group-inner {
-  padding: 8px 12px;
-}
-
-.d4p-group-dashboard-card .d4p-group-footer {
-  border-top: 1px solid #eee;
-  padding: 8px 12px;
-}
-
-.d4p-group-dashboard-card .d4p-group-inner h4 {
-  margin: 0 0 0.5em;
-}
-
-.d4p-group-dashboard-card .d4p-group-stats ul {
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
-.d4p-group-dashboard-card .d4p-group-stats ul li {
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -438,21 +431,49 @@
   width: 50%;
   float: left;
 }
-
-.d4p-group-dashboard-card .d4p-group-stats ul li a i {
-  color: #666;
-}
-
-.d4p-group-dashboard-card .d4p-group-stats ul li a strong {
-  font-weight: 700;
-}
-
-.d4p-group-dashboard-card .d4p-group-stats ul li a {
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a {
   text-decoration: none;
 }
-
-.d4p-group-dashboard-card .d4p-group-inner a {
-  display: block;
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a i {
+  color: #555555;
+  font-size: 105%;
+  margin-right: 3px;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a strong {
+  font-weight: 700;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer {
+  border-top: 1px solid #eee;
+  padding: 10px 15px;
+  text-align: left;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge {
+  border-radius: 2px;
+  margin-left: 5px;
+  color: #fff;
+  display: inline-block;
+  padding: 0 6px 2px;
+  line-height: 1.5;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge .d4p-icon {
+  font-size: 82%;
+  margin-right: 5px;
+  vertical-align: baseline;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-right {
+  float: right;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-green, .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-ok {
+  background: #090;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-red, .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-error {
+  background: #900;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-purple, .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-maintenance {
+  background: #813E99;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-blue, .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-upgrade {
+  background: #0a63a5;
 }
 
 #dev4press-recommend {

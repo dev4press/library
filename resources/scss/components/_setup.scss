@@ -3,13 +3,17 @@
 
     .d4p-install-block {
         margin: 0 0 15px;
+        font-size: 1em;
+        line-height: 1.5;
 
         h4 {
             margin: 0 0 10px;
+            font-size: 1.3em;
         }
 
         h5 {
             margin: 10px 0;
+            font-size: 1.15em;
         }
     }
 
@@ -22,21 +26,9 @@
 
 .d4p-group-updater {
     .d4p-install-block {
-        font-size: 1em;
-        line-height: 1.5;
         margin: 0 0 15px;
         padding: 0 0 15px;
         border-bottom: 1px solid #ddd;
-
-        h4 {
-            margin: 0 0 10px;
-            font-size: 1.3em;
-        }
-
-        h5 {
-            margin: 10px 0;
-            font-size: 1.15em;
-        }
 
         &:last-child {
             margin: 0;
