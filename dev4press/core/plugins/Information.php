@@ -128,7 +128,15 @@ abstract class Information {
     }
 
     public function requirement_version($name) {
+        if (in_array($name, array('php', 'mysql'))) {
+            return $this->$name;
+        } else if (isset($this->cms[$name])) {
+            return $this->cms[$name];
+        } else if (isset($this->plugins[$name])) {
+            return $this->plugins[$name];
+        }
 
+        return false;
     }
 
     public function version_full() {

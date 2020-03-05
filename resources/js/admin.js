@@ -9,8 +9,9 @@
         scroll_offset: 40,
         active_element: null,
         init: function() {
-            wp.dev4press.admin.components.interface.run();
             wp.dev4press.admin.components.scroller.run();
+            wp.dev4press.admin.components.interface.run();
+            wp.dev4press.admin.components.notices.run();
 
             if (d4plib_admin_data.page.panel === 'settings') {
                 wp.dev4press.admin.panels.settings.run();
@@ -146,6 +147,11 @@
                             $(".d4p-wrap .d4p-message .notice").slideUp("slow");
                         }, 10000);
                     }
+                }
+            },
+            notices: {
+                run: function() {
+                    $("#wpbody-content > div.notice").detach().prependTo(".d4p-wrap");
                 }
             }
         },

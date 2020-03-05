@@ -48,6 +48,8 @@ abstract class Core {
 
     public $js_info = array();
 
+    private $_system_requirements = array();
+
     public function __construct() {
         add_action('plugins_loaded', array($this, 'plugins_loaded'));
         add_action('after_setup_theme', array($this, 'after_setup_theme'));
@@ -89,6 +91,17 @@ abstract class Core {
         $this->is_debug = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG;
 
         $this->load_textdomain();
+
+        $this->_system_requirements = $this->check_system_requirements();
+
+        if (!empty($this->_system_requirements)) {
+            if (is_admin()) {
+                add_action('admin_notices', array($this, 'system_requirements_notices'));
+            } else {
+                $this->deactivate();
+            }
+        }
+
         $this->init_capabilities();
 
         $this->run();
@@ -166,10 +179,62 @@ abstract class Core {
 
     public function enqueue_scripts() {}
 
-    protected function system_requirements() {
+    public function system_requirements_notices() {
+        $plugin = $this->s()->i()->name();
+        $versions = array();
+
+        foreach ($this->_system_requirements as $req) {
+            $versions[] = sprintf(_x("%s version %s (your system runs version %s)", "System requirement version", "d4plib"), $req[0], '<strong>'.$req[2].'</strong>', '<strong style="color: #900;">'.$req[1].'</strong>');
+        }
+
+        $render = '<div class="notice notice-error"><p>';
+        $render.= sprintf(_x("System requirements check for %s failed. This plugin requires %s. The plugin will now be disabled.", "System requirement notice", "d4plib"), '<strong>'.$plugin.'</strong>', join(', ', $versions));
+        $render.= '</p></div>';
+
+        echo $render;
+
+        $this->deactivate();
+    }
+
+    protected function check_system_requirements() {
+        if (defined('DEV4PRESS_NO_SYSREQ_CHECK') && DEV4PRESS_NO_SYSREQ_CHECK) {
+            return array();
+        }
+
+        global $wpdb;
+
         $list = array();
 
+        $cms = $this->s()->i()->requirement_version($this->cms);
 
+        if (version_compare($this->cms_version, $cms, '>=') === false) {
+            $cms_name = $this->cms == 'classicpress' ? 'ClassicPress' : 'WordPress';
+            $list[] = array($cms_name, $this->cms_version, $cms);
+        }
+
+        $php = $this->s()->i()->requirement_version('php');
+
+        if (version_compare(PHP_VERSION, $php, '>=') === false) {
+            $list[] = array('PHP', PHP_VERSION, $php);
+        }
+
+        $mysql = $this->s()->i()->requirement_version('mysql');
+
+        if (version_compare($wpdb->db_version(), $mysql, '>=') === false) {
+            $list[] = array('MySQL', $wpdb->db_version(), $mysql);
+        }
+
+        $bbpress = $this->s()->i()->requirement_version('bbpress');
+
+        if ($bbpress !== false) {
+            $installed = d4p_get_bbpress_major_version_number('full');
+
+            if ($installed === 0 || version_compare($installed, $bbpress, '>=') === false) {
+                $list[] = array('bbPress', $installed, $bbpress);
+            }
+        }
+
+        return $list;
     }
 
     /** @return \Dev4Press\Core\Plugins\Settings */

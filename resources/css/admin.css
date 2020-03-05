@@ -57,6 +57,9 @@
 .d4p-wrap {
   margin: 0 15px 0 0;
 }
+.d4p-wrap > .notice {
+  margin: 40px 0 0 0;
+}
 .d4p-wrap a,
 .d4p-wrap :focus {
   box-shadow: none;

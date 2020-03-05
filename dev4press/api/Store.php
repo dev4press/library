@@ -133,14 +133,14 @@ class Store {
         ),
         "gd-topic-polls" => array(
             "code" => "gd-topic-polls",
-            "name" => "GD Topic Polls",
+            "name" => "GD Topic Polls for bbPress",
             "description" => "Implements polls system for bbPress powered forums, where users can add polls to topics, with a wide range of settings to control voting, poll closing, display of results and more.",
             "punchline" => "Enhance bbPress forums with topic polls",
             "color" => "#01665e",
         ),
         "gd-topic-prefix" => array(
             "code" => "gd-topic-prefix",
-            "name" => "GD Topic Prefix",
+            "name" => "GD Topic Prefix for bbPress",
             "description" => "Implements topic prefixes system, with support for styling customization, forum specific prefix groups with use of user roles, default prefixes, filtering of topics by prefix and more.",
             "punchline" => "Easy to use topic prefixes for bbPress forums",
             "color" => "#A10A0A",
