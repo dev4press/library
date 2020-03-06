@@ -173,5 +173,5 @@ abstract class Panel {
     }
 
     public function enqueue_scripts_early() {}
-    public function include_accessibility_control() { }
+    public function include_accessibility_control() {}
 }

@@ -1,39 +1,7 @@
-.d4p-clearfix:before, .d4p-clearfix:after {
-    content: " ";
-    display: table;
-}
+@import 'includes/_functions';
+@import 'includes/_variables';
 
-.d4p-clearfix:after {
-    clear: both;
-}
-
-.d4p-accessibility-show-for-sr {
-    position: absolute !important;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-}
-
-.d4p-break-hypen {
-    -ms-word-break: break-all;
-    word-break: break-all;
-
-    word-break: break-word;
-
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
-}
-
-.d4p-accessibility-show-for-sr {
-    position: absolute !important;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-}
+@import 'components/_common';
 
 .d4plib-selected-image {
     margin: 5px 0 0 0;

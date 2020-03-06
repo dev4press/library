@@ -29,7 +29,11 @@ namespace Dev4Press\Core\Plugins;
 
 abstract class Widget extends \WP_Widget {
     public $selective_refresh = true;
+    public $allow_empty_title = false;
     public $results_cachable = false;
+
+    public $cache_prefix = 'd4p';
+    public $cache_method = 'full';
 
     public $widget_base = '';
     public $widget_name = '';
@@ -39,11 +43,27 @@ abstract class Widget extends \WP_Widget {
 
     public $defaults = array(
         'title' => 'Base Widget Class',
-        '_display' => 'all',
-        '_cached' => 0,
-        '_hook' => '',
-        '_class' => ''
     );
+
+    protected $shared_defaults = array(
+        '_users' => 'all',
+        '_roles' => array(),
+        '_cap' => '',
+        '_hook' => '',
+        '_tab' => 'global',
+        '_cached' => 8,
+        '_devid' => '',
+        '_class' => '',
+        '_before' => '',
+        '_after' => ''
+    );
+
+    protected $cache_active = false;
+    protected $cache_time = 0;
+    protected $cache_key = '';
+
+    /** @var \Dev4Press\Core\UI\Widgets */
+    protected $widgets_render;
 
     public function __construct($id_base = false, $name = '', $widget_options = array(), $control_options = array()) {
         $defaults = array(
@@ -53,89 +73,202 @@ abstract class Widget extends \WP_Widget {
         );
 
         $widget_options = wp_parse_args($widget_options, $defaults);
-        $control_options = empty($control_options) ? array() : $control_options;
+        $control_options = empty($control_options) ? array('width' => 500) : $control_options;
 
         parent::__construct($this->widget_base, $this->widget_name, $widget_options, $control_options);
     }
 
+    public function get_tabkey($tab) {
+        return str_replace(array('_', ' '), array('-', '-'), $this->get_field_id('tab-'.$tab));
+    }
+
     public function get_defaults() {
-        return $this->defaults;
+        return array_merge($this->shared_defaults, $this->defaults);
     }
 
     public function form($instance) {
         $instance = wp_parse_args((array)$instance, $this->get_defaults());
+        $the_tabs = $this->the_form($instance);
 
+        $tabs = array(
+            'global' => array('name' => __("Global", "d4plib"), 'include' => array('widget-global')),
+            'extra' => array('name' => __("Extra", "d4plib"), 'include' => array('widget-extra')),
+            'advanced' => array('name' => __("Advanced", "d4plib"), 'include' => array('widget-advanced'))
+        );
 
+        if ($this->results_cachable) {
+            $tabs['global']['include'][] = 'widget-cache';
+        }
+
+        if (!empty($the_tabs)) {
+            $tabs = array_slice($tabs, 0, 1, true) +
+                    $the_tabs +
+                    array_slice($tabs, 1, 2, true);
+        }
+
+        include($this->widgets_render->find('widget-loader.php'));
+    }
+
+    public function update($new_instance, $old_instance) {
+        return $this->shared_update($new_instance, $old_instance);
     }
 
     public function widget($args, $instance) {
+        $this->prepare_cache($instance);
 
+        $this->the_init($instance, $args);
+
+        if ($this->check_visibility($instance)) {
+            if ($this->cache_method == 'full' && $this->cache_active && $this->cache_key !== '') {
+                $render = get_transient($this->cache_key);
+
+                if ($render === false) {
+                    ob_start();
+
+                    $this->widget_output($args, $instance);
+
+                    $render = ob_get_contents();
+                    ob_end_clean();
+
+                    set_transient($this->cache_key, $render, $this->cache_time * 3600);
+                }
+
+                echo $render;
+            } else {
+                $this->widget_output($args, $instance);
+            }
+        }
     }
 
     public function title($instance) {
-        return $instance['title'];
+        return isset($instance['title']) ? $instance['title'] : '';
     }
 
     public function is_visible($instance) {
         return true;
     }
 
-    private function _widget_id($args) {
-        $this->widget_id = str_replace(array('-', '_'), array('', ''), $args['widget_id']);
+    protected function shared_update($new_instance, $old_instance) {
+        $instance = $old_instance;
+
+        $instance['title'] = d4p_sanitize_basic($new_instance['title']);
+        $instance['_class'] = d4p_sanitize_basic($new_instance['_class']);
+
+        $instance['_tab'] = d4p_sanitize_key_expanded($new_instance['_tab']);
+        $instance['_users'] = d4p_sanitize_key_expanded($new_instance['_users']);
+        $instance['_hook'] = d4p_sanitize_key_expanded($new_instance['_hook']);
+        $instance['_devid'] = d4p_sanitize_key_expanded($new_instance['_devid']);
+
+        if (isset($new_instance['_cached'])) {
+            $instance['_cached'] = intval($new_instance['_cached']);
+        }
+
+        if (current_user_can('unfiltered_html')) {
+            $instance['_before'] = $new_instance['_before'];
+            $instance['_after'] = $new_instance['_after'];
+        } else {
+            $instance['_before'] = d4p_sanitize_html($new_instance['_before']);
+            $instance['_after'] = d4p_sanitize_html($new_instance['_after']);
+        }
+
+        return $instance;
     }
 
-    private function _cache_key($instance) {
-        $this->cache_active = $this->_cache_active($instance);
+    protected function prepare_cache($instance) {
+        if ($this->results_cachable) {
+            $this->cache_time = isset($instance['_cached']) ? absint($instance['_cached']) : 0;
 
-        if ($this->cache_active) {
-            $copy = $instance;
-            unset($copy['_cached']);
+            if ($this->cache_time > 0) {
+                $copy = (array)$instance;
+                unset($copy['_cached']);
 
-            $this->cache_key = $this->cache_prefix.'_'.md5($this->widget_base.'_'.serialize($copy));
+                $this->cache_key = $this->cache_prefix.'_'.md5($this->widget_base.'_'.serialize($copy));
+            }
         }
     }
 
-    private function _cache_active($instance) {
-        $this->cache_time = isset($instance['_cached']) ? intval($instance['_cached']) : 0;
-
-        return $this->cache_time > 0;
-    }
-
-    private function _cached_data($instance) {
+    protected function get_cached_data($instance) {
         if ($this->cache_method == 'data' && $this->cache_active && $this->cache_key !== '') {
             $results = get_transient($this->cache_key);
 
             if ($results === false) {
-                $results = $this->results($instance);
+                $results = $this->the_results($instance);
+
                 set_transient($this->cache_key, $results, $this->cache_time * 3600);
             }
 
             return $results;
         } else {
-            return $this->results($instance);
+            return $this->the_results($instance);
         }
     }
 
     protected function widget_output($args, $instance) {
         extract($args, EXTR_SKIP);
 
-        ob_start();
-
-        $results = $this->_cached_data($instance);
         echo $before_widget;
 
-        if (isset($instance['title']) && $instance['title'] != '') {
-            echo $before_title;
-            echo $this->title($instance);
-            echo $after_title;
+        $title = $this->title($instance);
+
+        if (!empty($title) || $this->allow_empty_title) {
+            echo $before_title.$title.$after_title;
         }
 
-        echo $this->render($results, $instance);
+        $results = $this->get_cached_data($instance);
+        $this->the_render($instance, $results);
+
         echo $after_widget;
-
-        $render = ob_get_contents();
-        ob_end_clean();
-
-        return $render;
     }
+
+    public function standalone_render($instance = array()) {
+        $instance = shortcode_atts($this->defaults, $instance);
+
+        $results = $this->results($instance);
+
+        $this->render($results, $instance);
+    }
+
+    protected function check_visibility($instance) {
+        $visible = $this->is_visible($instance);
+
+        if ($visible) {
+            $users = isset($instance['_users']) ? $instance['_users'] : 'all';
+            $roles = isset($instance['_roles']) ? $instance['_roles'] : array();
+            $cap = isset($instance['_cap']) ? $instance['_cap'] : '';
+
+            $logged = is_user_logged_in();
+
+            if ($users == 'users') {
+                $visible = $logged;
+            } else if ($users == 'visitor') {
+                $visible = !$logged;
+            } else if ($users == 'roles') {
+                if (empty($roles)) {
+                    $visible = $logged;
+                } else {
+                    $visible = d4p_is_current_user_roles($roles);
+                }
+            } else if ($users == 'cap' && !empty($cap)) {
+                $visible = current_user_can($cap);
+            }
+        }
+
+        if (isset($instance['_hook']) && $instance['_hook'] != '') {
+            $visible = apply_filters($this->widget_base.'_visible_'.$instance['_hook'], $visible, $this);
+        }
+
+        return $visible;
+    }
+
+    public function the_init($instance, $args) {
+
+    }
+
+    public function the_results($instance) {
+        return false;
+    }
+
+    abstract public function the_form($instance);
+
+    abstract public function the_render($instance, $results = false);
 }

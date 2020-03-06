@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 03/02/2020 12:05:33 PM\n"
+"POT-Creation-Date: 03/06/2020 12:27:01 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -125,80 +125,88 @@ msgstr ""
 msgid "Loaded Template"
 msgstr ""
 
-#: dev4press/core/options/Render.php:275
-#: dev4press/core/options/Render.php:309
-#: functions/admin.php:228
-#: functions/admin.php:293
-msgid "Check All"
-msgstr ""
-
-#: dev4press/core/options/Render.php:276
-#: dev4press/core/options/Render.php:310
-#: functions/admin.php:229
-#: functions/admin.php:294
-msgid "Uncheck All"
-msgstr ""
-
-#: dev4press/core/options/Render.php:372
+#: dev4press/core/options/Render.php:387
 msgid "Add New Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:385
+#: dev4press/core/options/Render.php:400
 msgid "Add Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:389
+#: dev4press/core/options/Render.php:404
 msgid "No images selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:399
+#: dev4press/core/options/Render.php:414
 #: dev4press/core/ui/admin/PanelTools.php:29
 #: dev4press/core/ui/Enqueue.php:212
 msgid "Remove"
 msgstr ""
 
-#: dev4press/core/options/Render.php:400
+#: dev4press/core/options/Render.php:415
 #: dev4press/core/ui/Enqueue.php:213
 msgid "Preview"
 msgstr ""
 
-#: dev4press/core/options/Render.php:413
+#: dev4press/core/options/Render.php:428
 #: dev4press/core/ui/Enqueue.php:214
 #: plugin/d4p.admin-basic.php:197
 msgid "Select Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:414
+#: dev4press/core/options/Render.php:429
 msgid "Show Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:415
+#: dev4press/core/options/Render.php:430
 msgid "Clear Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:418
+#: dev4press/core/options/Render.php:433
 #: dev4press/core/ui/Enqueue.php:216
 #: plugin/d4p.admin-basic.php:200
 msgid "Image not selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:440
+#: dev4press/core/options/Render.php:455
 msgid "Enabled"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:123
+#: dev4press/core/options/Render.php:594
+#: functions/admin.php:228
+#: functions/admin.php:293
+msgid "Check All"
+msgstr ""
+
+#: dev4press/core/options/Render.php:595
+#: functions/admin.php:229
+#: functions/admin.php:294
+msgid "Uncheck All"
+msgstr ""
+
+#: dev4press/core/plugins/Core.php:186
+msgctxt "System requirement version"
+msgid "%s version %s (your system runs version %s)"
+msgstr ""
+
+#: dev4press/core/plugins/Core.php:190
+msgctxt "System requirement notice"
+msgid "System requirements check for %s failed. This plugin requires %s. The plugin will now be disabled."
+msgstr ""
+
+#: dev4press/core/plugins/Information.php:147
 msgid "Beta"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:126
+#: dev4press/core/plugins/Information.php:150
 msgid "Alpha"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:129
+#: dev4press/core/plugins/Information.php:153
 msgid "RC"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:132
+#: dev4press/core/plugins/Information.php:156
 msgid "Nightly"
 msgstr ""
 
@@ -208,6 +216,18 @@ msgstr ""
 
 #: dev4press/core/plugins/InstallDB.php:81
 msgid "Table is missing."
+msgstr ""
+
+#: dev4press/core/plugins/Widget.php:93
+msgid "Global"
+msgstr ""
+
+#: dev4press/core/plugins/Widget.php:94
+msgid "Extra"
+msgstr ""
+
+#: dev4press/core/plugins/Widget.php:95
+msgid "Advanced"
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelAbout.php:12
@@ -497,6 +517,42 @@ msgstr ""
 #: forms/sidebar-settings.php:29
 #: functions/wordpress.php:89
 msgid "Clear"
+msgstr ""
+
+#: forms/widget-cache.php:0
+msgid "Results Caching"
+msgstr ""
+
+#: forms/widget-cache.php:5
+msgid "Cache Period"
+msgstr ""
+
+#: forms/widget-cache.php:9
+msgid "To use cache and speed up the widget, enter number of hours for cached results to be kept. Leave 0 to disable cache."
+msgstr ""
+
+#: forms/widget-extra.php:0
+msgid "Before and After Content"
+msgstr ""
+
+#: forms/widget-extra.php:5
+msgid "Before"
+msgstr ""
+
+#: forms/widget-extra.php:11
+msgid "After"
+msgstr ""
+
+#: forms/widget-global.php:0
+msgid "Basic"
+msgstr ""
+
+#: forms/widget-global.php:5
+msgid "Title"
+msgstr ""
+
+#: forms/widget-global.php:11
+msgid "Additional CSS Class"
 msgstr ""
 
 #: functions/wordpress.php:90
