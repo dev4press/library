@@ -569,3 +569,17 @@ if (!function_exists('d4p_has_plugin')) {
         return d4p_is_plugin_active($plugin);
     }
 }
+
+if (!function_exists('d4p_get_wordpress_user_roles')) {
+    function d4p_get_wordpress_user_roles() {
+        global $wp_roles;
+
+        $roles = array();
+
+        foreach ($wp_roles->role_names as $role => $title) {
+            $roles[$role] = $title;
+        }
+
+        return $roles;
+    }
+}

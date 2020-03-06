@@ -226,8 +226,8 @@ if (!function_exists('d4p_render_checkradios')) {
         if ($multi) {
             $render.= '<div class="d4p-check-uncheck">';
 
-            $render.= '<a href="#checkall">'.__("Check All", "d4plib").'</a>';
-            $render.= ' | <a href="#uncheckall">'.__("Uncheck All", "d4plib").'</a>';
+            $render.= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> '.__("Check All", "d4plib").'</a>';
+            $render.= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> '.__("Uncheck All", "d4plib").'</a>';
 
             $render.= '</div>';
         }
@@ -291,8 +291,8 @@ if (!function_exists('d4p_render_checkradios_with_hierarchy')) {
         if ($multi) {
             $render.= '<div class="d4p-check-uncheck">';
 
-            $render.= '<a href="#checkall">'.__("Check All", "d4plib").'</a>';
-            $render.= ' | <a href="#uncheckall">'.__("Uncheck All", "d4plib").'</a>';
+            $render.= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> '.__("Check All", "d4plib").'</a>';
+            $render.= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> '.__("Uncheck All", "d4plib").'</a>';
 
             $render.= '</div>';
         }

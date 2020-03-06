@@ -94,8 +94,6 @@
     }
 
     .d4p-content-wrapper {
-        border: 1px solid #ddd;
-        padding: 5px 10px;
         max-height: 160px;
         overflow: auto;
     }
@@ -105,6 +103,14 @@
         padding: 0 0 5px;
         margin: 0 0 5px;
         border-bottom: 1px dotted #cccccc;
+
+        a {
+            text-decoration: none;
+
+            &.d4p-check-all {
+                margin-right: 10px;
+            }
+        }
     }
 
     .wp-picker-container {

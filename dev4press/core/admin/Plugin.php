@@ -320,7 +320,7 @@ abstract class Plugin {
         }
 
         if ($this->has_widgets && $hook == 'widgets.php') {
-            $this->enqueue->js('widgets')->css('widgets');
+            $this->enqueue->js('widgets')->css('widgets')->css('font');
 
             do_action($this->h('enqueue_scripts_widgets'));
         }

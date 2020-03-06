@@ -267,6 +267,10 @@ abstract class Widget extends \WP_Widget {
         return $visible;
     }
 
+    public function visibility_hook_format() {
+        return $this->widget_base.'_visible_{filter_name}';
+    }
+
     protected function render_widget_header($instance) {
         $class = array('d4p-widget-wrapper');
         $class[] = str_replace('_', '-', $this->widget_base);
