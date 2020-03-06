@@ -247,7 +247,7 @@ abstract class Widget extends \WP_Widget {
 
             if ($users == 'users') {
                 $visible = $logged;
-            } else if ($users == 'visitor') {
+            } else if ($users == 'visitors') {
                 $visible = !$logged;
             } else if ($users == 'roles') {
                 if (empty($roles)) {
@@ -255,7 +255,7 @@ abstract class Widget extends \WP_Widget {
                 } else {
                     $visible = d4p_is_current_user_roles($roles);
                 }
-            } else if ($users == 'cap' && !empty($cap)) {
+            } else if ($users == 'caps' && !empty($cap)) {
                 $visible = current_user_can($cap);
             }
         }
