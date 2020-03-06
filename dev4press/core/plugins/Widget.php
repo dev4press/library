@@ -214,8 +214,7 @@ abstract class Widget extends \WP_Widget {
             echo $before_title.$title.$after_title;
         }
 
-        $results = $this->get_cached_data($instance);
-        $this->the_render($instance, $results);
+        $this->render_widget($instance);
 
         echo $after_widget;
     }
@@ -223,9 +222,17 @@ abstract class Widget extends \WP_Widget {
     public function standalone_render($instance = array()) {
         $instance = shortcode_atts($this->defaults, $instance);
 
-        $results = $this->results($instance);
+        $this->render_widget($instance);
+    }
 
-        $this->render($results, $instance);
+    protected function render_widget($instance) {
+        $results = $this->get_cached_data($instance);
+
+        $this->store_instance($instance);
+
+        $this->render_widget_header($instance);
+        $this->the_render($instance, $results);
+        $this->render_widget_footer($instance);
     }
 
     protected function check_visibility($instance) {
@@ -260,6 +267,29 @@ abstract class Widget extends \WP_Widget {
         return $visible;
     }
 
+    protected function render_widget_header($instance) {
+        $class = array('d4p-widget-wrapper');
+        $class[] = str_replace('_', '-', $this->widget_base);
+
+        if ($instance['_class'] != '') {
+            $class[] = $instance['_class'];
+        }
+
+        echo '<div class="'.join(' ', $class).'">'.D4P_EOL;
+
+        if ($instance['_before'] != '') {
+           echo '<div class="d4p-widget-before">'.$instance['_before'].'</div>';
+        }
+    }
+
+    protected function render_widget_footer($instance) {
+        if ($instance['_after'] != '') {
+            echo '<div class="d4p-widget-after">'.$instance['_after'].'</div>';
+        }
+
+        echo '</div>';
+    }
+
     public function the_init($instance, $args) {
 
     }
@@ -271,4 +301,6 @@ abstract class Widget extends \WP_Widget {
     abstract public function the_form($instance);
 
     abstract public function the_render($instance, $results = false);
+
+    abstract public function store_instance($instance);
 }

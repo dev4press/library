@@ -49,6 +49,7 @@ abstract class Core {
     public $js_info = array();
 
     private $_system_requirements = array();
+    private $_widget_instance = array();
 
     public function __construct() {
         add_action('plugins_loaded', array($this, 'plugins_loaded'));
@@ -235,6 +236,14 @@ abstract class Core {
         }
 
         return $list;
+    }
+
+    public function store_widget_instance($instance) {
+        $this->_widget_instance = $instance;
+    }
+
+    public function widget_instance() {
+        return $this->_widget_instance;
     }
 
     /** @return \Dev4Press\Core\Plugins\Settings */
