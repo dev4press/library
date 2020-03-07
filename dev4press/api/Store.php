@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Plugins\Settings
+Name:    Dev4Press\API\Store
 Version: v3.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com

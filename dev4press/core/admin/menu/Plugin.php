@@ -4,6 +4,10 @@ namespace Dev4Press\Core\Admin\Menu;
 
 use Dev4Press\Core\Admin\Plugin as BasePlugin;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 abstract class Plugin extends BasePlugin {
     public function current_url($with_subpanel = true) {
         $page = 'admin.php?page='.$this->plugin.'-'.$this->panel;

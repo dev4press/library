@@ -27,6 +27,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Options;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class Type {
     const INFO = 'info';
     const CUSTOM = 'custom';

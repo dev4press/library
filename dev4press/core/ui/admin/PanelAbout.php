@@ -2,6 +2,10 @@
 
 namespace Dev4Press\Core\UI\Admin;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class PanelAbout extends Panel {
     protected $sidebar = false;
 

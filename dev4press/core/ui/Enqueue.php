@@ -2,7 +2,9 @@
 
 namespace Dev4Press\Core\UI;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 final class Enqueue {
     private $_debug = false;

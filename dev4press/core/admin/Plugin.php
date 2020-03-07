@@ -29,7 +29,9 @@ namespace Dev4Press\Core\Admin;
 
 use Dev4Press\Core\UI\Enqueue;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 abstract class Plugin {
     public $menu_cap = 'activate_plugins';

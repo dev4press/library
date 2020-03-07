@@ -2,6 +2,10 @@
 
 namespace Dev4Press\Core\UI\Walker;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class CheckboxRadio extends \Walker {
     public $tree_type = 'settings';
 

@@ -27,6 +27,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Plugins;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 abstract class Widget extends \WP_Widget {
     public $selective_refresh = true;
     public $allow_empty_title = false;

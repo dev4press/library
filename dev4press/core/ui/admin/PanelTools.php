@@ -2,6 +2,10 @@
 
 namespace Dev4Press\Core\UI\Admin;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class PanelTools extends Panel {
     public function __construct($admin) {
         parent::__construct($admin);

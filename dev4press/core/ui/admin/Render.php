@@ -2,7 +2,9 @@
 
 namespace Dev4Press\Core\UI\Admin;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class Render {
     public function __construct() { }

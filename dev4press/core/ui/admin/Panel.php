@@ -2,7 +2,9 @@
 
 namespace Dev4Press\Core\UI\Admin;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 abstract class Panel {
     static private $_current_instance = null;

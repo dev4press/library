@@ -29,6 +29,10 @@ namespace Dev4Press\Core\Options;
 
 use Dev4Press\Core\UI\Walker\CheckboxRadio;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class Render {
     public $base = 'd4pvalue';
     public $kb = 'https://support.dev4press.com/kb/%type%/%url%/';

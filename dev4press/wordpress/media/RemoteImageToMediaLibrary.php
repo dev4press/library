@@ -29,6 +29,10 @@ namespace Dev4Press\WordPress\Media;
 
 use WP_Error;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class RemoteImageToMediaLibrary {
     public $url;
     public $ext;

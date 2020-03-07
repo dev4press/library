@@ -2,6 +2,10 @@
 
 namespace Dev4Press\Core\UI\Admin;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class PanelSettings extends Panel {
     protected $form = true;
 

@@ -29,6 +29,10 @@ namespace Dev4Press\Core\Admin;
 
 use Dev4Press\Core\Options\Process;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 abstract class PostBack {
     /** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
     private $admin = null;

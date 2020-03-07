@@ -2,6 +2,9 @@
 
 namespace Dev4Press\Core\UI;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
 final class Widgets {
     /** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
     private $_admin;

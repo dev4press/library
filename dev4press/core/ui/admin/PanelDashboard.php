@@ -2,6 +2,10 @@
 
 namespace Dev4Press\Core\UI\Admin;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class PanelDashboard extends Panel {
     public $sidebar_links = array(
         'plugin' => array(),

@@ -4,6 +4,10 @@ namespace Dev4Press\Core\Admin\Submenu;
 
 use Dev4Press\Core\Admin\Plugin as BasePlugin;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 abstract class Plugin extends BasePlugin {
     protected $menu = 'options-general.php';
 
