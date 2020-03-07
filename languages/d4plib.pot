@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 03/06/2020 12:27:01 PM\n"
+"POT-Creation-Date: 03/07/2020 09:13:13 AM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -184,12 +184,12 @@ msgstr ""
 msgid "Uncheck All"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:186
+#: dev4press/core/plugins/Core.php:187
 msgctxt "System requirement version"
 msgid "%s version %s (your system runs version %s)"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:190
+#: dev4press/core/plugins/Core.php:191
 msgctxt "System requirement notice"
 msgid "System requirements check for %s failed. This plugin requires %s. The plugin will now be disabled."
 msgstr ""
@@ -519,6 +519,62 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
+#: forms/widget-advanced.php:11
+msgid "Widget Visibility"
+msgstr ""
+
+#: forms/widget-advanced.php:16
+msgid "Show widget to"
+msgstr ""
+
+#: forms/widget-advanced.php:28
+msgid "Roles"
+msgstr ""
+
+#: forms/widget-advanced.php:32
+msgid "If no roles are selected, widget will assume that all roles are selected."
+msgstr ""
+
+#: forms/widget-advanced.php:45
+msgid "Capabilities"
+msgstr ""
+
+#: forms/widget-advanced.php:49
+msgid "One or more capabilities, separated by comma."
+msgstr ""
+
+#: forms/widget-advanced.php:57
+msgid "Visibility Filter"
+msgstr ""
+
+#: forms/widget-advanced.php:62
+msgid "Custom filter name"
+msgstr ""
+
+#: forms/widget-advanced.php:3
+msgid "Everyone"
+msgstr ""
+
+#: forms/widget-advanced.php:4
+msgid "Logged in users"
+msgstr ""
+
+#: forms/widget-advanced.php:5
+msgid "Not logged in visitors"
+msgstr ""
+
+#: forms/widget-advanced.php:6
+msgid "Users with specified roles"
+msgstr ""
+
+#: forms/widget-advanced.php:7
+msgid "Users with specified capabilities"
+msgstr ""
+
+#: forms/widget-advanced.php:66
+msgid "Using this value, widget will run filter for the final visibility check. This filter will be %s, replace the %s with your custom filter name defined here."
+msgstr ""
+
 #: forms/widget-cache.php:0
 msgid "Results Caching"
 msgstr ""
@@ -541,6 +597,18 @@ msgstr ""
 
 #: forms/widget-extra.php:11
 msgid "After"
+msgstr ""
+
+#: forms/widget-extra.php:18
+msgid "For Developers"
+msgstr ""
+
+#: forms/widget-extra.php:23
+msgid "Developer ID"
+msgstr ""
+
+#: forms/widget-extra.php:27
+msgid "This is custom string (alphanumeric, underscore and minus signs allowed) that can be used to identify the widget in code, and it can be useful for developers customizing the website."
 msgstr ""
 
 #: forms/widget-global.php:0

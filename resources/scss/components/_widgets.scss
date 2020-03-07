@@ -3,6 +3,102 @@
     margin: 0 0 15px;
     min-width: 498px;
 
+    h4 {
+        background: #666666;
+        border-radius: 3px;
+        color: #fefefe;
+        font-size: 1.1em;
+        margin: 15px 0 5px;
+        padding: 5px 7px;
+    }
+
+    table {
+        margin: 0 0 10px;
+        width: 100%;
+        border-collapse: collapse;
+
+        &.no-margin {
+            margin: 0;
+        }
+
+        td {
+            vertical-align: top;
+            padding-bottom: 5px;
+
+            h4 {
+                margin-top: 0;
+            }
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 23px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        select {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        select[multiple] {
+            height: 86px;
+        }
+
+        textarea {
+            width: 100%;
+            min-width: 100%;
+            min-height: 200px;
+
+            &.half-height {
+                min-height: 86px;
+            }
+        }
+
+        p {
+            margin: 0;
+            line-height: 21.5px;
+        }
+
+        em {
+            display: block;
+            margin: 5px 0 0;
+
+            &.solo-content {
+                margin: 0;
+            }
+        }
+
+        .cell-right,
+        .cell-left {
+            width: 49%;
+        }
+
+        .cell-three-left,
+        .cell-three-middle,
+        .cell-three-right {
+            width: 32%;
+        }
+
+        .cell-three-middle,
+        .cell-three-left,
+        .cell-left {
+            padding-right: 1%;
+        }
+
+        .cell-three-middle,
+        .cell-three-right,
+        .cell-right {
+            padding-left: 1%;
+        }
+    }
+
     .d4plib-widget-tabs {
         border-bottom: 1px solid #dfdfdf;
         display: block;
@@ -98,6 +194,12 @@
         overflow: auto;
     }
 
+    .d4p-setting-checkboxes {
+        label {
+            font-weight: normal;
+        }
+    }
+
     .d4p-check-uncheck {
         font-size: .9em;
         padding: 0 0 5px;
@@ -139,102 +241,6 @@
             .iris-square {
                 margin-right: 10px;
             }
-        }
-    }
-
-    h4 {
-        background: #666666;
-        border-radius: 3px;
-        color: #fefefe;
-        font-size: 1.1em;
-        margin: 15px 0 5px;
-        padding: 5px 7px;
-    }
-
-    table {
-        margin: 0 0 10px;
-        width: 100%;
-        border-collapse: collapse;
-
-        &.no-margin {
-            margin: 0;
-        }
-
-        td {
-            vertical-align: top;
-            padding-bottom: 5px;
-
-            h4 {
-                margin-top: 0;
-            }
-        }
-
-        label {
-            display: block;
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 23px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            max-width: 100%;
-        }
-
-        select {
-            width: 100%;
-            max-width: 100%;
-        }
-
-        select[multiple] {
-            height: 86px;
-        }
-
-        textarea {
-            width: 100%;
-            min-width: 100%;
-            min-height: 200px;
-
-            &.half-height {
-                min-height: 86px;
-            }
-        }
-
-        p {
-            margin: 0;
-            line-height: 21.5px;
-        }
-
-        em {
-            display: block;
-            margin: 5px 0 0;
-
-            &.solo-content {
-                margin: 0;
-            }
-        }
-
-        .cell-right,
-        .cell-left {
-            width: 49%;
-        }
-
-        .cell-three-left,
-        .cell-three-middle,
-        .cell-three-right {
-            width: 32%;
-        }
-
-        .cell-three-middle,
-        .cell-three-left,
-        .cell-left {
-            padding-right: 1%;
-        }
-
-        .cell-three-middle,
-        .cell-three-right,
-        .cell-right {
-            padding-left: 1%;
         }
     }
 }
