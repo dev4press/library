@@ -343,3 +343,9 @@ if (!function_exists('d4p_is_request_post')) {
         return $_SERVER['REQUEST_METHOD'] === 'POST';
     }
 }
+
+if (!function_exists('d4p_is_wp_error')) {
+    function d4p_is_wp_error($thing) {
+        return ($thing instanceof WP_Error) || ($thing instanceof \Dev4Press\Core\Helpers\Error);
+    }
+}

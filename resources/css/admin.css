@@ -60,6 +60,18 @@
 .d4p-wrap > .notice {
   margin: 40px 0 0 0;
 }
+.d4p-wrap .d4p-notice-info {
+  background: #fff;
+  border-left: 4px solid #00a0d2;
+  padding: 12px;
+  margin: 40px 0 0 0;
+}
+.d4p-wrap .d4p-notice-info blockquote {
+  margin: 15px 0;
+  padding-left: 5px;
+  border-left: 2px solid #ddd;
+  font-style: italic;
+}
 .d4p-wrap a,
 .d4p-wrap :focus {
   box-shadow: none;
@@ -313,19 +325,6 @@
 .d4p-panel-group-break h2 i {
   margin: 0 4px 0 0;
   font-size: 16px;
-}
-
-.d4p-notice-info {
-  background: #fff;
-  border-left: 4px solid #00a0d2;
-  padding: 12px;
-  margin: 15px 0;
-}
-.d4p-notice-info blockquote {
-  margin: 15px 0;
-  padding-left: 5px;
-  border-left: 2px solid #ddd;
-  font-style: italic;
 }
 
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge {

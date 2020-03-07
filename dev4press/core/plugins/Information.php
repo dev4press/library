@@ -43,6 +43,8 @@ abstract class Information {
     public $edition = '';
     public $released = '';
 
+    public $is_bbpress_plugin = false;
+
     public $author_name = 'Milan Petrovic';
     public $author_url = 'https://www.dev4press.com/';
 

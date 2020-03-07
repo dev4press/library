@@ -366,6 +366,10 @@ abstract class Plugin {
         return $this->setup_items + $this->menu_items;
     }
 
+    public function message_process($code, $msg) {
+        return $msg;
+    }
+
     public function export_url($run = 'export', $nonce = null) {
         $nonce = is_null($nonce) ? 'dev4press-plugin-'.$this->plugin_prefix : $nonce;
 
@@ -394,4 +398,7 @@ abstract class Plugin {
 
     /** @return \Dev4Press\Core\Plugins\Settings */
     abstract public function settings();
+
+    /** @return \Dev4Press\Core\Options\Settings */
+    abstract public function settings_definitions();
 }

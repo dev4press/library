@@ -3,12 +3,16 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 03/07/2020 09:13:13 AM\n"
+"POT-Creation-Date: 03/07/2020 11:28:39 AM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GD i18n 2.2\n"
+
+#: dev4press/core/admin/GetBack.php:88
+msgid "Only administrators can use export features."
+msgstr ""
 
 #: dev4press/core/admin/Plugin.php:94
 #: dev4press/core/ui/admin/PanelDashboard.php:19
@@ -194,19 +198,19 @@ msgctxt "System requirement notice"
 msgid "System requirements check for %s failed. This plugin requires %s. The plugin will now be disabled."
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:147
+#: dev4press/core/plugins/Information.php:149
 msgid "Beta"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:150
+#: dev4press/core/plugins/Information.php:152
 msgid "Alpha"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:153
+#: dev4press/core/plugins/Information.php:155
 msgid "RC"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:156
+#: dev4press/core/plugins/Information.php:158
 msgid "Nightly"
 msgstr ""
 
@@ -491,6 +495,33 @@ msgstr ""
 
 #: forms/message.php:31
 msgid "Import operation failed."
+msgstr ""
+
+#: forms/notices-bbpress.php:16
+#: forms/notices-bbpress.php:30
+#: forms/notices-bbpress.php:45
+#: forms/notices-bbpress.php:59
+#: forms/notices-bbpress.php:73
+#: forms/notices-bbpress.php:88
+msgid "Plugin Home Page"
+msgstr ""
+
+#: forms/notices-bbpress.php:17
+#: forms/notices-bbpress.php:31
+#: forms/notices-bbpress.php:46
+#: forms/notices-bbpress.php:60
+#: forms/notices-bbpress.php:74
+#: forms/notices-bbpress.php:89
+msgid "Do not show this notice anymore"
+msgstr ""
+
+#: forms/notices-bbpress.php:14
+#: forms/notices-bbpress.php:28
+#: forms/notices-bbpress.php:43
+#: forms/notices-bbpress.php:57
+#: forms/notices-bbpress.php:71
+#: forms/notices-bbpress.php:86
+msgid "Please, take a few minutes to check out another Dev4Press plugin for bbPress: %s."
 msgstr ""
 
 #: forms/sidebar-dashboard.php:7

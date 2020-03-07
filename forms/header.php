@@ -34,6 +34,8 @@ if (isset($_panels[$_panel]['table']) && $_panels[$_panel]['table']) {
 
 ?>
 <div class="<?php echo join(' ', $_classes); ?>">
+    <?php d4p_panel()->include_notices(); ?>
+
     <div class="d4p-header">
         <div class="d4p-navigator">
             <ul>

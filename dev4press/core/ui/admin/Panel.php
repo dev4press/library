@@ -139,6 +139,14 @@ abstract class Panel {
         $this->load('message.php');
     }
 
+    public function include_notices() {
+        if ($this->a()->panel == 'dashboard') {
+            if ($this->a()->settings()->i()->is_bbpress_plugin) {
+                $this->load('notices-bbpress.php');
+            }
+        }
+    }
+
     public function include_content() {
         $main = $name = 'content-'.$this->a()->panel;
 

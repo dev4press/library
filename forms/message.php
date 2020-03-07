@@ -34,7 +34,8 @@ if (isset($_GET['message']) && $_GET['message'] != '') {
             break;
     }
 
-    $msg = apply_filters(d4p_panel()->a()->h('admin_panel_message'), array('message' => $_message, 'color' => $_color));
+    $msg = d4p_panel()->a()->message_process($msg_code, array('message' => $_message, 'color' => $_color));
+    $msg = apply_filters(d4p_panel()->a()->h('admin_panel_message'), $msg);
 }
 
 if ($_message != '') {

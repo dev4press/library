@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Options\Widget
+Name:    Dev4Press\Core\Plugins\Widget
 Version: v3.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
