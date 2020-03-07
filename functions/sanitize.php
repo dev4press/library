@@ -28,17 +28,17 @@ if (!defined('ABSPATH')) { exit; }
 
 if (!function_exists('d4p_sanitize_file_path')) {
     function d4p_sanitize_file_path($filename) {
-	$filename_raw = $filename;
+	    $filename_raw = $filename;
 
         $special_chars = apply_filters('d4p_sanitize_file_path_chars', array(
             "?", "[", "]", "/", "\\", "=", "<", ">", ":", ";", ",", "'", "\"", "&", "$", "#", "*", "(", ")", "|", "~", "`", "!", "{", "}", "%", "+", chr(0)
             ), $filename_raw);
 
-	$filename = preg_replace("#\x{00a0}#siu", ' ', $filename);
-	$filename = str_replace($special_chars, '', $filename);
-	$filename = str_replace(array('%20', '+'), '-', $filename);
-	$filename = preg_replace('/[\r\n\t -]+/', '-', $filename);
-	$filename = trim($filename, '.-_' );
+        $filename = preg_replace("#\x{00a0}#siu", ' ', $filename);
+        $filename = str_replace($special_chars, '', $filename);
+        $filename = str_replace(array('%20', '+'), '-', $filename);
+        $filename = preg_replace('/[\r\n\t -]+/', '-', $filename);
+        $filename = trim($filename, '.-_' );
 
         return apply_filters('d4p_sanitize_file_path', $filename, $filename_raw);
     }
@@ -47,7 +47,7 @@ if (!function_exists('d4p_sanitize_file_path')) {
 if (!function_exists('d4p_sanitize_key_expanded')) {
     function d4p_sanitize_key_expanded($key) {
         $key = strtolower($key);
-	$key = preg_replace('/[^a-z0-9._\-]/', '', $key);
+	    $key = preg_replace('/[^a-z0-9._\-]/', '', $key);
 
         return $key;
     }
