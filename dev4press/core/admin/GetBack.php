@@ -47,33 +47,33 @@ abstract class GetBack {
 
     protected function process() {
         if ($this->a()->panel == 'dashboard') {
-            if (isset($_GET['action']) && $_GET['action'] == 'dismiss-topic-prefix') {
+            if ($this->is_single_action('dismiss-topic-prefix', 'action')) {
                 $this->front_dismiss_plugin('notice_gdtox_hide');
             }
 
-            if (isset($_GET['action']) && $_GET['action'] == 'dismiss-topic-polls') {
+            if ($this->is_single_action('dismiss-topic-polls', 'action')) {
                 $this->front_dismiss_plugin('notice_gdpol_hide');
             }
 
-            if (isset($_GET['action']) && $_GET['action'] == 'dismiss-bbpress-toolbox') {
+            if ($this->is_single_action('dismiss-bbpress-toolbox', 'action')) {
                 $this->front_dismiss_plugin('notice_gdbbx_hide');
             }
 
-            if (isset($_GET['action']) && $_GET['action'] == 'dismiss-power-search') {
+            if ($this->is_single_action('dismiss-power-search', 'action')) {
                 $this->front_dismiss_plugin('notice_gdpos_hide');
             }
 
-            if (isset($_GET['action']) && $_GET['action'] == 'dismiss-quantum-theme') {
+            if ($this->is_single_action('dismiss-quantum-theme', 'action')) {
                 $this->front_dismiss_plugin('notice_gdqnt_hide');
             }
 
-            if (isset($_GET['action']) && $_GET['action'] == 'dismiss-members-directory') {
+            if ($this->is_single_action('dismiss-members-directory', 'action')) {
                 $this->front_dismiss_plugin('notice_gdmed_hide');
             }
         }
 
         if ($this->a()->panel == 'tools') {
-            if (isset($_GET['run']) && $_GET['run'] == 'export') {
+            if ($this->is_single_action('export', 'run')) {
                 $this->tools_export();
             }
         }
@@ -109,8 +109,8 @@ abstract class GetBack {
         }
     }
 
-    protected function is_single_action($name) {
-        return isset($_GET['single-action']) && $_GET['single-action'] == $name;
+    protected function is_single_action($name, $key = 'single-action') {
+        return isset($_GET[$key]) && $_GET[$key] == $name;
     }
 
     protected function is_bulk_action() {

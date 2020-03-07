@@ -29,6 +29,16 @@
         margin: 0 0 15px;
         padding: 0 0 15px;
         border-bottom: 1px solid #ddd;
+        font-size: 1.15em;
+        line-height: 1.6;
+
+        h4 {
+            margin: 0 0 10px;
+        }
+
+        h5 {
+            margin: 10px 0;
+        }
 
         &:last-child {
             margin: 0;
