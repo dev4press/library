@@ -12,13 +12,15 @@
     <?php
 
     foreach (d4p_panel()->sidebar_links as $group) {
-        echo '<div class="d4p-links-group">';
+        if (!empty($group)) {
+            echo '<div class="d4p-links-group">';
 
-        foreach ($group as $link) {
-            echo '<a class="'.$link['class'].'" href="'.$link['url'].'">'.d4p_panel()->r()->icon($link['icon']).'<span>'.$link['label'].'</span></a>';
+            foreach ($group as $link) {
+                echo '<a class="'.$link['class'].'" href="'.$link['url'].'">'.d4p_panel()->r()->icon($link['icon']).'<span>'.$link['label'].'</span></a>';
+            }
+
+            echo '</div>';
         }
-
-        echo '</div>';
     }
 
     ?>
