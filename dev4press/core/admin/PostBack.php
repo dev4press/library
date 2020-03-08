@@ -72,7 +72,7 @@ abstract class PostBack {
             $this->tools();
         }
 
-        if ($this->p() == $this->get_page_name('tools')) {
+        if ($this->p() == $this->get_page_name('settings')) {
             $this->check_referer('settings');
 
             $this->settings();
