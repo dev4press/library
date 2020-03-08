@@ -37,7 +37,7 @@ if (!empty($_subpanel)) {
         <?php
 
         foreach ($_subpanels as $_tab => $obj) {
-            echo '<a href="admin.php?page=gd-topic-polls-about&subpanel='.$_tab.'" class="nav-tab'.($_tab == $_subpanel ? ' nav-tab-active' : '').'">'.$obj['title'].'</a>';
+            echo '<a href="'.d4p_panel()->a()->panel_url('about', $_tab).'" class="nav-tab'.($_tab == $_subpanel ? ' nav-tab-active' : '').'">'.$obj['title'].'</a>';
         }
 
         ?>

@@ -352,7 +352,6 @@ abstract class Plugin {
         wp_enqueue_script($this->plugin_prefix.'-'.$name, $url, $req, $this->settings()->file_version(), $in_footer);
     }
 
-
     public function admin_panel() {
         require_once($this->lib_path().'functions/panel.php');
 
@@ -382,6 +381,18 @@ abstract class Plugin {
         $url = add_query_arg('_wpnonce', wp_create_nonce($nonce), $url);
 
         return $url;
+    }
+
+    protected function screen_setup() {
+        $this->install_or_update();
+        $this->load_postget_back();
+
+        $panel = $this->panel_object();
+        $class = $panel->class;
+
+        $this->object = $class::instance($this);
+
+        $this->subpanel = $this->object->validate_subpanel($this->subpanel);
     }
 
     public function admin_init() { }

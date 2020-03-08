@@ -17,9 +17,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1 > .d4p-icon, h2 > .d4p-icon, h3 > .d4p-icon, h4 > .d4p-icon, h5 > .d4p-icon, h6 > .d4p-icon, a > .d4p-icon {
+h1 > .d4p-icon, h2 > .d4p-icon, h3 > .d4p-icon, h4 > .d4p-icon, h5 > .d4p-icon, h6 > .d4p-icon {
   line-height: inherit;
   vertical-align: bottom;
+}
+
+a > .d4p-icon {
+  line-height: normal;
 }
 
 /* Icons */

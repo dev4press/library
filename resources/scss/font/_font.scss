@@ -21,10 +21,16 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6, a {
+h1, h2, h3, h4, h5, h6 {
     > .#{$font-prefix}-icon {
         line-height: inherit;
         vertical-align: bottom;
+    }
+}
+
+a {
+    > .#{$font-prefix}-icon {
+        line-height: normal;
     }
 }
 

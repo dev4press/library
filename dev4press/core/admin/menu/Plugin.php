@@ -9,6 +9,10 @@ if (!defined('ABSPATH')) {
 }
 
 abstract class Plugin extends BasePlugin {
+    public function main_url() {
+        return self_admin_url('admin.php?page='.$this->plugin.'-dashboard');
+    }
+
     public function current_url($with_subpanel = true) {
         $page = 'admin.php?page='.$this->plugin.'-'.$this->panel;
 
@@ -20,17 +24,13 @@ abstract class Plugin extends BasePlugin {
     }
 
     public function panel_url($panel = 'dashboard', $subpanel = '') {
-        $url = 'admin.php?page='.$this->plugin.'-'.$panel;
+        $page = 'admin.php?page='.$this->plugin.'-'.$panel;
 
         if (!empty($subpanel) && $subpanel != 'index') {
-            $url.= '&subpanel='.$subpanel;
+            $page.= '&subpanel='.$subpanel;
         }
 
-        return self_admin_url($url);
-    }
-
-    public function main_url() {
-        return self_admin_url('admin.php?page='.$this->plugin.'-dashboard');
+        return self_admin_url($page);
     }
 
     public function admin_menu() {
@@ -71,15 +71,7 @@ abstract class Plugin extends BasePlugin {
                     $this->subpanel = d4p_sanitize_slug($_GET['subpanel']);
                 }
 
-                $this->install_or_update();
-                $this->load_postget_back();
-
-                $panel = $this->panel_object();
-                $class = $panel->class;
-
-                $this->object = $class::instance($this);
-
-                $this->subpanel = $this->object->validate_subpanel($this->subpanel);
+                $this->screen_setup();
             }
         }
 
