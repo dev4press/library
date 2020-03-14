@@ -170,6 +170,9 @@
 .d4plib-widget .d4plib-widget-tabs-content .d4p-check-uncheck a.d4p-check-all {
   margin-right: 10px;
 }
+.d4plib-widget .d4plib-widget-tabs-content .d4p-check-uncheck a i {
+  vertical-align: -2px;
+}
 .d4plib-widget .d4plib-widget-tabs-content .wp-picker-container .wp-picker-input-wrap input.wp-picker-clear {
   height: 30px;
   line-height: 28px;

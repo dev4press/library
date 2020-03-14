@@ -164,7 +164,7 @@ abstract class Widget extends WP_Widget {
         $_caps = explode(',', $_caps);
         $instance['_caps'] = array_map('trim', $_caps);
 
-        $_roles = d4p_sanitize_basic($new_instance['_roles']);
+        $_roles = array_map('d4p_sanitize_basic', $new_instance['_roles']);
         $valid_roles = d4p_get_wordpress_user_roles();
         $instance['_roles'] = array();
 
