@@ -27,6 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Plugins;
 
+use stdClass;
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -54,8 +56,8 @@ abstract class DB extends DBLite {
     public function init() {
         global $wpdb;
 
-        $plugin = new \stdClass();
-        $this->db = new \stdClass();
+        $plugin = new stdClass();
+        $this->db = new stdClass();
         $this->db_site = array();
 
         foreach ($this->_tables as $name) {

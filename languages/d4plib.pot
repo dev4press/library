@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 03/08/2020 10:37:14 AM\n"
+"POT-Creation-Date: 03/14/2020 03:57:30 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,31 +16,22 @@ msgstr ""
 
 #: dev4press/core/admin/Plugin.php:96
 #: dev4press/core/ui/admin/PanelDashboard.php:23
-#: plugin/d4p.admin-basic.php:138
 msgid "Settings"
 msgstr ""
 
 #: dev4press/core/admin/Plugin.php:105
 #: dev4press/core/admin/Plugin.php:212
 #: dev4press/core/admin/Plugin.php:227
-#: plugin/d4p.admin-basic.php:117
-#: plugin/d4p.admin-basic.php:147
-#: plugin/d4p.admin.php:117
 msgid "Knowledge Base"
 msgstr ""
 
 #: dev4press/core/admin/Plugin.php:106
 #: dev4press/core/admin/Plugin.php:213
 #: dev4press/core/admin/Plugin.php:227
-#: plugin/d4p.admin-basic.php:118
-#: plugin/d4p.admin-basic.php:148
-#: plugin/d4p.admin.php:118
 msgid "Support Forum"
 msgstr ""
 
 #: dev4press/core/admin/Plugin.php:211
-#: plugin/d4p.admin-basic.php:116
-#: plugin/d4p.admin.php:116
 msgid "Home Page"
 msgstr ""
 
@@ -71,19 +62,15 @@ msgid "Open new topic"
 msgstr ""
 
 #: dev4press/core/admin/Plugin.php:282
-#: plugin/d4p.admin-basic.php:157
 msgid "%s is activated and it needs to finish installation."
 msgstr ""
 
 #: dev4press/core/admin/Plugin.php:283
 #: dev4press/core/admin/Plugin.php:292
-#: plugin/d4p.admin-basic.php:158
-#: plugin/d4p.admin-basic.php:167
 msgid "Click Here"
 msgstr ""
 
 #: dev4press/core/admin/Plugin.php:291
-#: plugin/d4p.admin-basic.php:166
 msgid "%s is updated, and you need to review the update process."
 msgstr ""
 
@@ -154,7 +141,6 @@ msgstr ""
 
 #: dev4press/core/options/Render.php:432
 #: dev4press/core/ui/Enqueue.php:216
-#: plugin/d4p.admin-basic.php:197
 msgid "Select Image"
 msgstr ""
 
@@ -168,7 +154,6 @@ msgstr ""
 
 #: dev4press/core/options/Render.php:437
 #: dev4press/core/ui/Enqueue.php:218
-#: plugin/d4p.admin-basic.php:200
 msgid "Image not selected."
 msgstr ""
 
@@ -177,14 +162,14 @@ msgid "Enabled"
 msgstr ""
 
 #: dev4press/core/options/Render.php:598
-#: functions/admin.php:228
-#: functions/admin.php:293
+#: functions/admin.php:230
+#: functions/admin.php:295
 msgid "Check All"
 msgstr ""
 
 #: dev4press/core/options/Render.php:599
-#: functions/admin.php:229
-#: functions/admin.php:294
+#: functions/admin.php:231
+#: functions/admin.php:296
 msgid "Uncheck All"
 msgstr ""
 
@@ -227,16 +212,44 @@ msgstr ""
 msgid "Table is missing."
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:97
+#: dev4press/core/plugins/Widget.php:89
 msgid "Global"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:98
+#: dev4press/core/plugins/Widget.php:90
 msgid "Extra"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:99
+#: dev4press/core/plugins/Widget.php:91
 msgid "Advanced"
+msgstr ""
+
+#: dev4press/core/plugins/Widget.php:341
+msgid "Everyone"
+msgstr ""
+
+#: dev4press/core/plugins/Widget.php:342
+msgid "Logged in users"
+msgstr ""
+
+#: dev4press/core/plugins/Widget.php:343
+msgid "Not logged in visitors"
+msgstr ""
+
+#: dev4press/core/plugins/Widget.php:344
+msgid "Users with specified roles"
+msgstr ""
+
+#: dev4press/core/plugins/Widget.php:345
+msgid "Users with specified capabilities"
+msgstr ""
+
+#: dev4press/core/plugins/Widget.php:351
+msgid "Descending"
+msgstr ""
+
+#: dev4press/core/plugins/Widget.php:352
+msgid "Ascending"
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelAbout.php:16
@@ -259,11 +272,11 @@ msgstr ""
 msgid "Dev4Press"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelDashboard.php:29
+#: dev4press/core/ui/admin/PanelDashboard.php:32
 msgid "Tools"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelDashboard.php:38
+#: dev4press/core/ui/admin/PanelDashboard.php:41
 msgid "About"
 msgstr ""
 
@@ -358,7 +371,6 @@ msgstr ""
 
 #: dev4press/core/ui/Enqueue.php:204
 #: dev4press/core/ui/Enqueue.php:219
-#: plugin/d4p.admin-basic.php:199
 msgid "Are you sure you want to do this?"
 msgstr ""
 
@@ -367,7 +379,6 @@ msgid "Please Wait..."
 msgstr ""
 
 #: dev4press/core/ui/Enqueue.php:217
-#: plugin/d4p.admin-basic.php:198
 msgid "Use Selected Image"
 msgstr ""
 
@@ -551,63 +562,43 @@ msgid "Show All Settings"
 msgstr ""
 
 #: forms/sidebar-settings.php:29
-#: functions/wordpress.php:89
+#: functions/wordpress.php:92
 msgid "Clear"
 msgstr ""
 
-#: forms/widget-advanced.php:11
+#: forms/widget-advanced.php:0
 msgid "Widget Visibility"
 msgstr ""
 
-#: forms/widget-advanced.php:16
+#: forms/widget-advanced.php:5
 msgid "Show widget to"
 msgstr ""
 
-#: forms/widget-advanced.php:28
+#: forms/widget-advanced.php:17
 msgid "Roles"
 msgstr ""
 
-#: forms/widget-advanced.php:32
+#: forms/widget-advanced.php:21
 msgid "If no roles are selected, widget will assume that all roles are selected."
 msgstr ""
 
-#: forms/widget-advanced.php:45
+#: forms/widget-advanced.php:34
 msgid "Capabilities"
 msgstr ""
 
-#: forms/widget-advanced.php:49
+#: forms/widget-advanced.php:38
 msgid "One or more capabilities, separated by comma."
 msgstr ""
 
-#: forms/widget-advanced.php:57
+#: forms/widget-advanced.php:46
 msgid "Visibility Filter"
 msgstr ""
 
-#: forms/widget-advanced.php:62
+#: forms/widget-advanced.php:51
 msgid "Custom filter name"
 msgstr ""
 
-#: forms/widget-advanced.php:3
-msgid "Everyone"
-msgstr ""
-
-#: forms/widget-advanced.php:4
-msgid "Logged in users"
-msgstr ""
-
-#: forms/widget-advanced.php:5
-msgid "Not logged in visitors"
-msgstr ""
-
-#: forms/widget-advanced.php:6
-msgid "Users with specified roles"
-msgstr ""
-
-#: forms/widget-advanced.php:7
-msgid "Users with specified capabilities"
-msgstr ""
-
-#: forms/widget-advanced.php:66
+#: forms/widget-advanced.php:55
 msgid "Using this value, widget will run filter for the final visibility check. This filter will be %s, replace the %s with your custom filter name defined here."
 msgstr ""
 
@@ -659,25 +650,15 @@ msgstr ""
 msgid "Additional CSS Class"
 msgstr ""
 
-#: functions/wordpress.php:90
+#: functions/wordpress.php:93
 msgid "Default"
 msgstr ""
 
-#: functions/wordpress.php:91
+#: functions/wordpress.php:94
 msgid "Select Color"
 msgstr ""
 
-#: functions/wordpress.php:92
+#: functions/wordpress.php:95
 msgid "Current Color"
-msgstr ""
-
-#: plugin/d4p.admin-basic.php:128
-#: plugin/d4p.admin.php:128
-msgid "Getting Help"
-msgstr ""
-
-#: plugin/d4p.admin-basic.php:129
-#: plugin/d4p.admin.php:129
-msgid "To get help with this plugin, you can start with Knowledge Base list of frequently asked questions and articles. If you have any questions, or you want to report a bug, or you have a suggestion, you can use support forum. All important links for this are on the right side of this help dialog."
 msgstr ""
 

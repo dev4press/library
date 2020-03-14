@@ -27,11 +27,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Plugins;
 
+use WP_Widget;
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
-abstract class Widget extends \WP_Widget {
+abstract class Widget extends WP_Widget {
     public $selective_refresh = true;
     public $allow_empty_title = false;
     public $results_cachable = false;
@@ -52,7 +54,7 @@ abstract class Widget extends \WP_Widget {
     protected $shared_defaults = array(
         '_users' => 'all',
         '_roles' => array(),
-        '_cap' => '',
+        '_caps' => array(),
         '_hook' => '',
         '_tab' => 'global',
         '_cached' => 8,
@@ -80,14 +82,6 @@ abstract class Widget extends \WP_Widget {
         $control_options = empty($control_options) ? array('width' => 500) : $control_options;
 
         parent::__construct($this->widget_base, $this->widget_name, $widget_options, $control_options);
-    }
-
-    public function get_tabkey($tab) {
-        return str_replace(array('_', ' '), array('-', '-'), $this->get_field_id('tab-'.$tab));
-    }
-
-    public function get_defaults() {
-        return array_merge($this->shared_defaults, $this->defaults);
     }
 
     public function form($instance) {
@@ -144,27 +138,44 @@ abstract class Widget extends \WP_Widget {
         }
     }
 
-    public function title($instance) {
-        return isset($instance['title']) ? $instance['title'] : '';
-    }
+    protected function get_valid_list_value($name, $value, $list) {
+        $value = d4p_sanitize_basic($value);
 
-    public function is_visible($instance) {
-        return true;
+        if (in_array($value, $list)) {
+            return $value;
+        }
+
+        return isset($this->defaults[$name]) ? $this->defaults[$name] : $this->shared_defaults[$name];
     }
 
     protected function shared_update($new_instance, $old_instance) {
         $instance = $old_instance;
 
         $instance['title'] = d4p_sanitize_basic($new_instance['title']);
-        $instance['_class'] = d4p_sanitize_basic($new_instance['_class']);
 
+        $instance['_class'] = d4p_sanitize_basic($new_instance['_class']);
         $instance['_tab'] = d4p_sanitize_key_expanded($new_instance['_tab']);
-        $instance['_users'] = d4p_sanitize_key_expanded($new_instance['_users']);
         $instance['_hook'] = d4p_sanitize_key_expanded($new_instance['_hook']);
         $instance['_devid'] = d4p_sanitize_key_expanded($new_instance['_devid']);
 
+        $instance['_users'] = $this->get_valid_list_value('_users', $new_instance['_users'], array_keys($this->get_list_user_visibility()));
+
+        $_caps = d4p_sanitize_basic($new_instance['_caps']);
+        $_caps = explode(',', $_caps);
+        $instance['_caps'] = array_map('trim', $_caps);
+
+        $_roles = d4p_sanitize_basic($new_instance['_roles']);
+        $valid_roles = d4p_get_wordpress_user_roles();
+        $instance['_roles'] = array();
+
+        foreach ($_roles as $role) {
+            if (isset($valid_roles[$role])) {
+                $instance['_roles'][] = $role;
+            }
+        }
+
         if (isset($new_instance['_cached'])) {
-            $instance['_cached'] = intval($new_instance['_cached']);
+            $instance['_cached'] = absint($new_instance['_cached']);
         }
 
         if (current_user_can('unfiltered_html')) {
@@ -223,12 +234,6 @@ abstract class Widget extends \WP_Widget {
         echo $after_widget;
     }
 
-    public function standalone_render($instance = array()) {
-        $instance = shortcode_atts($this->defaults, $instance);
-
-        $this->render_widget($instance);
-    }
-
     protected function render_widget($instance) {
         $results = $this->get_cached_data($instance);
 
@@ -271,10 +276,6 @@ abstract class Widget extends \WP_Widget {
         return $visible;
     }
 
-    public function visibility_hook_format() {
-        return $this->widget_base.'_visible_{filter_name}';
-    }
-
     protected function render_widget_header($instance) {
         $class = array('d4p-widget-wrapper');
         $class[] = str_replace('_', '-', $this->widget_base);
@@ -298,6 +299,32 @@ abstract class Widget extends \WP_Widget {
         echo '</div>';
     }
 
+    public function get_tabkey($tab) {
+        return str_replace(array('_', ' '), array('-', '-'), $this->get_field_id('tab-'.$tab));
+    }
+
+    public function get_defaults() {
+        return array_merge($this->shared_defaults, $this->defaults);
+    }
+
+    public function title($instance) {
+        return isset($instance['title']) ? $instance['title'] : '';
+    }
+
+    public function is_visible($instance) {
+        return true;
+    }
+
+    public function standalone_render($instance = array()) {
+        $instance = shortcode_atts($this->defaults, $instance);
+
+        $this->render_widget($instance);
+    }
+
+    public function visibility_hook_format() {
+        return $this->widget_base.'_visible_{filter_name}';
+    }
+
     public function the_init($instance, $args) {
 
     }
@@ -311,4 +338,21 @@ abstract class Widget extends \WP_Widget {
     abstract public function the_render($instance, $results = false);
 
     abstract public function store_instance($instance);
+
+    public function get_list_user_visibility() {
+        return array(
+            'all' => __("Everyone", "d4plib"),
+            'users' => __("Logged in users", "d4plib"),
+            'visitors' => __("Not logged in visitors", "d4plib"),
+            'roles' => __("Users with specified roles", "d4plib"),
+            'caps' => __("Users with specified capabilities", "d4plib")
+        );
+    }
+
+    public function get_list_order() {
+        return array(
+            'DESC' => __("Descending", "d4plib"),
+            'ASC' => __("Ascending", "d4plib")
+        );
+    }
 }

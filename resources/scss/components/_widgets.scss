@@ -171,75 +171,75 @@
                 line-height: 28px;
             }
         }
-    }
 
-    .d4p-wrapper-hierarchy {
-        margin: 0;
+        .d4p-wrapper-hierarchy {
+            margin: 0;
 
-        li {
-            margin: 2px 0;
+            li {
+                margin: 2px 0;
 
+                label {
+                    font-weight: normal;
+                }
+            }
+
+            ul.children {
+                margin-left: 12px;
+            }
+        }
+
+        .d4p-content-wrapper {
+            max-height: 160px;
+            overflow: auto;
+        }
+
+        .d4p-setting-checkboxes {
             label {
                 font-weight: normal;
             }
         }
 
-        ul.children {
-            margin-left: 12px;
-        }
-    }
+        .d4p-check-uncheck {
+            font-size: .9em;
+            padding: 0 0 5px;
+            margin: 0 0 5px;
+            border-bottom: 1px dotted #cccccc;
 
-    .d4p-content-wrapper {
-        max-height: 160px;
-        overflow: auto;
-    }
+            a {
+                text-decoration: none;
 
-    .d4p-setting-checkboxes {
-        label {
-            font-weight: normal;
-        }
-    }
-
-    .d4p-check-uncheck {
-        font-size: .9em;
-        padding: 0 0 5px;
-        margin: 0 0 5px;
-        border-bottom: 1px dotted #cccccc;
-
-        a {
-            text-decoration: none;
-
-            &.d4p-check-all {
-                margin-right: 10px;
+                &.d4p-check-all {
+                    margin-right: 10px;
+                }
             }
         }
-    }
 
-    .wp-picker-container {
-        .wp-picker-input-wrap input.wp-picker-clear {
-            height: 30px;
-            line-height: 28px;
-        }
-
-        .iris-picker {
-            width: 235px !important;
-        }
-
-        .iris-border {
-            .iris-picker-inner {
-                bottom: 7px;
-                left: 7px;
-                right: 7px;
-                top: 7px;
+        .wp-picker-container {
+            .wp-picker-input-wrap input.wp-picker-clear {
+                height: 30px;
+                line-height: 28px;
             }
 
-            .iris-palette-container {
-                bottom: 7px;
-                left: 7px;
+            .iris-picker {
+                width: 235px !important;
             }
 
-            .iris-square {
-                margin-right: 10px;
+            .iris-border {
+                .iris-picker-inner {
+                    bottom: 7px;
+                    left: 7px;
+                    right: 7px;
+                    top: 7px;
+                }
+
+                .iris-palette-container {
+                    bottom: 7px;
+                    left: 7px;
+                }
+
+                .iris-square {
+                    margin-right: 10px;
+                }
             }
         }
     }

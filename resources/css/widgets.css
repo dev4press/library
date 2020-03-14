@@ -139,54 +139,54 @@
 .d4plib-widget .d4plib-widget-tabs-content .wp-color-result:after {
   line-height: 28px;
 }
-.d4plib-widget .d4p-wrapper-hierarchy {
+.d4plib-widget .d4plib-widget-tabs-content .d4p-wrapper-hierarchy {
   margin: 0;
 }
-.d4plib-widget .d4p-wrapper-hierarchy li {
+.d4plib-widget .d4plib-widget-tabs-content .d4p-wrapper-hierarchy li {
   margin: 2px 0;
 }
-.d4plib-widget .d4p-wrapper-hierarchy li label {
+.d4plib-widget .d4plib-widget-tabs-content .d4p-wrapper-hierarchy li label {
   font-weight: normal;
 }
-.d4plib-widget .d4p-wrapper-hierarchy ul.children {
+.d4plib-widget .d4plib-widget-tabs-content .d4p-wrapper-hierarchy ul.children {
   margin-left: 12px;
 }
-.d4plib-widget .d4p-content-wrapper {
+.d4plib-widget .d4plib-widget-tabs-content .d4p-content-wrapper {
   max-height: 160px;
   overflow: auto;
 }
-.d4plib-widget .d4p-setting-checkboxes label {
+.d4plib-widget .d4plib-widget-tabs-content .d4p-setting-checkboxes label {
   font-weight: normal;
 }
-.d4plib-widget .d4p-check-uncheck {
+.d4plib-widget .d4plib-widget-tabs-content .d4p-check-uncheck {
   font-size: 0.9em;
   padding: 0 0 5px;
   margin: 0 0 5px;
   border-bottom: 1px dotted #cccccc;
 }
-.d4plib-widget .d4p-check-uncheck a {
+.d4plib-widget .d4plib-widget-tabs-content .d4p-check-uncheck a {
   text-decoration: none;
 }
-.d4plib-widget .d4p-check-uncheck a.d4p-check-all {
+.d4plib-widget .d4plib-widget-tabs-content .d4p-check-uncheck a.d4p-check-all {
   margin-right: 10px;
 }
-.d4plib-widget .wp-picker-container .wp-picker-input-wrap input.wp-picker-clear {
+.d4plib-widget .d4plib-widget-tabs-content .wp-picker-container .wp-picker-input-wrap input.wp-picker-clear {
   height: 30px;
   line-height: 28px;
 }
-.d4plib-widget .wp-picker-container .iris-picker {
+.d4plib-widget .d4plib-widget-tabs-content .wp-picker-container .iris-picker {
   width: 235px !important;
 }
-.d4plib-widget .wp-picker-container .iris-border .iris-picker-inner {
+.d4plib-widget .d4plib-widget-tabs-content .wp-picker-container .iris-border .iris-picker-inner {
   bottom: 7px;
   left: 7px;
   right: 7px;
   top: 7px;
 }
-.d4plib-widget .wp-picker-container .iris-border .iris-palette-container {
+.d4plib-widget .d4plib-widget-tabs-content .wp-picker-container .iris-border .iris-palette-container {
   bottom: 7px;
   left: 7px;
 }
-.d4plib-widget .wp-picker-container .iris-border .iris-square {
+.d4plib-widget .d4plib-widget-tabs-content .wp-picker-container .iris-border .iris-square {
   margin-right: 10px;
 }

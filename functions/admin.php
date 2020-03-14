@@ -25,6 +25,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+use Dev4Press\Core\UI\Walker\CheckboxRadio;
+
 if (!defined('ABSPATH')) { exit; }
 
 if (!function_exists('d4p_split_textarea_to_list')) {
@@ -183,8 +185,8 @@ if (!function_exists('d4p_render_grouped_select')) {
     }
 }
 
-if (!function_exists('d4p_render_checkradios')) {
-    function d4p_render_checkradios($values, $args = array(), $attr = array()) {
+if (!function_exists('d4p_render_check_radios')) {
+    function d4p_render_check_radios($values, $args = array(), $attr = array()) {
         $defaults = array(
             'selected' => '', 'name' => '', 'id' => '', 'class' => '', 
             'style' => '', 'multi' => true, 'echo' => true, 'readonly' => false);
@@ -250,8 +252,8 @@ if (!function_exists('d4p_render_checkradios')) {
     }
 }
 
-if (!function_exists('d4p_render_checkradios_with_hierarchy')) {
-    function d4p_render_checkradios_with_hierarchy($values, $args = array(), $attr = array()) {
+if (!function_exists('d4p_render_check_radios_with_hierarchy')) {
+    function d4p_render_check_radios_with_hierarchy($values, $args = array(), $attr = array()) {
         $defaults = array(
             'selected' => '', 'name' => '', 'id' => '', 'class' => '', 
             'style' => '', 'multi' => true, 'echo' => true, 'readonly' => false);
@@ -297,7 +299,7 @@ if (!function_exists('d4p_render_checkradios_with_hierarchy')) {
             $render.= '</div>';
         }
 
-        $walker = new \Dev4Press\Core\UI\Walker\CheckboxRadio();
+        $walker = new CheckboxRadio();
         $input = $multi ? 'checkbox' : 'radio';
 
         $render.= '<div class="d4p-content-wrapper">';

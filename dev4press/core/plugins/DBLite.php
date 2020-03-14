@@ -35,6 +35,7 @@ abstract class DBLite {
     protected $_queries_log = array();
 
     public function __construct() { }
+
     public function init() { }
 
     /** @return DBLite */
