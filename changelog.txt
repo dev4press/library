@@ -1,7 +1,7 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.0 - 2020.03.06 =
+= Version 3.0 - 2020.03.16 =
 * New: Fully Rewritten Library
 
 = Version 2.8.3 - 2020.01.01 =
