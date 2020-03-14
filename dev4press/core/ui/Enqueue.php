@@ -131,7 +131,7 @@ final class Enqueue {
                     }
                 }
 
-                $handle = 'd4plib-'.$name;
+                $handle = 'd4plib3-'.$name;
                 $url = $this->url($obj);
                 $ver = isset($obj['ver']) ? $obj['ver'] : D4P_VERSION;
                 $footer = isset($obj['footer ']) ? $obj['footer '] : true;
