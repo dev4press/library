@@ -374,7 +374,7 @@ class IP {
         $server = 'whois.lacnic.net';
 
         if ($ip == '') {
-            $ip = d4p_visitor_ip();
+            $ip = d4p_ip_visitor();
         }
 
         $fp = @fsockopen($server, 43, $errno, $errstr, 20);

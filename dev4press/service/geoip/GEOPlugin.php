@@ -39,7 +39,7 @@ class GEOPlugin extends Locator {
         static $geoplugin_ips = array();
 
         if (empty($ips)) {
-            $ips = array(d4p_visitor_ip());
+            $ips = array(d4p_ip_visitor());
         }
 
         sort($ips);

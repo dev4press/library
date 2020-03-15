@@ -63,7 +63,7 @@ abstract class Locator {
         $_not_found = array();
 
         foreach ($this->ips as $ip) {
-            if (d4p_is_private_ip($ip)) {
+            if (d4p_ip_is_private($ip)) {
                 $this->_data[$ip] = new Location(array('status' => 'private', 'ip' => $ip));
             } else {
                 $key = $this->_key($ip);

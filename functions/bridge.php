@@ -46,20 +46,20 @@ if (!function_exists('d4p_get_objects_sort')) {
     }
 }
 
-if (!function_exists('d4p_readfile')) {
-    function d4p_readfile($file_path, $part_size_mb = 2, $return_size = true) {
+if (!function_exists('d4p_read_file')) {
+    function d4p_read_file($file_path, $part_size_mb = 2, $return_size = true) {
         return Download::instance($file_path)->read_file($part_size_mb, $return_size);
     }
 }
 
-if (!function_exists('d4p_download_simple')) {
-    function d4p_download_simple($file_path, $file_name = null, $gdr_readfile = true) {
+if (!function_exists('d4p_download_file_simple')) {
+    function d4p_download_file_simple($file_path, $file_name = null, $gdr_readfile = true) {
         Download::instance($file_path, $file_name)->simple(!$gdr_readfile);
     }
 }
 
-if (!function_exists('d4p_download_resume')) {
-    function d4p_download_resume($file_path, $file_name = null) {
+if (!function_exists('d4p_download_file_resume')) {
+    function d4p_download_file_resume($file_path, $file_name = null) {
         Download::instance($file_path, $file_name)->resume();
     }
 }

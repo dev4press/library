@@ -35,45 +35,51 @@ if (!function_exists('d4p_is_ip_in_range')) {
     }
 }
 
-if (!function_exists('d4p_is_ip6_in_range')) {
-    function d4p_is_ip6_in_range($ip, $range) {
+if (!function_exists('d4p_ip6_is_in_range')) {
+    function d4p_ip6_is_in_range($ip, $range) {
         return IP::is_ipv6_in_range($ip, $range);
     }
 }
 
-if (!function_exists('d4p_is_cloudflare_ip')) {
-    function d4p_is_cloudflare_ip($ip = null) {
+if (!function_exists('d4p_ip_is_cloudflare')) {
+    function d4p_ip_is_cloudflare($ip = null) {
         return IP::is_cloudflare_ip($ip);
     }
 }
 
-if (!function_exists('d4p_is_private_ip')) {
-    function d4p_is_private_ip($ip = null) {
+if (!function_exists('d4p_ip_is_private')) {
+    function d4p_ip_is_private($ip = null) {
         return IP::is_private_ip($ip);
     }
 }
 
-if (!function_exists('d4p_visitor_ip')) {
-    function d4p_visitor_ip($no_local_or_protected = false) {
+if (!function_exists('d4p_ip_visitor')) {
+    function d4p_ip_visitor($no_local_or_protected = false) {
         return IP::get_visitor_ip($no_local_or_protected);
     }
 }
 
-if (!function_exists('d4p_validate_ip')) {
-    function d4p_validate_ip($ip, $no_local_or_protected = false) {
+if (!function_exists('d4p_ip_validate')) {
+    function d4p_ip_validate($ip, $no_local_or_protected = false) {
         return IP::validate_ip($ip, $no_local_or_protected);
     }
 }
 
-if (!function_exists('d4p_ip_cleanup')) {
-    function d4p_ip_cleanup($ip) {
+if (!function_exists('d4p_clean_ip')) {
+    function d4p_clean_ip($ip) {
         return IP::cleanup_ip($ip);
     }
 }
 
-if (!function_exists('d4p_server_ip')) {
-    function d4p_server_ip() {
+if (!function_exists('d4p_ip_server')) {
+    function d4p_ip_server() {
         return IP::get_server_ip();
+    }
+}
+
+if (!function_exists('d4p_ip_whois')) {
+    function d4p_ip_whois($ip = '') {
+        return IP::get_ip_whois($ip);
     }
 }
 
@@ -82,12 +88,6 @@ if (!function_exists('d4p_current_url_path')) {
         $uri = $_SERVER['REQUEST_URI'];
 
         return parse_url($uri, PHP_URL_PATH);
-    }
-}
-
-if (!function_exists('d4p_get_ip_whois')) {
-    function d4p_get_ip_whois($ip = '') {
-        return IP::get_ip_whois($ip);
     }
 }
 

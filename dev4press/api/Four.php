@@ -87,7 +87,7 @@ class Four {
         $this->data['multisite'] = is_multisite() ? 'Y' : 'N';
         $this->data['bbpress'] = $this->_has_bbpress() ? 'Y' : 'N';
         $this->data['url'] = parse_url(get_bloginfo('url'), PHP_URL_HOST);
-        $this->data['ip'] = d4p_server_ip();
+        $this->data['ip'] = d4p_ip_server();
 
         if (function_exists('d4pupd_get_api_key')) {
             $this->data['api'] = d4pupd_get_api_key();
