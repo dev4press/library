@@ -159,21 +159,21 @@ class Four {
 
                 foreach ($plugins as $plugin) {
                     $render .= '<div class="dev4press-recommend-plugin" style="border-color: '.$plugin->color_dark.'; background-color: '.$plugin->color.'">';
-                    $render .= '<h6 style="background-color: '.$plugin->color_dark.';"><a target="_blank" href="'.$this->_url($plugin->url_home, $panel).'">'.$plugin->name.'</a></h6>';
+                    $render .= '<h6 style="background-color: '.$plugin->color_dark.';"><a target="_blank" rel="noopener" href="'.$this->_url($plugin->url_home, $panel).'">'.$plugin->name.'</a></h6>';
                     $render .= '<div class="dev4press-plugin-inner">';
                     $render .= '<div class="dev4press-plugin-thumb">';
-                    $render .= '<a target="_blank" href="'.$this->_url($plugin->url_home, $panel).'"><i class="d4p-icon d4p-plugin-icon-'.$plugin->code.'"></i></a>';
+                    $render .= '<a target="_blank" rel="noopener" href="'.$this->_url($plugin->url_home, $panel).'"><i class="d4p-icon d4p-plugin-icon-'.$plugin->code.'"></i></a>';
                     $render .= '</div>';
                     $render .= '<em>'.$plugin->description.'</em>';
                     $render .= '<div class="dev4press-plugin-links">';
-                    $render .= '<a target="_blank" class="button-primary dev4press-buynow" href="'.$this->_url($plugin->url_buy, $panel).'">Buy Now</a>';
+                    $render .= '<a target="_blank" rel="noopener" class="button-primary dev4press-buynow" href="'.$this->_url($plugin->url_buy, $panel).'">Buy Now</a>';
 
                     if ($plugin->url_micro != '') {
                         $render .= '<a target="_blank" class="button-secondary" href="'.$this->_url($plugin->url_micro, $panel).'">Home Page</a>';
                     }
 
                     if ($plugin->url_demo != '') {
-                        $render .= '<a target="_blank" class="button-secondary" href="'.$this->_url($plugin->url_demo, $panel).'">View Demo</a>';
+                        $render .= '<a target="_blank" rel="noopener" class="button-secondary" href="'.$this->_url($plugin->url_demo, $panel).'">View Demo</a>';
                     }
                     $render .= '</div>';
                     $render .= '</div>';

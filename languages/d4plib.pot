@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 03/14/2020 03:57:30 PM\n"
+"POT-Creation-Date: 03/15/2020 02:55:59 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,58 +116,58 @@ msgstr ""
 msgid "Loaded Template"
 msgstr ""
 
-#: dev4press/core/options/Render.php:391
+#: dev4press/core/options/Render.php:396
 msgid "Add New Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:404
+#: dev4press/core/options/Render.php:409
 msgid "Add Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:408
+#: dev4press/core/options/Render.php:413
 msgid "No images selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:418
+#: dev4press/core/options/Render.php:423
 #: dev4press/core/ui/admin/PanelTools.php:33
-#: dev4press/core/ui/Enqueue.php:214
+#: dev4press/core/ui/Enqueue.php:219
 msgid "Remove"
 msgstr ""
 
-#: dev4press/core/options/Render.php:419
-#: dev4press/core/ui/Enqueue.php:215
+#: dev4press/core/options/Render.php:424
+#: dev4press/core/ui/Enqueue.php:220
 msgid "Preview"
 msgstr ""
 
-#: dev4press/core/options/Render.php:432
-#: dev4press/core/ui/Enqueue.php:216
+#: dev4press/core/options/Render.php:437
+#: dev4press/core/ui/Enqueue.php:221
 msgid "Select Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:433
+#: dev4press/core/options/Render.php:438
 msgid "Show Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:434
+#: dev4press/core/options/Render.php:439
 msgid "Clear Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:437
-#: dev4press/core/ui/Enqueue.php:218
+#: dev4press/core/options/Render.php:442
+#: dev4press/core/ui/Enqueue.php:223
 msgid "Image not selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:459
+#: dev4press/core/options/Render.php:464
 msgid "Enabled"
 msgstr ""
 
-#: dev4press/core/options/Render.php:598
+#: dev4press/core/options/Render.php:603
 #: functions/admin.php:230
 #: functions/admin.php:295
 msgid "Check All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:599
+#: dev4press/core/options/Render.php:604
 #: functions/admin.php:231
 #: functions/admin.php:296
 msgid "Uncheck All"
@@ -212,43 +212,43 @@ msgstr ""
 msgid "Table is missing."
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:89
+#: dev4press/core/plugins/Widget.php:91
 msgid "Global"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:90
+#: dev4press/core/plugins/Widget.php:92
 msgid "Extra"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:91
+#: dev4press/core/plugins/Widget.php:93
 msgid "Advanced"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:341
+#: dev4press/core/plugins/Widget.php:343
 msgid "Everyone"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:342
+#: dev4press/core/plugins/Widget.php:344
 msgid "Logged in users"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:343
+#: dev4press/core/plugins/Widget.php:345
 msgid "Not logged in visitors"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:344
+#: dev4press/core/plugins/Widget.php:346
 msgid "Users with specified roles"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:345
+#: dev4press/core/plugins/Widget.php:347
 msgid "Users with specified capabilities"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:351
+#: dev4press/core/plugins/Widget.php:353
 msgid "Descending"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:352
+#: dev4press/core/plugins/Widget.php:354
 msgid "Ascending"
 msgstr ""
 
@@ -349,36 +349,36 @@ msgstr ""
 msgid "Remove selected plugin settings and optionally disable plugin."
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:197
+#: dev4press/core/ui/Enqueue.php:202
 msgid "OK"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:198
+#: dev4press/core/ui/Enqueue.php:203
 msgid "Cancel"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:199
+#: dev4press/core/ui/Enqueue.php:204
 msgid "Delete"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:200
+#: dev4press/core/ui/Enqueue.php:205
 msgid "Disable"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:201
+#: dev4press/core/ui/Enqueue.php:206
 msgid "Empty"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:204
-#: dev4press/core/ui/Enqueue.php:219
+#: dev4press/core/ui/Enqueue.php:209
+#: dev4press/core/ui/Enqueue.php:224
 msgid "Are you sure you want to do this?"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:205
+#: dev4press/core/ui/Enqueue.php:210
 msgid "Please Wait..."
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:217
+#: dev4press/core/ui/Enqueue.php:222
 msgid "Use Selected Image"
 msgstr ""
 
@@ -548,6 +548,10 @@ msgstr ""
 msgid "Search through settings by typing what you need to find in this field."
 msgstr ""
 
+#: forms/sidebar-settings.php:28
+msgid "Search Settings"
+msgstr ""
+
 #: forms/sidebar-settings.php:34
 msgid "Save Settings"
 msgstr ""
@@ -562,8 +566,7 @@ msgid "Show All Settings"
 msgstr ""
 
 #: forms/sidebar-settings.php:29
-#: functions/wordpress.php:92
-msgid "Clear"
+msgid "Clear Search"
 msgstr ""
 
 #: forms/widget-advanced.php:0
@@ -648,6 +651,10 @@ msgstr ""
 
 #: forms/widget-global.php:11
 msgid "Additional CSS Class"
+msgstr ""
+
+#: functions/wordpress.php:92
+msgid "Clear"
 msgstr ""
 
 #: functions/wordpress.php:93

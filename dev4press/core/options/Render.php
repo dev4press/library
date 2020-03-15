@@ -88,7 +88,7 @@ class Render {
                     $type = isset($obj['kb']['type']) ? $obj['kb']['type'] : 'article';
                     $kb = str_replace('%type%', $type, $kb);
 
-                    $kb = '<a class="d4p-kb-group" href="'.$kb.'" target="_blank">'.$obj['kb']['label'].'</a>';
+                    $kb = '<a class="d4p-kb-group" href="'.$kb.'" target="_blank" rel="noopener">'.$obj['kb']['label'].'</a>';
                 }
 
                 echo '<h3>'.$obj['name'].$kb.'</h3>';
@@ -187,8 +187,13 @@ class Render {
                 $class.= 'd4p-setting-disabled';
             }
 
-            echo '<th scope="row">'.$setting->title.'</th>';
-            echo '<td>';
+            echo '<th scope="row">';
+            if (empty($setting->name)) {
+                echo '<span>'.$setting->title.'</span>';
+            } else {
+                echo '<span id="'.$id_base.'__label">'.$setting->title.'</span>';
+            }
+            echo '</th><td>';
             echo '<div class="'.$class.'">';
 
             do_action('d4p_settings_group_top', $setting, $group);
@@ -237,7 +242,7 @@ class Render {
             $style_button = ' style="width: '.$button_width.'px;"';
         }
 
-        echo '<input type="'.$type.'" name="'.esc_attr($name).'[value]" id="'.esc_attr($id).'_value" value="'.esc_attr($value).'" class="widefat"'.$style_input.' />';
+        echo '<input aria-labelledby="'.$id.'__label" type="'.$type.'" name="'.esc_attr($name).'[value]" id="'.esc_attr($id).'_value" value="'.esc_attr($value).'" class="widefat"'.$style_input.' />';
 
         if ($button) {
             echo '<a role="button" class="button-secondary" href="#"'.$style_button.'>'.$element->args['label_buttom_remove'].'</a>';
@@ -251,15 +256,15 @@ class Render {
         $placeholder = isset($element->args['placeholder']) && !empty($element->args['placeholder']) ? ' placeholder="'.$element->args['placeholder'].'"' : '';
         $type = isset($element->args['type']) && !empty($element->args['type']) ? $element->args['type'] : $type;
 
-        echo sprintf('<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s%s type="%s" name="%s" id="%s" value="%s" class="widefat" />',
-            $id_base, $element->title, $readonly, $placeholder, $type, esc_attr($name_base), esc_attr($id_base), esc_attr($value));
+        echo sprintf('<input aria-labelledby="%s__label"%s%s type="%s" name="%s" id="%s" value="%s" class="widefat" />',
+            $id_base, $readonly, $placeholder, $type, esc_attr($name_base), esc_attr($id_base), esc_attr($value));
     }
 
     private function draw_html($element, $value, $name_base, $id_base) {
         $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
 
-        echo sprintf('<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><textarea%s name="%s" id="%s" class="widefat">%s</textarea>',
-            $id_base, $element->title, $readonly, esc_attr($name_base), esc_attr($id_base), esc_textarea($value));
+        echo sprintf('<textarea aria-labelledby="%s__label"%s name="%s" id="%s" class="widefat">%s</textarea>',
+            $id_base, $readonly, esc_attr($name_base), esc_attr($id_base), esc_textarea($value));
     }
 
     private function draw_number($element, $value, $name_base, $id_base) {
@@ -269,8 +274,8 @@ class Render {
         $max = isset($element->args['max']) ? ' max="'.esc_attr(floatval($element->args['max'])).'"' : '';
         $step = isset($element->args['step']) ? ' step="'.esc_attr(floatval($element->args['step'])).'"' : '';
 
-        echo sprintf('<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="number" name="%s" id="%s" value="%s" class="widefat"%s%s%s />',
-            $id_base, $element->title, $readonly, esc_attr($name_base), esc_attr($id_base), esc_attr($value), $min, $max, $step);
+        echo sprintf('<input aria-labelledby="%s__label"%s type="number" name="%s" id="%s" value="%s" class="widefat"%s%s%s />',
+            $id_base, $readonly, esc_attr($name_base), esc_attr($id_base), esc_attr($value), $min, $max, $step);
 
         if (isset($element->args['label_unit'])) {
             echo '<span class="d4p-field-unit">'.$element->args['label_unit'].'</span>';
@@ -307,9 +312,9 @@ class Render {
         $input = $multiple ? 'checkbox' : 'radio';
 
         echo '<div class="d4p-content-wrapper">';
-        echo '<ul class="d4p-wrapper-hierarchy">';
-        echo $walker->walk($data, 0, array('input' => $input, 'id' => $id_base, 'name' => $name_base, 'selected' => $value));
-        echo '</ul>';
+            echo '<ul class="d4p-wrapper-hierarchy">';
+                echo $walker->walk($data, 0, array('input' => $input, 'id' => $id_base, 'name' => $name_base, 'selected' => $value));
+            echo '</ul>';
         echo '</div>';
     }
 
@@ -370,7 +375,7 @@ class Render {
 
         $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
 
-        d4p_render_select($data, array('selected' => $value, 'readonly' => $readonly, 'name' => $name_base, 'id' => $id_base, 'class' => 'widefat', 'multi' => $multiple));
+        d4p_render_select($data, array('selected' => $value, 'readonly' => $readonly, 'name' => $name_base, 'id' => $id_base, 'class' => 'widefat', 'multi' => $multiple), array('aria-labelledby' => $id_base.'__label'));
     }
 
     private function draw_expandable_text($element, $value, $name_base, $id_base = '') {

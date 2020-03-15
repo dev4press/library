@@ -103,8 +103,8 @@ abstract class Plugin {
 
     public function plugin_links($links, $file) {
         if ($file == $this->plugin_name()) {
-            $links[] = '<a target="_blank" href="https://support.dev4press.com/kb/product/'.$this->plugin.'/">'.__("Knowledge Base", "d4plib").'</a>';
-            $links[] = '<a target="_blank" href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/">'.__("Support Forum", "d4plib").'</a>';
+            $links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/'.$this->plugin.'/">'.__("Knowledge Base", "d4plib").'</a>';
+            $links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/">'.__("Support Forum", "d4plib").'</a>';
         }
 
         return $links;
@@ -209,9 +209,9 @@ abstract class Plugin {
 
     public function help_tab_sidebar() {
         $links = apply_filters($this->plugin_prefix.'_admin_help_sidebar_links', array(
-            'home' => '<a target="_blank" href="https://plugins.dev4press.com/'.$this->plugin.'/">'.__("Home Page", "d4plib").'</a>',
-            'kb' => '<a target="_blank" href="https://support.dev4press.com/kb/product/'.$this->plugin.'/">'.__("Knowledge Base", "d4plib").'</a>',
-            'forum' => '<a target="_blank" href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/">'.__("Support Forum", "d4plib").'</a>'
+            'home' => '<a target="_blank" rel="noopener" href="https://plugins.dev4press.com/'.$this->plugin.'/">'.__("Home Page", "d4plib").'</a>',
+            'kb' => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/'.$this->plugin.'/">'.__("Knowledge Base", "d4plib").'</a>',
+            'forum' => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/">'.__("Support Forum", "d4plib").'</a>'
         ), $this);
 
         $this->screen()->set_help_sidebar('<p><strong>'.$this->title().'</strong></p><p>'.join('<br/>', $links).'</p>');
@@ -225,7 +225,7 @@ abstract class Plugin {
                 'id' => 'd4p-plugin-help-info',
                 'title' => __("Help & Support", "d4plib"),
                 'content' => '<h2>'.__("Help & Support", "d4plib").'</h2><p>'.sprintf(__("To get help with %s, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers).", "d4plib"), $this->title()).
-                    '</p><p><a href="https://support.dev4press.com/kb/product/'.$this->plugin.'/" class="button-primary" target="_blank">'.__("Knowledge Base", "d4plib").'</a> <a href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/" class="button-secondary" target="_blank">'.__("Support Forum", "d4plib").'</a></p>'
+                    '</p><p><a href="https://support.dev4press.com/kb/product/'.$this->plugin.'/" class="button-primary" target="_blank" rel="noopener">'.__("Knowledge Base", "d4plib").'</a> <a href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/" class="button-secondary" target="_blank">'.__("Support Forum", "d4plib").'</a></p>'
             )
         );
 
@@ -235,7 +235,7 @@ abstract class Plugin {
                 'title' => __("Found a bug?", "d4plib"),
                 'content' => '<h2>'.__("Found a bug?", "d4plib").'</h2><p>'.sprintf(__("If you find a bug in %s, you can report it in the support forum.", "d4plib"), $this->title()).
                     '</p><p>'.__("Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger.", "d4plib").
-                    '</p><p><a href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/" class="button-primary" target="_blank">'.__("Open new topic", "d4plib").'</a></p>'
+                    '</p><p><a href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/" class="button-primary" target="_blank" rel="noopener">'.__("Open new topic", "d4plib").'</a></p>'
             )
         );
 
