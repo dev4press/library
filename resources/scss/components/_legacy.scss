@@ -6,69 +6,11 @@
     margin-left: 8px;
 }
 
-.d4p-setting-checkboxes label,
-.d4p-setting-radios label {
-    display: block;
-    margin: 0 0 4px;
-}
-
-.d4p-setting-expandable_raw ol,
-.d4p-setting-expandable_text ol {
-    list-style: none;
-    margin: 0 0 .5em;
-}
-
-.d4p-setting-expandable_raw .exp-text-element a,
-.d4p-setting-expandable_text .exp-text-element a {
-    margin-left: 10px;
-    text-align: center;
-    height: 30px;
-    line-height: 28px;
-}
-
-.d4p-setting-expandable_pairs > div {
-    border: 1px solid #cccccc;
-    padding: 10px;
-    margin: 0 0 10px;
-}
-
-.d4p-setting-expandable_pairs > div a {
-    font-size: .9em;
-}
-
-.d4p-setting-expandable_pairs > div input {
-    margin: 0 0 5px;
-}
-
 .d4p-panel-buttons input.button-primary {
     font-size: 18px;
     font-weight: bold;
     height: 44px;
     width: 100%;
-}
-
-.d4p-group-important .d4p-group-inner {
-    text-align: left;
-    font-weight: bold;
-}
-
-.d4p-group-tools {
-    text-align: left;
-}
-
-.d4p-group-tools label {
-    display: block;
-    margin: 0 0 4px;
-}
-
-.d4p-setting-color .wp-color-result {
-    height: 24px;
-    padding-left: 36px;
-    margin: 0 8px 0 0;
-}
-
-.d4p-setting-color .wp-picker-container input.wp-color-picker[type="text"] {
-    height: 24px;
 }
 
 .d4plib-button-inner {
@@ -84,55 +26,4 @@
 
 .d4p-grid-hide-bulkactions .actions.bulkactions {
     display: none;
-}
-
-.d4p-section-toggle {
-    margin: 10px 0 0;
-    border: 1px solid #dddddd;
-}
-
-.d4p-section-toggle .d4p-toggle-title {
-    background-color: #dddddd;
-    padding: 5px;
-    color: #222222;
-    cursor: pointer;
-}
-
-.d4p-section-toggle .d4p-toggle-content {
-    padding: 5px;
-    overflow: auto;
-    height: 115px;
-}
-
-.d4p-section-toggle.d4p-free-height .d4p-toggle-content {
-    height: auto;
-}
-
-.d4p-section-toggle.d4p-free-height .form-table {
-    margin: 0;
-}
-
-.d4p-section-toggle.d4p-free-height .form-table > tbody > tr > * {
-    line-height: 22px;
-    width: auto;
-    padding: 2px 0;
-}
-
-.d4p-section-toggle.d4p-free-height .form-table code {
-    font-style: normal;
-}
-
-.d4p-settings-item-error th {
-    border-left: 3px solid #dd0000 !important;
-    padding: 10px !important;
-    background-color: #FFEBEB;
-}
-
-.d4p-settings-item-error td {
-    padding: 10px 10px 10px 0 !important;
-    background-color: #FFEBEB;
-}
-
-.d4p-settings-table > tbody > tr > td {
-    vertical-align: top;
 }

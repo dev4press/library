@@ -91,6 +91,9 @@
 .d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck a.d4p-check-all {
   margin-right: 10px;
 }
+.d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck a i {
+  vertical-align: -2px;
+}
 .d4p-settings-table .d4p-setting-wrapper .d4p-content-wrapper {
   border: 1px solid #ddd;
   padding: 5px 10px;
@@ -106,7 +109,7 @@
 .d4p-settings-table .d4p-setting-wrapper .d4p-content-wrapper .d4p-wrapper-hierarchy ul.children {
   margin-left: 12px;
 }
-.d4p-settings-table .d4p-setting-wrapper div.d4p-description {
+.d4p-settings-table .d4p-setting-wrapper .d4p-description {
   margin: 5px 0 0 0;
   padding: 5px 0 0 0;
   display: block;
@@ -114,6 +117,78 @@
   font-size: 13px;
   font-style: italic;
 }
+.d4p-settings-table .d4p-setting-wrapper.d4p-setting-color .wp-color-result {
+  height: 24px;
+  padding-left: 36px;
+  margin: 0 8px 0 0;
+}
+.d4p-settings-table .d4p-setting-wrapper.d4p-setting-color .wp-picker-container input.wp-color-picker[type=text] {
+  height: 24px;
+}
 .d4p-settings-table .d4p-setting-wrapper.d4p-setting-x_by_y input {
   width: 25%;
+}
+.d4p-settings-table .d4p-setting-wrapper.d4p-setting-checkboxes label, .d4p-settings-table .d4p-setting-wrapper.d4p-setting-radios label {
+  display: block;
+  margin: 0 0 4px;
+}
+.d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_raw ol, .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_text ol {
+  list-style: none;
+  margin: 0 0 0.5em;
+}
+.d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_raw .exp-text-element a, .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_text .exp-text-element a {
+  margin-left: 10px;
+  text-align: center;
+  height: 30px;
+  line-height: 28px;
+}
+.d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs > div {
+  border: 1px solid #CCC;
+  padding: 10px;
+  margin: 0 0 10px;
+}
+.d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs > div a {
+  font-size: 0.9em;
+}
+.d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs > div input {
+  margin: 0 0 5px;
+}
+.d4p-settings-table .d4p-settings-item-error th {
+  border-left: 3px solid #D00 !important;
+  padding: 10px !important;
+  background-color: #FFEBEB;
+}
+.d4p-settings-table .d4p-settings-item-error td {
+  padding: 10px 10px 10px 0 !important;
+  background-color: #FFEBEB;
+}
+
+.d4p-section-toggle {
+  margin: 10px 0 0;
+  border: 1px solid #dddddd;
+}
+.d4p-section-toggle .d4p-toggle-title {
+  background-color: #dddddd;
+  padding: 5px;
+  color: #222222;
+  cursor: pointer;
+}
+.d4p-section-toggle .d4p-toggle-content {
+  padding: 5px;
+  overflow: auto;
+  height: 115px;
+}
+.d4p-section-toggle.d4p-free-height .d4p-toggle-content {
+  height: auto;
+}
+.d4p-section-toggle.d4p-free-height .form-table {
+  margin: 0;
+}
+.d4p-section-toggle.d4p-free-height .form-table > tbody > tr > * {
+  line-height: 22px;
+  width: auto;
+  padding: 2px 0;
+}
+.d4p-section-toggle.d4p-free-height .form-table code {
+  font-style: normal;
 }

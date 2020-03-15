@@ -128,7 +128,7 @@
                     }
 
                     if (document.body.clientWidth < 640) {
-                        $(".d4p-panel-scroller").removeClass("d4p-scroll-active");
+                        $(".d4p-panel-scroller").removeClass("d4p-scroll-active").stop().css("margin-top", 0);
                     } else {
                         $(".d4p-panel-scroller").addClass("d4p-scroll-active");
                     }

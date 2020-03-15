@@ -38,8 +38,22 @@
     margin-right: 0;
     clear: none;
   }
+  .d4p-wrap .d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck {
+    font-size: 110%;
+    padding: 0 0 10px;
+    margin: 0 0 10px;
+  }
+  .d4p-wrap .d4p-settings-table .d4p-setting-wrapper input[type=number] {
+    width: 50%;
+  }
+  .d4p-wrap .d4p-panel-mark button {
+    bottom: 14px;
+  }
 }
 @media screen and (max-width: 640px) {
+  .d4p-wrap .d4p-return-to-top {
+    display: none;
+  }
   .d4p-wrap .d4p-header {
     margin: 50px 0 0;
   }
@@ -54,7 +68,9 @@
     border-left: none;
     border-top: 1px solid #777777;
   }
-
+  .d4p-wrap .d4p-settings-table .d4p-setting-wrapper input[type=number] {
+    width: 100%;
+  }
   .d4p-wrap.d4p-panel-about .nav-tab-wrapper {
     text-align: center;
     margin: 0 0 40px;
