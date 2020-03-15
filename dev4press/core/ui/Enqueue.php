@@ -138,7 +138,7 @@ final class Enqueue {
 
                 $handle = $this->prefix().$name;
                 $url = $this->url($obj);
-                $ver = isset($obj['ver']) ? $obj['ver'] : D4P_VERSION;
+                $ver = isset($obj['ver']) ? $obj['ver'] : D4P_CORE_VERSION;
                 $footer = isset($obj['footer ']) ? $obj['footer '] : true;
 
                 $this->enqueue($type, $handle, $url, $req, $ver, $footer);

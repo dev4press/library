@@ -27,9 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 if (!defined('ABSPATH')) { exit; }
 
-if (!defined('D4P_VERSION')) { 
-    define('D4P_VERSION', '3.0');
-    define('D4P_BUILD', '3000');
+if (!defined('D4P_CORE_VERSION')) {
+    define('D4P_CORE_VERSION', '3.0');
+    define('D4P_CORE_BUILD', '3000');
 }
 
 if (!defined('D4P_EOL')) {
@@ -75,65 +75,8 @@ if (!defined('D4P_SCRIPT_DEBUG')) {
     define('D4P_SCRIPT_DEBUG', defined('SCRIPT_DEBUG') && SCRIPT_DEBUG);
 }
 
-if (!defined('D4P_WP_VERSION')) {
-    global $wp_version;
-
-    define('D4P_WP_VERSION', $wp_version);
-}
-
 if (!defined('D4PLIB_CACERT_PATH')) {
     define('D4PLIB_CACERT_PATH', dirname(__FILE__).'/resources/curl/cacert.pem');
-}
-
-if (!function_exists('d4p_include')) {
-    function d4p_include($name, $directory = '', $base_path = '') {
-        $path = $base_path == '' ? dirname(__FILE__).'/' : $base_path;
-
-        if ($directory != '') {
-            $path.= $directory.'/';
-        }
-
-        $require = $path.'d4p.'.$name.'.php';
-
-        if (file_exists($require)) {
-            require_once($require);
-        } else {
-            $require = $path.$name.'.php';
-
-            if (file_exists($require)) {
-                require_once($require);
-            }
-        }
-    }
-}
-
-if (!function_exists('d4p_includes')) {
-    function d4p_includes($load = array(), $base_path = '') {
-        foreach ($load as $item) {
-            if (is_array($item)) {
-                d4p_include($item['name'], $item['directory'], $base_path);
-            } else {
-                d4p_include($item, '', $base_path);
-            }
-        }
-    }
-}
-
-if (!function_exists('d4p_prepare_object_cache')) {
-    function d4p_prepare_object_cache($base_path = '') {
-        d4p_includes(array(
-            array('name' => 'cache-object', 'directory' => 'core'),
-            array('name' => 'cache', 'directory' => 'core')
-        ), $base_path);
-
-        d4p_object_cache_init();
-    }
-}
-
-if (!function_exists('d4p_library_enqueue_ver')) {
-    function d4p_library_enqueue_ver() {
-        return D4P_VERSION.'.'.D4P_BUILD;
-    }
 }
 
 include(dirname(__FILE__).'/autoload.php');
