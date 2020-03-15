@@ -7,6 +7,7 @@ if (!defined('ABSPATH')) {
 }
 
 final class Enqueue {
+    private $_enqueue_prefix = 'd4plib3-';
     private $_debug = false;
     private $_url;
 
@@ -77,6 +78,10 @@ final class Enqueue {
         return $_d4p_lib_loader[$base_url];
     }
 
+    public function prefix() {
+        return $this->_enqueue_prefix;
+    }
+
     /** @return \Dev4Press\Core\UI\Enqueue */
     public function js($name) {
         $this->add('js', $name);
@@ -123,7 +128,7 @@ final class Enqueue {
 
                 if (isset($obj['int']) && !empty($obj['int'])) {
                     foreach ($obj['int'] as $lib) {
-                        $req[] = 'd4plib-'.$lib;
+                        $req[] = $this->prefix().$lib;
 
                         if (!$this->is_added($type, $lib)) {
                             $this->add($type, $lib);
@@ -131,7 +136,7 @@ final class Enqueue {
                     }
                 }
 
-                $handle = 'd4plib3-'.$name;
+                $handle = $this->prefix().$name;
                 $url = $this->url($obj);
                 $ver = isset($obj['ver']) ? $obj['ver'] : D4P_VERSION;
                 $footer = isset($obj['footer ']) ? $obj['footer '] : true;
@@ -176,7 +181,7 @@ final class Enqueue {
     }
 
     private function localize_admin() {
-        wp_localize_script('d4plib-admin', 'd4plib_admin_data', array(
+        wp_localize_script($this->prefix().'admin', 'd4plib_admin_data', array(
             'plugin' => array(
                 'name' => $this->_admin->plugin,
                 'prefix' => $this->_admin->plugin_prefix
@@ -210,7 +215,7 @@ final class Enqueue {
     }
 
     private function localize_media() {
-        wp_localize_script('d4plib-media', 'd4plib_media_data', array(
+        wp_localize_script($this->prefix().'media', 'd4plib_media_data', array(
             'strings' => array(
                 'image_remove' => __("Remove", "d4plib"),
                 'image_preview' => __("Preview", "d4plib"),
