@@ -17,3 +17,4 @@ Website: https://www.dev4press.com/
 
 == Optional ==
 * bbPress 2.5 or newer
+* BuddyPress 4.0 or newer
