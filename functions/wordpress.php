@@ -444,10 +444,10 @@ if (!function_exists('d4p_get_attachment_id_from_url')) {
      * https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
      */
     function d4p_get_attachment_id_from_url($url) {
-	$attachment_id = 0;
-	$dir = wp_upload_dir();
+        $attachment_id = 0;
+        $dir = wp_upload_dir();
 
-	if (false !== strpos($url, $dir['baseurl'].'/')) {
+        if (false !== strpos($url, $dir['baseurl'].'/')) {
             $file = basename($url);
             $query_args = array(
                 'post_type' => 'attachment',
@@ -477,15 +477,15 @@ if (!function_exists('d4p_get_attachment_id_from_url')) {
                     }
                 }
             }
-	}
+        }
 
-	return $attachment_id;
+        return $attachment_id;
     }
 }
 
 if (!function_exists('d4p_add_filter')) {
     function d4p_add_filter($tags, $function_to_add, $priority = 10, $accepted_args = 1) {
-	$tags = (array)$tags;
+	    $tags = (array)$tags;
 
         foreach ($tags as $tag) {
             add_filter($tag, $function_to_add, $priority, $accepted_args);
@@ -495,7 +495,7 @@ if (!function_exists('d4p_add_filter')) {
 
 if (!function_exists('d4p_add_action')) {
     function d4p_add_action($tags, $function_to_add, $priority = 10, $accepted_args = 1) {
-	$tags = (array)$tags;
+	    $tags = (array)$tags;
 
         foreach ($tags as $tag) {
             add_action($tag, $function_to_add, $priority, $accepted_args);
