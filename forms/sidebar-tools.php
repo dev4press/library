@@ -29,6 +29,8 @@ if ($_subpanels[$_subpanel]['method'] == 'post') {
             <div class="d4p-panel-buttons">
                 <?php if ($_subpanels[$_subpanel]['method'] == 'get') { ?>
                     <a type="button" href="<?php echo $_subpanels[$_subpanel]['button_url']; ?>" class="button-primary"><?php echo $_subpanels[$_subpanel]['button_label']; ?></a>
+	            <?php } else if ($_subpanels[$_subpanel]['method'] == 'ajax') { ?>
+                    <input type="button" value="<?php echo $_subpanels[$_subpanel]['button_label']; ?>" class="button-primary" />
                 <?php } else { ?>
                     <input type="submit" value="<?php echo $_subpanels[$_subpanel]['button_label']; ?>" class="button-primary" />
                 <?php } ?>
