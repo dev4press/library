@@ -204,7 +204,10 @@ final class Enqueue {
                     'cancel' => __("Cancel", "d4plib"),
                     'delete' => __("Delete", "d4plib"),
                     'disable' => __("Disable", "d4plib"),
-                    'empty' => __("Empty", "d4plib")
+                    'empty' => __("Empty", "d4plib"),
+	                'start' => __("Start", "d4plib"),
+                    'stop' => __("Stop", "d4plib"),
+                    'wait' => __("Wait", "d4plib")
                 ),
                 'messages' => array(
                     'areyousure' => __("Are you sure you want to do this?", "d4plib"),
