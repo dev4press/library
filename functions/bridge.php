@@ -34,7 +34,7 @@ use Dev4Press\WordPress\Media\ToLibrary\LocalImage;
 
 if (!function_exists('d4p_local_image_to_media_library')) {
     function d4p_local_image_to_media_library($path, $data = array(), $post_parent = 0, $args = array()) {
-        $obj = LocalImage::instance($path, $data, $args);
+        $obj = new LocalImage($path, $data, $args);
 
         return $obj->upload($post_parent);
     }
@@ -42,7 +42,7 @@ if (!function_exists('d4p_local_image_to_media_library')) {
 
 if (!function_exists('d4p_remote_image_to_media_library')) {
 	function d4p_remote_image_to_media_library($url, $data = array(), $post_parent = 0, $args = array()) {
-		$obj = RemoteImage::instance($url, $data, $args);
+		$obj = new RemoteImage($url, $data, $args);
 
 		return $obj->download($post_parent);
 	}

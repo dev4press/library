@@ -71,14 +71,4 @@ class LocalImage {
 
 		return $this->_attach($file, $post_parent);
 	}
-
-	public static function instance($path, $data = array(), $args = array()) {
-		static $_d4p_image_media = false;
-
-		if (!$_d4p_image_media) {
-			$_d4p_image_media = new LocalImage($path, $data, $args);
-		}
-
-		return $_d4p_image_media;
-	}
 }

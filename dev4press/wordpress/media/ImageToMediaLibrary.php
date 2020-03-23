@@ -27,6 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\WordPress\Media;
 
+use WP_Error;
+
 if (!defined('ABSPATH')) {
 	exit;
 }
@@ -46,6 +48,8 @@ trait ImageToMediaLibrary {
 	protected $_mimes = false;
 
 	protected function _sideload($temp) {
+		clearstatcache();
+
 		$mime_type = wp_check_filetype($this->file, $this->_mimes);
 
 		$file = array(
@@ -58,6 +62,7 @@ trait ImageToMediaLibrary {
 		);
 
 		$overrides = array(
+			'action' => 'd4p_image_sideload',
 			'test_form' => false,
 			'test_size' => true,
 			'test_upload' => true,

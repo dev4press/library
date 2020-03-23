@@ -77,14 +77,4 @@ class RemoteImage {
 
         return $this->_attach($file, $post_parent);
     }
-
-    public static function instance($url, $data = array(), $args = array()) {
-        static $_d4p_image_media = false;
-
-        if (!$_d4p_image_media) {
-            $_d4p_image_media = new RemoteImage($url, $data, $args);
-        }
-
-        return $_d4p_image_media;
-    }
 }
