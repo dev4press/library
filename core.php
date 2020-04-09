@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press Core Loader
-Version: v3.0
+Version: v3.0.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -29,7 +29,7 @@ if (!defined('ABSPATH')) { exit; }
 
 if (!defined('D4P_CORE_VERSION')) {
     define('D4P_CORE_VERSION', '3.0.1');
-    define('D4P_CORE_BUILD', '3001');
+    define('D4P_CORE_BUILD', '3002');
 }
 
 if (!defined('D4P_EOL')) {
