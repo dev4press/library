@@ -96,6 +96,13 @@ class Store {
             "punchline" => "Improve your website navigation with Breadcrumbs",
             "color" => "#0CA991",
         ),
+        "gd-forum-notices-for-bbpress" => array(
+            "code" => "gd-forum-notices-for-bbpress",
+            "name" => "GD Forum Notices for bbPress",
+            "description" => "Easy to use and highly configurable plugin for adding notices throughout the bbPress powered forums, with powerful rules editor to control each notice display and location.",
+            "punchline" => "Easily add notices to bbPress powered forums",
+            "color" => "#005273",
+        ),
         "gd-knowledge-base" => array(
             "code" => "gd-knowledge-base",
             "name" => "GD Knowledge Base",
