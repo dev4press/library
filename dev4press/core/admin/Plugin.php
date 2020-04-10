@@ -36,6 +36,7 @@ if (!defined('ABSPATH')) {
 abstract class Plugin {
     public $menu_cap = 'activate_plugins';
     public $has_widgets = false;
+    public $has_metabox = false;
 
     public $plugin = '';
     public $plugin_prefix = '';
@@ -324,7 +325,19 @@ abstract class Plugin {
         if ($this->has_widgets && $hook == 'widgets.php') {
             $this->enqueue->js('widgets')->css('widgets')->css('font');
 
+            $this->extra_enqueue_scripts_widgets();
+
             do_action($this->h('enqueue_scripts_widgets'));
+        }
+
+        if ($this->has_metabox && ($hook == 'edit.php' || $hook == 'post-new.php')) {
+            if ($this->is_metabox_available()) {
+                $this->enqueue->js('meta')->css('meta')->css('font');
+
+                $this->extra_enqueue_scripts_metabox();
+
+                do_action($this->h('enqueue_scripts_metabox'));
+            }
         }
     }
 
@@ -394,6 +407,13 @@ abstract class Plugin {
 
         $this->subpanel = $this->object->validate_subpanel($this->subpanel);
     }
+
+    protected function is_metabox_available() {
+        return true;
+    }
+
+    protected function extra_enqueue_scripts_widgets() {}
+    protected function extra_enqueue_scripts_metabox() {}
 
     public function admin_init() { }
     public function after_setup_theme() { }
