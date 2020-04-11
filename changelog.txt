@@ -1,9 +1,13 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.0.1 - 2020.04.09 =
+= Version 3.0.1 - 2020.04.21 =
+* New: WordPress content Traits
 * New: Expanded media library uploads
+* New: Flatpickr library
+* Updated: Enqueue improvements
 * Updated: Various improvements
+* Fix: Minor widgets class issues
 
 = Version 3.0 - 2020.03.16 =
 * New: Fully Rewritten Library

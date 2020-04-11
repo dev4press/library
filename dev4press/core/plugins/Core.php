@@ -126,7 +126,7 @@ abstract class Core {
         if (!empty($locale) && isset($this->js_info[$script]['locales'])) {
             $code = strtolower(substr($locale, 0, 2));
 
-            if (in_array($code, $$this->js_info[$script]['locales'])) {
+            if (in_array($code, $this->js_info[$script]['locales'])) {
                 return $code;
             }
         }

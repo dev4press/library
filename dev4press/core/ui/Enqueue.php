@@ -30,6 +30,7 @@ final class Enqueue {
             'widgets' => array('path' => 'js/', 'file' => 'widgets', 'ext' => 'js', 'min' => true),
             'wizard' => array('path' => 'js/', 'file' => 'wizard', 'ext' => 'js', 'min' => true),
             'confirmsubmit' => array('path' => 'js/', 'file' => 'confirmsubmit', 'ext' => 'js', 'min' => true),
+            'flatpickr' => array('path' => 'libraries/flatpickr/', 'file' => 'flatpickr.min', 'ver' => '4.6.3', 'ext' => 'js', 'min' => false, 'min_locale' => true, 'locales' => array('de', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'sr')),
             'clipboard' => array('path' => 'libraries/', 'file' => 'clipboard.min', 'ver' => '2.0.4', 'ext' => 'js', 'min' => false),
             'cookies' => array('path' => 'libraries/', 'file' => 'cookies.min', 'ver' => '2.2.1', 'ext' => 'js', 'min' => false),
             'alphanumeric' => array('path' => 'libraries/', 'file' => 'jquery.alphanumeric.min', 'ver' => '2017', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
@@ -56,7 +57,8 @@ final class Enqueue {
             'responsive' => array('path' => 'css/', 'file' => 'responsive', 'ext' => 'css', 'min' => true),
             'admin' => array('path' => 'css/', 'file' => 'admin', 'ext' => 'css', 'min' => true, 'int' => array('shared')),
             'wizard' => array('path' => 'css/', 'file' => 'wizard', 'ext' => 'css', 'min' => true, 'int' => array('admin')),
-            'rtl' => array('path' => 'css/', 'file' => 'rtl', 'ext' => 'css', 'min' => true)
+            'rtl' => array('path' => 'css/', 'file' => 'rtl', 'ext' => 'css', 'min' => true),
+            'flatpickr' => array('path' => 'libraries/flatpickr/', 'file' => 'flatpickr.min', 'ver' => '4.6.3', 'ext' => 'css', 'min' => false)
         )
     );
 
@@ -78,10 +80,6 @@ final class Enqueue {
         return $_d4p_lib_loader[$base_url];
     }
 
-    public function prefix() {
-        return $this->_enqueue_prefix;
-    }
-
     /** @return \Dev4Press\Core\UI\Enqueue */
     public function js($name) {
         $this->add('js', $name);
@@ -96,6 +94,15 @@ final class Enqueue {
         return $this;
     }
 
+    /** @return \Dev4Press\Core\UI\Enqueue */
+    public function flatpickr() {
+        $this->add('js', 'flatpickr');
+        $this->add('css', 'flatpickr');
+
+        return $this;
+    }
+
+    /** @return \Dev4Press\Core\UI\Enqueue */
     public function wp($includes = array()) {
         $defaults = array('dialog' => false, 'color_picker' => false, 'media' => false);
         $includes = shortcode_atts($defaults, $includes);
@@ -120,6 +127,28 @@ final class Enqueue {
         return $this;
     }
 
+    public function prefix() {
+        return $this->_enqueue_prefix;
+    }
+
+    public function locale() {
+        return apply_filters('plugin_locale', get_user_locale());
+    }
+
+    public function locale_js_code($script) {
+        $locale = $this->locale();
+
+        if (!empty($locale) && isset($this->_libraries['js'][$script]['locales'])) {
+            $code = strtolower(substr($locale, 0, 2));
+
+            if (in_array($code, $this->_libraries['js'][$script]['locales'])) {
+                return $code;
+            }
+        }
+
+        return false;
+    }
+
     private function add($type, $name) {
         if (isset($this->_libraries[$type][$name])) {
             if (!$this->is_added($type, $name)) {
@@ -137,16 +166,27 @@ final class Enqueue {
                 }
 
                 $handle = $this->prefix().$name;
-                $url = $this->url($obj);
                 $ver = isset($obj['ver']) ? $obj['ver'] : D4P_CORE_VERSION;
                 $footer = isset($obj['footer ']) ? $obj['footer '] : true;
 
-                $this->enqueue($type, $handle, $url, $req, $ver, $footer);
+                $this->enqueue($type, $handle, $this->url($obj), $req, $ver, $footer);
 
                 $this->_loaded[$type][] = $name;
 
+                if (isset($obj['locales'])) {
+                    $_locale = $this->locale_js_code($name);
+
+                    if ($_locale !== false) {
+                        $this->enqueue($type, $handle.'-'.$_locale, $this->url($obj, $_locale), array($handle), $ver, $footer);
+                    }
+                }
+
                 if ($name == 'admin') {
                     $this->localize_admin();
+                }
+
+                if ($name == 'meta') {
+                    $this->localize_meta();
                 }
 
                 if ($name == 'media') {
@@ -156,10 +196,18 @@ final class Enqueue {
         }
     }
 
-    private function url($obj) {
-        $path = trailingslashit('resources/'.$obj['path']).$obj['file'];
+    private function url($obj, $locale = null) {
+        $path = trailingslashit('resources/'.$obj['path']);
 
-        if ($obj['min'] && !$this->_debug) {
+        if (is_null($locale)) {
+            $min = $obj['min'];
+            $path.= $obj['file'];
+        } else {
+            $min = $obj['min_locale'];
+            $path.= 'l10n/'.$locale;
+        }
+
+        if ($min && !$this->_debug) {
             $path.= '.min';
         }
 
@@ -189,32 +237,14 @@ final class Enqueue {
             'page' => array(
                 'panel' => $this->_admin->panel,
                 'subpanel' => $this->_admin->subpanel
-            ),
-            'ui' => array(
-                'icons' => array(
-                    'spinner' => '<i class="d4p-icon d4p-ui-spinner d4p-icon-fw d4p-icon-spin"></i>',
-                    'ok' => '<i class="d4p-icon d4p-ui-check d4p-icon-fw" aria-hidden="true"></i> ',
-                    'cancel' => '<i class="d4p-icon d4p-ui-cancel d4p-icon-fw" aria-hidden="true"></i> ',
-                    'delete' => '<i class="d4p-icon d4p-ui-trash d4p-icon-fw" aria-hidden="true"></i> ',
-                    'disable' => '<i class="d4p-icon d4p-ui-times d4p-icon-fw" aria-hidden="true"></i> ',
-                    'empty' => '<i class="d4p-icon d4p-ui-eraser d4p-icon-fw" aria-hidden="true"></i> ',
-                ),
-                'buttons' => array(
-                    'ok' => __("OK", "d4plib"),
-                    'cancel' => __("Cancel", "d4plib"),
-                    'delete' => __("Delete", "d4plib"),
-                    'disable' => __("Disable", "d4plib"),
-                    'empty' => __("Empty", "d4plib"),
-	                'start' => __("Start", "d4plib"),
-                    'stop' => __("Stop", "d4plib"),
-                    'wait' => __("Wait", "d4plib")
-                ),
-                'messages' => array(
-                    'areyousure' => __("Are you sure you want to do this?", "d4plib"),
-                    'pleasewait' => __("Please Wait...", "d4plib")
-                )
             )
-        ));
+        ) + $this->localize_shared_args());
+    }
+
+    private function localize_meta() {
+        wp_localize_script($this->prefix().'meta', 'd4plib_meta_data',
+            $this->localize_shared_args()
+        );
     }
 
     private function localize_media() {
@@ -232,5 +262,37 @@ final class Enqueue {
                 'preview' => "<i aria-hidden='true' class='d4p-icon d4p-ui-search d4p-icon-fw'></i>"
             )
         ));
+    }
+
+    private function localize_shared_args() {
+        return array(
+            'lib' => array(
+                'flatpickr' => $this->locale_js_code('flatpickr')
+            ),
+            'ui' => array(
+                'icons' => array(
+                    'spinner' => '<i class="d4p-icon d4p-ui-spinner d4p-icon-fw d4p-icon-spin"></i>',
+                    'ok' => '<i class="d4p-icon d4p-ui-check d4p-icon-fw" aria-hidden="true"></i> ',
+                    'cancel' => '<i class="d4p-icon d4p-ui-cancel d4p-icon-fw" aria-hidden="true"></i> ',
+                    'delete' => '<i class="d4p-icon d4p-ui-trash d4p-icon-fw" aria-hidden="true"></i> ',
+                    'disable' => '<i class="d4p-icon d4p-ui-times d4p-icon-fw" aria-hidden="true"></i> ',
+                    'empty' => '<i class="d4p-icon d4p-ui-eraser d4p-icon-fw" aria-hidden="true"></i> ',
+                ),
+                'buttons' => array(
+                    'ok' => __("OK", "d4plib"),
+                    'cancel' => __("Cancel", "d4plib"),
+                    'delete' => __("Delete", "d4plib"),
+                    'disable' => __("Disable", "d4plib"),
+                    'empty' => __("Empty", "d4plib"),
+                    'start' => __("Start", "d4plib"),
+                    'stop' => __("Stop", "d4plib"),
+                    'wait' => __("Wait", "d4plib")
+                ),
+                'messages' => array(
+                    'areyousure' => __("Are you sure you want to do this?", "d4plib"),
+                    'pleasewait' => __("Please Wait...", "d4plib")
+                )
+            )
+        );
     }
 }

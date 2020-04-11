@@ -286,13 +286,13 @@ abstract class Widget extends WP_Widget {
 
         echo '<div class="'.join(' ', $class).'">'.D4P_EOL;
 
-        if ($instance['_before'] != '') {
+        if (isset($instance['_before']) && $instance['_before'] != '') {
            echo '<div class="d4p-widget-before">'.$instance['_before'].'</div>';
         }
     }
 
     protected function render_widget_footer($instance) {
-        if ($instance['_after'] != '') {
+        if (isset($instance['_after']) && $instance['_after'] != '') {
             echo '<div class="d4p-widget-after">'.$instance['_after'].'</div>';
         }
 

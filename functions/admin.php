@@ -234,6 +234,7 @@ if (!function_exists('d4p_render_check_radios')) {
             $render.= '</div>';
         }
 
+        $render.= '<div class="d4p-content-wrapper">';
         foreach ($values as $key => $title) {
             $real_value = $associative ? $key : $title;
             $sel = in_array($real_value, $selected) ? ' checked="checked"' : '';
@@ -241,6 +242,7 @@ if (!function_exists('d4p_render_check_radios')) {
             $render.= sprintf('<label><input type="%s" id="%s" value="%s" name="%s"%s class="widefat" />%s</label>', 
                     $multi ? 'checkbox' : 'radio', esc_attr($id), esc_attr($real_value), esc_attr($name), $sel, $title);
         }
+        $render.= '</div>';
 
         $render.= '</div>';
 
@@ -260,7 +262,7 @@ if (!function_exists('d4p_render_check_radios_with_hierarchy')) {
         $args = wp_parse_args($args, $defaults);
         extract($args);
 
-        $render = '<div class="d4p-setting-checkboxes">';
+        $render = '<div class="d4p-setting-checkboxes-hierarchy">';
         $attributes = array();
         $selected = (array)$selected;
         $associative = d4p_is_array_associative($values);

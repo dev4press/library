@@ -92,3 +92,29 @@ if (!function_exists('d4p_get_bbpress_mederator_roles')) {
         return $roles;
     }
 }
+
+if (!function_exists('d4p_get_bbpress_forums_list')) {
+    function d4p_get_bbpress_forums_list($args = array()) {
+        $defaults = array(
+            'post_type' => bbp_get_forum_post_type(),
+            'numberposts' => -1,
+        );
+
+        $args = wp_parse_args($args, $defaults);
+
+        $_forums = get_posts($args);
+
+        $forums = array();
+
+        foreach ($_forums as $forum) {
+            $forums[$forum->ID] = (object)array(
+                'id' => $forum->ID,
+                'url' => get_permalink($forum->ID),
+                'parent' => $forum->post_parent,
+                'title' => $forum->post_title
+            );
+        }
+
+        return $forums;
+    }
+}
