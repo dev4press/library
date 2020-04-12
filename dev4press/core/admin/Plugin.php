@@ -330,7 +330,7 @@ abstract class Plugin {
             do_action($this->h('enqueue_scripts_widgets'));
         }
 
-        if ($this->has_metabox && ($hook == 'edit.php' || $hook == 'post-new.php')) {
+        if ($this->has_metabox && ($hook == 'post.php' || $hook == 'post-new.php')) {
             if ($this->is_metabox_available()) {
                 $this->enqueue->js('meta')->css('meta')->css('font');
 

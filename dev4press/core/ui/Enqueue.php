@@ -31,6 +31,9 @@ final class Enqueue {
             'wizard' => array('path' => 'js/', 'file' => 'wizard', 'ext' => 'js', 'min' => true),
             'confirmsubmit' => array('path' => 'js/', 'file' => 'confirmsubmit', 'ext' => 'js', 'min' => true),
             'flatpickr' => array('path' => 'libraries/flatpickr/', 'file' => 'flatpickr.min', 'ver' => '4.6.3', 'ext' => 'js', 'min' => false, 'min_locale' => true, 'locales' => array('de', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'sr')),
+            'flatpickr-confirm-date' => array('path' => 'libraries/flatpickr/plugins', 'file' => 'confirm-date', 'ver' => '4.6.3', 'ext' => 'js', 'min' => true, 'int' => array('flatpickr')),
+            'flatpickr-month-select' => array('path' => 'libraries/flatpickr/plugins', 'file' => 'month-select', 'ver' => '4.6.3', 'ext' => 'js', 'min' => true, 'int' => array('flatpickr')),
+            'flatpickr-range' => array('path' => 'libraries/flatpickr/plugins', 'file' => 'range', 'ver' => '4.6.3', 'ext' => 'js', 'min' => true, 'int' => array('flatpickr')),
             'clipboard' => array('path' => 'libraries/', 'file' => 'clipboard.min', 'ver' => '2.0.4', 'ext' => 'js', 'min' => false),
             'cookies' => array('path' => 'libraries/', 'file' => 'cookies.min', 'ver' => '2.2.1', 'ext' => 'js', 'min' => false),
             'alphanumeric' => array('path' => 'libraries/', 'file' => 'jquery.alphanumeric.min', 'ver' => '2017', 'ext' => 'js', 'min' => false, 'req' => array('jquery')),
@@ -58,7 +61,9 @@ final class Enqueue {
             'admin' => array('path' => 'css/', 'file' => 'admin', 'ext' => 'css', 'min' => true, 'int' => array('shared')),
             'wizard' => array('path' => 'css/', 'file' => 'wizard', 'ext' => 'css', 'min' => true, 'int' => array('admin')),
             'rtl' => array('path' => 'css/', 'file' => 'rtl', 'ext' => 'css', 'min' => true),
-            'flatpickr' => array('path' => 'libraries/flatpickr/', 'file' => 'flatpickr.min', 'ver' => '4.6.3', 'ext' => 'css', 'min' => false)
+            'flatpickr' => array('path' => 'libraries/flatpickr/', 'file' => 'flatpickr.min', 'ver' => '4.6.3', 'ext' => 'css', 'min' => false),
+            'flatpickr-confirm-date' => array('path' => 'libraries/flatpickr/plugins', 'file' => 'confirm-date', 'ver' => '4.6.3', 'ext' => 'css', 'min' => true, 'int' => array('flatpickr')),
+            'flatpickr-month-select' => array('path' => 'libraries/flatpickr/plugins', 'file' => 'month-select', 'ver' => '4.6.3', 'ext' => 'css', 'min' => true, 'int' => array('flatpickr'))
         )
     );
 
@@ -95,9 +100,16 @@ final class Enqueue {
     }
 
     /** @return \Dev4Press\Core\UI\Enqueue */
-    public function flatpickr() {
+    public function flatpickr($plugins = array()) {
         $this->add('js', 'flatpickr');
         $this->add('css', 'flatpickr');
+
+        if (!empty($plugins)) {
+            foreach ($plugins as $plug) {
+                $this->add('js', 'flatpickr-'.$plug);
+                $this->add('css', 'flatpickr-'.$plug);
+            }
+        }
 
         return $this;
     }
