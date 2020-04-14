@@ -84,7 +84,7 @@ abstract class AJAX {
 			case 'start':
 				$this->do_start();
 
-				$this->message(__("Process is starting."));
+				$this->message(__("Process is starting.", "d4plib"));
 
 				$this->save();
 
@@ -93,21 +93,21 @@ abstract class AJAX {
 			case 'break':
 				$this->do_break();
 
-				$this->message(__("Process has been interupted by user."));
+				$this->message(__("Process has been interupted by user.", "d4plib"));
 
 				$this->delete();
 				break;
 			case 'stop':
 				$this->do_stop();
 
-				$this->message(__("Process has completed."));
+				$this->message(__("Process has completed.", "d4plib"));
 
 				$this->delete();
 				break;
 			case 'run':
 				$this->do_run();
 
-				$this->message(sprintf(__("Completed %s out of %s items."), $this->data['done'], $this->data['total']));
+				$this->message(sprintf(__("Completed %s out of %s items.", "d4plib"), $this->data['done'], $this->data['total']));
 
 				$this->save();
 

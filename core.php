@@ -29,7 +29,7 @@ if (!defined('ABSPATH')) { exit; }
 
 if (!defined('D4P_CORE_VERSION')) {
     define('D4P_CORE_VERSION', '3.0.1');
-    define('D4P_CORE_BUILD', '3002');
+    define('D4P_CORE_BUILD', '3010');
 }
 
 if (!defined('D4P_EOL')) {
