@@ -339,6 +339,12 @@ abstract class Plugin {
                 do_action($this->h('enqueue_scripts_metabox'));
             }
         }
+
+        if ($hook == 'edit.php') {
+            $this->extra_enqueue_scripts_postslist();
+
+            do_action($this->h('enqueue_scripts_postslist'));
+        }
     }
 
     public function css($name, $min = true, $req = array()) {
@@ -414,6 +420,7 @@ abstract class Plugin {
 
     protected function extra_enqueue_scripts_widgets() {}
     protected function extra_enqueue_scripts_metabox() {}
+    protected function extra_enqueue_scripts_postslist() {}
 
     public function admin_init() { }
     public function after_setup_theme() { }

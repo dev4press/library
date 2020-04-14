@@ -74,10 +74,26 @@ a {
 
 /* Rotate */
 .#{$font-prefix}-icon-rotate-90 {
-    -ms-filter:"progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
     -webkit-transform:rotate(90deg);
     -ms-transform:rotate(90deg);
     transform:rotate(90deg)
+}
+
+/* Flip */
+.#{$font-prefix}-flip-horizontal {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1)
+}
+
+.#{$font-prefix}-flip-vertical {
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1)
+}
+
+.#{$font-prefix}-flip-both,
+.#{$font-prefix}-flip-horizontal.#{$font-prefix}-flip-vertical {
+    -webkit-transform: scale(-1);
+    transform: scale(-1)
 }
 
 /* Spin */
