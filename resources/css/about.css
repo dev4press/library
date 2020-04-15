@@ -128,23 +128,49 @@
 }
 .d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._badge {
   float: left;
+}
+.d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._badge ._icon {
   width: 80px;
-  height: 100px;
+  height: 80px;
   text-align: center;
-  line-height: 100px;
+  line-height: 80px;
   color: #fff;
   border-radius: 4px;
 }
-.d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._badge a {
+.d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._badge ._icon a {
   color: #fff;
   text-decoration: none;
   border: 0;
   box-shadow: none;
   outline: none;
 }
-.d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._badge i {
+.d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._badge ._icon i {
   font-size: 60px;
   line-height: inherit;
+}
+.d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._badge ._edition {
+  margin: 4px 0 0;
+  text-align: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 22px;
+}
+.d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._badge ._edition > span {
+  display: inline-block;
+  width: 50%;
+}
+.d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._badge ._edition ._free {
+  background-color: #0061bd;
+  border-radius: 0 3px 3px 0;
+}
+.d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._badge ._edition ._pro {
+  background-color: #c52c2c;
+  border-radius: 3px 0 0 3px;
+}
+.d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._badge ._edition._single > span {
+  width: 100%;
+  border-radius: 3px;
 }
 .d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._info {
   margin-left: 100px;

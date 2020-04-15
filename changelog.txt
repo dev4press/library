@@ -7,6 +7,7 @@
 * New: Flatpickr library
 * Updated: Enqueue improvements
 * Updated: Various improvements
+* Updated: About Dev4Press page
 * Fix: Minor widgets class issues
 
 = Version 3.0 - 2020.03.16 =
