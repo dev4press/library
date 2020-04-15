@@ -51,6 +51,10 @@ abstract class GetBack {
                 $this->front_dismiss_plugin('notice_gdtox_hide');
             }
 
+            if ($this->is_single_action('dismiss-forum-notices', 'action')) {
+                $this->front_dismiss_plugin('notice_gdfon_hide');
+            }
+
             if ($this->is_single_action('dismiss-topic-polls', 'action')) {
                 $this->front_dismiss_plugin('notice_gdpol_hide');
             }

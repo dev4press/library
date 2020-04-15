@@ -48,6 +48,20 @@ if (!d4p_has_plugin('gd-power-search-for-bbpress') && d4p_panel()->a()->settings
     </div>
 
     <?php
+} else if (!d4p_has_plugin('gd-forum-notices-for-bbpress') && d4p_panel()->a()->settings()->get('notice_gdfon_hide', 'core') === false) {
+    $url = 'https://plugins.dev4press.com/gd-forum-notices-for-bbpress/';
+    $url = d4p_url_campaign_tracking($url, 'front-panel', $_utm_medium);
+
+    ?>
+
+    <div class="d4p-notice-info">
+        <?php echo sprintf(__("Please, take a few minutes to check out another Dev4Press plugin for bbPress: %s.", "d4plib"), '<strong>GD Topic Prefix Pro for bbPress</strong>'); ?>
+        <blockquote>Easy to use and highly configurable plugin for adding notices throughout the bbPress powered forums, with powerful rules editor to control each notice display and location.</blockquote>
+        <a target="_blank" rel="noopener" href="<?php echo $url; ?>" class="button-primary"><?php _e("Plugin Home Page", "d4plib"); ?></a>
+        <a href="<?php echo $_dismiss_url; ?>dismiss-forum-notices" class="button-secondary"><?php _e("Do not show this notice anymore", "d4plib"); ?></a>
+    </div>
+
+    <?php
 } else if (!d4p_has_plugin('gd-topic-polls') && d4p_panel()->a()->settings()->get('notice_gdpol_hide', 'core') === false) {
     $url = 'https://plugins.dev4press.com/gd-topic-polls/';
     $url = d4p_url_campaign_tracking($url, 'front-panel', $_utm_medium);
