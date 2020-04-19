@@ -526,14 +526,6 @@ if (!function_exists('wp_redirect_referer')) {
     }
 }
 
-if (!function_exists('wp_get_attachment_image_url')) {
-    function wp_get_attachment_image_url($attachment_id, $size = 'thumbnail', $icon = false) {
-        $image = wp_get_attachment_image_src($attachment_id, $size, $icon);
-
-        return isset($image['0']) ? $image['0'] : false;
-    }
-}
-
 if (!function_exists('d4p_is_classicpress')) {
     function d4p_is_classicpress() {
         return function_exists('classicpress_version') && 
