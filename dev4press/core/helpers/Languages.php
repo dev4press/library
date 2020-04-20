@@ -35,6 +35,8 @@ class Languages {
     static private $_current_instance = null;
 
     public $list = array(
+        'hr' => array('native' => 'Hrvatski', 'english' => 'Croatian'),
+        'ja' => array('native' => '日本語', 'english' => 'Japanese'),
         'da_DK' => array('native' => 'Dansk', 'english' => 'Danish'),
         'de_AT' => array('native' => 'Deutsch Österreich', 'english' => 'German Austria'),
         'de_DE' => array('native' => 'Deutsch', 'english' => 'German'),
