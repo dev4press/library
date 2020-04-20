@@ -108,7 +108,7 @@ abstract class GetBack {
 
             die($data);
         } else {
-            wp_redirect();
+            wp_redirect($this->a()->current_url(false));
             exit;
         }
     }
