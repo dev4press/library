@@ -287,7 +287,7 @@ abstract class Widget extends WP_Widget {
         echo '<div class="'.join(' ', $class).'">'.D4P_EOL;
 
         if (isset($instance['_before']) && $instance['_before'] != '') {
-           echo '<div class="d4p-widget-before">'.$instance['_before'].'</div>';
+            echo '<div class="d4p-widget-before">'.$instance['_before'].'</div>';
         }
     }
 
