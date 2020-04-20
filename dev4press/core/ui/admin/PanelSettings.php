@@ -14,6 +14,10 @@ class PanelSettings extends Panel {
     public function __construct($admin) {
         parent::__construct($admin);
 
+        $this->init_default_subpanels();
+    }
+
+    protected function init_default_subpanels() {
         $this->subpanels = array(
             'index' => array(
                 'title' => __("Settings Index", "d4plib"), 'icon' => 'ui-cog',

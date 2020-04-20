@@ -10,6 +10,10 @@ class PanelTools extends Panel {
     public function __construct($admin) {
         parent::__construct($admin);
 
+        $this->init_default_subpanels();
+    }
+
+    protected function init_default_subpanels() {
         $this->subpanels = array(
             'index' => array(
                 'title' => __("Tools Index", "d4plib"), 'icon' => 'ui-cog',
@@ -17,7 +21,7 @@ class PanelTools extends Panel {
                 'info' => __("This panel links all the plugin tools, and you access each starting from the right.", "d4plib")),
             'updater' => array(
                 'title' => __("Recheck and Update", "d4plib"), 'icon' => 'ui-sync',
-                'break' => __("Maintenance", "d4plib"), 'break-icon' => 'ui-chart-bar',
+                'break' => __("Maintenance", "d4plib"), 'break-icon' => 'ui-toolbox',
                 'method' => '', 'button_label' => '',
                 'info' => __("Run the update procedure and recheck plugin setup.", "d4plib")),
             'export' => array(
@@ -31,6 +35,7 @@ class PanelTools extends Panel {
                 'info' => __("Import all plugin settings from export file.", "d4plib")),
             'remove' => array(
                 'title' => __("Reset / Remove", "d4plib"), 'icon' => 'ui-times',
+                'break' => __("Plugin Reset", "d4plib"), 'break-icon' => 'ui-cancel',
                 'method' => 'post', 'button_label' => __("Remove", "d4plib"),
                 'info' => __("Remove selected plugin settings and optionally disable plugin.", "d4plib"))
         );

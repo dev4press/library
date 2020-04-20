@@ -12,6 +12,10 @@ class PanelAbout extends Panel {
     public function __construct($admin) {
         parent::__construct($admin);
 
+        $this->init_default_subpanels();
+    }
+
+    protected function init_default_subpanels() {
         $this->subpanels = array(
             'whatsnew' => array(
                 'title' => __("What&#8217;s New", "d4plib"), 'icon' => ''),
