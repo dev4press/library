@@ -8,6 +8,7 @@
 * Updated: Enqueue improvements
 * Updated: Various improvements
 * Updated: About Dev4Press page
+* Updated: Code cleanup and reformat
 * Fix: Minor admin panel issues
 * Fix: Minor widgets class issues
 

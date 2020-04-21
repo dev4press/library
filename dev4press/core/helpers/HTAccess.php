@@ -134,7 +134,8 @@ class HTAccess {
 
             $moddeddata = array();
 
-            $line_start = 0; $line_end = 0;
+            $line_start = 0;
+            $line_end = 0;
 
             for ($i = 0; $i < count($markerdata); $i++) {
                 if (!empty($markerdata[$i])) {

@@ -2,7 +2,9 @@
     <?php
 
     foreach (d4p_panel()->subpanels() as $subpanel => $obj) {
-        if ($subpanel == 'index') continue;
+        if ($subpanel == 'index') {
+            continue;
+        }
 
         $url = d4p_panel()->a()->panel_url('tools', $subpanel);
 
@@ -10,7 +12,7 @@
             echo d4p_panel()->r()->settings_break($obj['break'], $obj['break-icon']);
         }
 
-    ?>
+        ?>
 
         <div class="d4p-options-panel">
             <?php echo d4p_panel()->r()->icon($obj['icon']); ?>
@@ -20,7 +22,7 @@
             </div>
         </div>
 
-    <?php
+        <?php
 
     }
 

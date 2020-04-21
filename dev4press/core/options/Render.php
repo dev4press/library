@@ -121,7 +121,7 @@ class Render {
         $class = 'd4p-settings-section';
 
         if (!empty($section['name'])) {
-            $class.= ' d4p-section-'.$section['name'];
+            $class .= ' d4p-section-'.$section['name'];
         }
 
         echo '<div class="'.$class.'">';
@@ -153,13 +153,13 @@ class Render {
         $wrapper_class = 'd4p-settings-item-row-'.$name;
 
         if (isset($setting->args['wrapper_class']) && !empty($setting->args['wrapper_class'])) {
-            $wrapper_class.= ' '.$setting->args['wrapper_class'];
+            $wrapper_class .= ' '.$setting->args['wrapper_class'];
         }
 
         $class = 'd4p-setting-wrapper d4p-setting-'.$setting->input;
 
         if (isset($setting->args['class']) && !empty($setting->args['class'])) {
-            $class.= ' '.$setting->args['class'];
+            $class .= ' '.$setting->args['class'];
         }
 
         if ($setting->input == 'custom') {
@@ -184,7 +184,7 @@ class Render {
             echo '<tr class="'.$wrapper_class.'">';
 
             if (isset($setting->args['readonly']) && $setting->args['readonly']) {
-                $class.= 'd4p-setting-disabled';
+                $class .= 'd4p-setting-disabled';
             }
 
             echo '<th scope="row">';
@@ -312,9 +312,9 @@ class Render {
         $input = $multiple ? 'checkbox' : 'radio';
 
         echo '<div class="d4p-content-wrapper">';
-            echo '<ul class="d4p-wrapper-hierarchy">';
-                echo $walker->walk($data, 0, array('input' => $input, 'id' => $id_base, 'name' => $name_base, 'selected' => $value));
-            echo '</ul>';
+        echo '<ul class="d4p-wrapper-hierarchy">';
+        echo $walker->walk($data, 0, array('input' => $input, 'id' => $id_base, 'name' => $name_base, 'selected' => $value));
+        echo '</ul>';
         echo '</div>';
     }
 
@@ -386,9 +386,9 @@ class Render {
         $i = 1;
 
         if (array($value) && !empty($value)) {
-            foreach ( $value as $val ) {
-                $this->_text_element( $name_base . '[' . $i . ']', $id_base . '_' . $i, $i, $val, $element );
-                $i ++;
+            foreach ($value as $val) {
+                $this->_text_element($name_base.'['.$i.']', $id_base.'_'.$i, $i, $val, $element);
+                $i++;
             }
         }
 
@@ -440,7 +440,8 @@ class Render {
         echo '<a role="button" style="display: '.($value > 0 ? "inline-block" : "none").'" href="#" class="button d4plib-button-inner d4plib-image-remove"><i aria-hidden="true" class="d4p-icon d4p-ui-cancel"></i> '.__("Clear Image", "d4plib").'</a>';
 
         echo '<div class="d4plib-selected-image">';
-        $title = __("Image not selected.", "d4plib"); $url = '';
+        $title = __("Image not selected.", "d4plib");
+        $url = '';
 
         if ($value > 0) {
             $image = get_post($value);

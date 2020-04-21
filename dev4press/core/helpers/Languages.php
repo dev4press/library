@@ -56,7 +56,8 @@ class Languages {
         'sr_RS' => array('native' => 'Српски', 'english' => 'Serbian')
     );
 
-    public function __construct() { }
+    public function __construct() {
+    }
 
     public static function instance() {
         if (is_null(self::$_current_instance)) {
@@ -73,7 +74,7 @@ class Languages {
             $list[$code] = $this->list[$code] + $obj;
 
             if (!isset($list[$code]['contributors'])) {
-                $list[$code]+= array('contributors' => array());
+                $list[$code] += array('contributors' => array());
             }
         }
 

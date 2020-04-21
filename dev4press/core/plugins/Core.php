@@ -147,13 +147,13 @@ abstract class Core {
     public function file($type, $name, $min = true, $base_url = null) {
         $get = is_null($base_url) ? $this->url : $base_url;
 
-        $get.= $type.'/'.$name;
+        $get .= $type.'/'.$name;
 
         if (!$this->is_debug && $min) {
-            $get.= '.min';
+            $get .= '.min';
         }
 
-        $get.= '.'.$type;
+        $get .= '.'.$type;
 
         return $get;
     }
@@ -173,11 +173,14 @@ abstract class Core {
         return $four->ad_render($panel);
     }
 
-    public function after_setup_theme() {}
+    public function after_setup_theme() {
+    }
 
-    public function widgets_init() {}
+    public function widgets_init() {
+    }
 
-    public function enqueue_scripts() {}
+    public function enqueue_scripts() {
+    }
 
     public function system_requirements_notices() {
         $plugin = $this->s()->i()->name();
@@ -192,8 +195,8 @@ abstract class Core {
         }
 
         $render = '<div class="notice notice-error"><p>';
-        $render.= sprintf(_x("System requirements check for %s failed. This plugin requires %s. The plugin will now be disabled.", "System requirement notice", "d4plib"), '<strong>'.$plugin.'</strong>', join(', ', $versions));
-        $render.= '</p></div>';
+        $render .= sprintf(_x("System requirements check for %s failed. This plugin requires %s. The plugin will now be disabled.", "System requirement notice", "d4plib"), '<strong>'.$plugin.'</strong>', join(', ', $versions));
+        $render .= '</p></div>';
 
         echo $render;
 

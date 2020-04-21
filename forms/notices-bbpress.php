@@ -1,6 +1,8 @@
 <?php
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 $_dismiss_url = d4p_panel()->a()->current_url(false).'&'.d4p_panel()->a()->v().'=getback&action=';
 $_utm_medium = 'plugin-'.d4p_panel()->a()->plugin;

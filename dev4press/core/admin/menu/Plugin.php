@@ -17,7 +17,7 @@ abstract class Plugin extends BasePlugin {
         $page = 'admin.php?page='.$this->plugin.'-'.$this->panel;
 
         if ($with_subpanel && isset($this->subpanel) && $this->subpanel !== false && $this->subpanel != '') {
-            $page.= '&subpanel='.$this->subpanel;
+            $page .= '&subpanel='.$this->subpanel;
         }
 
         return self_admin_url($page);
@@ -27,7 +27,7 @@ abstract class Plugin extends BasePlugin {
         $page = 'admin.php?page='.$this->plugin.'-'.$panel;
 
         if (!empty($subpanel) && $subpanel != 'index') {
-            $page.= '&subpanel='.$subpanel;
+            $page .= '&subpanel='.$subpanel;
         }
 
         return self_admin_url($page);
@@ -44,7 +44,7 @@ abstract class Plugin extends BasePlugin {
             array($this, 'admin_panel'),
             $this->svg_icon());
 
-        foreach($this->menu_items as $item => $data) {
+        foreach ($this->menu_items as $item => $data) {
             $this->page_ids[] = add_submenu_page($parent,
                 $this->plugin_title.': '.$data['title'],
                 $data['title'],

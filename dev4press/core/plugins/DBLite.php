@@ -34,9 +34,11 @@ if (!defined('ABSPATH')) {
 abstract class DBLite {
     protected $_queries_log = array();
 
-    public function __construct() { }
+    public function __construct() {
+    }
 
-    public function init() { }
+    public function init() {
+    }
 
     /** @return DBLite */
     public static function instance() {
@@ -82,19 +84,19 @@ abstract class DBLite {
         $_build = 'SELECT'.($calc_found_rows ? ' SQL_CALC_FOUND_ROWS' : '').' '.join(', ', $sql['select']).' FROM '.join(' ', $sql['from']);
 
         if (!empty($sql['where'])) {
-            $_build.= ' WHERE '.join(' AND ', $sql['where']);
+            $_build .= ' WHERE '.join(' AND ', $sql['where']);
         }
 
         if (!empty($sql['group'])) {
-            $_build.= ' GROUP BY '.$sql['group'];
+            $_build .= ' GROUP BY '.$sql['group'];
         }
 
         if (!empty($sql['order'])) {
-            $_build.= ' ORDER BY '.$sql['order'];
+            $_build .= ' ORDER BY '.$sql['order'];
         }
 
         if (!empty($sql['limit'])) {
-            $_build.= ' LIMIT '.$sql['limit'];
+            $_build .= ' LIMIT '.$sql['limit'];
         }
 
         return $_build;
@@ -142,7 +144,7 @@ abstract class DBLite {
         return $_value;
     }
 
-    public function get_col($query = null , $x = 0) {
+    public function get_col($query = null, $x = 0) {
         $_value = $this->wpdb()->get_col($query, $x);
 
         $this->_copy_logged_query();
@@ -304,7 +306,7 @@ abstract class DBLite {
         $time = 0;
 
         foreach ($this->_queries_log as $q) {
-            $time+= $q[1];
+            $time += $q[1];
         }
 
         return $time;
@@ -333,8 +335,8 @@ abstract class DBLite {
         return current_time('mysql', $gmt);
     }
 
-    /** @global \wpdb $wpdb
-      * @return \wpdb */
+    /** @return \wpdb *@global \wpdb $wpdb
+     */
     public function wpdb() {
         global $wpdb;
 

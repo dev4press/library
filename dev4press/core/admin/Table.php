@@ -27,11 +27,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Admin;
 
+use WP_List_Table;
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
-abstract class Table extends \WP_List_Table {
+abstract class Table extends WP_List_Table {
     public $total = 0;
 
     public $_sanitize_orderby_fields = array();
@@ -68,11 +70,11 @@ abstract class Table extends \WP_List_Table {
         echo '</tr>';
     }
 
-    public function column_default($item, $column_name){
+    public function column_default($item, $column_name) {
         return $item->$column_name;
     }
 
-    public function column_cb($item){
+    public function column_cb($item) {
         $key = $this->_checkbox_field;
 
         return sprintf('<input type="checkbox" name="%1$s[]" value="%2$s" />', $this->_args['singular'], $item->$key);

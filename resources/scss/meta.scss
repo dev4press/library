@@ -50,9 +50,15 @@
     .d4p-setting-checkboxes-hierarchy {
         .d4p-wrapper-hierarchy {
             margin: 0;
+            max-height: 200px;
+            overflow: auto;
 
             li {
                 margin: 0;
+            }
+
+            ul.children {
+                margin-left: 12px;
             }
         }
     }

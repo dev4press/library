@@ -57,9 +57,9 @@ if (!function_exists('is_posts_page')) {
 
 if (!function_exists('is_any_tax')) {
     function is_any_tax() {
-        return is_tag() || 
-               is_tax() || 
-               is_category();
+        return is_tag() ||
+            is_tax() ||
+            is_category();
     }
 }
 
@@ -163,7 +163,7 @@ if (!function_exists('d4p_get_post_excerpt')) {
         if (count($words) > $word_limit) {
             array_pop($words);
             $content = implode(' ', $words);
-            $content.= '...';
+            $content .= '...';
         }
 
         return $content;
@@ -179,7 +179,7 @@ if (!function_exists('d4p_get_post_content')) {
         }
 
         $content = apply_filters('the_content', $content);
-	    $content = str_replace(']]>', ']]&gt;', $content);
+        $content = str_replace(']]>', ']]&gt;', $content);
 
         return $content;
     }
@@ -250,12 +250,12 @@ if (!function_exists('d4p_next_scheduled')) {
             $crons = _get_cron_array();
 
             if (empty($crons)) {
-		return false;
+                return false;
             }
 
             $t = -1;
             foreach ($crons as $timestamp => $cron) {
-		if (isset($cron[$hook])) {
+                if (isset($cron[$hook])) {
                     if ($t == -1 || $timestamp < $t) {
                         $t = $timestamp;
                     }
@@ -355,7 +355,7 @@ if (!function_exists('d4p_permalinks_enabled')) {
 
 if (!function_exists('d4p_json_encode')) {
     function d4p_json_encode($data, $options = 0, $depth = 512) {
-        if (function_exists('wp_json_encode') ) {
+        if (function_exists('wp_json_encode')) {
             return wp_json_encode($data, $options, $depth);
         } else {
             return json_encode($data, $options, $depth);
@@ -397,7 +397,7 @@ if (!function_exists('d4p_is_plugin_active_for_network')) {
             return false;
         }
 
-        $plugins = get_site_option( 'active_sitewide_plugins');
+        $plugins = get_site_option('active_sitewide_plugins');
 
         return isset($plugins[$plugin]);
     }
@@ -485,7 +485,7 @@ if (!function_exists('d4p_get_attachment_id_from_url')) {
 
 if (!function_exists('d4p_add_filter')) {
     function d4p_add_filter($tags, $function_to_add, $priority = 10, $accepted_args = 1) {
-	    $tags = (array)$tags;
+        $tags = (array)$tags;
 
         foreach ($tags as $tag) {
             add_filter($tag, $function_to_add, $priority, $accepted_args);
@@ -495,7 +495,7 @@ if (!function_exists('d4p_add_filter')) {
 
 if (!function_exists('d4p_add_action')) {
     function d4p_add_action($tags, $function_to_add, $priority = 10, $accepted_args = 1) {
-	    $tags = (array)$tags;
+        $tags = (array)$tags;
 
         foreach ($tags as $tag) {
             add_action($tag, $function_to_add, $priority, $accepted_args);
@@ -528,8 +528,8 @@ if (!function_exists('wp_redirect_referer')) {
 
 if (!function_exists('d4p_is_classicpress')) {
     function d4p_is_classicpress() {
-        return function_exists('classicpress_version') && 
-               function_exists('classicpress_version_short');
+        return function_exists('classicpress_version') &&
+            function_exists('classicpress_version_short');
     }
 }
 

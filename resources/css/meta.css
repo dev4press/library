@@ -40,9 +40,14 @@
 }
 .d4plib-metabox-wrapper .d4p-setting-checkboxes-hierarchy .d4p-wrapper-hierarchy {
   margin: 0;
+  max-height: 200px;
+  overflow: auto;
 }
 .d4plib-metabox-wrapper .d4p-setting-checkboxes-hierarchy .d4p-wrapper-hierarchy li {
   margin: 0;
+}
+.d4plib-metabox-wrapper .d4p-setting-checkboxes-hierarchy .d4p-wrapper-hierarchy ul.children {
+  margin-left: 12px;
 }
 .d4plib-metabox-wrapper .d4p-setting-checkboxes .d4p-content-wrapper label {
   display: block;

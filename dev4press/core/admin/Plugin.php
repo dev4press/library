@@ -175,13 +175,13 @@ abstract class Plugin {
     public function file($type, $name, $min = true, $base_url = null) {
         $get = is_null($base_url) ? $this->url : $base_url;
 
-        $get.= $type.'/'.$name;
+        $get .= $type.'/'.$name;
 
         if (!$this->is_debug && $min) {
-            $get.= '.min';
+            $get .= '.min';
         }
 
-        $get.= '.'.$type;
+        $get .= '.'.$type;
 
         return $get;
     }
@@ -351,10 +351,10 @@ abstract class Plugin {
         $url = trailingslashit($this->url).'css/'.$name;
 
         if (!$this->is_debug && $min) {
-            $url.= '.min';
+            $url .= '.min';
         }
 
-        $url.= '.css';
+        $url .= '.css';
 
         wp_enqueue_style($this->plugin_prefix.'-'.$name, $url, $req, $this->settings()->file_version());
     }
@@ -363,10 +363,10 @@ abstract class Plugin {
         $url = trailingslashit($this->url).'js/'.$name;
 
         if (!$this->is_debug && $min) {
-            $url.= '.min';
+            $url .= '.min';
         }
 
-        $url.= '.js';
+        $url .= '.js';
 
         wp_enqueue_script($this->plugin_prefix.'-'.$name, $url, $req, $this->settings()->file_version(), $in_footer);
     }
@@ -418,22 +418,35 @@ abstract class Plugin {
         return true;
     }
 
-    protected function extra_enqueue_scripts_widgets() {}
-    protected function extra_enqueue_scripts_metabox() {}
-    protected function extra_enqueue_scripts_postslist() {}
+    protected function extra_enqueue_scripts_widgets() {
+    }
 
-    public function admin_init() { }
-    public function after_setup_theme() { }
+    protected function extra_enqueue_scripts_metabox() {
+    }
+
+    protected function extra_enqueue_scripts_postslist() {
+    }
+
+    public function admin_init() {
+    }
+
+    public function after_setup_theme() {
+    }
 
     abstract public function main_url();
+
     abstract public function current_url($with_subpanel = true);
+
     abstract public function panel_url($panel = 'dashboard', $subpanel = '');
 
     abstract public function admin_menu();
+
     abstract public function current_screen($screen);
 
     abstract public function consturctor();
+
     abstract public function run_getback();
+
     abstract public function run_postback();
 
     /** @return \Dev4Press\Core\Plugins\Settings */

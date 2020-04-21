@@ -9,7 +9,9 @@
     $options = $class::instance();
 
     foreach (d4p_panel()->subpanels() as $subpanel => $obj) {
-        if ($subpanel == 'index' || $subpanel == 'full') continue;
+        if ($subpanel == 'index' || $subpanel == 'full') {
+            continue;
+        }
 
         if (isset($obj['break'])) {
             echo d4p_panel()->r()->settings_break($obj['break'], $obj['break-icon']);

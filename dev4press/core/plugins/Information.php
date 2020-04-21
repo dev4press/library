@@ -67,7 +67,8 @@ abstract class Information {
 
     public $translations = array();
 
-    function __construct() {}
+    function __construct() {
+    }
 
     public function to_array() {
         return (array)$this;
@@ -147,16 +148,16 @@ abstract class Information {
         if ($this->status != 'stable') {
             switch ($this->status) {
                 case 'beta':
-                    $version.= ' '.__("Beta", "d4plib");
+                    $version .= ' '.__("Beta", "d4plib");
                     break;
                 case 'alpha':
-                    $version.= ' '.__("Alpha", "d4plib");
+                    $version .= ' '.__("Alpha", "d4plib");
                     break;
                 case 'rc':
-                    $version.= ' '.__("RC", "d4plib");
+                    $version .= ' '.__("RC", "d4plib");
                     break;
                 case 'nightly':
-                    $version.= ' '.__("Nightly", "d4plib");
+                    $version .= ' '.__("Nightly", "d4plib");
                     break;
             }
         }

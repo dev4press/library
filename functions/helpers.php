@@ -25,17 +25,19 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 if (!function_exists('is_odd')) {
     function is_odd($number) {
-        return $number&1;
+        return $number & 1;
     }
 }
 
 if (!function_exists('is_divisible')) {
     function is_divisible($number, $by_number) {
-        return $number%$by_number == 0;
+        return $number % $by_number == 0;
     }
 }
 
@@ -82,16 +84,17 @@ if (!function_exists('d4p_scan_dir')) {
 
                 if (empty($extensions) || in_array($ext, $extensions)) {
                     if (substr($file, 0, 1) != '.') {
-                        if ((is_dir($path.$file) && (in_array($filter, array('folders', 'all')))) ||
+                        if (
+                            (is_dir($path.$file) && (in_array($filter, array('folders', 'all')))) ||
                             (is_file($path.$file) && (in_array($filter, array('files', 'all')))) ||
                             ((is_file($path.$file) || is_dir($path.$file)) && (in_array($filter, array('all'))))) {
-                                $add = $full_path ? $path : '';
+                            $add = $full_path ? $path : '';
 
-                                if ($reg_expr == '') {
-                                    $final[] = $add.$file;
-                                } else if (preg_match($reg_expr, $file)) {
-                                    $final[] = $add.$file;
-                                }
+                            if ($reg_expr == '') {
+                                $final[] = $add.$file;
+                            } else if (preg_match($reg_expr, $file)) {
+                                $final[] = $add.$file;
+                            }
                         }
                     }
                 }
@@ -137,7 +140,7 @@ if (!function_exists('d4p_text_length_limit')) {
 
         if (!empty($length) && ($text_length > $length)) {
             $text = substr($text, 0, $length - 1);
-            $text.= $append;
+            $text .= $append;
         }
 
         return $text;
@@ -179,7 +182,7 @@ if (!function_exists('d4p_extract_images_urls')) {
             foreach ($matches[1] as $image) {
                 $match = array();
 
-                if (preg_match( '/src=(["\'])(.*?)\1/', $image, $match)) {
+                if (preg_match('/src=(["\'])(.*?)\1/', $image, $match)) {
                     $images[] = $match[2];
                 }
             }
@@ -204,7 +207,7 @@ if (!function_exists('d4p_gzip_uncompressed_size')) {
         $buf = fread($fp, 4);
         $elm = unpack("V", $buf);
 
-        return end($elm); 
+        return end($elm);
     }
 }
 
@@ -234,9 +237,9 @@ if (!function_exists('d4p_slug_to_name')) {
 
 if (!function_exists('d4p_has_gravatar')) {
     function d4p_has_gravatar($email) {
-	    $hash = md5(strtolower(trim($email)));
+        $hash = md5(strtolower(trim($email)));
 
-	    $url = 'https://www.gravatar.com/avatar/'.$hash.'?d=404';
+        $url = 'https://www.gravatar.com/avatar/'.$hash.'?d=404';
         $headers = get_headers($url);
 
         return preg_match("/200/", $headers[0]) == 1;
@@ -244,7 +247,7 @@ if (!function_exists('d4p_has_gravatar')) {
 }
 
 if (!function_exists('d4p_is_valid_md5')) {
-    function d4p_is_valid_md5($hash ='') {
+    function d4p_is_valid_md5($hash = '') {
         return strlen($hash) == 32 && ctype_xdigit($hash);
     }
 }
@@ -261,7 +264,7 @@ if (!function_exists('d4p_php_ini_size_value')) {
         $last = strtoupper($ini[strlen($ini) - 1]);
         $ini = absint(substr($ini, 0, strlen($ini) - 1));
 
-        switch($last) {
+        switch ($last) {
             case 'G':
                 $ini = $ini * GB_IN_BYTES;
                 break;

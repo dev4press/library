@@ -27,7 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 use Dev4Press\Core\Helpers\IP;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 if (!function_exists('d4p_is_ip_in_range')) {
     function d4p_is_ip_in_range($ip, $range) {
@@ -111,7 +113,7 @@ if (!function_exists('d4p_current_url_request')) {
         $url_request = $req_uri;
 
         if ($req_query !== false) {
-            $url_request.= '?'.$req_query;
+            $url_request .= '?'.$req_query;
         }
 
         return $url_request;

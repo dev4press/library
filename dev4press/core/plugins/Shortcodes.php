@@ -64,8 +64,8 @@ abstract class Shortcodes {
         }
 
         $wrapper = '<'.$tag.' class="'.join(' ', $classes).'">';
-        $wrapper.= $content;
-        $wrapper.= '</'.$tag.'>';
+        $wrapper .= $content;
+        $wrapper .= '</'.$tag.'>';
 
         return $wrapper;
     }
@@ -120,34 +120,34 @@ abstract class Shortcodes {
             $tagregexp = join('|', $list);
         }
 
-        return    '\\['
-                . '(\\[?)'
-                . "($tagregexp)"
-                . '(?![\\w-])'
-                . '('
-                .     '[^\\]\\/]*'
-                .     '(?:'
-                .         '\\/(?!\\])'
-                .         '[^\\]\\/]*'
-                .     ')*?'
-                . ')'
-                . '(?:'
-                .     '(\\/)'
-                .     '\\]'
-                . '|'
-                .     '\\]'
-                .     '(?:'
-                .         '('
-                .             '[^\\[]*+'
-                .             '(?:'
-                .                 '\\[(?!\\/\\2\\])'
-                .                 '[^\\[]*+'
-                .             ')*+'
-                .         ')'
-                .         '\\[\\/\\2\\]'
-                .     ')?'
-                . ')'
-                . '(\\]?)';
+        return '\\['
+            .'(\\[?)'
+            ."($tagregexp)"
+            .'(?![\\w-])'
+            .'('
+            .'[^\\]\\/]*'
+            .'(?:'
+            .'\\/(?!\\])'
+            .'[^\\]\\/]*'
+            .')*?'
+            .')'
+            .'(?:'
+            .'(\\/)'
+            .'\\]'
+            .'|'
+            .'\\]'
+            .'(?:'
+            .'('
+            .'[^\\[]*+'
+            .'(?:'
+            .'\\[(?!\\/\\2\\])'
+            .'[^\\[]*+'
+            .')*+'
+            .')'
+            .'\\[\\/\\2\\]'
+            .')?'
+            .')'
+            .'(\\]?)';
 
     }
 
@@ -169,10 +169,10 @@ abstract class Shortcodes {
 
     public function shortcake_preview($atts, $shortcode) {
         $render = '<div style="line-height: 1.3; border: 2px dashed #444444; margin: 5px; padding: 10px;">';
-        $render.= '<div style="color: #666666; font-size: 11px; text-transform: uppercase;">'.$this->shortcake_title.'</div>';
-        $render.= '<div style="color: #333333; font-size: 14px; font-weight: bold;">'.$this->shortcodes[$shortcode]['name'].'</div>';
-        $render.= '<div style="color: #333333; font-size: 12px; font-family: monospace; margin: 5px 0 0 5px;">'.$this->shortcake_full.'</div>';
-        $render.= '</div>';
+        $render .= '<div style="color: #666666; font-size: 11px; text-transform: uppercase;">'.$this->shortcake_title.'</div>';
+        $render .= '<div style="color: #333333; font-size: 14px; font-weight: bold;">'.$this->shortcodes[$shortcode]['name'].'</div>';
+        $render .= '<div style="color: #333333; font-size: 12px; font-family: monospace; margin: 5px 0 0 5px;">'.$this->shortcake_full.'</div>';
+        $render .= '</div>';
 
         return $render;
     }

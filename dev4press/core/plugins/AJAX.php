@@ -28,20 +28,20 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace Dev4Press\Core\Plugins;
 
 abstract class AJAX {
-	public function __construct() {
+    public function __construct() {
 
-	}
+    }
 
-	/** @return AJAX */
-	public static function instance() {
-		static $instance = array();
+    /** @return AJAX */
+    public static function instance() {
+        static $instance = array();
 
-		$class = get_called_class();
+        $class = get_called_class();
 
-		if (!isset($instance[$class])) {
-			$instance[$class] = new $class();
-		}
+        if (!isset($instance[$class])) {
+            $instance[$class] = new $class();
+        }
 
-		return $instance[$class];
-	}
+        return $instance[$class];
+    }
 }

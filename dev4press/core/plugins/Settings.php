@@ -303,7 +303,8 @@ abstract class Settings {
         return 'v'.$this->info_version.'_b'.$this->info_build;
     }
 
-    protected function _db() { }
+    protected function _db() {
+    }
 
     protected function _name($name) {
         return 'd4p_'.$this->scope.'_'.$this->info->code.'_'.$name;

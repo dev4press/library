@@ -7,7 +7,8 @@ if (!defined('ABSPATH')) {
 }
 
 class Render {
-    public function __construct() { }
+    public function __construct() {
+    }
 
     /** @return Render */
     public static function instance() {
@@ -37,12 +38,12 @@ class Render {
             $modifiers = (array)$modifiers;
 
             foreach ($modifiers as $key) {
-                $class.= ' '.'d4p-icon'.'-'.$key;
+                $class .= ' '.'d4p-icon'.'-'.$key;
             }
         }
 
         if (!empty($extra_class)) {
-            $class.= ' '.$extra_class;
+            $class .= ' '.$extra_class;
         }
 
         return $class;
@@ -61,20 +62,20 @@ class Render {
 
     public function settings_break($label, $icon = '') {
         $break = $this->div_break();
-        $break.= '<div class="d4p-panel-break d4p-clearfix">';
-        $break.= '<h1 id="settings-break-'.sanitize_key($label).'">'.$this->icon($icon).$label.'</h1>';
-        $break.= '</div>';
-        $break.= $this->div_break();
+        $break .= '<div class="d4p-panel-break d4p-clearfix">';
+        $break .= '<h1 id="settings-break-'.sanitize_key($label).'">'.$this->icon($icon).$label.'</h1>';
+        $break .= '</div>';
+        $break .= $this->div_break();
 
         return $break;
     }
 
     public function settings_group_break($label, $icon = '') {
         $break = $this->div_break();
-        $break.= '<div class="d4p-panel-group-break d4p-clearfix">';
-        $break.= '<h2 id="settings-group-break-'.sanitize_key($label).'">'.$this->icon($icon).$label.'</h2>';
-        $break.= '</div>';
-        $break.= $this->div_break();
+        $break .= '<div class="d4p-panel-group-break d4p-clearfix">';
+        $break .= '<h2 id="settings-group-break-'.sanitize_key($label).'">'.$this->icon($icon).$label.'</h2>';
+        $break .= '</div>';
+        $break .= $this->div_break();
 
         return $break;
     }

@@ -41,11 +41,11 @@ class Divider extends Control {
         <hr/>
         <?php if (!empty($this->label)) : ?>
             <label for="_customize-input-<?php echo esc_attr($this->id); ?>"
-                   class="customize-control-title"><?php echo esc_html($this->label); ?></label>
+                    class="customize-control-title"><?php echo esc_html($this->label); ?></label>
         <?php endif;
         if (!empty($this->description)) : ?>
             <span id="_customize-description-<?php echo esc_attr($this->id); ?>"
-                  class="description customize-control-description"><?php echo $this->description; ?></span>
+                    class="description customize-control-description"><?php echo $this->description; ?></span>
         <?php endif;
     }
 }

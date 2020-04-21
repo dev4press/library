@@ -27,7 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 use Dev4Press\Core\UI\Admin\Panel;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 if (!function_exists('d4p_panel')) {
     /** @return \Dev4Press\Core\UI\Admin\Panel */

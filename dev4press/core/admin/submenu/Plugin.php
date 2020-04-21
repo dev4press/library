@@ -19,11 +19,11 @@ abstract class Plugin extends BasePlugin {
         $url = $this->main_url();
 
         if ($this->panel !== false && $this->panel != '') {
-            $url.= '&panel='.$this->panel;
+            $url .= '&panel='.$this->panel;
         }
 
         if ($with_subpanel && isset($this->subpanel) && $this->subpanel !== false && $this->subpanel != '') {
-            $url.= '&subpanel='.$this->subpanel;
+            $url .= '&subpanel='.$this->subpanel;
         }
 
         return $url;
@@ -32,10 +32,10 @@ abstract class Plugin extends BasePlugin {
     public function panel_url($panel = 'dashboard', $subpanel = '') {
         $url = $this->main_url();
 
-        $url.= '&panel='.$panel;
+        $url .= '&panel='.$panel;
 
         if (!empty($subpanel) && $subpanel != 'index') {
-            $url.= '&subpanel='.$subpanel;
+            $url .= '&subpanel='.$subpanel;
         }
 
         return $url;

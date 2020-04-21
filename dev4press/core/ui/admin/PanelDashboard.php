@@ -26,7 +26,7 @@ class PanelDashboard extends Panel {
         }
 
         if (isset($this->a()->menu_items['tools'])) {
-            $this->sidebar_links['basic']['tools'] =  array(
+            $this->sidebar_links['basic']['tools'] = array(
                 'icon' => $this->a()->menu_items['tools']['icon'],
                 'class' => 'button-secondary',
                 'url' => $this->a()->panel_url('tools'),

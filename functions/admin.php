@@ -27,7 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 use Dev4Press\Core\UI\Walker\CheckboxRadio;
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 if (!function_exists('d4p_split_textarea_to_list')) {
     function d4p_split_textarea_to_list($value, $empty_lines = false) {
@@ -65,7 +67,7 @@ if (!function_exists('d4p_html_id_from_name')) {
 if (!function_exists('d4p_render_select')) {
     function d4p_render_select($values, $args = array(), $attr = array()) {
         $defaults = array(
-            'selected' => '', 'name' => '', 'id' => '', 'class' => '', 
+            'selected' => '', 'name' => '', 'id' => '', 'class' => '',
             'style' => '', 'multi' => false, 'echo' => true, 'readonly' => false);
         $args = wp_parse_args($args, $defaults);
         extract($args);
@@ -106,14 +108,14 @@ if (!function_exists('d4p_render_select')) {
             $attributes[] = 'name="'.esc_attr($name).'"';
         }
 
-        $render.= '<select '.join(' ', $attributes).'>';
+        $render .= '<select '.join(' ', $attributes).'>';
         foreach ($values as $value => $display) {
             $real_value = $associative ? $display : $value;
 
             $sel = in_array($real_value, $selected) ? ' selected="selected"' : '';
-            $render.= '<option value="'.esc_attr($value).'"'.$sel.'>'.$display.'</option>';
+            $render .= '<option value="'.esc_attr($value).'"'.$sel.'>'.$display.'</option>';
         }
-        $render.= '</select>';
+        $render .= '</select>';
 
         if ($echo) {
             echo $render;
@@ -126,7 +128,7 @@ if (!function_exists('d4p_render_select')) {
 if (!function_exists('d4p_render_grouped_select')) {
     function d4p_render_grouped_select($values, $args = array(), $attr = array()) {
         $defaults = array(
-            'selected' => '', 'name' => '', 'id' => '', 'class' => '', 
+            'selected' => '', 'name' => '', 'id' => '', 'class' => '',
             'style' => '', 'multi' => false, 'echo' => true, 'readonly' => false);
         $args = wp_parse_args($args, $defaults);
         extract($args);
@@ -166,16 +168,16 @@ if (!function_exists('d4p_render_grouped_select')) {
             $attributes[] = 'name="'.esc_attr($name).'"';
         }
 
-        $render.= '<select '.join(' ', $attributes).'>';
+        $render .= '<select '.join(' ', $attributes).'>';
         foreach ($values as $group) {
-            $render.= '<optgroup label="'.$group['title'].'">';
+            $render .= '<optgroup label="'.$group['title'].'">';
             foreach ($group['values'] as $value => $display) {
                 $sel = in_array($value, $selected) ? ' selected="selected"' : '';
-                $render.= '<option value="'.esc_attr($value).'"'.$sel.'>'.$display.'</option>';
+                $render .= '<option value="'.esc_attr($value).'"'.$sel.'>'.$display.'</option>';
             }
-            $render.= '</optgroup>';
+            $render .= '</optgroup>';
         }
-        $render.= '</select>';
+        $render .= '</select>';
 
         if ($echo) {
             echo $render;
@@ -188,7 +190,7 @@ if (!function_exists('d4p_render_grouped_select')) {
 if (!function_exists('d4p_render_check_radios')) {
     function d4p_render_check_radios($values, $args = array(), $attr = array()) {
         $defaults = array(
-            'selected' => '', 'name' => '', 'id' => '', 'class' => '', 
+            'selected' => '', 'name' => '', 'id' => '', 'class' => '',
             'style' => '', 'multi' => true, 'echo' => true, 'readonly' => false);
         $args = wp_parse_args($args, $defaults);
         extract($args);
@@ -226,25 +228,25 @@ if (!function_exists('d4p_render_check_radios')) {
         }
 
         if ($multi) {
-            $render.= '<div class="d4p-check-uncheck">';
+            $render .= '<div class="d4p-check-uncheck">';
 
-            $render.= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> '.__("Check All", "d4plib").'</a>';
-            $render.= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> '.__("Uncheck All", "d4plib").'</a>';
+            $render .= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> '.__("Check All", "d4plib").'</a>';
+            $render .= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> '.__("Uncheck All", "d4plib").'</a>';
 
-            $render.= '</div>';
+            $render .= '</div>';
         }
 
-        $render.= '<div class="d4p-content-wrapper">';
+        $render .= '<div class="d4p-content-wrapper">';
         foreach ($values as $key => $title) {
             $real_value = $associative ? $key : $title;
             $sel = in_array($real_value, $selected) ? ' checked="checked"' : '';
 
-            $render.= sprintf('<label><input type="%s" id="%s" value="%s" name="%s"%s class="widefat" />%s</label>', 
-                    $multi ? 'checkbox' : 'radio', esc_attr($id), esc_attr($real_value), esc_attr($name), $sel, $title);
+            $render .= sprintf('<label><input type="%s" id="%s" value="%s" name="%s"%s class="widefat" />%s</label>',
+                $multi ? 'checkbox' : 'radio', esc_attr($id), esc_attr($real_value), esc_attr($name), $sel, $title);
         }
-        $render.= '</div>';
+        $render .= '</div>';
 
-        $render.= '</div>';
+        $render .= '</div>';
 
         if ($echo) {
             echo $render;
@@ -257,7 +259,7 @@ if (!function_exists('d4p_render_check_radios')) {
 if (!function_exists('d4p_render_check_radios_with_hierarchy')) {
     function d4p_render_check_radios_with_hierarchy($values, $args = array(), $attr = array()) {
         $defaults = array(
-            'selected' => '', 'name' => '', 'id' => '', 'class' => '', 
+            'selected' => '', 'name' => '', 'id' => '', 'class' => '',
             'style' => '', 'multi' => true, 'echo' => true, 'readonly' => false);
         $args = wp_parse_args($args, $defaults);
         extract($args);
@@ -293,24 +295,24 @@ if (!function_exists('d4p_render_check_radios_with_hierarchy')) {
         }
 
         if ($multi) {
-            $render.= '<div class="d4p-check-uncheck">';
+            $render .= '<div class="d4p-check-uncheck">';
 
-            $render.= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> '.__("Check All", "d4plib").'</a>';
-            $render.= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> '.__("Uncheck All", "d4plib").'</a>';
+            $render .= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> '.__("Check All", "d4plib").'</a>';
+            $render .= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> '.__("Uncheck All", "d4plib").'</a>';
 
-            $render.= '</div>';
+            $render .= '</div>';
         }
 
         $walker = new CheckboxRadio();
         $input = $multi ? 'checkbox' : 'radio';
 
-        $render.= '<div class="d4p-content-wrapper">';
-            $render.= '<ul class="d4p-wrapper-hierarchy">';
-            $render.= $walker->walk($values, 0, array('input' => $input, 'id' => $id, 'name' => $name, 'selected' => $selected));
-            $render.= '</ul>';
-        $render.= '</div>';
+        $render .= '<div class="d4p-content-wrapper">';
+        $render .= '<ul class="d4p-wrapper-hierarchy">';
+        $render .= $walker->walk($values, 0, array('input' => $input, 'id' => $id, 'name' => $name, 'selected' => $selected));
+        $render .= '</ul>';
+        $render .= '</div>';
 
-        $render.= '</div>';
+        $render .= '</div>';
 
         if ($echo) {
             echo $render;
@@ -323,13 +325,13 @@ if (!function_exists('d4p_render_check_radios_with_hierarchy')) {
 if (!function_exists('d4p_render_toggle_block')) {
     function d4p_render_toggle_block($title, $content, $classes = array()) {
         $render = '<div class="d4p-section-toggle '.join(' ', $classes).'">';
-        $render.= '<div class="d4p-toggle-title">';
-        $render.= '<i class="fa fa-caret-down fa-fw"></i> '.$title;
-        $render.= '</div>';
-        $render.= '<div class="d4p-toggle-content" style="display: none;">';
-        $render.= $content;
-        $render.= '</div>';
-        $render.= '</div>';
+        $render .= '<div class="d4p-toggle-title">';
+        $render .= '<i class="fa fa-caret-down fa-fw"></i> '.$title;
+        $render .= '</div>';
+        $render .= '<div class="d4p-toggle-content" style="display: none;">';
+        $render .= $content;
+        $render .= '</div>';
+        $render .= '</div>';
 
         return $render;
     }

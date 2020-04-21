@@ -35,7 +35,8 @@ abstract class InstallDB {
     protected $prefix = '';
     protected $tables = array();
 
-    public function __construct() { }
+    public function __construct() {
+    }
 
     /** @return \Dev4Press\Core\Plugins\InstallDB */
     public static function instance() {
@@ -57,7 +58,7 @@ abstract class InstallDB {
         foreach ($this->tables as $obj) {
             $table = $this->table($obj);
 
-            $query.= "CREATE TABLE ".$table." (".$obj['data'].") ".$collate.";".D4P_EOL;
+            $query .= "CREATE TABLE ".$table." (".$obj['data'].") ".$collate.";".D4P_EOL;
         }
 
         return $this->delta($query);
@@ -124,7 +125,7 @@ abstract class InstallDB {
         }
 
         if (!empty($this->wpdb()->collate)) {
-            $charset_collate.= " COLLATE ".$this->wpdb()->collate;
+            $charset_collate .= " COLLATE ".$this->wpdb()->collate;
         }
 
         return $charset_collate;

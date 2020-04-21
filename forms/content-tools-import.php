@@ -11,7 +11,7 @@
         <div class="d4p-group-inner">
             <p><?php _e("Select file you want to import from", "d4plib"); ?>:</p>
             <br/>
-            <input type="file" name="import_file" />
+            <input type="file" name="import_file"/>
         </div>
     </div>
 

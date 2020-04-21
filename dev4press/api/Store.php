@@ -33,13 +33,13 @@ if (!defined('ABSPATH')) {
 
 class Store {
     private $_plugins = array(
-	    "dev4press-updater" => array(
-		    "code" => "dev4press-updater",
-		    "name" => "Dev4Press Updater",
-		    "description" => "Easy to use plugin to install new and update existing Dev4Press premium plugins and themes from within WordPress dashboard, using build in updater system.",
-		    "punchline" => "One stop install and update for Dev4Press plugins",
-		    "color" => "#2791D3", 'free' => true, 'pro' => false
-	    ),
+        "dev4press-updater" => array(
+            "code" => "dev4press-updater",
+            "name" => "Dev4Press Updater",
+            "description" => "Easy to use plugin to install new and update existing Dev4Press premium plugins and themes from within WordPress dashboard, using build in updater system.",
+            "punchline" => "One stop install and update for Dev4Press plugins",
+            "color" => "#2791D3", 'free' => true, 'pro' => false
+        ),
         "gd-pages-navigator" => array(
             "code" => "gd-pages-navigator",
             "name" => "GD Pages Navigator",
@@ -47,33 +47,33 @@ class Store {
             "punchline" => "Enhanced pages navigation widget",
             "color" => "#453B2D", 'free' => true, 'pro' => false
         ),
-	    "gd-bbpress-attachments" => array(
-		    "code" => "gd-bbpress-attachments",
-		    "name" => "GD bbPress Attachments",
-		    "description" => "Attachments upload to the topics and replies in bbPress plugin using media library. Control file size and number of files, integration elements and more.",
-		    "punchline" => "Attachments for forums powered by bbPress",
-		    "color" => "#426A62", 'free' => true, 'pro' => false
-	    ),
-	    "gd-bbpress-tools" => array(
-		    "code" => "gd-bbpress-tools",
-		    "name" => "GD bbPress Tools",
-		    "description" => "Expansions and tools for bbPress plugin powered forums, including WordPress toolbar menu, quotes, signatures, BBCodes, many useful tweaks, and tools.",
-		    "punchline" => "Enhancing WordPress forums powered by bbPress",
-		    "color" => "#42596A", 'free' => true, 'pro' => false
-	    ),
-	    "gd-security-headers" => array(
-		    "code" => "gd-security-headers",
-		    "name" => "GD Security Headers",
-		    "description" => "Configure various security related HTTP headers, including Content Security Policy, Referrer Policy and more. All headers can be added to .HTACCESS file.",
-		    "punchline" => "An easy way to add HTTP security headers",
-		    "color" => "#69426A", 'free' => true, 'pro' => false
-	    ),
+        "gd-bbpress-attachments" => array(
+            "code" => "gd-bbpress-attachments",
+            "name" => "GD bbPress Attachments",
+            "description" => "Attachments upload to the topics and replies in bbPress plugin using media library. Control file size and number of files, integration elements and more.",
+            "punchline" => "Attachments for forums powered by bbPress",
+            "color" => "#426A62", 'free' => true, 'pro' => false
+        ),
+        "gd-bbpress-tools" => array(
+            "code" => "gd-bbpress-tools",
+            "name" => "GD bbPress Tools",
+            "description" => "Expansions and tools for bbPress plugin powered forums, including WordPress toolbar menu, quotes, signatures, BBCodes, many useful tweaks, and tools.",
+            "punchline" => "Enhancing WordPress forums powered by bbPress",
+            "color" => "#42596A", 'free' => true, 'pro' => false
+        ),
+        "gd-security-headers" => array(
+            "code" => "gd-security-headers",
+            "name" => "GD Security Headers",
+            "description" => "Configure various security related HTTP headers, including Content Security Policy, Referrer Policy and more. All headers can be added to .HTACCESS file.",
+            "punchline" => "An easy way to add HTTP security headers",
+            "color" => "#69426A", 'free' => true, 'pro' => false
+        ),
         "gd-bbpress-toolbox" => array(
-	        "code" => "gd-bbpress-toolbox",
-	        "name" => "GD bbPress Toolbox",
-	        "description" => "Expand bbPress powered forums with attachments upload, BBCodes support, signatures, widgets, quotes, toolbar menu, activity tracking, enhanced widgets, extra views...",
-	        "punchline" => "Enhancing WordPress forums powered by bbPress",
-	        "color" => "#224760", 'free' => false, 'pro' => true
+            "code" => "gd-bbpress-toolbox",
+            "name" => "GD bbPress Toolbox",
+            "description" => "Expand bbPress powered forums with attachments upload, BBCodes support, signatures, widgets, quotes, toolbar menu, activity tracking, enhanced widgets, extra views...",
+            "punchline" => "Enhancing WordPress forums powered by bbPress",
+            "color" => "#224760", 'free' => false, 'pro' => true
         ),
         "gd-clever-widgets" => array(
             "code" => "gd-clever-widgets",
@@ -196,7 +196,8 @@ class Store {
         )
     );
 
-    public function __construct() { }
+    public function __construct() {
+    }
 
     /** @return Store */
     public static function instance() {

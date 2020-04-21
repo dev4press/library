@@ -101,5 +101,6 @@ abstract class Settings {
     }
 
     abstract protected function init();
+
     abstract protected function value($name, $group = 'settings', $default = null);
 }

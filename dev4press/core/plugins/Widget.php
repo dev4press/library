@@ -100,8 +100,8 @@ abstract class Widget extends WP_Widget {
 
         if (!empty($the_tabs)) {
             $tabs = array_slice($tabs, 0, 1, true) +
-                    $the_tabs +
-                    array_slice($tabs, 1, 2, true);
+                $the_tabs +
+                array_slice($tabs, 1, 2, true);
         }
 
         include($this->widgets_render->find('widget-loader.php'));

@@ -99,7 +99,7 @@ class Store {
         $group = $this->_group($group);
         $key = $this->_key($key, $group);
 
-        if (!$this->_exists( $key, $group)) {
+        if (!$this->_exists($key, $group)) {
             return false;
         }
 

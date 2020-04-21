@@ -27,17 +27,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\WordPress\Media\ToLibrary;
 
-use Dev4Press\WordPress\Media\ImageToMediaLibrary;
-
 if (!defined('ABSPATH')) {
     exit;
 }
 
 class RemoteImage {
-	use ImageToMediaLibraryLibrary;
+    use ImageToMediaLibraryLibrary;
 
     public function __construct($url, $data = array(), $args = array()) {
-	    $this->_init();
+        $this->_init();
 
         $defaults = array(
             'name' => '',
@@ -63,11 +61,11 @@ class RemoteImage {
     }
 
     public function download($post_parent = 0) {
-	    $temp = download_url($this->url);
+        $temp = download_url($this->url);
 
-	    if (is_wp_error($temp)) {
-		    return $temp;
-	    }
+        if (is_wp_error($temp)) {
+            return $temp;
+        }
 
         $file = $this->_sideload($temp);
 

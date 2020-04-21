@@ -73,10 +73,10 @@ class AlphaColor extends Control {
                 <span class="customize-control-description"><?php echo esc_html($this->description); ?></span>
             <?php } ?>
             <input type="text" class="color-picker" id="<?php echo esc_attr($this->id); ?>"
-                   name="<?php echo esc_attr($this->id); ?>" value="<?php echo esc_attr($this->value()); ?>"
-                   class="customize-control-colorpicker-alpha-color" <?php echo $this->attributes; ?> <?php $this->link(); ?> />
+                    name="<?php echo esc_attr($this->id); ?>" value="<?php echo esc_attr($this->value()); ?>"
+                    class="customize-control-colorpicker-alpha-color" <?php echo $this->attributes; ?> <?php $this->link(); ?> />
             <span class="picker-reset dashicons dashicons-image-rotate"
-                  picker-reset-value="<?php echo esc_attr($this->default_value()); ?>"></span>
+                    picker-reset-value="<?php echo esc_attr($this->default_value()); ?>"></span>
         </div>
         <?php
 

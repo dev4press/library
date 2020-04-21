@@ -28,9 +28,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 use Dev4Press\Core\Cache\Store;
 use Dev4Press\Core\Helpers\Download;
 use Dev4Press\Core\Helpers\ObjectsSort;
-
-use Dev4Press\WordPress\Media\ToLibrary\RemoteImage;
 use Dev4Press\WordPress\Media\ToLibrary\LocalImage;
+use Dev4Press\WordPress\Media\ToLibrary\RemoteImage;
 
 if (!function_exists('d4p_local_image_to_media_library')) {
     function d4p_local_image_to_media_library($path, $data = array(), $post_parent = 0, $args = array()) {
@@ -41,11 +40,11 @@ if (!function_exists('d4p_local_image_to_media_library')) {
 }
 
 if (!function_exists('d4p_remote_image_to_media_library')) {
-	function d4p_remote_image_to_media_library($url, $data = array(), $post_parent = 0, $args = array()) {
-		$obj = new RemoteImage($url, $data, $args);
+    function d4p_remote_image_to_media_library($url, $data = array(), $post_parent = 0, $args = array()) {
+        $obj = new RemoteImage($url, $data, $args);
 
-		return $obj->download($post_parent);
-	}
+        return $obj->download($post_parent);
+    }
 }
 
 if (!function_exists('d4p_get_objects_sort')) {

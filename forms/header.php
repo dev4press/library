@@ -43,7 +43,7 @@ if (isset($_panels[$_panel]['table']) && $_panels[$_panel]['table']) {
                     <a href="#"><?php echo d4p_panel()->r()->icon($_panels[$_panel]['icon']); ?><?php echo $_panels[$_panel]['title']; ?></a>
                     <?php if ($_panel != 'install' && $_panel != 'update') { ?>
                         <ul>
-                        <?php
+                            <?php
 
                             foreach ($_panels as $panel => $obj) {
                                 if (!isset($obj['type'])) {
@@ -55,7 +55,7 @@ if (isset($_panels[$_panel]['table']) && $_panels[$_panel]['table']) {
                                 }
                             }
 
-                        ?>
+                            ?>
                         </ul>
                     <?php } ?>
                 </li>

@@ -213,17 +213,17 @@ final class Enqueue {
 
         if (is_null($locale)) {
             $min = $obj['min'];
-            $path.= $obj['file'];
+            $path .= $obj['file'];
         } else {
             $min = $obj['min_locale'];
-            $path.= 'l10n/'.$locale;
+            $path .= 'l10n/'.$locale;
         }
 
         if ($min && !$this->_debug) {
-            $path.= '.min';
+            $path .= '.min';
         }
 
-        $path.= '.'.$obj['ext'];
+        $path .= '.'.$obj['ext'];
 
         return trailingslashit($this->_url).$path;
     }
@@ -242,15 +242,15 @@ final class Enqueue {
 
     private function localize_admin() {
         wp_localize_script($this->prefix().'admin', 'd4plib_admin_data', array(
-            'plugin' => array(
-                'name' => $this->_admin->plugin,
-                'prefix' => $this->_admin->plugin_prefix
-            ),
-            'page' => array(
-                'panel' => $this->_admin->panel,
-                'subpanel' => $this->_admin->subpanel
-            )
-        ) + $this->localize_shared_args());
+                'plugin' => array(
+                    'name' => $this->_admin->plugin,
+                    'prefix' => $this->_admin->plugin_prefix
+                ),
+                'page' => array(
+                    'panel' => $this->_admin->panel,
+                    'subpanel' => $this->_admin->subpanel
+                )
+            ) + $this->localize_shared_args());
     }
 
     private function localize_meta() {

@@ -30,6 +30,7 @@ namespace Dev4Press\Core;
 if (!defined('ABSPATH')) {
     exit;
 }
+
 class Base {
     function __construct($args = array()) {
         if (is_array($args) && !empty($args)) {

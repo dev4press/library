@@ -82,33 +82,36 @@ abstract class Panel {
         return $valid[0];
     }
 
-    public function enqueue_scripts() { }
+    public function enqueue_scripts() {
+    }
 
-    public function screen_options_show() { }
+    public function screen_options_show() {
+    }
 
     public function screen_options_save($status, $option, $value) {
         return $status;
     }
 
-    public function prepare() { }
+    public function prepare() {
+    }
 
     public function show() {
         $this->include_header();
 
         echo '<div class="d4p-inside-wrapper">';
-            if ($this->has_form()) {
-                echo $this->form_tag_open();
-            }
+        if ($this->has_form()) {
+            echo $this->form_tag_open();
+        }
 
-            if ($this->has_sidebar()) {
-                $this->include_sidebar();
-            }
+        if ($this->has_sidebar()) {
+            $this->include_sidebar();
+        }
 
-            $this->include_content();
+        $this->include_content();
 
-            if ($this->has_form()) {
-                echo $this->form_tag_close();
-            }
+        if ($this->has_form()) {
+            echo $this->form_tag_close();
+        }
         echo '</div>';
 
         $this->include_footer();
@@ -153,11 +156,11 @@ abstract class Panel {
         $main = $name = 'content-'.$this->a()->panel;
 
         if (!empty($this->a()->subpanel)) {
-            $name.= '-'.$this->a()->subpanel;
+            $name .= '-'.$this->a()->subpanel;
         }
 
-        $main.= '.php';
-        $name.= '.php';
+        $main .= '.php';
+        $name .= '.php';
 
         $this->load($name, $main);
     }
@@ -182,6 +185,9 @@ abstract class Panel {
         }
     }
 
-    public function enqueue_scripts_early() {}
-    public function include_accessibility_control() {}
+    public function enqueue_scripts_early() {
+    }
+
+    public function include_accessibility_control() {
+    }
 }

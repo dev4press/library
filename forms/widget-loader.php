@@ -2,7 +2,7 @@
 
 <div class="d4plib-widget">
     <div class="d4plib-widget-tabs" role="tablist">
-        <input class="d4plib-widget-active-tab" value="<?php echo $_tab; ?>" id="<?php echo $this->get_field_id('_tab'); ?>" name="<?php echo $this->get_field_name('_tab'); ?>" type="hidden" />
+        <input class="d4plib-widget-active-tab" value="<?php echo $_tab; ?>" id="<?php echo $this->get_field_id('_tab'); ?>" name="<?php echo $this->get_field_name('_tab'); ?>" type="hidden"/>
         <?php
 
         foreach ($tabs as $tab => $obj) {
@@ -12,11 +12,11 @@
             $selected = 'false';
 
             if (isset($obj['class'])) {
-                $class.= ' '.$obj['class'];
+                $class .= ' '.$obj['class'];
             }
 
             if ($tab == $_tab) {
-                $class.= ' d4plib-tab-active';
+                $class .= ' d4plib-tab-active';
                 $selected = 'true';
             }
 
@@ -35,11 +35,11 @@
             $selected = 'true';
 
             if (isset($obj['class'])) {
-                $class.= ' '.$obj['class'];
+                $class .= ' '.$obj['class'];
             }
 
             if ($tab == $_tab) {
-                $class.= ' d4plib-content-active';
+                $class .= ' d4plib-content-active';
                 $selected = 'false';
             }
 
