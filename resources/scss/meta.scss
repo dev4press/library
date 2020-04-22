@@ -1,4 +1,4 @@
-.d4plib-metabox-wrapper {
+.d4plib-meta-box-wrapper {
     box-sizing: border-box;
 
     * {
@@ -47,9 +47,11 @@
         margin: 0.5em 0;
     }
 
+    .d4p-setting-checkboxes,
     .d4p-setting-checkboxes-hierarchy {
         .d4p-wrapper-hierarchy {
             margin: 0;
+            padding: 3px;
             max-height: 200px;
             overflow: auto;
 
@@ -65,6 +67,10 @@
 
     .d4p-setting-checkboxes {
         .d4p-content-wrapper {
+            padding: 3px;
+            max-height: 200px;
+            overflow: auto;
+
             label {
                 display: block;
             }
@@ -139,7 +145,7 @@
 }
 
 @media screen and (max-width: 720px) {
-    .d4plib-metabox-wrapper {
+    .d4plib-meta-box-wrapper {
         .__row {
             > div {
                 float: none;
