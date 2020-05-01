@@ -47,6 +47,7 @@ final class Enqueue {
             'wpcolorpickeralpha' => array('path' => 'libraries/', 'file' => 'wp-color-picker-alpha.min', 'ver' => '2.1.3', 'ext' => 'js', 'min' => false, 'req' => array('wp-color-picker'))
         ),
         'css' => array(
+            'pack' => array('path' => 'css/', 'file' => 'about', 'ext' => 'css', 'min' => true),
             'about' => array('path' => 'css/', 'file' => 'about', 'ext' => 'css', 'min' => true),
             'flags' => array('path' => 'css/', 'file' => 'flags', 'ext' => 'css', 'min' => true),
             'font' => array('path' => 'css/', 'file' => 'font', 'ext' => 'css', 'min' => true),
@@ -61,6 +62,7 @@ final class Enqueue {
             'admin' => array('path' => 'css/', 'file' => 'admin', 'ext' => 'css', 'min' => true, 'int' => array('shared')),
             'wizard' => array('path' => 'css/', 'file' => 'wizard', 'ext' => 'css', 'min' => true, 'int' => array('admin')),
             'rtl' => array('path' => 'css/', 'file' => 'rtl', 'ext' => 'css', 'min' => true),
+            'ballooon' => array('path' => 'css/', 'file' => 'rtl', 'ext' => 'css', 'min' => true),
             'flatpickr' => array('path' => 'libraries/flatpickr/', 'file' => 'flatpickr.min', 'ver' => '4.6.3', 'ext' => 'css', 'min' => false),
             'flatpickr-confirm-date' => array('path' => 'libraries/flatpickr/plugins', 'file' => 'confirm-date', 'ver' => '4.6.3', 'ext' => 'css', 'min' => true, 'int' => array('flatpickr')),
             'flatpickr-month-select' => array('path' => 'libraries/flatpickr/plugins', 'file' => 'month-select', 'ver' => '4.6.3', 'ext' => 'css', 'min' => true, 'int' => array('flatpickr'))

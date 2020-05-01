@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\Core\Admin\Plugin
-Version: v3.0.1
+Version: v3.0.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -61,6 +61,7 @@ abstract class Plugin {
     /** @var \Dev4Press\Core\UI\Enqueue */
     public $enqueue = null;
 
+    public $enqueue_packed = true;
     public $enqueue_wp = array();
     public $menu_items = array();
     public $setup_items = array();
@@ -311,19 +312,23 @@ abstract class Plugin {
             do_action($this->h('enqueue_scripts_early'));
 
             $this->enqueue->js('shared')->js('admin');
-            $this->enqueue->css('font')->css('grid')->css('admin')->css('options');
+
+            if ($this->enqueue_packed) {
+                $this->enqueue->css('pack');
+            } else {
+                $this->enqueue->css('font')->css('grid')->css('admin')->css('options')->css('balloon')->css('responsive');
+            }
 
             if ($this->is_rtl) {
                 $this->enqueue->css('rtl');
             }
 
             do_action($this->h('enqueue_scripts'));
-
-            $this->enqueue->css('responsive');
         }
 
         if ($this->has_widgets && $hook == 'widgets.php') {
-            $this->enqueue->js('widgets')->css('widgets')->css('font');
+            $this->enqueue->js('widgets');
+            $this->enqueue->css('widgets')->css('font');
 
             $this->extra_enqueue_scripts_widgets();
 
@@ -332,7 +337,8 @@ abstract class Plugin {
 
         if ($this->has_metabox && ($hook == 'post.php' || $hook == 'post-new.php')) {
             if ($this->is_metabox_available()) {
-                $this->enqueue->js('meta')->css('meta')->css('font');
+                $this->enqueue->js('meta');
+                $this->enqueue->css('meta')->css('font');
 
                 $this->extra_enqueue_scripts_metabox();
 

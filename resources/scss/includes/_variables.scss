@@ -1,7 +1,15 @@
 // Font //
 $font-name: "dev4press";
-$font-version: "3.0.1";
+$font-version: "3.0.2";
 $font-prefix: "d4p";
 
 // Typogrpahy //
 $font-size: 14px;
+
+// Balloon //
+$balloon-bg: #007CBA !default;
+$balloon-text: #FFF !default;
+$balloon-base-size: 15px !default;
+$balloon-arrow-size: 10px !default;
+$balloon-move: 8px !default;
+$balloon-radius: 0px !default;

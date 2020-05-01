@@ -1,6 +1,11 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.0.2 - 2020.05.12 =
+* New: Balloon CSS file for tooltips
+* New: Main CSS 'pack' used on plugin pages
+* Updated: Improved Export and Import
+
 = Version 3.0.1 - 2020.04.22 =
 * New: WordPress content Traits
 * New: Expanded media library uploads

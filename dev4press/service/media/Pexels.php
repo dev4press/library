@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\Service\Media\Pexels
-Version: v3.0.1
+Version: v3.0.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

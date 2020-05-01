@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\Core\Plugins\Settings
-Version: v3.0.1
+Version: v3.0.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -64,15 +64,15 @@ abstract class Settings {
         return $this->info;
     }
 
+    /** @return Information */
+    public function i() {
+        return $this->info;
+    }
+
     public function __get($name) {
         $get = explode('_', $name, 2);
 
         return $this->get($get[1], $get[0]);
-    }
-
-    /** @return Information */
-    public function i() {
-        return $this->info;
     }
 
     public function init() {
@@ -247,6 +247,7 @@ abstract class Settings {
     }
 
     public function import_from_secure_json($import) {
+        $name = isset($import['name']) ? $import['name'] : false;
         $ctrl = isset($import['ctrl']) ? $import['ctrl'] : false;
         $raw = isset($import['data']) ? $import['data'] : false;
 
@@ -255,7 +256,7 @@ abstract class Settings {
         if ($ctrl && $data && strlen($ctrl) == 64) {
             $ctrl = substr($ctrl, 8, 32);
             $size_import = mb_strlen($data);
-            $ctrl_import = md5($data.$size_import);
+            $ctrl_import = $name === false ? md5($data.$size_import) : md5($data.$this->i()->code.$size_import);
 
             if ($ctrl_import === $ctrl) {
                 $data = json_decode($data);
@@ -282,9 +283,11 @@ abstract class Settings {
         }
 
         $size = mb_strlen($encoded);
+        $name = $this->i()->code;
 
         $export = array(
-            'ctrl' => strtolower(wp_generate_password(8, false)).md5($encoded.$size).strtolower(wp_generate_password(24, false)),
+            'name' => $name,
+            'ctrl' => strtolower(wp_generate_password(8, false)).md5($encoded.$name.$size).strtolower(wp_generate_password(24, false)),
             'data' => urlencode(base64_encode(gzcompress($encoded, 9)))
         );
 

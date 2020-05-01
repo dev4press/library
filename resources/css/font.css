@@ -1,7 +1,7 @@
 @font-face {
   font-family: "dev4press";
-  src: url("fonts/dev4press.eot?3.0.1");
-  src: url("fonts/dev4press.eot?3.0.1#iefix") format("embedded-opentype"), url("fonts/dev4press.woff2?3.0.1") format("woff2"), url("fonts/dev4press.woff?3.0.1") format("woff"), url("fonts/dev4press.ttf?3.0.1") format("truetype"), url("fonts/dev4press.svg?3.0.1#dev4press") format("svg");
+  src: url("fonts/dev4press.eot?3.0.2");
+  src: url("fonts/dev4press.eot?3.0.2#iefix") format("embedded-opentype"), url("fonts/dev4press.woff2?3.0.2") format("woff2"), url("fonts/dev4press.woff?3.0.2") format("woff"), url("fonts/dev4press.ttf?3.0.2") format("truetype"), url("fonts/dev4press.svg?3.0.2#dev4press") format("svg");
   font-weight: normal;
   font-style: normal;
 }
