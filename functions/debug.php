@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: Debug
-Version: v3.0.2
+Version: v3.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

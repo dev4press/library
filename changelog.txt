@@ -1,10 +1,12 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.0.2 - 2020.05.12 =
+= Version 3.1 - 2020.05.25 =
+* New: Frontend shared Enqueue class
 * New: Balloon CSS file for tooltips
 * New: Main CSS 'pack' used on plugin pages
 * Updated: Improved Export and Import
+* Fix: Minor issues with Admin Enqueue
 
 = Version 3.0.1 - 2020.04.22 =
 * New: WordPress content Traits

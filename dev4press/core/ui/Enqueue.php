@@ -47,7 +47,7 @@ final class Enqueue {
             'wpcolorpickeralpha' => array('path' => 'libraries/', 'file' => 'wp-color-picker-alpha.min', 'ver' => '2.1.3', 'ext' => 'js', 'min' => false, 'req' => array('wp-color-picker'))
         ),
         'css' => array(
-            'pack' => array('path' => 'css/', 'file' => 'about', 'ext' => 'css', 'min' => true),
+            'pack' => array('path' => 'css/', 'file' => 'pack', 'ext' => 'css', 'min' => true),
             'about' => array('path' => 'css/', 'file' => 'about', 'ext' => 'css', 'min' => true),
             'flags' => array('path' => 'css/', 'file' => 'flags', 'ext' => 'css', 'min' => true),
             'font' => array('path' => 'css/', 'file' => 'font', 'ext' => 'css', 'min' => true),
@@ -181,7 +181,7 @@ final class Enqueue {
 
                 $handle = $this->prefix().$name;
                 $ver = isset($obj['ver']) ? $obj['ver'] : D4P_CORE_VERSION;
-                $footer = isset($obj['footer ']) ? $obj['footer '] : true;
+                $footer = isset($obj['footer']) ? $obj['footer'] : true;
 
                 $this->enqueue($type, $handle, $this->url($obj), $req, $ver, $footer);
 
