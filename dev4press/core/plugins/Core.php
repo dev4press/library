@@ -46,8 +46,6 @@ abstract class Core {
     public $cms_version;
     public $wp_version;
 
-    public $js_info = array();
-
     private $_system_requirements = array();
     private $_widget_instance = array();
 
@@ -110,28 +108,6 @@ abstract class Core {
     public function load_textdomain() {
         load_plugin_textdomain($this->plugin, false, $this->plugin.'/languages');
         load_plugin_textdomain('d4plib', false, $this->plugin.'/d4plib/languages');
-    }
-
-    public function js_info_version($name) {
-        return isset($this->js_info[$name]) ? $this->js_info[$name]['version'] : false;
-    }
-
-    public function locale() {
-        return apply_filters('plugin_locale', get_user_locale(), $this->plugin);
-    }
-
-    public function locale_js_code($script) {
-        $locale = $this->locale();
-
-        if (!empty($locale) && isset($this->js_info[$script]['locales'])) {
-            $code = strtolower(substr($locale, 0, 2));
-
-            if (in_array($code, $this->js_info[$script]['locales'])) {
-                return $code;
-            }
-        }
-
-        return false;
     }
 
     public function init_capabilities() {
