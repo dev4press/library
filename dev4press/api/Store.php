@@ -96,6 +96,13 @@ class Store {
             "punchline" => "Improve your website navigation with Breadcrumbs",
             "color" => "#0CA991", 'free' => false, 'pro' => true
         ),
+        "gd-forum-manager-for-bbpress" => array(
+            "code" => "gd-forum-manager-for-bbpress",
+            "name" => "GD Forum Manager for bbPress",
+            "description" => "Expand how the moderators can manage forum content from the frontend, including quick edit for each topic and bulk topic editing from any page showing list of topics.",
+            "punchline" => "Manage bbPress forum topics from frontend with ease",
+            "color" => "#540073", 'free' => true, 'pro' => false
+        ),
         "gd-forum-notices-for-bbpress" => array(
             "code" => "gd-forum-notices-for-bbpress",
             "name" => "GD Forum Notices for bbPress",
