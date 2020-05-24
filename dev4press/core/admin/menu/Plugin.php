@@ -9,6 +9,8 @@ if (!defined('ABSPATH')) {
 }
 
 abstract class Plugin extends BasePlugin {
+    public $variant = 'menu';
+
     public function main_url() {
         return self_admin_url('admin.php?page='.$this->plugin.'-dashboard');
     }

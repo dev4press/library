@@ -36,6 +36,10 @@ if (!empty($_subpanel)) {
     <h2 class="nav-tab-wrapper wp-clearfix">
         <?php
 
+        if (d4p_panel()->a()->variant == 'submenu') {
+            echo '<a href="'.d4p_panel()->a()->panel_url('dashboard').'" class="nav-tab"><i class="d4p-icon d4p-ui-home"></i></a>';
+        }
+
         foreach ($_subpanels as $_tab => $obj) {
             echo '<a href="'.d4p_panel()->a()->panel_url('about', $_tab).'" class="nav-tab'.($_tab == $_subpanel ? ' nav-tab-active' : '').'">'.$obj['title'].'</a>';
         }

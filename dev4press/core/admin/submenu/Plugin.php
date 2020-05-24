@@ -9,6 +9,8 @@ if (!defined('ABSPATH')) {
 }
 
 abstract class Plugin extends BasePlugin {
+    public $variant = 'submenu';
+
     protected $menu = 'options-general.php';
 
     public function main_url() {

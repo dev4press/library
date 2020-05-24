@@ -34,6 +34,8 @@ if (!defined('ABSPATH')) {
 }
 
 abstract class Plugin {
+    public $variant = 'core';
+
     public $menu_cap = 'activate_plugins';
     public $has_widgets = false;
     public $has_metabox = false;
