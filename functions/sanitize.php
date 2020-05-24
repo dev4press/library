@@ -158,6 +158,10 @@ if (!function_exists('d4p_kses_expanded_list_of_tags')) {
                 'class' => true,
                 'style' => true
             ),
+            'p' => array(
+                'class' => true,
+                'style' => true
+            ),
             'pre' => array(
                 'class' => true,
                 'style' => true
