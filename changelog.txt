@@ -5,6 +5,7 @@
 * New: Frontend shared Enqueue class
 * New: Balloon CSS file for tooltips
 * New: Main CSS 'pack' used on plugin pages
+* Updated: Expanded information about the import tool
 * Updated: Improved Export and Import
 * Fix: Minor issues with Admin Enqueue
 
