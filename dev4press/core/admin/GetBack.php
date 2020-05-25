@@ -33,7 +33,7 @@ if (!defined('ABSPATH')) {
 
 abstract class GetBack {
     /** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
-    private $admin = null;
+    private $admin;
 
     public function __construct($admin) {
         $this->admin = $admin;

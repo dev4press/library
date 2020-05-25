@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 
 final class Enqueue {
     private $_enqueue_prefix = 'd4plib3-';
-    private $_debug = false;
+    private $_debug;
     private $_url;
 
     /** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */

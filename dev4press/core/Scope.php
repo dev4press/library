@@ -32,9 +32,9 @@ if (!defined('ABSPATH')) {
 }
 
 class Scope {
-    private $scope = 'blog';
+    private $scope;
 
-    private $multisite = false;
+    private $multisite;
 
     private $admin = false;
     private $network_admin = false;
@@ -43,7 +43,7 @@ class Scope {
 
     private $frontend = false;
 
-    private $blog_id = 0;
+    private $blog_id;
 
     function __construct() {
         $this->multisite = is_multisite();
