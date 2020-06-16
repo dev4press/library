@@ -99,8 +99,8 @@ class Store {
         "gd-forum-manager-for-bbpress" => array(
             "code" => "gd-forum-manager-for-bbpress",
             "name" => "GD Forum Manager for bbPress",
-            "description" => "Expand how the moderators can manage forum content from the frontend, including quick edit for each topic and bulk topic editing from any page showing list of topics.",
-            "punchline" => "Manage bbPress forum topics from frontend with ease",
+            "description" => "Expand how the moderators can manage forum content from the frontend, including forums and topics quick and bulk editing from any page showing list of topics or forums.",
+            "punchline" => "Manage forums and topics from frontend with ease",
             "color" => "#540073", 'free' => true, 'pro' => false
         ),
         "gd-forum-notices-for-bbpress" => array(
