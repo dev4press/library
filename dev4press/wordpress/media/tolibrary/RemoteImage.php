@@ -27,12 +27,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\WordPress\Media\ToLibrary;
 
+use Dev4Press\WordPress\Media\ImageToMediaLibrary;
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
 class RemoteImage {
-    use ImageToMediaLibraryLibrary;
+    use ImageToMediaLibrary;
 
     public function __construct($url, $data = array(), $args = array()) {
         $this->_init();

@@ -332,9 +332,7 @@ if (!function_exists('d4p_url_campaign_tracking')) {
 if (!function_exists('d4p_user_agent')) {
     function d4p_user_agent() {
         if (isset($_SERVER['HTTP_USER_AGENT'])) {
-            $user_agent = d4p_sanitize_basic(trim($_SERVER['HTTP_USER_AGENT']));
-
-            return $user_agent;
+            return d4p_sanitize_basic(trim($_SERVER['HTTP_USER_AGENT']));
         }
 
         return '';

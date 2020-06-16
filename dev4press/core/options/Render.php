@@ -347,7 +347,6 @@ class Render {
     }
 
     private function draw_group_multi($element, $value, $name_base, $id_base, $multiple = true) {
-        $data = array();
         switch ($element->source) {
             case 'function':
                 $data = call_user_func($element->data);
@@ -363,7 +362,6 @@ class Render {
     }
 
     private function draw_select_multi($element, $value, $name_base, $id_base, $multiple = true) {
-        $data = array();
         switch ($element->source) {
             case 'function':
                 $data = call_user_func($element->data);

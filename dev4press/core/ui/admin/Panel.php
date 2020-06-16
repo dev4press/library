@@ -10,10 +10,10 @@ abstract class Panel {
     static private $_current_instance = null;
 
     /** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
-    private $admin = null;
+    private $admin;
 
     /** @var \Dev4Press\Core\UI\Admin\Render */
-    private $render = null;
+    private $render;
 
     protected $sidebar = true;
     protected $form = false;

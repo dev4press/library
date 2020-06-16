@@ -35,9 +35,9 @@ if (!defined('ABSPATH')) {
 
 abstract class PostBack {
     /** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
-    private $admin = null;
+    private $admin;
 
-    private $page = false;
+    private $page;
 
     public function __construct($admin) {
         $this->admin = $admin;

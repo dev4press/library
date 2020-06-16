@@ -24,7 +24,6 @@ class Render {
     }
 
     public function icon_class($name, $modifiers = array(), $extra_class = '') {
-        $class = '';
         $dashicons = false;
 
         if (substr($name, 0, 9) == 'dashicons') {
