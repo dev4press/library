@@ -108,43 +108,6 @@
                         }
                     }
 
-                    .d4p-group-header {
-                        border-bottom: 1px solid #eee;
-                        padding: 10px 15px;
-                        background: #fafafa;
-                        text-align: left;
-
-                        ul {
-                            list-style: none;
-                            padding: 0;
-                            margin: 0;
-
-                            li {
-                                list-style: none;
-                                padding: 0;
-                                margin: 0;
-                                line-height: 2em;
-                                font-size: 1em;
-                                width: 50%;
-                                float: left;
-
-                                a {
-                                    text-decoration: none;
-
-                                    i {
-                                        color: #555555;
-                                        font-size: 105%;
-                                        margin-right: 3px;
-                                    }
-
-                                    strong {
-                                        font-weight: 700;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
                     .d4p-group-footer {
                         border-top: 1px solid #eee;
                         padding: 10px 15px;
@@ -187,6 +150,75 @@
                         &.d4p-badge-blue,
                         &.d4p-badge-upgrade {
                             background: #0a63a5;
+                        }
+                    }
+
+                    .d4p-group-header {
+                        border-bottom: 1px solid #eee;
+                        padding: 10px 15px;
+                        background: #fafafa;
+                        text-align: left;
+
+                        ul {
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+
+                            li {
+                                list-style: none;
+                                padding: 0;
+                                margin: 0;
+                                line-height: 2em;
+                                font-size: 1em;
+                                width: 50%;
+                                float: left;
+
+                                a {
+                                    text-decoration: none;
+
+                                    i {
+                                        color: #555555;
+                                        font-size: 105%;
+                                        margin-right: 3px;
+                                    }
+
+                                    strong {
+                                        font-weight: 700;
+                                    }
+                                }
+
+                                .d4p-card-badge {
+                                    margin-top: 2px;
+                                }
+                            }
+
+                            &.d4p-full-width {
+                                li {
+                                    float: none;
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+
+                    .d4p-dashboard-status-row {
+                        display: block;
+                        margin: 8px 0 8px;
+                        font-size: 15px;
+                        line-height: 24px;
+
+                        .d4p-type-toggle {
+                            font-size: 22px;
+                            vertical-align: bottom;
+                            margin: 0 5px 0 0;
+
+                            &.d4p-type-status-enabled {
+                                color: #3b7d33;
+                            }
+
+                            &.d4p-type-status-disabled {
+                                color: #d05757;
+                            }
                         }
                     }
                 }

@@ -1488,37 +1488,6 @@ a > .d4p-icon {
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner .d4p-status-message {
   font-weight: bold;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header {
-  border-bottom: 1px solid #eee;
-  padding: 10px 15px;
-  background: #fafafa;
-  text-align: left;
-}
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  line-height: 2em;
-  font-size: 1em;
-  width: 50%;
-  float: left;
-}
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a {
-  text-decoration: none;
-}
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a i {
-  color: #555555;
-  font-size: 105%;
-  margin-right: 3px;
-}
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a strong {
-  font-weight: 700;
-}
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer {
   border-top: 1px solid #eee;
   padding: 10px 15px;
@@ -1551,6 +1520,61 @@ a > .d4p-icon {
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-blue, .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-upgrade {
   background: #0a63a5;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header {
+  border-bottom: 1px solid #eee;
+  padding: 10px 15px;
+  background: #fafafa;
+  text-align: left;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 2em;
+  font-size: 1em;
+  width: 50%;
+  float: left;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a {
+  text-decoration: none;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a i {
+  color: #555555;
+  font-size: 105%;
+  margin-right: 3px;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a strong {
+  font-weight: 700;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li .d4p-card-badge {
+  margin-top: 2px;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul.d4p-full-width li {
+  float: none;
+  width: 100%;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row {
+  display: block;
+  margin: 8px 0 8px;
+  font-size: 15px;
+  line-height: 24px;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle {
+  font-size: 22px;
+  vertical-align: bottom;
+  margin: 0 5px 0 0;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle.d4p-type-status-enabled {
+  color: #3b7d33;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle.d4p-type-status-disabled {
+  color: #d05757;
 }
 
 #dev4press-recommend {

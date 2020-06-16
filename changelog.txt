@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.1.1 - 2020.06.22 =
+* Updated: Dashboard elements styling
+
 = Version 3.1 - 2020.05.25 =
 * New: Frontend shared Enqueue class
 * New: Balloon CSS file for tooltips
