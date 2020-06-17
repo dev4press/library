@@ -63,10 +63,6 @@ class Element {
         return Element::i('', '', $title, $notice, Type::INFO);
     }
 
-    public static function hr($title = '', $notice = '') {
-        return Element::i('', '', $title, $notice, Type::HR);
-    }
-
     public function data($source = '', $data = '') {
         $this->source = $source;
         $this->data = $data;

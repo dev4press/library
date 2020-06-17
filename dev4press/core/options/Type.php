@@ -32,7 +32,6 @@ if (!defined('ABSPATH')) {
 }
 
 class Type {
-    const HR = 'hr';
     const INFO = 'info';
     const CUSTOM = 'custom';
 
@@ -74,7 +73,6 @@ class Type {
     const EXPANDABLE_RAW = 'expandable_raw';
 
     public static $_values = array(
-        'hr' => self::HR,
         'info' => self::INFO,
         'custom' => self::CUSTOM,
 
