@@ -81,7 +81,7 @@ abstract class Settings {
         return $list;
     }
 
-    protected function settings_from_panel($obj) {
+    public function settings_from_panel($obj) {
         $list = array();
 
         if (isset($obj['settings'])) {
