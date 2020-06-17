@@ -1,7 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.1.1 - 2020.06.22 =
+= Version 3.1.2 - 2020.06.22 =
+* Fixed: missing deactive plugin function
+
+= Version 3.1.1 - 2020.06.17 =
 * Updated: Dashboard elements styling
 
 = Version 3.1 - 2020.05.25 =
