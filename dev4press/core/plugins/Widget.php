@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\Core\Plugins\Widget
-Version: v3.1.1
+Version: v3.1.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -164,13 +164,16 @@ abstract class Widget extends WP_Widget {
         $_caps = explode(',', $_caps);
         $instance['_caps'] = array_map('trim', $_caps);
 
-        $_roles = array_map('d4p_sanitize_basic', $new_instance['_roles']);
-        $valid_roles = d4p_get_wordpress_user_roles();
         $instance['_roles'] = array();
 
-        foreach ($_roles as $role) {
-            if (isset($valid_roles[$role])) {
-                $instance['_roles'][] = $role;
+        if (isset($new_instance['_roles'])) {
+            $_roles = array_map('d4p_sanitize_basic', $new_instance['_roles']);
+            $valid_roles = d4p_get_wordpress_user_roles();
+
+            foreach ($_roles as $role) {
+                if (isset($valid_roles[$role])) {
+                    $instance['_roles'][] = $role;
+                }
             }
         }
 

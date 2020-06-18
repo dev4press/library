@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press Core Autoloader
-Version: v3.1.1
+Version: v3.1.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -25,8 +25,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!function_exists('d4p_core_library_autoloader_310')) {
-    function d4p_core_library_autoloader_310($class) {
+if (!function_exists('d4p_core_library_autoloader_312')) {
+    function d4p_core_library_autoloader_312($class) {
         $path = dirname(__FILE__).'/';
 
         $parts = explode('\\', $class);
@@ -44,5 +44,5 @@ if (!function_exists('d4p_core_library_autoloader_310')) {
         }
     }
 
-    spl_autoload_register('d4p_core_library_autoloader_310');
+    spl_autoload_register('d4p_core_library_autoloader_312');
 }

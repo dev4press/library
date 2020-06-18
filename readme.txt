@@ -1,6 +1,6 @@
 === Dev4Press Library ===
-Version: v3.1.1
-Build:   3110
+Version: v3.1.2
+Build:   3120
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
