@@ -16,7 +16,7 @@
 
         <div class="d4p-options-panel">
             <?php echo d4p_panel()->r()->icon($obj['icon']); ?>
-            <h5><?php echo $obj['title']; ?></h5>
+            <h5 aria-label="<?php echo $obj['info']; ?>" data-balloon-pos="up-left" data-balloon-length="large"><?php echo $obj['title']; ?></h5>
             <div>
                 <a class="button-primary" href="<?php echo $url; ?>"><?php _e("Tools Panel", "d4plib"); ?></a>
             </div>

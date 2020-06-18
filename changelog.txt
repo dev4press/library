@@ -3,6 +3,7 @@
 
 = Version 3.1.2 - 2020.06.22 =
 * Updated: Font expanded with new UI icons
+* Updated: Settings and Tools panels balloon tips
 * Updated: Various core classes improvements
 * Fixed: some messages not displayed properly
 * Fixed: missing deactive plugin function
