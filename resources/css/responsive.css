@@ -3,7 +3,7 @@
     float: none;
     margin: 15px 0 0 0;
     padding: 15px 0 0 0;
-    border-top: 1px solid #777777;
+    border-top: 1px solid #777;
   }
 }
 @media screen and (max-width: 1080px) {
@@ -66,7 +66,7 @@
   .d4p-wrap.d4p-with-sidebar .d4p-inside-wrapper .d4p-content {
     padding: 15px 0 0;
     border-left: none;
-    border-top: 1px solid #777777;
+    border-top: 1px solid #777;
   }
   .d4p-wrap .d4p-settings-table .d4p-setting-wrapper input[type=number] {
     width: 100%;

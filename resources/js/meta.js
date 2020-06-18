@@ -6,7 +6,7 @@
 
     window.wp.dev4press.metabox = {
         init: function() {
-            $(document).on("click", ".d4plib-meta-box-wrapper .wp-tab-bar a", function(e){
+            $(document).on("click", ".d4plib-meta-box-wrapper .wp-tab-bar a", function(e) {
                 e.preventDefault();
 
                 var tab = $(this).attr("href").substr(1),
@@ -24,7 +24,7 @@
                     .addClass("tabs-panel-active");
             });
 
-            $(document).on("click", ".d4plib-meta-box-wrapper .d4p-check-uncheck a", function(e){
+            $(document).on("click", ".d4plib-meta-box-wrapper .d4p-check-uncheck a", function(e) {
                 e.preventDefault();
 
                 var checkall = $(this).attr("href").substr(1) === "checkall";

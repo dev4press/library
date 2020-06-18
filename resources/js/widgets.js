@@ -6,7 +6,7 @@
 
     window.wp.dev4press.widgets = {
         init: function() {
-            $(document).on("click", ".d4p-check-uncheck a", function(e){
+            $(document).on("click", ".d4p-check-uncheck a", function(e) {
                 e.preventDefault();
 
                 var checkall = $(this).attr("href").substr(1) === "checkall";
@@ -14,7 +14,7 @@
                 $(this).parent().parent().find("input[type=checkbox]").prop("checked", checkall);
             });
 
-            $(document).on("click", ".d4plib-widget-tab", function(e){
+            $(document).on("click", ".d4plib-widget-tab", function(e) {
                 e.preventDefault();
 
                 var tabs = $(this).parent(),
@@ -30,7 +30,7 @@
                 $(".d4plib-tabname-" + tab, content).addClass("d4plib-content-active").attr("aria-hidden", "false");
             });
 
-            $(document).on("keydown", ".d4plib-widget-tab[role='tab']", function(e){
+            $(document).on("keydown", ".d4plib-widget-tab[role='tab']", function(e) {
                 if (e.which === 13) {
                     $(this).click();
                 } else if (e.which === 39) {
@@ -40,11 +40,11 @@
                 }
             });
 
-            $(document).on("change", ".d4plib-widget-save", function(e){
+            $(document).on("change", ".d4plib-widget-save", function(e) {
                 $(this).closest("form").find(".widget-control-actions input.button").click();
             });
 
-            $(document).on("change", ".d4plib-div-switch", function(){
+            $(document).on("change", ".d4plib-div-switch", function() {
                 var method = $(this).val(),
                     prefix = $(this).data().hasOwnProperty("prefix") ? $(this).data("prefix") : '',
                     block = prefix === "" ? ".d4p-div-block" : ".d4p-div-block-" + prefix,
@@ -54,7 +54,7 @@
                 $(block + "-" + method, parent).show();
             });
 
-            $(document).on("change", ".d4plib-block-switch", function(e){
+            $(document).on("change", ".d4plib-block-switch", function(e) {
                 var block = $(this).data("block"),
                     selected = $(this).val(),
                     parent = $(this).closest("table");
@@ -68,7 +68,7 @@
             });
         },
         settings: function() {
-            $(".d4p-color-picker:not(.wp-color-picker)").on("focus", function(){
+            $(".d4p-color-picker:not(.wp-color-picker)").on("focus", function() {
                 $(this).wpColorPicker();
             });
         }

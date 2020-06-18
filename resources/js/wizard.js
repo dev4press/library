@@ -6,7 +6,7 @@
 
     window.wp.dev4press.wizard = {
         init: function() {
-            $(".gdbbx-wizard-connect-switch").change(function(){
+            $(".gdbbx-wizard-connect-switch").change(function() {
                 var connect = $(this).val() === "yes",
                     the_id = $(this).data("connect");
 

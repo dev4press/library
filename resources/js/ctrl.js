@@ -6,7 +6,7 @@
 
     window.wp.dev4press.tabs = {
         run: function() {
-            $(document).on("click", ".d4p-ctrl-tabs button[role='tab']", function (e) {
+            $(document).on("click", ".d4p-ctrl-tabs button[role='tab']", function(e) {
                 var tabs = $(this).parent(),
                     content = tabs.next(),
                     id = $(this).attr("id"),
@@ -19,7 +19,7 @@
                 $("div[role='tabpanel']#" + tab, content).removeAttr("hidden");
             });
 
-            $(document).on("keydown", ".d4p-ctrl-tabs button[role='tab']", function (e) {
+            $(document).on("keydown", ".d4p-ctrl-tabs button[role='tab']", function(e) {
                 if (e.which === 13) {
                     $(this).click();
                 } else if (e.which === 39) {

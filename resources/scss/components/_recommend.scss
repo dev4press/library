@@ -4,9 +4,9 @@
     width: 340px;
 
     > div {
-        background-color: #333333;
-        border: 2px solid #111111;
-        color: #ffffff;
+        background-color: #333;
+        border: 2px solid #111;
+        color: #FFF;
         padding: 0;
         margin-bottom: 10px;
         width: 340px;
@@ -14,13 +14,13 @@
 
     a,
     a:hover {
-        color: #ffffff;
+        color: #FFF;
         text-decoration: none;
     }
 
     h5 {
-        background-color: #777777;
-        color: #ffffff;
+        background-color: #777;
+        color: #FFF;
         padding: 7px 0 10px;
         margin: 0 0 10px;
         text-align: center;
@@ -65,7 +65,7 @@
         clear: both;
         margin: 10px 0 0;
         padding: 10px 0 0;
-        border-top: 1px solid #f8f8f8;
+        border-top: 1px solid #F8F8F8;
 
         a {
             margin: 0 1%;
@@ -73,15 +73,15 @@
             text-align: center;
 
             &.button-secondary {
-                color: #111111;
+                color: #111;
                 box-shadow: none;
             }
 
             &.dev4press-buynow {
                 background: #BA0000;
                 box-shadow: none;
-                border-color: #f0f0f0;
-                text-shadow: 0 -1px 1px #990000, 1px 0 1px #990000, 0 1px 1px #990000, -1px 0 1px #990000;
+                border-color: #F0F0F0;
+                text-shadow: 0 -1px 1px #900, 1px 0 1px #900, 0 1px 1px #900, -1px 0 1px #900;
             }
         }
     }

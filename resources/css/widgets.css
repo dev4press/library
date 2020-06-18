@@ -1,12 +1,12 @@
 .d4plib-widget {
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid #DFDFDF;
   margin: 0 0 15px;
   min-width: 498px;
 }
 .d4plib-widget h4 {
-  background: #666666;
+  background: #666;
   border-radius: 3px;
-  color: #fefefe;
+  color: #FEFEFE;
   font-size: 1.1em;
   margin: 15px 0 5px;
   padding: 5px 7px;
@@ -82,7 +82,7 @@
   padding-left: 1%;
 }
 .d4plib-widget .d4plib-widget-tabs {
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid #DFDFDF;
   display: block;
   margin: 15px 0;
   padding: 0 0 0 15px;
@@ -101,19 +101,19 @@
   font-size: 12px;
 }
 .d4plib-widget .d4plib-widget-tabs .d4plib-widget-tab:hover {
-  background-color: #eee;
+  background-color: #EEE;
 }
 .d4plib-widget .d4plib-widget-tabs .d4plib-widget-tab.d4plib-tab-active {
-  border: 1px solid #ddd;
+  border: 1px solid #DDD;
   font-size: 14px;
   font-weight: bold;
-  border-bottom-color: #fff;
+  border-bottom-color: #FFF;
   cursor: default;
   color: #333;
 }
 .d4plib-widget .d4plib-widget-tabs .d4plib-widget-tab.d4plib-tab-active:hover {
   background-color: transparent;
-  border-bottom-color: #fff;
+  border-bottom-color: #FFF;
 }
 .d4plib-widget .d4plib-widget-tabs-content .d4plib-tab-content {
   display: none;
@@ -162,7 +162,7 @@
   font-size: 0.9em;
   padding: 0 0 5px;
   margin: 0 0 5px;
-  border-bottom: 1px dotted #cccccc;
+  border-bottom: 1px dotted #CCC;
 }
 .d4plib-widget .d4plib-widget-tabs-content .d4p-check-uncheck a {
   text-decoration: none;

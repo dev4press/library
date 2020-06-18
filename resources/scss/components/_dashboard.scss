@@ -7,7 +7,7 @@
                 box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
 
                 * {
-                    color: #ffffff;
+                    color: #FFF;
                 }
 
                 h3 {
@@ -24,7 +24,7 @@
                 h5 {
                     margin: 0;
                     padding: 10px 0 0;
-                    border-top: 1px solid #ddd;
+                    border-top: 1px solid #DDD;
                     font-size: 1.3em;
                     text-align: right;
                 }
@@ -33,7 +33,7 @@
             .d4p-links-group {
                 margin: 15px 0 0;
                 padding: 15px 0 0;
-                border-top: 1px solid #ddd;
+                border-top: 1px solid #DDD;
 
                 a {
                     display: block;
@@ -109,7 +109,7 @@
                     }
 
                     .d4p-group-footer {
-                        border-top: 1px solid #eee;
+                        border-top: 1px solid #EEE;
                         padding: 10px 15px;
                         text-align: left;
                     }
@@ -117,7 +117,7 @@
                     .d4p-card-badge {
                         border-radius: 2px;
                         margin-left: 5px;
-                        color: #fff;
+                        color: #FFF;
                         display: inline-block;
                         padding: 0 6px 2px;
                         line-height: 1.5;
@@ -149,14 +149,14 @@
 
                         &.d4p-badge-blue,
                         &.d4p-badge-upgrade {
-                            background: #0a63a5;
+                            background: #0A63A5;
                         }
                     }
 
                     .d4p-group-header {
-                        border-bottom: 1px solid #eee;
+                        border-bottom: 1px solid #EEE;
                         padding: 10px 15px;
-                        background: #fafafa;
+                        background: #FAFAFA;
                         text-align: left;
 
                         ul {
@@ -177,7 +177,7 @@
                                     text-decoration: none;
 
                                     i {
-                                        color: #555555;
+                                        color: #555;
                                         font-size: 105%;
                                         margin-right: 3px;
                                     }
@@ -213,11 +213,11 @@
                             margin: 0 5px 0 0;
 
                             &.d4p-type-status-enabled {
-                                color: #3b7d33;
+                                color: #3B7D33;
                             }
 
                             &.d4p-type-status-disabled {
-                                color: #d05757;
+                                color: #D05757;
                             }
                         }
                     }

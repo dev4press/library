@@ -28,7 +28,7 @@
 .d4plib-selected-image {
   margin: 5px 0 0 0;
   padding: 5px 0 0 0;
-  border-top: 1px solid #DDDDDD;
+  border-top: 1px solid #DDD;
   max-width: 518px;
   display: block;
 }
@@ -49,7 +49,7 @@
   line-height: 22px;
   margin-bottom: 5px;
   padding-bottom: 5px;
-  border-bottom: 1px dashed #dddddd;
+  border-bottom: 1px dashed #DDD;
 }
 
 .d4p-setting-images .d4plib-images-image:last-child {

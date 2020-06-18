@@ -57,17 +57,17 @@
             wp.dev4press.media.control.images();
         },
         image: function() {
-            $(document).on("click", ".d4plib-image-preview", function(e){
+            $(document).on("click", ".d4plib-image-preview", function(e) {
                 e.preventDefault();
 
-                $(this).parent().find("img").slideToggle(function(){
+                $(this).parent().find("img").slideToggle(function() {
                     if ($(this).is(":visible")) {
                         $(this).css("display", "block");
                     }
                 });
             });
 
-            $(document).on("click", ".d4plib-image-remove", function(e){
+            $(document).on("click", ".d4plib-image-remove", function(e) {
                 e.preventDefault();
 
                 if (confirm(d4plib_media_data.strings.are_you_sure)) {
@@ -79,7 +79,7 @@
                 }
             });
 
-            $(document).on("click", ".d4plib-image-add", function(e){
+            $(document).on("click", ".d4plib-image-add", function(e) {
                 e.preventDefault();
 
                 wp.dev4press.media.control.active_element = $(this).parent();
@@ -87,17 +87,17 @@
             });
         },
         images: function() {
-            $(document).on("click", ".d4plib-images-preview", function(e){
+            $(document).on("click", ".d4plib-images-preview", function(e) {
                 e.preventDefault();
 
-                $(this).parent().find("img").slideToggle(function(){
+                $(this).parent().find("img").slideToggle(function() {
                     if ($(this).is(":visible")) {
                         $(this).css("display", "block");
                     }
                 });
             });
 
-            $(document).on("click", ".d4plib-images-remove", function(e){
+            $(document).on("click", ".d4plib-images-remove", function(e) {
                 e.preventDefault();
 
                 if (confirm(d4plib_media_data.strings.are_you_sure)) {
@@ -109,7 +109,7 @@
                 }
             });
 
-            $(".d4plib-images-add").click(function(e){
+            $(".d4plib-images-add").click(function(e) {
                 e.preventDefault();
 
                 wp.dev4press.media.control.active_element = $(this).parent();

@@ -10,13 +10,13 @@
     width: 1px;
     height: 1px;
     overflow: hidden;
-    clip:rect(0,0,0,0)
+    clip: rect(0, 0, 0, 0)
 }
 
 .d4p-return-to-top {
     text-align: right;
     margin: 15px 0 0;
-    border-top: 1px dotted #cccccc;
+    border-top: 1px dotted #CCC;
     padding: 5px 0 0;
     text-transform: lowercase;
 }
@@ -29,15 +29,15 @@
     }
 
     .d4p-notice-info {
-        background: #fff;
-        border-left: 4px solid #00a0d2;
+        background: #FFF;
+        border-left: 4px solid #00A0D2;
         padding: 12px;
         margin: 40px 0 0 0;
 
         blockquote {
             margin: 15px 0;
             padding-left: 5px;
-            border-left: 2px solid #ddd;
+            border-left: 2px solid #DDD;
             font-style: italic;
         }
     }
@@ -62,7 +62,7 @@
     }
 
     .d4p-header {
-        border-bottom: 1px solid #777777;
+        border-bottom: 1px solid #777;
         margin: 35px 0 0;
         padding: 0 0 10px;
         height: 45px;
@@ -103,8 +103,8 @@
                         position: relative;
                         display: inline-block;
                         outline: none;
-                        background: none repeat scroll 0 0 #FFFFFF;
-                        border: 1px solid #DDDDDD;
+                        background: none repeat scroll 0 0 #FFF;
+                        border: 1px solid #DDD;
                         box-shadow: 1px 1px 1px -1px rgba(0, 0, 0, 0.1);
                         font-size: 15px;
                         padding: 7px 10px;
@@ -120,8 +120,8 @@
 
                     ul {
                         display: none;
-                        background: #FFFFFF;
-                        border: 1px solid #DDDDDD;
+                        background: #FFF;
+                        border: 1px solid #DDD;
                         box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.1);
                         font-size: 14px;
                         line-height: 28px;
@@ -137,15 +137,15 @@
 
                             &:hover {
                                 background: #0074A2;
-                                color: #ffffff;
+                                color: #FFF;
                             }
                         }
 
                         .d4p-nav-current {
                             display: block;
                             padding: 0 10px;
-                            background: #444444;
-                            color: #ffffff;
+                            background: #444;
+                            color: #FFF;
 
                             i.d4p-icon {
                                 line-height: inherit;
@@ -170,7 +170,7 @@
             .d4p-content {
                 padding: 15px 0 15px 15px;
                 overflow: auto;
-                border-left: 1px solid #777777;
+                border-left: 1px solid #777;
                 min-height: 320px;
             }
         }
@@ -188,8 +188,8 @@
 
     .d4p-sidebar {
         .d4p-panel-title {
-            background: #FFFFFF;
-            border: 1px solid #DDDDDD;
+            background: #FFF;
+            border: 1px solid #DDD;
             box-shadow: 1px 1px 1px -1px rgba(0, 0, 0, 0.1);
             margin: 0 0 15px;
             padding: 15px;
@@ -213,7 +213,7 @@
             h4 {
                 margin: 10px 0 0;
                 padding: 10px 0 0;
-                border-top: 1px solid #DDDDDD;
+                border-top: 1px solid #DDD;
                 font-size: 20px;
                 line-height: 1.4;
             }
@@ -243,7 +243,7 @@
 .d4p-panel-links {
     margin: 15px 0 0;
     padding: 15px 0 0;
-    border-top: 1px solid #DDDDDD;
+    border-top: 1px solid #DDD;
 
     a {
         background: #FEFEFE;
@@ -262,7 +262,7 @@
     position: relative;
     margin: 15px 0 0;
     padding: 15px 0 0;
-    border-top: 1px solid #DDDDDD;
+    border-top: 1px solid #DDD;
 
     p {
         text-align: center;
@@ -286,7 +286,7 @@
 .d4p-panel-buttons {
     margin: 15px 0 0;
     padding: 15px 0 0;
-    border-top: 1px solid #DDDDDD;
+    border-top: 1px solid #DDD;
 
     .button-primary {
         width: 100%;
@@ -313,7 +313,7 @@
 
     h1 {
         background-color: #333;
-        color: #fff;
+        color: #FFF;
         display: inline-block;
         font-size: 20px;
         font-weight: bold;
@@ -335,7 +335,7 @@
 
     h2 {
         background-color: #555;
-        color: #fff;
+        color: #FFF;
         display: inline-block;
         font-size: 18px;
         font-weight: bold;

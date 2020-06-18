@@ -9,12 +9,12 @@
     overflow: auto;
     line-height: normal;
     padding: 5px 0 0;
-    border-top: 2px solid #DDDDDD;
+    border-top: 2px solid #DDD;
 }
 
 .d4p-options-panel {
-    background: #FFFFFF;
-    border: 1px solid #DDDDDD;
+    background: #FFF;
+    border: 1px solid #DDD;
     margin: 0 15px 15px 0;
     padding: 15px;
     float: left;
@@ -34,7 +34,7 @@
         padding: 0 0 5px;
         text-align: left;
         font-size: 20px;
-        border-bottom: 1px solid #DDDDDD;
+        border-bottom: 1px solid #DDD;
     }
 
     div {
@@ -87,8 +87,8 @@
 
         .d4p-kb-group {
             float: right;
-            background: #cc0000;
-            color: #ffffff;
+            background: #C00;
+            color: #FFF;
             padding: 2px 8px;
             border-radius: 2px;
             text-decoration: none;
@@ -122,11 +122,11 @@
 }
 
 .d4p-group-error {
-    border-color: #dd0000;
+    border-color: #D00;
 
     h3 {
-        background: #dd0000;
-        color: #ffffff;
+        background: #D00;
+        color: #FFF;
     }
 
     .d4p-group-inner {

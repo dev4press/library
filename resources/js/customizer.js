@@ -18,7 +18,7 @@
             });
         },
         slider: function() {
-            $(".d4p-slider-ctrl").each(function(){
+            $(".d4p-slider-ctrl").each(function() {
                 var newSlider = $(this).find(".slider"),
                     sliderValue = $(this).find(".customize-control-slider-value").val(),
                     sliderMinValue = parseFloat(newSlider.attr("slider-min-value")),
@@ -30,7 +30,7 @@
                     min: sliderMinValue,
                     max: sliderMaxValue,
                     step: sliderStepValue,
-                    change: function(e, ui){
+                    change: function(e, ui) {
                         $(this).parent().find(".customize-control-slider-value").trigger("change");
                     }
                 });
@@ -74,8 +74,9 @@
 
 (function($, api) {
     api.sectionConstructor['d4p-section-link'] = api.Section.extend({
-        attachEvents: function () {},
-        isContextuallyActive: function () {
+        attachEvents: function() {
+        },
+        isContextuallyActive: function() {
             return true;
         }
     });

@@ -1,4 +1,4 @@
-;(function($, window, document, undefined){
+;(function($, window, document, undefined) {
     var ConfirmSubmit = function(elem, options) {
         this.elem = elem;
         this.$elem = $(elem);
@@ -8,7 +8,7 @@
     };
 
     ConfirmSubmit.prototype = {
-        defaults: { },
+        defaults: {},
 
         init: function() {
             this.config = $.extend({}, this.defaults, this.options, this.metadata);

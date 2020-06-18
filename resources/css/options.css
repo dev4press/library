@@ -8,7 +8,7 @@
   overflow: auto;
 }
 .d4p-group-separator h3 {
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #CCC;
   text-transform: uppercase;
   margin: 0 0 30px;
   font-size: 22px;
@@ -18,7 +18,7 @@
   padding: 0 15px 2px;
   position: relative;
   top: 12px;
-  background: #ccc;
+  background: #CCC;
   color: #111;
   font-weight: bold;
   margin: 0 0 0 30px;
@@ -31,12 +31,12 @@
   margin: 0;
 }
 .d4p-settings-section h4 {
-  border-bottom: 2px solid #bbb;
+  border-bottom: 2px solid #BBB;
   margin: 0 0 15px;
   padding: 0;
 }
 .d4p-settings-section h4 span {
-  background-color: #ddd;
+  background-color: #DDD;
   color: #111;
   font-size: 110%;
   display: inline-block;
@@ -51,7 +51,7 @@
 .d4p-settings-table > tbody > tr > td {
   text-align: left;
   vertical-align: top;
-  border-bottom: 1px dashed #ddd;
+  border-bottom: 1px dashed #DDD;
 }
 .d4p-settings-table > tbody > tr > th {
   width: 240px;
@@ -83,7 +83,7 @@
   font-size: 0.9em;
   padding: 0 0 5px;
   margin: 0 0 5px;
-  border-bottom: 1px dotted #cccccc;
+  border-bottom: 1px dotted #CCC;
 }
 .d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck a {
   text-decoration: none;
@@ -95,7 +95,7 @@
   vertical-align: -2px;
 }
 .d4p-settings-table .d4p-setting-wrapper .d4p-content-wrapper {
-  border: 1px solid #ddd;
+  border: 1px solid #DDD;
   padding: 5px 10px;
   max-height: 160px;
   overflow: auto;
@@ -113,7 +113,7 @@
   margin: 5px 0 0 0;
   padding: 5px 0 0 0;
   display: block;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #DDD;
   font-size: 13px;
   font-style: italic;
 }
@@ -165,12 +165,12 @@
 
 .d4p-section-toggle {
   margin: 10px 0 0;
-  border: 1px solid #dddddd;
+  border: 1px solid #DDD;
 }
 .d4p-section-toggle .d4p-toggle-title {
-  background-color: #dddddd;
+  background-color: #DDD;
   padding: 5px;
-  color: #222222;
+  color: #222;
   cursor: pointer;
 }
 .d4p-section-toggle .d4p-toggle-content {

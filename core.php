@@ -25,7 +25,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!defined('ABSPATH')) { exit; }
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 if (!defined('D4P_CORE_VERSION')) {
     define('D4P_CORE_VERSION', '3.1.2');
@@ -47,15 +49,15 @@ if (!defined('D4P_PHP_VERSION')) {
     define('D4P_PHP_VERSION', $version);
 }
 
-if (!defined('D4P_CHARSET')) { 
+if (!defined('D4P_CHARSET')) {
     define('D4P_CHARSET', get_option('blog_charset'));
 }
 
-if (!defined('D4P_ADMIN')) { 
+if (!defined('D4P_ADMIN')) {
     define('D4P_ADMIN', defined('WP_ADMIN') && WP_ADMIN);
 }
 
-if (!defined('D4P_AJAX')) { 
+if (!defined('D4P_AJAX')) {
     define('D4P_AJAX', defined('DOING_AJAX') && DOING_AJAX);
 }
 
@@ -63,15 +65,15 @@ if (!defined('D4P_ASYNC_UPLOAD') && D4P_AJAX) {
     define('D4P_ASYNC_UPLOAD', isset($_REQUEST['action']) && 'upload-attachment' === $_REQUEST['action']);
 }
 
-if (!defined('D4P_CRON')) { 
+if (!defined('D4P_CRON')) {
     define('D4P_CRON', defined('DOING_CRON') && DOING_CRON);
 }
 
-if (!defined('D4P_DEBUG')) { 
+if (!defined('D4P_DEBUG')) {
     define('D4P_DEBUG', defined('WP_DEBUG') && WP_DEBUG);
 }
 
-if (!defined('D4P_SCRIPT_DEBUG')) { 
+if (!defined('D4P_SCRIPT_DEBUG')) {
     define('D4P_SCRIPT_DEBUG', defined('SCRIPT_DEBUG') && SCRIPT_DEBUG);
 }
 

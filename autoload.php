@@ -37,7 +37,7 @@ if (!function_exists('d4p_core_library_autoloader_312')) {
         $class_namespace = join('/', $parts);
         $class_namespace = strtolower($class_namespace);
 
-        $path.= $class_namespace.'/'.$class_name.'.php';
+        $path .= $class_namespace.'/'.$class_name.'.php';
 
         if (file_exists($path)) {
             include($path);

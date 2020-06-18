@@ -1055,7 +1055,7 @@ a > .d4p-icon {
 .d4plib-selected-image {
   margin: 5px 0 0 0;
   padding: 5px 0 0 0;
-  border-top: 1px solid #DDDDDD;
+  border-top: 1px solid #DDD;
   max-width: 518px;
   display: block;
 }
@@ -1076,7 +1076,7 @@ a > .d4p-icon {
   line-height: 22px;
   margin-bottom: 5px;
   padding-bottom: 5px;
-  border-bottom: 1px dashed #dddddd;
+  border-bottom: 1px dashed #DDD;
 }
 
 .d4p-setting-images .d4plib-images-image:last-child {
@@ -1118,7 +1118,7 @@ a > .d4p-icon {
 .d4p-group-updater .d4p-install-block {
   margin: 0 0 15px;
   padding: 0 0 15px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #DDD;
   font-size: 1.15em;
   line-height: 1.6;
 }
@@ -1152,7 +1152,7 @@ a > .d4p-icon {
 .d4p-return-to-top {
   text-align: right;
   margin: 15px 0 0;
-  border-top: 1px dotted #cccccc;
+  border-top: 1px dotted #CCC;
   padding: 5px 0 0;
   text-transform: lowercase;
 }
@@ -1164,15 +1164,15 @@ a > .d4p-icon {
   margin: 40px 0 0 0;
 }
 .d4p-wrap .d4p-notice-info {
-  background: #fff;
-  border-left: 4px solid #00a0d2;
+  background: #FFF;
+  border-left: 4px solid #00A0D2;
   padding: 12px;
   margin: 40px 0 0 0;
 }
 .d4p-wrap .d4p-notice-info blockquote {
   margin: 15px 0;
   padding-left: 5px;
-  border-left: 2px solid #ddd;
+  border-left: 2px solid #DDD;
   font-style: italic;
 }
 .d4p-wrap a,
@@ -1190,7 +1190,7 @@ a > .d4p-icon {
   padding: 14px;
 }
 .d4p-wrap .d4p-header {
-  border-bottom: 1px solid #777777;
+  border-bottom: 1px solid #777;
   margin: 35px 0 0;
   padding: 0 0 10px;
   height: 45px;
@@ -1227,8 +1227,8 @@ a > .d4p-icon {
   position: relative;
   display: inline-block;
   outline: none;
-  background: none repeat scroll 0 0 #FFFFFF;
-  border: 1px solid #DDDDDD;
+  background: none repeat scroll 0 0 #FFF;
+  border: 1px solid #DDD;
   box-shadow: 1px 1px 1px -1px rgba(0, 0, 0, 0.1);
   font-size: 15px;
   padding: 7px 10px;
@@ -1239,8 +1239,8 @@ a > .d4p-icon {
 }
 .d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul {
   display: none;
-  background: #FFFFFF;
-  border: 1px solid #DDDDDD;
+  background: #FFF;
+  border: 1px solid #DDD;
   box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.1);
   font-size: 14px;
   line-height: 28px;
@@ -1256,13 +1256,13 @@ a > .d4p-icon {
 }
 .d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul a:hover {
   background: #0074A2;
-  color: #ffffff;
+  color: #FFF;
 }
 .d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul .d4p-nav-current {
   display: block;
   padding: 0 10px;
-  background: #444444;
-  color: #ffffff;
+  background: #444;
+  color: #FFF;
 }
 .d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul .d4p-nav-current i.d4p-icon {
   line-height: inherit;
@@ -1277,7 +1277,7 @@ a > .d4p-icon {
 .d4p-wrap.d4p-with-sidebar .d4p-inside-wrapper .d4p-content {
   padding: 15px 0 15px 15px;
   overflow: auto;
-  border-left: 1px solid #777777;
+  border-left: 1px solid #777;
   min-height: 320px;
 }
 .d4p-wrap.d4p-full-width .d4p-inside-wrapper {
@@ -1287,8 +1287,8 @@ a > .d4p-icon {
   min-height: 320px;
 }
 .d4p-wrap .d4p-sidebar .d4p-panel-title {
-  background: #FFFFFF;
-  border: 1px solid #DDDDDD;
+  background: #FFF;
+  border: 1px solid #DDD;
   box-shadow: 1px 1px 1px -1px rgba(0, 0, 0, 0.1);
   margin: 0 0 15px;
   padding: 15px;
@@ -1310,7 +1310,7 @@ a > .d4p-icon {
 .d4p-wrap .d4p-sidebar .d4p-panel-title h4 {
   margin: 10px 0 0;
   padding: 10px 0 0;
-  border-top: 1px solid #DDDDDD;
+  border-top: 1px solid #DDD;
   font-size: 20px;
   line-height: 1.4;
 }
@@ -1332,7 +1332,7 @@ a > .d4p-icon {
 .d4p-panel-links {
   margin: 15px 0 0;
   padding: 15px 0 0;
-  border-top: 1px solid #DDDDDD;
+  border-top: 1px solid #DDD;
 }
 .d4p-panel-links a {
   background: #FEFEFE;
@@ -1350,7 +1350,7 @@ a > .d4p-icon {
   position: relative;
   margin: 15px 0 0;
   padding: 15px 0 0;
-  border-top: 1px solid #DDDDDD;
+  border-top: 1px solid #DDD;
 }
 .d4p-panel-mark p {
   text-align: center;
@@ -1372,7 +1372,7 @@ a > .d4p-icon {
 .d4p-panel-buttons {
   margin: 15px 0 0;
   padding: 15px 0 0;
-  border-top: 1px solid #DDDDDD;
+  border-top: 1px solid #DDD;
 }
 .d4p-panel-buttons .button-primary {
   width: 100%;
@@ -1397,7 +1397,7 @@ a > .d4p-icon {
 }
 .d4p-panel-break h1 {
   background-color: #333;
-  color: #fff;
+  color: #FFF;
   display: inline-block;
   font-size: 20px;
   font-weight: bold;
@@ -1417,7 +1417,7 @@ a > .d4p-icon {
 }
 .d4p-panel-group-break h2 {
   background-color: #555;
-  color: #fff;
+  color: #FFF;
   display: inline-block;
   font-size: 18px;
   font-weight: bold;
@@ -1436,7 +1436,7 @@ a > .d4p-icon {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge * {
-  color: #ffffff;
+  color: #FFF;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge h3 {
   word-break: keep-all;
@@ -1451,14 +1451,14 @@ a > .d4p-icon {
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge h5 {
   margin: 0;
   padding: 10px 0 0;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #DDD;
   font-size: 1.3em;
   text-align: right;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-links-group {
   margin: 15px 0 0;
   padding: 15px 0 0;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #DDD;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-links-group a {
   display: block;
@@ -1517,14 +1517,14 @@ a > .d4p-icon {
   font-weight: bold;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #EEE;
   padding: 10px 15px;
   text-align: left;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge {
   border-radius: 2px;
   margin-left: 5px;
-  color: #fff;
+  color: #FFF;
   display: inline-block;
   padding: 0 6px 2px;
   line-height: 1.5;
@@ -1547,12 +1547,12 @@ a > .d4p-icon {
   background: #813E99;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-blue, .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-upgrade {
-  background: #0a63a5;
+  background: #0A63A5;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #EEE;
   padding: 10px 15px;
-  background: #fafafa;
+  background: #FAFAFA;
   text-align: left;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul {
@@ -1573,7 +1573,7 @@ a > .d4p-icon {
   text-decoration: none;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a i {
-  color: #555555;
+  color: #555;
   font-size: 105%;
   margin-right: 3px;
 }
@@ -1599,10 +1599,10 @@ a > .d4p-icon {
   margin: 0 5px 0 0;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle.d4p-type-status-enabled {
-  color: #3b7d33;
+  color: #3B7D33;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle.d4p-type-status-disabled {
-  color: #d05757;
+  color: #D05757;
 }
 
 #dev4press-recommend {
@@ -1611,21 +1611,21 @@ a > .d4p-icon {
   width: 340px;
 }
 #dev4press-recommend > div {
-  background-color: #333333;
-  border: 2px solid #111111;
-  color: #ffffff;
+  background-color: #333;
+  border: 2px solid #111;
+  color: #FFF;
   padding: 0;
   margin-bottom: 10px;
   width: 340px;
 }
 #dev4press-recommend a,
 #dev4press-recommend a:hover {
-  color: #ffffff;
+  color: #FFF;
   text-decoration: none;
 }
 #dev4press-recommend h5 {
-  background-color: #777777;
-  color: #ffffff;
+  background-color: #777;
+  color: #FFF;
   padding: 7px 0 10px;
   margin: 0 0 10px;
   text-align: center;
@@ -1663,7 +1663,7 @@ a > .d4p-icon {
   clear: both;
   margin: 10px 0 0;
   padding: 10px 0 0;
-  border-top: 1px solid #f8f8f8;
+  border-top: 1px solid #F8F8F8;
 }
 #dev4press-recommend .dev4press-plugin-links a {
   margin: 0 1%;
@@ -1671,14 +1671,14 @@ a > .d4p-icon {
   text-align: center;
 }
 #dev4press-recommend .dev4press-plugin-links a.button-secondary {
-  color: #111111;
+  color: #111;
   box-shadow: none;
 }
 #dev4press-recommend .dev4press-plugin-links a.dev4press-buynow {
   background: #BA0000;
   box-shadow: none;
-  border-color: #f0f0f0;
-  text-shadow: 0 -1px 1px #990000, 1px 0 1px #990000, 0 1px 1px #990000, -1px 0 1px #990000;
+  border-color: #F0F0F0;
+  text-shadow: 0 -1px 1px #900, 1px 0 1px #900, 0 1px 1px #900, -1px 0 1px #900;
 }
 
 .d4p-group-divider {
@@ -1692,12 +1692,12 @@ a > .d4p-icon {
   overflow: auto;
   line-height: normal;
   padding: 5px 0 0;
-  border-top: 2px solid #DDDDDD;
+  border-top: 2px solid #DDD;
 }
 
 .d4p-options-panel {
-  background: #FFFFFF;
-  border: 1px solid #DDDDDD;
+  background: #FFF;
+  border: 1px solid #DDD;
   margin: 0 15px 15px 0;
   padding: 15px;
   float: left;
@@ -1716,7 +1716,7 @@ a > .d4p-icon {
   padding: 0 0 5px;
   text-align: left;
   font-size: 20px;
-  border-bottom: 1px solid #DDDDDD;
+  border-bottom: 1px solid #DDD;
 }
 .d4p-options-panel div {
   text-align: right;
@@ -1763,8 +1763,8 @@ a > .d4p-icon {
 }
 .d4p-group h3 .d4p-kb-group {
   float: right;
-  background: #cc0000;
-  color: #ffffff;
+  background: #C00;
+  color: #FFF;
   padding: 2px 8px;
   border-radius: 2px;
   text-decoration: none;
@@ -1789,11 +1789,11 @@ a > .d4p-icon {
 }
 
 .d4p-group-error {
-  border-color: #dd0000;
+  border-color: #D00;
 }
 .d4p-group-error h3 {
-  background: #dd0000;
-  color: #ffffff;
+  background: #D00;
+  color: #FFF;
 }
 .d4p-group-error .d4p-group-inner {
   text-align: left;
@@ -1821,7 +1821,7 @@ a > .d4p-icon {
 }
 
 .d4p-group-inner .d4p-setting-code > .CodeMirror {
-  border: 1px solid #dddddd;
+  border: 1px solid #DDD;
 }
 
 .d4p-field-unit {
@@ -1860,7 +1860,7 @@ a > .d4p-icon {
   overflow: auto;
 }
 .d4p-group-separator h3 {
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #CCC;
   text-transform: uppercase;
   margin: 0 0 30px;
   font-size: 22px;
@@ -1870,7 +1870,7 @@ a > .d4p-icon {
   padding: 0 15px 2px;
   position: relative;
   top: 12px;
-  background: #ccc;
+  background: #CCC;
   color: #111;
   font-weight: bold;
   margin: 0 0 0 30px;
@@ -1883,12 +1883,12 @@ a > .d4p-icon {
   margin: 0;
 }
 .d4p-settings-section h4 {
-  border-bottom: 2px solid #bbb;
+  border-bottom: 2px solid #BBB;
   margin: 0 0 15px;
   padding: 0;
 }
 .d4p-settings-section h4 span {
-  background-color: #ddd;
+  background-color: #DDD;
   color: #111;
   font-size: 110%;
   display: inline-block;
@@ -1903,7 +1903,7 @@ a > .d4p-icon {
 .d4p-settings-table > tbody > tr > td {
   text-align: left;
   vertical-align: top;
-  border-bottom: 1px dashed #ddd;
+  border-bottom: 1px dashed #DDD;
 }
 .d4p-settings-table > tbody > tr > th {
   width: 240px;
@@ -1935,7 +1935,7 @@ a > .d4p-icon {
   font-size: 0.9em;
   padding: 0 0 5px;
   margin: 0 0 5px;
-  border-bottom: 1px dotted #cccccc;
+  border-bottom: 1px dotted #CCC;
 }
 .d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck a {
   text-decoration: none;
@@ -1947,7 +1947,7 @@ a > .d4p-icon {
   vertical-align: -2px;
 }
 .d4p-settings-table .d4p-setting-wrapper .d4p-content-wrapper {
-  border: 1px solid #ddd;
+  border: 1px solid #DDD;
   padding: 5px 10px;
   max-height: 160px;
   overflow: auto;
@@ -1965,7 +1965,7 @@ a > .d4p-icon {
   margin: 5px 0 0 0;
   padding: 5px 0 0 0;
   display: block;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #DDD;
   font-size: 13px;
   font-style: italic;
 }
@@ -2017,12 +2017,12 @@ a > .d4p-icon {
 
 .d4p-section-toggle {
   margin: 10px 0 0;
-  border: 1px solid #dddddd;
+  border: 1px solid #DDD;
 }
 .d4p-section-toggle .d4p-toggle-title {
-  background-color: #dddddd;
+  background-color: #DDD;
   padding: 5px;
-  color: #222222;
+  color: #222;
   cursor: pointer;
 }
 .d4p-section-toggle .d4p-toggle-content {
@@ -2304,7 +2304,7 @@ button[aria-label][data-balloon-pos] {
     float: none;
     margin: 15px 0 0 0;
     padding: 15px 0 0 0;
-    border-top: 1px solid #777777;
+    border-top: 1px solid #777;
   }
 }
 @media screen and (max-width: 1080px) {
@@ -2367,7 +2367,7 @@ button[aria-label][data-balloon-pos] {
   .d4p-wrap.d4p-with-sidebar .d4p-inside-wrapper .d4p-content {
     padding: 15px 0 0;
     border-left: none;
-    border-top: 1px solid #777777;
+    border-top: 1px solid #777;
   }
   .d4p-wrap .d4p-settings-table .d4p-setting-wrapper input[type=number] {
     width: 100%;

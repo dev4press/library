@@ -17,7 +17,7 @@
                 wp.dev4press.admin.panels.settings.run();
             }
 
-            $(window).bind("load resize orientationchange", function(){
+            $(window).bind("load resize orientationchange", function() {
                 wp.dev4press.admin.components.scroller.resize();
             });
         },
@@ -33,7 +33,7 @@
                     }
                 },
                 mark: function() {
-                    $(".d4p-panel-mark button").click(function(){
+                    $(".d4p-panel-mark button").click(function() {
                         $("#d4p-settings-mark").val("").trigger("input");
                     });
 
@@ -42,7 +42,7 @@
                         $sections = $(".d4p-settings-section > h4"),
                         $content = $(".d4p-settings-table > tbody > tr");
 
-                    $("#d4p-settings-mark").on("input", function(){
+                    $("#d4p-settings-mark").on("input", function() {
                         var term = $(this).val();
 
                         $groups.show();
@@ -71,7 +71,7 @@
 
                             $titles.mark(term, {
                                 done: function() {
-                                    $titles.each(function(idx, el){
+                                    $titles.each(function(idx, el) {
                                         if ($(el).find("mark").length > 0) {
                                             $(el).parent().find(".d4p-settings-table > tbody > tr").show();
                                         }
@@ -79,13 +79,13 @@
                                 }
                             });
 
-                            $titles.each(function(idx, el){
+                            $titles.each(function(idx, el) {
                                 var $group = $(el).parent(), height = 0,
                                     $elements = $(".d4p-settings-section", $group);
 
                                 $elements.each(function(i, e) {
                                     if ($(e).height() > 0) {
-                                        height+= $(e).height();
+                                        height += $(e).height();
                                     }
                                 });
 
@@ -136,14 +136,14 @@
             },
             interface: {
                 run: function() {
-                    $(".d4p-nav-button > a").click(function(e){
+                    $(".d4p-nav-button > a").click(function(e) {
                         e.preventDefault();
 
                         $(this).next().slideToggle("fast");
                     });
 
                     if ($(".d4p-wrap .d4p-message .notice").length > 0) {
-                        setTimeout(function () {
+                        setTimeout(function() {
                             $(".d4p-wrap .d4p-message .notice").slideUp("slow");
                         }, 10000);
                     }
@@ -171,7 +171,7 @@
             },
             check_uncheck: {
                 run: function() {
-                    $(".d4p-check-uncheck a").click(function(e){
+                    $(".d4p-check-uncheck a").click(function(e) {
                         e.preventDefault();
 
                         var checkall = $(this).attr("href").substr(1) === "checkall";
@@ -212,12 +212,12 @@
             },
             expandables: {
                 run: function() {
-                    $(document).on("click", ".d4p-setting-expandable_pairs .button-secondary", function(e){
+                    $(document).on("click", ".d4p-setting-expandable_pairs .button-secondary", function(e) {
                         e.preventDefault();
 
                         var li = $(this).parent();
 
-                        li.fadeOut(200, function(){
+                        li.fadeOut(200, function() {
                             li.remove();
                         });
                     });
@@ -230,7 +230,7 @@
                             next_id = next.val(),
                             el = $(".pair-element-0", list).clone();
 
-                        $("input", el).each(function(){
+                        $("input", el).each(function() {
                             var id = $(this).attr("id").replace("_0_", "_" + next_id + "_"),
                                 name = $(this).attr("name").replace("[0]", "[" + next_id + "]");
 
@@ -244,12 +244,12 @@
                         next.val(next_id);
                     });
 
-                    $(document).on("click", ".d4p-setting-expandable_text .button-secondary", function(e){
+                    $(document).on("click", ".d4p-setting-expandable_text .button-secondary", function(e) {
                         wp.dev4press.admin.settings.expandables.remove(this, e);
                         wp.dev4press.admin.settings.expandables.remove(this, e);
                     });
 
-                    $(document).on("click", ".d4p-setting-expandable_raw .button-secondary", function(e){
+                    $(document).on("click", ".d4p-setting-expandable_raw .button-secondary", function(e) {
                         wp.dev4press.admin.settings.expandables.remove(this, e);
                     });
 
@@ -269,7 +269,7 @@
                         next_id = next.val(),
                         el = $(".exp-text-element-0", list).clone();
 
-                    $("input", el).each(function(){
+                    $("input", el).each(function() {
                         var id = $(this).attr("id").replace("_0_", "_" + next_id + "_"),
                             name = $(this).attr("name").replace("[0]", "[" + next_id + "]");
 
@@ -287,11 +287,11 @@
 
                     var li = $(ths).parent();
 
-                    li.fadeOut(200, function(){
+                    li.fadeOut(200, function() {
                         li.remove();
                     });
                 }
-            } 
+            }
         }
     };
 
@@ -303,12 +303,12 @@
             var cls = "wp-dialog d4p-dialog d4p-dialog-modal";
 
             if (extra !== "") {
-                cls+= " " + extra;
+                cls += " " + extra;
             }
 
             if (typeof hide_close !== "undefined") {
                 if (hide_close) {
-                    cls+= " d4p-dialog-hidex";
+                    cls += " d4p-dialog-hidex";
                 }
             }
 
@@ -344,7 +344,7 @@
             };
         },
         icons: function(id, icon_html) {
-            $(id).next().find(".ui-dialog-buttonset button").each(function(){
+            $(id).next().find(".ui-dialog-buttonset button").each(function() {
                 if (typeof icon_html === "undefined") {
                     var icon = $(this).data("icon");
 
@@ -375,7 +375,7 @@
             this.handler = handler;
             this.nonce = nonce;
 
-            $(this.button).click(function(e){
+            $(this.button).click(function(e) {
                 if (wp.dev4press.ajaxtask.progres.active) {
                     wp.dev4press.ajaxtask.stop();
                 } else {
