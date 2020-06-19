@@ -98,7 +98,7 @@ abstract class Plugin {
 
     public function plugin_actions($links, $file) {
         if ($file == $this->plugin_name()) {
-            $settings_link = '<a href="'.$this->main_url().'">'.__("Settings", "d4plib").'</a>';
+            $settings_link = '<a href="'.$this->main_url().'">'.esc_html__("Settings", "d4plib").'</a>';
             array_unshift($links, $settings_link);
         }
 
@@ -107,8 +107,8 @@ abstract class Plugin {
 
     public function plugin_links($links, $file) {
         if ($file == $this->plugin_name()) {
-            $links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/'.$this->plugin.'/">'.__("Knowledge Base", "d4plib").'</a>';
-            $links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/">'.__("Support Forum", "d4plib").'</a>';
+            $links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/'.$this->plugin.'/">'.esc_html__("Knowledge Base", "d4plib").'</a>';
+            $links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/">'.esc_html__("Support Forum", "d4plib").'</a>';
         }
 
         return $links;
@@ -213,9 +213,9 @@ abstract class Plugin {
 
     public function help_tab_sidebar() {
         $links = apply_filters($this->plugin_prefix.'_admin_help_sidebar_links', array(
-            'home' => '<a target="_blank" rel="noopener" href="https://plugins.dev4press.com/'.$this->plugin.'/">'.__("Home Page", "d4plib").'</a>',
-            'kb' => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/'.$this->plugin.'/">'.__("Knowledge Base", "d4plib").'</a>',
-            'forum' => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/">'.__("Support Forum", "d4plib").'</a>'
+            'home' => '<a target="_blank" rel="noopener" href="https://plugins.dev4press.com/'.$this->plugin.'/">'.esc_html__("Home Page", "d4plib").'</a>',
+            'kb' => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/'.$this->plugin.'/">'.esc_html__("Knowledge Base", "d4plib").'</a>',
+            'forum' => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/'.$this->plugin.'/">'.esc_html__("Support Forum", "d4plib").'</a>'
         ), $this);
 
         $this->screen()->set_help_sidebar('<p><strong>'.$this->title().'</strong></p><p>'.join('<br/>', $links).'</p>');
