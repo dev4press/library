@@ -28,6 +28,12 @@ class PanelAbout extends Panel {
             'dev4press' => array(
                 'title' => __("Dev4Press", "d4plib"), 'icon' => 'logo-dev4press')
         );
+
+        $translations = $this->a()->settings()->i()->translations;
+
+        if (empty($translations)) {
+            unset($this->subpanels['translations']);
+        }
     }
 
     public function enqueue_scripts() {
