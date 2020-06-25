@@ -18,6 +18,7 @@ class Enqueue {
 
     private $_libraries = array(
         'js' => array(
+            'animated-popup' => array('lib' => true, 'path' => 'animated-popup/', 'file' => 'animated-popup.min', 'ver' => '1.8', 'ext' => 'js', 'min' => false),
             'flatpickr' => array('lib' => true, 'path' => 'flatpickr/', 'file' => 'flatpickr.min', 'ver' => '4.6.3', 'ext' => 'js', 'min' => false, 'min_locale' => true, 'locales' => array('de', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'sr')),
             'flatpickr-confirm-date' => array('lib' => true, 'path' => 'flatpickr/plugins', 'file' => 'confirm-date', 'ver' => '4.6.3', 'ext' => 'js', 'min' => true, 'int' => array('flatpickr')),
             'flatpickr-month-select' => array('lib' => true, 'path' => 'flatpickr/plugins', 'file' => 'month-select', 'ver' => '4.6.3', 'ext' => 'js', 'min' => true, 'int' => array('flatpickr')),
@@ -34,6 +35,7 @@ class Enqueue {
             'textrange' => array('lib' => true, 'path' => '', 'file' => 'jquery.textrange.min', 'ver' => '1.4.0', 'ext' => 'js', 'min' => false, 'req' => array('jquery'))
         ),
         'css' => array(
+            'animated-popup' => array('lib' => true, 'path' => 'animated-popup/', 'file' => 'animated-popup.min', 'ver' => '1.8', 'ext' => 'css', 'min' => false),
             'flatpickr' => array('lib' => true, 'path' => 'flatpickr/', 'file' => 'flatpickr.min', 'ver' => '4.6.3', 'ext' => 'css', 'min' => false),
             'flatpickr-confirm-date' => array('lib' => true, 'path' => 'flatpickr/plugins', 'file' => 'confirm-date', 'ver' => '4.6.3', 'ext' => 'css', 'min' => true, 'int' => array('flatpickr')),
             'flatpickr-month-select' => array('lib' => true, 'path' => 'flatpickr/plugins', 'file' => 'month-select', 'ver' => '4.6.3', 'ext' => 'css', 'min' => true, 'int' => array('flatpickr'))

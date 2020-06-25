@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.1.3 - 2020.06.30 =
+* New: Animated Popup library
+
 = Version 3.1.2 - 2020.06.22 =
 * New: Settings and Tools panels balloon tips
 * Updated: Font expanded with new UI icons
