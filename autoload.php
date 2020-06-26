@@ -25,8 +25,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!function_exists('d4p_core_library_autoloader_312')) {
-    function d4p_core_library_autoloader_312($class) {
+if (!function_exists('d4p_core_library_autoloader_313')) {
+    function d4p_core_library_autoloader_313($class) {
         $path = dirname(__FILE__).'/';
 
         $parts = explode('\\', $class);
@@ -44,5 +44,5 @@ if (!function_exists('d4p_core_library_autoloader_312')) {
         }
     }
 
-    spl_autoload_register('d4p_core_library_autoloader_312');
+    spl_autoload_register('d4p_core_library_autoloader_313');
 }
