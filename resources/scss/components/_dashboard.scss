@@ -71,6 +71,12 @@
                         margin-right: 15px;
                     }
 
+                    &.d4p-card-basic {
+                        float: none;
+                        width: 100%;
+                        max-width: 800px;
+                    }
+
                     &.d4p-card-double {
                         float: none;
                         width: 100%;
@@ -100,11 +106,11 @@
                             &.d4p-with-bullets {
                                 list-style: outside disc;
                                 margin-left: 20px;
-                            }
-                        }
 
-                        .d4p-status-message {
-                            font-weight: bold;
+                                li {
+                                    list-style: inherit;
+                                }
+                            }
                         }
                     }
 
@@ -158,7 +164,11 @@
                         padding: 10px 15px;
                         background: #FAFAFA;
                         text-align: left;
+                    }
 
+                    .d4p-group-inner,
+                    .d4p-group-header,
+                    .d4p-group-footer {
                         ul {
                             list-style: none;
                             padding: 0;
@@ -190,15 +200,28 @@
                                 .d4p-card-badge {
                                     margin-top: 2px;
                                 }
+
+                                &:nth-child(odd) {
+                                    padding-right: 10px;
+                                }
+
+                                &:nth-child(even) {
+                                    padding-left: 10px;
+                                }
                             }
 
                             &.d4p-full-width {
                                 li {
                                     float: none;
                                     width: 100%;
+                                    padding: 0;
                                 }
                             }
                         }
+                    }
+
+                    .d4p-status-message {
+                        font-weight: bold;
                     }
 
                     .d4p-dashboard-status-row {
