@@ -85,6 +85,8 @@ class Store {
     }
 
     public function add($key, $data, $group = 'default') {
+        $original_key = $key;
+
         $group = $this->_group($group);
         $key = $this->_key($key, $group);
 
@@ -92,7 +94,7 @@ class Store {
             return false;
         }
 
-        return $this->set($key, $data, $group);
+        return $this->set($original_key, $data, $group);
     }
 
     public function delete($key, $group = 'default') {
@@ -185,11 +187,9 @@ class Store {
         echo "<strong>Cache Misses:</strong> {$this->cache_misses}<br />";
         echo "</p>";
         echo "<ul>";
-
         foreach ($this->cache as $group => $cache) {
             echo "<li><strong>Group:</strong> $group - ( ".number_format(strlen(serialize($cache)) / KB_IN_BYTES, 2).'k )</li>';
         }
-
         echo "</ul>";
     }
 
