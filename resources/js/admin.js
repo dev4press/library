@@ -222,6 +222,15 @@
                         });
                     });
 
+                    $(document).on("click", ".d4p-setting-expandable_text .button-secondary", function(e) {
+                        wp.dev4press.admin.settings.expandables.remove(this, e);
+                        wp.dev4press.admin.settings.expandables.remove(this, e);
+                    });
+
+                    $(document).on("click", ".d4p-setting-expandable_raw .button-secondary", function(e) {
+                        wp.dev4press.admin.settings.expandables.remove(this, e);
+                    });
+
                     $(".d4p-setting-expandable_pairs a.button-primary").click(function(e) {
                         e.preventDefault();
 
@@ -242,15 +251,6 @@
 
                         next_id++;
                         next.val(next_id);
-                    });
-
-                    $(document).on("click", ".d4p-setting-expandable_text .button-secondary", function(e) {
-                        wp.dev4press.admin.settings.expandables.remove(this, e);
-                        wp.dev4press.admin.settings.expandables.remove(this, e);
-                    });
-
-                    $(document).on("click", ".d4p-setting-expandable_raw .button-secondary", function(e) {
-                        wp.dev4press.admin.settings.expandables.remove(this, e);
                     });
 
                     $(".d4p-setting-expandable_text a.button-primary").click(function(e) {

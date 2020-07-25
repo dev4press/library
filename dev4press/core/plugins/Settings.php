@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\Core\Plugins\Settings
-Version: v3.1.2
+Version: v3.1.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -259,7 +259,7 @@ abstract class Settings {
             $ctrl_import = $name === false ? md5($data.$size_import) : md5($data.$this->i()->code.$size_import);
 
             if ($ctrl_import === $ctrl) {
-                $data = json_decode($data);
+                $data = json_decode($data, true);
                 $this->import_from_object($data);
 
                 return true;

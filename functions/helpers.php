@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: Helpers
-Version: v3.1.2
+Version: v3.1.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -105,16 +105,16 @@ if (!function_exists('d4p_scan_dir')) {
     }
 }
 
-if (!function_exists('d4p_file_size_format')) {
-    function d4p_file_size_format($size, $decimals = 2) {
+if (!function_exists('d4p_filesize_format')) {
+    function d4p_filesize_format($size, $decimals = 2, $sep = ' ') {
         $_size = intval($size);
 
-        if (strlen($_size) <= 9 && strlen($_size) >= 7) {
-            $_size = number_format($_size / 1048576, $decimals);
-            $unit = 'MB';
-        } else if (strlen($_size) >= 10) {
+        if (strlen($_size) >= 10) {
             $_size = number_format($_size / 1073741824, $decimals);
             $unit = 'GB';
+        } else if (strlen($_size) <= 9 && strlen($_size) >= 7) {
+            $_size = number_format($_size / 1048576, $decimals);
+            $unit = 'MB';
         } else if (strlen($_size) <= 6 && strlen($_size) >= 4) {
             $_size = number_format($_size / 1024, $decimals);
             $unit = 'KB';
@@ -126,7 +126,7 @@ if (!function_exists('d4p_file_size_format')) {
             $_size = intval($_size);
         }
 
-        return $_size.' '.$unit;
+        return $_size.$sep.$unit;
     }
 }
 
@@ -348,5 +348,37 @@ if (!function_exists('d4p_is_request_post')) {
 if (!function_exists('d4p_is_wp_error')) {
     function d4p_is_wp_error($thing) {
         return ($thing instanceof WP_Error) || ($thing instanceof \Dev4Press\Core\Helpers\Error);
+    }
+}
+
+if (!function_exists('d4p_is_regex_valid')) {
+    function d4p_is_regex_valid($regex) {
+        if (preg_match('/'.$regex.'/i', 'dev4press') !== false) {
+            return true;
+        }
+
+        return preg_last_error();
+    }
+}
+
+if (!function_exists('d4p_get_regex_error')) {
+    function d4p_get_regex_error($error_code) {
+        if (is_bool($error_code)) {
+            return 'OK';
+        }
+
+        $errors = array_flip(get_defined_constants(true)['pcre']);
+
+        if (isset($errors[$error_code])) {
+            return $errors[$error_code];
+        }
+
+        return 'UNKNOWN_ERROR';
+    }
+}
+
+if (!function_exists('d4p_file_size_format')) {
+    function d4p_file_size_format($size, $decimals = 2) {
+        return d4p_filesize_format($size, $decimals);
     }
 }

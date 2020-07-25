@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: Access
-Version: v3.1.2
+Version: v3.1.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

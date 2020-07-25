@@ -1,6 +1,13 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.1.4 - 2020.08.03 =
+* New: Regex validation functions
+* Updated: Various minor improvements
+* Updated: Function to format file size
+* Updated: Built-in cacert.pem 20200722
+* Fixed: Settings import minor issues
+
 = Version 3.1.3 - 2020.06.30 =
 * New: Network admin Plugin class
 * New: Animated Popup library
