@@ -153,6 +153,7 @@ class Process {
             case 'integer':
                 $value = intval($post[$key]);
                 break;
+            case 'image':
             case 'absint':
                 $value = absint($post[$key]);
                 break;
@@ -164,9 +165,6 @@ class Process {
                     $value = array_map('intval', $value);
                     $value = array_filter($value);
                 }
-                break;
-            case 'image':
-                $value = absint($post[$key]);
                 break;
             case 'listing':
                 $value = d4p_split_textarea_to_list(stripslashes($post[$key]));
@@ -197,9 +195,6 @@ class Process {
             case 'slug_slash':
                 $value = $this->slug_slashes($post[$key]);
                 break;
-            case 'link':
-                $value = d4p_sanitize_basic($post[$key]);
-                break;
             case 'email':
                 $value = sanitize_email($post[$key]);
                 break;
@@ -207,13 +202,14 @@ class Process {
             case 'text':
             case 'textarea':
             case 'password':
+            case 'group':
+            case 'link':
             case 'color':
             case 'block':
             case 'hidden':
             case 'select':
             case 'radios':
             case 'radios_hierarchy':
-            case 'group':
                 $value = d4p_sanitize_basic($post[$key]);
                 break;
         }

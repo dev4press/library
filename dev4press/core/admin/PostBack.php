@@ -79,7 +79,7 @@ abstract class PostBack {
         }
     }
 
-    private function tools() {
+    protected function tools() {
         if ($this->a()->subpanel == 'remove') {
             $this->remove();
         } else if ($this->a()->subpanel == 'import') {
@@ -87,7 +87,7 @@ abstract class PostBack {
         }
     }
 
-    private function settings() {
+    protected function settings() {
         $this->save_settings($this->a()->subpanel);
 
         wp_redirect($this->a()->current_url().'&message=saved');
@@ -112,7 +112,7 @@ abstract class PostBack {
         }
     }
 
-    private function import() {
+    protected function import() {
         $url = $this->a()->current_url(true);
 
         $message = 'import-failed';
