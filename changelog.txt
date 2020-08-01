@@ -3,6 +3,8 @@
 
 = Version 3.1.4 - 2020.08.03 =
 * New: Regex validation functions
+* Updated: Many core classes improvements
+* Updated: Various JavaScript improvements
 * Updated: Various minor improvements
 * Updated: Function to format file size
 * Updated: Built-in cacert.pem 20200722
