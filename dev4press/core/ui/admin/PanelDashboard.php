@@ -34,13 +34,15 @@ class PanelDashboard extends Panel {
             );
         }
 
-        $this->sidebar_links['about'] = array(
-            'about' => array(
-                'icon' => $this->a()->menu_items['about']['icon'],
-                'class' => 'button-secondary',
-                'url' => $this->a()->panel_url('about'),
-                'label' => __("About", "d4plib")
-            )
-        );
+        if (isset($this->a()->menu_items['about'])) {
+            $this->sidebar_links['about'] = array(
+                'about' => array(
+                    'icon' => $this->a()->menu_items['about']['icon'],
+                    'class' => 'button-secondary',
+                    'url' => $this->a()->panel_url('about'),
+                    'label' => __("About", "d4plib")
+                )
+            );
+        }
     }
 }
