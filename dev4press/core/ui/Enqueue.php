@@ -244,15 +244,18 @@ final class Enqueue {
 
     private function localize_admin() {
         wp_localize_script($this->prefix().'admin', 'd4plib_admin_data', array(
-                'plugin' => array(
-                    'name' => $this->_admin->plugin,
-                    'prefix' => $this->_admin->plugin_prefix
-                ),
-                'page' => array(
-                    'panel' => $this->_admin->panel,
-                    'subpanel' => $this->_admin->subpanel
-                )
-            ) + $this->localize_shared_args());
+            'plugin' => array(
+                'name' => $this->_admin->plugin,
+                'prefix' => $this->_admin->plugin_prefix
+            ),
+            'page' => array(
+                'panel' => $this->_admin->panel,
+                'subpanel' => $this->_admin->subpanel
+            ),
+            'content' => array(
+                'nonce' => wp_create_nonce($this->_admin->plugin.'-admin-internal')
+            )
+        ) + $this->localize_shared_args());
     }
 
     private function localize_meta() {
