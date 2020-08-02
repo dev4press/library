@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\Services\GEOIP\Locator
-Version: v3.1.4
+Version: v3.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

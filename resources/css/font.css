@@ -1,7 +1,7 @@
 @font-face {
   font-family: "dev4press";
-  src: url("fonts/dev4press.eot?3.1.1");
-  src: url("fonts/dev4press.eot?3.1.1#iefix") format("embedded-opentype"), url("fonts/dev4press.woff2?3.1.1") format("woff2"), url("fonts/dev4press.woff?3.1.1") format("woff"), url("fonts/dev4press.ttf?3.1.1") format("truetype"), url("fonts/dev4press.svg?3.1.1#dev4press") format("svg");
+  src: url("fonts/dev4press.eot?3.2");
+  src: url("fonts/dev4press.eot?3.2#iefix") format("embedded-opentype"), url("fonts/dev4press.woff2?3.2") format("woff2"), url("fonts/dev4press.woff?3.2") format("woff"), url("fonts/dev4press.ttf?3.2") format("truetype"), url("fonts/dev4press.svg?3.2#dev4press") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -811,26 +811,17 @@ a > .d4p-icon {
   content: "\f1b6";
 }
 
-/* Sizes */
-.d4p-icon-lg {
-  font-size: 1.33333333em;
-  line-height: 0.75em;
-  vertical-align: -15%;
-}
-
+/* Full Width */
 .d4p-icon-fw {
   width: 1.28571429em;
   text-align: center;
 }
 
-.d4p-icon-pull-left {
-  float: left;
-  margin-right: 0.3em;
-}
-
-.d4p-icon-pull-right {
-  float: right;
-  margin-left: 0.3em;
+/* Sizes */
+.d4p-icon-lg {
+  font-size: 1.33333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
 }
 
 .d4p-icon-2x {
@@ -869,6 +860,17 @@ a > .d4p-icon {
   font-size: 10em;
 }
 
+/* Pull */
+.d4p-icon-pull-left {
+  float: left;
+  margin-right: 0.3em;
+}
+
+.d4p-icon-pull-right {
+  float: right;
+  margin-left: 0.3em;
+}
+
 /* Rotate */
 .d4p-icon-rotate-90 {
   -webkit-transform: rotate(90deg);
@@ -876,19 +878,31 @@ a > .d4p-icon {
   transform: rotate(90deg);
 }
 
+.d4p-icon-rotate-45 {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.d4p-icon-rotate-270 {
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
 /* Flip */
-.d4p-flip-horizontal {
+.d4p-icon-flip-horizontal {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
 
-.d4p-flip-vertical {
+.d4p-icon-flip-vertical {
   -webkit-transform: scaleY(-1);
   transform: scaleY(-1);
 }
 
-.d4p-flip-both,
-.d4p-flip-horizontal.d4p-flip-vertical {
+.d4p-icon-flip-both,
+.d4p-icon-flip-horizontal.d4p-icon-flip-vertical {
   -webkit-transform: scale(-1);
   transform: scale(-1);
 }

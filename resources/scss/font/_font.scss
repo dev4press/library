@@ -10,7 +10,7 @@
     font-style: normal;
 }
 
-.#{$font-prefix}-icon {
+.#{$font-prefix-ctrl} {
     font: normal normal normal $font-size/1 $font-name;
     font-size: inherit;
     text-transform: none;
@@ -23,81 +23,95 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-    > .#{$font-prefix}-icon {
+    > .#{$font-prefix-ctrl} {
         line-height: inherit;
         vertical-align: bottom;
     }
 }
 
 a {
-    > .#{$font-prefix}-icon {
+    > .#{$font-prefix-ctrl} {
         line-height: normal;
     }
 }
 
 /* Icons */
 @each $icon, $char in $icons {
-    .#{$font-prefix}-icon.#{$font-prefix}-#{$icon} {
+    .#{$font-prefix-ctrl}.#{$font-prefix}-#{$icon} {
         &:before {
             content: icon($char);
         }
     }
 }
 
+/* Full Width */
+.#{$font-prefix-ctrl}-fw {
+    width: 1.28571429em;
+    text-align: center;
+}
+
 /* Sizes */
-.#{$font-prefix}-icon-lg {
+.#{$font-prefix-ctrl}-lg {
     font-size: 1.33333333em;
     line-height: 0.75em;
     vertical-align: -15%;
 }
 
-.#{$font-prefix}-icon-fw {
-    width: 1.28571429em;
-    text-align: center;
-}
-
-.d4p-icon-pull-left {
-    float: left;
-    margin-right: .3em;
-}
-
-.d4p-icon-pull-right {
-    float: right;
-    margin-left: .3em;
-}
-
 @for $i from 2 to 11 {
-    .#{$font-prefix}-icon-#{$i}x {
+    .#{$font-prefix-ctrl}-#{$i}x {
         font-size: #{$i}em;
     }
 }
 
+/* Pull */
+.#{$font-prefix-ctrl}-pull-left {
+    float: left;
+    margin-right: .3em;
+}
+
+.#{$font-prefix-ctrl}-pull-right {
+    float: right;
+    margin-left: .3em;
+}
+
 /* Rotate */
-.#{$font-prefix}-icon-rotate-90 {
+.#{$font-prefix-ctrl}-rotate-90 {
     -webkit-transform:rotate(90deg);
     -ms-transform:rotate(90deg);
     transform:rotate(90deg)
 }
 
+.#{$font-prefix-ctrl}-rotate-45 {
+    -webkit-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    transform:rotate(45deg)
+}
+
+.#{$font-prefix-ctrl}-rotate-270 {
+    -webkit-transform:rotate(270deg);
+    -ms-transform:rotate(270deg);
+    transform:rotate(270deg)
+}
+
 /* Flip */
-.#{$font-prefix}-flip-horizontal {
+.#{$font-prefix-ctrl}-flip-horizontal {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1)
 }
 
-.#{$font-prefix}-flip-vertical {
+.#{$font-prefix-ctrl}-flip-vertical {
     -webkit-transform: scaleY(-1);
     transform: scaleY(-1)
 }
 
-.#{$font-prefix}-flip-both,
-.#{$font-prefix}-flip-horizontal.#{$font-prefix}-flip-vertical {
+.#{$font-prefix-ctrl}-flip-both,
+.#{$font-prefix-ctrl}-flip-horizontal.#{$font-prefix-ctrl}-flip-vertical {
     -webkit-transform: scale(-1);
     transform: scale(-1)
 }
 
 /* Spin */
-.#{$font-prefix}-icon-spin {
+.#{$font-prefix-ctrl}-spin {
     -webkit-animation: #{$font-prefix}-icon-spin 2s infinite linear;
     animation: #{$font-prefix}-icon-spin 2s infinite linear;
 }

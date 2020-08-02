@@ -1,8 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.1.4 - 2020.08.03 =
+= Version 3.2 - 2020.08.10 =
 * New: Regex validation functions
+* New: Icons handling class
+* Updated: Improvements to icons font
 * Updated: Many core classes improvements
 * Updated: Various JavaScript improvements
 * Updated: Various minor improvements
