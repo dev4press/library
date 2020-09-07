@@ -8,6 +8,7 @@
          url('fonts/dev4press.svg?#{$font-version}#dev4press') format('svg');
     font-weight: normal;
     font-style: normal;
+    font-display: auto;
 }
 
 .#{$font-prefix-ctrl} {
