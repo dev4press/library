@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.3 - 2020.09.20 =
+* New: Options core classes support render and process overrides
+* Updated: Font expanded with new UI icons
+
 = Version 3.2 - 2020.08.10 =
 * New: Regex validation functions
 * New: Icons handling class

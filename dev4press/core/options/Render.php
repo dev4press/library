@@ -35,21 +35,23 @@ if (!defined('ABSPATH')) {
 
 class Render {
     public $base = 'd4pvalue';
+    public $prefix = 'd4p';
     public $kb = 'https://support.dev4press.com/kb/%type%/%url%/';
 
     public $panel;
     public $groups;
 
-    public function __construct($base) {
+    public function __construct($base, $prefix = 'd4p') {
         $this->base = $base;
+        $this->prefix = $prefix;
     }
 
     /** @return \Dev4Press\Core\Options\Render */
-    public static function instance($base = 'd4pvalue') {
+    public static function instance($base = 'd4pvalue', $prefix = 'd4p') {
         static $render = array();
 
         if (!isset($render[$base])) {
-            $render[$base] = new Render($base);
+            $render[$base] = new Render($base, $prefix);
         }
 
         return $render[$base];
@@ -61,6 +63,10 @@ class Render {
 
         return $this;
     }
+
+	public function call($call_function, $setting, $name_base, $id_base) {
+    	call_user_func($call_function, $setting, $setting->value, $name_base, $id_base);
+	}
 
     public function render() {
         foreach ($this->groups as $group => $obj) {
@@ -109,7 +115,7 @@ class Render {
         }
     }
 
-    private function get_id($name, $id = '') {
+    protected function get_id($name, $id = '') {
         if (!empty($id)) {
             return $id;
         }
@@ -117,7 +123,7 @@ class Render {
         return str_replace('[', '_', str_replace(']', '', $name));
     }
 
-    private function render_section($section, $group) {
+    protected function render_section($section, $group) {
         $class = 'd4p-settings-section';
 
         if (!empty($section['name'])) {
@@ -143,10 +149,10 @@ class Render {
         echo '</div>';
     }
 
-    private function render_option($setting, $group) {
+    protected function render_option($setting, $group) {
         $name_base = $this->base.'['.$setting->type.']['.$setting->name.']';
         $id_base = $this->get_id($name_base);
-        $call_function = array($this, 'draw_'.$setting->input);
+        $call_function = apply_filters($this->prefix.'_render_option_call_back_for_'.$setting->input, array($this, 'draw_'.$setting->input), $this);
 
         $name = !empty($setting->name) ? $setting->name : 'element-'.$setting->input;
 
@@ -212,23 +218,19 @@ class Render {
         }
     }
 
-    private function call($call_function, $setting, $name_base, $id_base) {
-        call_user_func($call_function, $setting, $setting->value, $name_base, $id_base);
-    }
-
-    private function _pair_element($name, $id, $i, $value, $element, $hide = false) {
+    protected function _pair_element($name, $id, $i, $value, $element, $hide = false) {
         echo '<div class="pair-element-'.$i.'" style="display: '.($hide ? 'none' : 'block').'">';
-        echo '<label>'.$element->args['label_key'].':</label>';
+        echo '<label for="'.esc_attr($id).'_key">'.$element->args['label_key'].':</label>';
         echo '<input type="text" name="'.esc_attr($name).'[key]" id="'.esc_attr($id).'_key" value="'.esc_attr($value['key']).'" class="widefat" />';
 
-        echo '<label>'.$element->args['label_value'].':</label>';
+        echo '<label for="'.esc_attr($id).'_value">'.$element->args['label_value'].':</label>';
         echo '<input type="text" name="'.esc_attr($name).'[value]" id="'.esc_attr($id).'_value" value="'.esc_attr($value['value']).'" class="widefat" />';
 
         echo '<a role="button" class="button-secondary" href="#">'.$element->args['label_buttom_remove'].'</a>';
         echo '</div>';
     }
 
-    private function _text_element($name, $id, $i, $value, $element, $hide = false) {
+    protected function _text_element($name, $id, $i, $value, $element, $hide = false) {
         echo '<li class="exp-text-element exp-text-element-'.$i.'" style="display: '.($hide ? 'none' : 'list-item').'">';
 
         $button = isset($element->args['label_buttom_remove']) && $element->args['label_buttom_remove'] != '';
@@ -251,7 +253,7 @@ class Render {
         echo '</li>';
     }
 
-    private function draw_text($element, $value, $name_base, $id_base, $type = 'text') {
+    protected function draw_text($element, $value, $name_base, $id_base, $type = 'text') {
         $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
         $placeholder = isset($element->args['placeholder']) && !empty($element->args['placeholder']) ? ' placeholder="'.$element->args['placeholder'].'"' : '';
         $type = isset($element->args['type']) && !empty($element->args['type']) ? $element->args['type'] : $type;
@@ -260,14 +262,14 @@ class Render {
             $id_base, $readonly, $placeholder, $type, esc_attr($name_base), esc_attr($id_base), esc_attr($value));
     }
 
-    private function draw_html($element, $value, $name_base, $id_base) {
+    protected function draw_html($element, $value, $name_base, $id_base) {
         $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
 
         echo sprintf('<textarea aria-labelledby="%s__label"%s name="%s" id="%s" class="widefat">%s</textarea>',
             $id_base, $readonly, esc_attr($name_base), esc_attr($id_base), esc_textarea($value));
     }
 
-    private function draw_number($element, $value, $name_base, $id_base) {
+    protected function draw_number($element, $value, $name_base, $id_base) {
         $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
 
         $min = isset($element->args['min']) ? ' min="'.esc_attr(floatval($element->args['min'])).'"' : '';
@@ -282,7 +284,7 @@ class Render {
         }
     }
 
-    private function draw_integer($element, $value, $name_base, $id_base) {
+    protected function draw_integer($element, $value, $name_base, $id_base) {
         if (!isset($element->args['step'])) {
             $element->args['step'] = 1;
         }
@@ -290,7 +292,7 @@ class Render {
         $this->draw_number($element, $value, $name_base, $id_base);
     }
 
-    private function draw_checkboxes_hierarchy($element, $value, $name_base, $id_base, $multiple = true) {
+    protected function draw_checkboxes_hierarchy($element, $value, $name_base, $id_base, $multiple = true) {
         switch ($element->source) {
             case 'function':
                 $data = call_user_func($element->data);
@@ -318,7 +320,7 @@ class Render {
         echo '</div>';
     }
 
-    private function draw_checkboxes($element, $value, $name_base, $id_base, $multiple = true) {
+    protected function draw_checkboxes($element, $value, $name_base, $id_base, $multiple = true) {
         switch ($element->source) {
             case 'function':
                 $data = call_user_func($element->data);
@@ -346,7 +348,7 @@ class Render {
         }
     }
 
-    private function draw_group_multi($element, $value, $name_base, $id_base, $multiple = true) {
+    protected function draw_group_multi($element, $value, $name_base, $id_base, $multiple = true) {
         switch ($element->source) {
             case 'function':
                 $data = call_user_func($element->data);
@@ -361,7 +363,7 @@ class Render {
         d4p_render_grouped_select($data, array('selected' => $value, 'readonly' => $readonly, 'name' => $name_base, 'id' => $id_base, 'class' => 'widefat', 'multi' => $multiple));
     }
 
-    private function draw_select_multi($element, $value, $name_base, $id_base, $multiple = true) {
+    protected function draw_select_multi($element, $value, $name_base, $id_base, $multiple = true) {
         switch ($element->source) {
             case 'function':
                 $data = call_user_func($element->data);
@@ -376,7 +378,7 @@ class Render {
         d4p_render_select($data, array('selected' => $value, 'readonly' => $readonly, 'name' => $name_base, 'id' => $id_base, 'class' => 'widefat', 'multi' => $multiple), array('aria-labelledby' => $id_base.'__label'));
     }
 
-    private function draw_expandable_text($element, $value, $name_base, $id_base = '') {
+    protected function draw_expandable_text($element, $value, $name_base, $id_base = '') {
         echo '<ol>';
 
         $this->_text_element($name_base.'[0]', $id_base.'_0', 0, '', $element, true);
@@ -398,11 +400,11 @@ class Render {
         echo '<input type="hidden" value="'.esc_attr($i).'" class="d4p-next-id" />';
     }
 
-    private function draw_info($element, $value, $name_base, $id_base = '') {
+    protected function draw_info($element, $value, $name_base, $id_base = '') {
         echo $element->notice;
     }
 
-    private function draw_images($element, $value, $name_base, $id_base = '') {
+    protected function draw_images($element, $value, $name_base, $id_base = '') {
         $value = (array)$value;
 
         echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-images-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> '.__("Add Image", "d4plib").'</a>';
@@ -429,7 +431,7 @@ class Render {
         echo '</div>';
     }
 
-    private function draw_image($element, $value, $name_base, $id_base = '') {
+    protected function draw_image($element, $value, $name_base, $id_base = '') {
         echo sprintf('<input class="d4plib-image" type="hidden" name="%s" id="%s" value="%s" />',
             $name_base, $id_base, esc_attr($value));
 
@@ -453,12 +455,12 @@ class Render {
         echo '</div>';
     }
 
-    private function draw_hidden($element, $value, $name_base, $id_base = '') {
+    protected function draw_hidden($element, $value, $name_base, $id_base = '') {
         echo sprintf('<input type="hidden" name="%s" id="%s" value="%s" />',
             esc_attr($name_base), esc_attr($id_base), esc_attr($value));
     }
 
-    private function draw_bool($element, $value, $name_base, $id_base = '') {
+    protected function draw_bool($element, $value, $name_base, $id_base = '') {
         $selected = $value == 1 || $value === true ? ' checked="checked"' : '';
         $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly="readonly" disabled="disabled"' : '';
         $label = isset($element->args['label']) && $element->args['label'] != '' ? $element->args['label'] : __("Enabled", "d4plib");
@@ -468,7 +470,7 @@ class Render {
             esc_attr($id_base), $readonly, esc_attr($name_base), esc_attr($id_base), $selected, $value, $element->title, $label);
     }
 
-    private function draw_x_by_y($element, $value, $name_base, $id_base, $cls = '') {
+    protected function draw_x_by_y($element, $value, $name_base, $id_base, $cls = '') {
         $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
 
         $pairs = explode('x', $value);
@@ -480,11 +482,11 @@ class Render {
             $id_base, $element->title, $readonly, esc_attr($name_base), esc_attr($id_base), esc_attr($pairs[1]));
     }
 
-    private function draw_listing($element, $value, $name_base, $id_base) {
+    protected function draw_listing($element, $value, $name_base, $id_base) {
         $this->draw_html($element, join(D4P_EOL, $value), $name_base, $id_base);
     }
 
-    private function draw_code($element, $value, $name_base, $id_base) {
+    protected function draw_code($element, $value, $name_base, $id_base) {
         $mode = isset($element->args['mode']) && $element->args['mode'] ? $element->args['mode'] : 'htmlmixed';
 
         wp_enqueue_code_editor(array('type' => 'text/html'));
@@ -506,23 +508,23 @@ class Render {
 </script>';
     }
 
-    private function draw_textarea($element, $value, $name_base, $id_base) {
+    protected function draw_textarea($element, $value, $name_base, $id_base) {
         $this->draw_html($element, $value, $name_base, $id_base);
     }
 
-    private function draw_slug($element, $value, $name_base, $id_base) {
+    protected function draw_slug($element, $value, $name_base, $id_base) {
         $this->draw_text($element, $value, $name_base, $id_base);
     }
 
-    private function draw_slug_ext($element, $value, $name_base, $id_base) {
+    protected function draw_slug_ext($element, $value, $name_base, $id_base) {
         $this->draw_text($element, $value, $name_base, $id_base);
     }
 
-    private function draw_slug_slash($element, $value, $name_base, $id_base) {
+    protected function draw_slug_slash($element, $value, $name_base, $id_base) {
         $this->draw_text($element, $value, $name_base, $id_base);
     }
 
-    private function draw_link($element, $value, $name_base, $id_base) {
+    protected function draw_link($element, $value, $name_base, $id_base) {
         if (!isset($element->args['placeholder'])) {
             $element->args['placeholder'] = 'http://';
         }
@@ -530,15 +532,15 @@ class Render {
         $this->draw_text($element, $value, $name_base, $id_base, 'url');
     }
 
-    private function draw_email($element, $value, $name_base, $id_base) {
+    protected function draw_email($element, $value, $name_base, $id_base) {
         $this->draw_text($element, $value, $name_base, $id_base, 'email');
     }
 
-    private function draw_text_html($element, $value, $name_base, $id_base) {
+    protected function draw_text_html($element, $value, $name_base, $id_base) {
         $this->draw_text($element, $value, $name_base, $id_base);
     }
 
-    private function draw_password($element, $value, $name_base, $id_base) {
+    protected function draw_password($element, $value, $name_base, $id_base) {
         $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
         $autocomplete = isset($element->args['autocomplete']) ? d4p_sanitize_slug($element->args['autocomplete']) : 'off';
 
@@ -546,41 +548,41 @@ class Render {
             $id_base, $element->title, $readonly, esc_attr($name_base), esc_attr($id_base), esc_attr($value));
     }
 
-    private function draw_file($element, $value, $name_base, $id_base) {
+    protected function draw_file($element, $value, $name_base, $id_base) {
         $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
 
         echo sprintf('<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="file" name="%s" id="%s" value="%s" class="widefat" />',
             $id_base, $element->title, $readonly, esc_attr($name_base), esc_attr($id_base), esc_attr($value));
     }
 
-    private function draw_color($element, $value, $name_base, $id_base) {
+    protected function draw_color($element, $value, $name_base, $id_base) {
         $readonly = isset($element->args['readonly']) && $element->args['readonly'] ? ' readonly' : '';
 
         echo sprintf('<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="text" name="%s" id="%s" value="%s" class="widefat d4p-color-picker" />',
             $id_base, $element->title, $readonly, esc_attr($name_base), esc_attr($id_base), esc_attr($value));
     }
 
-    private function draw_absint($element, $value, $name_base, $id_base) {
+    protected function draw_absint($element, $value, $name_base, $id_base) {
         $this->draw_integer($element, $value, $name_base, $id_base);
     }
 
-    private function draw_select($element, $value, $name_base, $id_base) {
+    protected function draw_select($element, $value, $name_base, $id_base) {
         $this->draw_select_multi($element, $value, $name_base, $id_base, false);
     }
 
-    private function draw_group($element, $value, $name_base, $id_base) {
+    protected function draw_group($element, $value, $name_base, $id_base) {
         $this->draw_group_multi($element, $value, $name_base, $id_base, false);
     }
 
-    private function draw_radios_hierarchy($element, $value, $name_base, $id_base) {
+    protected function draw_radios_hierarchy($element, $value, $name_base, $id_base) {
         $this->draw_checkboxes_hierarchy($element, $value, $name_base, $id_base, false);
     }
 
-    private function draw_radios($element, $value, $name_base, $id_base) {
+    protected function draw_radios($element, $value, $name_base, $id_base) {
         $this->draw_checkboxes($element, $value, $name_base, $id_base, false);
     }
 
-    private function draw_expandable_pairs($element, $value, $name_base, $id_base = '') {
+    protected function draw_expandable_pairs($element, $value, $name_base, $id_base = '') {
         $this->_pair_element($name_base.'[0]', $id_base.'_0', 0, array('key' => '', 'value' => ''), $element, true);
 
         $i = 1;
@@ -593,11 +595,11 @@ class Render {
         echo '<input type="hidden" value="'.esc_attr($i).'" class="d4p-next-id" />';
     }
 
-    private function draw_expandable_raw($element, $value, $name_base, $id_base = '') {
+    protected function draw_expandable_raw($element, $value, $name_base, $id_base = '') {
         $this->draw_expandable_text($element, $value, $name_base, $id_base);
     }
 
-    private function part_check_uncheck_all() {
+    protected function part_check_uncheck_all() {
         echo '<div class="d4p-check-uncheck">';
 
         echo '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> '.__("Check All", "d4plib").'</a>';

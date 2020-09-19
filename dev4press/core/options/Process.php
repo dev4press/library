@@ -35,18 +35,20 @@ class Process {
     public $bool_values = array(true, false);
 
     public $base = 'd4pvalue';
+    public $prefix = 'd4p';
     public $settings;
 
-    public function __construct($base) {
+    public function __construct($base, $prefix = 'd4p') {
         $this->base = $base;
+        $this->prefix = $prefix;
     }
 
     /** @return \Dev4Press\Core\Options\Process */
-    public static function instance($base = 'd4pvalue') {
+    public static function instance($base = 'd4pvalue', $prefix = 'd4p') {
         static $process = array();
 
         if (!isset($process[$base])) {
-            $process[$base] = new Process($base);
+            $process[$base] = new Process($base, $prefix);
         }
 
         return $process[$base];
@@ -89,6 +91,13 @@ class Process {
         $value = null;
 
         switch ($input) {
+	        default:
+		        $value = apply_filters($this->prefix.'_process_option_call_back_for_'.$input, $value, $post[$key], $setting);
+
+		        if (is_null($value)) {
+		        	$value = d4p_sanitize_basic((string)$post[$key]);
+		        }
+	        	break;
             case 'skip':
             case 'info':
             case 'hr':
@@ -198,7 +207,6 @@ class Process {
             case 'email':
                 $value = sanitize_email($post[$key]);
                 break;
-            default:
             case 'text':
             case 'textarea':
             case 'password':

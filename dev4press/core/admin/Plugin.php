@@ -157,6 +157,15 @@ abstract class Plugin {
         return $this->plugin_prefix.'_value';
     }
 
+	/**
+	 * Return plugin prefix.
+	 *
+	 * @return string
+	 */
+	public function p() {
+		return $this->plugin_prefix;
+	}
+
     /**
      * Generate plugin name according to WordPress specification.
      *

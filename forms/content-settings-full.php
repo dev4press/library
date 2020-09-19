@@ -21,7 +21,7 @@
 
         $groups = $options->get($subpanel);
 
-        Render::instance(d4p_panel()->a()->n())->prepare($subpanel, $groups)->render();
+        Render::instance(d4p_panel()->a()->n(), d4p_panel()->a()->plugin_prefix)->prepare($subpanel, $groups)->render();
     }
 
     ?>

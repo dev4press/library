@@ -96,7 +96,7 @@ abstract class PostBack {
 
     protected function save_settings($panel) {
         $base = $this->a()->settings_definitions()->settings($panel);
-        $data = Process::instance($this->a()->n())->prepare($base)->process();
+        $data = Process::instance($this->a()->n(), $this->a()->plugin_prefix)->prepare($base)->process();
 
         foreach ($data as $group => $values) {
             if (!empty($group)) {
