@@ -1,6 +1,6 @@
 <?php $_tab = $instance['_tab']; ?>
 
-<div class="d4plib-widget">
+<div class="d4plib-widget <?php echo $this->widget_base; ?>-wrapper">
     <div class="d4plib-widget-tabs" role="tablist">
         <input class="d4plib-widget-active-tab" value="<?php echo $_tab; ?>" id="<?php echo $this->get_field_id('_tab'); ?>" name="<?php echo $this->get_field_name('_tab'); ?>" type="hidden"/>
         <?php
@@ -9,6 +9,7 @@
             $tabkey = $this->get_tabkey($tab);
 
             $class = 'd4plib-widget-tab d4plib-tabname-'.$tabkey;
+	        $class.= ' d4plib-tab-'.$tab;
             $selected = 'false';
 
             if (isset($obj['class'])) {
@@ -32,6 +33,7 @@
             $tabkey = $this->get_tabkey($tab);
 
             $class = 'd4plib-tab-content d4plib-tabname-'.$tabkey;
+	        $class.= ' d4plib-content-for-'.$tab;
             $selected = 'true';
 
             if (isset($obj['class'])) {
