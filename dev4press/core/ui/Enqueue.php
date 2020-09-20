@@ -118,7 +118,7 @@ final class Enqueue {
 
     /** @return \Dev4Press\Core\UI\Enqueue */
     public function wp($includes = array()) {
-        $defaults = array('dialog' => false, 'color_picker' => false, 'media' => false);
+        $defaults = array('dialog' => false, 'color_picker' => false, 'media' => false, 'sortable' => false);
         $includes = shortcode_atts($defaults, $includes);
 
         wp_enqueue_script('jquery');
@@ -132,6 +132,10 @@ final class Enqueue {
         if ($includes['color_picker'] === true) {
             wp_enqueue_script('wp-color-picker');
             wp_enqueue_style('wp-color-picker');
+        }
+
+        if ($includes['sortable'] === true) {
+        	wp_enqueue_script('jquery-ui-sortable');
         }
 
         if ($includes['media'] === true) {
