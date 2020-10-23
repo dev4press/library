@@ -70,7 +70,7 @@ abstract class Plugin {
     public $page_ids = array();
 
     function __construct() {
-        $this->consturctor();
+        $this->constructor();
 
         add_filter('plugin_action_links', array($this, 'plugin_actions'), 10, 2);
         add_filter('plugin_row_meta', array($this, 'plugin_links'), 10, 2);
@@ -460,7 +460,7 @@ abstract class Plugin {
 
     abstract public function current_screen($screen);
 
-    abstract public function consturctor();
+    abstract public function constructor();
 
     abstract public function run_getback();
 
