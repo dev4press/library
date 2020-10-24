@@ -142,6 +142,9 @@
   white-space: nowrap;
   overflow: hidden;
 }
+.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button > a i.d4p-icon {
+  vertical-align: bottom;
+}
 .d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul {
   display: none;
   background: #FFF;

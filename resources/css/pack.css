@@ -748,92 +748,96 @@ a > .d4p-icon {
   content: "\f1a6";
 }
 
-.d4p-icon.d4p-ui-sync:before {
+.d4p-icon.d4p-ui-sun:before {
   content: "\f1a7";
 }
 
-.d4p-icon.d4p-ui-tag:before {
+.d4p-icon.d4p-ui-sync:before {
   content: "\f1a8";
 }
 
-.d4p-icon.d4p-ui-tags:before {
+.d4p-icon.d4p-ui-tag:before {
   content: "\f1a9";
 }
 
-.d4p-icon.d4p-ui-tasks:before {
+.d4p-icon.d4p-ui-tags:before {
   content: "\f1aa";
 }
 
-.d4p-icon.d4p-ui-term:before {
+.d4p-icon.d4p-ui-tasks:before {
   content: "\f1ab";
 }
 
-.d4p-icon.d4p-ui-terms:before {
+.d4p-icon.d4p-ui-term:before {
   content: "\f1ac";
 }
 
-.d4p-icon.d4p-ui-times:before {
+.d4p-icon.d4p-ui-terms:before {
   content: "\f1ad";
 }
 
-.d4p-icon.d4p-ui-toggle-off:before {
+.d4p-icon.d4p-ui-times:before {
   content: "\f1ae";
 }
 
-.d4p-icon.d4p-ui-toggle-on:before {
+.d4p-icon.d4p-ui-toggle-off:before {
   content: "\f1af";
 }
 
-.d4p-icon.d4p-ui-toolbox:before {
+.d4p-icon.d4p-ui-toggle-on:before {
   content: "\f1b0";
 }
 
-.d4p-icon.d4p-ui-tools:before {
+.d4p-icon.d4p-ui-toolbox:before {
   content: "\f1b1";
 }
 
-.d4p-icon.d4p-ui-traffic:before {
+.d4p-icon.d4p-ui-tools:before {
   content: "\f1b2";
 }
 
-.d4p-icon.d4p-ui-trash:before {
+.d4p-icon.d4p-ui-traffic:before {
   content: "\f1b3";
 }
 
-.d4p-icon.d4p-ui-unlock:before {
+.d4p-icon.d4p-ui-trash:before {
   content: "\f1b4";
 }
 
-.d4p-icon.d4p-ui-upload:before {
+.d4p-icon.d4p-ui-unlock:before {
   content: "\f1b5";
 }
 
-.d4p-icon.d4p-ui-user:before {
+.d4p-icon.d4p-ui-upload:before {
   content: "\f1b6";
 }
 
-.d4p-icon.d4p-ui-users:before {
+.d4p-icon.d4p-ui-user:before {
   content: "\f1b7";
 }
 
-.d4p-icon.d4p-ui-video:before {
+.d4p-icon.d4p-ui-users:before {
   content: "\f1b8";
 }
 
-.d4p-icon.d4p-ui-vote-nay:before {
+.d4p-icon.d4p-ui-video:before {
   content: "\f1b9";
 }
 
-.d4p-icon.d4p-ui-vote-yea:before {
+.d4p-icon.d4p-ui-vote-nay:before {
   content: "\f1ba";
 }
 
-.d4p-icon.d4p-ui-warning:before {
+.d4p-icon.d4p-ui-vote-yea:before {
   content: "\f1bb";
 }
 
-.d4p-icon.d4p-ui-wrench:before {
+.d4p-icon.d4p-ui-warning:before {
   content: "\f1bc";
+}
+
+.d4p-icon.d4p-ui-wrench:before {
+  content: "\f1bd";
 }
 
 /* Full Width */
@@ -1287,6 +1291,9 @@ a > .d4p-icon {
   width: 235px;
   white-space: nowrap;
   overflow: hidden;
+}
+.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button > a i.d4p-icon {
+  vertical-align: bottom;
 }
 .d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul {
   display: none;
