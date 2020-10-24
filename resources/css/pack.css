@@ -1802,6 +1802,9 @@ a > .d4p-icon {
   text-align: center;
   width: 1em;
 }
+.d4p-options-panel i.d4p-icon-fw {
+  width: 1.28571429em;
+}
 .d4p-options-panel h5 {
   margin: 0 0 10px 85px;
   padding: 0 0 5px;

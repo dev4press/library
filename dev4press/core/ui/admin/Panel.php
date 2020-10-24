@@ -176,6 +176,8 @@ abstract class Panel {
     protected function load($name, $fallback = 'fallback.php') {
         if (file_exists($this->forms_path_plugin().$name)) {
             include($this->forms_path_plugin().$name);
+        } else if (file_exists($this->forms_path_plugin().$fallback)) {
+	        include($this->forms_path_plugin().$fallback);
         } else {
             if (file_exists($this->forms_path_library().$name)) {
                 include($this->forms_path_library().$name);
