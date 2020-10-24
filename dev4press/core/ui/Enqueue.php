@@ -21,7 +21,6 @@ final class Enqueue {
 
     private $_libraries = array(
         'js' => array(
-            'admin' => array('path' => 'js/', 'file' => 'admin', 'ext' => 'js', 'min' => true),
             'meta' => array('path' => 'js/', 'file' => 'meta', 'ext' => 'js', 'min' => true),
             'media' => array('path' => 'js/', 'file' => 'media', 'ext' => 'js', 'min' => true),
             'ctrl' => array('path' => 'js/', 'file' => 'ctrl', 'ext' => 'js', 'min' => true),
@@ -30,6 +29,7 @@ final class Enqueue {
             'widgets' => array('path' => 'js/', 'file' => 'widgets', 'ext' => 'js', 'min' => true),
             'wizard' => array('path' => 'js/', 'file' => 'wizard', 'ext' => 'js', 'min' => true),
             'confirmsubmit' => array('path' => 'js/', 'file' => 'confirmsubmit', 'ext' => 'js', 'min' => true),
+            'admin' => array('path' => 'js/', 'file' => 'admin', 'ext' => 'js', 'min' => true, 'int' => array('confirmsubmit')),
             'flatpickr' => array('path' => 'libraries/flatpickr/', 'file' => 'flatpickr.min', 'ver' => '4.6.3', 'ext' => 'js', 'min' => false, 'min_locale' => true, 'locales' => array('de', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'sr')),
             'flatpickr-confirm-date' => array('path' => 'libraries/flatpickr/plugins', 'file' => 'confirm-date', 'ver' => '4.6.3', 'ext' => 'js', 'min' => true, 'int' => array('flatpickr')),
             'flatpickr-month-select' => array('path' => 'libraries/flatpickr/plugins', 'file' => 'month-select', 'ver' => '4.6.3', 'ext' => 'js', 'min' => true, 'int' => array('flatpickr')),
