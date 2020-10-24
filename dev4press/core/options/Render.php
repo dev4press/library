@@ -101,7 +101,13 @@ class Render {
                 echo '<div class="d4p-group-inner">';
 
                 if (isset($obj['settings'])) {
-                    $obj['sections'] = array('label' => '', 'name' => '', 'class' => '', 'settings' => $obj['settings']);
+                    $obj['sections'] = array(
+                    	array(
+                    		'label' => '',
+		                    'name' => '',
+		                    'class' => '',
+		                    'settings' => $obj['settings'])
+                    );
                     unset($obj['settings']);
                 }
 
