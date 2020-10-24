@@ -33,7 +33,21 @@ if (!defined('ABSPATH')) {
 
 class Store {
     private $_plugins = array(
-        "dev4press-updater" => array(
+	    "debugpress" => array(
+		    "code" => "debugpress",
+		    "name" => "DebugPress",
+		    "description" => "DebugPress is an easy to use plugin implementing popup for debugging and profiling currently loaded WordPress powered website page with support for intercepting AJAX requests.",
+		    "punchline" => "Powerful and easy to use debugging plugin",
+		    "color" => "#2277bb", 'free' => true, 'pro' => false
+	    ),
+	    "demopress" => array(
+		    "code" => "demopress",
+		    "name" => "DemoPress",
+		    "description" => "Easy to use plugin to install new and update existing Dev4Press premium plugins and themes from within WordPress dashboard, using build in updater system.",
+		    "punchline" => "One stop install and update for Dev4Press plugins",
+		    "color" => "#2791D3", 'free' => true, 'pro' => false
+	    ),
+	    "dev4press-updater" => array(
             "code" => "dev4press-updater",
             "name" => "Dev4Press Updater",
             "description" => "Easy to use plugin to install new and update existing Dev4Press premium plugins and themes from within WordPress dashboard, using build in updater system.",
