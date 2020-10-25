@@ -174,53 +174,69 @@ class Render {
             $class .= ' '.$setting->args['class'];
         }
 
-        if ($setting->input == 'custom') {
-            echo '<tr valign="top" class="d4p-settings-option-custom '.$wrapper_class.'">';
-            echo '<td colspan="2">';
+	    if ($setting->input == 'hidden') {
+		    do_action('d4p_settings_group_hidden_top', $setting, $group);
 
-            echo '<div class="'.$class.'">';
-            echo $setting->notice;
-            echo '</div>';
+		    $this->call($call_function, $setting, $name_base, $id_base);
 
-            echo '</td>';
-            echo '</tr>';
-        } else if ($setting->input == 'hidden') {
-            do_action('d4p_settings_group_hidden_top', $setting, $group);
+		    do_action('d4p_settings_group_hidden_bottom', $setting, $group);
+	    } else {
+	    	$data = array();
 
-            $this->call($call_function, $setting, $name_base, $id_base);
+	    	if (isset($setting->args['data']) && is_array($setting->args['data']) && !empty($setting->args['data'])) {
+	    		foreach ($setting->args['data'] as $key => $value) {
+	    			$data[] = 'data-'.$key.'="'.$value.'"';
+			    }
+		    }
 
-            do_action('d4p_settings_group_hidden_bottom', $setting, $group);
-        } else {
-            $wrapper_class = 'd4p-settings-option-'.($setting->input == 'info' ? 'info' : 'item').' '.$wrapper_class;
+	    	if (!empty($data)) {
+	    		$data = ' '.join(' ', $data);
+		    } else {
+	    		$data = '';
+		    }
 
-            echo '<tr class="'.$wrapper_class.'">';
+		    if ($setting->input == 'custom') {
+			    echo '<tr'.$data.' valign="top" class="d4p-settings-option-custom '.$wrapper_class.'">';
+			    echo '<td colspan="2">';
 
-            if (isset($setting->args['readonly']) && $setting->args['readonly']) {
-                $class .= 'd4p-setting-disabled';
-            }
+			    echo '<div class="'.$class.'">';
+			    echo $setting->notice;
+			    echo '</div>';
 
-            echo '<th scope="row">';
-            if (empty($setting->name)) {
-                echo '<span>'.$setting->title.'</span>';
-            } else {
-                echo '<span id="'.$id_base.'__label">'.$setting->title.'</span>';
-            }
-            echo '</th><td>';
-            echo '<div class="'.$class.'">';
+			    echo '</td>';
+			    echo '</tr>';
+		    } else {
+			    $wrapper_class = 'd4p-settings-option-'.($setting->input == 'info' ? 'info' : 'item').' '.$wrapper_class;
 
-            do_action('d4p_settings_group_top', $setting, $group);
+			    echo '<tr'.$data.' class="'.$wrapper_class.'">';
 
-            $this->call($call_function, $setting, $name_base, $id_base);
+			    if (isset($setting->args['readonly']) && $setting->args['readonly']) {
+				    $class .= 'd4p-setting-disabled';
+			    }
 
-            if ($setting->notice != '' && $setting->input != 'info') {
-                echo '<div class="d4p-description">'.$setting->notice.'</div>';
-            }
+			    echo '<th scope="row">';
+			    if (empty($setting->name)) {
+				    echo '<span>'.$setting->title.'</span>';
+			    } else {
+				    echo '<span id="'.$id_base.'__label">'.$setting->title.'</span>';
+			    }
+			    echo '</th><td>';
+			    echo '<div class="'.$class.'">';
 
-            do_action('d4p_settings_group_bottom', $setting, $group);
+			    do_action('d4p_settings_group_top', $setting, $group);
 
-            echo '</div>';
-            echo '</td>';
-            echo '</tr>';
+			    $this->call($call_function, $setting, $name_base, $id_base);
+
+			    if ($setting->notice != '' && $setting->input != 'info') {
+				    echo '<div class="d4p-description">'.$setting->notice.'</div>';
+			    }
+
+			    do_action('d4p_settings_group_bottom', $setting, $group);
+
+			    echo '</div>';
+			    echo '</td>';
+			    echo '</tr>';
+		    }
         }
     }
 

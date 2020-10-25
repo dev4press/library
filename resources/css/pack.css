@@ -2012,10 +2012,6 @@ a > .d4p-icon {
 .d4p-settings-table > tbody > tr:first-child th, .d4p-settings-table > tbody > tr:first-child td {
   padding-top: 0;
 }
-.d4p-settings-table > tbody > tr:last-child th, .d4p-settings-table > tbody > tr:last-child td {
-  padding-bottom: 0;
-  border-bottom: 0;
-}
 .d4p-settings-table .d4p-setting-wrapper {
   line-height: 20px;
 }
