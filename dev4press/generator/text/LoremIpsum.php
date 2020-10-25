@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\Generator\Text\LoremIpsum
-Version: v3.2
+Version: v3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -35,7 +35,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class LoremIpsum extends Generator {
+class LoremIpsum extends Words {
     protected $first = true;
     protected $first_count = 8;
 

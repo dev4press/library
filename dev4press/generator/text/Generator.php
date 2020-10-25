@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\Generator\Text\Generator
-Version: v3.2
+Version: v3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -36,45 +36,16 @@ if (!defined('ABSPATH')) {
 }
 
 abstract class Generator {
-    protected $first = false;
-    protected $first_count = 0;
-
-    protected $words = array();
-
     protected $sentence_mean = 24.46;
     protected $sentence_dev = 5.08;
 
     protected $paragraph_mean = 5.8;
     protected $paragraph_dev = 1.93;
 
-    public function __construct() {
-    }
+    public function __construct() {}
 
     public function word($tags = false) {
         return $this->words(1, $tags);
-    }
-
-    public function words($count = 1, $tags = false, $array = false) {
-        $words = array();
-        $word_count = 0;
-
-        while ($word_count < $count) {
-            $shuffle = true;
-
-            while ($shuffle) {
-                $this->shuffle();
-
-                if (!$word_count || $words[$word_count - 1] != $this->words[0]) {
-                    $words = array_merge($words, $this->words);
-                    $word_count = count($words);
-                    $shuffle = false;
-                }
-            }
-        }
-
-        $words = array_slice($words, 0, $count);
-
-        return $this->output($words, $tags, $array);
     }
 
     public function sentence($tags = false) {
@@ -121,31 +92,16 @@ abstract class Generator {
         return $this->output($paragraphs, $tags, $array, "\n\n");
     }
 
-    private function gauss($mean, $std_dev) {
-        $x = mt_rand() / mt_getrandmax();
-        $y = mt_rand() / mt_getrandmax();
+	protected function gauss($mean, $std_dev) {
+		$x = mt_rand() / mt_getrandmax();
+		$y = mt_rand() / mt_getrandmax();
 
-        $z = sqrt(-2 * log($x)) * cos(2 * pi() * $y);
+		$z = sqrt(-2 * log($x)) * cos(2 * pi() * $y);
 
-        return $z * $std_dev + $mean;
-    }
+		return $z * $std_dev + $mean;
+	}
 
-    private function shuffle() {
-        if ($this->first && $this->first_count > 0) {
-            $this->first = array_slice($this->words, 0, $this->first_count);
-            $this->words = array_slice($this->words, $this->first_count);
-
-            shuffle($this->words);
-
-            $this->words = $this->first + $this->words;
-
-            $this->first = false;
-        } else {
-            shuffle($this->words);
-        }
-    }
-
-    private function punctuate(&$sentences) {
+    protected function punctuate(&$sentences) {
         foreach ($sentences as $key => $sentence) {
             $words = count($sentence);
 
@@ -167,13 +123,10 @@ abstract class Generator {
         }
     }
 
-    private function output($strings, $tags, $array, $delimiter = ' ') {
+    protected function output($strings, $tags = false, $array = false, $delimiter = ' ') {
         if ($tags) {
-            if (!is_array($tags)) {
-                $tags = array($tags);
-            } else {
-                $tags = array_reverse($tags);
-            }
+	        $tags = (array)$tags;
+	        $delimiter = '';
 
             foreach ($strings as $key => $string) {
                 foreach ($tags as $tag) {
@@ -194,4 +147,6 @@ abstract class Generator {
 
         return $strings;
     }
+
+	abstract function words($count = 1, $tags = false, $array = false);
 }

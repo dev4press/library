@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\WordPress\Customizer\Control\Slider
-Version: v3.2
+Version: v3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
