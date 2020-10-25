@@ -29,75 +29,75 @@ namespace Dev4Press\Core\Admin;
 
 use WP_List_Table;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 abstract class Table extends WP_List_Table {
-    public $total = 0;
+	public $total = 0;
 
-    public $_sanitize_orderby_fields = array();
-    public $_checkbox_field = '';
-    public $_table_class_name = '';
+	public $_sanitize_orderby_fields = array();
+	public $_checkbox_field = '';
+	public $_table_class_name = '';
 
-    public function get_table_classes() {
-        $classes = parent::get_table_classes();
+	public function get_table_classes() {
+		$classes = parent::get_table_classes();
 
-        if (!empty($this->_table_class_name)) {
-            $classes[] = $this->_table_class_name;
-        }
+		if ( ! empty( $this->_table_class_name ) ) {
+			$classes[] = $this->_table_class_name;
+		}
 
-        return $classes;
-    }
+		return $classes;
+	}
 
-    public function get_column_info_simple() {
-        $this->_column_headers = array($this->get_columns(), array(), $this->get_sortable_columns());
-    }
+	public function get_column_info_simple() {
+		$this->_column_headers = array( $this->get_columns(), array(), $this->get_sortable_columns() );
+	}
 
-    public function get_sortable_columns() {
-        return array();
-    }
+	public function get_sortable_columns() {
+		return array();
+	}
 
-    public function get_row_classes($item) {
-        return array();
-    }
+	public function get_row_classes( $item ) {
+		return array();
+	}
 
-    public function single_row($item) {
-        $classes = $this->get_row_classes($item);
+	public function single_row( $item ) {
+		$classes = $this->get_row_classes( $item );
 
-        echo '<tr'.(empty($classes) ? '' : ' class="'.join(' ', $classes).'"').'>';
-        $this->single_row_columns($item);
-        echo '</tr>';
-    }
+		echo '<tr' . ( empty( $classes ) ? '' : ' class="' . join( ' ', $classes ) . '"' ) . '>';
+		$this->single_row_columns( $item );
+		echo '</tr>';
+	}
 
-    public function column_default($item, $column_name) {
-        return $item->$column_name;
-    }
+	public function column_default( $item, $column_name ) {
+		return $item->$column_name;
+	}
 
-    public function column_cb($item) {
-        $key = $this->_checkbox_field;
+	public function column_cb( $item ) {
+		$key = $this->_checkbox_field;
 
-        return sprintf('<input type="checkbox" name="%1$s[]" value="%2$s" />', $this->_args['singular'], $item->$key);
-    }
+		return sprintf( '<input type="checkbox" name="%1$s[]" value="%2$s" />', $this->_args['singular'], $item->$key );
+	}
 
-    public function sanitize_field($name, $value, $default = '') {
-        switch ($name) {
-            case 'orderby':
-                if (in_array($value, $this->_sanitize_orderby_fields)) {
-                    return $value;
-                } else {
-                    return $default;
-                }
-                break;
-            case 'order':
-                $value = strtoupper($value);
+	public function sanitize_field( $name, $value, $default = '' ) {
+		switch ( $name ) {
+			case 'orderby':
+				if ( in_array( $value, $this->_sanitize_orderby_fields ) ) {
+					return $value;
+				} else {
+					return $default;
+				}
+				break;
+			case 'order':
+				$value = strtoupper( $value );
 
-                if (in_array($value, array('ASC', 'DESC'))) {
-                    return $value;
-                } else {
-                    return $default;
-                }
-                break;
-        }
-    }
+				if ( in_array( $value, array( 'ASC', 'DESC' ) ) ) {
+					return $value;
+				} else {
+					return $default;
+				}
+				break;
+		}
+	}
 }

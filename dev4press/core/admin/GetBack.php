@@ -27,107 +27,107 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Admin;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 abstract class GetBack {
-    /** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
-    private $admin;
+	/** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
+	private $admin;
 
-    public function __construct($admin) {
-        $this->admin = $admin;
+	public function __construct( $admin ) {
+		$this->admin = $admin;
 
-        $this->process();
-    }
+		$this->process();
+	}
 
-    public function a() {
-        return $this->admin;
-    }
+	public function a() {
+		return $this->admin;
+	}
 
-    protected function process() {
-        if ($this->a()->panel == 'dashboard') {
-            if ($this->is_single_action('dismiss-topic-prefix', 'action')) {
-                $this->front_dismiss_plugin('notice_gdtox_hide');
-            }
+	protected function process() {
+		if ( $this->a()->panel == 'dashboard' ) {
+			if ( $this->is_single_action( 'dismiss-topic-prefix', 'action' ) ) {
+				$this->front_dismiss_plugin( 'notice_gdtox_hide' );
+			}
 
-            if ($this->is_single_action('dismiss-forum-notices', 'action')) {
-                $this->front_dismiss_plugin('notice_gdfon_hide');
-            }
+			if ( $this->is_single_action( 'dismiss-forum-notices', 'action' ) ) {
+				$this->front_dismiss_plugin( 'notice_gdfon_hide' );
+			}
 
-            if ($this->is_single_action('dismiss-topic-polls', 'action')) {
-                $this->front_dismiss_plugin('notice_gdpol_hide');
-            }
+			if ( $this->is_single_action( 'dismiss-topic-polls', 'action' ) ) {
+				$this->front_dismiss_plugin( 'notice_gdpol_hide' );
+			}
 
-            if ($this->is_single_action('dismiss-bbpress-toolbox', 'action')) {
-                $this->front_dismiss_plugin('notice_gdbbx_hide');
-            }
+			if ( $this->is_single_action( 'dismiss-bbpress-toolbox', 'action' ) ) {
+				$this->front_dismiss_plugin( 'notice_gdbbx_hide' );
+			}
 
-            if ($this->is_single_action('dismiss-power-search', 'action')) {
-                $this->front_dismiss_plugin('notice_gdpos_hide');
-            }
+			if ( $this->is_single_action( 'dismiss-power-search', 'action' ) ) {
+				$this->front_dismiss_plugin( 'notice_gdpos_hide' );
+			}
 
-            if ($this->is_single_action('dismiss-quantum-theme', 'action')) {
-                $this->front_dismiss_plugin('notice_gdqnt_hide');
-            }
+			if ( $this->is_single_action( 'dismiss-quantum-theme', 'action' ) ) {
+				$this->front_dismiss_plugin( 'notice_gdqnt_hide' );
+			}
 
-            if ($this->is_single_action('dismiss-members-directory', 'action')) {
-                $this->front_dismiss_plugin('notice_gdmed_hide');
-            }
-        }
+			if ( $this->is_single_action( 'dismiss-members-directory', 'action' ) ) {
+				$this->front_dismiss_plugin( 'notice_gdmed_hide' );
+			}
+		}
 
-        if ($this->a()->panel == 'tools') {
-            if ($this->is_single_action('export', 'run')) {
-                $this->tools_export();
-            }
-        }
-    }
+		if ( $this->a()->panel == 'tools' ) {
+			if ( $this->is_single_action( 'export', 'run' ) ) {
+				$this->tools_export();
+			}
+		}
+	}
 
-    protected function front_dismiss_plugin($option) {
-        $this->a()->settings()->set($option, true, 'core', true);
+	protected function front_dismiss_plugin( $option ) {
+		$this->a()->settings()->set( $option, true, 'core', true );
 
-        wp_redirect($this->a()->current_url(false));
-        exit;
-    }
+		wp_redirect( $this->a()->current_url( false ) );
+		exit;
+	}
 
-    protected function tools_export() {
-        check_ajax_referer('dev4press-plugin-'.$this->a()->plugin_prefix);
+	protected function tools_export() {
+		check_ajax_referer( 'dev4press-plugin-' . $this->a()->plugin_prefix );
 
-        if (!d4p_is_current_user_admin()) {
-            wp_die(__("Only administrators can use export features.", "d4plib"));
-        }
+		if ( ! d4p_is_current_user_admin() ) {
+			wp_die( __( "Only administrators can use export features.", "d4plib" ) );
+		}
 
-        $data = $this->a()->settings()->export_to_secure_json();
+		$data = $this->a()->settings()->export_to_secure_json();
 
-        if ($data !== false) {
-            $export_date = date('Y-m-d-H-m-s');
-            $export_name = $this->a()->plugin.'-settings-'.$export_date.'.json';
+		if ( $data !== false ) {
+			$export_date = date( 'Y-m-d-H-m-s' );
+			$export_name = $this->a()->plugin . '-settings-' . $export_date . '.json';
 
-            header('Content-type: application/force-download');
-            header('Content-Disposition: attachment; filename="'.$export_name.'"');
+			header( 'Content-type: application/force-download' );
+			header( 'Content-Disposition: attachment; filename="' . $export_name . '"' );
 
-            die($data);
-        } else {
-            wp_redirect($this->a()->current_url(false));
-            exit;
-        }
-    }
+			die( $data );
+		} else {
+			wp_redirect( $this->a()->current_url( false ) );
+			exit;
+		}
+	}
 
-    protected function is_single_action($name, $key = 'single-action') {
-        return isset($_GET[$key]) && $_GET[$key] == $name;
-    }
+	protected function is_single_action( $name, $key = 'single-action' ) {
+		return isset( $_GET[ $key ] ) && $_GET[ $key ] == $name;
+	}
 
-    protected function is_bulk_action() {
-        return (isset($_GET['action']) && $_GET['action'] != '-1') || (isset($_GET['action2']) && $_GET['action2'] != '-1');
-    }
+	protected function is_bulk_action() {
+		return ( isset( $_GET['action'] ) && $_GET['action'] != '-1' ) || ( isset( $_GET['action2'] ) && $_GET['action2'] != '-1' );
+	}
 
-    protected function get_bulk_action() {
-        $action = isset($_GET['action']) && $_GET['action'] != '' && $_GET['action'] != '-1' ? $_GET['action'] : '';
+	protected function get_bulk_action() {
+		$action = isset( $_GET['action'] ) && $_GET['action'] != '' && $_GET['action'] != '-1' ? $_GET['action'] : '';
 
-        if ($action == '') {
-            $action = isset($_GET['action2']) && $_GET['action2'] != '' && $_GET['action2'] != '-1' ? $_GET['action2'] : '';
-        }
+		if ( $action == '' ) {
+			$action = isset( $_GET['action2'] ) && $_GET['action2'] != '' && $_GET['action2'] != '-1' ? $_GET['action2'] : '';
+		}
 
-        return $action;
-    }
+		return $action;
+	}
 }

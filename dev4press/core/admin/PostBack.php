@@ -29,110 +29,110 @@ namespace Dev4Press\Core\Admin;
 
 use Dev4Press\Core\Options\Process;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 abstract class PostBack {
-    /** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
-    private $admin;
+	/** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
+	private $admin;
 
-    private $page;
+	private $page;
 
-    public function __construct($admin) {
-        $this->admin = $admin;
+	public function __construct( $admin ) {
+		$this->admin = $admin;
 
-        $this->page = isset($_POST['option_page']) ? $_POST['option_page'] : false;
+		$this->page = isset( $_POST['option_page'] ) ? $_POST['option_page'] : false;
 
-        if ($this->page !== false) {
-            $this->process();
-        }
-    }
+		if ( $this->page !== false ) {
+			$this->process();
+		}
+	}
 
-    public function a() {
-        return $this->admin;
-    }
+	public function a() {
+		return $this->admin;
+	}
 
-    public function p() {
-        return $this->page;
-    }
+	public function p() {
+		return $this->page;
+	}
 
-    protected function get_page_name($name) {
-        return $this->a()->plugin.'-'.$name;
-    }
+	protected function get_page_name( $name ) {
+		return $this->a()->plugin . '-' . $name;
+	}
 
-    protected function check_referer($name) {
-        check_admin_referer($this->get_page_name($name).'-options');
-    }
+	protected function check_referer( $name ) {
+		check_admin_referer( $this->get_page_name( $name ) . '-options' );
+	}
 
-    protected function process() {
-        if ($this->p() == $this->get_page_name('tools')) {
-            $this->check_referer('tools');
+	protected function process() {
+		if ( $this->p() == $this->get_page_name( 'tools' ) ) {
+			$this->check_referer( 'tools' );
 
-            $this->tools();
-        }
+			$this->tools();
+		}
 
-        if ($this->p() == $this->get_page_name('settings')) {
-            $this->check_referer('settings');
+		if ( $this->p() == $this->get_page_name( 'settings' ) ) {
+			$this->check_referer( 'settings' );
 
-            $this->settings();
-        }
-    }
+			$this->settings();
+		}
+	}
 
-    protected function tools() {
-        if ($this->a()->subpanel == 'remove') {
-            $this->remove();
-        } else if ($this->a()->subpanel == 'import') {
-            $this->import();
-        }
-    }
+	protected function tools() {
+		if ( $this->a()->subpanel == 'remove' ) {
+			$this->remove();
+		} else if ( $this->a()->subpanel == 'import' ) {
+			$this->import();
+		}
+	}
 
-    protected function settings() {
-        $this->save_settings($this->a()->subpanel);
+	protected function settings() {
+		$this->save_settings( $this->a()->subpanel );
 
-        wp_redirect($this->a()->current_url().'&message=saved');
-        exit;
-    }
+		wp_redirect( $this->a()->current_url() . '&message=saved' );
+		exit;
+	}
 
-    protected function save_settings($panel) {
-        $base = $this->a()->settings_definitions()->settings($panel);
-        $data = Process::instance($this->a()->n(), $this->a()->plugin_prefix)->prepare($base)->process();
+	protected function save_settings( $panel ) {
+		$base = $this->a()->settings_definitions()->settings( $panel );
+		$data = Process::instance( $this->a()->n(), $this->a()->plugin_prefix )->prepare( $base )->process();
 
-        foreach ($data as $group => $values) {
-            if (!empty($group)) {
-                foreach ($values as $name => $value) {
-                    $filter = $this->a()->h('settings_save_settings_value');
-                    $value = apply_filters($filter, $value, $name, $group);
+		foreach ( $data as $group => $values ) {
+			if ( ! empty( $group ) ) {
+				foreach ( $values as $name => $value ) {
+					$filter = $this->a()->h( 'settings_save_settings_value' );
+					$value  = apply_filters( $filter, $value, $name, $group );
 
-                    $this->a()->settings()->set($name, $value, $group);
-                }
+					$this->a()->settings()->set( $name, $value, $group );
+				}
 
-                $this->a()->settings()->save($group);
-            }
-        }
-    }
+				$this->a()->settings()->save( $group );
+			}
+		}
+	}
 
-    protected function import() {
-        $url = $this->a()->current_url(true);
+	protected function import() {
+		$url = $this->a()->current_url( true );
 
-        $message = 'import-failed';
+		$message = 'import-failed';
 
-        if (is_uploaded_file($_FILES['import_file']['tmp_name'])) {
-            $raw = file_get_contents($_FILES['import_file']['tmp_name']);
-            $data = json_decode($raw, true);
+		if ( is_uploaded_file( $_FILES['import_file']['tmp_name'] ) ) {
+			$raw  = file_get_contents( $_FILES['import_file']['tmp_name'] );
+			$data = json_decode( $raw, true );
 
-            if (!is_null($data) && is_array($data) && !empty($data)) {
-                $result = $this->a()->settings()->import_from_secure_json($data);
+			if ( ! is_null( $data ) && is_array( $data ) && ! empty( $data ) ) {
+				$result = $this->a()->settings()->import_from_secure_json( $data );
 
-                if ($result === true) {
-                    $message = 'imported';
-                }
-            }
-        }
+				if ( $result === true ) {
+					$message = 'imported';
+				}
+			}
+		}
 
-        wp_redirect($url.'&message='.$message);
-        exit;
-    }
+		wp_redirect( $url . '&message=' . $message );
+		exit;
+	}
 
-    abstract protected function remove();
+	abstract protected function remove();
 }

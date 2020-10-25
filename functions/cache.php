@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: Cache
-Version: v3.2
+Version: v3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -25,136 +25,137 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-if (!function_exists('d4p_cache_flush')) {
-    /** @global wpdb $wpdb */
-    function d4p_cache_flush($cache = true, $queries = true) {
-        if ($cache) {
-            wp_cache_flush();
-        }
+if ( ! function_exists( 'd4p_cache_flush' ) ) {
+	/** @global wpdb $wpdb */
+	function d4p_cache_flush( $cache = true, $queries = true ) {
+		if ( $cache ) {
+			wp_cache_flush();
+		}
 
-        if ($queries) {
-            global $wpdb;
+		if ( $queries ) {
+			global $wpdb;
 
-            if (is_array($wpdb->queries) && !empty($wpdb->queries)) {
-                unset($wpdb->queries);
-                $wpdb->queries = array();
-            }
-        }
-    }
+			if ( is_array( $wpdb->queries ) && ! empty( $wpdb->queries ) ) {
+				unset( $wpdb->queries );
+				$wpdb->queries = array();
+			}
+		}
+	}
 }
 
-if (!function_exists('d4p_posts_cache_by_ids')) {
-    /** @global wpdb $wpdb */
-    function d4p_posts_cache_by_ids($posts) {
-        global $wpdb;
+if ( ! function_exists( 'd4p_posts_cache_by_ids' ) ) {
+	/** @global wpdb $wpdb */
+	function d4p_posts_cache_by_ids( $posts ) {
+		global $wpdb;
 
-        $posts = _get_non_cached_ids($posts, 'posts');
-        $posts = array_filter($posts);
+		$posts = _get_non_cached_ids( $posts, 'posts' );
+		$posts = array_filter( $posts );
 
-        if (!empty($posts)) {
-            $sql = 'SELECT * FROM '.$wpdb->posts.' WHERE ID IN ('.join(',', (array)$posts).')';
-            $raw = $wpdb->get_results($sql);
+		if ( ! empty( $posts ) ) {
+			$sql = 'SELECT * FROM ' . $wpdb->posts . ' WHERE ID IN (' . join( ',', (array) $posts ) . ')';
+			$raw = $wpdb->get_results( $sql );
 
-            foreach ($raw as $_post) {
-                $_post = sanitize_post($_post, 'raw');
-                wp_cache_add($_post->ID, $_post, 'posts');
-            }
-        }
-    }
+			foreach ( $raw as $_post ) {
+				$_post = sanitize_post( $_post, 'raw' );
+				wp_cache_add( $_post->ID, $_post, 'posts' );
+			}
+		}
+	}
 }
 
-if (!function_exists('d4p_transient_sql_query')) {
-    function d4p_transient_sql_query($query, $key, $method, $output = OBJECT, $x = 0, $y = 0, $ttl = 86400) {
-        $var = get_transient($key);
+if ( ! function_exists( 'd4p_transient_sql_query' ) ) {
+	function d4p_transient_sql_query( $query, $key, $method, $output = OBJECT, $x = 0, $y = 0, $ttl = 86400 ) {
+		$var = get_transient( $key );
 
-        if ($var === false) {
-            global $wpdb;
+		if ( $var === false ) {
+			global $wpdb;
 
-            switch ($method) {
-                case 'var':
-                    $var = $wpdb->get_var($query, $x, $y);
-                    break;
-                case 'row':
-                    $var = $wpdb->get_row($query, $output, $y);
-                    break;
-                case 'results':
-                    $var = $wpdb->get_results($query, $output);
-                    break;
-            }
+			switch ( $method ) {
+				case 'var':
+					$var = $wpdb->get_var( $query, $x, $y );
+					break;
+				case 'row':
+					$var = $wpdb->get_row( $query, $output, $y );
+					break;
+				case 'results':
+					$var = $wpdb->get_results( $query, $output );
+					break;
+			}
 
-            set_transient($key, $var, $ttl);
-        }
+			set_transient( $key, $var, $ttl );
+		}
 
-        return $var;
-    }
+		return $var;
+	}
 }
 
-if (!function_exists('d4p_site_transient_sql_query')) {
-    function d4p_site_transient_sql_query($query, $key, $method, $output = OBJECT, $x = 0, $y = 0, $ttl = 86400) {
-        $var = get_site_transient($key);
+if ( ! function_exists( 'd4p_site_transient_sql_query' ) ) {
+	function d4p_site_transient_sql_query( $query, $key, $method, $output = OBJECT, $x = 0, $y = 0, $ttl = 86400 ) {
+		$var = get_site_transient( $key );
 
-        if ($var === false) {
-            global $wpdb;
+		if ( $var === false ) {
+			global $wpdb;
 
-            switch ($method) {
-                case 'var':
-                    $var = $wpdb->get_var($query, $x, $y);
-                    break;
-                case 'row':
-                    $var = $wpdb->get_row($query, $output, $y);
-                    break;
-                case 'results':
-                    $var = $wpdb->get_results($query, $output);
-                    break;
-            }
+			switch ( $method ) {
+				case 'var':
+					$var = $wpdb->get_var( $query, $x, $y );
+					break;
+				case 'row':
+					$var = $wpdb->get_row( $query, $output, $y );
+					break;
+				case 'results':
+					$var = $wpdb->get_results( $query, $output );
+					break;
+			}
 
-            set_site_transient($key, $var, $ttl);
-        }
+			set_site_transient( $key, $var, $ttl );
+		}
 
-        return $var;
-    }
+		return $var;
+	}
 }
 
-if (!function_exists('d4p_delete_user_transient')) {
-    function d4p_delete_user_transient($user_id, $transient) {
-        $transient_option = '_transient_'.$transient;
-        $transient_timeout = '_transient_timeout_'.$transient;
+if ( ! function_exists( 'd4p_delete_user_transient' ) ) {
+	function d4p_delete_user_transient( $user_id, $transient ) {
+		$transient_option  = '_transient_' . $transient;
+		$transient_timeout = '_transient_timeout_' . $transient;
 
-        delete_user_meta($user_id, $transient_option);
-        delete_user_meta($user_id, $transient_timeout);
-    }
+		delete_user_meta( $user_id, $transient_option );
+		delete_user_meta( $user_id, $transient_timeout );
+	}
 }
 
-if (!function_exists('d4p_get_user_transient')) {
-    function d4p_get_user_transient($user_id, $transient) {
-        $transient_option = '_transient_'.$transient;
-        $transient_timeout = '_transient_timeout_'.$transient;
+if ( ! function_exists( 'd4p_get_user_transient' ) ) {
+	function d4p_get_user_transient( $user_id, $transient ) {
+		$transient_option  = '_transient_' . $transient;
+		$transient_timeout = '_transient_timeout_' . $transient;
 
-        if (get_user_meta($user_id, $transient_timeout, true) < time()) {
-            delete_user_meta($user_id, $transient_option);
-            delete_user_meta($user_id, $transient_timeout);
-            return false;
-        }
+		if ( get_user_meta( $user_id, $transient_timeout, true ) < time() ) {
+			delete_user_meta( $user_id, $transient_option );
+			delete_user_meta( $user_id, $transient_timeout );
 
-        return get_user_meta($user_id, $transient_option, true);
-    }
+			return false;
+		}
+
+		return get_user_meta( $user_id, $transient_option, true );
+	}
 }
 
-if (!function_exists('d4p_set_user_transient')) {
-    function d4p_set_user_transient($user_id, $transient, $value, $expiration = 86400) {
-        $transient_option = '_transient_'.$transient;
-        $transient_timeout = '_transient_timeout_'.$transient;
+if ( ! function_exists( 'd4p_set_user_transient' ) ) {
+	function d4p_set_user_transient( $user_id, $transient, $value, $expiration = 86400 ) {
+		$transient_option  = '_transient_' . $transient;
+		$transient_timeout = '_transient_timeout_' . $transient;
 
-        if (get_user_meta($user_id, $transient_option, true) != '') {
-            delete_user_meta($user_id, $transient_option);
-            delete_user_meta($user_id, $transient_timeout);
-        }
+		if ( get_user_meta( $user_id, $transient_option, true ) != '' ) {
+			delete_user_meta( $user_id, $transient_option );
+			delete_user_meta( $user_id, $transient_timeout );
+		}
 
-        add_user_meta($user_id, $transient_timeout, time() + $expiration, true);
-        add_user_meta($user_id, $transient_option, $value, true);
-    }
+		add_user_meta( $user_id, $transient_timeout, time() + $expiration, true );
+		add_user_meta( $user_id, $transient_option, $value, true );
+	}
 }

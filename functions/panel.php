@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: Panel
-Version: v3.2
+Version: v3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -27,13 +27,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 use Dev4Press\Core\UI\Admin\Panel;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-if (!function_exists('d4p_panel')) {
-    /** @return \Dev4Press\Core\UI\Admin\Panel */
-    function d4p_panel() {
-        return Panel::instance();
-    }
+if ( ! function_exists( 'd4p_panel' ) ) {
+	/** @return \Dev4Press\Core\UI\Admin\Panel */
+	function d4p_panel() {
+		return Panel::instance();
+	}
 }

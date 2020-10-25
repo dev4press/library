@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: BuddyPress
-Version: v3.2
+Version: v3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -25,49 +25,49 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-if (!function_exists('d4p_has_buddypress')) {
-    function d4p_has_buddypress() {
-        if (d4p_is_plugin_active('buddypress/bp-loader.php')) {
-            $version = bp_get_version();
-            $version = intval(substr(str_replace('.', '', $version), 0, 2));
+if ( ! function_exists( 'd4p_has_buddypress' ) ) {
+	function d4p_has_buddypress() {
+		if ( d4p_is_plugin_active( 'buddypress/bp-loader.php' ) ) {
+			$version = bp_get_version();
+			$version = intval( substr( str_replace( '.', '', $version ), 0, 2 ) );
 
-            return $version > 39;
-        } else {
-            return false;
-        }
-    }
+			return $version > 39;
+		} else {
+			return false;
+		}
+	}
 }
 
-if (!function_exists('d4p_get_buddypress_major_version_code')) {
-    function d4p_get_buddypress_major_version_code() {
-        if (function_exists('bp_get_version')) {
-            $version = bp_get_version();
+if ( ! function_exists( 'd4p_get_buddypress_major_version_code' ) ) {
+	function d4p_get_buddypress_major_version_code() {
+		if ( function_exists( 'bp_get_version' ) ) {
+			$version = bp_get_version();
 
-            return intval(substr(str_replace('.', '', $version), 0, 2));
-        }
+			return intval( substr( str_replace( '.', '', $version ), 0, 2 ) );
+		}
 
-        return 0;
-    }
+		return 0;
+	}
 }
 
-if (!function_exists('d4p_get_buddypress_major_version_number')) {
-    function d4p_get_buddypress_major_version_number($ret = 'number') {
-        if (function_exists('bp_get_version')) {
-            $version = bp_get_version();
+if ( ! function_exists( 'd4p_get_buddypress_major_version_number' ) ) {
+	function d4p_get_buddypress_major_version_number( $ret = 'number' ) {
+		if ( function_exists( 'bp_get_version' ) ) {
+			$version = bp_get_version();
 
-            if (isset($version)) {
-                if ($ret == 'number') {
-                    return substr(str_replace('.', '', $version), 0, 2);
-                } else {
-                    return $version;
-                }
-            }
-        }
+			if ( isset( $version ) ) {
+				if ( $ret == 'number' ) {
+					return substr( str_replace( '.', '', $version ), 0, 2 );
+				} else {
+					return $version;
+				}
+			}
+		}
 
-        return 0;
-    }
+		return 0;
+	}
 }

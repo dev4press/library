@@ -37,41 +37,41 @@ abstract class Words extends Generator {
 
 	protected $words = array();
 
-	public function words($count = 1, $tags = false, $array = false) {
-		$words = array();
+	public function words( $count = 1, $tags = false, $array = false ) {
+		$words      = array();
 		$word_count = 0;
 
-		while ($word_count < $count) {
+		while ( $word_count < $count ) {
 			$shuffle = true;
 
-			while ($shuffle) {
+			while ( $shuffle ) {
 				$this->shuffle();
 
-				if (!$word_count || $words[$word_count - 1] != $this->words[0]) {
-					$words = array_merge($words, $this->words);
-					$word_count = count($words);
-					$shuffle = false;
+				if ( ! $word_count || $words[ $word_count - 1 ] != $this->words[0] ) {
+					$words      = array_merge( $words, $this->words );
+					$word_count = count( $words );
+					$shuffle    = false;
 				}
 			}
 		}
 
-		$words = array_slice($words, 0, $count);
+		$words = array_slice( $words, 0, $count );
 
-		return $this->output($words, $tags, $array);
+		return $this->output( $words, $tags, $array );
 	}
 
 	private function shuffle() {
-		if ($this->first && $this->first_count > 0) {
-			$this->first = array_slice($this->words, 0, $this->first_count);
-			$this->words = array_slice($this->words, $this->first_count);
+		if ( $this->first && $this->first_count > 0 ) {
+			$this->first = array_slice( $this->words, 0, $this->first_count );
+			$this->words = array_slice( $this->words, $this->first_count );
 
-			shuffle($this->words);
+			shuffle( $this->words );
 
 			$this->words = $this->first + $this->words;
 
 			$this->first = false;
 		} else {
-			shuffle($this->words);
+			shuffle( $this->words );
 		}
 	}
 }

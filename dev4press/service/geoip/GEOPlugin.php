@@ -27,62 +27,62 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Service\GEOIP;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class GEOPlugin extends Locator {
-    protected $_url = 'http://www.geoplugin.net/json.gp?ip=';
+	protected $_url = 'http://www.geoplugin.net/json.gp?ip=';
 
-    /** @return GEOPlugin */
-    public static function instance($ips = array()) {
-        static $geoplugin_ips = array();
+	/** @return GEOPlugin */
+	public static function instance( $ips = array() ) {
+		static $geoplugin_ips = array();
 
-        if (empty($ips)) {
-            $ips = array(d4p_ip_visitor());
-        }
+		if ( empty( $ips ) ) {
+			$ips = array( d4p_ip_visitor() );
+		}
 
-        sort($ips);
+		sort( $ips );
 
-        $key = join('-', $ips);
+		$key = join( '-', $ips );
 
-        if (!isset($geoplugin_ips[$key])) {
-            $geoplugin_ips[$key] = new GEOPlugin($ips);
-        }
+		if ( ! isset( $geoplugin_ips[ $key ] ) ) {
+			$geoplugin_ips[ $key ] = new GEOPlugin( $ips );
+		}
 
-        return $geoplugin_ips[$key];
-    }
+		return $geoplugin_ips[ $key ];
+	}
 
-    protected function url($ips) {
-        return $this->_url.$ips;
-    }
+	protected function url( $ips ) {
+		return $this->_url . $ips;
+	}
 
-    protected function process($raw) {
-        $convert = array(
-            'ip' => 'ip',
-            'countryCode' => 'country_code',
-            'countryName' => 'country_name',
-            'regionCode' => 'region_code',
-            'regionName' => 'region_name',
-            'city' => 'city',
-            'latitude' => 'latitude',
-            'longitude' => 'longitude',
-            'continentCode' => 'continent_code'
-        );
+	protected function process( $raw ) {
+		$convert = array(
+			'ip'            => 'ip',
+			'countryCode'   => 'country_code',
+			'countryName'   => 'country_name',
+			'regionCode'    => 'region_code',
+			'regionName'    => 'region_name',
+			'city'          => 'city',
+			'latitude'      => 'latitude',
+			'longitude'     => 'longitude',
+			'continentCode' => 'continent_code'
+		);
 
-        $code = array(
-            'status' => 'active'
-        );
+		$code = array(
+			'status' => 'active'
+		);
 
-        foreach ($raw as $key => $value) {
-            $ck = substr($key, 10);
+		foreach ( $raw as $key => $value ) {
+			$ck = substr( $key, 10 );
 
-            if (isset($convert[$ck])) {
-                $real = $convert[$ck];
-                $code[$real] = $value;
-            }
-        }
+			if ( isset( $convert[ $ck ] ) ) {
+				$real          = $convert[ $ck ];
+				$code[ $real ] = $value;
+			}
+		}
 
-        return new Location($code);
-    }
+		return new Location( $code );
+	}
 }

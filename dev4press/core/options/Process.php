@@ -27,201 +27,201 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Options;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class Process {
-    public $bool_values = array(true, false);
+	public $bool_values = array( true, false );
 
-    public $base = 'd4pvalue';
-    public $prefix = 'd4p';
-    public $settings;
+	public $base = 'd4pvalue';
+	public $prefix = 'd4p';
+	public $settings;
 
-    public function __construct($base, $prefix = 'd4p') {
-        $this->base = $base;
-        $this->prefix = $prefix;
-    }
+	public function __construct( $base, $prefix = 'd4p' ) {
+		$this->base   = $base;
+		$this->prefix = $prefix;
+	}
 
-    /** @return \Dev4Press\Core\Options\Process */
-    public static function instance($base = 'd4pvalue', $prefix = 'd4p') {
-        static $process = array();
+	/** @return \Dev4Press\Core\Options\Process */
+	public static function instance( $base = 'd4pvalue', $prefix = 'd4p' ) {
+		static $process = array();
 
-        if (!isset($process[$base])) {
-            $process[$base] = new Process($base, $prefix);
-        }
+		if ( ! isset( $process[ $base ] ) ) {
+			$process[ $base ] = new Process( $base, $prefix );
+		}
 
-        return $process[$base];
-    }
+		return $process[ $base ];
+	}
 
-    public function prepare($settings) {
-        $this->settings = $settings;
+	public function prepare( $settings ) {
+		$this->settings = $settings;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    public function process($request = false) {
-        $list = array();
+	public function process( $request = false ) {
+		$list = array();
 
-        if ($request === false) {
-            $request = $_REQUEST;
-        }
+		if ( $request === false ) {
+			$request = $_REQUEST;
+		}
 
-        foreach ($this->settings as $setting) {
-            if ($setting->type != '_') {
-                $post = isset($request[$this->base][$setting->type]) ? $request[$this->base][$setting->type] : array();
+		foreach ( $this->settings as $setting ) {
+			if ( $setting->type != '_' ) {
+				$post = isset( $request[ $this->base ][ $setting->type ] ) ? $request[ $this->base ][ $setting->type ] : array();
 
-                $list[$setting->type][$setting->name] = $this->process_single($setting, $post);
-            }
-        }
+				$list[ $setting->type ][ $setting->name ] = $this->process_single( $setting, $post );
+			}
+		}
 
-        return $list;
-    }
+		return $list;
+	}
 
-    public function slug_slashes($key) {
-        $key = strtolower($key);
-        $key = preg_replace('/[^a-z0-9.\/_\-]/', '', $key);
+	public function slug_slashes( $key ) {
+		$key = strtolower( $key );
+		$key = preg_replace( '/[^a-z0-9.\/_\-]/', '', $key );
 
-        return $key;
-    }
+		return $key;
+	}
 
-    public function process_single($setting, $post) {
-        $input = $setting->input;
-        $key = $setting->name;
-        $value = null;
+	public function process_single( $setting, $post ) {
+		$input = $setting->input;
+		$key   = $setting->name;
+		$value = null;
 
-        switch ($input) {
-	        default:
-		        $value = apply_filters($this->prefix.'_process_option_call_back_for_'.$input, $value, $post[$key], $setting);
+		switch ( $input ) {
+			default:
+				$value = apply_filters( $this->prefix . '_process_option_call_back_for_' . $input, $value, $post[ $key ], $setting );
 
-		        if (is_null($value)) {
-		        	$value = d4p_sanitize_basic((string)$post[$key]);
-		        }
-	        	break;
-            case 'skip':
-            case 'info':
-            case 'hr':
-            case 'custom':
-                $value = null;
-                break;
-            case 'expandable_raw':
-                $value = array();
+				if ( is_null( $value ) ) {
+					$value = d4p_sanitize_basic( (string) $post[ $key ] );
+				}
+				break;
+			case 'skip':
+			case 'info':
+			case 'hr':
+			case 'custom':
+				$value = null;
+				break;
+			case 'expandable_raw':
+				$value = array();
 
-                foreach ($post[$key] as $id => $data) {
-                    if ($id > 0) {
-                        $_val = trim(stripslashes($data['value']));
+				foreach ( $post[ $key ] as $id => $data ) {
+					if ( $id > 0 ) {
+						$_val = trim( stripslashes( $data['value'] ) );
 
-                        if ($_val != '') {
-                            $value[] = $_val;
-                        }
-                    }
-                }
-                break;
-            case 'expandable_text':
-                $value = array();
+						if ( $_val != '' ) {
+							$value[] = $_val;
+						}
+					}
+				}
+				break;
+			case 'expandable_text':
+				$value = array();
 
-                foreach ($post[$key] as $id => $data) {
-                    if ($id > 0) {
-                        $_val = d4p_sanitize_basic($data['value']);
+				foreach ( $post[ $key ] as $id => $data ) {
+					if ( $id > 0 ) {
+						$_val = d4p_sanitize_basic( $data['value'] );
 
-                        if (!empty($_val)) {
-                            $value[] = $_val;
-                        }
-                    }
-                }
-                break;
-            case 'expandable_pairs':
-                $value = array();
+						if ( ! empty( $_val ) ) {
+							$value[] = $_val;
+						}
+					}
+				}
+				break;
+			case 'expandable_pairs':
+				$value = array();
 
-                foreach ($post[$key] as $id => $data) {
-                    if ($id > 0) {
-                        $_key = d4p_sanitize_basic($data['key']);
-                        $_val = d4p_sanitize_basic($data['value']);
+				foreach ( $post[ $key ] as $id => $data ) {
+					if ( $id > 0 ) {
+						$_key = d4p_sanitize_basic( $data['key'] );
+						$_val = d4p_sanitize_basic( $data['value'] );
 
-                        if (!empty($_key) && !empty($_val)) {
-                            $value[$_key] = $_val;
-                        }
-                    }
-                }
-                break;
-            case 'x_by_y':
-                $value = d4p_sanitize_basic($post[$key]['x']).'x'.d4p_sanitize_basic($post[$key]['y']);
-                break;
-            case 'html':
-            case 'code':
-            case 'text_html':
-            case 'text_rich':
-                $value = d4p_sanitize_html($post[$key]);
-                break;
-            case 'bool':
-                $value = isset($post[$key]) ? $this->bool_values[0] : $this->bool_values[1];
-                break;
-            case 'number':
-                $value = floatval($post[$key]);
-                break;
-            case 'integer':
-                $value = intval($post[$key]);
-                break;
-            case 'image':
-            case 'absint':
-                $value = absint($post[$key]);
-                break;
-            case 'images':
-                if (!isset($post[$key])) {
-                    $value = array();
-                } else {
-                    $value = (array)$post[$key];
-                    $value = array_map('intval', $value);
-                    $value = array_filter($value);
-                }
-                break;
-            case 'listing':
-                $value = d4p_split_textarea_to_list(stripslashes($post[$key]));
-                break;
-            case 'media':
-                $value = 0;
-                if ($post[$key] != '') {
-                    $value = absint(substr($post[$key], 3));
-                }
-                break;
-            case 'checkboxes':
-            case 'checkboxes_hierarchy':
-            case 'select_multi':
-            case 'group_multi':
-                if (!isset($post[$key])) {
-                    $value = array();
-                } else {
-                    $value = (array)$post[$key];
-                    $value = array_map('d4p_sanitize_basic', $value);
-                }
-                break;
-            case 'slug':
-                $value = d4p_sanitize_slug($post[$key]);
-                break;
-            case 'slug_ext':
-                $value = d4p_sanitize_key_expanded($post[$key]);
-                break;
-            case 'slug_slash':
-                $value = $this->slug_slashes($post[$key]);
-                break;
-            case 'email':
-                $value = sanitize_email($post[$key]);
-                break;
-            case 'text':
-            case 'textarea':
-            case 'password':
-            case 'group':
-            case 'link':
-            case 'color':
-            case 'block':
-            case 'hidden':
-            case 'select':
-            case 'radios':
-            case 'radios_hierarchy':
-                $value = d4p_sanitize_basic($post[$key]);
-                break;
-        }
+						if ( ! empty( $_key ) && ! empty( $_val ) ) {
+							$value[ $_key ] = $_val;
+						}
+					}
+				}
+				break;
+			case 'x_by_y':
+				$value = d4p_sanitize_basic( $post[ $key ]['x'] ) . 'x' . d4p_sanitize_basic( $post[ $key ]['y'] );
+				break;
+			case 'html':
+			case 'code':
+			case 'text_html':
+			case 'text_rich':
+				$value = d4p_sanitize_html( $post[ $key ] );
+				break;
+			case 'bool':
+				$value = isset( $post[ $key ] ) ? $this->bool_values[0] : $this->bool_values[1];
+				break;
+			case 'number':
+				$value = floatval( $post[ $key ] );
+				break;
+			case 'integer':
+				$value = intval( $post[ $key ] );
+				break;
+			case 'image':
+			case 'absint':
+				$value = absint( $post[ $key ] );
+				break;
+			case 'images':
+				if ( ! isset( $post[ $key ] ) ) {
+					$value = array();
+				} else {
+					$value = (array) $post[ $key ];
+					$value = array_map( 'intval', $value );
+					$value = array_filter( $value );
+				}
+				break;
+			case 'listing':
+				$value = d4p_split_textarea_to_list( stripslashes( $post[ $key ] ) );
+				break;
+			case 'media':
+				$value = 0;
+				if ( $post[ $key ] != '' ) {
+					$value = absint( substr( $post[ $key ], 3 ) );
+				}
+				break;
+			case 'checkboxes':
+			case 'checkboxes_hierarchy':
+			case 'select_multi':
+			case 'group_multi':
+				if ( ! isset( $post[ $key ] ) ) {
+					$value = array();
+				} else {
+					$value = (array) $post[ $key ];
+					$value = array_map( 'd4p_sanitize_basic', $value );
+				}
+				break;
+			case 'slug':
+				$value = d4p_sanitize_slug( $post[ $key ] );
+				break;
+			case 'slug_ext':
+				$value = d4p_sanitize_key_expanded( $post[ $key ] );
+				break;
+			case 'slug_slash':
+				$value = $this->slug_slashes( $post[ $key ] );
+				break;
+			case 'email':
+				$value = sanitize_email( $post[ $key ] );
+				break;
+			case 'text':
+			case 'textarea':
+			case 'password':
+			case 'group':
+			case 'link':
+			case 'color':
+			case 'block':
+			case 'hidden':
+			case 'select':
+			case 'radios':
+			case 'radios_hierarchy':
+				$value = d4p_sanitize_basic( $post[ $key ] );
+				break;
+		}
 
-        return $value;
-    }
+		return $value;
+	}
 }

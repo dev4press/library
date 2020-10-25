@@ -29,43 +29,43 @@ namespace Dev4Press\WordPress\Customizer\Control;
 
 use Dev4Press\WordPress\Customizer\Control;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class Notice extends Control {
-    public $type = 'd4p-ctrl-notice';
+	public $type = 'd4p-ctrl-notice';
 
-    public function render_content() {
-        $allowed_html = array(
-            'a' => array(
-                'href' => array(),
-                'title' => array(),
-                'class' => array(),
-                'target' => array(),
-            ),
-            'br' => array(),
-            'em' => array(),
-            'strong' => array(),
-            'i' => array(
-                'class' => array()
-            ),
-            'span' => array(
-                'class' => array(),
-            ),
-            'code' => array()
-        );
+	public function render_content() {
+		$allowed_html = array(
+			'a'      => array(
+				'href'   => array(),
+				'title'  => array(),
+				'class'  => array(),
+				'target' => array(),
+			),
+			'br'     => array(),
+			'em'     => array(),
+			'strong' => array(),
+			'i'      => array(
+				'class' => array()
+			),
+			'span'   => array(
+				'class' => array(),
+			),
+			'code'   => array()
+		);
 
-        ?>
+		?>
         <div class="d4p-notice-ctrl">
-            <?php if (!empty($this->label)) { ?>
-                <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
-            <?php } ?>
-            <?php if (!empty($this->description)) { ?>
-                <span class="customize-control-description"><?php echo wp_kses($this->description, $allowed_html); ?></span>
-            <?php } ?>
+			<?php if ( ! empty( $this->label ) ) { ?>
+                <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+			<?php } ?>
+			<?php if ( ! empty( $this->description ) ) { ?>
+                <span class="customize-control-description"><?php echo wp_kses( $this->description, $allowed_html ); ?></span>
+			<?php } ?>
         </div>
-        <?php
+		<?php
 
-    }
+	}
 }

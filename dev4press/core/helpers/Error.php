@@ -29,20 +29,20 @@ namespace Dev4Press\Core\Helpers;
 
 use WP_Error;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class Error extends WP_Error {
-    public function has_errors() {
-        return !empty($this->errors);
-    }
+	public function has_errors() {
+		return ! empty( $this->errors );
+	}
 
-    public function merge_errors($errors) {
-        $this->errors = array_merge($this->errors, $errors);
-    }
+	public function merge_errors( $errors ) {
+		$this->errors = array_merge( $this->errors, $errors );
+	}
 
-    public function merge_errors_data($error_data) {
-        $this->error_data = array_merge($this->error_data, $error_data);
-    }
+	public function merge_errors_data( $error_data ) {
+		$this->error_data = array_merge( $this->error_data, $error_data );
+	}
 }

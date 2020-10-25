@@ -27,62 +27,62 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Service\GEOIP;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class GEOJSIO extends Locator {
-    protected $_multi_ip_call = true;
-    protected $_url = 'https://get.geojs.io/v1/ip/geo.json?ip=';
+	protected $_multi_ip_call = true;
+	protected $_url = 'https://get.geojs.io/v1/ip/geo.json?ip=';
 
-    public static function instance($ips = array()) {
-        static $geoplugin_ips = array();
+	public static function instance( $ips = array() ) {
+		static $geoplugin_ips = array();
 
-        if (empty($ips)) {
-            $ips = array(d4p_ip_visitor());
-        }
+		if ( empty( $ips ) ) {
+			$ips = array( d4p_ip_visitor() );
+		}
 
-        sort($ips);
+		sort( $ips );
 
-        $key = join('-', $ips);
+		$key = join( '-', $ips );
 
-        if (!isset($geoplugin_ips[$key])) {
-            $geoplugin_ips[$key] = new GEOJSIO($ips);
-        }
+		if ( ! isset( $geoplugin_ips[ $key ] ) ) {
+			$geoplugin_ips[ $key ] = new GEOJSIO( $ips );
+		}
 
-        return $geoplugin_ips[$key];
-    }
+		return $geoplugin_ips[ $key ];
+	}
 
-    protected function url($ips) {
-        $ips = (array)$ips;
+	protected function url( $ips ) {
+		$ips = (array) $ips;
 
-        return $this->_url.join(',', $ips);
-    }
+		return $this->_url . join( ',', $ips );
+	}
 
-    protected function process($raw) {
-        $convert = array(
-            'ip' => 'ip',
-            'continent_code' => 'continent_code',
-            'country_code' => 'country_code',
-            'country' => 'country_name',
-            'region' => 'region_name',
-            'city' => 'city',
-            'latitude' => 'latitude',
-            'longitude' => 'longitude',
-            'timezone' => 'time_zone'
-        );
+	protected function process( $raw ) {
+		$convert = array(
+			'ip'             => 'ip',
+			'continent_code' => 'continent_code',
+			'country_code'   => 'country_code',
+			'country'        => 'country_name',
+			'region'         => 'region_name',
+			'city'           => 'city',
+			'latitude'       => 'latitude',
+			'longitude'      => 'longitude',
+			'timezone'       => 'time_zone'
+		);
 
-        $code = array(
-            'status' => 'active'
-        );
+		$code = array(
+			'status' => 'active'
+		);
 
-        foreach ($raw as $key => $value) {
-            if (isset($convert[$key])) {
-                $real = $convert[$key];
-                $code[$real] = $value;
-            }
-        }
+		foreach ( $raw as $key => $value ) {
+			if ( isset( $convert[ $key ] ) ) {
+				$real          = $convert[ $key ];
+				$code[ $real ] = $value;
+			}
+		}
 
-        return new Location($code);
-    }
+		return new Location( $code );
+	}
 }

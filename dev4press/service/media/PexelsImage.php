@@ -27,42 +27,42 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Service\Media;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class PexelsImage {
-    public $id;
-    public $url;
-    public $name;
+	public $id;
+	public $url;
+	public $name;
 
-    public $width;
-    public $height;
+	public $width;
+	public $height;
 
-    public $images;
+	public $images;
 
-    public $photographer;
+	public $photographer;
 
-    public function __construct($response) {
-        $this->id = $response->id;
-        $this->url = $response->url;
+	public function __construct( $response ) {
+		$this->id  = $response->id;
+		$this->url = $response->url;
 
-        $this->width = $response->width;
-        $this->height = $response->height;
+		$this->width  = $response->width;
+		$this->height = $response->height;
 
-        $this->photographer = (object)array(
-            'id' => $response->photographer_id,
-            'name' => $response->photographer,
-            'url' => $response->photographer_url
-        );
+		$this->photographer = (object) array(
+			'id'   => $response->photographer_id,
+			'name' => $response->photographer,
+			'url'  => $response->photographer_url
+		);
 
-        $this->images = $response->src;
+		$this->images = $response->src;
 
-        preg_match('/pexels\.com\/photo\/(.+?)-\d+?\//', $this->url, $output);
+		preg_match( '/pexels\.com\/photo\/(.+?)-\d+?\//', $this->url, $output );
 
-        if (!empty($output) && isset($output[1])) {
-            $this->name = str_replace('-', ' ', $output[1]);
-            $this->name = ucfirst($this->name);
-        }
-    }
+		if ( ! empty( $output ) && isset( $output[1] ) ) {
+			$this->name = str_replace( '-', ' ', $output[1] );
+			$this->name = ucfirst( $this->name );
+		}
+	}
 }

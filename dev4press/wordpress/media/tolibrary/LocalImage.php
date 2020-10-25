@@ -29,46 +29,46 @@ namespace Dev4Press\WordPress\Media\ToLibrary;
 
 use Dev4Press\WordPress\Media\ImageToMediaLibrary;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class LocalImage {
-    use ImageToMediaLibrary;
+	use ImageToMediaLibrary;
 
-    public function __construct($path, $data = array(), $args = array()) {
-        $this->_init();
+	public function __construct( $path, $data = array(), $args = array() ) {
+		$this->_init();
 
-        $defaults = array(
-            'name' => '',
-            'title' => '',
-            'slug' => '',
-            'caption' => '',
-            'alt' => '',
-            'description' => ''
-        );
+		$defaults = array(
+			'name'        => '',
+			'title'       => '',
+			'slug'        => '',
+			'caption'     => '',
+			'alt'         => '',
+			'description' => ''
+		);
 
-        $this->data = wp_parse_args($data, $defaults);
-        $this->path = $path;
+		$this->data = wp_parse_args( $data, $defaults );
+		$this->path = $path;
 
-        if (empty($this->data['name'])) {
-            $this->data['name'] = basename($this->path);
+		if ( empty( $this->data['name'] ) ) {
+			$this->data['name'] = basename( $this->path );
 
-            if (($pos = strpos($this->data['name'], '?')) > 0) {
-                $this->data['name'] = substr($this->data['name'], 0, $pos);
-            }
-        }
+			if ( ( $pos = strpos( $this->data['name'], '?' ) ) > 0 ) {
+				$this->data['name'] = substr( $this->data['name'], 0, $pos );
+			}
+		}
 
-        $this->_prepare($args);
-    }
+		$this->_prepare( $args );
+	}
 
-    public function upload($post_parent = 0) {
-        $file = $this->_sideload($this->path);
+	public function upload( $post_parent = 0 ) {
+		$file = $this->_sideload( $this->path );
 
-        if (is_wp_error($file)) {
-            return $file;
-        }
+		if ( is_wp_error( $file ) ) {
+			return $file;
+		}
 
-        return $this->_attach($file, $post_parent);
-    }
+		return $this->_attach( $file, $post_parent );
+	}
 }

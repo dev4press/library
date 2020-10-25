@@ -4,79 +4,79 @@ namespace Dev4Press\Core\Admin\Menu;
 
 use Dev4Press\Core\Admin\Plugin as BasePlugin;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 abstract class Plugin extends BasePlugin {
-    public $variant = 'menu';
+	public $variant = 'menu';
 
-    public function main_url() {
-        return self_admin_url('admin.php?page='.$this->plugin.'-dashboard');
-    }
+	public function main_url() {
+		return self_admin_url( 'admin.php?page=' . $this->plugin . '-dashboard' );
+	}
 
-    public function current_url($with_subpanel = true) {
-        $page = 'admin.php?page='.$this->plugin.'-'.$this->panel;
+	public function current_url( $with_subpanel = true ) {
+		$page = 'admin.php?page=' . $this->plugin . '-' . $this->panel;
 
-        if ($with_subpanel && isset($this->subpanel) && $this->subpanel !== false && $this->subpanel != '') {
-            $page .= '&subpanel='.$this->subpanel;
-        }
+		if ( $with_subpanel && isset( $this->subpanel ) && $this->subpanel !== false && $this->subpanel != '' ) {
+			$page .= '&subpanel=' . $this->subpanel;
+		}
 
-        return self_admin_url($page);
-    }
+		return self_admin_url( $page );
+	}
 
-    public function panel_url($panel = 'dashboard', $subpanel = '') {
-        $page = 'admin.php?page='.$this->plugin.'-'.$panel;
+	public function panel_url( $panel = 'dashboard', $subpanel = '' ) {
+		$page = 'admin.php?page=' . $this->plugin . '-' . $panel;
 
-        if (!empty($subpanel) && $subpanel != 'index') {
-            $page .= '&subpanel='.$subpanel;
-        }
+		if ( ! empty( $subpanel ) && $subpanel != 'index' ) {
+			$page .= '&subpanel=' . $subpanel;
+		}
 
-        return self_admin_url($page);
-    }
+		return self_admin_url( $page );
+	}
 
-    public function admin_menu() {
-        $parent = $this->plugin.'-dashboard';
+	public function admin_menu() {
+		$parent = $this->plugin . '-dashboard';
 
-        add_menu_page(
-            $this->plugin_title,
-            $this->plugin_menu,
-            $this->menu_cap,
-            $parent,
-            array($this, 'admin_panel'),
-            $this->svg_icon());
+		add_menu_page(
+			$this->plugin_title,
+			$this->plugin_menu,
+			$this->menu_cap,
+			$parent,
+			array( $this, 'admin_panel' ),
+			$this->svg_icon() );
 
-        foreach ($this->menu_items as $item => $data) {
-            $this->page_ids[] = add_submenu_page($parent,
-                $this->plugin_title.': '.$data['title'],
-                $data['title'],
-                $this->menu_cap,
-                $this->plugin.'-'.$item,
-                array($this, 'admin_panel'));
-        }
+		foreach ( $this->menu_items as $item => $data ) {
+			$this->page_ids[] = add_submenu_page( $parent,
+				$this->plugin_title . ': ' . $data['title'],
+				$data['title'],
+				$this->menu_cap,
+				$this->plugin . '-' . $item,
+				array( $this, 'admin_panel' ) );
+		}
 
-        $this->admin_load_hooks();
-    }
+		$this->admin_load_hooks();
+	}
 
-    public function current_screen($screen) {
-        $this->screen_id = $screen->id;
+	public function current_screen( $screen ) {
+		$this->screen_id = $screen->id;
 
-        $parts = explode('_page_', $this->screen_id, 2);
-        $panel = isset($parts[1]) && substr($parts[1], 0, strlen($this->plugin)) == $this->plugin ? substr($parts[1], strlen($this->plugin) + 1) : '';
+		$parts = explode( '_page_', $this->screen_id, 2 );
+		$panel = isset( $parts[1] ) && substr( $parts[1], 0, strlen( $this->plugin ) ) == $this->plugin ? substr( $parts[1], strlen( $this->plugin ) + 1 ) : '';
 
-        if (!empty($panel)) {
-            if (isset($this->menu_items[$panel])) {
-                $this->page = true;
-                $this->panel = $panel;
+		if ( ! empty( $panel ) ) {
+			if ( isset( $this->menu_items[ $panel ] ) ) {
+				$this->page  = true;
+				$this->panel = $panel;
 
-                if (isset($_GET['subpanel']) && !empty($_GET['subpanel'])) {
-                    $this->subpanel = d4p_sanitize_slug($_GET['subpanel']);
-                }
+				if ( isset( $_GET['subpanel'] ) && ! empty( $_GET['subpanel'] ) ) {
+					$this->subpanel = d4p_sanitize_slug( $_GET['subpanel'] );
+				}
 
-                $this->screen_setup();
-            }
-        }
+				$this->screen_setup();
+			}
+		}
 
-        $this->global_admin_notices();
-    }
+		$this->global_admin_notices();
+	}
 }

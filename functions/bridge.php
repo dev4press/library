@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: Bridge
-Version: v3.2
+Version: v3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -31,50 +31,50 @@ use Dev4Press\Core\Helpers\ObjectsSort;
 use Dev4Press\WordPress\Media\ToLibrary\LocalImage;
 use Dev4Press\WordPress\Media\ToLibrary\RemoteImage;
 
-if (!function_exists('d4p_local_image_to_media_library')) {
-    function d4p_local_image_to_media_library($path, $data = array(), $post_parent = 0, $args = array()) {
-        $obj = new LocalImage($path, $data, $args);
+if ( ! function_exists( 'd4p_local_image_to_media_library' ) ) {
+	function d4p_local_image_to_media_library( $path, $data = array(), $post_parent = 0, $args = array() ) {
+		$obj = new LocalImage( $path, $data, $args );
 
-        return $obj->upload($post_parent);
-    }
+		return $obj->upload( $post_parent );
+	}
 }
 
-if (!function_exists('d4p_remote_image_to_media_library')) {
-    function d4p_remote_image_to_media_library($url, $data = array(), $post_parent = 0, $args = array()) {
-        $obj = new RemoteImage($url, $data, $args);
+if ( ! function_exists( 'd4p_remote_image_to_media_library' ) ) {
+	function d4p_remote_image_to_media_library( $url, $data = array(), $post_parent = 0, $args = array() ) {
+		$obj = new RemoteImage( $url, $data, $args );
 
-        return $obj->download($post_parent);
-    }
+		return $obj->download( $post_parent );
+	}
 }
 
-if (!function_exists('d4p_get_objects_sort')) {
-    function d4p_get_objects_sort($objects_array, $properties = array(), $uasort = false) {
-        $_sort = new ObjectsSort($objects_array, $properties, $uasort);
+if ( ! function_exists( 'd4p_get_objects_sort' ) ) {
+	function d4p_get_objects_sort( $objects_array, $properties = array(), $uasort = false ) {
+		$_sort = new ObjectsSort( $objects_array, $properties, $uasort );
 
-        return $_sort->sorted;
-    }
+		return $_sort->sorted;
+	}
 }
 
-if (!function_exists('d4p_read_file')) {
-    function d4p_read_file($file_path, $part_size_mb = 2, $return_size = true) {
-        return Download::instance($file_path)->read_file($part_size_mb, $return_size);
-    }
+if ( ! function_exists( 'd4p_read_file' ) ) {
+	function d4p_read_file( $file_path, $part_size_mb = 2, $return_size = true ) {
+		return Download::instance( $file_path )->read_file( $part_size_mb, $return_size );
+	}
 }
 
-if (!function_exists('d4p_download_file_simple')) {
-    function d4p_download_file_simple($file_path, $file_name = null, $gdr_readfile = true) {
-        Download::instance($file_path, $file_name)->simple(!$gdr_readfile);
-    }
+if ( ! function_exists( 'd4p_download_file_simple' ) ) {
+	function d4p_download_file_simple( $file_path, $file_name = null, $gdr_readfile = true ) {
+		Download::instance( $file_path, $file_name )->simple( ! $gdr_readfile );
+	}
 }
 
-if (!function_exists('d4p_download_file_resume')) {
-    function d4p_download_file_resume($file_path, $file_name = null) {
-        Download::instance($file_path, $file_name)->resume();
-    }
+if ( ! function_exists( 'd4p_download_file_resume' ) ) {
+	function d4p_download_file_resume( $file_path, $file_name = null ) {
+		Download::instance( $file_path, $file_name )->resume();
+	}
 }
 
-if (!function_exists('d4p_object_cache')) {
-    function d4p_object_cache() {
-        return Store::instance();
-    }
+if ( ! function_exists( 'd4p_object_cache' ) ) {
+	function d4p_object_cache() {
+		return Store::instance();
+	}
 }

@@ -27,126 +27,126 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Service\GEOIP;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 abstract class Locator {
-    protected $_multi_ip_call = false;
-    protected $_url = '';
+	protected $_multi_ip_call = false;
+	protected $_url = '';
 
-    protected $_expire = 14;
-    protected $_user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0';
+	protected $_expire = 14;
+	protected $_user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0';
 
-    public $ips = '';
+	public $ips = '';
 
-    /** @var Location[] */
-    protected $_data = array();
+	/** @var Location[] */
+	protected $_data = array();
 
-    public function __construct($ips) {
-        $this->ips = (array)$ips;
-    }
+	public function __construct( $ips ) {
+		$this->ips = (array) $ips;
+	}
 
-    public function expire($expire) {
-        $this->_expire = $expire;
+	public function expire( $expire ) {
+		$this->_expire = $expire;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    public function ua($user_agent) {
-        $this->_user_agent = $user_agent;
+	public function ua( $user_agent ) {
+		$this->_user_agent = $user_agent;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    public function run() {
-        $_not_found = array();
+	public function run() {
+		$_not_found = array();
 
-        foreach ($this->ips as $ip) {
-            if (d4p_ip_is_private($ip)) {
-                $this->_data[$ip] = new Location(array('status' => 'private', 'ip' => $ip));
-            } else {
-                $key = $this->_key($ip);
+		foreach ( $this->ips as $ip ) {
+			if ( d4p_ip_is_private( $ip ) ) {
+				$this->_data[ $ip ] = new Location( array( 'status' => 'private', 'ip' => $ip ) );
+			} else {
+				$key = $this->_key( $ip );
 
-                if ($this->_expire > 0) {
-                    $cache = get_site_transient($key);
+				if ( $this->_expire > 0 ) {
+					$cache = get_site_transient( $key );
 
-                    if ($cache === false || is_null($cache) || empty($cache)) {
-                        $_not_found[] = $ip;
-                    } else {
-                        $data = json_decode($cache);
-                        $this->_data[$ip] = new Location($data);
-                    }
-                } else {
-                    $_not_found[] = $ip;
-                }
-            }
-        }
+					if ( $cache === false || is_null( $cache ) || empty( $cache ) ) {
+						$_not_found[] = $ip;
+					} else {
+						$data               = json_decode( $cache );
+						$this->_data[ $ip ] = new Location( $data );
+					}
+				} else {
+					$_not_found[] = $ip;
+				}
+			}
+		}
 
-        if (!empty($_not_found)) {
-            if (count($_not_found) > 1 && !$this->_multi_ip_call) {
-                foreach ($_not_found as $ip) {
-                    $url = $this->url($ip);
+		if ( ! empty( $_not_found ) ) {
+			if ( count( $_not_found ) > 1 && ! $this->_multi_ip_call ) {
+				foreach ( $_not_found as $ip ) {
+					$url = $this->url( $ip );
 
-                    $this->_remote($url);
-                }
-            } else {
-                if (count($_not_found) == 1) {
-                    $url = $this->url($_not_found[0]);
-                } else {
-                    $url = $this->url($_not_found);
-                }
+					$this->_remote( $url );
+				}
+			} else {
+				if ( count( $_not_found ) == 1 ) {
+					$url = $this->url( $_not_found[0] );
+				} else {
+					$url = $this->url( $_not_found );
+				}
 
-                $this->_remote($url);
-            }
+				$this->_remote( $url );
+			}
 
-            foreach ($_not_found as $ip) {
-                if (!isset($this->_data[$ip])) {
-                    $this->_data[$ip] = false;
-                }
-            }
-        }
-    }
+			foreach ( $_not_found as $ip ) {
+				if ( ! isset( $this->_data[ $ip ] ) ) {
+					$this->_data[ $ip ] = false;
+				}
+			}
+		}
+	}
 
-    protected function _key($ip) {
-        return 'd4p_geoip_'.$ip;
-    }
+	protected function _key( $ip ) {
+		return 'd4p_geoip_' . $ip;
+	}
 
-    protected function _remote($url) {
-        $_remote_args = array(
-            'httpversion' => '1.1',
-            'user-agent' => $this->_user_agent
-        );
+	protected function _remote( $url ) {
+		$_remote_args = array(
+			'httpversion' => '1.1',
+			'user-agent'  => $this->_user_agent
+		);
 
-        $raw = wp_remote_get($url, $_remote_args);
+		$raw = wp_remote_get( $url, $_remote_args );
 
-        if (!is_wp_error($raw) && $raw['response']['code'] == '200') {
-            $raw = (array)json_decode($raw['body']);
+		if ( ! is_wp_error( $raw ) && $raw['response']['code'] == '200' ) {
+			$raw = (array) json_decode( $raw['body'] );
 
-            if (!is_object($raw) && !is_array($raw)) {
+			if ( ! is_object( $raw ) && ! is_array( $raw ) ) {
 
-            } else {
-                if (is_object($raw)) {
-                    $raw = array($raw);
-                }
+			} else {
+				if ( is_object( $raw ) ) {
+					$raw = array( $raw );
+				}
 
-                foreach ($raw as $item) {
-                    $data = $this->process($item);
+				foreach ( $raw as $item ) {
+					$data = $this->process( $item );
 
-                    if ($this->_expire > 0) {
-                        $key = $this->_key($data->ip);
+					if ( $this->_expire > 0 ) {
+						$key = $this->_key( $data->ip );
 
-                        set_site_transient($key, json_encode($data), $this->_expire * DAY_IN_SECONDS);
-                    }
+						set_site_transient( $key, json_encode( $data ), $this->_expire * DAY_IN_SECONDS );
+					}
 
-                    $this->_data[$data->ip] = $data;
-                }
-            }
-        }
-    }
+					$this->_data[ $data->ip ] = $data;
+				}
+			}
+		}
+	}
 
-    abstract protected function url($ips);
+	abstract protected function url( $ips );
 
-    /** @return Location */
-    abstract protected function process($raw);
+	/** @return Location */
+	abstract protected function process( $raw );
 }

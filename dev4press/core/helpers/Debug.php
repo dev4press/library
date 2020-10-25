@@ -29,175 +29,175 @@ namespace Dev4Press\Core\Helpers;
 
 use ReflectionFunction;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class Debug {
-    public static function error_log($log, $title = '') {
-        if (true === WP_DEBUG) {
-            $print = '';
+	public static function error_log( $log, $title = '' ) {
+		if ( true === WP_DEBUG ) {
+			$print = '';
 
-            if ($title != '') {
-                $print .= '<<<< '.$title."\r\n";
-            }
+			if ( $title != '' ) {
+				$print .= '<<<< ' . $title . "\r\n";
+			}
 
-            $print .= print_r($log, true);
+			$print .= print_r( $log, true );
 
-            error_log($print);
-        }
-    }
+			error_log( $print );
+		}
+	}
 
-    public static function print_r($obj, $pre = true, $title = '', $before = '', $after = '') {
-        echo $before.D4P_EOL;
+	public static function print_r( $obj, $pre = true, $title = '', $before = '', $after = '' ) {
+		echo $before . D4P_EOL;
 
-        if ($pre) {
-            echo '<pre style="padding: 5px; font-size: 12px; background: #fff; border: 1px solid #000; color: #000;">';
+		if ( $pre ) {
+			echo '<pre style="padding: 5px; font-size: 12px; background: #fff; border: 1px solid #000; color: #000;">';
 
-            if ($title != '') {
-                echo '&gt;&gt;&gt;&gt;&nbsp;<strong>'.$title.'</strong>&nbsp;&lt;&lt;&lt;&lt;&lt;<br/><br/>';
-            }
-        } else {
-            if ($title != '') {
-                echo "<<<< ".$title." >>>>\r\n\r\n";
-            }
-        }
+			if ( $title != '' ) {
+				echo '&gt;&gt;&gt;&gt;&nbsp;<strong>' . $title . '</strong>&nbsp;&lt;&lt;&lt;&lt;&lt;<br/><br/>';
+			}
+		} else {
+			if ( $title != '' ) {
+				echo "<<<< " . $title . " >>>>\r\n\r\n";
+			}
+		}
 
-        print_r($obj);
+		print_r( $obj );
 
-        if ($pre) {
-            echo '</pre>';
-        }
+		if ( $pre ) {
+			echo '</pre>';
+		}
 
-        echo $after.D4P_EOL;
-    }
+		echo $after . D4P_EOL;
+	}
 
-    public static function print_hooks($filter = false, $destination = 'print') {
-        global $wp_filter;
+	public static function print_hooks( $filter = false, $destination = 'print' ) {
+		global $wp_filter;
 
-        $skip = empty($filter);
+		$skip = empty( $filter );
 
-        foreach ($wp_filter as $tag => $hook) {
-            if ($skip || false !== strpos($tag, $filter)) {
-                self::print_hook($tag, $hook, $destination);
-            }
-        }
-    }
+		foreach ( $wp_filter as $tag => $hook ) {
+			if ( $skip || false !== strpos( $tag, $filter ) ) {
+				self::print_hook( $tag, $hook, $destination );
+			}
+		}
+	}
 
-    public static function print_hook($tag, $hook, $destination = 'print') {
-        ksort($hook);
+	public static function print_hook( $tag, $hook, $destination = 'print' ) {
+		ksort( $hook );
 
-        $print = array();
+		$print = array();
 
-        foreach ($hook as $priority => $functions) {
-            foreach ($functions as $function) {
-                $line = $priority.' : ';
+		foreach ( $hook as $priority => $functions ) {
+			foreach ( $functions as $function ) {
+				$line = $priority . ' : ';
 
-                $callback = $function['function'];
+				$callback = $function['function'];
 
-                if (is_string($callback)) {
-                    $line .= $callback;
-                } else if (is_a($callback, 'Closure')) {
-                    $closure = new ReflectionFunction($callback);
-                    $line .= 'closure from '.$closure->getFileName().'::'.$closure->getStartLine();
-                } else if (is_string($callback[0])) {
-                    $line .= $callback[0].'::'.$callback[1];
-                } else if (is_object($callback[0])) {
-                    $line .= get_class($callback[0]).'->'.$callback[1];
-                }
+				if ( is_string( $callback ) ) {
+					$line .= $callback;
+				} else if ( is_a( $callback, 'Closure' ) ) {
+					$closure = new ReflectionFunction( $callback );
+					$line    .= 'closure from ' . $closure->getFileName() . '::' . $closure->getStartLine();
+				} else if ( is_string( $callback[0] ) ) {
+					$line .= $callback[0] . '::' . $callback[1];
+				} else if ( is_object( $callback[0] ) ) {
+					$line .= get_class( $callback[0] ) . '->' . $callback[1];
+				}
 
-                if ($function['accepted_args'] == 1) {
-                    $line .= " ({$function['accepted_args']})";
-                }
+				if ( $function['accepted_args'] == 1 ) {
+					$line .= " ({$function['accepted_args']})";
+				}
 
-                $print[] = $line;
-            }
-        }
+				$print[] = $line;
+			}
+		}
 
-        if ($destination == 'log') {
-            self::error_log($print, $tag);
-        } else {
-            self::print_r($print, true, $tag);
-        }
-    }
+		if ( $destination == 'log' ) {
+			self::error_log( $print, $tag );
+		} else {
+			self::print_r( $print, true, $tag );
+		}
+	}
 
-    public static function print_page_summary() {
-        global $wpdb;
+	public static function print_page_summary() {
+		global $wpdb;
 
-        echo D4P_EOL;
-        echo '<!-- '.__("SQL Queries", "d4plib").'           : ';
-        echo $wpdb->num_queries;
-        echo ' -->'.D4P_EOL;
-        echo '<!-- '.__("Total Page Time", "d4plib").'       : ';
-        echo timer_stop(0, 6).' '.__("seconds", "d4plib");
-        echo ' -->'.D4P_EOL;
+		echo D4P_EOL;
+		echo '<!-- ' . __( "SQL Queries", "d4plib" ) . '           : ';
+		echo $wpdb->num_queries;
+		echo ' -->' . D4P_EOL;
+		echo '<!-- ' . __( "Total Page Time", "d4plib" ) . '       : ';
+		echo timer_stop( 0, 6 ) . ' ' . __( "seconds", "d4plib" );
+		echo ' -->' . D4P_EOL;
 
-        if (function_exists('memory_get_peak_usage')) {
-            echo '<!-- '.__("PHP Memory Peak", "d4plib").'       : ';
-            echo round(memory_get_peak_usage() / 1024 / 1024, 2).' MB';
-            echo ' -->'.D4P_EOL;
-        }
+		if ( function_exists( 'memory_get_peak_usage' ) ) {
+			echo '<!-- ' . __( "PHP Memory Peak", "d4plib" ) . '       : ';
+			echo round( memory_get_peak_usage() / 1024 / 1024, 2 ) . ' MB';
+			echo ' -->' . D4P_EOL;
+		}
 
-        if (function_exists('memory_get_usage')) {
-            echo '<!-- '.__("PHP Memory Final", "d4plib").'      : ';
-            echo round(memory_get_usage() / 1024 / 1024, 2).' MB';
-            echo ' -->'.D4P_EOL;
-        }
+		if ( function_exists( 'memory_get_usage' ) ) {
+			echo '<!-- ' . __( "PHP Memory Final", "d4plib" ) . '      : ';
+			echo round( memory_get_usage() / 1024 / 1024, 2 ) . ' MB';
+			echo ' -->' . D4P_EOL;
+		}
 
-        echo D4P_EOL;
-    }
+		echo D4P_EOL;
+	}
 
-    public static function print_query_conditions() {
-        global $wp_query;
+	public static function print_query_conditions() {
+		global $wp_query;
 
-        echo D4P_EOL;
+		echo D4P_EOL;
 
-        $true = $false = '';
+		$true = $false = '';
 
-        foreach ($wp_query as $key => $value) {
-            if (substr($key, 0, 3) == 'is_') {
-                $line = '<!-- '.$key.': '.($value ? 'true' : 'false').' -->'.D4P_EOL;
+		foreach ( $wp_query as $key => $value ) {
+			if ( substr( $key, 0, 3 ) == 'is_' ) {
+				$line = '<!-- ' . $key . ': ' . ( $value ? 'true' : 'false' ) . ' -->' . D4P_EOL;
 
-                if ($value) {
-                    $true .= $line;
-                } else {
-                    $false .= $line;
-                }
-            }
-        }
+				if ( $value ) {
+					$true .= $line;
+				} else {
+					$false .= $line;
+				}
+			}
+		}
 
-        foreach (array('is_front_page') as $key) {
-            $value = $wp_query->$key();
+		foreach ( array( 'is_front_page' ) as $key ) {
+			$value = $wp_query->$key();
 
-            $line = '<!-- '.$key.': '.($value ? 'true' : 'false').' -->'.D4P_EOL;
+			$line = '<!-- ' . $key . ': ' . ( $value ? 'true' : 'false' ) . ' -->' . D4P_EOL;
 
-            if ($value) {
-                $true .= $line;
-            } else {
-                $false .= $line;
-            }
-        }
+			if ( $value ) {
+				$true .= $line;
+			} else {
+				$false .= $line;
+			}
+		}
 
-        echo $true.D4P_EOL.$false;
+		echo $true . D4P_EOL . $false;
 
-        echo D4P_EOL;
-    }
+		echo D4P_EOL;
+	}
 
-    public static function print_page_request() {
-        global $wp, $template;
+	public static function print_page_request() {
+		global $wp, $template;
 
-        echo D4P_EOL;
-        echo '<!-- '.__("Request", "d4plib").'               : ';
-        echo empty($wp->request) ? __("None", "d4plib") : esc_html($wp->request);
-        echo ' -->'.D4P_EOL;
-        echo '<!-- '.__("Matched Rewrite Rule", "d4plib").'  : ';
-        echo empty($wp->matched_rule) ? __("None", "d4plib") : esc_html($wp->matched_rule);
-        echo ' -->'.D4P_EOL;
-        echo '<!-- '.__("Matched Rewrite Query", "d4plib").' : ';
-        echo empty($wp->matched_query) ? __("None", "d4plib") : esc_html($wp->matched_query);
-        echo ' -->'.D4P_EOL;
-        echo '<!-- '.__("Loaded Template", "d4plib").'       : ';
-        echo basename($template);
-        echo ' -->'.D4P_EOL;
-    }
+		echo D4P_EOL;
+		echo '<!-- ' . __( "Request", "d4plib" ) . '               : ';
+		echo empty( $wp->request ) ? __( "None", "d4plib" ) : esc_html( $wp->request );
+		echo ' -->' . D4P_EOL;
+		echo '<!-- ' . __( "Matched Rewrite Rule", "d4plib" ) . '  : ';
+		echo empty( $wp->matched_rule ) ? __( "None", "d4plib" ) : esc_html( $wp->matched_rule );
+		echo ' -->' . D4P_EOL;
+		echo '<!-- ' . __( "Matched Rewrite Query", "d4plib" ) . ' : ';
+		echo empty( $wp->matched_query ) ? __( "None", "d4plib" ) : esc_html( $wp->matched_query );
+		echo ' -->' . D4P_EOL;
+		echo '<!-- ' . __( "Loaded Template", "d4plib" ) . '       : ';
+		echo basename( $template );
+		echo ' -->' . D4P_EOL;
+	}
 }

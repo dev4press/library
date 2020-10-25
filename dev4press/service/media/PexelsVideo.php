@@ -27,38 +27,38 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Service\Media;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class PexelsVideo {
-    public $id;
-    public $url;
-    public $name;
+	public $id;
+	public $url;
+	public $name;
 
-    public $videos;
+	public $videos;
 
-    public $user;
+	public $user;
 
-    public function __construct($response) {
-        $this->id = $response->id;
-        $this->url = $response->url;
-        $this->user = $response->user;
+	public function __construct( $response ) {
+		$this->id   = $response->id;
+		$this->url  = $response->url;
+		$this->user = $response->user;
 
-        preg_match('/pexels\.com\/photo\/(.+?)-\d+?\//', $this->url, $output);
+		preg_match( '/pexels\.com\/photo\/(.+?)-\d+?\//', $this->url, $output );
 
-        if (!empty($output) && isset($output[1])) {
-            $this->name = str_replace('-', ' ', $output[1]);
-            $this->name = ucfirst($this->name);
-        }
+		if ( ! empty( $output ) && isset( $output[1] ) ) {
+			$this->name = str_replace( '-', ' ', $output[1] );
+			$this->name = ucfirst( $this->name );
+		}
 
-        foreach ($response->video_files as $video) {
-            $video->url = $video->link;
-            unset($video->link);
+		foreach ( $response->video_files as $video ) {
+			$video->url = $video->link;
+			unset( $video->link );
 
-            $video->preview = 'https://i.vimeocdn.com/video/'.$video->id.'_'.$video->width.'x'.$video->height.'.jpg';
+			$video->preview = 'https://i.vimeocdn.com/video/' . $video->id . '_' . $video->width . 'x' . $video->height . '.jpg';
 
-            $this->videos[] = $video;
-        }
-    }
+			$this->videos[] = $video;
+		}
+	}
 }

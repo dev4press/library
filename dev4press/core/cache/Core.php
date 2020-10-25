@@ -27,60 +27,60 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Cache;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 abstract class Core {
-    public $store = 'd4plib';
+	public $store = 'd4plib';
 
-    public function __construct() {
-        $this->clear();
-    }
+	public function __construct() {
+		$this->clear();
+	}
 
-    public static function instance() {
-        static $instance = array();
+	public static function instance() {
+		static $instance = array();
 
-        $class = get_called_class();
+		$class = get_called_class();
 
-        if (!isset($instance[$class])) {
-            $instance[$class] = new $class();
-        }
+		if ( ! isset( $instance[ $class ] ) ) {
+			$instance[ $class ] = new $class();
+		}
 
-        return $instance[$class];
-    }
+		return $instance[ $class ];
+	}
 
-    private function _key($group, $key) {
-        return $group.'::'.$key;
-    }
+	private function _key( $group, $key ) {
+		return $group . '::' . $key;
+	}
 
-    public function add($group, $key, $data) {
-        return d4p_object_cache()->add($this->_key($group, $key), $data, $this->store);
-    }
+	public function add( $group, $key, $data ) {
+		return d4p_object_cache()->add( $this->_key( $group, $key ), $data, $this->store );
+	}
 
-    public function set($group, $key, $data) {
-        return d4p_object_cache()->set($this->_key($group, $key), $data, $this->store);
-    }
+	public function set( $group, $key, $data ) {
+		return d4p_object_cache()->set( $this->_key( $group, $key ), $data, $this->store );
+	}
 
-    public function get($group, $key, $default = false) {
-        $obj = d4p_object_cache()->get($this->_key($group, $key), $this->store);
+	public function get( $group, $key, $default = false ) {
+		$obj = d4p_object_cache()->get( $this->_key( $group, $key ), $this->store );
 
-        return $obj === false ? $default : $obj;
-    }
+		return $obj === false ? $default : $obj;
+	}
 
-    public function delete($group, $key) {
-        return d4p_object_cache()->delete($this->_key($group, $key), $this->store);
-    }
+	public function delete( $group, $key ) {
+		return d4p_object_cache()->delete( $this->_key( $group, $key ), $this->store );
+	}
 
-    public function in($group, $key) {
-        return d4p_object_cache()->in($this->_key($group, $key), $this->store);
-    }
+	public function in( $group, $key ) {
+		return d4p_object_cache()->in( $this->_key( $group, $key ), $this->store );
+	}
 
-    public function clear() {
-        d4p_object_cache()->flush($this->store);
-    }
+	public function clear() {
+		d4p_object_cache()->flush( $this->store );
+	}
 
-    public function storage() {
-        return d4p_object_cache()->get_group($this->store);
-    }
+	public function storage() {
+		return d4p_object_cache()->get_group( $this->store );
+	}
 }

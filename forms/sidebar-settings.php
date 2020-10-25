@@ -1,48 +1,48 @@
 <?php
 
-$_panel = d4p_panel()->a()->panel_object();
-$_subpanel = d4p_panel()->a()->subpanel;
+$_panel     = d4p_panel()->a()->panel_object();
+$_subpanel  = d4p_panel()->a()->subpanel;
 $_subpanels = d4p_panel()->subpanels();
 
 ?>
 <div class="d4p-sidebar">
     <div class="d4p-panel-scroller d4p-scroll-active">
         <div class="d4p-panel-title">
-            <?php echo d4p_panel()->r()->icon($_panel->icon); ?>
+			<?php echo d4p_panel()->r()->icon( $_panel->icon ); ?>
             <h3><?php echo $_panel->title; ?></h3>
-            <?php
+			<?php
 
-            if ($_subpanel == 'full') {
-                echo '<h4>'.d4p_panel()->r()->icon($_subpanels[$_subpanel]['icon']).__("All Settings", "d4plib").'</h4>';
-            } else if ($_subpanel != 'index') {
-                echo '<h4>'.d4p_panel()->r()->icon($_subpanels[$_subpanel]['icon']).$_subpanels[$_subpanel]['title'].'</h4>';
-            }
+			if ( $_subpanel == 'full' ) {
+				echo '<h4>' . d4p_panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . __( "All Settings", "d4plib" ) . '</h4>';
+			} else if ( $_subpanel != 'index' ) {
+				echo '<h4>' . d4p_panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . $_subpanels[ $_subpanel ]['title'] . '</h4>';
+			}
 
-            ?>
+			?>
         </div>
         <div class="d4p-panel-info">
-            <?php echo $_subpanels[$_subpanel]['info']; ?>
+			<?php echo $_subpanels[ $_subpanel ]['info']; ?>
         </div>
-        <?php if ($_subpanel == 'full') { ?>
+		<?php if ( $_subpanel == 'full' ) { ?>
             <div class="d4p-panel-mark">
-                <p><?php _e("Search through settings by typing what you need to find in this field.", "d4plib"); ?></p>
-                <input type="text" class="widefat" id="d4p-settings-mark" aria-label="<?php _e("Search Settings", "d4plib"); ?>"/>
+                <p><?php _e( "Search through settings by typing what you need to find in this field.", "d4plib" ); ?></p>
+                <input type="text" class="widefat" id="d4p-settings-mark" aria-label="<?php _e( "Search Settings", "d4plib" ); ?>"/>
                 <button type="button">
-                    <i class="d4p-icon d4p-ui-clear" title="<?php esc_attr_e("Clear Search", "d4plib"); ?>"></i>
+                    <i class="d4p-icon d4p-ui-clear" title="<?php esc_attr_e( "Clear Search", "d4plib" ); ?>"></i>
                 </button>
             </div>
-        <?php } ?>
-        <?php if ($_subpanel != 'index') { ?>
+		<?php } ?>
+		<?php if ( $_subpanel != 'index' ) { ?>
             <div class="d4p-panel-buttons">
-                <input type="submit" value="<?php _e("Save Settings", "d4plib"); ?>" class="button-primary"/>
+                <input type="submit" value="<?php _e( "Save Settings", "d4plib" ); ?>" class="button-primary"/>
             </div>
             <div class="d4p-return-to-top">
-                <a href="#wpwrap"><?php _e("Return to top", "d4plib"); ?></a>
+                <a href="#wpwrap"><?php _e( "Return to top", "d4plib" ); ?></a>
             </div>
-        <?php } else { ?>
+		<?php } else { ?>
             <div class="d4p-panel-buttons">
-                <a style="text-align: center" href="<?php echo d4p_panel()->a()->panel_url('settings', 'full'); ?>" class="button-secondary"><?php _e("Show All Settings", "d4plib"); ?></a>
+                <a style="text-align: center" href="<?php echo d4p_panel()->a()->panel_url( 'settings', 'full' ); ?>" class="button-secondary"><?php _e( "Show All Settings", "d4plib" ); ?></a>
             </div>
-        <?php } ?>
+		<?php } ?>
     </div>
 </div>

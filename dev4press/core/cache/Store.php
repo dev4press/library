@@ -27,178 +27,178 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Cache;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class Store {
-    protected $global_groups = array();
+	protected $global_groups = array();
 
-    private $cache = array();
+	private $cache = array();
 
-    private $blog_prefix;
-    private $multisite;
+	private $blog_prefix;
+	private $multisite;
 
-    public $cache_hits = 0;
-    public $cache_misses = 0;
+	public $cache_hits = 0;
+	public $cache_misses = 0;
 
-    public function __construct() {
-        $this->multisite = is_multisite();
-        $this->blog_prefix = $this->multisite ? get_current_blog_id().':' : '';
-    }
+	public function __construct() {
+		$this->multisite   = is_multisite();
+		$this->blog_prefix = $this->multisite ? get_current_blog_id() . ':' : '';
+	}
 
-    public static function instance() {
-        static $instance = false;
+	public static function instance() {
+		static $instance = false;
 
-        if ($instance === false) {
-            $instance = new Store();
-        }
+		if ( $instance === false ) {
+			$instance = new Store();
+		}
 
-        return $instance;
-    }
+		return $instance;
+	}
 
-    protected function _exists($key, $group) {
-        return isset($this->cache[$group]) && (isset($this->cache[$group][$key]) || array_key_exists($key, $this->cache[$group]));
-    }
+	protected function _exists( $key, $group ) {
+		return isset( $this->cache[ $group ] ) && ( isset( $this->cache[ $group ][ $key ] ) || array_key_exists( $key, $this->cache[ $group ] ) );
+	}
 
-    private function _group($group = '') {
-        if (empty($group)) {
-            $group = 'default';
-        }
+	private function _group( $group = '' ) {
+		if ( empty( $group ) ) {
+			$group = 'default';
+		}
 
-        return $group;
-    }
+		return $group;
+	}
 
-    private function _key($key, $group) {
-        if ($this->multisite && !isset($this->global_groups[$group])) {
-            $key = $this->blog_prefix.$key;
-        }
+	private function _key( $key, $group ) {
+		if ( $this->multisite && ! isset( $this->global_groups[ $group ] ) ) {
+			$key = $this->blog_prefix . $key;
+		}
 
-        return $key;
-    }
+		return $key;
+	}
 
-    public function add_global_groups($groups) {
-        $groups = (array)$groups;
+	public function add_global_groups( $groups ) {
+		$groups = (array) $groups;
 
-        $groups = array_fill_keys($groups, true);
-        $this->global_groups = array_merge($this->global_groups, $groups);
-    }
+		$groups              = array_fill_keys( $groups, true );
+		$this->global_groups = array_merge( $this->global_groups, $groups );
+	}
 
-    public function add($key, $data, $group = 'default') {
-        $original_key = $key;
+	public function add( $key, $data, $group = 'default' ) {
+		$original_key = $key;
 
-        $group = $this->_group($group);
-        $key = $this->_key($key, $group);
+		$group = $this->_group( $group );
+		$key   = $this->_key( $key, $group );
 
-        if ($this->_exists($key, $group)) {
-            return false;
-        }
+		if ( $this->_exists( $key, $group ) ) {
+			return false;
+		}
 
-        return $this->set($original_key, $data, $group);
-    }
+		return $this->set( $original_key, $data, $group );
+	}
 
-    public function delete($key, $group = 'default') {
-        $group = $this->_group($group);
-        $key = $this->_key($key, $group);
+	public function delete( $key, $group = 'default' ) {
+		$group = $this->_group( $group );
+		$key   = $this->_key( $key, $group );
 
-        if (!$this->_exists($key, $group)) {
-            return false;
-        }
+		if ( ! $this->_exists( $key, $group ) ) {
+			return false;
+		}
 
-        unset($this->cache[$group][$key]);
+		unset( $this->cache[ $group ][ $key ] );
 
-        return true;
-    }
+		return true;
+	}
 
-    public function get($key, $group = 'default', $force = false, &$found = null) {
-        $group = $this->_group($group);
-        $key = $this->_key($key, $group);
+	public function get( $key, $group = 'default', $force = false, &$found = null ) {
+		$group = $this->_group( $group );
+		$key   = $this->_key( $key, $group );
 
-        if ($this->_exists($key, $group)) {
-            $found = true;
-            $this->cache_hits++;
+		if ( $this->_exists( $key, $group ) ) {
+			$found = true;
+			$this->cache_hits ++;
 
-            if (is_object($this->cache[$group][$key])) {
-                return clone $this->cache[$group][$key];
-            } else {
-                return $this->cache[$group][$key];
-            }
-        }
+			if ( is_object( $this->cache[ $group ][ $key ] ) ) {
+				return clone $this->cache[ $group ][ $key ];
+			} else {
+				return $this->cache[ $group ][ $key ];
+			}
+		}
 
-        $found = false;
-        $this->cache_misses++;
+		$found = false;
+		$this->cache_misses ++;
 
-        return $force;
-    }
+		return $force;
+	}
 
-    public function replace($key, $data, $group = 'default') {
-        $group = $this->_group($group);
-        $key = $this->_key($key, $group);
+	public function replace( $key, $data, $group = 'default' ) {
+		$group = $this->_group( $group );
+		$key   = $this->_key( $key, $group );
 
-        if (!$this->_exists($key, $group)) {
-            return false;
-        }
+		if ( ! $this->_exists( $key, $group ) ) {
+			return false;
+		}
 
-        return $this->set($key, $data, $group);
-    }
+		return $this->set( $key, $data, $group );
+	}
 
-    public function set($key, $data, $group = 'default') {
-        $group = $this->_group($group);
-        $key = $this->_key($key, $group);
+	public function set( $key, $data, $group = 'default' ) {
+		$group = $this->_group( $group );
+		$key   = $this->_key( $key, $group );
 
-        if (is_object($data)) {
-            $data = clone $data;
-        }
+		if ( is_object( $data ) ) {
+			$data = clone $data;
+		}
 
-        $this->cache[$group][$key] = $data;
+		$this->cache[ $group ][ $key ] = $data;
 
-        return true;
-    }
+		return true;
+	}
 
-    public function in($key, $group = 'default') {
-        $group = $this->_group($group);
-        $key = $this->_key($key, $group);
+	public function in( $key, $group = 'default' ) {
+		$group = $this->_group( $group );
+		$key   = $this->_key( $key, $group );
 
-        return $this->_exists($key, $group);
-    }
+		return $this->_exists( $key, $group );
+	}
 
-    public function flush($group = null) {
-        if (is_null($group)) {
-            $this->cache = array();
-        } else {
-            $group = $this->_group($group);
-            $this->cache[$group] = array();
-        }
+	public function flush( $group = null ) {
+		if ( is_null( $group ) ) {
+			$this->cache = array();
+		} else {
+			$group                 = $this->_group( $group );
+			$this->cache[ $group ] = array();
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    public function get_group($group) {
-        if (isset($this->cache[$group])) {
-            return $this->cache[$group];
-        }
+	public function get_group( $group ) {
+		if ( isset( $this->cache[ $group ] ) ) {
+			return $this->cache[ $group ];
+		}
 
-        return array();
-    }
+		return array();
+	}
 
-    public function stats() {
-        echo "<p>";
-        echo "<strong>Cache Hits:</strong> {$this->cache_hits}<br />";
-        echo "<strong>Cache Misses:</strong> {$this->cache_misses}<br />";
-        echo "</p>";
-        echo "<ul>";
-        foreach ($this->cache as $group => $cache) {
-            echo "<li><strong>Group:</strong> $group - ( ".number_format(strlen(serialize($cache)) / KB_IN_BYTES, 2).'k )</li>';
-        }
-        echo "</ul>";
-    }
+	public function stats() {
+		echo "<p>";
+		echo "<strong>Cache Hits:</strong> {$this->cache_hits}<br />";
+		echo "<strong>Cache Misses:</strong> {$this->cache_misses}<br />";
+		echo "</p>";
+		echo "<ul>";
+		foreach ( $this->cache as $group => $cache ) {
+			echo "<li><strong>Group:</strong> $group - ( " . number_format( strlen( serialize( $cache ) ) / KB_IN_BYTES, 2 ) . 'k )</li>';
+		}
+		echo "</ul>";
+	}
 
-    public function switch_to_blog($blog_id) {
-        $blog_id = (int)$blog_id;
-        $this->blog_prefix = $this->multisite ? $blog_id.':' : '';
-    }
+	public function switch_to_blog( $blog_id ) {
+		$blog_id           = (int) $blog_id;
+		$this->blog_prefix = $this->multisite ? $blog_id . ':' : '';
+	}
 
-    public function cache() {
-        return $this->cache;
-    }
+	public function cache() {
+		return $this->cache;
+	}
 }

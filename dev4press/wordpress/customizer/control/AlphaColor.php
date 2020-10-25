@@ -29,56 +29,56 @@ namespace Dev4Press\WordPress\Customizer\Control;
 
 use Dev4Press\WordPress\Customizer\Control;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class AlphaColor extends Control {
-    public $type = 'd4p-ctrl-alpha-color';
+	public $type = 'd4p-ctrl-alpha-color';
 
-    public $attributes = "";
-    public $defaultPalette = array(
-        '#000000',
-        '#ffffff',
-        '#dd3333',
-        '#dd9933',
-        '#eeee22',
-        '#81d742',
-        '#1e73be',
-        '#8224e3',
-    );
+	public $attributes = "";
+	public $defaultPalette = array(
+		'#000000',
+		'#ffffff',
+		'#dd3333',
+		'#dd9933',
+		'#eeee22',
+		'#81d742',
+		'#1e73be',
+		'#8224e3',
+	);
 
-    public function __construct($manager, $id, $args = array(), $options = array()) {
-        parent::__construct($manager, $id, $args);
+	public function __construct( $manager, $id, $args = array(), $options = array() ) {
+		parent::__construct( $manager, $id, $args );
 
-        $this->attributes .= 'data-default-color="'.esc_attr($this->value()).'"';
-        $this->attributes .= 'data-alpha="'.(isset($this->input_attrs['alpha']) ? $this->input_attrs['alpha'] : 'true').'"';
-        $this->attributes .= 'data-reset-alpha="'.(isset($this->input_attrs['resetalpha']) ? $this->input_attrs['resetalpha'] : 'true').'"';
-        $this->attributes .= 'data-custom-width="0"';
-    }
+		$this->attributes .= 'data-default-color="' . esc_attr( $this->value() ) . '"';
+		$this->attributes .= 'data-alpha="' . ( isset( $this->input_attrs['alpha'] ) ? $this->input_attrs['alpha'] : 'true' ) . '"';
+		$this->attributes .= 'data-reset-alpha="' . ( isset( $this->input_attrs['resetalpha'] ) ? $this->input_attrs['resetalpha'] : 'true' ) . '"';
+		$this->attributes .= 'data-custom-width="0"';
+	}
 
-    public function to_json() {
-        parent::to_json();
+	public function to_json() {
+		parent::to_json();
 
-        $this->json['colorpickerpalette'] = isset($this->input_attrs['palette']) ? $this->input_attrs['palette'] : $this->defaultPalette;
-    }
+		$this->json['colorpickerpalette'] = isset( $this->input_attrs['palette'] ) ? $this->input_attrs['palette'] : $this->defaultPalette;
+	}
 
-    public function render_content() {
-        ?>
+	public function render_content() {
+		?>
         <div class="wpcolorpicker_alpha_color_control d4p-ctrl-alpha-color">
-            <?php if (!empty($this->label)) { ?>
-                <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
-            <?php } ?>
-            <?php if (!empty($this->description)) { ?>
-                <span class="customize-control-description"><?php echo esc_html($this->description); ?></span>
-            <?php } ?>
-            <input type="text" class="color-picker" id="<?php echo esc_attr($this->id); ?>"
-                    name="<?php echo esc_attr($this->id); ?>" value="<?php echo esc_attr($this->value()); ?>"
+			<?php if ( ! empty( $this->label ) ) { ?>
+                <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+			<?php } ?>
+			<?php if ( ! empty( $this->description ) ) { ?>
+                <span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+			<?php } ?>
+            <input type="text" class="color-picker" id="<?php echo esc_attr( $this->id ); ?>"
+                    name="<?php echo esc_attr( $this->id ); ?>" value="<?php echo esc_attr( $this->value() ); ?>"
                     class="customize-control-colorpicker-alpha-color" <?php echo $this->attributes; ?> <?php $this->link(); ?> />
             <span class="picker-reset dashicons dashicons-image-rotate"
-                    picker-reset-value="<?php echo esc_attr($this->default_value()); ?>"></span>
+                    picker-reset-value="<?php echo esc_attr( $this->default_value() ); ?>"></span>
         </div>
-        <?php
+		<?php
 
-    }
+	}
 }

@@ -27,52 +27,52 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Service\Media;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class PixabayVideo {
-    public $id;
-    public $type;
-    public $url;
-    public $likes;
-    public $views;
-    public $downloads;
-    public $favorites;
-    public $comments;
-    public $tags;
-    public $name;
+	public $id;
+	public $type;
+	public $url;
+	public $likes;
+	public $views;
+	public $downloads;
+	public $favorites;
+	public $comments;
+	public $tags;
+	public $name;
 
-    public $vimeo_id;
+	public $vimeo_id;
 
-    public $user;
+	public $user;
 
-    public function __construct($response) {
-        $this->id = $response->id;
-        $this->vimeo_id = $response->picture_id;
-        $this->type = $response->type;
-        $this->url = $response->pageURL;
-        $this->likes = $response->likes;
-        $this->views = $response->views;
-        $this->downloads = $response->downloads;
-        $this->favorites = $response->favorites;
-        $this->comments = $response->comments;
+	public function __construct( $response ) {
+		$this->id        = $response->id;
+		$this->vimeo_id  = $response->picture_id;
+		$this->type      = $response->type;
+		$this->url       = $response->pageURL;
+		$this->likes     = $response->likes;
+		$this->views     = $response->views;
+		$this->downloads = $response->downloads;
+		$this->favorites = $response->favorites;
+		$this->comments  = $response->comments;
 
-        $this->user = (object)array(
-            'id' => $response->user_id,
-            'name' => $response->user,
-            'image' => (object)array('url' => $response->userImageURL)
-        );
+		$this->user = (object) array(
+			'id'    => $response->user_id,
+			'name'  => $response->user,
+			'image' => (object) array( 'url' => $response->userImageURL )
+		);
 
-        $this->tags = explode(',', $response->tags);
-        $this->tags = array_map('trim', $this->tags);
+		$this->tags = explode( ',', $response->tags );
+		$this->tags = array_map( 'trim', $this->tags );
 
-        $this->name = ucwords(join(' ', $this->tags));
+		$this->name = ucwords( join( ' ', $this->tags ) );
 
-        foreach ($response->videos as $key => $video) {
-            $video->preview = 'https://i.vimeocdn.com/video/'.$this->vimeo_id.'_'.$video->width.'x'.$video->height.'.jpg';
+		foreach ( $response->videos as $key => $video ) {
+			$video->preview = 'https://i.vimeocdn.com/video/' . $this->vimeo_id . '_' . $video->width . 'x' . $video->height . '.jpg';
 
-            $this->$key = $video;
-        }
-    }
+			$this->$key = $video;
+		}
+	}
 }

@@ -27,61 +27,61 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Service\GEOIP;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class Location {
-    public $status = 'invalid';
+	public $status = 'invalid';
 
-    public $ip = '';
-    public $country_code = '';
-    public $country_name = '';
-    public $region_code = '';
-    public $region_name = '';
-    public $city = '';
-    public $zip_code = '';
-    public $time_zone = '';
-    public $latitude = '';
-    public $longitude = '';
+	public $ip = '';
+	public $country_code = '';
+	public $country_name = '';
+	public $region_code = '';
+	public $region_name = '';
+	public $city = '';
+	public $zip_code = '';
+	public $time_zone = '';
+	public $latitude = '';
+	public $longitude = '';
 
-    public $continent_code = '';
+	public $continent_code = '';
 
-    public function __construct($input) {
-        foreach ((array)$input as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->$key = $value;
-            }
-        }
-    }
+	public function __construct( $input ) {
+		foreach ( (array) $input as $key => $value ) {
+			if ( property_exists( $this, $key ) ) {
+				$this->$key = $value;
+			}
+		}
+	}
 
-    public function location() {
-        $location = '';
+	public function location() {
+		$location = '';
 
-        if ($this->status == 'active' && isset($this->country_name) && !empty($this->country_name)) {
-            $location .= $this->country_name;
+		if ( $this->status == 'active' && isset( $this->country_name ) && ! empty( $this->country_name ) ) {
+			$location .= $this->country_name;
 
-            if (isset($this->city) && !empty($this->city)) {
-                $location .= ', '.$this->city;
-            }
-        }
+			if ( isset( $this->city ) && ! empty( $this->city ) ) {
+				$location .= ', ' . $this->city;
+			}
+		}
 
-        return $location;
-    }
+		return $location;
+	}
 
-    public function flag($not_found = 'image') {
-        if ($this->status == 'active') {
-            if ($this->country_code != '') {
-                return '<img src="'.D4PLIB_URL.'resources/flags/blank.gif" class="flag flag-'.strtolower($this->country_code).'" title="'.$this->location().'" alt="'.$this->location().'" />';
-            }
-        } else if ($this->status == 'private') {
-            return '<img src="'.D4PLIB_URL.'resources/flags/blank.gif" class="flag flag-localhost" title="'.__("Localhost or Private IP", "d4plib").'" alt="'.__("Localhost or Private IP", "d4plib").'" />';
-        }
+	public function flag( $not_found = 'image' ) {
+		if ( $this->status == 'active' ) {
+			if ( $this->country_code != '' ) {
+				return '<img src="' . D4PLIB_URL . 'resources/flags/blank.gif" class="flag flag-' . strtolower( $this->country_code ) . '" title="' . $this->location() . '" alt="' . $this->location() . '" />';
+			}
+		} else if ( $this->status == 'private' ) {
+			return '<img src="' . D4PLIB_URL . 'resources/flags/blank.gif" class="flag flag-localhost" title="' . __( "Localhost or Private IP", "d4plib" ) . '" alt="' . __( "Localhost or Private IP", "d4plib" ) . '" />';
+		}
 
-        if ($not_found == 'image') {
-            return '<img src="'.D4PLIB_URL.'resources/flags/blank.gif" class="flag flag-invalid" title="'.__("IP can't be geolocated.", "d4plib").'" alt="'.__("IP can't be geolocated.", "d4plib").'" />';
-        } else {
-            return '';
-        }
-    }
+		if ( $not_found == 'image' ) {
+			return '<img src="' . D4PLIB_URL . 'resources/flags/blank.gif" class="flag flag-invalid" title="' . __( "IP can't be geolocated.", "d4plib" ) . '" alt="' . __( "IP can't be geolocated.", "d4plib" ) . '" />';
+		} else {
+			return '';
+		}
+	}
 }

@@ -40,24 +40,24 @@ class Randomizer extends Generator {
 	function words( $count = 1, $tags = false, $array = false ) {
 		$words = array();
 
-		for ($i = 0; $i < $count; $i++) {
+		for ( $i = 0; $i < $count; $i ++ ) {
 			$words[] = $this->random();
 		}
 
-		return $this->output($words, $tags, $array);
+		return $this->output( $words, $tags, $array );
 	}
 
-	public function set_word_gauss($mean = 6.16, $dev = 3.32) {
-		$this->word_mean = floatval($mean);
-		$this->word_dev = floatval($dev);
+	public function set_word_gauss( $mean = 6.16, $dev = 3.32 ) {
+		$this->word_mean = floatval( $mean );
+		$this->word_dev  = floatval( $dev );
 
 		return $this;
 	}
 
 	public function random( $length = true ) {
-		$length = $length === true ? $this->gauss($this->word_mean, $this->word_dev) : $length;
+		$length = $length === true ? $this->gauss( $this->word_mean, $this->word_dev ) : $length;
 
-		if ($length < 2) {
+		if ( $length < 2 ) {
 			$length = 2;
 		}
 
@@ -65,9 +65,9 @@ class Randomizer extends Generator {
 
 		$string = '';
 
-		for ($i = 1; $i <= $max; $i ++) {
-			$string .= $this->consonants[ rand( 0, count($this->consonants) - 1 ) ];
-			$string .= $this->vowels[ rand( 0, count($this->vowels) - 1 ) ];
+		for ( $i = 1; $i <= $max; $i ++ ) {
+			$string .= $this->consonants[ rand( 0, count( $this->consonants ) - 1 ) ];
+			$string .= $this->vowels[ rand( 0, count( $this->vowels ) - 1 ) ];
 		}
 
 		return $string;

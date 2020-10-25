@@ -27,80 +27,80 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Options;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 abstract class Settings {
-    protected $settings;
+	protected $settings;
 
-    public function __construct() {
-        $this->init();
-    }
+	public function __construct() {
+		$this->init();
+	}
 
-    /** @return \Dev4Press\Core\Options\Settings */
-    public static function instance() {
-        static $instance = array();
+	/** @return \Dev4Press\Core\Options\Settings */
+	public static function instance() {
+		static $instance = array();
 
-        $class = get_called_class();
+		$class = get_called_class();
 
-        if (!isset($instance[$class])) {
-            $instance[$class] = new $class();
-        }
+		if ( ! isset( $instance[ $class ] ) ) {
+			$instance[ $class ] = new $class();
+		}
 
-        return $instance[$class];
-    }
+		return $instance[ $class ];
+	}
 
-    public function all() {
-        return $this->settings;
-    }
+	public function all() {
+		return $this->settings;
+	}
 
-    public function get($panel, $group = '') {
-        if ($group == '') {
-            return $this->settings[$panel];
-        } else {
-            return $this->settings[$panel][$group];
-        }
-    }
+	public function get( $panel, $group = '' ) {
+		if ( $group == '' ) {
+			return $this->settings[ $panel ];
+		} else {
+			return $this->settings[ $panel ][ $group ];
+		}
+	}
 
-    public function settings($panel) {
-        $list = array();
+	public function settings( $panel ) {
+		$list = array();
 
-        if (in_array($panel, array('index', 'full'))) {
-            foreach ($this->settings as $panel) {
-                foreach ($panel as $obj) {
-                    $list = array_merge($list, $this->settings_from_panel($obj));
-                }
-            }
-        } else {
-            foreach ($this->settings[$panel] as $obj) {
-                $list = array_merge($list, $this->settings_from_panel($obj));
-            }
-        }
+		if ( in_array( $panel, array( 'index', 'full' ) ) ) {
+			foreach ( $this->settings as $panel ) {
+				foreach ( $panel as $obj ) {
+					$list = array_merge( $list, $this->settings_from_panel( $obj ) );
+				}
+			}
+		} else {
+			foreach ( $this->settings[ $panel ] as $obj ) {
+				$list = array_merge( $list, $this->settings_from_panel( $obj ) );
+			}
+		}
 
-        return $list;
-    }
+		return $list;
+	}
 
-    public function settings_from_panel($obj) {
-        $list = array();
+	public function settings_from_panel( $obj ) {
+		$list = array();
 
-        if (isset($obj['settings'])) {
-            $obj['sections'] = array('label' => '', 'name' => '', 'class' => '', 'settings' => $obj['settings']);
-            unset($obj['settings']);
-        }
+		if ( isset( $obj['settings'] ) ) {
+			$obj['sections'] = array( 'label' => '', 'name' => '', 'class' => '', 'settings' => $obj['settings'] );
+			unset( $obj['settings'] );
+		}
 
-        foreach ($obj['sections'] as $s) {
-            foreach ($s['settings'] as $o) {
-                if (!empty($o->type)) {
-                    $list[] = $o;
-                }
-            }
-        }
+		foreach ( $obj['sections'] as $s ) {
+			foreach ( $s['settings'] as $o ) {
+				if ( ! empty( $o->type ) ) {
+					$list[] = $o;
+				}
+			}
+		}
 
-        return $list;
-    }
+		return $list;
+	}
 
-    abstract protected function init();
+	abstract protected function init();
 
-    abstract protected function value($name, $group = 'settings', $default = null);
+	abstract protected function value( $name, $group = 'settings', $default = null );
 }

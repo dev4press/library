@@ -29,23 +29,23 @@ namespace Dev4Press\WordPress\Customizer\Control;
 
 use Dev4Press\WordPress\Customizer\Control;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class Divider extends Control {
-    public $type = 'd4p-ctrl-divider';
+	public $type = 'd4p-ctrl-divider';
 
-    protected function render_content() {
-        ?>
+	protected function render_content() {
+		?>
         <hr/>
-        <?php if (!empty($this->label)) : ?>
-            <label for="_customize-input-<?php echo esc_attr($this->id); ?>"
-                    class="customize-control-title"><?php echo esc_html($this->label); ?></label>
-        <?php endif;
-        if (!empty($this->description)) : ?>
-            <span id="_customize-description-<?php echo esc_attr($this->id); ?>"
+		<?php if ( ! empty( $this->label ) ) : ?>
+            <label for="_customize-input-<?php echo esc_attr( $this->id ); ?>"
+                    class="customize-control-title"><?php echo esc_html( $this->label ); ?></label>
+		<?php endif;
+		if ( ! empty( $this->description ) ) : ?>
+            <span id="_customize-description-<?php echo esc_attr( $this->id ); ?>"
                     class="description customize-control-description"><?php echo $this->description; ?></span>
-        <?php endif;
-    }
+		<?php endif;
+	}
 }

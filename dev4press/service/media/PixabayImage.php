@@ -27,95 +27,95 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Service\Media;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class PixabayImage {
-    public $id;
-    public $type;
-    public $url;
-    public $likes;
-    public $views;
-    public $downloads;
-    public $favorites;
-    public $comments;
-    public $tags;
-    public $name;
+	public $id;
+	public $type;
+	public $url;
+	public $likes;
+	public $views;
+	public $downloads;
+	public $favorites;
+	public $comments;
+	public $tags;
+	public $name;
 
-    public $width;
-    public $height;
+	public $width;
+	public $height;
 
-    public $preview;
-    public $web;
-    public $large;
-    public $fullhd;
-    public $original;
-    public $vector;
+	public $preview;
+	public $web;
+	public $large;
+	public $fullhd;
+	public $original;
+	public $vector;
 
-    public $user;
+	public $user;
 
-    public function __construct($response) {
-        $this->id = $response->id;
-        $this->type = $response->type;
-        $this->url = $response->pageURL;
-        $this->likes = $response->likes;
-        $this->views = $response->views;
-        $this->downloads = $response->downloads;
-        $this->favorites = $response->favorites;
-        $this->comments = $response->comments;
+	public function __construct( $response ) {
+		$this->id        = $response->id;
+		$this->type      = $response->type;
+		$this->url       = $response->pageURL;
+		$this->likes     = $response->likes;
+		$this->views     = $response->views;
+		$this->downloads = $response->downloads;
+		$this->favorites = $response->favorites;
+		$this->comments  = $response->comments;
 
-        $this->width = $response->imageWidth;
-        $this->height = $response->imageHeight;
+		$this->width  = $response->imageWidth;
+		$this->height = $response->imageHeight;
 
-        $this->user = (object)array(
-            'id' => $response->user_id,
-            'name' => $response->user,
-            'image' => (object)array('url' => $response->userImageURL)
-        );
+		$this->user = (object) array(
+			'id'    => $response->user_id,
+			'name'  => $response->user,
+			'image' => (object) array( 'url' => $response->userImageURL )
+		);
 
-        $this->tags = explode(',', $response->tags);
-        $this->tags = array_map('trim', $this->tags);
+		$this->tags = explode( ',', $response->tags );
+		$this->tags = array_map( 'trim', $this->tags );
 
-        $this->name = ucwords(join(' ', $this->tags));
+		$this->name = ucwords( join( ' ', $this->tags ) );
 
-        $this->preview = $this->_process_image('preview', $response);
-        $this->web = $this->_process_image('webformat', $response);
-        $this->large = $this->_process_image('largeImage', $response);
-        $this->fullhd = $this->_process_image('fullHD', $response);
-        $this->original = $this->_process_image('image', $response);
-        $this->vector = $this->_process_image('vector', $response);
-    }
+		$this->preview  = $this->_process_image( 'preview', $response );
+		$this->web      = $this->_process_image( 'webformat', $response );
+		$this->large    = $this->_process_image( 'largeImage', $response );
+		$this->fullhd   = $this->_process_image( 'fullHD', $response );
+		$this->original = $this->_process_image( 'image', $response );
+		$this->vector   = $this->_process_image( 'vector', $response );
+	}
 
-    public function largest() {
-        $list = array('original', 'fullhd', 'large', 'web');
+	public function largest() {
+		$list = array( 'original', 'fullhd', 'large', 'web' );
 
-        foreach ($list as $type) {
-            if (!is_null($this->$type)) {
-                return $this->$type;
-            }
-        }
+		foreach ( $list as $type ) {
+			if ( ! is_null( $this->$type ) ) {
+				return $this->$type;
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    private function _process_image($name, $response) {
-        if (!isset($response->{$name.'URL'})) {
-            return null;
-        }
+	private function _process_image( $name, $response ) {
+		if ( ! isset( $response->{$name . 'URL'} ) ) {
+			return null;
+		}
 
-        $obj = array(
-            'url' => $response->{$name.'URL'}
-        );
+		$obj = array(
+			'url' => $response->{$name . 'URL'}
+		);
 
-        if (isset($response->{$name.'Width'})) {
-            $obj['width'] = $response->{$name.'Width'};
-        }
+		if ( isset( $response->{$name . 'Width'} ) ) {
+			$obj['width'] = $response->{$name . 'Width'};
+		}
 
-        if (isset($response->{$name.'Height'})) {
-            $obj['height'] = $response->{$name.'Height'};
-        }
+		if ( isset( $response->{$name . 'Height'} ) ) {
+			$obj['height'] = $response->{$name . 'Height'};
+		}
 
-        return (object)$obj;
-    }
+		return (object) $obj;
+	}
 }
