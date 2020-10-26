@@ -137,6 +137,10 @@ class Render {
 			$class .= ' d4p-section-' . $section['name'];
 		}
 
+		if ( ! empty( $section['class'] ) ) {
+			$class .= ' ' . $section['class'];
+		}
+
 		echo '<div class="' . $class . '">';
 
 		if ( ! empty( $section['label'] ) ) {
