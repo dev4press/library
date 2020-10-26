@@ -207,6 +207,18 @@ class Process {
 			case 'email':
 				$value = sanitize_email( $post[ $key ] );
 				break;
+			case 'date':
+				$value = d4p_sanitize_date( $post[ $key ] );
+				break;
+			case 'time':
+				$value = d4p_sanitize_time( $post[ $key ] );
+				break;
+			case 'datetime':
+				$value = d4p_sanitize_date( $post[ $key ], 'Y-m-d H:i:s' );
+				break;
+			case 'month':
+				$value = d4p_sanitize_month( $post[ $key ] );
+				break;
 			case 'text':
 			case 'textarea':
 			case 'password':

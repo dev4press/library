@@ -279,13 +279,44 @@ class Render {
 		echo '</li>';
 	}
 
-	protected function draw_text( $element, $value, $name_base, $id_base, $type = 'text' ) {
+	protected function _datetime_element( $element, $value, $name_base, $id_base, $type = 'text', $class = '' ) {
+		$readonly  = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
+		$min       = isset( $element->args['min'] ) ? ' min="' . esc_attr( $element->args['min'] ) . '"' : '';
+		$max       = isset( $element->args['max'] ) ? ' max="' . esc_attr( $element->args['max'] ) . '"' : '';
+		$flatpickr = isset( $element->args['flatpickr'] ) && $element->args['flatpickr'];
+		$type      = $flatpickr ? 'text' : $type;
+		$class     = 'widefat' . ( $flatpickr ? ' ' . $class : '' );
+
+		echo sprintf( '<input aria-labelledby="%s__label" type="%s" name="%s" id="%s" value="%s" class="%s"%s%s%s />',
+			$id_base, $type, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ), $class, $readonly, $min, $max );
+	}
+
+	protected function draw_date( $element, $value, $name_base, $id_base ) {
+		$this->_datetime_element( $element, $value, $name_base, $id_base, 'date', 'd4p-input-field-date' );
+	}
+
+	protected function draw_time( $element, $value, $name_base, $id_base ) {
+		$this->_datetime_element( $element, $value, $name_base, $id_base, 'time', 'd4p-input-field-time' );
+	}
+
+	protected function draw_month( $element, $value, $name_base, $id_base ) {
+		$this->_datetime_element( $element, $value, $name_base, $id_base, 'month', 'd4p-input-field-month' );
+	}
+
+	protected function draw_datetime( $element, $value, $name_base, $id_base ) {
+		$flatpickr = isset( $element->args['flatpickr'] ) && $element->args['flatpickr'];
+		$class     = $flatpickr ? 'widefat d4p-input-field-datetime' : 'widefat';
+
+		$this->draw_text( $element, $value, $name_base, $id_base, 'text', $class );
+	}
+
+	protected function draw_text( $element, $value, $name_base, $id_base, $type = 'text', $class = 'widefat' ) {
 		$readonly    = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 		$placeholder = isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? ' placeholder="' . $element->args['placeholder'] . '"' : '';
 		$type        = isset( $element->args['type'] ) && ! empty( $element->args['type'] ) ? $element->args['type'] : $type;
 
-		echo sprintf( '<input aria-labelledby="%s__label"%s%s type="%s" name="%s" id="%s" value="%s" class="widefat" />',
-			$id_base, $readonly, $placeholder, $type, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ) );
+		echo sprintf( '<input aria-labelledby="%s__label"%s%s type="%s" name="%s" id="%s" value="%s" class="%s" />',
+			$id_base, $readonly, $placeholder, $type, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ), esc_attr( $class ) );
 	}
 
 	protected function draw_html( $element, $value, $name_base, $id_base ) {

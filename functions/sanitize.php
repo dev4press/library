@@ -28,6 +28,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! function_exists( 'd4p_sanitize_date' ) ) {
+	function d4p_sanitize_date( $value, $format = 'Y-m-d', $return_on_error = '' ) {
+		$dt = DateTime::createFromFormat( '!' . $format, $value );
+
+		if ( $dt === false ) {
+			return $return_on_error;
+		}
+
+		return $dt->format( $format );
+	}
+}
+
+if ( ! function_exists( 'd4p_sanitize_time' ) ) {
+	function d4p_sanitize_time( $value, $format = 'H:i:s', $return_on_error = '' ) {
+		return d4p_sanitize_date( $value, $format, $return_on_error );
+	}
+}
+
+if ( ! function_exists( 'd4p_sanitize_month' ) ) {
+	function d4p_sanitize_month( $value, $format = 'Y-m', $return_on_error = '' ) {
+		return d4p_sanitize_date( $value, $format, $return_on_error );
+	}
+}
+
 if ( ! function_exists( 'd4p_sanitize_file_path' ) ) {
 	function d4p_sanitize_file_path( $filename ) {
 		$filename_raw = $filename;

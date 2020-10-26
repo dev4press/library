@@ -336,10 +336,11 @@ if ( ! function_exists( 'd4p_render_check_radios_with_hierarchy' ) ) {
 
 		$render .= '<div class="d4p-content-wrapper">';
 		$render .= '<ul class="d4p-wrapper-hierarchy">';
-		$render .= $walker->walk( $values, 0, array( 'input'    => $input,
-		                                             'id'       => $id,
-		                                             'name'     => $name,
-		                                             'selected' => $selected
+		$render .= $walker->walk( $values, 0, array(
+			'input'    => $input,
+			'id'       => $id,
+			'name'     => $name,
+			'selected' => $selected
 		) );
 		$render .= '</ul>';
 		$render .= '</div>';

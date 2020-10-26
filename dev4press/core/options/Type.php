@@ -34,7 +34,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Type {
 	const INFO = 'info';
 	const CUSTOM = 'custom';
-
+	const DATE = 'date';
+	const TIME = 'time';
+	const DATETIME = 'datetime';
+	const MONTH = 'month';
 	const IMAGE = 'image';
 	const IMAGES = 'images';
 	const BOOLEAN = 'bool';
@@ -67,15 +70,17 @@ class Type {
 	const HIDDEN = 'hidden';
 	const LISTING = 'listing';
 	const X_BY_Y = 'x_by_y';
-
 	const EXPANDABLE_PAIRS = 'expandable_pairs';
 	const EXPANDABLE_TEXT = 'expandable_text';
 	const EXPANDABLE_RAW = 'expandable_raw';
 
 	public static $_values = array(
-		'info'   => self::INFO,
-		'custom' => self::CUSTOM,
-
+		'info'                 => self::INFO,
+		'custom'               => self::CUSTOM,
+		'date'                 => self::DATE,
+		'time'                 => self::TIME,
+		'datetime'             => self::DATETIME,
+		'month'                => self::MONTH,
 		'image'                => self::IMAGE,
 		'images'               => self::IMAGES,
 		'bool'                 => self::BOOLEAN,
@@ -108,10 +113,9 @@ class Type {
 		'listing'              => self::LISTING,
 		'hidden'               => self::HIDDEN,
 		'x_by_y'               => self::X_BY_Y,
-
-		'expandable_pairs' => self::EXPANDABLE_PAIRS,
-		'expandable_text'  => self::EXPANDABLE_TEXT,
-		'expandable_raw'   => self::EXPANDABLE_RAW
+		'expandable_pairs'     => self::EXPANDABLE_PAIRS,
+		'expandable_text'      => self::EXPANDABLE_TEXT,
+		'expandable_raw'       => self::EXPANDABLE_RAW
 	);
 
 	public static function to_string( $value ) {
