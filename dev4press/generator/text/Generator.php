@@ -93,6 +93,99 @@ abstract class Generator {
 		return $this->output( $paragraphs, $tags, $array, "\n\n" );
 	}
 
+	public function html( $paragraphs = 1, $settings = array(), $array = false ) {
+		$items = array();
+
+		for ( $i = 0; $i < $paragraphs; $i ++ ) {
+			$p = $this->paragraph( false );
+
+			if ( in_array( 'decorate', $settings ) ) {
+				$p = $this->random_tagify( $p, 'strong' );
+				$p = $this->random_tagify( $p, 'i' );
+			}
+
+			if ( in_array( 'link', $settings ) ) {
+				$p = $this->random_tagify( $p, 'a', .05 );
+			}
+
+			$items[] = '<p>' . $p . '</p>';
+		}
+
+		if ( in_array( 'bq', $settings ) ) {
+			$max   = rand( 1, $paragraphs );
+			$items = array_merge( $items, $this->sentences( $max, array( 'blockquote' ), true ) );
+		}
+
+		if ( in_array( 'code', $settings ) ) {
+			$max   = rand( 1, $paragraphs );
+			$items = array_merge( $items, $this->sentences( $max, array( 'pre' ), true ) );
+		}
+
+		if ( in_array( 'dl', $settings ) ) {
+			$max = rand( 1, $paragraphs ) * 3;
+
+			$list = array();
+
+			$list[] = '<dl>';
+			for ( $i = 0; $i < $max; $i ++ ) {
+				$list[] = '<dt>' . ucfirst( $this->words( 2, false, false ) ) . '</dt>';
+				$list[] = $this->sentences( 1, array( 'dd' ), false );
+			}
+			$list[] = '</dl>';
+
+			$items[] = join( '', $list );
+		}
+
+		if ( in_array( 'ul', $settings ) ) {
+			$max = rand( 1, $paragraphs ) * 3;
+
+			$list = array();
+
+			$list[] = '<ul>';
+			for ( $i = 0; $i < $max; $i ++ ) {
+				$list[] = $this->sentences( 1, array( 'li' ), false );
+			}
+			$list[] = '</ul>';
+
+			$items[] = join( '', $list );
+		}
+
+		if ( in_array( 'ol', $settings ) ) {
+			$max = rand( 1, $paragraphs ) * 3;
+
+			$list = array();
+
+			$list[] = '<ol>';
+			for ( $i = 0; $i < $max; $i ++ ) {
+				$list[] = $this->sentences( 1, array( 'li' ), false );
+			}
+			$list[] = '</ol>';
+
+			$items[] = join( '', $list );
+		}
+
+		if ( in_array( 'headers', $settings ) ) {
+			$max   = rand( 1, $paragraphs );
+			$items = array_merge( $items, $this->set_sentence_gauss( 5, 1 )->sentences( $max, array(
+				'h2',
+				'h3',
+				'h4',
+				'h5',
+				'h6'
+			), true ) );
+		}
+
+		$this->set_paragraph_gauss();
+
+		shuffle( $items );
+
+		if ( ! $array ) {
+			$items = join( '', $items );
+		}
+
+		return $items;
+	}
+
 	protected function gauss( $mean, $std_dev ) {
 		$x = mt_rand() / mt_getrandmax();
 		$y = mt_rand() / mt_getrandmax();
@@ -147,6 +240,30 @@ abstract class Generator {
 		}
 
 		return $strings;
+	}
+
+	protected function random_tagify( $content, $tag = 'strong', $frequency = .2 ) {
+		$result = array();
+
+		$items = explode( ' ', $content );
+		$total = count( $items );
+		$max   = rand( 1, floor( $total * $frequency ) );
+
+		$pick = array_rand( $items, $max );
+
+		foreach ( $items as $id => $word ) {
+			if ( in_array( $id, $pick ) ) {
+				if ( $tag == 'a' ) {
+					$result[] = '<a href="#">' . $word . '</a>';
+				} else {
+					$result[] = '<' . $tag . '>' . $word . '</' . $tag . '>';
+				}
+			} else {
+				$result[] = $word;
+			}
+		}
+
+		return join( ' ', $result );
 	}
 
 	abstract function words( $count = 1, $tags = false, $array = false );
