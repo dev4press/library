@@ -10,6 +10,7 @@
 * Updated: Font expanded with new UI icons
 * Updated: Various rendering tweaks and improvements
 * Updated: Various styling improvements
+* Updated: Built-in cacert.pem 20201014
 * Updated: Flatpickr 4.6.6
 * Fixed: Few issues with the settings rendering
 
