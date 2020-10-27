@@ -550,7 +550,23 @@ class Render {
 			esc_attr( $id_base ), $readonly, esc_attr( $name_base ), esc_attr( $id_base ), $selected, $value, $element->title, $label );
 	}
 
-	protected function draw_x_by_y( $element, $value, $name_base, $id_base, $cls = '' ) {
+	protected function draw_range_absint( $element, $value, $name_base, $id_base ) {
+		$this->draw_range_integer($element, $value, $name_base, $id_base);
+	}
+
+	protected function draw_range_integer( $element, $value, $name_base, $id_base ) {
+		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
+
+		$pairs = explode( '=>', $value );
+
+		echo sprintf( '<label for="%s_a"><span class="d4p-accessibility-show-for-sr">%s - A: </span></label><input%s type="text" name="%s[a]" id="%s_a" value="%s" class="widefat" />',
+			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[0] ) );
+		echo ' => ';
+		echo sprintf( '<label for="%s_b"><span class="d4p-accessibility-show-for-sr">%s - B: </span></label><input%s type="text" name="%s[b]" id="%s_b" value="%s" class="widefat" />',
+			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[1] ) );
+	}
+
+	protected function draw_x_by_y( $element, $value, $name_base, $id_base ) {
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
 		$pairs = explode( 'x', $value );

@@ -67,6 +67,8 @@ class Type {
 	const NUMBER = 'number';
 	const INTEGER = 'integer';
 	const ABSINT = 'absint';
+	const RANGE_INTEGER = 'range_integer';
+	const RANGE_ABSINT = 'range_absint';
 	const HIDDEN = 'hidden';
 	const LISTING = 'listing';
 	const X_BY_Y = 'x_by_y';
@@ -110,6 +112,8 @@ class Type {
 		'number'               => self::NUMBER,
 		'integer'              => self::INTEGER,
 		'absint'               => self::ABSINT,
+		'range_integer'        => self::RANGE_INTEGER,
+		'range_absint'         => self::RANGE_ABSINT,
 		'listing'              => self::LISTING,
 		'hidden'               => self::HIDDEN,
 		'x_by_y'               => self::X_BY_Y,

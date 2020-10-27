@@ -2067,7 +2067,7 @@ a > .d4p-icon {
 .d4p-settings-table .d4p-setting-wrapper.d4p-setting-color .wp-picker-container input.wp-color-picker[type=text] {
   height: 24px;
 }
-.d4p-settings-table .d4p-setting-wrapper.d4p-setting-x_by_y input {
+.d4p-settings-table .d4p-setting-wrapper.d4p-setting-range_integer input, .d4p-settings-table .d4p-setting-wrapper.d4p-setting-range_absint input, .d4p-settings-table .d4p-setting-wrapper.d4p-setting-x_by_y input {
   width: 25%;
 }
 .d4p-settings-table .d4p-setting-wrapper.d4p-setting-checkboxes label, .d4p-settings-table .d4p-setting-wrapper.d4p-setting-radios label {

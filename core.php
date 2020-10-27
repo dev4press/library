@@ -30,8 +30,8 @@ if (!defined('ABSPATH')) {
 }
 
 if (!defined('D4P_CORE_VERSION')) {
-    define('D4P_CORE_VERSION', '3.2');
-    define('D4P_CORE_BUILD', '3200');
+    define('D4P_CORE_VERSION', '3.3');
+    define('D4P_CORE_BUILD', '3300');
 }
 
 if (!defined('D4P_EOL')) {

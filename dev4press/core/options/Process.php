@@ -144,6 +144,12 @@ class Process {
 					}
 				}
 				break;
+			case 'range_integer':
+				$value = intval( $post[ $key ]['a'] ) . '=>' . intval( $post[ $key ]['b'] );
+				break;
+			case 'range_absint':
+				$value = absint( $post[ $key ]['a'] ) . '=>' . absint( $post[ $key ]['b'] );
+				break;
 			case 'x_by_y':
 				$value = d4p_sanitize_basic( $post[ $key ]['x'] ) . 'x' . d4p_sanitize_basic( $post[ $key ]['y'] );
 				break;

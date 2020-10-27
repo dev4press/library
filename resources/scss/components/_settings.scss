@@ -152,6 +152,8 @@
             }
         }
 
+        &.d4p-setting-range_integer,
+        &.d4p-setting-range_absint,
         &.d4p-setting-x_by_y {
             input {
                 width: 25%;
