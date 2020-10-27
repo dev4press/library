@@ -75,6 +75,10 @@ class RemoteImage {
 			return $file;
 		}
 
-		return $this->_attach( $file, $post_parent );
+		$result = $this->_attach( $file, $post_parent );
+
+		unlink($temp);
+
+		return $result;
 	}
 }

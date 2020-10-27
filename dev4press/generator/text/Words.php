@@ -60,6 +60,18 @@ abstract class Words extends Generator {
 		return $this->output( $words, $tags, $array );
 	}
 
+	public function protected_first($count = 0) {
+		if ($count == 0) {
+			$this->first = false;
+			$this->first_count = 0;
+		} else {
+			$this->first = true;
+			$this->first_count = $count;
+		}
+
+		return $this;
+	}
+
 	private function shuffle() {
 		if ( $this->first && $this->first_count > 0 ) {
 			$this->first = array_slice( $this->words, 0, $this->first_count );
