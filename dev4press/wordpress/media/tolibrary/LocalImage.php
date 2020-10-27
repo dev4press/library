@@ -62,13 +62,19 @@ class LocalImage {
 		$this->_prepare( $args );
 	}
 
-	public function upload( $post_parent = 0 ) {
+	public function upload( $post_parent = 0, $featured = false ) {
 		$file = $this->_sideload( $this->path );
 
 		if ( is_wp_error( $file ) ) {
 			return $file;
 		}
 
-		return $this->_attach( $file, $post_parent );
+		$attachment_id = $this->_attach( $file, $post_parent );
+
+		if ( ! is_wp_error( $attachment_id ) && $featured ) {
+			set_post_thumbnail( $post_parent, $attachment_id );
+		}
+
+		return $attachment_id;
 	}
 }

@@ -62,7 +62,7 @@ class RemoteImage {
 		$this->_prepare( $args );
 	}
 
-	public function download( $post_parent = 0 ) {
+	public function download( $post_parent = 0, $featured = false ) {
 		$temp = download_url( $this->url );
 
 		if ( is_wp_error( $temp ) ) {
@@ -75,10 +75,14 @@ class RemoteImage {
 			return $file;
 		}
 
-		$result = $this->_attach( $file, $post_parent );
+		$attachment_id = $this->_attach( $file, $post_parent );
 
-		unlink($temp);
+		if ( ! is_wp_error( $attachment_id ) && $featured ) {
+			set_post_thumbnail( $post_parent, $attachment_id );
+		}
 
-		return $result;
+		unlink( $temp );
+
+		return $attachment_id;
 	}
 }
