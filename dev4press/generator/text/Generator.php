@@ -93,7 +93,7 @@ abstract class Generator {
 		return $this->output( $paragraphs, $tags, $array, "\n\n" );
 	}
 
-	public function html( $paragraphs = 1, $settings = array(), $array = false ) {
+	public function html( $paragraphs = 1, $settings = array(), $block_formatted = false, $array = false ) {
 		$items = array();
 
 		for ( $i = 0; $i < $paragraphs; $i ++ ) {
@@ -108,20 +108,42 @@ abstract class Generator {
 				$p = $this->random_tagify( $p, 'a', .05 );
 			}
 
-			$items[] = '<p>' . $p . '</p>';
+			if ($block_formatted) {
+				$items[] = '<!-- wp:paragraph -->'.PHP_EOL.'<p>' . $p . '</p>'.PHP_EOL.'<!-- /wp:paragraph -->'.PHP_EOL;
+			} else {
+				$items[] = '<p>' . $p . '</p>';
+			}
 		}
 
 		if ( in_array( 'bq', $settings ) ) {
 			$max   = rand( 1, $paragraphs );
-			$items = array_merge( $items, $this->sentences( $max, array( 'blockquote' ), true ) );
+
+			for ($i = 0; $i < $max; $i++) {
+				$item = $this->sentence( array( 'blockquote', 'p' ) );
+
+				if ($block_formatted) {
+					$items[] = '<!-- wp:quote -->'.PHP_EOL.$item.PHP_EOL.'<!-- /wp:quote -->'.PHP_EOL;
+				} else {
+					$items[] = $item;
+				}
+			}
 		}
 
 		if ( in_array( 'code', $settings ) ) {
 			$max   = rand( 1, $paragraphs );
-			$items = array_merge( $items, $this->sentences( $max, array( 'pre' ), true ) );
+
+			for ($i = 0; $i < $max; $i++) {
+				$item = $this->sentence( array( 'pre', 'code' ) );
+
+				if ($block_formatted) {
+					$items[] = '<!-- wp:code -->'.PHP_EOL.$item.PHP_EOL.'<!-- /wp:code -->'.PHP_EOL;
+				} else {
+					$items[] = $item;
+				}
+			}
 		}
 
-		if ( in_array( 'dl', $settings ) ) {
+		if ( in_array( 'dl', $settings ) && !$block_formatted ) {
 			$max = rand( 1, $paragraphs ) * 3;
 
 			$list = array();
@@ -147,7 +169,11 @@ abstract class Generator {
 			}
 			$list[] = '</ul>';
 
-			$items[] = join( '', $list );
+			if ($block_formatted) {
+				$items[] = '<!-- wp:list -->'.PHP_EOL.join( '', $list ).PHP_EOL.'<!-- /wp:list -->'.PHP_EOL;
+			} else {
+				$items[] = join( '', $list );
+			}
 		}
 
 		if ( in_array( 'ol', $settings ) ) {
@@ -161,18 +187,27 @@ abstract class Generator {
 			}
 			$list[] = '</ol>';
 
-			$items[] = join( '', $list );
+			if ($block_formatted) {
+				$items[] = '<!-- wp:list {"ordered":true} -->'.PHP_EOL.join( '', $list ).PHP_EOL.'<!-- /wp:list -->'.PHP_EOL;
+			} else {
+				$items[] = join( '', $list );
+			}
 		}
 
 		if ( in_array( 'headers', $settings ) ) {
+			$this->set_sentence_gauss( 5, 1 );
 			$max   = rand( 1, $paragraphs );
-			$items = array_merge( $items, $this->set_sentence_gauss( 5, 1 )->sentences( $max, array(
-				'h2',
-				'h3',
-				'h4',
-				'h5',
-				'h6'
-			), true ) );
+			$head  = rand( 2, 6 );
+
+			for ($i = 0; $i < $max; $i++) {
+				$item = $this->sentence(array('h'.$head));
+
+				if ($block_formatted) {
+					$items[] = '<!-- wp:heading {"level":'.$head.'} -->'.PHP_EOL.$item.PHP_EOL.'<!-- /wp:heading -->'.PHP_EOL;
+				} else {
+					$items[] = $item;
+				}
+			}
 		}
 
 		$this->set_paragraph_gauss();
@@ -219,7 +254,11 @@ abstract class Generator {
 
 	protected function output( $strings, $tags = false, $array = false, $delimiter = ' ' ) {
 		if ( $tags ) {
-			$tags      = (array) $tags;
+			if (!is_array($tags)) {
+				$tags = array($tags);
+			} else {
+				$tags = array_reverse($tags);
+			}
 			$delimiter = '';
 
 			foreach ( $strings as $key => $string ) {
