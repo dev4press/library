@@ -35,6 +35,8 @@ class Query {
 	private $_api_key;
 	private $_api_url = 'https://api.pexels.com/';
 
+	private $_cache = array();
+
 	public function __construct( $api_key ) {
 		$this->_api_key = $api_key;
 	}
@@ -73,29 +75,35 @@ class Query {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		$url = add_query_arg( $args, $this->_api_url . 'v1/search' );
+		$key = md5( 'images' . json_encode( $args ) );
 
-		$raw = $this->_request( $url );
+		if ( ! isset( $this->_cache[ $key ] ) ) {
+			$url = add_query_arg( $args, $this->_api_url . 'v1/search' );
 
-		if ( is_wp_error( $raw ) ) {
-			return $raw;
+			$raw = $this->_request( $url );
+
+			if ( is_wp_error( $raw ) ) {
+				return $raw;
+			}
+
+			$body     = wp_remote_retrieve_body( $raw );
+			$response = json_decode( $body );
+
+			$out = array(
+				'page'     => $response->page,
+				'per_page' => $response->per_page,
+				'total'    => $response->total_results,
+				'results'  => array()
+			);
+
+			foreach ( $response->photos as $img ) {
+				$out['results'][] = $this->_format_image( $img );
+			}
+
+			$this->_cache[ $key ] = (object) $out;
 		}
 
-		$body     = wp_remote_retrieve_body( $raw );
-		$response = json_decode( $body );
-
-		$out = array(
-			'page'     => $response->page,
-			'per_page' => $response->per_page,
-			'total'    => $response->total_results,
-			'results'  => array()
-		);
-
-		foreach ( $response->photos as $img ) {
-			$out['results'][] = $this->_format_image( $img );
-		}
-
-		return (object) $out;
+		return $this->_cache[ $key ];
 	}
 
 	public function video( $id ) {
@@ -126,33 +134,40 @@ class Query {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		$url = add_query_arg( $args, $this->_api_url . 'videos/search' );
+		$key = md5( 'videos' . json_encode( $args ) );
 
-		$raw = $this->_request( $url );
+		if ( ! isset( $this->_cache[ $key ] ) ) {
+			$url = add_query_arg( $args, $this->_api_url . 'videos/search' );
 
-		if ( is_wp_error( $raw ) ) {
-			return $raw;
+			$raw = $this->_request( $url );
+
+			if ( is_wp_error( $raw ) ) {
+				return $raw;
+			}
+
+			$body     = wp_remote_retrieve_body( $raw );
+			$response = json_decode( $body );
+
+			$out = array(
+				'page'     => $response->page,
+				'per_page' => $response->per_page,
+				'total'    => $response->total_results,
+				'results'  => array()
+			);
+
+			foreach ( $response->videos as $img ) {
+				$out['results'][] = $this->_format_video( $img );
+			}
+
+			$this->_cache[ $key ] = (object) $out;
 		}
 
-		$body     = wp_remote_retrieve_body( $raw );
-		$response = json_decode( $body );
-
-		$out = array(
-			'page'     => $response->page,
-			'per_page' => $response->per_page,
-			'total'    => $response->total_results,
-			'results'  => array()
-		);
-
-		foreach ( $response->videos as $img ) {
-			$out['results'][] = $this->_format_video( $img );
-		}
-
-		return (object) $out;
+		return $this->_cache[ $key ];
 	}
 
 	private function _request( $url ) {
 		$args = array(
+			'timeout' => 15,
 			'headers' => array(
 				'Authorization' => $this->_api_key
 			)

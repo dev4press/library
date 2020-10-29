@@ -65,4 +65,16 @@ class Image {
 			$this->name = ucfirst( $this->name );
 		}
 	}
+
+	public function custom( $width, $height ) {
+		$url = $this->images->original;
+
+		$url = add_query_arg( 'auto', 'compress', $url );
+		$url = add_query_arg( 'cs', 'tinysrgb', $url );
+		$url = add_query_arg( 'fit', 'crop', $url );
+		$url = add_query_arg( 'h', absint( $height ), $url );
+		$url = add_query_arg( 'w', absint( $width ), $url );
+
+		return $url;
+	}
 }
