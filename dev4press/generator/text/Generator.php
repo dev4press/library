@@ -119,10 +119,10 @@ abstract class Generator {
 			$max   = rand( 1, $paragraphs );
 
 			for ($i = 0; $i < $max; $i++) {
-				$item = $this->sentence( array( 'blockquote', 'p' ) );
+				$item = $this->sentence( array( 'p' ) );
 
 				if ($block_formatted) {
-					$items[] = '<!-- wp:quote -->'.PHP_EOL.$item.PHP_EOL.'<!-- /wp:quote -->'.PHP_EOL;
+					$items[] = '<!-- wp:quote -->'.PHP_EOL.'<blockquote class="wp-block-quote">'.$item.'</blockquote>'.PHP_EOL.'<!-- /wp:quote -->'.PHP_EOL;
 				} else {
 					$items[] = $item;
 				}
@@ -133,10 +133,10 @@ abstract class Generator {
 			$max   = rand( 1, $paragraphs );
 
 			for ($i = 0; $i < $max; $i++) {
-				$item = $this->sentence( array( 'pre', 'code' ) );
+				$item = $this->sentence( array( 'code' ) );
 
 				if ($block_formatted) {
-					$items[] = '<!-- wp:code -->'.PHP_EOL.$item.PHP_EOL.'<!-- /wp:code -->'.PHP_EOL;
+					$items[] = '<!-- wp:code -->'.PHP_EOL.'<pre class="wp-block-code">'.$item.'</pre>'.PHP_EOL.'<!-- /wp:code -->'.PHP_EOL;
 				} else {
 					$items[] = $item;
 				}
