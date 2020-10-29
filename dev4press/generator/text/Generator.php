@@ -221,13 +221,47 @@ abstract class Generator {
 		return $items;
 	}
 
+	public function change_sentence_gauss($method = 'medium') {
+		switch ($method) {
+			case 'short':
+				$this->set_sentence_gauss(5.21, 1.28);
+				break;
+			case 'medium':
+				$this->set_sentence_gauss(14.27, 2.92);
+				break;
+			case 'long':
+				$this->set_sentence_gauss();
+				break;
+		}
+
+		return $this;
+	}
+
+	public function change_paragraph_gauss($method = 'medium') {
+		switch ($method) {
+			case 'short':
+				$this->set_paragraph_gauss(2.1, 1.1);
+				break;
+			case 'medium':
+				$this->set_paragraph_gauss(3.8, 1.4);
+				break;
+			case 'long':
+				$this->set_paragraph_gauss();
+				break;
+		}
+
+		return $this;
+	}
+
 	protected function gauss( $mean, $std_dev ) {
 		$x = mt_rand() / mt_getrandmax();
 		$y = mt_rand() / mt_getrandmax();
 
 		$z = sqrt( - 2 * log( $x ) ) * cos( 2 * pi() * $y );
 
-		return $z * $std_dev + $mean;
+		$value = $z * $std_dev + $mean;
+
+		return $value < 1 ? 1 : $value;
 	}
 
 	protected function punctuate( &$sentences ) {

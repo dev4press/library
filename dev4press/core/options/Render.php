@@ -559,10 +559,10 @@ class Render {
 
 		$pairs = explode( '=>', $value );
 
-		echo sprintf( '<label for="%s_a"><span class="d4p-accessibility-show-for-sr">%s - A: </span></label><input%s type="text" name="%s[a]" id="%s_a" value="%s" class="widefat" />',
+		echo sprintf( '<label for="%s_a"><span class="d4p-accessibility-show-for-sr">%s - A: </span></label><input%s type="number" name="%s[a]" id="%s_a" value="%s" class="widefat" />',
 			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[0] ) );
 		echo ' => ';
-		echo sprintf( '<label for="%s_b"><span class="d4p-accessibility-show-for-sr">%s - B: </span></label><input%s type="text" name="%s[b]" id="%s_b" value="%s" class="widefat" />',
+		echo sprintf( '<label for="%s_b"><span class="d4p-accessibility-show-for-sr">%s - B: </span></label><input%s type="number" name="%s[b]" id="%s_b" value="%s" class="widefat" />',
 			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[1] ) );
 	}
 
@@ -571,10 +571,10 @@ class Render {
 
 		$pairs = explode( 'x', $value );
 
-		echo sprintf( '<label for="%s_x"><span class="d4p-accessibility-show-for-sr">%s - X: </span></label><input%s type="text" name="%s[x]" id="%s_x" value="%s" class="widefat" />',
+		echo sprintf( '<label for="%s_x"><span class="d4p-accessibility-show-for-sr">%s - X: </span></label><input%s type="number" name="%s[x]" id="%s_x" value="%s" class="widefat" />',
 			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[0] ) );
 		echo ' x ';
-		echo sprintf( '<label for="%s_y"><span class="d4p-accessibility-show-for-sr">%s - Y: </span></label><input%s type="text" name="%s[y]" id="%s_y" value="%s" class="widefat" />',
+		echo sprintf( '<label for="%s_y"><span class="d4p-accessibility-show-for-sr">%s - Y: </span></label><input%s type="number" name="%s[y]" id="%s_y" value="%s" class="widefat" />',
 			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[1] ) );
 	}
 
