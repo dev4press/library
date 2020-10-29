@@ -322,7 +322,7 @@ abstract class Generator {
 		$total = count( $items );
 		$max   = rand( 1, floor( $total * $frequency ) );
 
-		$pick = (array)array_rand( $items, $max );
+		$pick = $max > 0 ? (array)array_rand( $items, $max ) : array();
 
 		foreach ( $items as $id => $word ) {
 			if ( in_array( $id, $pick ) ) {
