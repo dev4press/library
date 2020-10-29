@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\Service\Media\PicsumImage
+Name:    Dev4Press\Service\Media\Picsum\Image
 Version: v3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -25,13 +25,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-namespace Dev4Press\Service\Media;
+namespace Dev4Press\Service\Media\Picsum;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class PicsumImage {
+class Image {
 	public $id;
 	public $url;
 	public $download;

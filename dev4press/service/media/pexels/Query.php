@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\Service\Media\Pexels
+Name:    Dev4Press\Service\Media\Pexels\Query
 Version: v3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -25,13 +25,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-namespace Dev4Press\Service\Media;
+namespace Dev4Press\Service\Media\Pexels;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Pexels {
+class Query {
 	private $_api_key;
 	private $_api_url = 'https://api.pexels.com/';
 
@@ -43,7 +43,7 @@ class Pexels {
 		static $_d4p_pexels = false;
 
 		if ( ! $_d4p_pexels ) {
-			$_d4p_pexels = new Pexels( $api_key );
+			$_d4p_pexels = new Query( $api_key );
 		}
 
 		return $_d4p_pexels;
@@ -162,10 +162,10 @@ class Pexels {
 	}
 
 	private function _format_image( $response ) {
-		return new PexelsImage( $response );
+		return new Image( $response );
 	}
 
 	private function _format_video( $response ) {
-		return new PexelsVideo( $response );
+		return new Video( $response );
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\Service\Media\PexelsVideo
+Name:    Dev4Press\Service\Media\Picsum\Query
 Version: v3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -25,40 +25,24 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-namespace Dev4Press\Service\Media;
+namespace Dev4Press\Service\Media\Picsum;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class PexelsVideo {
-	public $id;
-	public $url;
-	public $name;
+class Query {
+	public function __construct() {
 
-	public $videos;
+	}
 
-	public $user;
+	public static function instance() {
+		static $_d4p_picsum = false;
 
-	public function __construct( $response ) {
-		$this->id   = $response->id;
-		$this->url  = $response->url;
-		$this->user = $response->user;
-
-		preg_match( '/pexels\.com\/photo\/(.+?)-\d+?\//', $this->url, $output );
-
-		if ( ! empty( $output ) && isset( $output[1] ) ) {
-			$this->name = str_replace( '-', ' ', $output[1] );
-			$this->name = ucfirst( $this->name );
+		if ( ! $_d4p_picsum ) {
+			$_d4p_picsum = new Query();
 		}
 
-		foreach ( $response->video_files as $video ) {
-			$video->url = $video->link;
-			unset( $video->link );
-
-			$video->preview = 'https://i.vimeocdn.com/video/' . $video->id . '_' . $video->width . 'x' . $video->height . '.jpg';
-
-			$this->videos[] = $video;
-		}
+		return $_d4p_picsum;
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\Service\Media\Pixabay
+Name:    Dev4Press\Service\Media\Pixabay\Query
 Version: v3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -25,7 +25,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-namespace Dev4Press\Service\Media;
+namespace Dev4Press\Service\Media\Pixabay;
 
 use WP_Error;
 
@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Pixabay {
+class Query {
 	private $_api_key;
 	private $_api_url = 'https://pixabay.com/api/';
 
@@ -45,7 +45,7 @@ class Pixabay {
 		static $_d4p_pixabay = false;
 
 		if ( ! $_d4p_pixabay ) {
-			$_d4p_pixabay = new Pixabay( $api_key );
+			$_d4p_pixabay = new Query( $api_key );
 		}
 
 		return $_d4p_pixabay;
@@ -194,10 +194,10 @@ class Pixabay {
 	}
 
 	private function _format_image( $response ) {
-		return new PixabayImage( $response );
+		return new Image( $response );
 	}
 
 	private function _format_video( $response ) {
-		return new PixabayVideo( $response );
+		return new Video( $response );
 	}
 }

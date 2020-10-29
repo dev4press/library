@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\Service\Media\PixabayVideo
+Name:    Dev4Press\Service\Media\Pixabay\Video
 Version: v3.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -25,13 +25,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-namespace Dev4Press\Service\Media;
+namespace Dev4Press\Service\Media\Pixabay;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class PixabayVideo {
+class Video {
 	public $id;
 	public $type;
 	public $url;
