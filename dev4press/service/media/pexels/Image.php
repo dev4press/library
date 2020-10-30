@@ -35,6 +35,8 @@ class Image {
 	public $id;
 	public $url;
 	public $name;
+	public $slug;
+	public $extension;
 
 	public $width;
 	public $height;
@@ -61,9 +63,12 @@ class Image {
 		preg_match( '/pexels\.com\/photo\/(.+?)-\d+?\//', $this->url, $output );
 
 		if ( ! empty( $output ) && isset( $output[1] ) ) {
+			$this->slug = $output[1];
 			$this->name = str_replace( '-', ' ', $output[1] );
 			$this->name = ucfirst( $this->name );
 		}
+
+		$this->extension = pathinfo( $this->images->original, PATHINFO_EXTENSION );
 	}
 
 	public function custom( $width, $height ) {

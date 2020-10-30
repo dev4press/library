@@ -35,6 +35,9 @@ class Image {
 	public $id;
 	public $type;
 	public $url;
+	public $slug;
+	public $extension;
+
 	public $likes;
 	public $views;
 	public $downloads;
@@ -74,10 +77,19 @@ class Image {
 			'image' => (object) array( 'url' => $response->userImageURL )
 		);
 
+		preg_match( '/pixabay\.com\/photos\/(.+?)-\d+?\//', $this->url, $output );
+
+		if ( ! empty( $output ) && isset( $output[1] ) ) {
+			$this->slug = $output[1];
+			$this->name = str_replace( '-', ' ', $output[1] );
+			$this->name = ucfirst( $this->name );
+		} else {
+			$this->name = ucwords( join( ' ', $this->tags ) );
+			$this->slug = sanitize_title( $this->name );
+		}
+
 		$this->tags = explode( ',', $response->tags );
 		$this->tags = array_map( 'trim', $this->tags );
-
-		$this->name = ucwords( join( ' ', $this->tags ) );
 
 		$this->preview  = $this->_process_image( 'preview', $response );
 		$this->web      = $this->_process_image( 'webformat', $response );
@@ -85,6 +97,8 @@ class Image {
 		$this->fullhd   = $this->_process_image( 'fullHD', $response );
 		$this->original = $this->_process_image( 'image', $response );
 		$this->vector   = $this->_process_image( 'vector', $response );
+
+		$this->extension = pathinfo( $this->large->url, PATHINFO_EXTENSION );
 	}
 
 	public function largest() {

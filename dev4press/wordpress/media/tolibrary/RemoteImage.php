@@ -81,7 +81,9 @@ class RemoteImage {
 			set_post_thumbnail( $post_parent, $attachment_id );
 		}
 
-		unlink( $temp );
+		if (file_exists($temp)) {
+			unlink( $temp );
+		}
 
 		return $attachment_id;
 	}

@@ -88,6 +88,7 @@ trait ImageToMediaLibrary {
 			'post_mime_type' => $file['type'],
 			'post_title'     => ! empty( $this->data['title'] ) ?
 				$this->data['title'] : preg_replace( '/\.[^.]+$/', '', basename( $file['file'] ) ),
+			'post_name'      => $this->data['slug'],
 			'post_content'   => $this->data['description'],
 			'post_excerpt'   => $this->data['caption'],
 			'post_status'    => 'inherit'

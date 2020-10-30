@@ -37,6 +37,8 @@ class Query {
 	private $_api_key;
 	private $_api_url = 'https://pixabay.com/api/';
 
+	private $_cache = array();
+
 	public function __construct( $api_key ) {
 		$this->_api_key = $api_key;
 	}
@@ -82,45 +84,52 @@ class Query {
 	public function images( $args = array() ) {
 		$defaults = array(
 			'q'              => '',
-			'lang'           => 'en',
-			'image_type'     => 'all',
-			'orientation'    => 'all',
+			'lang'           => '',
+			'image_type'     => '',
+			'orientation'    => '',
 			'category'       => '',
-			'min_width'      => 0,
-			'min_height'     => 0,
+			'min_width'      => '',
+			'min_height'     => '',
 			'colors'         => '',
-			'safesearch'     => false,
-			'editors_choice' => false,
-			'order'          => 'popular',
-			'page'           => 1,
-			'per_page'       => 20
+			'safesearch'     => '',
+			'editors_choice' => '',
+			'order'          => '',
+			'page'           => '',
+			'per_page'       => ''
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 
 		$args['key'] = $this->_api_key;
 
-		$url = add_query_arg( $args, $this->_api_url );
+		$key = md5( 'images' . json_encode( $args ) );
 
-		$raw = wp_remote_get( $url );
+		if ( ! isset( $this->_cache[ $key ] ) ) {
+			$args = array_filter( $args );
+			$url  = add_query_arg( $args, $this->_api_url );
 
-		if ( is_wp_error( $raw ) ) {
-			return $raw;
+			$raw = wp_remote_get( $url );
+
+			if ( is_wp_error( $raw ) ) {
+				return $raw;
+			}
+
+			$body     = wp_remote_retrieve_body( $raw );
+			$response = json_decode( $body );
+
+			$out = array(
+				'total'   => $response->totalHits,
+				'results' => array()
+			);
+
+			foreach ( $response->hits as $img ) {
+				$out['results'][] = $this->_format_image( $img );
+			}
+
+			$this->_cache[ $key ] = (object) $out;
 		}
 
-		$body     = wp_remote_retrieve_body( $raw );
-		$response = json_decode( $body );
-
-		$out = array(
-			'total'   => $response->totalHits,
-			'results' => array()
-		);
-
-		foreach ( $response->hits as $img ) {
-			$out['results'][] = $this->_format_image( $img );
-		}
-
-		return (object) $out;
+		return $this->_cache[ $key ];
 	}
 
 	public function video( $id, $args = array() ) {
@@ -154,43 +163,50 @@ class Query {
 	public function videos( $args = array() ) {
 		$defaults = array(
 			'q'              => '',
-			'lang'           => 'en',
-			'video_type'     => 'all',
+			'lang'           => '',
+			'video_type'     => '',
 			'category'       => '',
-			'min_width'      => 0,
-			'min_height'     => 0,
-			'safesearch'     => false,
-			'editors_choice' => false,
-			'order'          => 'popular',
-			'page'           => 1,
-			'per_page'       => 20
+			'min_width'      => '',
+			'min_height'     => '',
+			'safesearch'     => '',
+			'editors_choice' => '',
+			'order'          => '',
+			'page'           => '',
+			'per_page'       => ''
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 
 		$args['key'] = $this->_api_key;
 
-		$url = add_query_arg( $args, $this->_api_url . 'videos/' );
+		$key = md5( 'videos' . json_encode( $args ) );
 
-		$raw = wp_remote_get( $url );
+		if ( ! isset( $this->_cache[ $key ] ) ) {
+			$args = array_filter( $args );
+			$url  = add_query_arg( $args, $this->_api_url . 'videos/' );
 
-		if ( is_wp_error( $raw ) ) {
-			return $raw;
+			$raw = wp_remote_get( $url );
+
+			if ( is_wp_error( $raw ) ) {
+				return $raw;
+			}
+
+			$body     = wp_remote_retrieve_body( $raw );
+			$response = json_decode( $body );
+
+			$out = array(
+				'total'   => $response->totalHits,
+				'results' => array()
+			);
+
+			foreach ( $response->hits as $img ) {
+				$out['results'][] = $this->_format_video( $img );
+			}
+
+			$this->_cache[ $key ] = (object) $out;
 		}
 
-		$body     = wp_remote_retrieve_body( $raw );
-		$response = json_decode( $body );
-
-		$out = array(
-			'total'   => $response->totalHits,
-			'results' => array()
-		);
-
-		foreach ( $response->hits as $img ) {
-			$out['results'][] = $this->_format_video( $img );
-		}
-
-		return (object) $out;
+		return $this->_cache[ $key ];
 	}
 
 	private function _format_image( $response ) {

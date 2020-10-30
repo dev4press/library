@@ -42,8 +42,8 @@ class Image {
 	public $author;
 
 	public function __construct( $response ) {
-		$this->id  = $response->id;
-		$this->url = $response->url;
+		$this->id       = $response->id;
+		$this->url      = $response->url;
 		$this->download = $response->download_url;
 
 		$this->width  = $response->width;
