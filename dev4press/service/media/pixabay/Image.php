@@ -48,13 +48,7 @@ class Image {
 
 	public $width;
 	public $height;
-
-	public $preview;
-	public $web;
-	public $large;
-	public $fullhd;
-	public $original;
-	public $vector;
+	public $images;
 
 	public $user;
 
@@ -91,22 +85,32 @@ class Image {
 		$this->tags = explode( ',', $response->tags );
 		$this->tags = array_map( 'trim', $this->tags );
 
-		$this->preview  = $this->_process_image( 'preview', $response );
-		$this->web      = $this->_process_image( 'webformat', $response );
-		$this->large    = $this->_process_image( 'largeImage', $response );
-		$this->fullhd   = $this->_process_image( 'fullHD', $response );
-		$this->original = $this->_process_image( 'image', $response );
-		$this->vector   = $this->_process_image( 'vector', $response );
+		$this->images = (object) array(
+			'preview'  => $this->_process_image( 'preview', $response ),
+			'web'      => $this->_process_image( 'webformat', $response ),
+			'large'    => $this->_process_image( 'largeImage', $response ),
+			'fullhd'   => $this->_process_image( 'fullHD', $response ),
+			'original' => $this->_process_image( 'image', $response ),
+			'vector'   => $this->_process_image( 'vector', $response )
+		);
 
-		$this->extension = pathinfo( $this->large->url, PATHINFO_EXTENSION );
+		$this->extension = pathinfo( $this->images->large->url, PATHINFO_EXTENSION );
+	}
+
+	public function by_name($size) {
+		if (isset($this->images->$size) && !is_null($this->images->$size)) {
+			return $this->images->$size;
+		}
+
+		return $this->largest();
 	}
 
 	public function largest() {
-		$list = array( 'original', 'fullhd', 'large', 'web' );
+		$list = array( 'original', 'fullhd', 'large', 'web', 'preview' );
 
 		foreach ( $list as $type ) {
-			if ( ! is_null( $this->$type ) ) {
-				return $this->$type;
+			if ( ! is_null( $this->images->$type ) ) {
+				return $this->images->$type;
 			}
 		}
 

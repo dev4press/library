@@ -170,6 +170,8 @@ class Process {
 				break;
 			case 'image':
 			case 'absint':
+			case 'dropdown_pages':
+			case 'dropdown_categories':
 				$value = absint( $post[ $key ] );
 				break;
 			case 'images':

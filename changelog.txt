@@ -3,10 +3,12 @@
 
 = Version 3.3 - 2020.11.02 =
 * New: Options core classes support render and process overrides
-* New: Date and time based settings support and rendering
-* New: Numeric range based settings support and rendering
+* New: Date and time based settings
+* New: Numeric range based settings
+* New: Pages and categories dropdown settings
 * New: Functions to sanitize date and time inputs
 * New: Improvements to the text generator classes
+* Updated: Improved media classes content and organization
 * Updated: Font expanded with new UI icons
 * Updated: Various rendering tweaks and improvements
 * Updated: Various styling improvements

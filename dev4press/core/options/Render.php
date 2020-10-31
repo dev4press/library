@@ -480,6 +480,47 @@ class Render {
 		echo '<input type="hidden" value="' . esc_attr( $i ) . '" class="d4p-next-id" />';
 	}
 
+	protected function draw_dropdown_categories( $element, $value, $name_base, $id_base = '' ) {
+		$label_none   = isset( $element->args['label_none'] ) ? $element->args['label_none'] : ' ';
+		$taxonomy     = isset( $element->args['taxonomy'] ) ? $element->args['taxonomy'] : 'category';
+		$hierarchical = isset( $element->args['hierarchical'] ) ? $element->args['hierarchical'] : true;
+		$child        = isset( $element->args['child_of'] ) ? $element->args['child_of'] : 0;
+		$depth        = isset( $element->args['depth'] ) ? $element->args['depth'] : 0;
+
+		wp_dropdown_categories( array(
+			'echo'              => true,
+			'show_option_none'  => $label_none,
+			'option_none_value' => 0,
+			'hierarchical'      => $hierarchical,
+			'child_of'          => $child,
+			'depth'             => $depth,
+			'name'              => $name_base,
+			'class'             => 'widefat',
+			'id'                => $id_base,
+			'taxonomy'          => $taxonomy
+		) );
+	}
+
+	protected function draw_dropdown_pages( $element, $value, $name_base, $id_base = '' ) {
+		$label_none = isset( $element->args['label_none'] ) ? $element->args['label_none'] : ' ';
+		$post_type  = isset( $element->args['post_type'] ) ? $element->args['post_type'] : 'page';
+		$child      = isset( $element->args['child_of'] ) ? $element->args['child_of'] : 0;
+		$depth      = isset( $element->args['depth'] ) ? $element->args['depth'] : 0;
+
+		wp_dropdown_pages( array(
+			'echo'              => true,
+			'child_of'          => $child,
+			'depth'             => $depth,
+			'show_option_none'  => $label_none,
+			'option_none_value' => 0,
+			'selected'          => $value,
+			'name'              => $name_base,
+			'class'             => 'widefat',
+			'id'                => $id_base,
+			'post_type'         => $post_type
+		) );
+	}
+
 	protected function draw_info( $element, $value, $name_base, $id_base = '' ) {
 		echo $element->notice;
 	}
@@ -551,7 +592,7 @@ class Render {
 	}
 
 	protected function draw_range_absint( $element, $value, $name_base, $id_base ) {
-		$this->draw_range_integer($element, $value, $name_base, $id_base);
+		$this->draw_range_integer( $element, $value, $name_base, $id_base );
 	}
 
 	protected function draw_range_integer( $element, $value, $name_base, $id_base ) {

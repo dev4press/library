@@ -62,6 +62,8 @@ class Type {
 	const RADIOS_HIERARCHY = 'radios_hierarchy';
 	const SELECT = 'select';
 	const SELECT_MULTI = 'select_multi';
+	const DROPDOWN_PAGES = 'dropdown_pages';
+	const DROPDOWN_CATEGORIES = 'dropdown_categories';
 	const GROUP = 'group';
 	const GROUP_MULTI = 'group_multi';
 	const NUMBER = 'number';
@@ -107,6 +109,8 @@ class Type {
 		'radios_hierarchy'     => self::RADIOS_HIERARCHY,
 		'select'               => self::SELECT,
 		'select_multi'         => self::SELECT_MULTI,
+		'dropdown_pages'       => self::DROPDOWN_PAGES,
+		'dropdown_categories'  => self::DROPDOWN_CATEGORIES,
 		'group'                => self::GROUP,
 		'group_multi'          => self::GROUP_MULTI,
 		'number'               => self::NUMBER,
