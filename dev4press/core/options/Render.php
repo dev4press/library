@@ -486,11 +486,13 @@ class Render {
 		$hierarchical = isset( $element->args['hierarchical'] ) ? $element->args['hierarchical'] : true;
 		$child        = isset( $element->args['child_of'] ) ? $element->args['child_of'] : 0;
 		$depth        = isset( $element->args['depth'] ) ? $element->args['depth'] : 0;
+		$hide_empty   = isset( $element->args['hide_empty'] ) ? $element->args['hide_empty'] : false;
 
 		wp_dropdown_categories( array(
 			'echo'              => true,
 			'show_option_none'  => $label_none,
 			'option_none_value' => 0,
+			'hide_empty'        => $hide_empty,
 			'hierarchical'      => $hierarchical,
 			'child_of'          => $child,
 			'depth'             => $depth,
