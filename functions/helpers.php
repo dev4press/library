@@ -41,6 +41,18 @@ if ( ! function_exists( 'is_divisible' ) ) {
 	}
 }
 
+if ( ! function_exists( 'd4p_clean_ids_list' ) ) {
+	function d4p_clean_ids_list( $ids ) {
+		$ids = (array) $ids;
+
+		$ids = array_map( 'absint', $ids );
+		$ids = array_unique( $ids );
+		$ids = array_filter( $ids );
+
+		return $ids;
+	}
+}
+
 if ( ! function_exists( 'd4p_replace_tags_in_content' ) ) {
 	function d4p_replace_tags_in_content( $content, $tags ) {
 		foreach ( $tags as $tag => $replace ) {

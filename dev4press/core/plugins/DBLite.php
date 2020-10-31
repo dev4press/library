@@ -60,13 +60,7 @@ abstract class DBLite {
 	}
 
 	public function clean_ids_list( $ids ) {
-		$ids = (array) $ids;
-
-		$ids = array_map( 'absint', $ids );
-		$ids = array_unique( $ids );
-		$ids = array_filter( $ids );
-
-		return $ids;
+		return d4p_clean_ids_list( $ids );
 	}
 
 	public function build_query( $sql, $calc_found_rows = true ) {
