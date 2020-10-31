@@ -488,8 +488,8 @@ class Render {
 		$depth        = isset( $element->args['depth'] ) ? $element->args['depth'] : 0;
 		$hide_empty   = isset( $element->args['hide_empty'] ) ? $element->args['hide_empty'] : false;
 
-		wp_dropdown_categories( array(
-			'echo'              => true,
+		$list = wp_dropdown_categories( array(
+			'echo'              => false,
 			'show_option_none'  => $label_none,
 			'option_none_value' => 0,
 			'hide_empty'        => $hide_empty,
@@ -501,6 +501,17 @@ class Render {
 			'id'                => $id_base,
 			'taxonomy'          => $taxonomy
 		) );
+
+		if ( empty( $list ) ) {
+			d4p_render_select( array( '0' => __( "No items to show" ) ), array(
+				'selected' => 0,
+				'name'     => $name_base,
+				'id'       => $id_base,
+				'class'    => 'widefat'
+			), array( 'aria-labelledby' => $id_base . '__label' ) );
+		} else {
+			echo $list;
+		}
 	}
 
 	protected function draw_dropdown_pages( $element, $value, $name_base, $id_base = '' ) {
@@ -509,8 +520,8 @@ class Render {
 		$child      = isset( $element->args['child_of'] ) ? $element->args['child_of'] : 0;
 		$depth      = isset( $element->args['depth'] ) ? $element->args['depth'] : 0;
 
-		wp_dropdown_pages( array(
-			'echo'              => true,
+		$list = wp_dropdown_pages( array(
+			'echo'              => false,
 			'child_of'          => $child,
 			'depth'             => $depth,
 			'show_option_none'  => $label_none,
@@ -521,6 +532,17 @@ class Render {
 			'id'                => $id_base,
 			'post_type'         => $post_type
 		) );
+
+		if ( empty( $list ) ) {
+			d4p_render_select( array( '0' => __( "No items to show" ) ), array(
+				'selected' => 0,
+				'name'     => $name_base,
+				'id'       => $id_base,
+				'class'    => 'widefat'
+			), array( 'aria-labelledby' => $id_base . '__label' ) );
+		} else {
+			echo $list;
+		}
 	}
 
 	protected function draw_info( $element, $value, $name_base, $id_base = '' ) {
