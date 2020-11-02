@@ -166,6 +166,12 @@ final class Enqueue {
 			'about'                  => array( 'path' => 'css/', 'file' => 'about', 'ext' => 'css', 'min' => true ),
 			'flags'                  => array( 'path' => 'css/', 'file' => 'flags', 'ext' => 'css', 'min' => true ),
 			'font'                   => array( 'path' => 'css/', 'file' => 'font', 'ext' => 'css', 'min' => true ),
+			'font-embed'             => array(
+				'path' => 'css/',
+				'file' => 'font-embed',
+				'ext'  => 'css',
+				'min'  => true
+			),
 			'grid'                   => array( 'path' => 'css/', 'file' => 'grid', 'ext' => 'css', 'min' => true ),
 			'ctrl'                   => array( 'path' => 'css/', 'file' => 'ctrl', 'ext' => 'css', 'min' => true ),
 			'meta'                   => array( 'path' => 'css/', 'file' => 'meta', 'ext' => 'css', 'min' => true ),

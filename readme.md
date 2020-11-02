@@ -2,7 +2,7 @@
 
 * Version: v3.3
 * Build:   3300
-* Release: 2020.11.01.
+* Release: 2020.11.09.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/

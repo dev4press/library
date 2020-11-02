@@ -1,13 +1,15 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.3 - 2020.11.02 =
+= Version 3.3 - 2020.11.09 =
 * New: Options core classes support render and process overrides
 * New: Date and time based settings
 * New: Numeric range based settings
 * New: Pages and categories dropdown settings
 * New: Functions to sanitize date and time inputs
 * New: Improvements to the text generator classes
+* New: All new plugin and addons icons
+* New: Font with icons using embed Woff and Woff2 fonts
 * Updated: Improved media classes content and organization
 * Updated: Font expanded with new UI icons
 * Updated: Various rendering tweaks and improvements
