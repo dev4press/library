@@ -45,8 +45,8 @@ class Store {
 		"demopress"                        => array(
 			"code"        => "demopress",
 			"name"        => "DemoPress",
-			"description" => "Easy to use plugin to install new and update existing Dev4Press premium plugins and themes from within WordPress dashboard, using build in updater system.",
-			"punchline"   => "One stop install and update for Dev4Press plugins",
+			"description" => "Easy to use plugin for generating demo content for newly created websites used during the website development and testing, before real content is created and added.",
+			"punchline"   => "Generate all sorts of demo data for Dev4Press",
 			"color"       => "#0F1086",
 			'free'        => true,
 			'pro'         => false
