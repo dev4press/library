@@ -29,7 +29,7 @@ if ( ! empty( $_subpanel ) ) {
 		<?php echo d4p_panel()->a()->settings()->i()->description(); ?>
     </p>
     <div class="d4p-about-badge" style="background-color: <?php echo d4p_panel()->a()->settings()->i()->color(); ?>;">
-		<?php echo d4p_panel()->r()->icon( 'plugin-icon-' . d4p_panel()->a()->plugin ); ?>
+		<?php echo d4p_panel()->r()->icon( 'plugin-' . d4p_panel()->a()->plugin ); ?>
 		<?php printf( __( "Version %s", "d4plib" ), d4p_panel()->a()->settings()->i()->version ); ?>
     </div>
 

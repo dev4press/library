@@ -343,6 +343,13 @@
   text-align: center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge .d4p-dashboard-sidebard-svg-sign {
+  max-width: 360px;
+  width: 80%;
+  height: auto;
+  text-align: center;
+  margin: 0 auto;
+}
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge * {
   color: #FFF;
 }

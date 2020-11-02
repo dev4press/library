@@ -47,7 +47,7 @@ class Store {
 			"name"        => "DemoPress",
 			"description" => "Easy to use plugin to install new and update existing Dev4Press premium plugins and themes from within WordPress dashboard, using build in updater system.",
 			"punchline"   => "One stop install and update for Dev4Press plugins",
-			"color"       => "#2791D3",
+			"color"       => "#0F1086",
 			'free'        => true,
 			'pro'         => false
 		),

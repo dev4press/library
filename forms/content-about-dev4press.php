@@ -24,7 +24,7 @@ $_plugins = Store::instance()->plugins();
         <div class="d4p-dev4press-plugin">
             <div class="_badge">
                 <div class="_icon" style="background-color: <?php echo $plugin['color']; ?>;">
-                    <a href="<?php echo $_url; ?>" target="_blank" rel="noopener"><i class="d4p-icon d4p-plugin-icon-<?php echo $plugin['code']; ?>"></i></a>
+                    <a href="<?php echo $_url; ?>" target="_blank" rel="noopener"><i class="d4p-icon d4p-plugin-<?php echo $plugin['code']; ?>"></i></a>
                 </div>
                 <div class="_edition <?php echo $_edition; ?>"><?php if ( $_pro ) {
 						echo '<span class="_pro">Pro</span>';
