@@ -25,75 +25,75 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-if (!defined('D4P_CORE_VERSION')) {
-    define('D4P_CORE_VERSION', '3.3');
-    define('D4P_CORE_BUILD', '3300');
+if ( ! defined( 'D4P_CORE_VERSION' ) ) {
+	define( 'D4P_CORE_VERSION', '3.3' );
+	define( 'D4P_CORE_BUILD', '3300' );
 }
 
-if (!defined('D4P_EOL')) {
-    define('D4P_EOL', "\r\n");
+if ( ! defined( 'D4P_EOL' ) ) {
+	define( 'D4P_EOL', "\r\n" );
 }
 
-if (!defined('D4P_TAB')) {
-    define('D4P_TAB', "\t");
+if ( ! defined( 'D4P_TAB' ) ) {
+	define( 'D4P_TAB', "\t" );
 }
 
-if (!defined('D4P_PHP_VERSION')) {
-    $version = str_replace('.', '', phpversion());
-    $version = intval(substr($version, 0, 2));
+if ( ! defined( 'D4P_PHP_VERSION' ) ) {
+	$version = str_replace( '.', '', phpversion() );
+	$version = intval( substr( $version, 0, 2 ) );
 
-    define('D4P_PHP_VERSION', $version);
+	define( 'D4P_PHP_VERSION', $version );
 }
 
-if (!defined('D4P_CHARSET')) {
-    define('D4P_CHARSET', get_option('blog_charset'));
+if ( ! defined( 'D4P_CHARSET' ) ) {
+	define( 'D4P_CHARSET', get_option( 'blog_charset' ) );
 }
 
-if (!defined('D4P_ADMIN')) {
-    define('D4P_ADMIN', defined('WP_ADMIN') && WP_ADMIN);
+if ( ! defined( 'D4P_ADMIN' ) ) {
+	define( 'D4P_ADMIN', defined( 'WP_ADMIN' ) && WP_ADMIN );
 }
 
-if (!defined('D4P_AJAX')) {
-    define('D4P_AJAX', defined('DOING_AJAX') && DOING_AJAX);
+if ( ! defined( 'D4P_AJAX' ) ) {
+	define( 'D4P_AJAX', defined( 'DOING_AJAX' ) && DOING_AJAX );
 }
 
-if (!defined('D4P_ASYNC_UPLOAD') && D4P_AJAX) {
-    define('D4P_ASYNC_UPLOAD', isset($_REQUEST['action']) && 'upload-attachment' === $_REQUEST['action']);
+if ( ! defined( 'D4P_ASYNC_UPLOAD' ) && D4P_AJAX ) {
+	define( 'D4P_ASYNC_UPLOAD', isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action'] );
 }
 
-if (!defined('D4P_CRON')) {
-    define('D4P_CRON', defined('DOING_CRON') && DOING_CRON);
+if ( ! defined( 'D4P_CRON' ) ) {
+	define( 'D4P_CRON', defined( 'DOING_CRON' ) && DOING_CRON );
 }
 
-if (!defined('D4P_DEBUG')) {
-    define('D4P_DEBUG', defined('WP_DEBUG') && WP_DEBUG);
+if ( ! defined( 'D4P_DEBUG' ) ) {
+	define( 'D4P_DEBUG', defined( 'WP_DEBUG' ) && WP_DEBUG );
 }
 
-if (!defined('D4P_SCRIPT_DEBUG')) {
-    define('D4P_SCRIPT_DEBUG', defined('SCRIPT_DEBUG') && SCRIPT_DEBUG);
+if ( ! defined( 'D4P_SCRIPT_DEBUG' ) ) {
+	define( 'D4P_SCRIPT_DEBUG', defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
 }
 
-if (!defined('D4PLIB_CACERT_PATH')) {
-    define('D4PLIB_CACERT_PATH', dirname(__FILE__).'/resources/curl/cacert.pem');
+if ( ! defined( 'D4PLIB_CACERT_PATH' ) ) {
+	define( 'D4PLIB_CACERT_PATH', dirname( __FILE__ ) . '/resources/curl/cacert.pem' );
 }
 
-include(dirname(__FILE__).'/autoload.php');
+include( dirname( __FILE__ ) . '/autoload.php' );
 
-include(dirname(__FILE__).'/functions/bridge.php');
-include(dirname(__FILE__).'/functions/access.php');
-include(dirname(__FILE__).'/functions/helpers.php');
-include(dirname(__FILE__).'/functions/cache.php');
-include(dirname(__FILE__).'/functions/debug.php');
-include(dirname(__FILE__).'/functions/sanitize.php');
+include( dirname( __FILE__ ) . '/functions/bridge.php' );
+include( dirname( __FILE__ ) . '/functions/access.php' );
+include( dirname( __FILE__ ) . '/functions/helpers.php' );
+include( dirname( __FILE__ ) . '/functions/cache.php' );
+include( dirname( __FILE__ ) . '/functions/debug.php' );
+include( dirname( __FILE__ ) . '/functions/sanitize.php' );
 
-include(dirname(__FILE__).'/functions/wordpress.php');
-include(dirname(__FILE__).'/functions/bbpress.php');
-include(dirname(__FILE__).'/functions/buddypress.php');
+include( dirname( __FILE__ ) . '/functions/wordpress.php' );
+include( dirname( __FILE__ ) . '/functions/bbpress.php' );
+include( dirname( __FILE__ ) . '/functions/buddypress.php' );
 
-if (D4P_ADMIN) {
-    include(dirname(__FILE__).'/functions/admin.php');
+if ( D4P_ADMIN ) {
+	include( dirname( __FILE__ ) . '/functions/admin.php' );
 }

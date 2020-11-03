@@ -60,12 +60,12 @@ abstract class Words extends Generator {
 		return $this->output( $words, $tags, $array );
 	}
 
-	public function protected_first($count = 0) {
-		if ($count == 0) {
-			$this->first = false;
+	public function protected_first( $count = 0 ) {
+		if ( $count == 0 ) {
+			$this->first       = false;
 			$this->first_count = 0;
 		} else {
-			$this->first = true;
+			$this->first       = true;
 			$this->first_count = $count;
 		}
 

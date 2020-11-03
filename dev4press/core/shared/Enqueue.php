@@ -169,21 +169,23 @@ class Enqueue {
 				'ext'  => 'css',
 				'min'  => false
 			),
-			'flatpickr-confirm-date' => array( 'lib'  => true,
-			                                   'path' => 'flatpickr/plugins',
-			                                   'file' => 'confirm-date',
-			                                   'ver'  => '4.6.3',
-			                                   'ext'  => 'css',
-			                                   'min'  => true,
-			                                   'int'  => array( 'flatpickr' )
+			'flatpickr-confirm-date' => array(
+				'lib'  => true,
+				'path' => 'flatpickr/plugins',
+				'file' => 'confirm-date',
+				'ver'  => '4.6.3',
+				'ext'  => 'css',
+				'min'  => true,
+				'int'  => array( 'flatpickr' )
 			),
-			'flatpickr-month-select' => array( 'lib'  => true,
-			                                   'path' => 'flatpickr/plugins',
-			                                   'file' => 'month-select',
-			                                   'ver'  => '4.6.3',
-			                                   'ext'  => 'css',
-			                                   'min'  => true,
-			                                   'int'  => array( 'flatpickr' )
+			'flatpickr-month-select' => array(
+				'lib'  => true,
+				'path' => 'flatpickr/plugins',
+				'file' => 'month-select',
+				'ver'  => '4.6.3',
+				'ext'  => 'css',
+				'min'  => true,
+				'int'  => array( 'flatpickr' )
 			)
 		)
 	);

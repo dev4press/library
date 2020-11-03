@@ -27,32 +27,32 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class Base {
-    function __construct($args = array()) {
-        if (is_array($args) && !empty($args)) {
-            $this->from_array($args);
-        }
-    }
+	function __construct( $args = array() ) {
+		if ( is_array( $args ) && ! empty( $args ) ) {
+			$this->from_array( $args );
+		}
+	}
 
-    function __clone() {
-        foreach ($this as $key => $val) {
-            if (is_object($val) || (is_array($val))) {
-                $this->{$key} = unserialize(serialize($val));
-            }
-        }
-    }
+	function __clone() {
+		foreach ( $this as $key => $val ) {
+			if ( is_object( $val ) || ( is_array( $val ) ) ) {
+				$this->{$key} = unserialize( serialize( $val ) );
+			}
+		}
+	}
 
-    public function to_array() {
-        return (array)$this;
-    }
+	public function to_array() {
+		return (array) $this;
+	}
 
-    public function from_array($args) {
-        foreach ($args as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+	public function from_array( $args ) {
+		foreach ( $args as $key => $value ) {
+			$this->$key = $value;
+		}
+	}
 }
