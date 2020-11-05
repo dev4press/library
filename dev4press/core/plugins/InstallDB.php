@@ -52,7 +52,7 @@ abstract class InstallDB {
 	}
 
 	public function install() {
-		$query = '';
+		$query   = '';
 		$collate = $this->collate();
 
 		foreach ( $this->tables as $obj ) {

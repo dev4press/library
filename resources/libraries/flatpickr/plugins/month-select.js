@@ -1,8 +1,9 @@
-(function (global, factory) {
+(function(global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global = global || self, global.monthSelectPlugin = factory());
-}(this, (function () { 'use strict';
+        typeof define === 'function' && define.amd ? define(factory) :
+            (global = global || self, global.monthSelectPlugin = factory());
+}(this, (function() {
+    'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -30,7 +31,9 @@
         return __assign.apply(this, arguments);
     };
 
-    var monthToStr = function (monthNumber, shorthand, locale) { return locale.months[shorthand ? "shorthand" : "longhand"][monthNumber]; };
+    var monthToStr = function(monthNumber, shorthand, locale) {
+        return locale.months[shorthand ? "shorthand" : "longhand"][monthNumber];
+    };
 
     function getEventTarget(event) {
         try {
@@ -39,8 +42,7 @@
                 return path[0];
             }
             return event.target;
-        }
-        catch (error) {
+        } catch (error) {
             return event.target;
         }
     }
@@ -51,12 +53,14 @@
         altFormat: "F Y",
         theme: "light",
     };
+
     function monthSelectPlugin(pluginConfig) {
         var config = __assign(__assign({}, defaultConfig), pluginConfig);
-        return function (fp) {
+        return function(fp) {
             fp.config.dateFormat = config.dateFormat;
             fp.config.altFormat = config.altFormat;
-            var self = { monthsContainer: null };
+            var self = {monthsContainer: null};
+
             function clearUnnecessaryDOMElements() {
                 if (!fp.rContainer || !fp.daysContainer || !fp.weekdayContainer)
                     return;
@@ -69,8 +73,9 @@
                     element.parentNode.removeChild(element);
                 }
             }
+
             function addListeners() {
-                fp._bind(fp.prevMonthNav, "click", function (e) {
+                fp._bind(fp.prevMonthNav, "click", function(e) {
                     var _a;
                     e.preventDefault();
                     e.stopPropagation();
@@ -80,7 +85,7 @@
                     }
                     selectYear();
                 });
-                fp._bind(fp.nextMonthNav, "click", function (e) {
+                fp._bind(fp.nextMonthNav, "click", function(e) {
                     var _a;
                     e.preventDefault();
                     e.stopPropagation();
@@ -91,6 +96,7 @@
                     selectYear();
                 });
             }
+
             function addMonths() {
                 if (!fp.rContainer)
                     return;
@@ -112,6 +118,7 @@
                 }
                 fp.rContainer.appendChild(self.monthsContainer);
             }
+
             function setCurrentlySelected() {
                 if (!fp.rContainer)
                     return;
@@ -124,6 +131,7 @@
                     month.classList.add("selected");
                 }
             }
+
             function selectYear() {
                 var selectedDate = fp.selectedDates[0];
                 if (selectedDate) {
@@ -141,19 +149,19 @@
                 }
                 if (fp.rContainer) {
                     var months = fp.rContainer.querySelectorAll(".flatpickr-monthSelect-month");
-                    months.forEach(function (month) {
+                    months.forEach(function(month) {
                         month.dateObj.setFullYear(fp.currentYear);
                         if ((fp.config.minDate && month.dateObj < fp.config.minDate) ||
                             (fp.config.maxDate && month.dateObj > fp.config.maxDate)) {
                             month.classList.add("disabled");
-                        }
-                        else {
+                        } else {
                             month.classList.remove("disabled");
                         }
                     });
                 }
                 setCurrentlySelected();
             }
+
             function selectMonth(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -164,6 +172,7 @@
                     fp.close();
                 }
             }
+
             function setMonth(date) {
                 var selectedDate = new Date(date);
                 selectedDate.setFullYear(fp.currentYear);
@@ -171,12 +180,14 @@
                 fp.setDate(selectedDate, true);
                 setCurrentlySelected();
             }
+
             var shifts = {
                 37: -1,
                 39: 1,
                 40: 3,
                 38: -3,
             };
+
             function onKeyDown(_, __, ___, e) {
                 var shouldMove = shifts[e.keyCode] !== undefined;
                 if (!shouldMove && e.keyCode !== 13) {
@@ -193,12 +204,12 @@
                 }
                 if (shouldMove) {
                     self.monthsContainer.children[(12 + index + shifts[e.keyCode]) % 12].focus();
-                }
-                else if (e.keyCode === 13 &&
+                } else if (e.keyCode === 13 &&
                     self.monthsContainer.contains(document.activeElement)) {
                     setMonth(document.activeElement.dateObj);
                 }
             }
+
             function destroyPluginInstance() {
                 if (self.monthsContainer !== null) {
                     var months = self.monthsContainer.querySelectorAll(".flatpickr-monthSelect-month");
@@ -207,8 +218,9 @@
                     }
                 }
             }
+
             return {
-                onParseConfig: function () {
+                onParseConfig: function() {
                     fp.config.mode = "single";
                     fp.config.enableTime = false;
                 },
@@ -219,7 +231,7 @@
                     addListeners,
                     addMonths,
                     setCurrentlySelected,
-                    function () {
+                    function() {
                         fp.loadedPlugins.push("monthSelect");
                     },
                 ],
