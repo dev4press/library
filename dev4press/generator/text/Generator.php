@@ -320,7 +320,9 @@ abstract class Generator {
 
 		$items = explode( ' ', $content );
 		$total = count( $items );
-		$max   = mt_rand( 1, floor( $total * $frequency ) );
+		$range = floor( $total * $frequency );
+		$range = $range < 1 ? 1 : $range;
+		$max   = mt_rand( 1, $range );
 
 		$pick = $max > 0 ? (array) array_rand( $items, $max ) : array();
 
