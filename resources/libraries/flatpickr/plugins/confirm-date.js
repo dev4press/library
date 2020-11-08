@@ -1,8 +1,9 @@
-(function (global, factory) {
+(function(global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global = global || self, global.confirmDatePlugin = factory());
-}(this, (function () { 'use strict';
+        typeof define === 'function' && define.amd ? define(factory) :
+            (global = global || self, global.confirmDatePlugin = factory());
+}(this, (function() {
+    'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -37,8 +38,7 @@
                 return path[0];
             }
             return event.target;
-        }
-        catch (error) {
+        } catch (error) {
             return event.target;
         }
     }
@@ -49,34 +49,36 @@
         showAlways: false,
         theme: "light",
     };
+
     function confirmDatePlugin(pluginConfig) {
         var config = __assign(__assign({}, defaultConfig), pluginConfig);
         var confirmContainer;
         var confirmButtonCSSClass = "flatpickr-confirm";
-        return function (fp) {
+        return function(fp) {
             if (fp.config.noCalendar || fp.isMobile)
                 return {};
-            return __assign({ onKeyDown: function (_, __, ___, e) {
+            return __assign({
+                onKeyDown: function(_, __, ___, e) {
                     var eventTarget = getEventTarget(e);
                     if (fp.config.enableTime &&
                         e.key === "Tab" &&
                         eventTarget === fp.amPM) {
                         e.preventDefault();
                         confirmContainer.focus();
-                    }
-                    else if (e.key === "Enter" && eventTarget === confirmContainer)
+                    } else if (e.key === "Enter" && eventTarget === confirmContainer)
                         fp.close();
                 },
-                onReady: function () {
+                onReady: function() {
                     confirmContainer = fp._createElement("div", confirmButtonCSSClass + " " + (config.showAlways ? "visible" : "") + " " + config.theme + "Theme", config.confirmText);
                     confirmContainer.tabIndex = -1;
                     confirmContainer.innerHTML += config.confirmIcon;
                     confirmContainer.addEventListener("click", fp.close);
                     fp.calendarContainer.appendChild(confirmContainer);
                     fp.loadedPlugins.push("confirmDate");
-                } }, (!config.showAlways
+                }
+            }, (!config.showAlways
                 ? {
-                    onChange: function (_, dateStr) {
+                    onChange: function(_, dateStr) {
                         var showCondition = fp.config.enableTime ||
                             fp.config.mode === "multiple" ||
                             fp.loadedPlugins.indexOf("monthSelect") !== -1;

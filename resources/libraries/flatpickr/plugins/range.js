@@ -1,8 +1,9 @@
-(function (global, factory) {
+(function(global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global = global || self, global.rangePlugin = factory());
-}(this, (function () { 'use strict';
+        typeof define === 'function' && define.amd ? define(factory) :
+            (global = global || self, global.rangePlugin = factory());
+}(this, (function() {
+    'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -28,10 +29,12 @@
     }
 
     function rangePlugin(config) {
-        if (config === void 0) { config = {}; }
-        return function (fp) {
+        if (config === void 0) {
+            config = {};
+        }
+        return function(fp) {
             var dateFormat = "", secondInput, _secondInputFocused, _prevDates;
-            var createSecondInput = function () {
+            var createSecondInput = function() {
                 if (config.input) {
                     secondInput =
                         config.input instanceof Element
@@ -44,8 +47,7 @@
                     if (fp.config.wrap) {
                         secondInput = secondInput.querySelector("[data-input]");
                     }
-                }
-                else {
+                } else {
                     secondInput = fp._input.cloneNode();
                     secondInput.removeAttribute("id");
                     secondInput._flatpickr = undefined;
@@ -56,7 +58,7 @@
                         fp.selectedDates.push(parsedDate);
                 }
                 secondInput.setAttribute("data-fp-omit", "");
-                fp._bind(secondInput, ["focus", "click"], function () {
+                fp._bind(secondInput, ["focus", "click"], function() {
                     if (fp.selectedDates[1]) {
                         fp.latestSelectedDateObj = fp.selectedDates[1];
                         fp._setHoursFromDate(fp.selectedDates[1]);
@@ -66,13 +68,13 @@
                     fp.isOpen = false;
                     fp.open(undefined, config.position === "left" ? fp._input : secondInput);
                 });
-                fp._bind(fp._input, ["focus", "click"], function (e) {
+                fp._bind(fp._input, ["focus", "click"], function(e) {
                     e.preventDefault();
                     fp.isOpen = false;
                     fp.open();
                 });
                 if (fp.config.allowInput)
-                    fp._bind(secondInput, "keydown", function (e) {
+                    fp._bind(secondInput, "keydown", function(e) {
                         if (e.key === "Enter") {
                             fp.setDate([fp.selectedDates[0], secondInput.value], true, dateFormat);
                             secondInput.click();
@@ -80,33 +82,32 @@
                     });
                 if (!config.input)
                     fp._input.parentNode &&
-                        fp._input.parentNode.insertBefore(secondInput, fp._input.nextSibling);
+                    fp._input.parentNode.insertBefore(secondInput, fp._input.nextSibling);
             };
             var plugin = {
-                onParseConfig: function () {
+                onParseConfig: function() {
                     fp.config.mode = "range";
                     dateFormat = fp.config.altInput
                         ? fp.config.altFormat
                         : fp.config.dateFormat;
                 },
-                onReady: function () {
+                onReady: function() {
                     createSecondInput();
                     fp.config.ignoredFocusElements.push(secondInput);
                     if (fp.config.allowInput) {
                         fp._input.removeAttribute("readonly");
                         secondInput.removeAttribute("readonly");
-                    }
-                    else {
+                    } else {
                         secondInput.setAttribute("readonly", "readonly");
                     }
-                    fp._bind(fp._input, "focus", function () {
+                    fp._bind(fp._input, "focus", function() {
                         fp.latestSelectedDateObj = fp.selectedDates[0];
                         fp._setHoursFromDate(fp.selectedDates[0]);
                         _secondInputFocused = false;
                         fp.jumpToDate(fp.selectedDates[0]);
                     });
                     if (fp.config.allowInput)
-                        fp._bind(fp._input, "keydown", function (e) {
+                        fp._bind(fp._input, "keydown", function(e) {
                             if (e.key === "Enter")
                                 fp.setDate([fp._input.value, fp.selectedDates[1]], true, dateFormat);
                         });
@@ -114,17 +115,17 @@
                     plugin.onValueUpdate(fp.selectedDates);
                     fp.loadedPlugins.push("range");
                 },
-                onPreCalendarPosition: function () {
+                onPreCalendarPosition: function() {
                     if (_secondInputFocused) {
                         fp._positionElement = secondInput;
-                        setTimeout(function () {
+                        setTimeout(function() {
                             fp._positionElement = fp._input;
                         }, 0);
                     }
                 },
-                onChange: function () {
+                onChange: function() {
                     if (!fp.selectedDates.length) {
-                        setTimeout(function () {
+                        setTimeout(function() {
                             if (fp.selectedDates.length)
                                 return;
                             secondInput.value = "";
@@ -132,17 +133,17 @@
                         }, 10);
                     }
                     if (_secondInputFocused) {
-                        setTimeout(function () {
+                        setTimeout(function() {
                             secondInput.focus();
                         }, 0);
                     }
                 },
-                onDestroy: function () {
+                onDestroy: function() {
                     if (!config.input)
                         secondInput.parentNode &&
-                            secondInput.parentNode.removeChild(secondInput);
+                        secondInput.parentNode.removeChild(secondInput);
                 },
-                onValueUpdate: function (selDates) {
+                onValueUpdate: function(selDates) {
                     var _a, _b, _c;
                     if (!secondInput)
                         return;
@@ -157,7 +158,9 @@
                         fp.setDate(newDates, false);
                         _prevDates = __spreadArrays(newDates);
                     }
-                    _a = fp.selectedDates.map(function (d) { return fp.formatDate(d, dateFormat); }), _b = _a[0], fp._input.value = _b === void 0 ? "" : _b, _c = _a[1], secondInput.value = _c === void 0 ? "" : _c;
+                    _a = fp.selectedDates.map(function(d) {
+                        return fp.formatDate(d, dateFormat);
+                    }), _b = _a[0], fp._input.value = _b === void 0 ? "" : _b, _c = _a[1], secondInput.value = _c === void 0 ? "" : _c;
                 },
             };
             return plugin;

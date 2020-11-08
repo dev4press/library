@@ -66,8 +66,8 @@ class Randomizer extends Generator {
 		$string = '';
 
 		for ( $i = 1; $i <= $max; $i ++ ) {
-			$string .= $this->consonants[ rand( 0, count( $this->consonants ) - 1 ) ];
-			$string .= $this->vowels[ rand( 0, count( $this->vowels ) - 1 ) ];
+			$string .= $this->consonants[ mt_rand( 0, count( $this->consonants ) - 1 ) ];
+			$string .= $this->vowels[ mt_rand( 0, count( $this->vowels ) - 1 ) ];
 		}
 
 		return $string;

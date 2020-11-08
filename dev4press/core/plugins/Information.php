@@ -29,139 +29,139 @@ namespace Dev4Press\Core\Plugins;
 
 use Dev4Press\API\Store;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 abstract class Information {
-    public $code = '';
+	public $code = '';
 
-    public $version = '';
-    public $build = 0;
-    public $updated = '';
-    public $status = '';
-    public $edition = '';
-    public $released = '';
+	public $version = '';
+	public $build = 0;
+	public $updated = '';
+	public $status = '';
+	public $edition = '';
+	public $released = '';
 
-    public $is_bbpress_plugin = false;
+	public $is_bbpress_plugin = false;
 
-    public $author_name = 'Milan Petrovic';
-    public $author_url = 'https://www.dev4press.com/';
+	public $author_name = 'Milan Petrovic';
+	public $author_url = 'https://www.dev4press.com/';
 
-    public $php = '5.6';
-    public $mysql = '5.5';
+	public $php = '5.6';
+	public $mysql = '5.5';
 
-    public $cms = array(
-        'wordpress' => '4.9',
-        'classicpress' => '1.0'
-    );
+	public $cms = array(
+		'wordpress'    => '4.9',
+		'classicpress' => '1.0'
+	);
 
-    public $plugins = array(
-        'bbpress' => false,
-        'buddypress' => false
-    );
+	public $plugins = array(
+		'bbpress'    => false,
+		'buddypress' => false
+	);
 
-    public $install = false;
-    public $update = false;
-    public $previous = 0;
+	public $install = false;
+	public $update = false;
+	public $previous = 0;
 
-    public $translations = array();
+	public $translations = array();
 
-    function __construct() {
-    }
+	function __construct() {
+	}
 
-    public function to_array() {
-        return (array)$this;
-    }
+	public function to_array() {
+		return (array) $this;
+	}
 
-    /** @return Information */
-    public static function instance() {
-        static $instance = array();
+	/** @return Information */
+	public static function instance() {
+		static $instance = array();
 
-        $class = get_called_class();
+		$class = get_called_class();
 
-        if (!isset($instance[$class])) {
-            $instance[$class] = new $class();
-        }
+		if ( ! isset( $instance[ $class ] ) ) {
+			$instance[ $class ] = new $class();
+		}
 
-        return $instance[$class];
-    }
+		return $instance[ $class ];
+	}
 
-    public function name() {
-        return Store::instance()->name($this->code);
-    }
+	public function name() {
+		return Store::instance()->name( $this->code );
+	}
 
-    public function description() {
-        return Store::instance()->description($this->code);
-    }
+	public function description() {
+		return Store::instance()->description( $this->code );
+	}
 
-    public function punchline() {
-        return Store::instance()->punchline($this->code);
-    }
+	public function punchline() {
+		return Store::instance()->punchline( $this->code );
+	}
 
-    public function color() {
-        return Store::instance()->color($this->code);
-    }
+	public function color() {
+		return Store::instance()->color( $this->code );
+	}
 
-    public function url() {
-        return Store::instance()->url($this->code);
-    }
+	public function url() {
+		return Store::instance()->url( $this->code );
+	}
 
-    public function system_requirements() {
-        $list = array(
-            'PHP' => $this->php,
-            'MySQL' => $this->mysql
-        );
+	public function system_requirements() {
+		$list = array(
+			'PHP'   => $this->php,
+			'MySQL' => $this->mysql
+		);
 
-        if (d4p_is_classicpress()) {
-            $list['ClassicPress'] = $this->cms['classicpress'];
-        } else {
-            $list['WordPress'] = $this->cms['wordpress'];
-        }
+		if ( d4p_is_classicpress() ) {
+			$list['ClassicPress'] = $this->cms['classicpress'];
+		} else {
+			$list['WordPress'] = $this->cms['wordpress'];
+		}
 
-        if (isset($this->plugins['bbpress']) && $this->plugins['bbpress'] !== false) {
-            $list['bbPress'] = $this->plugins['bbpress'];
-        }
+		if ( isset( $this->plugins['bbpress'] ) && $this->plugins['bbpress'] !== false ) {
+			$list['bbPress'] = $this->plugins['bbpress'];
+		}
 
-        if (isset($this->plugins['buddypress']) && $this->plugins['buddypress'] !== false) {
-            $list['BuddyPress'] = $this->plugins['buddypress'];
-        }
+		if ( isset( $this->plugins['buddypress'] ) && $this->plugins['buddypress'] !== false ) {
+			$list['BuddyPress'] = $this->plugins['buddypress'];
+		}
 
-        return $list;
-    }
+		return $list;
+	}
 
-    public function requirement_version($name) {
-        if (in_array($name, array('php', 'mysql'))) {
-            return $this->$name;
-        } else if (isset($this->cms[$name])) {
-            return $this->cms[$name];
-        } else if (isset($this->plugins[$name])) {
-            return $this->plugins[$name];
-        }
+	public function requirement_version( $name ) {
+		if ( in_array( $name, array( 'php', 'mysql' ) ) ) {
+			return $this->$name;
+		} else if ( isset( $this->cms[ $name ] ) ) {
+			return $this->cms[ $name ];
+		} else if ( isset( $this->plugins[ $name ] ) ) {
+			return $this->plugins[ $name ];
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    public function version_full() {
-        $version = $this->version;
+	public function version_full() {
+		$version = $this->version;
 
-        if ($this->status != 'stable') {
-            switch ($this->status) {
-                case 'beta':
-                    $version .= ' '.__("Beta", "d4plib");
-                    break;
-                case 'alpha':
-                    $version .= ' '.__("Alpha", "d4plib");
-                    break;
-                case 'rc':
-                    $version .= ' '.__("RC", "d4plib");
-                    break;
-                case 'nightly':
-                    $version .= ' '.__("Nightly", "d4plib");
-                    break;
-            }
-        }
+		if ( $this->status != 'stable' ) {
+			switch ( $this->status ) {
+				case 'beta':
+					$version .= ' ' . __( "Beta", "d4plib" );
+					break;
+				case 'alpha':
+					$version .= ' ' . __( "Alpha", "d4plib" );
+					break;
+				case 'rc':
+					$version .= ' ' . __( "RC", "d4plib" );
+					break;
+				case 'nightly':
+					$version .= ' ' . __( "Nightly", "d4plib" );
+					break;
+			}
+		}
 
-        return $version;
-    }
+		return $version;
+	}
 }

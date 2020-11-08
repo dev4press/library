@@ -4,10 +4,11 @@
     <tr>
         <td class="cell-singular">
             <label for="<?php echo $this->get_field_id( '_users' ); ?>"><?php _e( "Show widget to", "d4plib" ); ?>:</label>
-			<?php d4p_render_select( $this->get_list_user_visibility(), array( 'id'       => $this->get_field_id( '_users' ),
-			                                                                   'class'    => 'widefat d4plib-div-switch',
-			                                                                   'name'     => $this->get_field_name( '_users' ),
-			                                                                   'selected' => $instance['_users']
+			<?php d4p_render_select( $this->get_list_user_visibility(), array(
+				'id'       => $this->get_field_id( '_users' ),
+				'class'    => 'widefat d4plib-div-switch',
+				'name'     => $this->get_field_name( '_users' ),
+				'selected' => $instance['_users']
 			), array( 'data-prefix' => 'visibility' ) ); ?>
         </td>
     </tr>
@@ -20,10 +21,11 @@
         <tr>
             <td class="cell-singular">
                 <label for="<?php echo $this->get_field_id( '_roles' ); ?>"><?php _e( "Roles", "d4plib" ); ?>:</label>
-				<?php d4p_render_check_radios( d4p_get_wordpress_user_roles(), array( 'id'       => $this->get_field_id( '_roles' ),
-				                                                                      'class'    => 'widefat',
-				                                                                      'name'     => $this->get_field_name( '_roles' ),
-				                                                                      'selected' => $instance['_roles']
+				<?php d4p_render_check_radios( d4p_get_wordpress_user_roles(), array(
+					'id'       => $this->get_field_id( '_roles' ),
+					'class'    => 'widefat',
+					'name'     => $this->get_field_name( '_roles' ),
+					'selected' => $instance['_roles']
 				) ); ?>
 
                 <em>

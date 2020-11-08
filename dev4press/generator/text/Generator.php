@@ -108,21 +108,21 @@ abstract class Generator {
 				$p = $this->random_tagify( $p, 'a', .05 );
 			}
 
-			if ($block_formatted) {
-				$items[] = '<!-- wp:paragraph -->'.PHP_EOL.'<p>' . $p . '</p>'.PHP_EOL.'<!-- /wp:paragraph -->'.PHP_EOL;
+			if ( $block_formatted ) {
+				$items[] = '<!-- wp:paragraph -->' . PHP_EOL . '<p>' . $p . '</p>' . PHP_EOL . '<!-- /wp:paragraph -->' . PHP_EOL;
 			} else {
 				$items[] = '<p>' . $p . '</p>';
 			}
 		}
 
 		if ( in_array( 'bq', $settings ) ) {
-			$max   = rand( 1, $paragraphs );
+			$max = mt_rand( 1, $paragraphs );
 
-			for ($i = 0; $i < $max; $i++) {
+			for ( $i = 0; $i < $max; $i ++ ) {
 				$item = $this->sentence( array( 'p' ) );
 
-				if ($block_formatted) {
-					$items[] = '<!-- wp:quote -->'.PHP_EOL.'<blockquote class="wp-block-quote">'.$item.'</blockquote>'.PHP_EOL.'<!-- /wp:quote -->'.PHP_EOL;
+				if ( $block_formatted ) {
+					$items[] = '<!-- wp:quote -->' . PHP_EOL . '<blockquote class="wp-block-quote">' . $item . '</blockquote>' . PHP_EOL . '<!-- /wp:quote -->' . PHP_EOL;
 				} else {
 					$items[] = $item;
 				}
@@ -130,21 +130,21 @@ abstract class Generator {
 		}
 
 		if ( in_array( 'code', $settings ) ) {
-			$max   = rand( 1, $paragraphs );
+			$max = mt_rand( 1, $paragraphs );
 
-			for ($i = 0; $i < $max; $i++) {
+			for ( $i = 0; $i < $max; $i ++ ) {
 				$item = $this->sentence( array( 'code' ) );
 
-				if ($block_formatted) {
-					$items[] = '<!-- wp:code -->'.PHP_EOL.'<pre class="wp-block-code">'.$item.'</pre>'.PHP_EOL.'<!-- /wp:code -->'.PHP_EOL;
+				if ( $block_formatted ) {
+					$items[] = '<!-- wp:code -->' . PHP_EOL . '<pre class="wp-block-code">' . $item . '</pre>' . PHP_EOL . '<!-- /wp:code -->' . PHP_EOL;
 				} else {
 					$items[] = $item;
 				}
 			}
 		}
 
-		if ( in_array( 'dl', $settings ) && !$block_formatted ) {
-			$max = rand( 1, $paragraphs ) * 3;
+		if ( in_array( 'dl', $settings ) && ! $block_formatted ) {
+			$max = mt_rand( 1, $paragraphs ) * 3;
 
 			$list = array();
 
@@ -159,7 +159,7 @@ abstract class Generator {
 		}
 
 		if ( in_array( 'ul', $settings ) ) {
-			$max = rand( 1, $paragraphs ) * 3;
+			$max = mt_rand( 1, $paragraphs ) * 3;
 
 			$list = array();
 
@@ -169,15 +169,15 @@ abstract class Generator {
 			}
 			$list[] = '</ul>';
 
-			if ($block_formatted) {
-				$items[] = '<!-- wp:list -->'.PHP_EOL.join( '', $list ).PHP_EOL.'<!-- /wp:list -->'.PHP_EOL;
+			if ( $block_formatted ) {
+				$items[] = '<!-- wp:list -->' . PHP_EOL . join( '', $list ) . PHP_EOL . '<!-- /wp:list -->' . PHP_EOL;
 			} else {
 				$items[] = join( '', $list );
 			}
 		}
 
 		if ( in_array( 'ol', $settings ) ) {
-			$max = rand( 1, $paragraphs ) * 3;
+			$max = mt_rand( 1, $paragraphs ) * 3;
 
 			$list = array();
 
@@ -187,8 +187,8 @@ abstract class Generator {
 			}
 			$list[] = '</ol>';
 
-			if ($block_formatted) {
-				$items[] = '<!-- wp:list {"ordered":true} -->'.PHP_EOL.join( '', $list ).PHP_EOL.'<!-- /wp:list -->'.PHP_EOL;
+			if ( $block_formatted ) {
+				$items[] = '<!-- wp:list {"ordered":true} -->' . PHP_EOL . join( '', $list ) . PHP_EOL . '<!-- /wp:list -->' . PHP_EOL;
 			} else {
 				$items[] = join( '', $list );
 			}
@@ -196,14 +196,14 @@ abstract class Generator {
 
 		if ( in_array( 'headers', $settings ) ) {
 			$this->set_sentence_gauss( 5, 1 );
-			$max   = rand( 1, $paragraphs );
-			$head  = rand( 2, 6 );
+			$max  = mt_rand( 1, $paragraphs );
+			$head = mt_rand( 2, 6 );
 
-			for ($i = 0; $i < $max; $i++) {
-				$item = $this->sentence(array('h'.$head));
+			for ( $i = 0; $i < $max; $i ++ ) {
+				$item = $this->sentence( array( 'h' . $head ) );
 
-				if ($block_formatted) {
-					$items[] = '<!-- wp:heading {"level":'.$head.'} -->'.PHP_EOL.$item.PHP_EOL.'<!-- /wp:heading -->'.PHP_EOL;
+				if ( $block_formatted ) {
+					$items[] = '<!-- wp:heading {"level":' . $head . '} -->' . PHP_EOL . $item . PHP_EOL . '<!-- /wp:heading -->' . PHP_EOL;
 				} else {
 					$items[] = $item;
 				}
@@ -221,13 +221,13 @@ abstract class Generator {
 		return $items;
 	}
 
-	public function change_sentence_gauss($method = 'medium') {
-		switch ($method) {
+	public function change_sentence_gauss( $method = 'medium' ) {
+		switch ( $method ) {
 			case 'short':
-				$this->set_sentence_gauss(5.21, 1.28);
+				$this->set_sentence_gauss( 5.21, 1.28 );
 				break;
 			case 'medium':
-				$this->set_sentence_gauss(14.27, 2.92);
+				$this->set_sentence_gauss( 14.27, 2.92 );
 				break;
 			case 'long':
 				$this->set_sentence_gauss();
@@ -237,13 +237,13 @@ abstract class Generator {
 		return $this;
 	}
 
-	public function change_paragraph_gauss($method = 'medium') {
-		switch ($method) {
+	public function change_paragraph_gauss( $method = 'medium' ) {
+		switch ( $method ) {
 			case 'short':
-				$this->set_paragraph_gauss(2.1, 1.1);
+				$this->set_paragraph_gauss( 2.1, 1.1 );
 				break;
 			case 'medium':
-				$this->set_paragraph_gauss(3.8, 1.4);
+				$this->set_paragraph_gauss( 3.8, 1.4 );
 				break;
 			case 'long':
 				$this->set_paragraph_gauss();
@@ -288,10 +288,10 @@ abstract class Generator {
 
 	protected function output( $strings, $tags = false, $array = false, $delimiter = ' ' ) {
 		if ( $tags ) {
-			if (!is_array($tags)) {
-				$tags = array($tags);
+			if ( ! is_array( $tags ) ) {
+				$tags = array( $tags );
 			} else {
-				$tags = array_reverse($tags);
+				$tags = array_reverse( $tags );
 			}
 			$delimiter = '';
 
@@ -320,9 +320,11 @@ abstract class Generator {
 
 		$items = explode( ' ', $content );
 		$total = count( $items );
-		$max   = rand( 1, floor( $total * $frequency ) );
+		$range = floor( $total * $frequency );
+		$range = $range < 1 ? 1 : $range;
+		$max   = mt_rand( 1, $range );
 
-		$pick = $max > 0 ? (array)array_rand( $items, $max ) : array();
+		$pick = $max > 0 ? (array) array_rand( $items, $max ) : array();
 
 		foreach ( $items as $id => $word ) {
 			if ( in_array( $id, $pick ) ) {

@@ -97,8 +97,8 @@ class Image {
 		$this->extension = pathinfo( $this->images->large->url, PATHINFO_EXTENSION );
 	}
 
-	public function by_name($size) {
-		if (isset($this->images->$size) && !is_null($this->images->$size)) {
+	public function by_name( $size ) {
+		if ( isset( $this->images->$size ) && ! is_null( $this->images->$size ) ) {
 			return $this->images->$size;
 		}
 

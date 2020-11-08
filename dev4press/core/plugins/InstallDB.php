@@ -27,113 +27,117 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace Dev4Press\Core\Plugins;
 
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 abstract class InstallDB {
-    protected $prefix = '';
-    protected $tables = array();
+	protected $prefix = '';
+	protected $tables = array();
 
-    public function __construct() {
-    }
+	public function __construct() {
+	}
 
-    /** @return \Dev4Press\Core\Plugins\InstallDB */
-    public static function instance() {
-        static $instance = array();
+	/** @return \Dev4Press\Core\Plugins\InstallDB */
+	public static function instance() {
+		static $instance = array();
 
-        $class = get_called_class();
+		$class = get_called_class();
 
-        if (!isset($instance[$class])) {
-            $instance[$class] = new $class();
-        }
+		if ( ! isset( $instance[ $class ] ) ) {
+			$instance[ $class ] = new $class();
+		}
 
-        return $instance[$class];
-    }
+		return $instance[ $class ];
+	}
 
-    public function install() {
-        $query = '';
-        $collate = $this->collate();
+	public function install() {
+		$query   = '';
+		$collate = $this->collate();
 
-        foreach ($this->tables as $obj) {
-            $table = $this->table($obj);
+		foreach ( $this->tables as $obj ) {
+			$table = $this->table( $obj );
 
-            $query .= "CREATE TABLE ".$table." (".$obj['data'].") ".$collate.";".D4P_EOL;
-        }
+			$query .= "CREATE TABLE " . $table . " (" . $obj['data'] . ") " . $collate . ";" . D4P_EOL;
+		}
 
-        return $this->delta($query);
-    }
+		return $this->delta( $query );
+	}
 
-    public function check() {
-        $result = array();
+	public function check() {
+		$result = array();
 
-        foreach ($this->tables as $obj) {
-            $table = $this->table($obj);
-            $count = $obj['columns'];
+		foreach ( $this->tables as $obj ) {
+			$table = $this->table( $obj );
+			$count = $obj['columns'];
 
-            if ($this->wpdb()->get_var("SHOW TABLES LIKE '$table'") == $table) {
-                $columns = $this->wpdb()->get_results("SHOW COLUMNS FROM $table");
+			if ( $this->wpdb()->get_var( "SHOW TABLES LIKE '$table'" ) == $table ) {
+				$columns = $this->wpdb()->get_results( "SHOW COLUMNS FROM $table" );
 
-                if ($count != count($columns)) {
-                    $result[$table] = array("status" => "error", "msg" => __("Some columns are missing.", "d4plib"));
-                } else {
-                    $result[$table] = array("status" => "ok");
-                }
-            } else {
-                $result[$table] = array("status" => "error", "msg" => __("Table is missing.", "d4plib"));
-            }
-        }
+				if ( $count != count( $columns ) ) {
+					$result[ $table ] = array(
+						"status" => "error",
+						"msg"    => __( "Some columns are missing.", "d4plib" )
+					);
+				} else {
+					$result[ $table ] = array( "status" => "ok" );
+				}
+			} else {
+				$result[ $table ] = array( "status" => "error", "msg" => __( "Table is missing.", "d4plib" ) );
+			}
+		}
 
-        return $result;
-    }
+		return $result;
+	}
 
-    public function truncate() {
-        foreach ($this->tables as $obj) {
-            $this->wpdb()->query("TRUNCATE TABLE ".$this->table($obj));
-        }
-    }
+	public function truncate() {
+		foreach ( $this->tables as $obj ) {
+			$this->wpdb()->query( "TRUNCATE TABLE " . $this->table( $obj ) );
+		}
+	}
 
-    public function drop() {
-        foreach ($this->tables as $obj) {
-            $this->wpdb()->query("DROP TABLE IF EXISTS ".$this->table($obj));
-        }
-    }
+	public function drop() {
+		foreach ( $this->tables as $obj ) {
+			$this->wpdb()->query( "DROP TABLE IF EXISTS " . $this->table( $obj ) );
+		}
+	}
 
-    private function delta($query) {
-        require_once(ABSPATH.'wp-admin/includes/upgrade.php');
+	private function delta( $query ) {
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
-        return dbDelta($query);
-    }
+		return dbDelta( $query );
+	}
 
-    protected function table($obj) {
-        return $this->prefix_wpdb($obj['scope']).$this->prefix_plugin().$obj['name'];
-    }
+	protected function table( $obj ) {
+		return $this->prefix_wpdb( $obj['scope'] ) . $this->prefix_plugin() . $obj['name'];
+	}
 
-    protected function prefix_plugin() {
-        return empty($this->prefix) ? '' : $this->prefix.'_';
-    }
+	protected function prefix_plugin() {
+		return empty( $this->prefix ) ? '' : $this->prefix . '_';
+	}
 
-    protected function prefix_wpdb($scope = 'blog') {
-        return $scope == 'network' ? $this->wpdb()->base_prefix : $this->wpdb()->prefix;
-    }
+	protected function prefix_wpdb( $scope = 'blog' ) {
+		return $scope == 'network' ? $this->wpdb()->base_prefix : $this->wpdb()->prefix;
+	}
 
-    protected function collate() {
-        $charset_collate = '';
+	protected function collate() {
+		$charset_collate = '';
 
-        if (!empty($this->wpdb()->charset)) {
-            $charset_collate = "default CHARACTER SET ".$this->wpdb()->charset;
-        }
+		if ( ! empty( $this->wpdb()->charset ) ) {
+			$charset_collate = "default CHARACTER SET " . $this->wpdb()->charset;
+		}
 
-        if (!empty($this->wpdb()->collate)) {
-            $charset_collate .= " COLLATE ".$this->wpdb()->collate;
-        }
+		if ( ! empty( $this->wpdb()->collate ) ) {
+			$charset_collate .= " COLLATE " . $this->wpdb()->collate;
+		}
 
-        return $charset_collate;
-    }
+		return $charset_collate;
+	}
 
-    /** @return \wpdb */
-    protected function wpdb() {
-        global $wpdb;
-        return $wpdb;
-    }
+	/** @return \wpdb */
+	protected function wpdb() {
+		global $wpdb;
+
+		return $wpdb;
+	}
 }
