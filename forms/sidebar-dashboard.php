@@ -1,6 +1,6 @@
 <div class="d4p-sidebar">
     <div class="d4p-dashboard-badge" style="background-color: <?php echo d4p_panel()->a()->settings()->i()->color(); ?>;">
-		<?php echo d4p_panel()->r()->icon( 'plugin-icon-' . d4p_panel()->a()->plugin, '9x' ); ?>
+		<?php echo d4p_panel()->r()->icon( 'plugin-' . d4p_panel()->a()->plugin, '9x' ); ?>
         <h3>
 			<?php echo d4p_panel()->a()->title(); ?>
         </h3>
