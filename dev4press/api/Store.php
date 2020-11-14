@@ -46,7 +46,7 @@ class Store {
 			"code"        => "demopress",
 			"name"        => "DemoPress",
 			"description" => "Easy to use plugin for generating demo content for newly created websites used during the website development and testing, before real content is created and added.",
-			"punchline"   => "Generate all sorts of demo data for Dev4Press",
+			"punchline"   => "Generate all sorts of demo data for WordPress",
 			"color"       => "#0F1086",
 			'free'        => true,
 			'pro'         => false
