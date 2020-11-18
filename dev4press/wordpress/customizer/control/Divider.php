@@ -37,15 +37,15 @@ class Divider extends Control {
 	public $type = 'd4p-ctrl-divider';
 
 	protected function render_content() {
-	    $show_hr = true;
+		$show_hr = true;
 
-	    if (isset($this->input_attrs['hide_line']) && $this->input_attrs['hide_line'] === true) {
-	        $show_hr = false;
-        }
+		if ( isset( $this->input_attrs['hide_line'] ) && $this->input_attrs['hide_line'] === true ) {
+			$show_hr = false;
+		}
 
-	    if ($show_hr) {
-	        echo '<hr/>';
-	    }
+		if ( $show_hr ) {
+			echo '<hr/>';
+		}
 
 		?>
 
