@@ -37,8 +37,18 @@ class Divider extends Control {
 	public $type = 'd4p-ctrl-divider';
 
 	protected function render_content() {
+	    $show_hr = true;
+
+	    if (isset($this->input_attrs['hide_line']) && $this->input_attrs['hide_line'] === true) {
+	        $show_hr = false;
+        }
+
+	    if ($show_hr) {
+	        echo '<hr/>';
+	    }
+
 		?>
-        <hr/>
+
 		<?php if ( ! empty( $this->label ) ) : ?>
             <label for="_customize-input-<?php echo esc_attr( $this->id ); ?>"
                     class="customize-control-title"><?php echo esc_html( $this->label ); ?></label>
