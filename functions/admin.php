@@ -370,20 +370,24 @@ if ( ! function_exists( 'd4p_render_toggle_block' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_css_size_units' ) ) {
-	function d4p_css_size_units() {
+if ( ! function_exists( 'd4p_list_css_size_units' ) ) {
+	function d4p_list_css_size_units() {
 		return array(
-			'px'  => 'px',
-			'pt'  => 'pt',
-			'pc'  => 'pc',
-			'em'  => 'em',
-			'ex'  => 'ex',
-			'in'  => 'in',
-			'mm'  => 'mm',
-			'cm'  => 'cm',
-			'csh' => 'ch',
-			'rem' => 'rem',
-			'%'   => '%'
+			'px'   => 'px',
+			'%'    => '%',
+			'em'   => 'em',
+			'rem'  => 'rem',
+			'in'   => 'in',
+			'cm'   => 'cm',
+			'mm'   => 'mm',
+			'pt'   => 'pt',
+			'pc'   => 'pc',
+			'ex'   => 'ex',
+			'ch'   => 'ch',
+			'vw'   => 'vw',
+			'vh'   => 'vh',
+			'vmin' => 'vmin',
+			'vmax' => 'vmax'
 		);
 	}
 }

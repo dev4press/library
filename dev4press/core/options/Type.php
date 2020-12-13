@@ -71,6 +71,7 @@ class Type {
 	const ABSINT = 'absint';
 	const RANGE_INTEGER = 'range_integer';
 	const RANGE_ABSINT = 'range_absint';
+	const CSS_SIZE = 'css_size';
 	const HIDDEN = 'hidden';
 	const LISTING = 'listing';
 	const X_BY_Y = 'x_by_y';
@@ -118,6 +119,7 @@ class Type {
 		'absint'               => self::ABSINT,
 		'range_integer'        => self::RANGE_INTEGER,
 		'range_absint'         => self::RANGE_ABSINT,
+		'css_size'             => self::CSS_SIZE,
 		'listing'              => self::LISTING,
 		'hidden'               => self::HIDDEN,
 		'x_by_y'               => self::X_BY_Y,

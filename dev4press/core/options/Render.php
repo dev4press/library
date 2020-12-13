@@ -503,7 +503,7 @@ class Render {
 		) );
 
 		if ( empty( $list ) ) {
-			d4p_render_select( array( '0' => __( "No items to show" ) ), array(
+			d4p_render_select( array( '0' => __( "No items to show", "d4plib" ) ), array(
 				'selected' => 0,
 				'name'     => $name_base,
 				'id'       => $id_base,
@@ -534,7 +534,7 @@ class Render {
 		) );
 
 		if ( empty( $list ) ) {
-			d4p_render_select( array( '0' => __( "No items to show" ) ), array(
+			d4p_render_select( array( '0' => __( "No items to show", "d4plib" ) ), array(
 				'selected' => 0,
 				'name'     => $name_base,
 				'id'       => $id_base,
@@ -764,6 +764,38 @@ class Render {
 
 	protected function draw_expandable_raw( $element, $value, $name_base, $id_base = '' ) {
 		$this->draw_expandable_text( $element, $value, $name_base, $id_base );
+	}
+
+	protected function draw_css_size( $element, $value, $name_base, $id_base = '' ) {
+		$sizes = d4p_list_css_size_units();
+
+		$pairs = array();
+
+		foreach ( array_keys( $sizes ) as $unit ) {
+			if ( substr( $value, - strlen( $unit ) ) === $unit ) {
+				$pairs[0] = substr( $value, 0, strlen( $value ) - strlen( $unit ) );
+				$pairs[1] = $unit;
+			}
+		}
+
+		if ( empty( $pairs ) ) {
+			$pairs[0] = floatval( $value );
+			$pairs[1] = 'px';
+		}
+
+		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
+
+		echo sprintf( '<label for="%s_val"><span class="d4p-accessibility-show-for-sr">' . __( "Value", "d4plib" ) . ': </span></label><input%s type="number" name="%s[val]" id="%s_val" value="%s" class="widefat" step="0.01" />',
+			$id_base, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[0] ) );
+
+		echo sprintf( '<label for="%s_unit"><span class="d4p-accessibility-show-for-sr">' . __( "Unit", "d4plib" ) . ': </span></label>', $id_base );
+
+		d4p_render_select( $sizes, array(
+			'selected' => $pairs[1],
+			'name'     => $name_base . '[unit]',
+			'id'       => $id_base . '_unit',
+			'class'    => 'widefat'
+		) );
 	}
 
 	protected function part_check_uncheck_all() {

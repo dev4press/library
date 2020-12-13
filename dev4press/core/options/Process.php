@@ -203,6 +203,18 @@ class Process {
 					$value = array_map( 'd4p_sanitize_basic', $value );
 				}
 				break;
+			case 'css_size':
+				$sizes = d4p_list_css_size_units();
+
+				$value = d4p_sanitize_basic( $post[ $key ]['val'] );
+				$unit  = strtolower( d4p_sanitize_basic( $post[ $key ]['unit'] ) );
+
+				if ( ! isset( $sizes[ $unit ] ) ) {
+					$unit = 'px';
+				}
+
+				$value = $value . $unit;
+				break;
 			case 'slug':
 				$value = d4p_sanitize_slug( $post[ $key ] );
 				break;

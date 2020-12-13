@@ -185,6 +185,19 @@
             }
         }
 
+        &.d4p-setting-css_size {
+            input {
+                width: 100px;
+                vertical-align: top;
+            }
+
+            select {
+                width: 60px;
+                vertical-align: top;
+                margin-left: 10px;
+            }
+        }
+
         &.d4p-setting-expandable_pairs {
             > div {
                 border: 1px solid #CCC;
