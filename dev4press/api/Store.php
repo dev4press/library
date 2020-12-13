@@ -33,6 +33,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Store {
 	private $_plugins = array(
+		"breadcrumbspress"              => array(
+			"code"        => "breadcrumbspress",
+			"name"        => "BreadcrumbsPress",
+			"description" => "Breadcrumbs based navigation, fully responsive and customizable, supporting post types, all types of archives, 404 pages, search results and third-party plugins.",
+			"punchline"   => "Improve your website navigation with Breadcrumbs",
+			"color"       => "#0CA991",
+			'free'        => true,
+			'pro'         => true
+		),
 		"debugpress"                       => array(
 			"code"        => "debugpress",
 			"name"        => "DebugPress",
@@ -120,15 +129,6 @@ class Store {
 			"description" => "Register and control custom post types and taxonomies. Powerful meta fields and meta boxes management. Extra widgets, custom rewrite rules, enhanced features...",
 			"punchline"   => "Enhancing WordPress Content Management",
 			"color"       => "#AD0067",
-			'free'        => false,
-			'pro'         => true
-		),
-		"gd-crumbs-navigator"              => array(
-			"code"        => "gd-crumbs-navigator",
-			"name"        => "GD Crumbs Navigator",
-			"description" => "Breadcrumbs based navigation, fully responsive and customizable, supporting post types, all types of archives, 404 pages, search results and third-party plugins.",
-			"punchline"   => "Improve your website navigation with Breadcrumbs",
-			"color"       => "#0CA991",
 			'free'        => false,
 			'pro'         => true
 		),

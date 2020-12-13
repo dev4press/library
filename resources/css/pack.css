@@ -152,43 +152,47 @@ a > .d4p-icon {
   content: "\f11b";
 }
 
-.d4p-icon.d4p-plugin-debugpress:before {
+.d4p-icon.d4p-plugin-breadcrumbspress:before {
   content: "\f11c";
 }
 
-.d4p-icon.d4p-plugin-demopress:before {
+.d4p-icon.d4p-plugin-gd-crumbs-navigator:before {
+  content: "\f11c";
+}
+
+.d4p-icon.d4p-plugin-debugpress:before {
   content: "\f11d";
 }
 
+.d4p-icon.d4p-plugin-demopress:before {
+  content: "\f11e";
+}
+
 .d4p-icon.d4p-plugin-dev4press-updater:before {
-  content: "\f11e";
-}
-
-.d4p-icon.d4p-logo-dev4press:before {
-  content: "\f11e";
-}
-
-.d4p-icon.d4p-plugin-gd-bbpress-attachments:before {
   content: "\f11f";
 }
 
-.d4p-icon.d4p-plugin-gd-bbpress-toolbox:before {
+.d4p-icon.d4p-logo-dev4press:before {
+  content: "\f11f";
+}
+
+.d4p-icon.d4p-plugin-gd-bbpress-attachments:before {
   content: "\f120";
 }
 
-.d4p-icon.d4p-plugin-gd-bbpress-tools:before {
+.d4p-icon.d4p-plugin-gd-bbpress-toolbox:before {
   content: "\f121";
 }
 
-.d4p-icon.d4p-plugin-gd-clever-widgets:before {
+.d4p-icon.d4p-plugin-gd-bbpress-tools:before {
   content: "\f122";
 }
 
-.d4p-icon.d4p-plugin-gd-content-tools:before {
+.d4p-icon.d4p-plugin-gd-clever-widgets:before {
   content: "\f123";
 }
 
-.d4p-icon.d4p-plugin-gd-crumbs-navigator:before {
+.d4p-icon.d4p-plugin-gd-content-tools:before {
   content: "\f124";
 }
 
