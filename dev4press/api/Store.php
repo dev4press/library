@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\API\Store
-Version: v3.3
+Version: v3.3.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Store {
 	private $_plugins = array(
-		"breadcrumbspress"              => array(
+		/*"breadcrumbspress"              => array(
 			"code"        => "breadcrumbspress",
 			"name"        => "BreadcrumbsPress",
 			"description" => "Breadcrumbs based navigation, fully responsive and customizable, supporting post types, all types of archives, 404 pages, search results and third-party plugins.",
@@ -41,7 +41,7 @@ class Store {
 			"color"       => "#0CA991",
 			'free'        => true,
 			'pro'         => true
-		),
+		),*/
 		"debugpress"                       => array(
 			"code"        => "debugpress",
 			"name"        => "DebugPress",
@@ -174,8 +174,8 @@ class Store {
 			"description" => "Easy to use plugin for adding forum members directory page into bbPress powered forums including members filtering and additional widgets for listing members in the sidebar.",
 			"punchline"   => "Members Directory for bbPress powered forums",
 			"color"       => "#057C8C",
-			'free'        => false,
-			'pro'         => true
+			'free'        => true,
+			'pro'         => false
 		),
 		"gd-power-search-for-bbpress"      => array(
 			"code"        => "gd-power-search-for-bbpress",

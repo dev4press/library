@@ -1,6 +1,11 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.3.1 - 2020.12.28 =
+* New: CSS Size based settings
+* Updated: Various minor core improvements
+* Fixed: Few issues with the admin side rendering
+
 = Version 3.3 - 2020.11.09 =
 * New: Options core classes support render and process overrides
 * New: Date and time based settings

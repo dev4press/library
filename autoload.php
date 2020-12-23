@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 if ( ! function_exists( 'd4p_core_library_autoloader_330' ) ) {
-	function d4p_core_library_autoloader_330( $class ) {
+	function d4p_core_library_autoloader_331( $class ) {
 		$path = dirname( __FILE__ ) . '/';
 
 		$parts = explode( '\\', $class );
@@ -44,5 +44,5 @@ if ( ! function_exists( 'd4p_core_library_autoloader_330' ) ) {
 		}
 	}
 
-	spl_autoload_register( 'd4p_core_library_autoloader_330' );
+	spl_autoload_register( 'd4p_core_library_autoloader_331' );
 }
