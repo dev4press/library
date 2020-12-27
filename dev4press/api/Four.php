@@ -162,7 +162,7 @@ class Four {
 					$render .= '<h6 style="background-color: ' . $plugin->color_dark . ';"><a target="_blank" rel="noopener" href="' . $this->_url( $plugin->url_home, $panel ) . '">' . $plugin->name . '</a></h6>';
 					$render .= '<div class="dev4press-plugin-inner">';
 					$render .= '<div class="dev4press-plugin-thumb">';
-					$render .= '<a target="_blank" rel="noopener" href="' . $this->_url( $plugin->url_home, $panel ) . '"><i class="d4p-icon d4p-plugin-icon-' . $plugin->code . '"></i></a>';
+					$render .= '<a target="_blank" rel="noopener" href="' . $this->_url( $plugin->url_home, $panel ) . '"><i class="d4p-icon d4p-plugin-' . $plugin->code . '"></i></a>';
 					$render .= '</div>';
 					$render .= '<em>' . $plugin->description . '</em>';
 					$render .= '<div class="dev4press-plugin-links">';
