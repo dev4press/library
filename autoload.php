@@ -25,7 +25,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if ( ! function_exists( 'd4p_core_library_autoloader_330' ) ) {
+if ( ! function_exists( 'd4p_core_library_autoloader_331' ) ) {
 	function d4p_core_library_autoloader_331( $class ) {
 		$path = dirname( __FILE__ ) . '/';
 
