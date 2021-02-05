@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.4 - 2021.02.21 =
+* Updated: Built-in cacert.pem 20210119
+
 = Version 3.3.1 - 2020.12.28 =
 * New: CSS Size based settings
 * Updated: Various minor core improvements

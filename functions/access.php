@@ -32,25 +32,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! function_exists( 'd4p_is_ip_in_range' ) ) {
-	function d4p_is_ip_in_range( $ip, $range ) {
+	function d4p_is_ip_in_range( $ip, $range ) : bool {
 		return IP::is_ipv4_in_range( $ip, $range );
 	}
 }
 
 if ( ! function_exists( 'd4p_ip6_is_in_range' ) ) {
-	function d4p_ip6_is_in_range( $ip, $range ) {
+	function d4p_ip6_is_in_range( $ip, $range ) : bool {
 		return IP::is_ipv6_in_range( $ip, $range );
 	}
 }
 
 if ( ! function_exists( 'd4p_ip_is_cloudflare' ) ) {
-	function d4p_ip_is_cloudflare( $ip = null ) {
+	function d4p_ip_is_cloudflare( $ip = null ) : bool {
 		return IP::is_cloudflare_ip( $ip );
 	}
 }
 
 if ( ! function_exists( 'd4p_ip_is_private' ) ) {
-	function d4p_ip_is_private( $ip = null ) {
+	function d4p_ip_is_private( $ip = null ) : bool {
 		return IP::is_private_ip( $ip );
 	}
 }
@@ -94,7 +94,7 @@ if ( ! function_exists( 'd4p_current_url_path' ) ) {
 }
 
 if ( ! function_exists( 'd4p_current_url_request' ) ) {
-	function d4p_current_url_request() {
+	function d4p_current_url_request() : string {
 		$pathinfo = isset( $_SERVER['PATH_INFO'] ) ? $_SERVER['PATH_INFO'] : '';
 		list( $pathinfo ) = explode( '?', $pathinfo );
 		$pathinfo = str_replace( '%', '%25', $pathinfo );
@@ -121,7 +121,7 @@ if ( ! function_exists( 'd4p_current_url_request' ) ) {
 }
 
 if ( ! function_exists( 'd4p_current_url' ) ) {
-	function d4p_current_url( $use_wp = true ) {
+	function d4p_current_url( $use_wp = true ) : string {
 		if ( $use_wp ) {
 			return home_url( d4p_current_url_request() );
 		} else {
@@ -141,7 +141,7 @@ if ( ! function_exists( 'd4p_get_domain_name_from_url' ) ) {
 }
 
 if ( ! function_exists( 'd4p_is_local_domain' ) ) {
-	function d4p_is_local_domain( $domain ) {
+	function d4p_is_local_domain( $domain ) : bool {
 		$domain = strtolower( $domain );
 		$domain = trim( $domain, '.' );
 

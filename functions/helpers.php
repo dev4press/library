@@ -30,19 +30,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! function_exists( 'is_odd' ) ) {
-	function is_odd( $number ) {
-		return $number & 1;
+	function is_odd( $number ) : bool {
+		return $number % 2 == 0;
 	}
 }
 
 if ( ! function_exists( 'is_divisible' ) ) {
-	function is_divisible( $number, $by_number ) {
+	function is_divisible( $number, $by_number ) : bool {
 		return $number % $by_number == 0;
 	}
 }
 
 if ( ! function_exists( 'd4p_clean_ids_list' ) ) {
-	function d4p_clean_ids_list( $ids ) {
+	function d4p_clean_ids_list( $ids ) : array {
 		$ids = (array) $ids;
 
 		$ids = array_map( 'absint', $ids );
@@ -54,7 +54,7 @@ if ( ! function_exists( 'd4p_clean_ids_list' ) ) {
 }
 
 if ( ! function_exists( 'd4p_replace_tags_in_content' ) ) {
-	function d4p_replace_tags_in_content( $content, $tags ) {
+	function d4p_replace_tags_in_content( $content, $tags ) : string {
 		foreach ( $tags as $tag => $replace ) {
 			$_tag = '%' . $tag . '%';
 
@@ -68,7 +68,7 @@ if ( ! function_exists( 'd4p_replace_tags_in_content' ) ) {
 }
 
 if ( ! function_exists( 'd4p_is_array_associative' ) ) {
-	function d4p_is_array_associative( $array ) {
+	function d4p_is_array_associative( $array ) : bool {
 		return is_array( $array ) && ( 0 !== count( array_diff_key( $array, array_keys( array_keys( $array ) ) ) ) || count( $array ) == 0 );
 	}
 }
