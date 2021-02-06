@@ -159,8 +159,8 @@
             init: function() {
                 wp.dev4press.admin.settings.color_picker.run();
                 wp.dev4press.admin.settings.expandables.run();
-                wp.dev4press.admin.settings.toggles.run();
                 wp.dev4press.admin.settings.check_uncheck.run();
+                wp.dev4press.admin.settings.switch.run();
             },
             color_picker: {
                 run: function() {
@@ -177,36 +177,6 @@
                         var checkall = $(this).attr("href").substr(1) === "checkall";
 
                         $(this).parent().parent().find("input[type=checkbox]").prop("checked", checkall);
-                    });
-                }
-            },
-            toggles: {
-                run: function() {
-                    $(document).on("click", ".d4p-group h3 i.fa.fa-caret-down, .d4p-group h3 i.fa.fa-caret-up", function() {
-                        var closed = $(this).hasClass("fa-caret-down"),
-                            content = $(this).parent().next();
-
-                        if (closed) {
-                            $(this).removeClass("fa-caret-down").addClass("fa-caret-up");
-                            content.slideDown(300);
-                        } else {
-                            $(this).removeClass("fa-caret-up").addClass("fa-caret-down");
-                            content.slideUp(300);
-                        }
-                    });
-
-                    $(document).on("click", ".d4p-section-toggle .d4p-toggle-title", function() {
-                        var icon = $(this).find("i.fa"),
-                            closed = icon.hasClass("fa-caret-down"),
-                            content = $(this).next();
-
-                        if (closed) {
-                            icon.removeClass("fa-caret-down").addClass("fa-caret-up");
-                            content.slideDown(300);
-                        } else {
-                            icon.removeClass("fa-caret-up").addClass("fa-caret-down");
-                            content.slideUp(300);
-                        }
                     });
                 }
             },
@@ -289,6 +259,19 @@
 
                     li.fadeOut(200, function() {
                         li.remove();
+                    });
+                }
+            },
+            switch: {
+                run: function() {
+                    $(".d4p-switch-control-option select").change(function(){
+                        var value = $(this).val(),
+                            option = $(this).closest("tr").data("switch"),
+                            any = ".d4p-switch-value-" + option,
+                            active = ".d4p-switch-option-value-" + value;
+
+                        $(any).addClass("d4p-switch-option-is-hidden");
+                        $(any + active).removeClass("d4p-switch-option-is-hidden");
                     });
                 }
             }

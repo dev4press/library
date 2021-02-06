@@ -77,6 +77,10 @@
             &:first-child td {
                 padding-top: 0;
             }
+
+            &.d4p-switch-option-is-hidden {
+                display: none;
+            }
         }
     }
 

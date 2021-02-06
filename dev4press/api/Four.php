@@ -108,7 +108,7 @@ class Four {
 	}
 
 	/** @return Four */
-	public static function instance( $type, $name, $version, $build, $lic = '' ) {
+	public static function instance( $type, $name, $version, $build, $lic = '' ) : Four {
 		static $_d4p_four = null;
 
 		if ( ! isset( $_d4p_four ) ) {
@@ -147,7 +147,7 @@ class Four {
 		$this->ad = $data;
 	}
 
-	public function ad_render( $panel = 'update' ) {
+	public function ad_render( $panel = 'update' ) : string {
 		$render = '';
 
 		if ( ! is_null( $this->ad ) && $this->ad !== false && isset( $this->ad->plugins ) && $this->ad->plugins !== false && is_array( $this->ad->plugins ) && ! empty( $this->ad->plugins ) ) {
@@ -187,7 +187,7 @@ class Four {
 		return $render;
 	}
 
-	private function _url( $url, $campaign = 'install' ) {
+	private function _url( $url, $campaign = 'install' ) : string {
 		$url = add_query_arg( 'utm_source', $this->data['url'], $url );
 		$url = add_query_arg( 'utm_medium', 'web-' . $this->data['name'], $url );
 		$url = add_query_arg( 'utm_campaign', $campaign . '-panel', $url );
@@ -199,29 +199,29 @@ class Four {
 		return str_replace( '{endpoint}', $endpoint, $this->base );
 	}
 
-	private function _header_validate() {
+	private function _header_validate() : string {
 		return $this->data['api'] . '::' .
 		       $this->data['lic'];
 	}
 
-	private function _header_origin() {
+	private function _header_origin() : string {
 		return $this->data['url'] . '::' .
 		       $this->data['multisite'];
 	}
 
-	private function _header_product() {
+	private function _header_product() : string {
 		return $this->data['type'] . '::' .
 		       $this->data['name'] . '::' .
 		       $this->data['version'] . '::' .
 		       $this->data['build'];
 	}
 
-	private function _has_bbpress() {
+	private function _has_bbpress() : bool {
 		if ( function_exists( 'bbp_version' ) ) {
 			$version = bbp_get_version();
 			$version = intval( substr( str_replace( '.', '', $version ), 0, 2 ) );
 
-			return $version > 22;
+			return $version > 24;
 		} else {
 			return false;
 		}

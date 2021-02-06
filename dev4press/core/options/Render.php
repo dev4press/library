@@ -47,7 +47,7 @@ class Render {
 	}
 
 	/** @return \Dev4Press\Core\Options\Render */
-	public static function instance( $base = 'd4pvalue', $prefix = 'd4p' ) {
+	public static function instance( $base = 'd4pvalue', $prefix = 'd4p' ) : Render {
 		static $render = array();
 
 		if ( ! isset( $render[ $base ] ) ) {
@@ -57,7 +57,7 @@ class Render {
 		return $render[ $base ];
 	}
 
-	public function prepare( $panel, $groups ) {
+	public function prepare( $panel, $groups ) : Render {
 		$this->panel  = $panel;
 		$this->groups = $groups;
 
@@ -176,10 +176,28 @@ class Render {
 			$wrapper_class .= ' ' . $setting->args['wrapper_class'];
 		}
 
+		$data = array();
 		$class = 'd4p-setting-wrapper d4p-setting-' . $setting->input;
 
 		if ( isset( $setting->args['class'] ) && ! empty( $setting->args['class'] ) ) {
-			$class .= ' ' . $setting->args['class'];
+			$wrapper_class .= ' ' . $setting->args['class'];
+		}
+
+		if (isset($setting->switch) && !empty($setting->switch)) {
+			if ($setting->switch['role'] == 'control') {
+				$wrapper_class.= ' d4p-switch-control-option';
+				$data[] = 'data-switch="'.$setting->switch['name'].'"';
+			}
+
+			$wrapper_class.= ' d4p-switch-'.$setting->switch['role'].'-'.$setting->switch['name'];
+
+			if ($setting->switch['role'] == 'value') {
+				$wrapper_class.= ' d4p-switch-option-value-'.$setting->switch['value'];
+
+				if ($setting->switch['value'] != $setting->switch['ref']) {
+					$wrapper_class.= ' d4p-switch-option-is-hidden';
+				}
+			}
 		}
 
 		if ( $setting->input == 'hidden' ) {
@@ -189,8 +207,6 @@ class Render {
 
 			do_action( 'd4p_settings_group_hidden_bottom', $setting, $group );
 		} else {
-			$data = array();
-
 			if ( isset( $setting->args['data'] ) && is_array( $setting->args['data'] ) && ! empty( $setting->args['data'] ) ) {
 				foreach ( $setting->args['data'] as $key => $value ) {
 					$data[] = 'data-' . $key . '="' . $value . '"';

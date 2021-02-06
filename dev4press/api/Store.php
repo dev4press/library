@@ -273,7 +273,7 @@ class Store {
 	}
 
 	/** @return Store */
-	public static function instance() {
+	public static function instance() : Store {
 		static $instance = null;
 
 		if ( ! isset( $instance ) ) {
@@ -283,37 +283,37 @@ class Store {
 		return $instance;
 	}
 
-	public function plugins() {
+	public function plugins() : array {
 		ksort( $this->_plugins );
 
 		return $this->_plugins;
 	}
 
-	public function name( $code ) {
+	public function name( $code ) : string {
 		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['name'] : '';
 	}
 
-	public function description( $code ) {
+	public function description( $code ) : string {
 		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['description'] : '';
 	}
 
-	public function punchline( $code ) {
+	public function punchline( $code ) : string {
 		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['punchline'] : '';
 	}
 
-	public function color( $code ) {
+	public function color( $code ) : string {
 		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['color'] : '';
 	}
 
-	public function url( $code ) {
+	public function url( $code ) : string {
 		return isset( $this->_plugins[ $code ] ) ? 'https://plugins.dev4press.com/' . $code . '/' : '';
 	}
 
-	public function is_free( $code ) {
+	public function is_free( $code ) : bool {
 		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['free'] : false;
 	}
 
-	public function is_pro( $code ) {
+	public function is_pro( $code ) : bool {
 		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['pro'] : false;
 	}
 }

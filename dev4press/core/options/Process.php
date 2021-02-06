@@ -44,7 +44,7 @@ class Process {
 	}
 
 	/** @return \Dev4Press\Core\Options\Process */
-	public static function instance( $base = 'd4pvalue', $prefix = 'd4p' ) {
+	public static function instance( $base = 'd4pvalue', $prefix = 'd4p' ) : Process {
 		static $process = array();
 
 		if ( ! isset( $process[ $base ] ) ) {
@@ -54,13 +54,13 @@ class Process {
 		return $process[ $base ];
 	}
 
-	public function prepare( $settings ) {
+	public function prepare( $settings ) : Process {
 		$this->settings = $settings;
 
 		return $this;
 	}
 
-	public function process( $request = false ) {
+	public function process( $request = false ) : array {
 		$list = array();
 
 		if ( $request === false ) {

@@ -1955,6 +1955,9 @@ a > .d4p-icon {
 .d4p-settings-table > tbody > tr:first-child th, .d4p-settings-table > tbody > tr:first-child td {
   padding-top: 0;
 }
+.d4p-settings-table > tbody > tr.d4p-switch-option-is-hidden {
+  display: none;
+}
 .d4p-settings-table .d4p-setting-wrapper {
   line-height: 20px;
 }

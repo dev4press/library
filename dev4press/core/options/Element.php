@@ -41,6 +41,7 @@ class Element {
 	public $source;
 	public $data;
 	public $args;
+	public $switch;
 
 	function __construct( $type, $name, $title = '', $notice = '', $input = 'text', $value = '' ) {
 		$this->type   = $type;
@@ -51,27 +52,33 @@ class Element {
 		$this->value  = $value;
 	}
 
-	public static function i( $type, $name, $title = '', $notice = '', $input = 'text', $value = '' ) {
+	public static function i( $type, $name, $title = '', $notice = '', $input = 'text', $value = '' ) : Element {
 		return new Element( $type, $name, $title, $notice, $input, $value );
 	}
 
-	public static function l( $type, $name, $title = '', $notice = '', $input = 'text', $value = '', $source = '', $data = '', $args = array() ) {
+	public static function l( $type, $name, $title = '', $notice = '', $input = 'text', $value = '', $source = '', $data = '', $args = array() ) : Element {
 		return Element::i( $type, $name, $title, $notice, $input, $value )->data( $source, $data )->args( $args );
 	}
 
-	public static function info( $title = '', $notice = '' ) {
+	public static function info( $title = '', $notice = '' ) : Element {
 		return Element::i( '', '', $title, $notice, Type::INFO );
 	}
 
-	public function data( $source = '', $data = '' ) {
+	public function data( $source = '', $data = '' ) : Element {
 		$this->source = $source;
 		$this->data   = $data;
 
 		return $this;
 	}
 
-	public function args( $args = array() ) {
+	public function args( $args = array() ) : Element {
 		$this->args = $args;
+
+		return $this;
+	}
+
+	public function switch( $args = array() ) : Element {
+		$this->switch = $args;
 
 		return $this;
 	}
