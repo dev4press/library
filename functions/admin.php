@@ -76,7 +76,19 @@ if ( ! function_exists( 'd4p_render_select' ) ) {
 			'echo'     => true,
 			'readonly' => false
 		);
-		$args     = wp_parse_args( $args, $defaults );
+
+		$args = wp_parse_args( $args, $defaults );
+
+		/**
+		 * @var string $selected
+		 * @var string $name
+		 * @var string $id
+		 * @var string $class
+		 * @var string $style
+		 * @var bool   $multi
+		 * @var bool   $echo
+		 * @var bool   $readonly
+		 */
 		extract( $args );
 
 		$render      = '';
@@ -144,7 +156,19 @@ if ( ! function_exists( 'd4p_render_grouped_select' ) ) {
 			'echo'     => true,
 			'readonly' => false
 		);
-		$args     = wp_parse_args( $args, $defaults );
+
+		$args = wp_parse_args( $args, $defaults );
+
+		/**
+		 * @var string $selected
+		 * @var string $name
+		 * @var string $id
+		 * @var string $class
+		 * @var string $style
+		 * @var bool   $multi
+		 * @var bool   $echo
+		 * @var bool   $readonly
+		 */
 		extract( $args );
 
 		$render     = '';
@@ -202,51 +226,41 @@ if ( ! function_exists( 'd4p_render_grouped_select' ) ) {
 }
 
 if ( ! function_exists( 'd4p_render_check_radios' ) ) {
-	function d4p_render_check_radios( $values, $args = array(), $attr = array() ) {
+	function d4p_render_check_radios( $values, $args = array() ) {
 		$defaults = array(
 			'selected' => '',
 			'name'     => '',
 			'id'       => '',
 			'class'    => '',
-			'style'    => '',
 			'multi'    => true,
 			'echo'     => true,
 			'readonly' => false
 		);
-		$args     = wp_parse_args( $args, $defaults );
+
+		$args = wp_parse_args( $args, $defaults );
+
+		/**
+		 * @var mixed  $selected
+		 * @var string $name
+		 * @var string $id
+		 * @var string $class
+		 * @var bool   $multi
+		 * @var bool   $echo
+		 * @var bool   $readonly
+		 */
 		extract( $args );
 
-		$render      = '<div class="d4p-setting-checkboxes">';
-		$attributes  = array();
+		$wrapper_class = 'd4p-setting-checkboxes';
+
+		if ( $class != '' ) {
+			$wrapper_class .= ' ' . esc_attr( $class );
+		}
+
+		$render      = '<div class="' . $wrapper_class . '">';
 		$selected    = (array) $selected;
 		$associative = d4p_is_array_associative( $values );
 		$id          = d4p_html_id_from_name( $name, $id );
-
-		if ( $class != '' ) {
-			$attributes[] = 'class="' . esc_attr( $class ) . '"';
-		}
-
-		if ( $style != '' ) {
-			$attributes[] = 'style="' . esc_attr( $style ) . '"';
-		}
-
-		if ( $readonly ) {
-			$attributes[] = 'readonly';
-		}
-
-		foreach ( $attr as $key => $value ) {
-			$attributes[] = $key . '="' . esc_attr( $value ) . '"';
-		}
-
-		$name = $multi ? $name . '[]' : $name;
-
-		if ( $id != '' ) {
-			$attributes[] = 'id="' . esc_attr( $id ) . '"';
-		}
-
-		if ( $name != '' ) {
-			$attributes[] = 'name="' . esc_attr( $name ) . '"';
-		}
+		$name        = $multi ? $name . '[]' : $name;
 
 		if ( $multi ) {
 			$render .= '<div class="d4p-check-uncheck">';
@@ -260,10 +274,30 @@ if ( ! function_exists( 'd4p_render_check_radios' ) ) {
 		$render .= '<div class="d4p-content-wrapper">';
 		foreach ( $values as $key => $title ) {
 			$real_value = $associative ? $key : $title;
-			$sel        = in_array( $real_value, $selected ) ? ' checked="checked"' : '';
 
-			$render .= sprintf( '<label><input type="%s" id="%s" value="%s" name="%s"%s class="widefat" />%s</label>',
-				$multi ? 'checkbox' : 'radio', esc_attr( $id ), esc_attr( $real_value ), esc_attr( $name ), $sel, $title );
+			$attributes = array(
+				'type="' . ( $multi ? 'checkbox' : 'radio' ) . '"',
+				'class="widefat"'
+			);
+
+			if ( $id != '' ) {
+				$attributes[] = 'id="' . esc_attr( $id . '-' . $key ) . '"';
+			}
+
+			if ( $name != '' ) {
+				$attributes[] = 'name="' . esc_attr( $name ) . '"';
+			}
+
+			if ( in_array( $real_value, $selected ) ) {
+				$attributes[] = 'checked="checked"';
+			}
+
+			if ( $readonly ) {
+				$attributes[] = 'readonly';
+			}
+
+			$render .= sprintf( '<label><input %s />%s</label>',
+				join( ' ', $attributes ), $title );
 		}
 		$render .= '</div>';
 
@@ -278,7 +312,7 @@ if ( ! function_exists( 'd4p_render_check_radios' ) ) {
 }
 
 if ( ! function_exists( 'd4p_render_check_radios_with_hierarchy' ) ) {
-	function d4p_render_check_radios_with_hierarchy( $values, $args = array(), $attr = array() ) {
+	function d4p_render_check_radios_with_hierarchy( $values, $args = array() ) {
 		$defaults = array(
 			'selected' => '',
 			'name'     => '',
@@ -289,7 +323,19 @@ if ( ! function_exists( 'd4p_render_check_radios_with_hierarchy' ) ) {
 			'echo'     => true,
 			'readonly' => false
 		);
-		$args     = wp_parse_args( $args, $defaults );
+
+		$args = wp_parse_args( $args, $defaults );
+
+		/**
+		 * @var string $selected
+		 * @var string $name
+		 * @var string $id
+		 * @var string $class
+		 * @var string $style
+		 * @var bool   $multi
+		 * @var bool   $echo
+		 * @var bool   $readonly
+		 */
 		extract( $args );
 
 		$render      = '<div class="d4p-setting-checkboxes-hierarchy">';
@@ -308,10 +354,6 @@ if ( ! function_exists( 'd4p_render_check_radios_with_hierarchy' ) ) {
 
 		if ( $readonly ) {
 			$attributes[] = 'readonly';
-		}
-
-		foreach ( $attr as $key => $value ) {
-			$attributes[] = $key . '="' . esc_attr( $value ) . '"';
 		}
 
 		if ( $id != '' ) {

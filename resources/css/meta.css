@@ -44,6 +44,7 @@
   padding: 3px;
   max-height: 200px;
   overflow: auto;
+  line-height: 1.5;
 }
 .d4plib-meta-box-wrapper .d4p-setting-checkboxes .d4p-wrapper-hierarchy li,
 .d4plib-meta-box-wrapper .d4p-setting-checkboxes-hierarchy .d4p-wrapper-hierarchy li {
