@@ -41,7 +41,7 @@
 .d4plib-meta-box-wrapper .d4plib-meta-box-element:not(:last-child) {
   margin: 0 0 10px;
   padding: 0 0 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #DDD;
 }
 .d4plib-meta-box-wrapper .d4plib-meta-box-element > label {
   font-weight: bold;

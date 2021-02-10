@@ -264,7 +264,7 @@
             },
             switch: {
                 run: function() {
-                    $(".d4p-switch-control-option select").change(function(){
+                    $(".d4p-switch-control-option select").change(function() {
                         var value = $(this).val(),
                             option = $(this).closest("tr").data("switch"),
                             any = ".d4p-switch-value-" + option,
