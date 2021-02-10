@@ -2,27 +2,26 @@
 
 /*
 Name:    Dev4Press\Core\Options\Render
-Version: v3.3.1
+Version: v3.4
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2020 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2021 Milan Petrovic (email: support@dev4press.com)
 
-This program is free software; you can redistribute it and/or modify
+This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
+the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
 namespace Dev4Press\Core\Options;
@@ -176,26 +175,26 @@ class Render {
 			$wrapper_class .= ' ' . $setting->args['wrapper_class'];
 		}
 
-		$data = array();
+		$data  = array();
 		$class = 'd4p-setting-wrapper d4p-setting-' . $setting->input;
 
 		if ( isset( $setting->args['class'] ) && ! empty( $setting->args['class'] ) ) {
 			$wrapper_class .= ' ' . $setting->args['class'];
 		}
 
-		if (isset($setting->switch) && !empty($setting->switch)) {
-			if ($setting->switch['role'] == 'control') {
-				$wrapper_class.= ' d4p-switch-control-option';
-				$data[] = 'data-switch="'.$setting->switch['name'].'"';
+		if ( isset( $setting->switch ) && ! empty( $setting->switch ) ) {
+			if ( $setting->switch['role'] == 'control' ) {
+				$wrapper_class .= ' d4p-switch-control-option';
+				$data[]        = 'data-switch="' . $setting->switch['name'] . '"';
 			}
 
-			$wrapper_class.= ' d4p-switch-'.$setting->switch['role'].'-'.$setting->switch['name'];
+			$wrapper_class .= ' d4p-switch-' . $setting->switch['role'] . '-' . $setting->switch['name'];
 
-			if ($setting->switch['role'] == 'value') {
-				$wrapper_class.= ' d4p-switch-option-value-'.$setting->switch['value'];
+			if ( $setting->switch['role'] == 'value' ) {
+				$wrapper_class .= ' d4p-switch-option-value-' . $setting->switch['value'];
 
-				if ($setting->switch['value'] != $setting->switch['ref']) {
-					$wrapper_class.= ' d4p-switch-option-is-hidden';
+				if ( $setting->switch['value'] != $setting->switch['ref'] ) {
+					$wrapper_class .= ' d4p-switch-option-is-hidden';
 				}
 			}
 		}
