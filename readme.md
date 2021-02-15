@@ -2,10 +2,11 @@
 
 * Version: v3.4
 * Build:   3400
-* Release: 2021.02.21.
+* Release: 2021.02.15.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
+* GitHub:  https://github.com/dev4press/library
 
 ## Server Requirements
 
