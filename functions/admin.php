@@ -276,6 +276,7 @@ if ( ! function_exists( 'd4p_render_check_radios' ) ) {
 
 			$attributes = array(
 				'type="' . ( $multi ? 'checkbox' : 'radio' ) . '"',
+				'value="' . $real_value . '"',
 				'class="widefat"'
 			);
 

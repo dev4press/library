@@ -29,8 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'D4P_CORE_VERSION' ) ) {
-	define( 'D4P_CORE_VERSION', '3.4' );
-	define( 'D4P_CORE_BUILD', '3400' );
+	define( 'D4P_CORE_VERSION', '3.4.1' );
+	define( 'D4P_CORE_BUILD', '3401' );
 }
 
 if ( ! defined( 'D4P_EOL' ) ) {
