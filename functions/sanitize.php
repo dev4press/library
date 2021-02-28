@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! function_exists( 'd4p_sanitize_date' ) ) {
-	function d4p_sanitize_date( $value, $format = 'Y-m-d', $return_on_error = '' ) {
+	function d4p_sanitize_date( $value, $format = 'Y-m-d', $return_on_error = '' ) : string {
 		$dt = DateTime::createFromFormat( '!' . $format, $value );
 
 		if ( $dt === false ) {
@@ -40,19 +40,19 @@ if ( ! function_exists( 'd4p_sanitize_date' ) ) {
 }
 
 if ( ! function_exists( 'd4p_sanitize_time' ) ) {
-	function d4p_sanitize_time( $value, $format = 'H:i:s', $return_on_error = '' ) {
+	function d4p_sanitize_time( $value, $format = 'H:i:s', $return_on_error = '' ) : string {
 		return d4p_sanitize_date( $value, $format, $return_on_error );
 	}
 }
 
 if ( ! function_exists( 'd4p_sanitize_month' ) ) {
-	function d4p_sanitize_month( $value, $format = 'Y-m', $return_on_error = '' ) {
+	function d4p_sanitize_month( $value, $format = 'Y-m', $return_on_error = '' ) : string {
 		return d4p_sanitize_date( $value, $format, $return_on_error );
 	}
 }
 
 if ( ! function_exists( 'd4p_sanitize_file_path' ) ) {
-	function d4p_sanitize_file_path( $filename ) {
+	function d4p_sanitize_file_path( $filename ) : string {
 		$filename_raw = $filename;
 
 		$special_chars = apply_filters( 'd4p_sanitize_file_path_chars', array(
@@ -97,7 +97,7 @@ if ( ! function_exists( 'd4p_sanitize_file_path' ) ) {
 }
 
 if ( ! function_exists( 'd4p_sanitize_key_expanded' ) ) {
-	function d4p_sanitize_key_expanded( $key ) {
+	function d4p_sanitize_key_expanded( $key ) : string {
 		$key = strtolower( $key );
 		$key = preg_replace( '/[^a-z0-9._\-]/', '', $key );
 
@@ -106,7 +106,7 @@ if ( ! function_exists( 'd4p_sanitize_key_expanded' ) ) {
 }
 
 if ( ! function_exists( 'd4p_sanitize_extended' ) ) {
-	function d4p_sanitize_extended( $text, $tags = null, $protocols = array(), $strip_shortcodes = false ) {
+	function d4p_sanitize_extended( $text, $tags = null, $protocols = array(), $strip_shortcodes = false ) : string {
 		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
 		$text = stripslashes( $text );
 
@@ -119,7 +119,7 @@ if ( ! function_exists( 'd4p_sanitize_extended' ) ) {
 }
 
 if ( ! function_exists( 'd4p_sanitize_basic' ) ) {
-	function d4p_sanitize_basic( $text, $strip_shortcodes = true ) {
+	function d4p_sanitize_basic( $text, $strip_shortcodes = true ) : string {
 		$text = stripslashes( $text );
 
 		if ( $strip_shortcodes ) {
@@ -131,7 +131,7 @@ if ( ! function_exists( 'd4p_sanitize_basic' ) ) {
 }
 
 if ( ! function_exists( 'd4p_sanitize_html' ) ) {
-	function d4p_sanitize_html( $text, $tags = null, $protocols = array() ) {
+	function d4p_sanitize_html( $text, $tags = null, $protocols = array() ) : string {
 		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
 
 		return wp_kses( trim( stripslashes( $text ) ), $tags, $protocols );
@@ -139,13 +139,13 @@ if ( ! function_exists( 'd4p_sanitize_html' ) ) {
 }
 
 if ( ! function_exists( 'd4p_sanitize_slug' ) ) {
-	function d4p_sanitize_slug( $text ) {
+	function d4p_sanitize_slug( $text ) : string {
 		return trim( sanitize_title_with_dashes( stripslashes( $text ) ), "-_ \t\n\r\0\x0B" );
 	}
 }
 
 if ( ! function_exists( 'd4p_sanitize_html_classes' ) ) {
-	function d4p_sanitize_html_classes( $classes ) {
+	function d4p_sanitize_html_classes( $classes ) : string {
 		$list = explode( ' ', trim( stripslashes( $classes ) ) );
 		$list = array_map( 'sanitize_html_class', $list );
 
@@ -154,7 +154,7 @@ if ( ! function_exists( 'd4p_sanitize_html_classes' ) ) {
 }
 
 if ( ! function_exists( 'd4p_sanitize_basic_array' ) ) {
-	function d4p_sanitize_basic_array( $input, $strip_shortcodes = true ) {
+	function d4p_sanitize_basic_array( $input, $strip_shortcodes = true ) : array {
 		$output = array();
 
 		foreach ( $input as $key => $value ) {
@@ -165,8 +165,24 @@ if ( ! function_exists( 'd4p_sanitize_basic_array' ) ) {
 	}
 }
 
+if ( ! function_exists( 'd4p_array_to_html_attributes' ) ) {
+	function d4p_array_to_html_attributes( $input ) : string {
+		$list = array();
+
+		foreach ( $input as $item => $value ) {
+			if ( is_bool( $value ) ) {
+				$list[] = $item;
+			} else {
+				$list[] = $item . '="' . esc_attr( $value ) . '"';
+			}
+		}
+
+		return join( ' ', $list );
+	}
+}
+
 if ( ! function_exists( 'd4p_ids_from_string' ) ) {
-	function d4p_ids_from_string( $input, $delimiter = ',', $map = 'absint' ) {
+	function d4p_ids_from_string( $input, $delimiter = ',', $map = 'absint' ) : string {
 		$ids = strip_tags( stripslashes( $input ) );
 
 		$ids = explode( $delimiter, $ids );
@@ -179,7 +195,7 @@ if ( ! function_exists( 'd4p_ids_from_string' ) ) {
 }
 
 if ( ! function_exists( 'd4p_kses_expanded_list_of_tags' ) ) {
-	function d4p_kses_expanded_list_of_tags() {
+	function d4p_kses_expanded_list_of_tags() : array {
 		return array(
 			'a'          => array(
 				'class'    => true,
