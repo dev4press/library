@@ -159,7 +159,7 @@ abstract class Settings {
 		$this->settings[ $group ][ $name ] = $value;
 	}
 
-	public function get( $name, $group = 'settings', $default = null ) {
+	public function raw_get( $name, $group = 'settings', $default = null ) {
 		if ( isset( $this->current[ $group ][ $name ] ) ) {
 			$exit = $this->current[ $group ][ $name ];
 		} else if ( isset( $this->settings[ $group ][ $name ] ) ) {
@@ -168,7 +168,11 @@ abstract class Settings {
 			$exit = $default;
 		}
 
-		return apply_filters( $this->base . '_' . $this->scope . '_settings_get', $exit, $name, $group );
+		return $exit;
+	}
+
+	public function get( $name, $group = 'settings', $default = null ) {
+		return apply_filters( $this->base . '_' . $this->scope . '_settings_get', $this->raw_get($name, $group, $default), $name, $group );
 	}
 
 	public function set( $name, $value, $group = 'settings', $save = false ) {
