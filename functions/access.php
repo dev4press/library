@@ -105,9 +105,9 @@ if ( ! function_exists( 'd4p_current_url_request' ) ) {
 		$home_path_regex = sprintf( '|^%s|i', preg_quote( $home_path, '|' ) );
 
 		$req_uri = str_replace( $pathinfo, '', $req_uri );
-		$req_uri = trim( $req_uri, '/' );
+		$req_uri = ltrim( $req_uri, '/' );
 		$req_uri = preg_replace( $home_path_regex, '', $req_uri );
-		$req_uri = trim( $req_uri, '/' );
+		$req_uri = ltrim( $req_uri, '/' );
 
 		$url_request = $req_uri;
 
