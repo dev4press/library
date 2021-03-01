@@ -10,6 +10,7 @@ final class Enqueue {
 	private $_enqueue_prefix = 'd4plib3-';
 	private $_debug;
 	private $_url;
+	private $_rtl;
 
 	/** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
 	private $_admin;
@@ -205,7 +206,7 @@ final class Enqueue {
 				'int'  => array( 'admin' )
 			),
 			'rtl'                    => array( 'path' => 'css/', 'file' => 'rtl', 'ext' => 'css', 'min' => true ),
-			'ballooon'               => array( 'path' => 'css/', 'file' => 'rtl', 'ext' => 'css', 'min' => true ),
+			'balloon'                => array( 'path' => 'css/', 'file' => 'balloon', 'ext' => 'css', 'min' => true ),
 			'flatpickr'              => array(
 				'path' => 'libraries/flatpickr/',
 				'file' => 'flatpickr.min',
@@ -236,7 +237,7 @@ final class Enqueue {
 		$this->_url   = $base_url;
 		$this->_admin = $admin;
 
-		$this->_debug = $this->_admin->is_debug;
+		add_action( 'admin_init', array( $this, 'start' ), 15 );
 	}
 
 	/** @return \Dev4Press\Core\UI\Enqueue */
@@ -248,6 +249,11 @@ final class Enqueue {
 		}
 
 		return $_d4p_lib_loader[ $base_url ];
+	}
+
+	public function start() {
+		$this->_rtl = is_rtl();
+		$this->_debug = $this->_admin->is_debug;
 	}
 
 	/** @return \Dev4Press\Core\UI\Enqueue */

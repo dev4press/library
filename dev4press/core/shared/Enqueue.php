@@ -193,7 +193,7 @@ class Enqueue {
 	public function __construct( $base_url ) {
 		$this->_url = trailingslashit( $base_url );
 
-		add_action( 'init', array( $this, 'start' ), 5 );
+		add_action( 'init', array( $this, 'start' ), 15 );
 	}
 
 	/** @return Enqueue */

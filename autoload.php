@@ -24,8 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-if ( ! function_exists( 'd4p_core_library_autoloader_34' ) ) {
-	function d4p_core_library_autoloader_34( $class ) {
+if ( ! function_exists( 'd4p_core_library_autoloader_35' ) ) {
+	function d4p_core_library_autoloader_35( $class ) {
 		$path = dirname( __FILE__ ) . '/';
 
 		$parts = explode( '\\', $class );
@@ -43,5 +43,5 @@ if ( ! function_exists( 'd4p_core_library_autoloader_34' ) ) {
 		}
 	}
 
-	spl_autoload_register( 'd4p_core_library_autoloader_34' );
+	spl_autoload_register( 'd4p_core_library_autoloader_35' );
 }

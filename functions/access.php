@@ -79,7 +79,7 @@ if ( ! function_exists( 'd4p_ip_server' ) ) {
 }
 
 if ( ! function_exists( 'd4p_ip_whois' ) ) {
-	function d4p_ip_whois( $ip = '' ) {
+	function d4p_ip_whois( $ip = '' ) : string {
 		return IP::get_ip_whois( $ip );
 	}
 }
