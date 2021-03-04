@@ -265,7 +265,7 @@ abstract class Widget extends WP_Widget {
 		$this->render_widget_footer( $instance );
 	}
 
-	protected function check_visibility( $instance ) {
+	protected function check_visibility( $instance ) : bool {
 		$visible = $this->is_visible( $instance );
 
 		if ( $visible ) {
@@ -324,15 +324,15 @@ abstract class Widget extends WP_Widget {
 		return str_replace( array( '_', ' ' ), array( '-', '-' ), $this->get_field_id( 'tab-' . $tab ) );
 	}
 
-	public function get_defaults() {
+	public function get_defaults() : array {
 		return array_merge( $this->shared_defaults, $this->defaults );
 	}
 
-	public function title( $instance ) {
+	public function title( $instance ) : string {
 		return isset( $instance['title'] ) ? $instance['title'] : '';
 	}
 
-	public function is_visible( $instance ) {
+	public function is_visible( $instance ) : bool {
 		return true;
 	}
 
@@ -354,7 +354,7 @@ abstract class Widget extends WP_Widget {
 		return false;
 	}
 
-	public function the_shortcode( $instance ) {
+	public function the_shortcode( $instance ) : string {
 		$defaults = $this->defaults;
 
 		if ( isset( $defaults['title'] ) ) {
@@ -394,7 +394,7 @@ abstract class Widget extends WP_Widget {
 
 	abstract public function store_instance( $instance );
 
-	public function get_list_user_visibility() {
+	public function get_list_user_visibility() : array {
 		return array(
 			'all'      => __( "Everyone", "d4plib" ),
 			'users'    => __( "Logged in users", "d4plib" ),
@@ -404,7 +404,7 @@ abstract class Widget extends WP_Widget {
 		);
 	}
 
-	public function get_list_order() {
+	public function get_list_order() : array {
 		return array(
 			'DESC' => __( "Descending", "d4plib" ),
 			'ASC'  => __( "Ascending", "d4plib" )
