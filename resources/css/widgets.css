@@ -81,16 +81,23 @@
 .d4plib-widget table .cell-right {
   padding-left: 1%;
 }
+.d4plib-widget table .cell-shortcode {
+  border: 1px dashed #ddd;
+  padding: 10px;
+  font-size: 110%;
+  line-height: 1.7;
+  font-family: monospace;
+}
 .d4plib-widget .d4plib-widget-tabs {
   border-bottom: 1px solid #DFDFDF;
   display: block;
   margin: 15px 0;
-  padding: 0 0 0 15px;
+  padding: 0 0 0 10px;
 }
 .d4plib-widget .d4plib-widget-tabs .d4plib-widget-tab {
   color: #666;
   display: inline-block;
-  padding: 6px 12px;
+  padding: 5px 10px;
   cursor: pointer;
   outline: none;
   text-decoration: none;

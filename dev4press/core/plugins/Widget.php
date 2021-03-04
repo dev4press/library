@@ -37,6 +37,9 @@ abstract class Widget extends WP_Widget {
 	public $allow_empty_title = false;
 	public $results_cachable = false;
 
+	public $shortcode_mirror = false;
+	public $shortcode_name = '';
+
 	public $cache_prefix = 'd4p';
 	public $cache_method = 'full';
 
@@ -88,10 +91,26 @@ abstract class Widget extends WP_Widget {
 		$the_tabs = $this->the_form( $instance );
 
 		$tabs = array(
-			'global'   => array( 'name' => __( "Global", "d4plib" ), 'include' => array( 'widget-global' ) ),
-			'extra'    => array( 'name' => __( "Extra", "d4plib" ), 'include' => array( 'widget-extra' ) ),
-			'advanced' => array( 'name' => __( "Advanced", "d4plib" ), 'include' => array( 'widget-advanced' ) )
+			'global'   => array(
+				'name'    => __( "Global", "d4plib" ),
+				'include' => array( 'widget-global' )
+			),
+			'extra'    => array(
+				'name'    => __( "Extra", "d4plib" ),
+				'include' => array( 'widget-extra' )
+			),
+			'advanced' => array(
+				'name'    => '<span title="' . __( "Advanced" ) . '" class="dashicons dashicons-visibility"></span>',
+				'include' => array( 'widget-advanced' )
+			)
 		);
+
+		if ( $this->shortcode_mirror ) {
+			$tabs['shortcode'] = array(
+				'name'    => '<span title="' . __( "Shortcode" ) . '" class="dashicons dashicons-shortcode"></span>',
+				'include' => array( 'widget-shortcode' )
+			);
+		}
 
 		if ( $this->results_cachable ) {
 			$tabs['global']['include'][] = 'widget-cache';
@@ -100,7 +119,7 @@ abstract class Widget extends WP_Widget {
 		if ( ! empty( $the_tabs ) ) {
 			$tabs = array_slice( $tabs, 0, 1, true ) +
 			        $the_tabs +
-			        array_slice( $tabs, 1, 2, true );
+			        array_slice( $tabs, 1, null, true );
 		}
 
 		include( $this->widgets_render->find( 'widget-loader.php' ) );
@@ -333,6 +352,40 @@ abstract class Widget extends WP_Widget {
 
 	public function the_results( $instance ) {
 		return false;
+	}
+
+	public function the_shortcode( $instance ) {
+		$defaults = $this->defaults;
+
+		if ( isset( $defaults['title'] ) ) {
+			unset( $defaults['title'] );
+		}
+
+		$arrays = array();
+
+		foreach ( $defaults as $key => $value ) {
+			if ( is_array( $value ) ) {
+				$arrays[] = $key;
+			}
+		}
+
+		foreach ( $arrays as $key ) {
+			if ( isset( $instance[ $key ] ) && ! empty( $instance[ $key ] ) ) {
+				$instance[ $key ] = join( ',', $instance[ $key ] );
+			} else {
+				$instance[ $key ] = array();
+			}
+		}
+
+		$shortcode = array();
+
+		foreach ( $defaults as $key => $value ) {
+			if ( $instance[ $key ] !== $value ) {
+				$shortcode[] = $key . '="' . $instance[ $key ] . '"';
+			}
+		}
+
+		return join( ' ', $shortcode );
 	}
 
 	abstract public function the_form( $instance );
