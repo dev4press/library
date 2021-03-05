@@ -48,7 +48,6 @@ abstract class Plugin {
 	public $path = '';
 
 	public $is_debug = false;
-	public $is_rtl = false;
 
 	public $page = false;
 	public $panel = '';
@@ -115,7 +114,6 @@ abstract class Plugin {
 
 	public function plugins_loaded() {
 		$this->is_debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
-		$this->is_rtl   = is_rtl();
 
 		$this->enqueue = Enqueue::instance( $this->url . 'd4plib/', $this );
 
@@ -329,7 +327,7 @@ abstract class Plugin {
 				$this->enqueue->css( 'font' )->css( 'grid' )->css( 'admin' )->css( 'options' )->css( 'balloon' )->css( 'responsive' );
 			}
 
-			if ( $this->is_rtl ) {
+			if ( $this->enqueue->is_rtl() ) {
 				$this->enqueue->css( 'rtl' );
 			}
 

@@ -22,13 +22,48 @@ final class Enqueue {
 
 	private $_libraries = array(
 		'js'  => array(
-			'meta'                   => array( 'path' => 'js/', 'file' => 'meta', 'ext' => 'js', 'min' => true ),
-			'media'                  => array( 'path' => 'js/', 'file' => 'media', 'ext' => 'js', 'min' => true ),
-			'ctrl'                   => array( 'path' => 'js/', 'file' => 'ctrl', 'ext' => 'js', 'min' => true ),
-			'helpers'                => array( 'path' => 'js/', 'file' => 'helpers', 'ext' => 'js', 'min' => true ),
-			'customizer'             => array( 'path' => 'js/', 'file' => 'customizer', 'ext' => 'js', 'min' => true ),
-			'widgets'                => array( 'path' => 'js/', 'file' => 'widgets', 'ext' => 'js', 'min' => true ),
-			'wizard'                 => array( 'path' => 'js/', 'file' => 'wizard', 'ext' => 'js', 'min' => true ),
+			'meta'                   => array(
+				'path' => 'js/',
+				'file' => 'meta',
+				'ext'  => 'js',
+				'min'  => true
+			),
+			'media'                  => array(
+				'path' => 'js/',
+				'file' => 'media',
+				'ext'  => 'js',
+				'min'  => true
+			),
+			'ctrl'                   => array(
+				'path' => 'js/',
+				'file' => 'ctrl',
+				'ext'  => 'js',
+				'min'  => true
+			),
+			'helpers'                => array(
+				'path' => 'js/',
+				'file' => 'helpers',
+				'ext' => 'js',
+				'min' => true
+			),
+			'customizer'             => array(
+				'path' => 'js/',
+				'file' => 'customizer',
+				'ext' => 'js',
+				'min' => true
+			),
+			'widgets'                => array(
+				'path' => 'js/',
+				'file' => 'widgets',
+				'ext' => 'js',
+				'min' => true
+			),
+			'wizard'                 => array(
+				'path' => 'js/',
+				'file' => 'wizard',
+				'ext' => 'js',
+				'min' => true
+			),
 			'confirmsubmit'          => array(
 				'path' => 'js/',
 				'file' => 'confirmsubmit',
@@ -163,22 +198,72 @@ final class Enqueue {
 			)
 		),
 		'css' => array(
-			'pack'                   => array( 'path' => 'css/', 'file' => 'pack', 'ext' => 'css', 'min' => true ),
-			'about'                  => array( 'path' => 'css/', 'file' => 'about', 'ext' => 'css', 'min' => true ),
-			'flags'                  => array( 'path' => 'css/', 'file' => 'flags', 'ext' => 'css', 'min' => true ),
-			'font'                   => array( 'path' => 'css/', 'file' => 'font', 'ext' => 'css', 'min' => true ),
+			'pack'                   => array(
+				'path' => 'css/',
+				'file' => 'pack',
+				'ext' => 'css',
+				'min' => true
+			),
+			'about'                  => array(
+				'path' => 'css/',
+				'file' => 'about',
+				'ext' => 'css',
+				'min' => true
+			),
+			'flags'                  => array(
+				'path' => 'css/',
+				'file' => 'flags',
+				'ext' => 'css',
+				'min' => true
+			),
+			'font'                   => array(
+				'path' => 'css/',
+				'file' => 'font',
+				'ext' => 'css',
+				'min' => true
+			),
 			'font-embed'             => array(
 				'path' => 'css/',
 				'file' => 'font-embed',
 				'ext'  => 'css',
 				'min'  => true
 			),
-			'grid'                   => array( 'path' => 'css/', 'file' => 'grid', 'ext' => 'css', 'min' => true ),
-			'ctrl'                   => array( 'path' => 'css/', 'file' => 'ctrl', 'ext' => 'css', 'min' => true ),
-			'meta'                   => array( 'path' => 'css/', 'file' => 'meta', 'ext' => 'css', 'min' => true ),
-			'options'                => array( 'path' => 'css/', 'file' => 'options', 'ext' => 'css', 'min' => true ),
-			'shared'                 => array( 'path' => 'css/', 'file' => 'shared', 'ext' => 'css', 'min' => true ),
-			'widgets'                => array( 'path' => 'css/', 'file' => 'widgets', 'ext' => 'css', 'min' => true ),
+			'grid'                   => array(
+				'path' => 'css/',
+				'file' => 'grid',
+				'ext' => 'css',
+				'min' => true
+			),
+			'ctrl'                   => array(
+				'path' => 'css/',
+				'file' => 'ctrl',
+				'ext' => 'css',
+				'min' => true
+			),
+			'meta'                   => array(
+				'path' => 'css/',
+				'file' => 'meta',
+				'ext' => 'css',
+				'min' => true
+			),
+			'options'                => array(
+				'path' => 'css/',
+				'file' => 'options',
+				'ext' => 'css',
+				'min' => true
+			),
+			'shared'                 => array(
+				'path' => 'css/',
+				'file' => 'shared',
+				'ext'  => 'css',
+				'min'  => true
+			),
+			'widgets'                => array(
+				'path' => 'css/',
+				'file' => 'widgets',
+				'ext'  => 'css',
+				'min'  => true
+			),
 			'customizer'             => array(
 				'path' => 'css/',
 				'file' => 'customizer',
@@ -205,8 +290,18 @@ final class Enqueue {
 				'min'  => true,
 				'int'  => array( 'admin' )
 			),
-			'rtl'                    => array( 'path' => 'css/', 'file' => 'rtl', 'ext' => 'css', 'min' => true ),
-			'balloon'                => array( 'path' => 'css/', 'file' => 'balloon', 'ext' => 'css', 'min' => true ),
+			'rtl'                    => array(
+				'path' => 'css/',
+				'file' => 'rtl',
+				'ext'  => 'css',
+				'min'  => true
+			),
+			'balloon'                => array(
+				'path' => 'css/',
+				'file' => 'balloon',
+				'ext'  => 'css',
+				'min'  => true
+			),
 			'flatpickr'              => array(
 				'path' => 'libraries/flatpickr/',
 				'file' => 'flatpickr.min',
@@ -251,8 +346,12 @@ final class Enqueue {
 		return $_d4p_lib_loader[ $base_url ];
 	}
 
+	public function is_rtl() {
+		return $this->_rtl;
+	}
+
 	public function start() {
-		$this->_rtl = is_rtl();
+		$this->_rtl   = is_rtl();
 		$this->_debug = $this->_admin->is_debug;
 	}
 

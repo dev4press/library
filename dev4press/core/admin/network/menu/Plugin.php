@@ -47,7 +47,6 @@ abstract class Plugin extends BasePlugin {
 
 	public function plugins_loaded() {
 		$this->is_debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
-		$this->is_rtl   = is_rtl();
 
 		$this->enqueue = Enqueue::instance( $this->url . 'd4plib/', $this );
 
