@@ -8,7 +8,7 @@ Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Notice ==
-Based on the LoremImpsum script by Josh Sherman
+Based on the LoremIpsum script by Josh Sherman
 https://github.com/joshtronic/php-loremipsum
 
 == Copyright ==
