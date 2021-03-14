@@ -47,6 +47,10 @@
             padding: 5px 15px;
         }
     }
+
+    &.d4p-switch-section-is-hidden {
+        display: none;
+    }
 }
 
 .d4p-settings-table {

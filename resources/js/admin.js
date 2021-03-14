@@ -265,13 +265,23 @@
             switch: {
                 run: function() {
                     $(".d4p-switch-control-option select").change(function() {
-                        var value = $(this).val(),
+                        var any, active, value = $(this).val(),
                             option = $(this).closest("tr").data("switch"),
-                            any = ".d4p-switch-value-" + option,
+                            type = $(this).closest("tr").data("switch-type");
+
+                        if (type === 'option') {
+                            any    = ".d4p-switch-value-" + option;
                             active = ".d4p-switch-option-value-" + value;
 
-                        $(any).addClass("d4p-switch-option-is-hidden");
-                        $(any + active).removeClass("d4p-switch-option-is-hidden");
+                            $(any).addClass("d4p-switch-option-is-hidden");
+                            $(any + active).removeClass("d4p-switch-option-is-hidden");
+                        } else if (type === 'section') {
+                            any    = ".d4p-switch-section-" + option;
+                            active = ".d4p-switch-section-value-" + value;
+
+                            $(any).addClass("d4p-switch-section-is-hidden");
+                            $(any + active).removeClass("d4p-switch-section-is-hidden");
+                        }
                     });
                 }
             }

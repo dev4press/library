@@ -140,6 +140,19 @@ class Render {
 			$class .= ' ' . $section['class'];
 		}
 
+		if ( isset( $section['switch'] ) && ! empty( $section['switch'] ) ) {
+			$_switch = $section['switch'];
+
+			if ( $_switch['role'] == 'value' ) {
+				$class .= ' d4p-switch-section-' . $_switch['name'];
+				$class .= ' d4p-switch-section-value-' . $_switch['value'];
+
+				if ( $_switch['value'] != $_switch['ref'] ) {
+					$class .= ' d4p-switch-section-is-hidden';
+				}
+			}
+		}
+
 		echo '<div class="' . $class . '">';
 
 		if ( ! empty( $section['label'] ) ) {
@@ -186,11 +199,12 @@ class Render {
 			if ( $setting->switch['role'] == 'control' ) {
 				$wrapper_class .= ' d4p-switch-control-option';
 				$data[]        = 'data-switch="' . $setting->switch['name'] . '"';
+				$data[]        = 'data-switch-type="' . $setting->switch['type'] . '"';
 			}
 
 			$wrapper_class .= ' d4p-switch-' . $setting->switch['role'] . '-' . $setting->switch['name'];
 
-			if ( $setting->switch['role'] == 'value' ) {
+			if ( $setting->switch['type'] == 'option' && $setting->switch['role'] == 'value' ) {
 				$wrapper_class .= ' d4p-switch-option-value-' . $setting->switch['value'];
 
 				if ( $setting->switch['value'] != $setting->switch['ref'] ) {

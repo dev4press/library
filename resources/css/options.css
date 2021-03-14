@@ -43,6 +43,9 @@
   margin: 0 0 0 15px;
   padding: 5px 15px;
 }
+.d4p-settings-section.d4p-switch-section-is-hidden {
+  display: none;
+}
 
 .d4p-settings-table {
   margin: 0;
