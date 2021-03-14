@@ -100,14 +100,14 @@ abstract class Widget extends WP_Widget {
 				'include' => array( 'widget-extra' )
 			),
 			'advanced' => array(
-				'name'    => '<span title="' . __( "Advanced" ) . '" class="dashicons dashicons-visibility"></span>',
+				'name'    => '<span title="' . __( "Advanced", "d4plib" ) . '" class="dashicons dashicons-visibility"></span>',
 				'include' => array( 'widget-advanced' )
 			)
 		);
 
 		if ( $this->shortcode_mirror ) {
 			$tabs['shortcode'] = array(
-				'name'    => '<span title="' . __( "Shortcode" ) . '" class="dashicons dashicons-shortcode"></span>',
+				'name'    => '<span title="' . __( "Shortcode", "d4plib" ) . '" class="dashicons dashicons-shortcode"></span>',
 				'include' => array( 'widget-shortcode' )
 			);
 		}
