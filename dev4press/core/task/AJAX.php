@@ -92,7 +92,7 @@ abstract class AJAX {
 			case 'break':
 				$this->do_break();
 
-				$this->message( __( "Process has been interupted by user.", "d4plib" ) );
+				$this->message( __( "Process has been interrupted by user.", "d4plib" ) );
 
 				$this->delete();
 				break;
