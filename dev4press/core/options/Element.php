@@ -77,7 +77,14 @@ class Element {
 	}
 
 	public function switch( $args = array() ) : Element {
-		$this->switch = $args;
+		$default = array(
+			'type'  => 'option',
+			'role'  => '',
+			'value' => '',
+			'ref'   => ''
+		);
+
+		$this->switch = wp_parse_args( $args, $default );
 
 		return $this;
 	}
