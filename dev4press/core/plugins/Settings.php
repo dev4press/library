@@ -120,7 +120,7 @@ abstract class Settings {
 		}
 	}
 
-	public function exists( $name, $group = 'settings' ) {
+	public function exists( $name, $group = 'settings' ) : bool {
 		if ( isset( $this->current[ $group ][ $name ] ) ) {
 			return true;
 		} else if ( isset( $this->settings[ $group ][ $name ] ) ) {
@@ -130,7 +130,7 @@ abstract class Settings {
 		}
 	}
 
-	public function prefix_get( $prefix, $group = 'settings' ) {
+	public function prefix_get( $prefix, $group = 'settings' ) : array {
 		$settings = array_merge( array_keys( $this->settings[ $group ] ), array_keys( $this->current[ $group ] ) );
 
 		$results = array();
@@ -249,7 +249,7 @@ abstract class Settings {
 		}
 	}
 
-	public function import_from_secure_json( $import ) {
+	public function import_from_secure_json( $import ) : bool {
 		$name = isset( $import['name'] ) ? $import['name'] : false;
 		$ctrl = isset( $import['ctrl'] ) ? $import['ctrl'] : false;
 		$raw  = isset( $import['data'] ) ? $import['data'] : false;
@@ -297,22 +297,22 @@ abstract class Settings {
 		return json_encode( $export, JSON_PRETTY_PRINT );
 	}
 
-	public function export_to_serialized_php( $list = array() ) {
+	public function export_to_serialized_php( $list = array() ) : string {
 		return serialize( $this->_settings_to_array( $list ) );
 	}
 
-	public function file_version() {
+	public function file_version() : string {
 		return $this->info_version . '.' . $this->info_build;
 	}
 
-	public function plugin_version() {
+	public function plugin_version() : string {
 		return 'v' . $this->info_version . '_b' . $this->info_build;
 	}
 
 	protected function _db() {
 	}
 
-	protected function _name( $name ) {
+	protected function _name( $name ) : string {
 		return 'd4p_' . $this->scope . '_' . $this->info->code . '_' . $name;
 	}
 
@@ -382,11 +382,11 @@ abstract class Settings {
 		return $old;
 	}
 
-	protected function _groups() {
+	protected function _groups() : array {
 		return array_keys( $this->settings );
 	}
 
-	protected function _merge() {
+	protected function _merge() : array {
 		$merged = array();
 
 		foreach ( $this->settings as $key => $data ) {
@@ -424,7 +424,7 @@ abstract class Settings {
 		}
 	}
 
-	protected function _settings_to_array( $list = array() ) {
+	protected function _settings_to_array( $list = array() ) : array {
 		if ( empty( $list ) ) {
 			$list = $this->_groups();
 		}
