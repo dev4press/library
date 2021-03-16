@@ -32,15 +32,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Store {
 	private $_plugins = array(
-		/*"breadcrumbspress"              => array(
+		"breadcrumbspress"                 => array(
 			"code"        => "breadcrumbspress",
 			"name"        => "BreadcrumbsPress",
 			"description" => "Breadcrumbs based navigation, fully responsive and customizable, supporting post types, all types of archives, 404 pages, search results and third-party plugins.",
 			"punchline"   => "Improve your website navigation with Breadcrumbs",
-			"color"       => "#0CA991",
+			"color"       => "#EA0000",
 			'free'        => true,
 			'pro'         => true
-		),*/
+		),
 		"debugpress"                       => array(
 			"code"        => "debugpress",
 			"name"        => "DebugPress",

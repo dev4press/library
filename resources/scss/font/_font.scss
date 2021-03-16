@@ -37,6 +37,14 @@ a {
 }
 
 /* Icons */
+@each $icon, $deg in $rotate {
+    .#{$font-prefix-ctrl}.#{$font-prefix}-#{$icon} {
+        -webkit-transform: rotate(#{$deg}deg);
+        -ms-transform: rotate(#{$deg}deg);
+        transform: rotate(#{$deg}deg);
+    }
+}
+
 @each $icon, $char in $icons {
     .#{$font-prefix-ctrl}.#{$font-prefix}-#{$icon} {
         &:before {
