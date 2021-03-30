@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\Core\Helpers\Download
-Version: v3.4
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -44,7 +44,7 @@ class Download {
 	}
 
 	/** @return Download */
-	public static function instance( $file_path, $file_name = null ) {
+	public static function instance( $file_path, $file_name = null ) : Download {
 		static $_download = array();
 
 		$key = $file_path . '-' . $file_name;

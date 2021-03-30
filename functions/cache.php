@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: Cache
-Version: v3.4
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

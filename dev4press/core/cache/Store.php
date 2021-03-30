@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\Core\Cache\Store
-Version: v3.4
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -46,7 +46,7 @@ class Store {
 		$this->blog_prefix = $this->multisite ? get_current_blog_id() . ':' : '';
 	}
 
-	public static function instance() {
+	public static function instance() : Store {
 		static $instance = false;
 
 		if ( $instance === false ) {

@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: BuddyPress
-Version: v3.4
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! function_exists( 'd4p_has_buddypress' ) ) {
-	function d4p_has_buddypress() {
+	function d4p_has_buddypress() : bool {
 		if ( d4p_is_plugin_active( 'buddypress/bp-loader.php' ) ) {
 			$version = bp_get_version();
 			$version = intval( substr( str_replace( '.', '', $version ), 0, 2 ) );
@@ -42,7 +42,7 @@ if ( ! function_exists( 'd4p_has_buddypress' ) ) {
 }
 
 if ( ! function_exists( 'd4p_get_buddypress_major_version_code' ) ) {
-	function d4p_get_buddypress_major_version_code() {
+	function d4p_get_buddypress_major_version_code() : int {
 		if ( function_exists( 'bp_get_version' ) ) {
 			$version = bp_get_version();
 
