@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: Helpers
-Version: v3.4
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -117,7 +117,7 @@ if ( ! function_exists( 'd4p_scan_dir' ) ) {
 }
 
 if ( ! function_exists( 'd4p_filesize_format' ) ) {
-	function d4p_filesize_format( $size, $decimals = 2, $sep = ' ' ) {
+	function d4p_filesize_format( $size, $decimals = 2, $sep = ' ' ) : string {
 		$_size = intval( $size );
 
 		if ( strlen( $_size ) >= 10 ) {
@@ -142,7 +142,7 @@ if ( ! function_exists( 'd4p_filesize_format' ) ) {
 }
 
 if ( ! function_exists( 'd4p_text_length_limit' ) ) {
-	function d4p_text_length_limit( $text, $length = 200, $append = '&hellip;' ) {
+	function d4p_text_length_limit( $text, $length = 200, $append = '&hellip;' ) : string {
 		if ( function_exists( 'mb_strlen' ) ) {
 			$text_length = mb_strlen( $text );
 		} else {
@@ -159,7 +159,7 @@ if ( ! function_exists( 'd4p_text_length_limit' ) ) {
 }
 
 if ( ! function_exists( 'd4p_entity_decode' ) ) {
-	function d4p_entity_decode( $content, $quote_style = null, $charset = null ) {
+	function d4p_entity_decode( $content, $quote_style = null, $charset = null ) : string {
 		if ( null === $quote_style ) {
 			$quote_style = ENT_QUOTES;
 		}
@@ -239,7 +239,7 @@ if ( ! function_exists( 'd4p_remove_from_array_by_value' ) ) {
 }
 
 if ( ! function_exists( 'd4p_slug_to_name' ) ) {
-	function d4p_slug_to_name( $code, $sep = '_' ) {
+	function d4p_slug_to_name( $code, $sep = '_' ) : string {
 		$exp = explode( $sep, $code );
 
 		return ucwords( strtolower( join( ' ', $exp ) ) );
@@ -247,18 +247,18 @@ if ( ! function_exists( 'd4p_slug_to_name' ) ) {
 }
 
 if ( ! function_exists( 'd4p_has_gravatar' ) ) {
-	function d4p_has_gravatar( $email ) {
+	function d4p_has_gravatar( $email ) : bool {
 		$hash = md5( strtolower( trim( $email ) ) );
 
 		$url     = 'https://www.gravatar.com/avatar/' . $hash . '?d=404';
 		$headers = get_headers( $url );
 
-		return preg_match( "/200/", $headers[0] ) == 1;
+		return preg_match( "/200/", $headers[0] ) === 1;
 	}
 }
 
 if ( ! function_exists( 'd4p_is_valid_md5' ) ) {
-	function d4p_is_valid_md5( $hash = '' ) {
+	function d4p_is_valid_md5( $hash = '' ) : bool {
 		return strlen( $hash ) == 32 && ctype_xdigit( $hash );
 	}
 }
@@ -292,7 +292,7 @@ if ( ! function_exists( 'd4p_php_ini_size_value' ) ) {
 }
 
 if ( ! function_exists( 'd4p_is_datetime_valid' ) ) {
-	function d4p_is_datetime_valid( $date, $format = 'Y-m-d H:i:s' ) {
+	function d4p_is_datetime_valid( $date, $format = 'Y-m-d H:i:s' ) : bool {
 		$d = DateTime::createFromFormat( $format, $date );
 
 		return $d && $d->format( $format ) == $date;
@@ -306,13 +306,13 @@ if ( ! function_exists( 'd4p_mysql_date' ) ) {
 }
 
 if ( ! function_exists( 'd4p_mysql_datetime_format' ) ) {
-	function d4p_mysql_datetime_format() {
+	function d4p_mysql_datetime_format() : string {
 		return 'Y-m-d H:i:s';
 	}
 }
 
 if ( ! function_exists( 'd4p_url_campaign_tracking' ) ) {
-	function d4p_url_campaign_tracking( $url, $campaign = '', $medium = '', $content = '', $term = '', $source = null ) {
+	function d4p_url_campaign_tracking( $url, $campaign = '', $medium = '', $content = '', $term = '', $source = null ) : string {
 		if ( ! empty( $campaign ) ) {
 			$url = add_query_arg( 'utm_campaign', $campaign, $url );
 		}
@@ -342,7 +342,7 @@ if ( ! function_exists( 'd4p_url_campaign_tracking' ) ) {
 }
 
 if ( ! function_exists( 'd4p_user_agent' ) ) {
-	function d4p_user_agent() {
+	function d4p_user_agent() : string {
 		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
 			return d4p_sanitize_basic( trim( $_SERVER['HTTP_USER_AGENT'] ) );
 		}
@@ -352,14 +352,14 @@ if ( ! function_exists( 'd4p_user_agent' ) ) {
 }
 
 if ( ! function_exists( 'd4p_is_request_post' ) ) {
-	function d4p_is_request_post() {
+	function d4p_is_request_post() : bool {
 		return $_SERVER['REQUEST_METHOD'] === 'POST';
 	}
 }
 
 if ( ! function_exists( 'd4p_is_wp_error' ) ) {
-	function d4p_is_wp_error( $thing ) {
-		return ( $thing instanceof WP_Error ) || ( $thing instanceof \Dev4Press\Core\Helpers\Error );
+	function d4p_is_wp_error( $thing ) : bool {
+		return ( $thing instanceof WP_Error ) || ( $thing instanceof \Dev4Press\v35\Core\Helpers\Error );
 	}
 }
 
@@ -374,7 +374,7 @@ if ( ! function_exists( 'd4p_is_regex_valid' ) ) {
 }
 
 if ( ! function_exists( 'd4p_get_regex_error' ) ) {
-	function d4p_get_regex_error( $error_code ) {
+	function d4p_get_regex_error( $error_code ) : string {
 		if ( is_bool( $error_code ) ) {
 			return 'OK';
 		}
@@ -390,7 +390,7 @@ if ( ! function_exists( 'd4p_get_regex_error' ) ) {
 }
 
 if ( ! function_exists( 'd4p_file_size_format' ) ) {
-	function d4p_file_size_format( $size, $decimals = 2 ) {
+	function d4p_file_size_format( $size, $decimals = 2 ) : string {
 		return d4p_filesize_format( $size, $decimals );
 	}
 }

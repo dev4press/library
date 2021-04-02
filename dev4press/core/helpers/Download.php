@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Helpers\Download
-Version: v3.4
+Name:    Dev4Press\v35\Core\Helpers\Download
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\Core\Helpers;
+namespace Dev4Press\v35\Core\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -44,7 +44,7 @@ class Download {
 	}
 
 	/** @return Download */
-	public static function instance( $file_path, $file_name = null ) {
+	public static function instance( $file_path, $file_name = null ) : Download {
 		static $_download = array();
 
 		$key = $file_path . '-' . $file_name;

@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Options\Process
-Version: v3.4
+Name:    Dev4Press\v35\Core\Options\Process
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\Core\Options;
+namespace Dev4Press\v35\Core\Options;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -42,7 +42,7 @@ class Process {
 		$this->prefix = $prefix;
 	}
 
-	/** @return \Dev4Press\Core\Options\Process */
+	/** @return Process */
 	public static function instance( $base = 'd4pvalue', $prefix = 'd4p' ) : Process {
 		static $process = array();
 

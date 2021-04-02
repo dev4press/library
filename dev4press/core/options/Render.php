@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Options\Render
-Version: v3.4
+Name:    Dev4Press\v35\Core\Options\Render
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\Core\Options;
+namespace Dev4Press\v35\Core\Options;
 
-use Dev4Press\Core\UI\Walker\CheckboxRadio;
+use Dev4Press\v35\Core\UI\Walker\CheckboxRadio;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -45,7 +45,7 @@ class Render {
 		$this->prefix = $prefix;
 	}
 
-	/** @return \Dev4Press\Core\Options\Render */
+	/** @return Render */
 	public static function instance( $base = 'd4pvalue', $prefix = 'd4p' ) : Render {
 		static $render = array();
 

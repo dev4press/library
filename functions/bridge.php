@@ -24,11 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-use Dev4Press\Core\Cache\Store;
-use Dev4Press\Core\Helpers\Download;
-use Dev4Press\Core\Helpers\ObjectsSort;
-use Dev4Press\WordPress\Media\ToLibrary\LocalImage;
-use Dev4Press\WordPress\Media\ToLibrary\RemoteImage;
+use Dev4Press\v35\Core\Cache\Store;
+use Dev4Press\v35\Core\Helpers\Download;
+use Dev4Press\v35\Core\Helpers\ObjectsSort;
+use Dev4Press\v35\WordPress\Media\ToLibrary\LocalImage;
+use Dev4Press\v35\WordPress\Media\ToLibrary\RemoteImage;
 
 if ( ! function_exists( 'd4p_local_image_to_media_library' ) ) {
 	function d4p_local_image_to_media_library( $path, $data = array(), $post_parent = 0, $args = array() ) {

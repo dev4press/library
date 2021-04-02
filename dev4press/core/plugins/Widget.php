@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Plugins\Widget
-Version: v3.4
+Name:    Dev4Press\v35\Core\Plugins\Widget
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\Core\Plugins;
+namespace Dev4Press\v35\Core\Plugins;
 
 use WP_Widget;
 
@@ -70,7 +70,7 @@ abstract class Widget extends WP_Widget {
 	protected $cache_time = 0;
 	protected $cache_key = '';
 
-	/** @var \Dev4Press\Core\UI\Widgets */
+	/** @var \Dev4Press\v35\Core\UI\Widgets */
 	protected $widgets_render;
 
 	public function __construct( $id_base = false, $name = '', $widget_options = array(), $control_options = array() ) {

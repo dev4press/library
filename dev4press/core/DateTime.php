@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\DateTime
-Version: v3.4
+Name:    Dev4Press\v35\Core\DateTime
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\Core;
+namespace Dev4Press\v35\Core;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -56,7 +56,7 @@ class DateTime {
 		return $offset === false ? 0 : $offset;
 	}
 
-	public function formatted_offset( $offset = null ) {
+	public function formatted_offset( $offset = null ) : string {
 		if ( is_null( $offset ) ) {
 			$offset = $this->offset();
 		}
@@ -83,7 +83,7 @@ class DateTime {
 		return $gmt ? gmdate( $format ) : gmdate( $format, $this->timestamp_gmt_to_local( time() ) );
 	}
 
-	public function mysql_format() {
+	public function mysql_format() : string {
 		return $this->_mysql_format;
 	}
 

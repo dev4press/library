@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev4Press\Core\UI;
+namespace Dev4Press\v35\Core\UI;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -12,7 +12,7 @@ final class Enqueue {
 	private $_url;
 	private $_rtl;
 
-	/** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v35\Core\Admin\Plugin|\Dev4Press\v35\Core\Admin\Menu\Plugin|\Dev4Press\v35\Core\Admin\Submenu\Plugin */
 	private $_admin;
 
 	private $_loaded = array(
@@ -335,7 +335,7 @@ final class Enqueue {
 		add_action( 'admin_init', array( $this, 'start' ), 15 );
 	}
 
-	/** @return \Dev4Press\Core\UI\Enqueue */
+	/** @return Enqueue */
 	public static function instance( $base_url, $admin ) {
 		static $_d4p_lib_loader = array();
 
@@ -355,21 +355,21 @@ final class Enqueue {
 		$this->_debug = $this->_admin->is_debug;
 	}
 
-	/** @return \Dev4Press\Core\UI\Enqueue */
+	/** @return Enqueue */
 	public function js( $name ) {
 		$this->add( 'js', $name );
 
 		return $this;
 	}
 
-	/** @return \Dev4Press\Core\UI\Enqueue */
+	/** @return Enqueue */
 	public function css( $name ) {
 		$this->add( 'css', $name );
 
 		return $this;
 	}
 
-	/** @return \Dev4Press\Core\UI\Enqueue */
+	/** @return Enqueue */
 	public function flatpickr( $plugins = array() ) {
 		$this->add( 'js', 'flatpickr' );
 		$this->add( 'css', 'flatpickr' );
@@ -384,7 +384,7 @@ final class Enqueue {
 		return $this;
 	}
 
-	/** @return \Dev4Press\Core\UI\Enqueue */
+	/** @return Enqueue */
 	public function wp( $includes = array() ) {
 		$defaults = array( 'dialog' => false, 'color_picker' => false, 'media' => false, 'sortable' => false );
 		$includes = shortcode_atts( $defaults, $includes );

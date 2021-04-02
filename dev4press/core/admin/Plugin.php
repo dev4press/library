@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Admin\Plugin
-Version: v3.4
+Name:    Dev4Press\v35\Core\Admin\Plugin
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\Core\Admin;
+namespace Dev4Press\v35\Core\Admin;
 
-use Dev4Press\Core\UI\Enqueue;
+use Dev4Press\v35\Core\UI\Enqueue;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -55,10 +55,10 @@ abstract class Plugin {
 
 	public $screen_id = '';
 
-	/** @var \Dev4Press\Core\UI\Admin\Panel */
+	/** @var \Dev4Press\v35\Core\UI\Admin\Panel */
 	public $object = null;
 
-	/** @var \Dev4Press\Core\UI\Enqueue */
+	/** @var \Dev4Press\v35\Core\UI\Enqueue */
 	public $enqueue = null;
 
 	public $enqueue_packed = true;
@@ -77,7 +77,7 @@ abstract class Plugin {
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), 20 );
 	}
 
-	/** @return \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin|\Dev4Press\Core\Admin\Menu\Plugin */
+	/** @return \Dev4Press\v35\Core\Admin\Plugin|\Dev4Press\v35\Core\Admin\Submenu\Plugin|\Dev4Press\v35\Core\Admin\Menu\Plugin */
 	public static function instance() {
 		static $instance = array();
 
@@ -463,9 +463,9 @@ abstract class Plugin {
 
 	abstract public function run_postback();
 
-	/** @return \Dev4Press\Core\Plugins\Settings */
+	/** @return \Dev4Press\v35\Core\Plugins\Settings */
 	abstract public function settings();
 
-	/** @return \Dev4Press\Core\Options\Settings */
+	/** @return \Dev4Press\v35\Core\Options\Settings */
 	abstract public function settings_definitions();
 }

@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\WordPress\Customizer\Core
-Version: v3.4
+Name:    Dev4Press\v35\WordPress\Customizer\Core
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\WordPress\Customizer;
+namespace Dev4Press\v35\WordPress\Customizer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

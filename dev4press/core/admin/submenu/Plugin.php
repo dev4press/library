@@ -1,8 +1,8 @@
 <?php
 
-namespace Dev4Press\Core\Admin\Submenu;
+namespace Dev4Press\v35\Core\Admin\Submenu;
 
-use Dev4Press\Core\Admin\Plugin as BasePlugin;
+use Dev4Press\v35\Core\Admin\Plugin as BasePlugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

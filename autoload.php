@@ -27,19 +27,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 if ( ! function_exists( 'd4p_core_library_autoloader_35' ) ) {
 	function d4p_core_library_autoloader_35( $class ) {
 		$path = dirname( __FILE__ ) . '/';
+		$base = 'Dev4Press\\v35\\';
 
-		$parts = explode( '\\', $class );
+		if ( substr( $class, 0, strlen( $base ) ) == $base ) {
+			$clean = substr( $class, strlen( $base ) );
 
-		$class_name = $parts[ count( $parts ) - 1 ];
-		unset( $parts[ count( $parts ) - 1 ] );
+			$parts = explode( '\\', $clean );
 
-		$class_namespace = join( '/', $parts );
-		$class_namespace = strtolower( $class_namespace );
+			$class_name = $parts[ count( $parts ) - 1 ];
+			unset( $parts[ count( $parts ) - 1 ] );
 
-		$path .= $class_namespace . '/' . $class_name . '.php';
+			$class_namespace = join( '/', $parts );
+			$class_namespace = strtolower( $class_namespace );
 
-		if ( file_exists( $path ) ) {
-			include( $path );
+			$path .= 'dev4press/' . $class_namespace . '/' . $class_name . '.php';
+
+			if ( file_exists( $path ) ) {
+				include( $path );
+			}
 		}
 	}
 

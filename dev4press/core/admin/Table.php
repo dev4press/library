@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Admin\Table
-Version: v3.4
+Name:    Dev4Press\v35\Core\Admin\Table
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\Core\Admin;
+namespace Dev4Press\v35\Core\Admin;
 
 use WP_List_Table;
 
@@ -53,7 +53,7 @@ abstract class Table extends WP_List_Table {
 		$this->_column_headers = array( $this->get_columns(), array(), $this->get_sortable_columns() );
 	}
 
-	public function get_sortable_columns() {
+	protected function get_sortable_columns() {
 		return array();
 	}
 
@@ -69,11 +69,11 @@ abstract class Table extends WP_List_Table {
 		echo '</tr>';
 	}
 
-	public function column_default( $item, $column_name ) {
+	protected function column_default( $item, $column_name ) {
 		return $item->$column_name;
 	}
 
-	public function column_cb( $item ) {
+	protected function column_cb( $item ) {
 		$key = $this->_checkbox_field;
 
 		return sprintf( '<input type="checkbox" name="%1$s[]" value="%2$s" />', $this->_args['singular'], $item->$key );
@@ -87,7 +87,6 @@ abstract class Table extends WP_List_Table {
 				} else {
 					return $default;
 				}
-				break;
 			case 'order':
 				$value = strtoupper( $value );
 
@@ -96,7 +95,6 @@ abstract class Table extends WP_List_Table {
 				} else {
 					return $default;
 				}
-				break;
 		}
 	}
 }

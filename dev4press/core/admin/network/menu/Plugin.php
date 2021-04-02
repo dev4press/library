@@ -1,9 +1,9 @@
 <?php
 
-namespace Dev4Press\Core\Admin\Network\Menu;
+namespace Dev4Press\v35\Core\Admin\Network\Menu;
 
-use Dev4Press\Core\Admin\Menu\Plugin as BasePlugin;
-use Dev4Press\Core\UI\Enqueue;
+use Dev4Press\v35\Core\Admin\Menu\Plugin as BasePlugin;
+use Dev4Press\v35\Core\UI\Enqueue;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

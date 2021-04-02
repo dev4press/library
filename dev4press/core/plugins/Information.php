@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Plugins\Information
-Version: v3.4
+Name:    Dev4Press\v35\Core\Plugins\Information
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\Core\Plugins;
+namespace Dev4Press\v35\Core\Plugins;
 
-use Dev4Press\API\Store;
+use Dev4Press\v35\API\Store;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

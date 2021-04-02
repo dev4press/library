@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Plugins\InstallDB
-Version: v3.4
+Name:    Dev4Press\v35\Core\Plugins\InstallDB
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\Core\Plugins;
+namespace Dev4Press\v35\Core\Plugins;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,7 +37,7 @@ abstract class InstallDB {
 	public function __construct() {
 	}
 
-	/** @return \Dev4Press\Core\Plugins\InstallDB */
+	/** @return InstallDB */
 	public static function instance() {
 		static $instance = array();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev4Press\Core\UI\Admin;
+namespace Dev4Press\v35\Core\UI\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -9,16 +9,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Panel {
 	static private $_current_instance = null;
 
-	/** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v35\Core\Admin\Plugin|\Dev4Press\v35\Core\Admin\Menu\Plugin|\Dev4Press\v35\Core\Admin\Submenu\Plugin */
 	private $admin;
 
-	/** @var \Dev4Press\Core\UI\Admin\Render */
+	/** @var \Dev4Press\v35\Core\UI\Admin\Render */
 	private $render;
 
 	protected $sidebar = true;
 	protected $form = false;
 	protected $subpanels = array();
-	protected $render_class = '\\Dev4Press\\Core\\UI\\Admin\\Render';
+	protected $render_class = '\\Dev4Press\\v35\\Core\\UI\\Admin\\Render';
 
 	public function __construct( $admin ) {
 		$this->admin = $admin;

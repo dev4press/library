@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Helpers\HTAccess
-Version: v3.4
+Name:    Dev4Press\v35\Core\Helpers\HTAccess
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\Core\Helpers;
+namespace Dev4Press\v35\Core\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -40,11 +40,11 @@ class HTAccess {
 		$this->path = $path == '' ? ABSPATH . '.htaccess' : $path;
 	}
 
-	public function is_writable() {
+	public function is_writable() : bool {
 		return is_writable( $this->path );
 	}
 
-	public function file_exists() {
+	public function file_exists() : bool {
 		return file_exists( $this->path );
 	}
 
@@ -56,11 +56,11 @@ class HTAccess {
 		}
 	}
 
-	public function remove( $marker ) {
+	public function remove( $marker ) : bool {
 		return $this->insert( $marker );
 	}
 
-	public function insert( $marker, $insertion = array(), $location = 'end', $cleanup = false ) {
+	public function insert( $marker, $insertion = array(), $location = 'end', $cleanup = false ) : bool {
 		if ( ! $this->file_exists() || $this->is_writable() ) {
 			if ( ! $this->file_exists() ) {
 				$markerdata = '';

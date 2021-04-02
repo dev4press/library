@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Base
-Version: v3.4
+Name:    Dev4Press\v35\Core\Base
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\Core;
+namespace Dev4Press\v35\Core;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -45,7 +45,7 @@ class Base {
 		}
 	}
 
-	public function to_array() {
+	public function to_array() : array {
 		return (array) $this;
 	}
 

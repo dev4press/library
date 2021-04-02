@@ -1,4 +1,4 @@
-<?php use Dev4Press\Core\Options\Render; ?>
+<?php use Dev4Press\v35\Core\Options\Render; ?>
 
 <div class="d4p-content">
 	<?php

@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\Core\Admin\PostBack
-Version: v3.4
+Name:    Dev4Press\v35\Core\Admin\PostBack
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,16 +24,16 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\Core\Admin;
+namespace Dev4Press\v35\Core\Admin;
 
-use Dev4Press\Core\Options\Process;
+use Dev4Press\v35\Core\Options\Process;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 abstract class PostBack {
-	/** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v35\Core\Admin\Plugin|\Dev4Press\v35\Core\Admin\Menu\Plugin|\Dev4Press\v35\Core\Admin\Submenu\Plugin */
 	private $admin;
 
 	private $page;

@@ -1,20 +1,20 @@
 <?php
 
-namespace Dev4Press\Core\UI;
+namespace Dev4Press\v35\Core\UI;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 final class Widgets {
-	/** @var \Dev4Press\Core\Admin\Plugin|\Dev4Press\Core\Admin\Menu\Plugin|\Dev4Press\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v35\Core\Admin\Plugin|\Dev4Press\v35\Core\Admin\Menu\Plugin|\Dev4Press\v35\Core\Admin\Submenu\Plugin */
 	private $_admin;
 
 	public function __construct( $admin ) {
 		$this->_admin = $admin;
 	}
 
-	/** @return \Dev4Press\Core\UI\Widgets */
+	/** @return Widgets */
 	public static function instance( $widget, $admin ) {
 		static $_d4p_widgets_loader = array();
 
