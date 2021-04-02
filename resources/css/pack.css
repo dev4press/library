@@ -2141,6 +2141,14 @@ a > .d4p-icon {
   font-style: normal;
 }
 
+.dev4press-info-default-value {
+  background-color: #eee;
+  font-family: monospace;
+  color: #111;
+  display: inline-block;
+  padding: 1px 7px;
+}
+
 :root {
   --balloon-border-radius: 0px;
   --balloon-color: #007CBA;
