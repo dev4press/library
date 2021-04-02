@@ -43,16 +43,15 @@ abstract class Shortcodes {
 		$this->init();
 
 		$this->_register();
-		$this->_shortcake();
 	}
 
 	abstract public function init();
 
-	protected function _real_code( $code ) {
+	protected function _real_code( $code ) : string {
 		return $this->prefix != '' ? $this->prefix . '_' . $code : $code;
 	}
 
-	protected function _wrapper( $content, $name, $extra_class = '', $tag = 'div' ) {
+	protected function _wrapper( $content, $name, $extra_class = '', $tag = 'div' ) : string {
 		$classes = array(
 			$this->prefix . '-shortcode-wrapper',
 			$this->prefix . '-shortcode-' . str_replace( '_', '-', $name )
@@ -81,15 +80,11 @@ abstract class Shortcodes {
 		}
 	}
 
-	protected function _shortcake() {
-		add_action( 'shortcode_ui_before_do_shortcode', array( $this, 'shortcake_before' ) );
-	}
-
-	protected function _args( $code ) {
+	protected function _args( $code ) : array {
 		return isset( $this->shortcodes[ $code ]['args'] ) ? $this->shortcodes[ $code ]['args'] : array();
 	}
 
-	protected function _atts( $code, $atts = array() ) {
+	protected function _atts( $code, $atts = array() ) : array {
 		$real_code = $this->_real_code( $code );
 
 		if ( isset( $atts[0] ) ) {
@@ -103,7 +98,7 @@ abstract class Shortcodes {
 		return shortcode_atts( $default, $atts );
 	}
 
-	protected function _content( $content, $raw = false ) {
+	protected function _content( $content, $raw = false ) : string {
 		if ( $raw ) {
 			return $content;
 		} else {
@@ -111,7 +106,7 @@ abstract class Shortcodes {
 		}
 	}
 
-	protected function _regex( $list = array() ) {
+	protected function _regex( $list = array() ) : string {
 		if ( empty( $list ) ) {
 			$tagnames  = array_keys( $this->registered );
 			$tagregexp = join( '|', array_map( 'preg_quote', $tagnames ) );
@@ -148,35 +143,5 @@ abstract class Shortcodes {
 		       . ')'
 		       . '(\\]?)';
 
-	}
-
-	public function shortcake_before( $shortcode ) {
-		$matches = array();
-		$regex   = $this->_regex();
-
-		preg_match( "/$regex/s", $shortcode, $matches );
-
-		if ( ! empty( $matches ) ) {
-			$name = $matches[2];
-
-			if ( isset( $this->registered[ $name ] ) ) {
-				$this->shortcake      = $this->registered[ $name ];
-				$this->shortcake_full = $shortcode;
-			}
-		}
-	}
-
-	public function shortcake_preview( $atts, $shortcode ) {
-		$render = '<div style="line-height: 1.3; border: 2px dashed #444444; margin: 5px; padding: 10px;">';
-		$render .= '<div style="color: #666666; font-size: 11px; text-transform: uppercase;">' . $this->shortcake_title . '</div>';
-		$render .= '<div style="color: #333333; font-size: 14px; font-weight: bold;">' . $this->shortcodes[ $shortcode ]['name'] . '</div>';
-		$render .= '<div style="color: #333333; font-size: 12px; font-family: monospace; margin: 5px 0 0 5px;">' . $this->shortcake_full . '</div>';
-		$render .= '</div>';
-
-		return $render;
-	}
-
-	public function in_shortcake_preview( $name ) {
-		return $this->shortcake == $name;
 	}
 }
