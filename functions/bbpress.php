@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: bbPress
-Version: v3.4
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -29,13 +29,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! function_exists( 'd4p_has_bbpress' ) ) {
-	function d4p_has_bbpress() {
+	function d4p_has_bbpress() : bool {
 		return d4p_get_bbpress_major_version_code() > 24;
 	}
 }
 
 if ( ! function_exists( 'd4p_get_bbpress_major_version_code' ) ) {
-	function d4p_get_bbpress_major_version_code() {
+	function d4p_get_bbpress_major_version_code() : int {
 		if ( function_exists( 'bbp_get_version' ) ) {
 			$version = bbp_get_version();
 
@@ -65,7 +65,7 @@ if ( ! function_exists( 'd4p_get_bbpress_major_version_number' ) ) {
 }
 
 if ( ! function_exists( 'd4p_get_bbpress_user_roles' ) ) {
-	function d4p_get_bbpress_user_roles() {
+	function d4p_get_bbpress_user_roles() : array {
 		$roles = array();
 
 		$dynamic_roles = bbp_get_dynamic_roles();
@@ -79,7 +79,7 @@ if ( ! function_exists( 'd4p_get_bbpress_user_roles' ) ) {
 }
 
 if ( ! function_exists( 'd4p_get_bbpress_mederator_roles' ) ) {
-	function d4p_get_bbpress_mederator_roles() {
+	function d4p_get_bbpress_mederator_roles() : array {
 		$roles = array();
 
 		$dynamic_roles = bbp_get_dynamic_roles();
@@ -95,7 +95,7 @@ if ( ! function_exists( 'd4p_get_bbpress_mederator_roles' ) ) {
 }
 
 if ( ! function_exists( 'd4p_get_bbpress_forums_list' ) ) {
-	function d4p_get_bbpress_forums_list( $args = array() ) {
+	function d4p_get_bbpress_forums_list( $args = array() ) : array {
 		$defaults = array(
 			'post_type'   => bbp_get_forum_post_type(),
 			'numberposts' => - 1,

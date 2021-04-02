@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 03/14/2021 11:12:38 AM\n"
+"POT-Creation-Date: 04/02/2021 10:01:08 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,73 +116,73 @@ msgstr ""
 msgid "Loaded Template"
 msgstr ""
 
-#: dev4press/core/options/Render.php:491
+#: dev4press/core/options/Render.php:505
 msgid "Add New Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:520
-#: dev4press/core/options/Render.php:551
+#: dev4press/core/options/Render.php:534
+#: dev4press/core/options/Render.php:565
 msgid "No items to show"
 msgstr ""
 
-#: dev4press/core/options/Render.php:569
+#: dev4press/core/options/Render.php:583
 msgid "Add Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:573
+#: dev4press/core/options/Render.php:587
 msgid "No images selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:583
+#: dev4press/core/options/Render.php:597
 #: dev4press/core/ui/admin/PanelTools.php:54
 #: dev4press/core/ui/Enqueue.php:541
 msgid "Remove"
 msgstr ""
 
-#: dev4press/core/options/Render.php:584
+#: dev4press/core/options/Render.php:598
 #: dev4press/core/ui/Enqueue.php:542
 msgid "Preview"
 msgstr ""
 
-#: dev4press/core/options/Render.php:597
+#: dev4press/core/options/Render.php:611
 #: dev4press/core/ui/Enqueue.php:543
 msgid "Select Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:598
+#: dev4press/core/options/Render.php:612
 msgid "Show Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:599
+#: dev4press/core/options/Render.php:613
 msgid "Clear Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:602
+#: dev4press/core/options/Render.php:616
 #: dev4press/core/ui/Enqueue.php:545
 msgid "Image not selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:625
+#: dev4press/core/options/Render.php:639
 msgid "Enabled"
 msgstr ""
 
-#: dev4press/core/options/Render.php:802
+#: dev4press/core/options/Render.php:816
 msgid "Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:805
+#: dev4press/core/options/Render.php:819
 msgid "Unit"
 msgstr ""
 
-#: dev4press/core/options/Render.php:818
+#: dev4press/core/options/Render.php:832
 #: functions/admin.php:266
-#: functions/admin.php:369
+#: functions/admin.php:370
 msgid "Check All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:819
+#: dev4press/core/options/Render.php:833
 #: functions/admin.php:267
-#: functions/admin.php:370
+#: functions/admin.php:371
 msgid "Uncheck All"
 msgstr ""
 
@@ -269,19 +269,19 @@ msgstr ""
 msgid "Ascending"
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:85
+#: dev4press/core/task/AJAX.php:89
 msgid "Process is starting."
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:94
+#: dev4press/core/task/AJAX.php:98
 msgid "Process has been interrupted by user."
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:101
+#: dev4press/core/task/AJAX.php:105
 msgid "Process has completed."
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:108
+#: dev4press/core/task/AJAX.php:112
 msgid "Completed %s out of %s items."
 msgstr ""
 

@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Functions
-Version: v3.4
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -131,7 +131,7 @@ if ( ! function_exists( 'd4p_render_select' ) ) {
 			$real_value = $associative ? $display : $value;
 
 			$sel    = in_array( $real_value, $selected ) ? ' selected="selected"' : '';
-			$render .= '<option value="' . esc_attr( $value ) . '"' . $sel . '>' . $display . '</option>';
+			$render .= '<option value="' . esc_attr( $value ) . '"' . $sel . '>' . esc_html( $display ) . '</option>';
 		}
 		$render .= '</select>';
 
@@ -210,7 +210,7 @@ if ( ! function_exists( 'd4p_render_grouped_select' ) ) {
 			$render .= '<optgroup label="' . $group['title'] . '">';
 			foreach ( $group['values'] as $value => $display ) {
 				$sel    = in_array( $value, $selected ) ? ' selected="selected"' : '';
-				$render .= '<option value="' . esc_attr( $value ) . '"' . $sel . '>' . $display . '</option>';
+				$render .= '<option value="' . esc_attr( $value ) . '"' . $sel . '>' . esc_html( $display ) . '</option>';
 			}
 			$render .= '</optgroup>';
 		}
@@ -297,7 +297,8 @@ if ( ! function_exists( 'd4p_render_check_radios' ) ) {
 			}
 
 			$render .= sprintf( '<label><input %s />%s</label>',
-				join( ' ', $attributes ), $title );
+				join( ' ', $attributes ),
+				esc_html( $title ) );
 		}
 		$render .= '</div>';
 
@@ -367,8 +368,8 @@ if ( ! function_exists( 'd4p_render_check_radios_with_hierarchy' ) ) {
 		if ( $multi ) {
 			$render .= '<div class="d4p-check-uncheck">';
 
-			$render .= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> ' . __( "Check All", "d4plib" ) . '</a>';
-			$render .= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . __( "Uncheck All", "d4plib" ) . '</a>';
+			$render .= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> ' . esc_html__( "Check All", "d4plib" ) . '</a>';
+			$render .= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . esc_html__( "Uncheck All", "d4plib" ) . '</a>';
 
 			$render .= '</div>';
 		}

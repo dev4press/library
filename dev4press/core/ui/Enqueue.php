@@ -43,26 +43,26 @@ final class Enqueue {
 			'helpers'                => array(
 				'path' => 'js/',
 				'file' => 'helpers',
-				'ext' => 'js',
-				'min' => true
+				'ext'  => 'js',
+				'min'  => true
 			),
 			'customizer'             => array(
 				'path' => 'js/',
 				'file' => 'customizer',
-				'ext' => 'js',
-				'min' => true
+				'ext'  => 'js',
+				'min'  => true
 			),
 			'widgets'                => array(
 				'path' => 'js/',
 				'file' => 'widgets',
-				'ext' => 'js',
-				'min' => true
+				'ext'  => 'js',
+				'min'  => true
 			),
 			'wizard'                 => array(
 				'path' => 'js/',
 				'file' => 'wizard',
-				'ext' => 'js',
-				'min' => true
+				'ext'  => 'js',
+				'min'  => true
 			),
 			'confirmsubmit'          => array(
 				'path' => 'js/',
@@ -201,26 +201,26 @@ final class Enqueue {
 			'pack'                   => array(
 				'path' => 'css/',
 				'file' => 'pack',
-				'ext' => 'css',
-				'min' => true
+				'ext'  => 'css',
+				'min'  => true
 			),
 			'about'                  => array(
 				'path' => 'css/',
 				'file' => 'about',
-				'ext' => 'css',
-				'min' => true
+				'ext'  => 'css',
+				'min'  => true
 			),
 			'flags'                  => array(
 				'path' => 'css/',
 				'file' => 'flags',
-				'ext' => 'css',
-				'min' => true
+				'ext'  => 'css',
+				'min'  => true
 			),
 			'font'                   => array(
 				'path' => 'css/',
 				'file' => 'font',
-				'ext' => 'css',
-				'min' => true
+				'ext'  => 'css',
+				'min'  => true
 			),
 			'font-embed'             => array(
 				'path' => 'css/',
@@ -231,26 +231,26 @@ final class Enqueue {
 			'grid'                   => array(
 				'path' => 'css/',
 				'file' => 'grid',
-				'ext' => 'css',
-				'min' => true
+				'ext'  => 'css',
+				'min'  => true
 			),
 			'ctrl'                   => array(
 				'path' => 'css/',
 				'file' => 'ctrl',
-				'ext' => 'css',
-				'min' => true
+				'ext'  => 'css',
+				'min'  => true
 			),
 			'meta'                   => array(
 				'path' => 'css/',
 				'file' => 'meta',
-				'ext' => 'css',
-				'min' => true
+				'ext'  => 'css',
+				'min'  => true
 			),
 			'options'                => array(
 				'path' => 'css/',
 				'file' => 'options',
-				'ext' => 'css',
-				'min' => true
+				'ext'  => 'css',
+				'min'  => true
 			),
 			'shared'                 => array(
 				'path' => 'css/',

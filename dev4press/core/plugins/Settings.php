@@ -172,7 +172,7 @@ abstract class Settings {
 	}
 
 	public function get( $name, $group = 'settings', $default = null ) {
-		return apply_filters( $this->base . '_' . $this->scope . '_settings_get', $this->raw_get($name, $group, $default), $name, $group );
+		return apply_filters( $this->base . '_' . $this->scope . '_settings_get', $this->raw_get( $name, $group, $default ), $name, $group );
 	}
 
 	public function set( $name, $value, $group = 'settings', $save = false ) {

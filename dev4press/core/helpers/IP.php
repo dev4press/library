@@ -283,7 +283,7 @@ class IP {
 			$ip = '127.0.0.1';
 		}
 
-		return (string)$ip;
+		return (string) $ip;
 	}
 
 	public static function get_all_ips() : array {

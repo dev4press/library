@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: Bridge
-Version: v3.4
+Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -73,7 +73,7 @@ if ( ! function_exists( 'd4p_download_file_resume' ) ) {
 }
 
 if ( ! function_exists( 'd4p_object_cache' ) ) {
-	function d4p_object_cache() {
+	function d4p_object_cache() : Store {
 		return Store::instance();
 	}
 }
