@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Base Library Functions: bbPress
+Name:    Dev4Press\v35\Functions\bbPress
 Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,18 +24,28 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
+namespace Dev4Press\v35\Functions\bbPress;
+
+use function Dev4Press\v35\Functions\WP\is_plugin_active;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'd4p_has_bbpress' ) ) {
-	function d4p_has_bbpress() : bool {
-		return d4p_get_bbpress_major_version_code() > 24;
+if ( ! function_exists( __NAMESPACE__ . '\is_active' ) ) {
+	function is_active() : bool {
+		if ( is_plugin_active( 'bbpress/bbpress.php' ) ) {
+			$version = major_version_code();
+
+			return $version > 25;
+		} else {
+			return false;
+		}
 	}
 }
 
-if ( ! function_exists( 'd4p_get_bbpress_major_version_code' ) ) {
-	function d4p_get_bbpress_major_version_code() : int {
+if ( ! function_exists( __NAMESPACE__ . '\major_version_code' ) ) {
+	function major_version_code() : int {
 		if ( function_exists( 'bbp_get_version' ) ) {
 			$version = bbp_get_version();
 
@@ -46,8 +56,8 @@ if ( ! function_exists( 'd4p_get_bbpress_major_version_code' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_get_bbpress_major_version_number' ) ) {
-	function d4p_get_bbpress_major_version_number( $ret = 'number' ) {
+if ( ! function_exists( __NAMESPACE__ . '\major_version_number' ) ) {
+	function major_version_number( $ret = 'number' ) {
 		if ( function_exists( 'bbp_get_version' ) ) {
 			$version = bbp_get_version();
 
@@ -64,8 +74,8 @@ if ( ! function_exists( 'd4p_get_bbpress_major_version_number' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_get_bbpress_user_roles' ) ) {
-	function d4p_get_bbpress_user_roles() : array {
+if ( ! function_exists( __NAMESPACE__ . '\get_user_roles' ) ) {
+	function get_user_roles() : array {
 		$roles = array();
 
 		$dynamic_roles = bbp_get_dynamic_roles();
@@ -78,8 +88,8 @@ if ( ! function_exists( 'd4p_get_bbpress_user_roles' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_get_bbpress_mederator_roles' ) ) {
-	function d4p_get_bbpress_mederator_roles() : array {
+if ( ! function_exists( __NAMESPACE__ . '\get_moderator_roles' ) ) {
+	function get_moderator_roles() : array {
 		$roles = array();
 
 		$dynamic_roles = bbp_get_dynamic_roles();
@@ -94,8 +104,8 @@ if ( ! function_exists( 'd4p_get_bbpress_mederator_roles' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_get_bbpress_forums_list' ) ) {
-	function d4p_get_bbpress_forums_list( $args = array() ) : array {
+if ( ! function_exists( __NAMESPACE__ . '\get_forums_list' ) ) {
+	function get_forums_list( $args = array() ) : array {
 		$defaults = array(
 			'post_type'   => bbp_get_forum_post_type(),
 			'numberposts' => - 1,

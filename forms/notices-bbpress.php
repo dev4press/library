@@ -1,5 +1,7 @@
 <?php
 
+use function Dev4Press\v35\Functions\WP\is_plugin_active;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -7,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $_dismiss_url = d4p_panel()->a()->current_url( false ) . '&' . d4p_panel()->a()->v() . '=getback&action=';
 $_utm_medium  = 'plugin-' . d4p_panel()->a()->plugin;
 
-if ( ! d4p_is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-bbpress.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdpos_hide', 'core' ) === false ) {
+if ( ! is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-bbpress.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdpos_hide', 'core' ) === false ) {
 	$url = 'https://plugins.dev4press.com/gd-power-search-for-bbpress/';
 	$url = d4p_url_campaign_tracking( $url, 'front-panel', $_utm_medium );
 
@@ -21,7 +23,7 @@ if ( ! d4p_is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-bb
     </div>
 
 	<?php
-} else if ( ! d4p_is_plugin_active( 'gd-bbpress-toolbox/gd-bbpress-toolbox.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdbbx_hide', 'core' ) === false ) {
+} else if ( ! is_plugin_active( 'gd-bbpress-toolbox/gd-bbpress-toolbox.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdbbx_hide', 'core' ) === false ) {
 	$url = 'https://plugins.dev4press.com/gd-bbpress-toolbox/';
 	$url = d4p_url_campaign_tracking( $url, 'front-panel', $_utm_medium );
 
@@ -36,7 +38,7 @@ if ( ! d4p_is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-bb
 
 	<?php
 
-} else if ( ! d4p_is_plugin_active( 'gd-topic-prefix/gd-topic-prefix.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdtox_hide', 'core' ) === false ) {
+} else if ( ! is_plugin_active( 'gd-topic-prefix/gd-topic-prefix.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdtox_hide', 'core' ) === false ) {
 	$url = 'https://plugins.dev4press.com/gd-topic-prefix/';
 	$url = d4p_url_campaign_tracking( $url, 'front-panel', $_utm_medium );
 
@@ -50,7 +52,7 @@ if ( ! d4p_is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-bb
     </div>
 
 	<?php
-} else if ( ! d4p_is_plugin_active( 'gd-forum-notices-for-bbpress/gd-forum-notices-for-bbpress.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdfon_hide', 'core' ) === false ) {
+} else if ( ! is_plugin_active( 'gd-forum-notices-for-bbpress/gd-forum-notices-for-bbpress.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdfon_hide', 'core' ) === false ) {
 	$url = 'https://plugins.dev4press.com/gd-forum-notices-for-bbpress/';
 	$url = d4p_url_campaign_tracking( $url, 'front-panel', $_utm_medium );
 
@@ -64,7 +66,7 @@ if ( ! d4p_is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-bb
     </div>
 
 	<?php
-} else if ( ! d4p_is_plugin_active( 'gd-topic-polls/gd-topic-polls.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdpol_hide', 'core' ) === false ) {
+} else if ( ! is_plugin_active( 'gd-topic-polls/gd-topic-polls.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdpol_hide', 'core' ) === false ) {
 	$url = 'https://plugins.dev4press.com/gd-topic-polls/';
 	$url = d4p_url_campaign_tracking( $url, 'front-panel', $_utm_medium );
 
@@ -78,7 +80,7 @@ if ( ! d4p_is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-bb
     </div>
 
 	<?php
-} else if ( ! d4p_is_plugin_active( 'gd-quantum-theme-for-bbpress/gd-quantum-theme-for-bbpress.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdqnt_hide', 'core' ) === false ) {
+} else if ( ! is_plugin_active( 'gd-quantum-theme-for-bbpress/gd-quantum-theme-for-bbpress.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdqnt_hide', 'core' ) === false ) {
 	$url = 'https://plugins.dev4press.com/gd-quantum-theme-for-bbpress/';
 	$url = d4p_url_campaign_tracking( $url, 'front-panel', $_utm_medium );
 
@@ -93,7 +95,7 @@ if ( ! d4p_is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-bb
 
 	<?php
 
-} else if ( ! d4p_is_plugin_active( 'gd-members-directory-for-bbpress/gd-members-directory-for-bbpress.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdmed_hide', 'core' ) === false ) {
+} else if ( ! is_plugin_active( 'gd-members-directory-for-bbpress/gd-members-directory-for-bbpress.php' ) && d4p_panel()->a()->settings()->get( 'notice_gdmed_hide', 'core' ) === false ) {
 	$url = 'https://plugins.dev4press.com/gd-members-directory-for-bbpress/';
 	$url = d4p_url_campaign_tracking( $url, 'front-panel', $_utm_medium );
 

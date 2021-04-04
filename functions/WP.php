@@ -142,3 +142,24 @@ if ( ! function_exists( __NAMESPACE__ . '\switch_to_default_theme' ) ) {
 		switch_theme( WP_DEFAULT_THEME, WP_DEFAULT_THEME );
 	}
 }
+
+if ( ! function_exists( __NAMESPACE__ . '\is_plugin_active' ) ) {
+	function is_plugin_active( $plugin ) : bool {
+		return in_array( $plugin, (array) get_option( 'active_plugins', array() ), true ) || is_plugin_active_for_network( $plugin );
+	}
+}
+
+if ( ! function_exists( __NAMESPACE__ . '\is_plugin_active_for_network' ) ) {
+	function is_plugin_active_for_network( $plugin ) : bool {
+		if ( ! is_multisite() ) {
+			return false;
+		}
+
+		$plugins = get_site_option( 'active_sitewide_plugins' );
+		if ( isset( $plugins[ $plugin ] ) ) {
+			return true;
+		}
+
+		return false;
+	}
+}

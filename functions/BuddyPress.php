@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Base Library Functions: BuddyPress
+Name:    Dev4Press\v35\Functions\BuddyPress
 Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,15 +24,18 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
+namespace Dev4Press\v35\Functions\BuddyPress;
+
+use function Dev4Press\v35\Functions\WP\is_plugin_active;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'd4p_has_buddypress' ) ) {
-	function d4p_has_buddypress() : bool {
-		if ( d4p_is_plugin_active( 'buddypress/bp-loader.php' ) ) {
-			$version = bp_get_version();
-			$version = intval( substr( str_replace( '.', '', $version ), 0, 2 ) );
+if ( ! function_exists( __NAMESPACE__ . '\is_active' ) ) {
+	function is_active() : bool {
+		if ( is_plugin_active( 'buddypress/bp-loader.php' ) ) {
+			$version = major_version_code();
 
 			return $version > 39;
 		} else {
@@ -41,8 +44,8 @@ if ( ! function_exists( 'd4p_has_buddypress' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_get_buddypress_major_version_code' ) ) {
-	function d4p_get_buddypress_major_version_code() : int {
+if ( ! function_exists( __NAMESPACE__ . '\major_version_code' ) ) {
+	function major_version_code() : int {
 		if ( function_exists( 'bp_get_version' ) ) {
 			$version = bp_get_version();
 
@@ -53,8 +56,8 @@ if ( ! function_exists( 'd4p_get_buddypress_major_version_code' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_get_buddypress_major_version_number' ) ) {
-	function d4p_get_buddypress_major_version_number( $ret = 'number' ) {
+if ( ! function_exists( __NAMESPACE__ . '\major_version_number' ) ) {
+	function major_version_number( $ret = 'number' ) {
 		if ( function_exists( 'bp_get_version' ) ) {
 			$version = bp_get_version();
 

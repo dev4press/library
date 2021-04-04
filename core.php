@@ -90,11 +90,11 @@ include( dirname( __FILE__ ) . '/functions/Sanitize.php' );
 include( dirname( __FILE__ ) . '/functions/Conditions.php' );
 include( dirname( __FILE__ ) . '/functions/Transient.php' );
 include( dirname( __FILE__ ) . '/functions/WP.php' );
+include( dirname( __FILE__ ) . '/functions/bbPress.php' );
+include( dirname( __FILE__ ) . '/functions/BuddyPress.php' );
 
 include( dirname( __FILE__ ) . '/functions/helpers.php' );
 
 include( dirname( __FILE__ ) . '/functions/wordpress.php' );
-include( dirname( __FILE__ ) . '/functions/bbpress.php' );
-include( dirname( __FILE__ ) . '/functions/buddypress.php' );
 
 include( dirname( __FILE__ ) . '/functions/Deprecated.php' );
