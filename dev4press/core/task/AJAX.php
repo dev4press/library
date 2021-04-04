@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v35\Core\Task;
 
+use function Dev4Press\v35\Functions\WP\json_die;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -120,7 +122,7 @@ abstract class AJAX {
 
 		$response['message'] = join( D4P_EOL, $this->messages );
 
-		d4p_json_die( $response );
+		json_die( $response );
 	}
 
 	protected function init_data() {

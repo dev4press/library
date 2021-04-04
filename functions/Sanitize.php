@@ -169,3 +169,15 @@ if ( ! function_exists( __NAMESPACE__ . '\sanitize_basic_array' ) ) {
 		return $output;
 	}
 }
+
+if ( ! function_exists( __NAMESPACE__ . '\sanitize_ids_list' ) ) {
+	function sanitize_ids_list( $ids, $map = 'absint' ) : array {
+		$ids = (array) $ids;
+
+		$ids = array_map( $map, $ids );
+		$ids = array_unique( $ids );
+		$ids = array_filter( $ids );
+
+		return $ids;
+	}
+}

@@ -61,3 +61,19 @@ if ( ! function_exists( __NAMESPACE__ . '\is_valid_datetime' ) ) {
 		return $d && $d->format( $format ) == $date;
 	}
 }
+
+if ( ! function_exists( __NAMESPACE__ . '\is_request_post' ) ) {
+	function is_request_post() : bool {
+		return $_SERVER['REQUEST_METHOD'] === 'POST';
+	}
+}
+
+if ( ! function_exists( __NAMESPACE__ . '\is_regex_valid' ) ) {
+	function is_regex_valid( $regex ) {
+		if ( preg_match( '/' . $regex . '/i', 'dev4press' ) !== false ) {
+			return true;
+		}
+
+		return preg_last_error();
+	}
+}

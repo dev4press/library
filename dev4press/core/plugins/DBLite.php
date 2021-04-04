@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v35\Core\Plugins;
 
+use function Dev4Press\v35\Functions\sanitize_ids_list;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -59,7 +61,7 @@ abstract class DBLite {
 	}
 
 	public function clean_ids_list( $ids ) {
-		return d4p_clean_ids_list( $ids );
+		return sanitize_ids_list( $ids );
 	}
 
 	public function build_query( $sql, $calc_found_rows = true ) {

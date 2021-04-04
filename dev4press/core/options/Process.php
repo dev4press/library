@@ -34,6 +34,7 @@ use function Dev4Press\v35\Functions\sanitize_key_expanded;
 use function Dev4Press\v35\Functions\sanitize_month;
 use function Dev4Press\v35\Functions\sanitize_slug;
 use function Dev4Press\v35\Functions\sanitize_time;
+use function Dev4Press\v35\Functions\split_textarea_to_list;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -192,7 +193,7 @@ class Process {
 				}
 				break;
 			case 'listing':
-				$value = d4p_split_textarea_to_list( stripslashes( $post[ $key ] ) );
+				$value = split_textarea_to_list( stripslashes( $post[ $key ] ) );
 				break;
 			case 'media':
 				$value = 0;

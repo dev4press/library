@@ -30,7 +30,8 @@ use WP_Widget;
 use function Dev4Press\v35\Functions\sanitize_basic;
 use function Dev4Press\v35\Functions\sanitize_html;
 use function Dev4Press\v35\Functions\sanitize_key_expanded;
-use function Dev4Press\v35\Functions\WP\get_user_roles;
+use function Dev4Press\v35\Functions\WP\all_user_roles;
+use function Dev4Press\v35\Functions\WP\is_current_user_roles;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -190,7 +191,7 @@ abstract class Widget extends WP_Widget {
 
 		if ( isset( $new_instance['_roles'] ) ) {
 			$_roles      = array_map( '\Dev4Press\v35\Functions\Sanitize\sanitize_basic', $new_instance['_roles'] );
-			$valid_roles = get_user_roles();
+			$valid_roles = all_user_roles();
 
 			foreach ( $_roles as $role ) {
 				if ( isset( $valid_roles[ $role ] ) ) {
@@ -287,7 +288,7 @@ abstract class Widget extends WP_Widget {
 				if ( empty( $roles ) ) {
 					$visible = $logged;
 				} else {
-					$visible = d4p_is_current_user_roles( $roles );
+					$visible = is_current_user_roles( $roles );
 				}
 			} else if ( $users == 'caps' && ! empty( $cap ) ) {
 				$visible = current_user_can( $cap );

@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v35\Core\Admin;
 
+use function Dev4Press\v35\Functions\WP\is_current_user_admin;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -92,7 +94,7 @@ abstract class GetBack {
 	protected function tools_export() {
 		check_ajax_referer( 'dev4press-plugin-' . $this->a()->plugin_prefix );
 
-		if ( ! d4p_is_current_user_admin() ) {
+		if ( ! is_current_user_admin() ) {
 			wp_die( __( "Only administrators can use export features.", "d4plib" ) );
 		}
 

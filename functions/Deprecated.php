@@ -24,6 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
+use function Dev4Press\v35\Functions\sanitize_basic;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -97,5 +99,55 @@ if ( ! function_exists( 'd4p_mysql_datetime_format' ) ) {
 		_deprecated_function( __FUNCTION__, '3.5' );
 
 		return 'Y-m-d H:i:s';
+	}
+}
+
+if ( ! function_exists( 'd4p_render_toggle_block' ) ) {
+	/**
+	 * @deprecated 3.5
+	 */
+	function d4p_render_toggle_block( $title, $content, $classes = array() ) {
+		_deprecated_function( __FUNCTION__, '3.5' );
+
+		$render = '<div class="d4p-section-toggle ' . join( ' ', $classes ) . '">';
+		$render .= '<div class="d4p-toggle-title">';
+		$render .= '<i class="fa fa-caret-down fa-fw"></i> ' . $title;
+		$render .= '</div>';
+		$render .= '<div class="d4p-toggle-content" style="display: none;">';
+		$render .= $content;
+		$render .= '</div>';
+		$render .= '</div>';
+
+		return $render;
+	}
+}
+
+if ( ! function_exists( 'd4p_user_agent' ) ) {
+	/**
+	 * @deprecated 3.5
+	 */
+	function d4p_user_agent() : string {
+		_deprecated_function( __FUNCTION__, '3.5' );
+
+		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
+			return sanitize_basic( trim( $_SERVER['HTTP_USER_AGENT'] ) );
+		}
+
+		return '';
+	}
+}
+
+if ( ! function_exists( 'd4p_json_encode' ) ) {
+	/**
+	 * @deprecated 3.5
+	 */
+	function d4p_json_encode( $data, $options = 0, $depth = 512 ) {
+		_deprecated_function( __FUNCTION__, '3.5', 'wp_json_encode()' );
+
+		if ( function_exists( 'wp_json_encode' ) ) {
+			return wp_json_encode( $data, $options, $depth );
+		} else {
+			return json_encode( $data, $options, $depth );
+		}
 	}
 }

@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v35\Core\Plugins;
 
 use Dev4Press\v35\API\Four;
+use function Dev4Press\v35\Functions\WP\is_classicpress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -67,7 +68,7 @@ abstract class Core {
 	}
 
 	public function plugins_loaded() {
-		if ( d4p_is_classicpress() ) {
+		if ( is_classicpress() ) {
 			$this->cms         = 'classicpress';
 			$this->cms_version = classicpress_version_short();
 		} else {

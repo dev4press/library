@@ -94,7 +94,4 @@ include( dirname( __FILE__ ) . '/functions/WP.php' );
 include( dirname( __FILE__ ) . '/functions/bbPress.php' );
 include( dirname( __FILE__ ) . '/functions/BuddyPress.php' );
 
-include( dirname( __FILE__ ) . '/functions/helpers.php' );
-include( dirname( __FILE__ ) . '/functions/wordpress.php' );
-
 include( dirname( __FILE__ ) . '/functions/Deprecated.php' );
