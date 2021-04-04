@@ -30,19 +30,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'is_wplogin_page' ) ) {
 	function is_wplogin_page() : bool {
-		return isset($GLOBALS['pagenow']) && $GLOBALS['pagenow'] === 'wp-login.php';
+		return isset( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] === 'wp-login.php';
+	}
+}
+
+if ( ! function_exists( 'd4p_is_wp_error' ) ) {
+	function d4p_is_wp_error( $thing ) : bool {
+		return ( $thing instanceof WP_Error ) || ( $thing instanceof \Dev4Press\v35\Core\Helpers\Error );
 	}
 }
 
 if ( ! function_exists( 'is_wpsignup_page' ) ) {
 	function is_wpsignup_page() : bool {
-		return isset($GLOBALS['pagenow']) && $GLOBALS['pagenow'] === 'wp-signup.php';
+		return isset( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] === 'wp-signup.php';
 	}
 }
 
 if ( ! function_exists( 'is_wpactivate_page' ) ) {
 	function is_wpactivate_page() : bool {
-		return isset($GLOBALS['pagenow']) && $GLOBALS['pagenow'] == 'wp-activate.php';
+		return isset( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] == 'wp-activate.php';
 	}
 }
 
@@ -427,7 +433,10 @@ if ( ! function_exists( 'd4p_post_type_has_archive' ) ) {
 
 if ( ! function_exists( 'd4p_is_login_page' ) ) {
 	function d4p_is_login_page( $action = '' ) : bool {
-		$login_page = isset($GLOBALS['pagenow']) && in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) );
+		$login_page = isset( $GLOBALS['pagenow'] ) && in_array( $GLOBALS['pagenow'], array(
+				'wp-login.php',
+				'wp-register.php'
+			) );
 
 		if ( $login_page ) {
 			if ( $action != '' ) {

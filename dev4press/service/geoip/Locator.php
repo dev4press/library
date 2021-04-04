@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v35\Service\GEOIP;
 
+use function Dev4Press\v35\Functions\IP\is_private;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -62,7 +64,7 @@ abstract class Locator {
 		$_not_found = array();
 
 		foreach ( $this->ips as $ip ) {
-			if ( d4p_ip_is_private( $ip ) ) {
+			if ( is_private( $ip ) ) {
 				$this->_data[ $ip ] = new Location( array( 'status' => 'private', 'ip' => $ip ) );
 			} else {
 				$key = $this->_key( $ip );

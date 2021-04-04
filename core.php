@@ -82,17 +82,17 @@ if ( ! defined( 'D4PLIB_CACERT_PATH' ) ) {
 
 include( dirname( __FILE__ ) . '/autoload.php' );
 
-include( dirname( __FILE__ ) . '/functions/bridge.php' );
-include( dirname( __FILE__ ) . '/functions/access.php' );
+include( dirname( __FILE__ ) . '/functions/Bridge.php' );
+
+include( dirname( __FILE__ ) . '/functions/IP.php' );
+include( dirname( __FILE__ ) . '/functions/URL.php' );
+include( dirname( __FILE__ ) . '/functions/Sanitize.php' );
+include( dirname( __FILE__ ) . '/functions/Conditions.php' );
+
 include( dirname( __FILE__ ) . '/functions/helpers.php' );
 include( dirname( __FILE__ ) . '/functions/cache.php' );
 include( dirname( __FILE__ ) . '/functions/debug.php' );
-include( dirname( __FILE__ ) . '/functions/sanitize.php' );
 
 include( dirname( __FILE__ ) . '/functions/wordpress.php' );
 include( dirname( __FILE__ ) . '/functions/bbpress.php' );
 include( dirname( __FILE__ ) . '/functions/buddypress.php' );
-
-if ( D4P_ADMIN ) {
-	include( dirname( __FILE__ ) . '/functions/admin.php' );
-}

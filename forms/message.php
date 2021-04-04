@@ -1,10 +1,12 @@
 <?php
 
+use function Dev4Press\v35\Functions\Sanitize\slug;
+
 $_message = '';
 $_color   = 'success';
 
 if ( isset( $_GET['message'] ) && $_GET['message'] != '' ) {
-	$msg_code = d4p_sanitize_slug( $_GET['message'] );
+	$msg_code = slug( $_GET['message'] );
 
 	switch ( $msg_code ) {
 		case 'saved':

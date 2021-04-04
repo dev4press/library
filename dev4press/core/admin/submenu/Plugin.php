@@ -3,6 +3,7 @@
 namespace Dev4Press\v35\Core\Admin\Submenu;
 
 use Dev4Press\v35\Core\Admin\Plugin as BasePlugin;
+use function Dev4Press\v35\Functions\Sanitize\slug;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -59,13 +60,13 @@ abstract class Plugin extends BasePlugin {
 
 		if ( $this->page ) {
 			if ( isset( $_GET['panel'] ) && ! empty( $_GET['panel'] ) ) {
-				$this->panel = d4p_sanitize_slug( $_GET['panel'] );
+				$this->panel = slug( $_GET['panel'] );
 			} else {
 				$this->panel = 'dashboard';
 			}
 
 			if ( isset( $_GET['subpanel'] ) && ! empty( $_GET['subpanel'] ) ) {
-				$this->subpanel = d4p_sanitize_slug( $_GET['subpanel'] );
+				$this->subpanel = slug( $_GET['subpanel'] );
 			}
 
 			$this->screen_setup();

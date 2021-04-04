@@ -1,10 +1,16 @@
+<?php
+
+use Dev4Press\v35\Core\UI\Elements;
+
+?>
+
 <h4><?php _e( "Widget Visibility", "d4plib" ); ?></h4>
 <table>
     <tbody>
     <tr>
         <td class="cell-singular">
             <label for="<?php echo $this->get_field_id( '_users' ); ?>"><?php _e( "Show widget to", "d4plib" ); ?>:</label>
-			<?php d4p_render_select( $this->get_list_user_visibility(), array(
+			<?php Elements::instance()->select( $this->get_list_user_visibility(), array(
 				'id'       => $this->get_field_id( '_users' ),
 				'class'    => 'widefat d4plib-div-switch',
 				'name'     => $this->get_field_name( '_users' ),
@@ -21,7 +27,7 @@
         <tr>
             <td class="cell-singular">
                 <label for="<?php echo $this->get_field_id( '_roles' ); ?>"><?php _e( "Roles", "d4plib" ); ?>:</label>
-				<?php d4p_render_check_radios( d4p_get_wordpress_user_roles(), array(
+				<?php Elements::instance()->checkboxes( d4p_get_wordpress_user_roles(), array(
 					'id'       => $this->get_field_id( '_roles' ),
 					'class'    => 'widefat',
 					'name'     => $this->get_field_name( '_roles' ),

@@ -373,7 +373,7 @@ class IP {
 		$server = 'whois.lacnic.net';
 
 		if ( $ip == '' ) {
-			$ip = d4p_ip_visitor();
+			$ip = IP::get_visitor_ip();
 		}
 
 		$fp = @fsockopen( $server, 43, $errno, $errstr, 20 );

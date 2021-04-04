@@ -24,32 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
+use function Dev4Press\v35\Functions\Sanitize\basic;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-}
-
-if ( ! function_exists( 'is_odd' ) ) {
-	function is_odd( $number ) : bool {
-		return $number % 2 == 0;
-	}
-}
-
-if ( ! function_exists( 'is_divisible' ) ) {
-	function is_divisible( $number, $by_number ) : bool {
-		return $number % $by_number == 0;
-	}
-}
-
-if ( ! function_exists( 'd4p_clean_ids_list' ) ) {
-	function d4p_clean_ids_list( $ids ) : array {
-		$ids = (array) $ids;
-
-		$ids = array_map( 'absint', $ids );
-		$ids = array_unique( $ids );
-		$ids = array_filter( $ids );
-
-		return $ids;
-	}
 }
 
 if ( ! function_exists( 'd4p_replace_tags_in_content' ) ) {
@@ -63,12 +41,6 @@ if ( ! function_exists( 'd4p_replace_tags_in_content' ) ) {
 		}
 
 		return $content;
-	}
-}
-
-if ( ! function_exists( 'd4p_is_array_associative' ) ) {
-	function d4p_is_array_associative( $array ) : bool {
-		return is_array( $array ) && ( 0 !== count( array_diff_key( $array, array_keys( array_keys( $array ) ) ) ) || count( $array ) == 0 );
 	}
 }
 
@@ -257,12 +229,6 @@ if ( ! function_exists( 'd4p_has_gravatar' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_is_valid_md5' ) ) {
-	function d4p_is_valid_md5( $hash = '' ) : bool {
-		return strlen( $hash ) == 32 && ctype_xdigit( $hash );
-	}
-}
-
 if ( ! function_exists( 'd4p_php_ini_size_value' ) ) {
 	function d4p_php_ini_size_value( $name ) {
 		$ini = ini_get( $name );
@@ -288,14 +254,6 @@ if ( ! function_exists( 'd4p_php_ini_size_value' ) ) {
 		}
 
 		return $ini;
-	}
-}
-
-if ( ! function_exists( 'd4p_is_datetime_valid' ) ) {
-	function d4p_is_datetime_valid( $date, $format = 'Y-m-d H:i:s' ) : bool {
-		$d = DateTime::createFromFormat( $format, $date );
-
-		return $d && $d->format( $format ) == $date;
 	}
 }
 
@@ -344,7 +302,7 @@ if ( ! function_exists( 'd4p_url_campaign_tracking' ) ) {
 if ( ! function_exists( 'd4p_user_agent' ) ) {
 	function d4p_user_agent() : string {
 		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
-			return d4p_sanitize_basic( trim( $_SERVER['HTTP_USER_AGENT'] ) );
+			return basic( trim( $_SERVER['HTTP_USER_AGENT'] ) );
 		}
 
 		return '';
@@ -354,12 +312,6 @@ if ( ! function_exists( 'd4p_user_agent' ) ) {
 if ( ! function_exists( 'd4p_is_request_post' ) ) {
 	function d4p_is_request_post() : bool {
 		return $_SERVER['REQUEST_METHOD'] === 'POST';
-	}
-}
-
-if ( ! function_exists( 'd4p_is_wp_error' ) ) {
-	function d4p_is_wp_error( $thing ) : bool {
-		return ( $thing instanceof WP_Error ) || ( $thing instanceof \Dev4Press\v35\Core\Helpers\Error );
 	}
 }
 
@@ -392,5 +344,261 @@ if ( ! function_exists( 'd4p_get_regex_error' ) ) {
 if ( ! function_exists( 'd4p_file_size_format' ) ) {
 	function d4p_file_size_format( $size, $decimals = 2 ) : string {
 		return d4p_filesize_format( $size, $decimals );
+	}
+}
+
+if ( ! function_exists( 'd4p_array_to_html_attributes' ) ) {
+	function d4p_array_to_html_attributes( $input ) : string {
+		$list = array();
+
+		foreach ( $input as $item => $value ) {
+			if ( is_bool( $value ) ) {
+				$list[] = $item;
+			} else {
+				$list[] = $item . '="' . esc_attr( $value ) . '"';
+			}
+		}
+
+		return join( ' ', $list );
+	}
+}
+
+if ( ! function_exists( 'd4p_clean_ids_list' ) ) {
+	function d4p_clean_ids_list( $ids, $map = 'absint' ) : array {
+		$ids = (array) $ids;
+
+		$ids = array_map( $map, $ids );
+		$ids = array_unique( $ids );
+		$ids = array_filter( $ids );
+
+		return $ids;
+	}
+}
+
+if ( ! function_exists( 'd4p_ids_from_string' ) ) {
+	function d4p_ids_from_string( $input, $delimiter = ',', $map = 'absint' ) : string {
+		$ids = strip_tags( stripslashes( $input ) );
+
+		$ids = explode( $delimiter, $ids );
+		$ids = array_map( 'trim', $ids );
+		$ids = array_map( $map, $ids );
+		$ids = array_filter( $ids );
+
+		return $ids;
+	}
+}
+
+if ( ! function_exists( 'd4p_kses_expanded_list_of_tags' ) ) {
+	function d4p_kses_expanded_list_of_tags() : array {
+		return array(
+			'a'          => array(
+				'class'    => true,
+				'href'     => true,
+				'title'    => true,
+				'rel'      => true,
+				'style'    => true,
+				'download' => true,
+				'target'   => true
+			),
+			'abbr'       => array(),
+			'blockquote' => array(
+				'class' => true,
+				'style' => true,
+				'cite'  => true
+			),
+			'div'        => array(
+				'class' => true,
+				'style' => true
+			),
+			'span'       => array(
+				'class' => true,
+				'style' => true
+			),
+			'code'       => array(
+				'class' => true,
+				'style' => true
+			),
+			'p'          => array(
+				'class' => true,
+				'style' => true
+			),
+			'pre'        => array(
+				'class' => true,
+				'style' => true
+			),
+			'em'         => array(
+				'class' => true,
+				'style' => true
+			),
+			'i'          => array(
+				'class' => true,
+				'style' => true
+			),
+			'b'          => array(
+				'class' => true,
+				'style' => true
+			),
+			'strong'     => array(
+				'class' => true,
+				'style' => true
+			),
+			'del'        => array(
+				'datetime' => true,
+				'class'    => true,
+				'style'    => true
+			),
+			'h1'         => array(
+				'align' => true,
+				'class' => true,
+				'style' => true
+			),
+			'h2'         => array(
+				'align' => true,
+				'class' => true,
+				'style' => true
+			),
+			'h3'         => array(
+				'align' => true,
+				'class' => true,
+				'style' => true
+			),
+			'h4'         => array(
+				'align' => true,
+				'class' => true,
+				'style' => true
+			),
+			'h5'         => array(
+				'align' => true,
+				'class' => true,
+				'style' => true
+			),
+			'h6'         => array(
+				'align' => true,
+				'class' => true,
+				'style' => true
+			),
+			'ul'         => array(
+				'class' => true,
+				'style' => true
+			),
+			'ol'         => array(
+				'class' => true,
+				'style' => true,
+				'start' => true
+			),
+			'li'         => array(
+				'class' => true,
+				'style' => true
+			),
+			'img'        => array(
+				'class'  => true,
+				'style'  => true,
+				'src'    => true,
+				'border' => true,
+				'alt'    => true,
+				'height' => true,
+				'width'  => true
+			),
+			'table'      => array(
+				'align'   => true,
+				'bgcolor' => true,
+				'border'  => true,
+				'class'   => true,
+				'style'   => true
+			),
+			'tbody'      => array(
+				'align'  => true,
+				'valign' => true,
+				'class'  => true,
+				'style'  => true
+			),
+			'td'         => array(
+				'align'  => true,
+				'valign' => true,
+				'class'  => true,
+				'style'  => true
+			),
+			'tfoot'      => array(
+				'align'  => true,
+				'valign' => true,
+				'class'  => true,
+				'style'  => true
+			),
+			'th'         => array(
+				'align'  => true,
+				'valign' => true,
+				'class'  => true,
+				'style'  => true
+			),
+			'thead'      => array(
+				'align'  => true,
+				'valign' => true,
+				'class'  => true,
+				'style'  => true
+			),
+			'tr'         => array(
+				'align'  => true,
+				'valign' => true,
+				'class'  => true,
+				'style'  => true
+			)
+		);
+	}
+}
+
+if ( ! function_exists( 'd4p_split_textarea_to_list' ) ) {
+	function d4p_split_textarea_to_list( $value, $empty_lines = false ) {
+		$elements = preg_split( "/[\n\r]/", $value );
+
+		if ( ! $empty_lines ) {
+			$results = array();
+
+			foreach ( $elements as $el ) {
+				if ( trim( $el ) != '' ) {
+					$results[] = $el;
+				}
+			}
+
+			return $results;
+		} else {
+			return $elements;
+		}
+	}
+}
+
+if ( ! function_exists( 'd4p_list_css_size_units' ) ) {
+	function d4p_list_css_size_units() {
+		return array(
+			'px'   => 'px',
+			'%'    => '%',
+			'em'   => 'em',
+			'rem'  => 'rem',
+			'in'   => 'in',
+			'cm'   => 'cm',
+			'mm'   => 'mm',
+			'pt'   => 'pt',
+			'pc'   => 'pc',
+			'ex'   => 'ex',
+			'ch'   => 'ch',
+			'vw'   => 'vw',
+			'vh'   => 'vh',
+			'vmin' => 'vmin',
+			'vmax' => 'vmax'
+		);
+	}
+}
+
+if ( ! function_exists( 'd4p_render_toggle_block' ) ) {
+	function d4p_render_toggle_block( $title, $content, $classes = array() ) {
+		$render = '<div class="d4p-section-toggle ' . join( ' ', $classes ) . '">';
+		$render .= '<div class="d4p-toggle-title">';
+		$render .= '<i class="fa fa-caret-down fa-fw"></i> ' . $title;
+		$render .= '</div>';
+		$render .= '<div class="d4p-toggle-content" style="display: none;">';
+		$render .= $content;
+		$render .= '</div>';
+		$render .= '</div>';
+
+		return $render;
 	}
 }

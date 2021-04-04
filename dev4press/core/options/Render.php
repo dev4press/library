@@ -26,7 +26,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v35\Core\Options;
 
+use Dev4Press\v35\Core\UI\Elements;
 use Dev4Press\v35\Core\UI\Walker\CheckboxRadio;
+use function Dev4Press\v35\Functions\Is\associative_array;
+use function Dev4Press\v35\Functions\Sanitize\slug;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -428,7 +431,7 @@ class Render {
 		}
 
 		$value       = is_null( $value ) || $value === true ? array_keys( $data ) : (array) $value;
-		$associative = d4p_is_array_associative( $data );
+		$associative = associative_array( $data );
 
 		if ( $multiple ) {
 			$this->part_check_uncheck_all();
@@ -455,7 +458,7 @@ class Render {
 
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
-		d4p_render_grouped_select( $data, array(
+		Elements::instance()->select_grouped( $data, array(
 			'selected' => $value,
 			'readonly' => $readonly,
 			'name'     => $name_base,
@@ -477,7 +480,7 @@ class Render {
 
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
-		d4p_render_select( $data, array(
+		Elements::instance()->select( $data, array(
 			'selected' => $value,
 			'readonly' => $readonly,
 			'name'     => $name_base,
@@ -532,7 +535,7 @@ class Render {
 		) );
 
 		if ( empty( $list ) ) {
-			d4p_render_select( array( '0' => __( "No items to show", "d4plib" ) ), array(
+			Elements::instance()->select( array( '0' => __( "No items to show", "d4plib" ) ), array(
 				'selected' => 0,
 				'name'     => $name_base,
 				'id'       => $id_base,
@@ -563,7 +566,7 @@ class Render {
 		) );
 
 		if ( empty( $list ) ) {
-			d4p_render_select( array( '0' => __( "No items to show", "d4plib" ) ), array(
+			Elements::instance()->select( array( '0' => __( "No items to show", "d4plib" ) ), array(
 				'selected' => 0,
 				'name'     => $name_base,
 				'id'       => $id_base,
@@ -732,7 +735,7 @@ class Render {
 
 	protected function draw_password( $element, $value, $name_base, $id_base ) {
 		$readonly     = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
-		$autocomplete = isset( $element->args['autocomplete'] ) ? d4p_sanitize_slug( $element->args['autocomplete'] ) : 'off';
+		$autocomplete = isset( $element->args['autocomplete'] ) ? slug( $element->args['autocomplete'] ) : 'off';
 
 		echo sprintf( '<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="password" name="%s" id="%s" value="%s" class="widefat" autocomplete="' . $autocomplete . '" />',
 			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ) );
@@ -819,7 +822,7 @@ class Render {
 
 		echo sprintf( '<label for="%s_unit"><span class="d4p-accessibility-show-for-sr">' . __( "Unit", "d4plib" ) . ': </span></label>', $id_base );
 
-		d4p_render_select( $sizes, array(
+		Elements::instance()->select( $sizes, array(
 			'selected' => $pairs[1],
 			'name'     => $name_base . '[unit]',
 			'id'       => $id_base . '_unit',

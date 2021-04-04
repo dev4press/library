@@ -27,6 +27,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v35\Core\Plugins;
 
 use WP_Widget;
+use function Dev4Press\v35\Functions\Sanitize\basic;
+use function Dev4Press\v35\Functions\Sanitize\html;
+use function Dev4Press\v35\Functions\Sanitize\key_expanded;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -157,7 +160,7 @@ abstract class Widget extends WP_Widget {
 	}
 
 	protected function get_valid_list_value( $name, $value, $list ) {
-		$value = d4p_sanitize_basic( $value );
+		$value = basic( $value );
 
 		if ( in_array( $value, $list ) ) {
 			return $value;
@@ -169,23 +172,23 @@ abstract class Widget extends WP_Widget {
 	protected function shared_update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
-		$instance['title'] = d4p_sanitize_basic( $new_instance['title'] );
+		$instance['title'] = basic( $new_instance['title'] );
 
-		$instance['_class'] = d4p_sanitize_basic( $new_instance['_class'] );
-		$instance['_tab']   = d4p_sanitize_key_expanded( $new_instance['_tab'] );
-		$instance['_hook']  = d4p_sanitize_key_expanded( $new_instance['_hook'] );
-		$instance['_devid'] = d4p_sanitize_key_expanded( $new_instance['_devid'] );
+		$instance['_class'] = basic( $new_instance['_class'] );
+		$instance['_tab']   = key_expanded( $new_instance['_tab'] );
+		$instance['_hook']  = key_expanded( $new_instance['_hook'] );
+		$instance['_devid'] = key_expanded( $new_instance['_devid'] );
 
 		$instance['_users'] = $this->get_valid_list_value( '_users', $new_instance['_users'], array_keys( $this->get_list_user_visibility() ) );
 
-		$_caps             = d4p_sanitize_basic( $new_instance['_caps'] );
+		$_caps             = basic( $new_instance['_caps'] );
 		$_caps             = explode( ',', $_caps );
 		$instance['_caps'] = array_map( 'trim', $_caps );
 
 		$instance['_roles'] = array();
 
 		if ( isset( $new_instance['_roles'] ) ) {
-			$_roles      = array_map( 'd4p_sanitize_basic', $new_instance['_roles'] );
+			$_roles      = array_map( '\Dev4Press\v35\Functions\Sanitize\basic', $new_instance['_roles'] );
 			$valid_roles = d4p_get_wordpress_user_roles();
 
 			foreach ( $_roles as $role ) {
@@ -203,8 +206,8 @@ abstract class Widget extends WP_Widget {
 			$instance['_before'] = $new_instance['_before'];
 			$instance['_after']  = $new_instance['_after'];
 		} else {
-			$instance['_before'] = d4p_sanitize_html( $new_instance['_before'] );
-			$instance['_after']  = d4p_sanitize_html( $new_instance['_after'] );
+			$instance['_before'] = html( $new_instance['_before'] );
+			$instance['_after']  = html( $new_instance['_after'] );
 		}
 
 		return $instance;

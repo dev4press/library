@@ -26,6 +26,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v35\Core\Options;
 
+use function Dev4Press\v35\Functions\Sanitize\basic;
+use function Dev4Press\v35\Functions\Sanitize\html;
+use function Dev4Press\v35\Functions\Sanitize\key_expanded;
+use function Dev4Press\v35\Functions\Sanitize\month;
+use function Dev4Press\v35\Functions\Sanitize\slug;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -94,7 +100,7 @@ class Process {
 				$value = apply_filters( $this->prefix . '_process_option_call_back_for_' . $input, $value, $post[ $key ], $setting );
 
 				if ( is_null( $value ) ) {
-					$value = d4p_sanitize_basic( (string) $post[ $key ] );
+					$value = basic( (string) $post[ $key ] );
 				}
 				break;
 			case 'skip':
@@ -121,7 +127,7 @@ class Process {
 
 				foreach ( $post[ $key ] as $id => $data ) {
 					if ( $id > 0 ) {
-						$_val = d4p_sanitize_basic( $data['value'] );
+						$_val = basic( $data['value'] );
 
 						if ( ! empty( $_val ) ) {
 							$value[] = $_val;
@@ -134,8 +140,8 @@ class Process {
 
 				foreach ( $post[ $key ] as $id => $data ) {
 					if ( $id > 0 ) {
-						$_key = d4p_sanitize_basic( $data['key'] );
-						$_val = d4p_sanitize_basic( $data['value'] );
+						$_key = basic( $data['key'] );
+						$_val = basic( $data['value'] );
 
 						if ( ! empty( $_key ) && ! empty( $_val ) ) {
 							$value[ $_key ] = $_val;
@@ -150,13 +156,13 @@ class Process {
 				$value = absint( $post[ $key ]['a'] ) . '=>' . absint( $post[ $key ]['b'] );
 				break;
 			case 'x_by_y':
-				$value = d4p_sanitize_basic( $post[ $key ]['x'] ) . 'x' . d4p_sanitize_basic( $post[ $key ]['y'] );
+				$value = basic( $post[ $key ]['x'] ) . 'x' . basic( $post[ $key ]['y'] );
 				break;
 			case 'html':
 			case 'code':
 			case 'text_html':
 			case 'text_rich':
-				$value = d4p_sanitize_html( $post[ $key ] );
+				$value = html( $post[ $key ] );
 				break;
 			case 'bool':
 				$value = isset( $post[ $key ] ) ? $this->bool_values[0] : $this->bool_values[1];
@@ -199,14 +205,14 @@ class Process {
 					$value = array();
 				} else {
 					$value = (array) $post[ $key ];
-					$value = array_map( 'd4p_sanitize_basic', $value );
+					$value = array_map( '\Dev4Press\v35\Functions\Sanitize\basic', $value );
 				}
 				break;
 			case 'css_size':
 				$sizes = d4p_list_css_size_units();
 
-				$value = d4p_sanitize_basic( $post[ $key ]['val'] );
-				$unit  = strtolower( d4p_sanitize_basic( $post[ $key ]['unit'] ) );
+				$value = basic( $post[ $key ]['val'] );
+				$unit  = strtolower( basic( $post[ $key ]['unit'] ) );
 
 				if ( ! isset( $sizes[ $unit ] ) ) {
 					$unit = 'px';
@@ -215,10 +221,10 @@ class Process {
 				$value = $value . $unit;
 				break;
 			case 'slug':
-				$value = d4p_sanitize_slug( $post[ $key ] );
+				$value = slug( $post[ $key ] );
 				break;
 			case 'slug_ext':
-				$value = d4p_sanitize_key_expanded( $post[ $key ] );
+				$value = key_expanded( $post[ $key ] );
 				break;
 			case 'slug_slash':
 				$value = $this->slug_slashes( $post[ $key ] );
@@ -227,16 +233,16 @@ class Process {
 				$value = sanitize_email( $post[ $key ] );
 				break;
 			case 'date':
-				$value = d4p_sanitize_date( $post[ $key ] );
+				$value = \Dev4Press\v35\Functions\Sanitize\date( $post[ $key ] );
 				break;
 			case 'time':
-				$value = d4p_sanitize_time( $post[ $key ] );
+				$value = \Dev4Press\v35\Functions\Sanitize\time( $post[ $key ] );
 				break;
 			case 'datetime':
-				$value = d4p_sanitize_date( $post[ $key ], 'Y-m-d H:i:s' );
+				$value = \Dev4Press\v35\Functions\Sanitize\date( $post[ $key ], 'Y-m-d H:i:s' );
 				break;
 			case 'month':
-				$value = d4p_sanitize_month( $post[ $key ] );
+				$value = month( $post[ $key ] );
 				break;
 			case 'text':
 			case 'textarea':
@@ -249,7 +255,7 @@ class Process {
 			case 'select':
 			case 'radios':
 			case 'radios_hierarchy':
-				$value = d4p_sanitize_basic( $post[ $key ] );
+				$value = basic( $post[ $key ] );
 				break;
 		}
 
