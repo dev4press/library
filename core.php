@@ -85,6 +85,7 @@ include( dirname( __FILE__ ) . '/autoload.php' );
 include( dirname( __FILE__ ) . '/functions/Bridge.php' );
 include( dirname( __FILE__ ) . '/functions/Debug.php' );
 
+include( dirname( __FILE__ ) . '/functions/Common.php' );
 include( dirname( __FILE__ ) . '/functions/URL.php' );
 include( dirname( __FILE__ ) . '/functions/Sanitize.php' );
 include( dirname( __FILE__ ) . '/functions/Conditions.php' );
@@ -94,7 +95,6 @@ include( dirname( __FILE__ ) . '/functions/bbPress.php' );
 include( dirname( __FILE__ ) . '/functions/BuddyPress.php' );
 
 include( dirname( __FILE__ ) . '/functions/helpers.php' );
-
 include( dirname( __FILE__ ) . '/functions/wordpress.php' );
 
 include( dirname( __FILE__ ) . '/functions/Deprecated.php' );

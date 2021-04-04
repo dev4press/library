@@ -29,6 +29,7 @@ namespace Dev4Press\v35\Core\Options;
 use Dev4Press\v35\Core\UI\Elements;
 use Dev4Press\v35\Core\UI\Walker\CheckboxRadio;
 use function Dev4Press\v35\Functions\is_associative_array;
+use function Dev4Press\v35\Functions\list_css_size_units;
 use function Dev4Press\v35\Functions\sanitize_slug;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -799,7 +800,7 @@ class Render {
 	}
 
 	protected function draw_css_size( $element, $value, $name_base, $id_base = '' ) {
-		$sizes = d4p_list_css_size_units();
+		$sizes = list_css_size_units();
 
 		$pairs = array();
 

@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v35\Core\Options;
 
+use function Dev4Press\v35\Functions\list_css_size_units;
 use function Dev4Press\v35\Functions\sanitize_basic;
 use function Dev4Press\v35\Functions\sanitize_date;
 use function Dev4Press\v35\Functions\sanitize_html;
@@ -211,7 +212,7 @@ class Process {
 				}
 				break;
 			case 'css_size':
-				$sizes = d4p_list_css_size_units();
+				$sizes = list_css_size_units();
 
 				$value = sanitize_basic( $post[ $key ]['val'] );
 				$unit  = strtolower( sanitize_basic( $post[ $key ]['unit'] ) );

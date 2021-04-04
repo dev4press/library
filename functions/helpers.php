@@ -30,89 +30,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'd4p_replace_tags_in_content' ) ) {
-	function d4p_replace_tags_in_content( $content, $tags ) : string {
-		foreach ( $tags as $tag => $replace ) {
-			$_tag = '%' . $tag . '%';
-
-			if ( strpos( $content, $_tag ) !== false ) {
-				$content = str_replace( $_tag, $replace, $content );
-			}
-		}
-
-		return $content;
-	}
-}
-
-if ( ! function_exists( 'd4p_strleft' ) ) {
-	function d4p_strleft( $s1, $s2 ) {
-		return substr( $s1, 0, strpos( $s1, $s2 ) );
-	}
-}
-
-if ( ! function_exists( 'd4p_scan_dir' ) ) {
-	function d4p_scan_dir( $path, $filter = 'files', $extensions = array(), $reg_expr = '', $full_path = false ) {
-		$extensions = (array) $extensions;
-		$filter     = ! in_array( $filter, array( 'folders', 'files', 'all' ) ) ? 'files' : $filter;
-		$path       = str_replace( '\\', '/', $path );
-
-		$final = array();
-
-		if ( file_exists( $path ) ) {
-			$files = scandir( $path );
-
-			$path = rtrim( $path, '/' ) . '/';
-			foreach ( $files as $file ) {
-				$ext = pathinfo( $file, PATHINFO_EXTENSION );
-
-				if ( empty( $extensions ) || in_array( $ext, $extensions ) ) {
-					if ( substr( $file, 0, 1 ) != '.' ) {
-						if (
-							( is_dir( $path . $file ) && ( in_array( $filter, array( 'folders', 'all' ) ) ) ) ||
-							( is_file( $path . $file ) && ( in_array( $filter, array( 'files', 'all' ) ) ) ) ||
-							( ( is_file( $path . $file ) || is_dir( $path . $file ) ) && ( in_array( $filter, array( 'all' ) ) ) ) ) {
-							$add = $full_path ? $path : '';
-
-							if ( $reg_expr == '' ) {
-								$final[] = $add . $file;
-							} else if ( preg_match( $reg_expr, $file ) ) {
-								$final[] = $add . $file;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		return $final;
-	}
-}
-
-if ( ! function_exists( 'd4p_filesize_format' ) ) {
-	function d4p_filesize_format( $size, $decimals = 2, $sep = ' ' ) : string {
-		$_size = intval( $size );
-
-		if ( strlen( $_size ) >= 10 ) {
-			$_size = number_format( $_size / 1073741824, $decimals );
-			$unit  = 'GB';
-		} else if ( strlen( $_size ) <= 9 && strlen( $_size ) >= 7 ) {
-			$_size = number_format( $_size / 1048576, $decimals );
-			$unit  = 'MB';
-		} else if ( strlen( $_size ) <= 6 && strlen( $_size ) >= 4 ) {
-			$_size = number_format( $_size / 1024, $decimals );
-			$unit  = 'KB';
-		} else {
-			$unit = 'B';
-		}
-
-		if ( floatval( $_size ) == intval( $_size ) ) {
-			$_size = intval( $_size );
-		}
-
-		return $_size . $sep . $unit;
-	}
-}
-
 if ( ! function_exists( 'd4p_text_length_limit' ) ) {
 	function d4p_text_length_limit( $text, $length = 200, $append = '&hellip;' ) : string {
 		if ( function_exists( 'mb_strlen' ) ) {
@@ -257,18 +174,6 @@ if ( ! function_exists( 'd4p_php_ini_size_value' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_mysql_date' ) ) {
-	function d4p_mysql_date( $time ) {
-		return date( 'Y-m-d H:i:s', $time );
-	}
-}
-
-if ( ! function_exists( 'd4p_mysql_datetime_format' ) ) {
-	function d4p_mysql_datetime_format() : string {
-		return 'Y-m-d H:i:s';
-	}
-}
-
 if ( ! function_exists( 'd4p_url_campaign_tracking' ) ) {
 	function d4p_url_campaign_tracking( $url, $campaign = '', $medium = '', $content = '', $term = '', $source = null ) : string {
 		if ( ! empty( $campaign ) ) {
@@ -341,12 +246,6 @@ if ( ! function_exists( 'd4p_get_regex_error' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_file_size_format' ) ) {
-	function d4p_file_size_format( $size, $decimals = 2 ) : string {
-		return d4p_filesize_format( $size, $decimals );
-	}
-}
-
 if ( ! function_exists( 'd4p_array_to_html_attributes' ) ) {
 	function d4p_array_to_html_attributes( $input ) : string {
 		$list = array();
@@ -388,164 +287,6 @@ if ( ! function_exists( 'd4p_ids_from_string' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_kses_expanded_list_of_tags' ) ) {
-	function d4p_kses_expanded_list_of_tags() : array {
-		return array(
-			'a'          => array(
-				'class'    => true,
-				'href'     => true,
-				'title'    => true,
-				'rel'      => true,
-				'style'    => true,
-				'download' => true,
-				'target'   => true
-			),
-			'abbr'       => array(),
-			'blockquote' => array(
-				'class' => true,
-				'style' => true,
-				'cite'  => true
-			),
-			'div'        => array(
-				'class' => true,
-				'style' => true
-			),
-			'span'       => array(
-				'class' => true,
-				'style' => true
-			),
-			'code'       => array(
-				'class' => true,
-				'style' => true
-			),
-			'p'          => array(
-				'class' => true,
-				'style' => true
-			),
-			'pre'        => array(
-				'class' => true,
-				'style' => true
-			),
-			'em'         => array(
-				'class' => true,
-				'style' => true
-			),
-			'i'          => array(
-				'class' => true,
-				'style' => true
-			),
-			'b'          => array(
-				'class' => true,
-				'style' => true
-			),
-			'strong'     => array(
-				'class' => true,
-				'style' => true
-			),
-			'del'        => array(
-				'datetime' => true,
-				'class'    => true,
-				'style'    => true
-			),
-			'h1'         => array(
-				'align' => true,
-				'class' => true,
-				'style' => true
-			),
-			'h2'         => array(
-				'align' => true,
-				'class' => true,
-				'style' => true
-			),
-			'h3'         => array(
-				'align' => true,
-				'class' => true,
-				'style' => true
-			),
-			'h4'         => array(
-				'align' => true,
-				'class' => true,
-				'style' => true
-			),
-			'h5'         => array(
-				'align' => true,
-				'class' => true,
-				'style' => true
-			),
-			'h6'         => array(
-				'align' => true,
-				'class' => true,
-				'style' => true
-			),
-			'ul'         => array(
-				'class' => true,
-				'style' => true
-			),
-			'ol'         => array(
-				'class' => true,
-				'style' => true,
-				'start' => true
-			),
-			'li'         => array(
-				'class' => true,
-				'style' => true
-			),
-			'img'        => array(
-				'class'  => true,
-				'style'  => true,
-				'src'    => true,
-				'border' => true,
-				'alt'    => true,
-				'height' => true,
-				'width'  => true
-			),
-			'table'      => array(
-				'align'   => true,
-				'bgcolor' => true,
-				'border'  => true,
-				'class'   => true,
-				'style'   => true
-			),
-			'tbody'      => array(
-				'align'  => true,
-				'valign' => true,
-				'class'  => true,
-				'style'  => true
-			),
-			'td'         => array(
-				'align'  => true,
-				'valign' => true,
-				'class'  => true,
-				'style'  => true
-			),
-			'tfoot'      => array(
-				'align'  => true,
-				'valign' => true,
-				'class'  => true,
-				'style'  => true
-			),
-			'th'         => array(
-				'align'  => true,
-				'valign' => true,
-				'class'  => true,
-				'style'  => true
-			),
-			'thead'      => array(
-				'align'  => true,
-				'valign' => true,
-				'class'  => true,
-				'style'  => true
-			),
-			'tr'         => array(
-				'align'  => true,
-				'valign' => true,
-				'class'  => true,
-				'style'  => true
-			)
-		);
-	}
-}
-
 if ( ! function_exists( 'd4p_split_textarea_to_list' ) ) {
 	function d4p_split_textarea_to_list( $value, $empty_lines = false ) {
 		$elements = preg_split( "/[\n\r]/", $value );
@@ -563,28 +304,6 @@ if ( ! function_exists( 'd4p_split_textarea_to_list' ) ) {
 		} else {
 			return $elements;
 		}
-	}
-}
-
-if ( ! function_exists( 'd4p_list_css_size_units' ) ) {
-	function d4p_list_css_size_units() {
-		return array(
-			'px'   => 'px',
-			'%'    => '%',
-			'em'   => 'em',
-			'rem'  => 'rem',
-			'in'   => 'in',
-			'cm'   => 'cm',
-			'mm'   => 'mm',
-			'pt'   => 'pt',
-			'pc'   => 'pc',
-			'ex'   => 'ex',
-			'ch'   => 'ch',
-			'vw'   => 'vw',
-			'vh'   => 'vh',
-			'vmin' => 'vmin',
-			'vmax' => 'vmax'
-		);
 	}
 }
 

@@ -77,3 +77,25 @@ if ( ! function_exists( 'd4p_enqueue_color_picker' ) ) {
 		}
 	}
 }
+
+if ( ! function_exists( 'd4p_mysql_date' ) ) {
+	/**
+	 * @deprecated 3.5
+	 */
+	function d4p_mysql_date( $time ) {
+		_deprecated_function( __FUNCTION__, '3.5' );
+
+		return date( 'Y-m-d H:i:s', $time );
+	}
+}
+
+if ( ! function_exists( 'd4p_mysql_datetime_format' ) ) {
+	/**
+	 * @deprecated 3.5
+	 */
+	function d4p_mysql_datetime_format() : string {
+		_deprecated_function( __FUNCTION__, '3.5' );
+
+		return 'Y-m-d H:i:s';
+	}
+}

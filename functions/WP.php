@@ -163,3 +163,161 @@ if ( ! function_exists( __NAMESPACE__ . '\is_plugin_active_for_network' ) ) {
 		return false;
 	}
 }
+
+if ( ! function_exists( __NAMESPACE__ . '\kses_expanded_list_of_tags' ) ) {
+	function kses_expanded_list_of_tags() : array {
+		return array(
+			'a'          => array(
+				'class'    => true,
+				'href'     => true,
+				'title'    => true,
+				'rel'      => true,
+				'style'    => true,
+				'download' => true,
+				'target'   => true
+			),
+			'abbr'       => array(),
+			'blockquote' => array(
+				'class' => true,
+				'style' => true,
+				'cite'  => true
+			),
+			'div'        => array(
+				'class' => true,
+				'style' => true
+			),
+			'span'       => array(
+				'class' => true,
+				'style' => true
+			),
+			'code'       => array(
+				'class' => true,
+				'style' => true
+			),
+			'p'          => array(
+				'class' => true,
+				'style' => true
+			),
+			'pre'        => array(
+				'class' => true,
+				'style' => true
+			),
+			'em'         => array(
+				'class' => true,
+				'style' => true
+			),
+			'i'          => array(
+				'class' => true,
+				'style' => true
+			),
+			'b'          => array(
+				'class' => true,
+				'style' => true
+			),
+			'strong'     => array(
+				'class' => true,
+				'style' => true
+			),
+			'del'        => array(
+				'datetime' => true,
+				'class'    => true,
+				'style'    => true
+			),
+			'h1'         => array(
+				'align' => true,
+				'class' => true,
+				'style' => true
+			),
+			'h2'         => array(
+				'align' => true,
+				'class' => true,
+				'style' => true
+			),
+			'h3'         => array(
+				'align' => true,
+				'class' => true,
+				'style' => true
+			),
+			'h4'         => array(
+				'align' => true,
+				'class' => true,
+				'style' => true
+			),
+			'h5'         => array(
+				'align' => true,
+				'class' => true,
+				'style' => true
+			),
+			'h6'         => array(
+				'align' => true,
+				'class' => true,
+				'style' => true
+			),
+			'ul'         => array(
+				'class' => true,
+				'style' => true
+			),
+			'ol'         => array(
+				'class' => true,
+				'style' => true,
+				'start' => true
+			),
+			'li'         => array(
+				'class' => true,
+				'style' => true
+			),
+			'img'        => array(
+				'class'  => true,
+				'style'  => true,
+				'src'    => true,
+				'border' => true,
+				'alt'    => true,
+				'height' => true,
+				'width'  => true
+			),
+			'table'      => array(
+				'align'   => true,
+				'bgcolor' => true,
+				'border'  => true,
+				'class'   => true,
+				'style'   => true
+			),
+			'tbody'      => array(
+				'align'  => true,
+				'valign' => true,
+				'class'  => true,
+				'style'  => true
+			),
+			'td'         => array(
+				'align'  => true,
+				'valign' => true,
+				'class'  => true,
+				'style'  => true
+			),
+			'tfoot'      => array(
+				'align'  => true,
+				'valign' => true,
+				'class'  => true,
+				'style'  => true
+			),
+			'th'         => array(
+				'align'  => true,
+				'valign' => true,
+				'class'  => true,
+				'style'  => true
+			),
+			'thead'      => array(
+				'align'  => true,
+				'valign' => true,
+				'class'  => true,
+				'style'  => true
+			),
+			'tr'         => array(
+				'align'  => true,
+				'valign' => true,
+				'class'  => true,
+				'style'  => true
+			)
+		);
+	}
+}

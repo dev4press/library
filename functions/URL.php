@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v35\Functions\IP
+Name:    Dev4Press\v35\Functions
 Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -77,7 +77,7 @@ if ( ! function_exists( __NAMESPACE__ . '\current_url' ) ) {
 			return home_url( current_url_request() );
 		} else {
 			$s        = empty( $_SERVER['HTTPS'] ) ? '' : ( $_SERVER['HTTPS'] == 'on' ? 's' : '' );
-			$protocol = d4p_strleft( strtolower( $_SERVER['SERVER_PROTOCOL'] ), '/' ) . $s;
+			$protocol = strleft( strtolower( $_SERVER['SERVER_PROTOCOL'] ), '/' ) . $s;
 			$port     = $_SERVER['SERVER_PORT'] == '80' || $_SERVER['SERVER_PORT'] == '443' ? '' : ':' . $_SERVER['SERVER_PORT'];
 
 			return $protocol . '://' . $_SERVER['SERVER_NAME'] . $port . $_SERVER['REQUEST_URI'];
