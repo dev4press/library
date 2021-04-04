@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v35\Core\Plugins;
 
 use Dev4Press\v35\API\Four;
+use function Dev4Press\v35\Functions\bbPress\major_version_number;
 use function Dev4Press\v35\Functions\WP\is_classicpress;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -211,7 +212,7 @@ abstract class Core {
 		$bbpress = $this->s()->i()->requirement_version( 'bbpress' );
 
 		if ( $bbpress !== false ) {
-			$installed = d4p_get_bbpress_major_version_number( 'full' );
+			$installed = major_version_number( 'full' );
 
 			if ( $installed === 0 || version_compare( $installed, $bbpress, '>=' ) === false ) {
 				$list[] = array( 'bbPress', $installed, $bbpress );
