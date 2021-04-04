@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v35\Functions\URL;
+namespace Dev4Press\v35\Functions;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -36,16 +36,16 @@ if ( ! function_exists( __NAMESPACE__ . '\domain_name' ) ) {
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\current_path' ) ) {
-	function current_path() {
+if ( ! function_exists( __NAMESPACE__ . '\current_request_path' ) ) {
+	function current_request_path() {
 		$uri = $_SERVER['REQUEST_URI'];
 
 		return parse_url( $uri, PHP_URL_PATH );
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\current_request' ) ) {
-	function current_request() : string {
+if ( ! function_exists( __NAMESPACE__ . '\current_url_request' ) ) {
+	function current_url_request() : string {
 		$pathinfo = isset( $_SERVER['PATH_INFO'] ) ? $_SERVER['PATH_INFO'] : '';
 		list( $pathinfo ) = explode( '?', $pathinfo );
 		$pathinfo = str_replace( '%', '%25', $pathinfo );
@@ -71,10 +71,10 @@ if ( ! function_exists( __NAMESPACE__ . '\current_request' ) ) {
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\current' ) ) {
-	function current( $use_wp = true ) : string {
+if ( ! function_exists( __NAMESPACE__ . '\current_url' ) ) {
+	function current_url( $use_wp = true ) : string {
 		if ( $use_wp ) {
-			return home_url( current_request() );
+			return home_url( current_url_request() );
 		} else {
 			$s        = empty( $_SERVER['HTTPS'] ) ? '' : ( $_SERVER['HTTPS'] == 'on' ? 's' : '' );
 			$protocol = d4p_strleft( strtolower( $_SERVER['SERVER_PROTOCOL'] ), '/' ) . $s;

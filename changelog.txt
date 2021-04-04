@@ -3,11 +3,17 @@
 
 = Version 3.5 - 2021.04.12 =
 * New: Major refactoring to include version for every namespace
+* New: Major refactoring to add namespaces to functions
+* New: Reorganization of functions and function files
+* New: Elements class to handle rendering of common HTML tags
 * New: Base Widget class supports generating shortcode
 * New: Admin panels support for RTL text orientation
 * New: Options core Element support for switch section visibility
 * Updated: Widget interface improvements and few tweaks
 * Updated: Frontend Enqueue change action priorities
+* Removed: HTML tags rendering functions
+* Removed: IP wrapper functions
+* Removed: Many obsolete function
 * Fixed: Issues with the names of some of the CSS files
 * Fixed: Detection of the RTL text orientation
 

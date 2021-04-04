@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-use function Dev4Press\v35\Functions\Sanitize\basic;
+use function Dev4Press\v35\Functions\sanitize_basic;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -302,7 +302,7 @@ if ( ! function_exists( 'd4p_url_campaign_tracking' ) ) {
 if ( ! function_exists( 'd4p_user_agent' ) ) {
 	function d4p_user_agent() : string {
 		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
-			return basic( trim( $_SERVER['HTTP_USER_AGENT'] ) );
+			return sanitize_basic( trim( $_SERVER['HTTP_USER_AGENT'] ) );
 		}
 
 		return '';

@@ -83,16 +83,18 @@ if ( ! defined( 'D4PLIB_CACERT_PATH' ) ) {
 include( dirname( __FILE__ ) . '/autoload.php' );
 
 include( dirname( __FILE__ ) . '/functions/Bridge.php' );
+include( dirname( __FILE__ ) . '/functions/Debug.php' );
 
-include( dirname( __FILE__ ) . '/functions/IP.php' );
 include( dirname( __FILE__ ) . '/functions/URL.php' );
 include( dirname( __FILE__ ) . '/functions/Sanitize.php' );
 include( dirname( __FILE__ ) . '/functions/Conditions.php' );
+include( dirname( __FILE__ ) . '/functions/Transient.php' );
+include( dirname( __FILE__ ) . '/functions/WP.php' );
 
 include( dirname( __FILE__ ) . '/functions/helpers.php' );
-include( dirname( __FILE__ ) . '/functions/cache.php' );
-include( dirname( __FILE__ ) . '/functions/debug.php' );
 
 include( dirname( __FILE__ ) . '/functions/wordpress.php' );
 include( dirname( __FILE__ ) . '/functions/bbpress.php' );
 include( dirname( __FILE__ ) . '/functions/buddypress.php' );
+
+include( dirname( __FILE__ ) . '/functions/Deprecated.php' );

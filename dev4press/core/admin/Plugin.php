@@ -386,8 +386,6 @@ abstract class Plugin {
 	}
 
 	public function admin_panel() {
-		require_once( $this->lib_path() . 'functions/panel.php' );
-
 		$this->object->prepare();
 		$this->object->show();
 	}

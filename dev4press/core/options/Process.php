@@ -26,11 +26,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v35\Core\Options;
 
-use function Dev4Press\v35\Functions\Sanitize\basic;
-use function Dev4Press\v35\Functions\Sanitize\html;
-use function Dev4Press\v35\Functions\Sanitize\key_expanded;
-use function Dev4Press\v35\Functions\Sanitize\month;
-use function Dev4Press\v35\Functions\Sanitize\slug;
+use function Dev4Press\v35\Functions\sanitize_basic;
+use function Dev4Press\v35\Functions\sanitize_date;
+use function Dev4Press\v35\Functions\sanitize_html;
+use function Dev4Press\v35\Functions\sanitize_key_expanded;
+use function Dev4Press\v35\Functions\sanitize_month;
+use function Dev4Press\v35\Functions\sanitize_slug;
+use function Dev4Press\v35\Functions\sanitize_time;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -100,7 +102,7 @@ class Process {
 				$value = apply_filters( $this->prefix . '_process_option_call_back_for_' . $input, $value, $post[ $key ], $setting );
 
 				if ( is_null( $value ) ) {
-					$value = basic( (string) $post[ $key ] );
+					$value = sanitize_basic( (string) $post[ $key ] );
 				}
 				break;
 			case 'skip':
@@ -127,7 +129,7 @@ class Process {
 
 				foreach ( $post[ $key ] as $id => $data ) {
 					if ( $id > 0 ) {
-						$_val = basic( $data['value'] );
+						$_val = sanitize_basic( $data['value'] );
 
 						if ( ! empty( $_val ) ) {
 							$value[] = $_val;
@@ -140,8 +142,8 @@ class Process {
 
 				foreach ( $post[ $key ] as $id => $data ) {
 					if ( $id > 0 ) {
-						$_key = basic( $data['key'] );
-						$_val = basic( $data['value'] );
+						$_key = sanitize_basic( $data['key'] );
+						$_val = sanitize_basic( $data['value'] );
 
 						if ( ! empty( $_key ) && ! empty( $_val ) ) {
 							$value[ $_key ] = $_val;
@@ -156,13 +158,13 @@ class Process {
 				$value = absint( $post[ $key ]['a'] ) . '=>' . absint( $post[ $key ]['b'] );
 				break;
 			case 'x_by_y':
-				$value = basic( $post[ $key ]['x'] ) . 'x' . basic( $post[ $key ]['y'] );
+				$value = sanitize_basic( $post[ $key ]['x'] ) . 'x' . sanitize_basic( $post[ $key ]['y'] );
 				break;
 			case 'html':
 			case 'code':
 			case 'text_html':
 			case 'text_rich':
-				$value = html( $post[ $key ] );
+				$value = sanitize_html( $post[ $key ] );
 				break;
 			case 'bool':
 				$value = isset( $post[ $key ] ) ? $this->bool_values[0] : $this->bool_values[1];
@@ -205,14 +207,14 @@ class Process {
 					$value = array();
 				} else {
 					$value = (array) $post[ $key ];
-					$value = array_map( '\Dev4Press\v35\Functions\Sanitize\basic', $value );
+					$value = array_map( '\Dev4Press\v35\Functions\Sanitize\sanitize_basic', $value );
 				}
 				break;
 			case 'css_size':
 				$sizes = d4p_list_css_size_units();
 
-				$value = basic( $post[ $key ]['val'] );
-				$unit  = strtolower( basic( $post[ $key ]['unit'] ) );
+				$value = sanitize_basic( $post[ $key ]['val'] );
+				$unit  = strtolower( sanitize_basic( $post[ $key ]['unit'] ) );
 
 				if ( ! isset( $sizes[ $unit ] ) ) {
 					$unit = 'px';
@@ -221,10 +223,10 @@ class Process {
 				$value = $value . $unit;
 				break;
 			case 'slug':
-				$value = slug( $post[ $key ] );
+				$value = sanitize_slug( $post[ $key ] );
 				break;
 			case 'slug_ext':
-				$value = key_expanded( $post[ $key ] );
+				$value = sanitize_key_expanded( $post[ $key ] );
 				break;
 			case 'slug_slash':
 				$value = $this->slug_slashes( $post[ $key ] );
@@ -233,16 +235,16 @@ class Process {
 				$value = sanitize_email( $post[ $key ] );
 				break;
 			case 'date':
-				$value = \Dev4Press\v35\Functions\Sanitize\date( $post[ $key ] );
+				$value = sanitize_date( $post[ $key ] );
 				break;
 			case 'time':
-				$value = \Dev4Press\v35\Functions\Sanitize\time( $post[ $key ] );
+				$value = sanitize_time( $post[ $key ] );
 				break;
 			case 'datetime':
-				$value = \Dev4Press\v35\Functions\Sanitize\date( $post[ $key ], 'Y-m-d H:i:s' );
+				$value = sanitize_date( $post[ $key ], 'Y-m-d H:i:s' );
 				break;
 			case 'month':
-				$value = month( $post[ $key ] );
+				$value = sanitize_month( $post[ $key ] );
 				break;
 			case 'text':
 			case 'textarea':
@@ -255,7 +257,7 @@ class Process {
 			case 'select':
 			case 'radios':
 			case 'radios_hierarchy':
-				$value = basic( $post[ $key ] );
+				$value = sanitize_basic( $post[ $key ] );
 				break;
 		}
 

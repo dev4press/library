@@ -68,46 +68,6 @@ if ( ! function_exists( 'is_any_tax' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_admin_enqueue_defaults' ) ) {
-	function d4p_admin_enqueue_defaults() {
-		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'jquery-form' );
-
-		wp_enqueue_script( 'wpdialogs' );
-		wp_enqueue_style( 'wp-jquery-ui-dialog' );
-
-		d4p_enqueue_color_picker();
-
-		wp_enqueue_media();
-	}
-}
-
-if ( ! function_exists( 'd4p_enqueue_color_picker' ) ) {
-	function d4p_enqueue_color_picker() {
-		if ( is_admin() ) {
-			wp_enqueue_script( 'wp-color-picker' );
-			wp_enqueue_style( 'wp-color-picker' );
-		} else {
-			$suffix = SCRIPT_DEBUG ? '' : '.min';
-
-			wp_enqueue_script( 'iris', admin_url( 'js/iris.min.js' ), array(
-				'jquery-ui-draggable',
-				'jquery-ui-slider',
-				'jquery-touch-punch'
-			) );
-			wp_enqueue_script( 'wp-color-picker', admin_url( "js/color-picker$suffix.js" ), array( 'iris' ) );
-			wp_enqueue_style( 'wp-color-picker', admin_url( "css/color-picker$suffix.css" ) );
-
-			wp_localize_script( 'wp-color-picker', 'wpColorPickerL10n', array(
-				'clear'         => __( "Clear", "d4plib" ),
-				'defaultString' => __( "Default", "d4plib" ),
-				'pick'          => __( "Select Color", "d4plib" ),
-				'current'       => __( "Current Color", "d4plib" )
-			) );
-		}
-	}
-}
-
 if ( ! function_exists( 'd4p_gmt_offset' ) ) {
 	function d4p_gmt_offset() {
 		$offset = get_option( 'gmt_offset' );
@@ -150,12 +110,6 @@ if ( ! function_exists( 'd4p_current_user_roles' ) ) {
 if ( ! function_exists( 'd4p_is_current_user_admin' ) ) {
 	function d4p_is_current_user_admin() : bool {
 		return d4p_is_current_user_roles( 'administrator' );
-	}
-}
-
-if ( ! function_exists( 'd4p_switch_to_default_theme' ) ) {
-	function d4p_switch_to_default_theme() {
-		switch_theme( WP_DEFAULT_THEME, WP_DEFAULT_THEME );
 	}
 }
 
@@ -203,14 +157,6 @@ if ( ! function_exists( 'd4p_get_thumbnail_url' ) ) {
 		} else {
 			return '';
 		}
-	}
-}
-
-if ( ! function_exists( 'get_the_slug' ) ) {
-	function get_the_slug() {
-		$post = get_post();
-
-		return ! empty( $post ) ? $post->post_name : false;
 	}
 }
 
@@ -401,24 +347,6 @@ if ( ! function_exists( 'd4p_is_user_allowed' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_is_plugin_active_for_network' ) ) {
-	function d4p_is_plugin_active_for_network( $plugin ) : bool {
-		if ( ! is_multisite() ) {
-			return false;
-		}
-
-		$plugins = get_site_option( 'active_sitewide_plugins' );
-
-		return isset( $plugins[ $plugin ] );
-	}
-}
-
-if ( ! function_exists( 'd4p_is_plugin_active' ) ) {
-	function d4p_is_plugin_active( $plugin ) : bool {
-		return in_array( $plugin, (array) get_option( 'active_plugins', array() ) ) || d4p_is_plugin_active_for_network( $plugin );
-	}
-}
-
 if ( ! function_exists( 'd4p_post_type_has_archive' ) ) {
 	function d4p_post_type_has_archive( $post_type ) : bool {
 		if ( post_type_exists( $post_type ) ) {
@@ -497,26 +425,6 @@ if ( ! function_exists( 'd4p_get_attachment_id_from_url' ) ) {
 	}
 }
 
-if ( ! function_exists( 'd4p_add_filter' ) ) {
-	function d4p_add_filter( $tags, $function_to_add, $priority = 10, $accepted_args = 1 ) {
-		$tags = (array) $tags;
-
-		foreach ( $tags as $tag ) {
-			add_filter( $tag, $function_to_add, $priority, $accepted_args );
-		}
-	}
-}
-
-if ( ! function_exists( 'd4p_add_action' ) ) {
-	function d4p_add_action( $tags, $function_to_add, $priority = 10, $accepted_args = 1 ) {
-		$tags = (array) $tags;
-
-		foreach ( $tags as $tag ) {
-			add_action( $tag, $function_to_add, $priority, $accepted_args );
-		}
-	}
-}
-
 if ( ! function_exists( 'd4p_is_oembed_link' ) ) {
 	function d4p_is_oembed_link( $url ) : bool {
 		require_once( ABSPATH . WPINC . '/class-oembed.php' );
@@ -525,18 +433,6 @@ if ( ! function_exists( 'd4p_is_oembed_link' ) ) {
 		$result = $oembed->get_html( $url );
 
 		return $result === false ? false : true;
-	}
-}
-
-if ( ! function_exists( 'wp_redirect_self' ) ) {
-	function wp_redirect_self() {
-		wp_redirect( $_SERVER['REQUEST_URI'] );
-	}
-}
-
-if ( ! function_exists( 'wp_redirect_referer' ) ) {
-	function wp_redirect_referer() {
-		wp_redirect( wp_get_referer() );
 	}
 }
 
@@ -560,35 +456,5 @@ if ( ! function_exists( 'd4p_json_die' ) ) {
 		}
 
 		die( wp_json_encode( $data ) );
-	}
-}
-
-if ( ! function_exists( 'wp_flush_rewrite_rules' ) ) {
-	function wp_flush_rewrite_rules() {
-		global $wp_rewrite;
-
-		$wp_rewrite->flush_rules();
-	}
-}
-
-if ( ! function_exists( 'd4p_has_plugin' ) ) {
-	function d4p_has_plugin( $name ) : bool {
-		$plugin = $name . '/' . $name . '.php';
-
-		return d4p_is_plugin_active( $plugin );
-	}
-}
-
-if ( ! function_exists( 'd4p_get_wordpress_user_roles' ) ) {
-	function d4p_get_wordpress_user_roles() : array {
-		global $wp_roles;
-
-		$roles = array();
-
-		foreach ( $wp_roles->role_names as $role => $title ) {
-			$roles[ $role ] = $title;
-		}
-
-		return $roles;
 	}
 }

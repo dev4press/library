@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v35\Functions\Is
+Name:    Dev4Press\v35\Functions
 Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,38 +24,38 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v35\Functions\Is;
+namespace Dev4Press\v35\Functions;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\odd' ) ) {
-	function odd( $number ) : bool {
+if ( ! function_exists( __NAMESPACE__ . '\is_odd' ) ) {
+	function is_odd( $number ) : bool {
 		return $number % 2 == 0;
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\divisible' ) ) {
-	function divisible( $number, $by_number ) : bool {
+if ( ! function_exists( __NAMESPACE__ . '\is_divisible' ) ) {
+	function is_divisible( $number, $by_number ) : bool {
 		return $number % $by_number == 0;
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\associative_array' ) ) {
-	function associative_array( $array ) : bool {
+if ( ! function_exists( __NAMESPACE__ . '\is_associative_array' ) ) {
+	function is_associative_array( $array ) : bool {
 		return is_array( $array ) && ( 0 !== count( array_diff_key( $array, array_keys( array_keys( $array ) ) ) ) || count( $array ) == 0 );
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\valid_md5' ) ) {
-	function valid_md5( $hash = '' ) : bool {
+if ( ! function_exists( __NAMESPACE__ . '\is_valid_md5' ) ) {
+	function is_valid_md5( $hash = '' ) : bool {
 		return strlen( $hash ) == 32 && ctype_xdigit( $hash );
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\valid_datetime' ) ) {
-	function valid_datetime( $date, $format = 'Y-m-d H:i:s' ) : bool {
+if ( ! function_exists( __NAMESPACE__ . '\is_valid_datetime' ) ) {
+	function is_valid_datetime( $date, $format = 'Y-m-d H:i:s' ) : bool {
 		$d = DateTime::createFromFormat( $format, $date );
 
 		return $d && $d->format( $format ) == $date;

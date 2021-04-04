@@ -28,8 +28,8 @@ namespace Dev4Press\v35\Core\Options;
 
 use Dev4Press\v35\Core\UI\Elements;
 use Dev4Press\v35\Core\UI\Walker\CheckboxRadio;
-use function Dev4Press\v35\Functions\Is\associative_array;
-use function Dev4Press\v35\Functions\Sanitize\slug;
+use function Dev4Press\v35\Functions\is_associative_array;
+use function Dev4Press\v35\Functions\sanitize_slug;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -431,7 +431,7 @@ class Render {
 		}
 
 		$value       = is_null( $value ) || $value === true ? array_keys( $data ) : (array) $value;
-		$associative = associative_array( $data );
+		$associative = is_associative_array( $data );
 
 		if ( $multiple ) {
 			$this->part_check_uncheck_all();
@@ -735,7 +735,7 @@ class Render {
 
 	protected function draw_password( $element, $value, $name_base, $id_base ) {
 		$readonly     = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
-		$autocomplete = isset( $element->args['autocomplete'] ) ? slug( $element->args['autocomplete'] ) : 'off';
+		$autocomplete = isset( $element->args['autocomplete'] ) ? sanitize_slug( $element->args['autocomplete'] ) : 'off';
 
 		echo sprintf( '<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="password" name="%s" id="%s" value="%s" class="widefat" autocomplete="' . $autocomplete . '" />',
 			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ) );

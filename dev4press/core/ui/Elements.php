@@ -27,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v35\Core\UI;
 
 use Dev4Press\v35\Core\UI\Walker\CheckboxRadio;
-use function Dev4Press\v35\Functions\Is\associative_array;
+use function Dev4Press\v35\Functions\is_associative_array;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -87,7 +87,7 @@ class Elements {
 		$render      = '';
 		$attributes  = array();
 		$selected    = is_null( $selected ) ? array_keys( $values ) : (array) $selected;
-		$associative = ! associative_array( $values );
+		$associative = ! is_associative_array( $values );
 		$id          = $this->id_from_name( $name, $id );
 
 		if ( $class != '' ) {
@@ -247,7 +247,7 @@ class Elements {
 
 		$render      = '<div class="' . $wrapper_class . '">';
 		$selected    = (array) $selected;
-		$associative = associative_array( $values );
+		$associative = is_associative_array( $values );
 		$id          = $this->id_from_name( $name, $id );
 		$name        = $multi ? $name . '[]' : $name;
 
@@ -330,7 +330,7 @@ class Elements {
 		$render      = '<div class="d4p-setting-checkboxes-hierarchy">';
 		$attributes  = array();
 		$selected    = (array) $selected;
-		$associative = associative_array( $values );
+		$associative = is_associative_array( $values );
 		$id          = $this->id_from_name( $name, $id );
 
 		if ( $class != '' ) {

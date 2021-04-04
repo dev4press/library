@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v35\Functions\Sanitize
+Name:    Dev4Press\v35\Functions
 Version: v3.5
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v35\Functions\Sanitize;
+namespace Dev4Press\v35\Functions;
 
 use DateTime;
 
@@ -32,8 +32,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\date' ) ) {
-	function date( $value, $format = 'Y-m-d', $return_on_error = '' ) : string {
+if ( ! function_exists( __NAMESPACE__ . '\sanitize_date' ) ) {
+	function sanitize_date( $value, $format = 'Y-m-d', $return_on_error = '' ) : string {
 		$dt = DateTime::createFromFormat( '!' . $format, $value );
 
 		if ( $dt === false ) {
@@ -44,23 +44,23 @@ if ( ! function_exists( __NAMESPACE__ . '\date' ) ) {
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\time' ) ) {
-	function time( $value, $format = 'H:i:s', $return_on_error = '' ) : string {
-		return date( $value, $format, $return_on_error );
+if ( ! function_exists( __NAMESPACE__ . '\sanitize_time' ) ) {
+	function sanitize_time( $value, $format = 'H:i:s', $return_on_error = '' ) : string {
+		return sanitize_date( $value, $format, $return_on_error );
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\month' ) ) {
-	function month( $value, $format = 'Y-m', $return_on_error = '' ) : string {
-		return date( $value, $format, $return_on_error );
+if ( ! function_exists( __NAMESPACE__ . '\sanitize_month' ) ) {
+	function sanitize_month( $value, $format = 'Y-m', $return_on_error = '' ) : string {
+		return sanitize_date( $value, $format, $return_on_error );
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\file_path' ) ) {
-	function file_path( $filename ) : string {
+if ( ! function_exists( __NAMESPACE__ . '\sanitize_file_path' ) ) {
+	function sanitize_file_path( $filename ) : string {
 		$filename_raw = $filename;
 
-		$special_chars = apply_filters( __NAMESPACE__ . '\file_path_chars', array(
+		$special_chars = apply_filters( __NAMESPACE__ . '\sanitize_file_path_chars', array(
 			"?",
 			"[",
 			"]",
@@ -97,12 +97,12 @@ if ( ! function_exists( __NAMESPACE__ . '\file_path' ) ) {
 		$filename = preg_replace( '/[\r\n\t -]+/', '-', $filename );
 		$filename = trim( $filename, '.-_' );
 
-		return apply_filters( __NAMESPACE__ . '\file_path', $filename, $filename_raw );
+		return apply_filters( __NAMESPACE__ . '\sanitize_file_path', $filename, $filename_raw );
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\key_expanded' ) ) {
-	function key_expanded( $key ) : string {
+if ( ! function_exists( __NAMESPACE__ . '\sanitize_key_expanded' ) ) {
+	function sanitize_key_expanded( $key ) : string {
 		$key = strtolower( $key );
 		$key = preg_replace( '/[^a-z0-9._\-]/', '', $key );
 
@@ -110,8 +110,8 @@ if ( ! function_exists( __NAMESPACE__ . '\key_expanded' ) ) {
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\extended' ) ) {
-	function extended( $text, $tags = null, $protocols = array(), $strip_shortcodes = false ) : string {
+if ( ! function_exists( __NAMESPACE__ . '\sanitize_extended' ) ) {
+	function sanitize_extended( $text, $tags = null, $protocols = array(), $strip_shortcodes = false ) : string {
 		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
 		$text = stripslashes( $text );
 
@@ -123,8 +123,8 @@ if ( ! function_exists( __NAMESPACE__ . '\extended' ) ) {
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\basic' ) ) {
-	function basic( $text, $strip_shortcodes = true ) : string {
+if ( ! function_exists( __NAMESPACE__ . '\sanitize_basic' ) ) {
+	function sanitize_basic( $text, $strip_shortcodes = true ) : string {
 		$text = stripslashes( $text );
 
 		if ( $strip_shortcodes ) {
@@ -135,22 +135,22 @@ if ( ! function_exists( __NAMESPACE__ . '\basic' ) ) {
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\html' ) ) {
-	function html( $text, $tags = null, $protocols = array() ) : string {
+if ( ! function_exists( __NAMESPACE__ . '\sanitize_html' ) ) {
+	function sanitize_html( $text, $tags = null, $protocols = array() ) : string {
 		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
 
 		return wp_kses( trim( stripslashes( $text ) ), $tags, $protocols );
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\slug' ) ) {
-	function slug( $text ) : string {
+if ( ! function_exists( __NAMESPACE__ . '\sanitize_slug' ) ) {
+	function sanitize_slug( $text ) : string {
 		return trim( sanitize_title_with_dashes( stripslashes( $text ) ), "-_ \t\n\r\0\x0B" );
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\html_classes' ) ) {
-	function html_classes( $classes ) : string {
+if ( ! function_exists( __NAMESPACE__ . '\sanitize_html_classes' ) ) {
+	function sanitize_html_classes( $classes ) : string {
 		$list = explode( ' ', trim( stripslashes( $classes ) ) );
 		$list = array_map( 'sanitize_html_class', $list );
 
@@ -158,12 +158,12 @@ if ( ! function_exists( __NAMESPACE__ . '\html_classes' ) ) {
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\basic_array' ) ) {
-	function basic_array( $input, $strip_shortcodes = true ) : array {
+if ( ! function_exists( __NAMESPACE__ . '\sanitize_basic_array' ) ) {
+	function sanitize_basic_array( $input, $strip_shortcodes = true ) : array {
 		$output = array();
 
 		foreach ( $input as $key => $value ) {
-			$output[ $key ] = basic( $value, $strip_shortcodes );
+			$output[ $key ] = sanitize_basic( $value, $strip_shortcodes );
 		}
 
 		return $output;

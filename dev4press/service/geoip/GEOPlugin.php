@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v35\Service\GEOIP;
 
-use function Dev4Press\v35\Functions\IP\visitor;
+use Dev4Press\v35\Core\Helpers\IP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -40,7 +40,7 @@ class GEOPlugin extends Locator {
 		static $geoplugin_ips = array();
 
 		if ( empty( $ips ) ) {
-			$ips = array( visitor() );
+			$ips = array( IP::visitor() );
 		}
 
 		sort( $ips );

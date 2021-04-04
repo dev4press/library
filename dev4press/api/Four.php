@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v35\API;
 
-use function Dev4Press\v35\Functions\IP\server;
+use Dev4Press\v35\Core\Helpers\IP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -88,7 +88,7 @@ class Four {
 		$this->data['multisite'] = is_multisite() ? 'Y' : 'N';
 		$this->data['bbpress']   = $this->_has_bbpress() ? 'Y' : 'N';
 		$this->data['url']       = parse_url( get_bloginfo( 'url' ), PHP_URL_HOST );
-		$this->data['ip']        = server();
+		$this->data['ip']        = IP::server();
 
 		if ( function_exists( 'd4pupd_get_api_key' ) ) {
 			$this->data['api'] = d4pupd_get_api_key();
