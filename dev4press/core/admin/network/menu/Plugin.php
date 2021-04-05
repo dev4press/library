@@ -18,7 +18,7 @@ abstract class Plugin extends BasePlugin {
 			$this->is_multisite = true;
 		}
 
-		$this->consturctor();
+		$this->constructor();
 
 		if ( $this->is_multisite ) {
 			add_filter( 'network_admin_plugin_action_links', array( $this, 'plugin_actions' ), 10, 2 );

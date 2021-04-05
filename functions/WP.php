@@ -28,6 +28,7 @@ namespace Dev4Press\v35\Functions\WP;
 
 use Dev4Press\v35\Core\Helpers\Error;
 use WP_Error;
+use WP_Query;
 use wpdb;
 
 if ( ! function_exists( __NAMESPACE__ . '\is_plugin_active' ) ) {

@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v35\Functions;
 
+use DateTime;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

@@ -96,10 +96,10 @@ abstract class Generator {
 		$items = array();
 
 		for ( $i = 0; $i < $paragraphs; $i ++ ) {
-			$p = $this->paragraph( false );
+			$p = $this->paragraph();
 
 			if ( in_array( 'decorate', $settings ) ) {
-				$p = $this->random_tagify( $p, 'strong' );
+				$p = $this->random_tagify( $p );
 				$p = $this->random_tagify( $p, 'i' );
 			}
 
@@ -149,8 +149,8 @@ abstract class Generator {
 
 			$list[] = '<dl>';
 			for ( $i = 0; $i < $max; $i ++ ) {
-				$list[] = '<dt>' . ucfirst( $this->words( 2, false, false ) ) . '</dt>';
-				$list[] = $this->sentences( 1, array( 'dd' ), false );
+				$list[] = '<dt>' . ucfirst( $this->words( 2 ) ) . '</dt>';
+				$list[] = $this->sentences( 1, array( 'dd' ) );
 			}
 			$list[] = '</dl>';
 
@@ -164,7 +164,7 @@ abstract class Generator {
 
 			$list[] = '<ul>';
 			for ( $i = 0; $i < $max; $i ++ ) {
-				$list[] = $this->sentences( 1, array( 'li' ), false );
+				$list[] = $this->sentences( 1, array( 'li' ) );
 			}
 			$list[] = '</ul>';
 
@@ -182,7 +182,7 @@ abstract class Generator {
 
 			$list[] = '<ol>';
 			for ( $i = 0; $i < $max; $i ++ ) {
-				$list[] = $this->sentences( 1, array( 'li' ), false );
+				$list[] = $this->sentences( 1, array( 'li' ) );
 			}
 			$list[] = '</ol>';
 
