@@ -17,6 +17,16 @@ class PanelSettings extends Panel {
 		$this->init_default_subpanels();
 	}
 
+	public static function instance( $admin = null ) : PanelSettings {
+		static $instance = null;
+
+		if ( ! isset( $instance ) ) {
+			$instance = new PanelSettings( $admin );
+		}
+
+		return $instance;
+	}
+
 	protected function init_default_subpanels() {
 		$this->subpanels = array(
 			'index' => array(

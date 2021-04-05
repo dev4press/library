@@ -14,11 +14,11 @@ abstract class Plugin extends BasePlugin {
 
 	protected $menu = 'options-general.php';
 
-	public function main_url() {
+	public function main_url() : string {
 		return self_admin_url( $this->menu . '?page=' . $this->plugin );
 	}
 
-	public function current_url( $with_subpanel = true ) {
+	public function current_url( $with_subpanel = true ) : string {
 		$url = $this->main_url();
 
 		if ( $this->panel !== false && $this->panel != '' ) {
@@ -32,7 +32,7 @@ abstract class Plugin extends BasePlugin {
 		return $url;
 	}
 
-	public function panel_url( $panel = 'dashboard', $subpanel = '' ) {
+	public function panel_url( $panel = 'dashboard', $subpanel = '' ) : string {
 		$url = $this->main_url();
 
 		$url .= '&panel=' . $panel;

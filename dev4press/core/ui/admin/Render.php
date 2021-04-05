@@ -11,19 +11,17 @@ class Render {
 	}
 
 	/** @return Render */
-	public static function instance() {
-		static $instance = array();
+	public static function instance() : Render {
+		static $instance = null;
 
-		$class = get_called_class();
-
-		if ( ! isset( $instance[ $class ] ) ) {
-			$instance[ $class ] = new $class();
+		if ( ! isset( $instance ) ) {
+			$instance = new Render();
 		}
 
-		return $instance[ $class ];
+		return $instance;
 	}
 
-	public function icon_class( $name, $modifiers = array(), $extra_class = '' ) {
+	public function icon_class( $name, $modifiers = array(), $extra_class = '' ) : string {
 		$dashicons = false;
 
 		if ( substr( $name, 0, 9 ) == 'dashicons' ) {
@@ -48,7 +46,7 @@ class Render {
 		return $class;
 	}
 
-	public function icon( $name = '', $modifiers = array(), $extra_class = '' ) {
+	public function icon( $name = '', $modifiers = array(), $extra_class = '' ) : string {
 		if ( empty( $name ) ) {
 			return '';
 		}
@@ -59,7 +57,7 @@ class Render {
 		return sprintf( $icon, $class );
 	}
 
-	public function settings_break( $label, $icon = '' ) {
+	public function settings_break( $label, $icon = '' ) : string {
 		$break = $this->div_break();
 		$break .= '<div class="d4p-panel-break d4p-clearfix">';
 		$break .= '<h1 id="settings-break-' . sanitize_key( $label ) . '">' . $this->icon( $icon ) . $label . '</h1>';
@@ -69,7 +67,7 @@ class Render {
 		return $break;
 	}
 
-	public function settings_group_break( $label, $icon = '' ) {
+	public function settings_group_break( $label, $icon = '' ) : string {
 		$break = $this->div_break();
 		$break .= '<div class="d4p-panel-group-break d4p-clearfix">';
 		$break .= '<h2 id="settings-group-break-' . sanitize_key( $label ) . '">' . $this->icon( $icon ) . $label . '</h2>';
@@ -79,7 +77,7 @@ class Render {
 		return $break;
 	}
 
-	public function div_break() {
+	public function div_break() : string {
 		return '<div style="clear: both"></div>';
 	}
 }

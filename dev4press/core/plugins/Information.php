@@ -74,18 +74,7 @@ abstract class Information {
 		return (array) $this;
 	}
 
-	/** @return Information */
-	public static function instance() {
-		static $instance = array();
-
-		$class = get_called_class();
-
-		if ( ! isset( $instance[ $class ] ) ) {
-			$instance[ $class ] = new $class();
-		}
-
-		return $instance[ $class ];
-	}
+	abstract public static function instance();
 
 	public function name() {
 		return Store::instance()->name( $this->code );

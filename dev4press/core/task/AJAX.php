@@ -52,18 +52,7 @@ abstract class AJAX {
 		}
 	}
 
-	/** @return AJAX */
-	public static function instance() {
-		static $instance = array();
-
-		$class = get_called_class();
-
-		if ( ! isset( $instance[ $class ] ) ) {
-			$instance[ $class ] = new $class();
-		}
-
-		return $instance[ $class ];
-	}
+	abstract public static function instance();
 
 	public function check_nonce() {
 		$nonce = wp_verify_nonce( $_REQUEST['_ajax_nonce'], $this->nonce );
@@ -125,7 +114,7 @@ abstract class AJAX {
 		json_die( $response );
 	}
 
-	protected function init_data() {
+	protected function init_data() : array {
 		return array(
 			'data'     => array(),
 			'messages' => array(),

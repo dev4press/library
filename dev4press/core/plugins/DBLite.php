@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v35\Core\Plugins;
 
+use wpdb;
 use function Dev4Press\v35\Functions\sanitize_ids_list;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -41,18 +42,7 @@ abstract class DBLite {
 	public function init() {
 	}
 
-	/** @return DBLite */
-	public static function instance() {
-		static $instance = array();
-
-		$class = get_called_class();
-
-		if ( ! isset( $instance[ $class ] ) ) {
-			$instance[ $class ] = new $class();
-		}
-
-		return $instance[ $class ];
-	}
+	abstract public static function instance();
 
 	public function __get( $name ) {
 		if ( isset( $this->wpdb()->$name ) ) {
@@ -60,11 +50,11 @@ abstract class DBLite {
 		}
 	}
 
-	public function clean_ids_list( $ids ) {
+	public function clean_ids_list( $ids ) : array {
 		return sanitize_ids_list( $ids );
 	}
 
-	public function build_query( $sql, $calc_found_rows = true ) {
+	public function build_query( $sql, $calc_found_rows = true ) : string {
 		$defaults = array(
 			'select' => array(),
 			'from'   => array(),
@@ -232,27 +222,27 @@ abstract class DBLite {
 		return $new;
 	}
 
-	public function mysqli() {
+	public function mysqli() : bool {
 		return isset( $this->wpdb()->use_mysqli ) ? $this->wpdb()->use_mysqli : false;
 	}
 
-	public function prefix() {
+	public function prefix() : string {
 		return $this->wpdb()->prefix;
 	}
 
-	public function base_prefix() {
+	public function base_prefix() : string {
 		return $this->wpdb()->base_prefix;
 	}
 
-	public function rows_affected() {
+	public function rows_affected() : int {
 		return $this->wpdb()->rows_affected;
 	}
 
-	public function blog_id() {
+	public function blog_id() : int {
 		return $this->wpdb()->blogid;
 	}
 
-	public function get_insert_id() {
+	public function get_insert_id() : int {
 		return $this->wpdb()->insert_id;
 	}
 
@@ -260,7 +250,7 @@ abstract class DBLite {
 		return $this->get_var( 'SELECT FOUND_ROWS()' );
 	}
 
-	public function save_queries() {
+	public function save_queries() : bool {
 		return defined( 'SAVEQUERIES' ) && SAVEQUERIES;
 	}
 
@@ -274,7 +264,7 @@ abstract class DBLite {
 		return $offset === false ? 0 : $offset;
 	}
 
-	public function get_offset_string() {
+	public function get_offset_string() : string {
 		$offset = $this->gmt_offset();
 
 		$hours   = intval( $offset );
@@ -283,7 +273,7 @@ abstract class DBLite {
 		return sprintf( '%+03d:%02d', $hours, $minutes );
 	}
 
-	public function enable_save_queries() {
+	public function enable_save_queries() : bool {
 		if ( ! defined( 'SAVEQUERIES' ) ) {
 			define( 'SAVEQUERIES', true );
 
@@ -330,9 +320,12 @@ abstract class DBLite {
 		return current_time( 'mysql', $gmt );
 	}
 
-	/** @return \wpdb *@global \wpdb $wpdb
+	/**
+	 * @return wpdb
+	 *
+	 * @global wpdb $wpdb
 	 */
-	public function wpdb() {
+	public function wpdb() : wpdb {
 		global $wpdb;
 
 		return $wpdb;

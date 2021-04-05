@@ -39,41 +39,31 @@ abstract class Core {
 		$this->clear();
 	}
 
-	public static function instance() {
-		static $instance = array();
+	abstract public static function instance();
 
-		$class = get_called_class();
-
-		if ( ! isset( $instance[ $class ] ) ) {
-			$instance[ $class ] = new $class();
-		}
-
-		return $instance[ $class ];
-	}
-
-	private function _key( $group, $key ) {
+	private function _key( $group, $key ) : string {
 		return $group . '::' . $key;
 	}
 
-	public function add( $group, $key, $data ) {
+	public function add( $group, $key, $data ) : bool {
 		return object_cache()->add( $this->_key( $group, $key ), $data, $this->store );
 	}
 
-	public function set( $group, $key, $data ) {
+	public function set( $group, $key, $data ) : bool {
 		return object_cache()->set( $this->_key( $group, $key ), $data, $this->store );
 	}
 
-	public function get( $group, $key, $default = false ) {
+	public function get( $group, $key, $default = false ) : bool {
 		$obj = object_cache()->get( $this->_key( $group, $key ), $this->store );
 
 		return $obj === false ? $default : $obj;
 	}
 
-	public function delete( $group, $key ) {
+	public function delete( $group, $key ) : bool {
 		return object_cache()->delete( $this->_key( $group, $key ), $this->store );
 	}
 
-	public function in( $group, $key ) {
+	public function in( $group, $key ) : bool {
 		return object_cache()->in( $this->_key( $group, $key ), $this->store );
 	}
 
@@ -81,7 +71,7 @@ abstract class Core {
 		object_cache()->flush( $this->store );
 	}
 
-	public function storage() {
+	public function storage() : array {
 		return object_cache()->get_group( $this->store );
 	}
 }

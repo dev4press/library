@@ -45,18 +45,7 @@ abstract class Settings {
 		$this->constructor();
 	}
 
-	/** @return Settings */
-	public static function instance() {
-		static $instance = array();
-
-		$class = get_called_class();
-
-		if ( ! isset( $instance[ $class ] ) ) {
-			$instance[ $class ] = new $class();
-		}
-
-		return $instance[ $class ];
-	}
+	abstract public static function instance();
 
 	/** @return Information */
 	public function information() {
@@ -194,11 +183,11 @@ abstract class Settings {
 	}
 
 	public function is_install() {
-		return $this->get( 'install', 'info' );
+		return (bool)$this->get( 'install', 'info' );
 	}
 
 	public function is_update() {
-		return $this->get( 'update', 'info' );
+		return (bool)$this->get( 'update', 'info' );
 	}
 
 	public function mark_for_update() {

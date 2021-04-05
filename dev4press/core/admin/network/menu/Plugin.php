@@ -32,11 +32,11 @@ abstract class Plugin extends BasePlugin {
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), 20 );
 	}
 
-	public function main_url() {
+	public function main_url() : string {
 		return network_admin_url( 'admin.php?page=' . $this->plugin . '-dashboard' );
 	}
 
-	public function current_url( $with_subpanel = true ) {
+	public function current_url( $with_subpanel = true ) : string {
 		$page = 'admin.php?page=' . $this->plugin . '-' . $this->panel;
 
 		if ( $with_subpanel && isset( $this->subpanel ) && $this->subpanel !== false && $this->subpanel != '' ) {

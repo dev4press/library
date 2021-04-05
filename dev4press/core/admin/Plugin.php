@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v35\Core\Admin;
 
 use Dev4Press\v35\Core\UI\Enqueue;
+use WP_Screen;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -77,20 +78,9 @@ abstract class Plugin {
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), 20 );
 	}
 
-	/** @return \Dev4Press\v35\Core\Admin\Plugin|\Dev4Press\v35\Core\Admin\Submenu\Plugin|\Dev4Press\v35\Core\Admin\Menu\Plugin */
-	public static function instance() {
-		static $instance = array();
+	abstract public static function instance();
 
-		$class = get_called_class();
-
-		if ( ! isset( $instance[ $class ] ) ) {
-			$instance[ $class ] = new $class();
-		}
-
-		return $instance[ $class ];
-	}
-
-	public function screen() {
+	public function screen() : WP_Screen {
 		return get_current_screen();
 	}
 
@@ -132,7 +122,7 @@ abstract class Plugin {
 	 * @return string
 	 */
 
-	public function h( $hook ) {
+	public function h( $hook ) : string {
 		return $this->plugin_prefix . '_' . $hook;
 	}
 
@@ -141,7 +131,7 @@ abstract class Plugin {
 	 *
 	 * @return string
 	 */
-	public function v() {
+	public function v() : string {
 		return $this->plugin_prefix . '_handler';
 	}
 
@@ -150,7 +140,7 @@ abstract class Plugin {
 	 *
 	 * @return string
 	 */
-	public function n() {
+	public function n() : string {
 		return $this->plugin_prefix . '_value';
 	}
 
@@ -159,7 +149,7 @@ abstract class Plugin {
 	 *
 	 * @return string
 	 */
-	public function p() {
+	public function p() : string {
 		return $this->plugin_prefix;
 	}
 
@@ -168,7 +158,7 @@ abstract class Plugin {
 	 *
 	 * @return string
 	 */
-	public function plugin_name() {
+	public function plugin_name() : string {
 		return $this->plugin . '/' . $this->plugin . '.php';
 	}
 
@@ -177,11 +167,11 @@ abstract class Plugin {
 	 *
 	 * @return string
 	 */
-	public function title() {
+	public function title() : string {
 		return $this->plugin_title;
 	}
 
-	public function file( $type, $name, $min = true, $base_url = null ) {
+	public function file( $type, $name, $min = true, $base_url = null ) : string {
 		$get = is_null( $base_url ) ? $this->url : $base_url;
 
 		$get .= $type . '/' . $name;
@@ -260,7 +250,7 @@ abstract class Plugin {
 		}
 	}
 
-	public function install_or_update() {
+	public function install_or_update() : bool {
 		$install = $this->settings()->is_install();
 		$update  = $this->settings()->is_update();
 
@@ -273,7 +263,7 @@ abstract class Plugin {
 		return $install || $update;
 	}
 
-	public function svg_icon() {
+	public function svg_icon() : string {
 		return '';
 	}
 
@@ -390,11 +380,11 @@ abstract class Plugin {
 		$this->object->show();
 	}
 
-	public function lib_path() {
+	public function lib_path() : string {
 		return $this->path . 'd4plib/';
 	}
 
-	public function panels() {
+	public function panels() : array {
 		return $this->setup_items + $this->menu_items;
 	}
 
@@ -402,7 +392,7 @@ abstract class Plugin {
 		return $msg;
 	}
 
-	public function export_url( $run = 'export', $nonce = null ) {
+	public function export_url( $run = 'export', $nonce = null ) : string {
 		$nonce = is_null( $nonce ) ? 'dev4press-plugin-' . $this->plugin_prefix : $nonce;
 
 		$url = $this->panel_url( 'tools' );
@@ -426,7 +416,7 @@ abstract class Plugin {
 		$this->subpanel = $this->object->validate_subpanel( $this->subpanel );
 	}
 
-	protected function is_metabox_available() {
+	protected function is_metabox_available() : bool {
 		return true;
 	}
 
@@ -461,9 +451,7 @@ abstract class Plugin {
 
 	abstract public function run_postback();
 
-	/** @return \Dev4Press\v35\Core\Plugins\Settings */
 	abstract public function settings();
 
-	/** @return \Dev4Press\v35\Core\Options\Settings */
 	abstract public function settings_definitions();
 }

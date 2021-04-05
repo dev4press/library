@@ -55,18 +55,7 @@ abstract class Core {
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
 	}
 
-	/** @return Core */
-	public static function instance() {
-		static $instance = array();
-
-		$class = get_called_class();
-
-		if ( ! isset( $instance[ $class ] ) ) {
-			$instance[ $class ] = new $class();
-		}
-
-		return $instance[ $class ];
-	}
+	abstract public static function instance();
 
 	public function plugins_loaded() {
 		if ( is_classicpress() ) {

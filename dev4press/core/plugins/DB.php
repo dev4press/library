@@ -44,6 +44,8 @@ abstract class DB extends DBLite {
 	protected $_meta_translate = array();
 
 	public function __construct() {
+		parent::__construct();
+
 		if ( ! empty( $this->_tables ) ) {
 			$this->init();
 

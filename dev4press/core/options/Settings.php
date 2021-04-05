@@ -37,18 +37,7 @@ abstract class Settings {
 		$this->init();
 	}
 
-	/** @return Settings */
-	public static function instance() {
-		static $instance = array();
-
-		$class = get_called_class();
-
-		if ( ! isset( $instance[ $class ] ) ) {
-			$instance[ $class ] = new $class();
-		}
-
-		return $instance[ $class ];
-	}
+	abstract public static function instance();
 
 	public function all() {
 		return $this->settings;

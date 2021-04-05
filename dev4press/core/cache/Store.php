@@ -56,11 +56,11 @@ class Store {
 		return $instance;
 	}
 
-	protected function _exists( $key, $group ) {
+	protected function _exists( $key, $group ) : bool {
 		return isset( $this->cache[ $group ] ) && ( isset( $this->cache[ $group ][ $key ] ) || array_key_exists( $key, $this->cache[ $group ] ) );
 	}
 
-	private function _group( $group = '' ) {
+	private function _group( $group = '' ) : string {
 		if ( empty( $group ) ) {
 			$group = 'default';
 		}
@@ -68,7 +68,7 @@ class Store {
 		return $group;
 	}
 
-	private function _key( $key, $group ) {
+	private function _key( $key, $group ) : string {
 		if ( $this->multisite && ! isset( $this->global_groups[ $group ] ) ) {
 			$key = $this->blog_prefix . $key;
 		}
@@ -83,7 +83,7 @@ class Store {
 		$this->global_groups = array_merge( $this->global_groups, $groups );
 	}
 
-	public function add( $key, $data, $group = 'default' ) {
+	public function add( $key, $data, $group = 'default' ) : bool {
 		$original_key = $key;
 
 		$group = $this->_group( $group );
@@ -96,7 +96,7 @@ class Store {
 		return $this->set( $original_key, $data, $group );
 	}
 
-	public function delete( $key, $group = 'default' ) {
+	public function delete( $key, $group = 'default' ) : bool {
 		$group = $this->_group( $group );
 		$key   = $this->_key( $key, $group );
 
@@ -130,7 +130,7 @@ class Store {
 		return $force;
 	}
 
-	public function replace( $key, $data, $group = 'default' ) {
+	public function replace( $key, $data, $group = 'default' ) : bool {
 		$group = $this->_group( $group );
 		$key   = $this->_key( $key, $group );
 
@@ -141,7 +141,7 @@ class Store {
 		return $this->set( $key, $data, $group );
 	}
 
-	public function set( $key, $data, $group = 'default' ) {
+	public function set( $key, $data, $group = 'default' ) : bool {
 		$group = $this->_group( $group );
 		$key   = $this->_key( $key, $group );
 
@@ -154,14 +154,14 @@ class Store {
 		return true;
 	}
 
-	public function in( $key, $group = 'default' ) {
+	public function in( $key, $group = 'default' ) : bool {
 		$group = $this->_group( $group );
 		$key   = $this->_key( $key, $group );
 
 		return $this->_exists( $key, $group );
 	}
 
-	public function flush( $group = null ) {
+	public function flush( $group = null ) : bool {
 		if ( is_null( $group ) ) {
 			$this->cache = array();
 		} else {
@@ -172,7 +172,7 @@ class Store {
 		return true;
 	}
 
-	public function get_group( $group ) {
+	public function get_group( $group ) : array {
 		if ( isset( $this->cache[ $group ] ) ) {
 			return $this->cache[ $group ];
 		}
@@ -197,7 +197,7 @@ class Store {
 		$this->blog_prefix = $this->multisite ? $blog_id . ':' : '';
 	}
 
-	public function cache() {
+	public function cache() : array {
 		return $this->cache;
 	}
 }

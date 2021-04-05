@@ -12,11 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Plugin extends BasePlugin {
 	public $variant = 'menu';
 
-	public function main_url() {
+	public function main_url() : string {
 		return self_admin_url( 'admin.php?page=' . $this->plugin . '-dashboard' );
 	}
 
-	public function current_url( $with_subpanel = true ) {
+	public function current_url( $with_subpanel = true ) : string {
 		$page = 'admin.php?page=' . $this->plugin . '-' . $this->panel;
 
 		if ( $with_subpanel && isset( $this->subpanel ) && $this->subpanel !== false && $this->subpanel != '' ) {
@@ -26,7 +26,7 @@ abstract class Plugin extends BasePlugin {
 		return self_admin_url( $page );
 	}
 
-	public function panel_url( $panel = 'dashboard', $subpanel = '' ) {
+	public function panel_url( $panel = 'dashboard', $subpanel = '' ) : string {
 		$page = 'admin.php?page=' . $this->plugin . '-' . $panel;
 
 		if ( ! empty( $subpanel ) && $subpanel != 'index' ) {

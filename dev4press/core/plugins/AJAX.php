@@ -28,19 +28,7 @@ namespace Dev4Press\v35\Core\Plugins;
 
 abstract class AJAX {
 	public function __construct() {
-
 	}
 
-	/** @return AJAX */
-	public static function instance() {
-		static $instance = array();
-
-		$class = get_called_class();
-
-		if ( ! isset( $instance[ $class ] ) ) {
-			$instance[ $class ] = new $class();
-		}
-
-		return $instance[ $class ];
-	}
+	abstract public static function instance();
 }
