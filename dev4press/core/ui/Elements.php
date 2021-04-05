@@ -309,8 +309,7 @@ class Elements {
 			'class'    => '',
 			'style'    => '',
 			'multi'    => true,
-			'echo'     => true,
-			'readonly' => false
+			'echo'     => true
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -323,35 +322,12 @@ class Elements {
 		 * @var string $style
 		 * @var bool   $multi
 		 * @var bool   $echo
-		 * @var bool   $readonly
 		 */
 		extract( $args );
 
 		$render      = '<div class="d4p-setting-checkboxes-hierarchy">';
-		$attributes  = array();
 		$selected    = (array) $selected;
-		$associative = is_associative_array( $values );
 		$id          = $this->id_from_name( $name, $id );
-
-		if ( $class != '' ) {
-			$attributes[] = 'class="' . esc_attr( $class ) . '"';
-		}
-
-		if ( $style != '' ) {
-			$attributes[] = 'style="' . esc_attr( $style ) . '"';
-		}
-
-		if ( $readonly ) {
-			$attributes[] = 'readonly';
-		}
-
-		if ( $id != '' ) {
-			$attributes[] = 'id="' . esc_attr( $id ) . '"';
-		}
-
-		if ( $name != '' ) {
-			$attributes[] = 'name="' . esc_attr( $name ) . '"';
-		}
 
 		if ( $multi ) {
 			$render .= '<div class="d4p-check-uncheck">';

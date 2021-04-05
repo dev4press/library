@@ -1,21 +1,23 @@
 <?php
 
-$_panel     = d4p_panel()->a()->panel_object();
-$_subpanel  = d4p_panel()->a()->subpanel;
-$_subpanels = d4p_panel()->subpanels();
+use function Dev4Press\v35\Functions\panel;
+
+$_panel     = panel()->a()->panel_object();
+$_subpanel  = panel()->a()->subpanel;
+$_subpanels = panel()->subpanels();
 
 ?>
 <div class="d4p-sidebar">
     <div class="d4p-panel-scroller d4p-scroll-active">
         <div class="d4p-panel-title">
-			<?php echo d4p_panel()->r()->icon( $_panel->icon ); ?>
+			<?php echo panel()->r()->icon( $_panel->icon ); ?>
             <h3><?php echo $_panel->title; ?></h3>
 			<?php
 
 			if ( $_subpanel == 'full' ) {
-				echo '<h4>' . d4p_panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . __( "All Settings", "d4plib" ) . '</h4>';
+				echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . __( "All Settings", "d4plib" ) . '</h4>';
 			} else if ( $_subpanel != 'index' ) {
-				echo '<h4>' . d4p_panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . $_subpanels[ $_subpanel ]['title'] . '</h4>';
+				echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . $_subpanels[ $_subpanel ]['title'] . '</h4>';
 			}
 
 			?>
@@ -41,7 +43,7 @@ $_subpanels = d4p_panel()->subpanels();
             </div>
 		<?php } else { ?>
             <div class="d4p-panel-buttons">
-                <a style="text-align: center" href="<?php echo d4p_panel()->a()->panel_url( 'settings', 'full' ); ?>" class="button-secondary"><?php _e( "Show All Settings", "d4plib" ); ?></a>
+                <a style="text-align: center" href="<?php echo panel()->a()->panel_url( 'settings', 'full' ); ?>" class="button-secondary"><?php _e( "Show All Settings", "d4plib" ); ?></a>
             </div>
 		<?php } ?>
     </div>

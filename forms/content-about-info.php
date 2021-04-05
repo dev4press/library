@@ -1,6 +1,8 @@
 <?php
 
-$plugin = d4p_panel()->a()->settings()->i();
+use function Dev4Press\v35\Functions\panel;
+
+$plugin = panel()->a()->settings()->i();
 $sysreq = $plugin->system_requirements();
 
 ?>

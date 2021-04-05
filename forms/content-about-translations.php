@@ -1,4 +1,9 @@
-<?php use Dev4Press\v35\Core\Helpers\Languages; ?>
+<?php
+
+use Dev4Press\v35\Core\Helpers\Languages;
+use function Dev4Press\v35\Functions\panel;
+
+?>
 <div class="d4p-info-block">
     <h3>
 		<?php _e( "List of included Languages", "d4plib" ); ?>
@@ -6,7 +11,7 @@
     <div>
 		<?php
 
-		$translations = d4p_panel()->a()->settings()->i()->translations;
+		$translations = panel()->a()->settings()->i()->translations;
 		$translations = Languages::instance()->plugin_translations( $translations );
 
 		foreach ( $translations as $code => $obj ) {

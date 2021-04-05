@@ -1,8 +1,10 @@
 <?php
 
-$_subpanels = d4p_panel()->subpanels();
-$_panel     = d4p_panel()->a()->panel;
-$_subpanel  = d4p_panel()->a()->subpanel;
+use function Dev4Press\v35\Functions\panel;
+
+$_subpanels = panel()->subpanels();
+$_panel     = panel()->a()->panel;
+$_subpanel  = panel()->a()->subpanel;
 
 if ( ! empty( $_subpanels ) ) {
 	$_available = array_keys( $_subpanels );
@@ -24,24 +26,24 @@ if ( ! empty( $_subpanel ) ) {
 
 ?>
 <div class="<?php echo join( ' ', $_classes ); ?>">
-    <h1><?php printf( __( "Welcome to %s&nbsp;%s", "d4plib" ), d4p_panel()->a()->title(), d4p_panel()->a()->settings()->i()->version ); ?></h1>
+    <h1><?php printf( __( "Welcome to %s&nbsp;%s", "d4plib" ), panel()->a()->title(), panel()->a()->settings()->i()->version ); ?></h1>
     <p class="d4p-about-text">
-		<?php echo d4p_panel()->a()->settings()->i()->description(); ?>
+		<?php echo panel()->a()->settings()->i()->description(); ?>
     </p>
-    <div class="d4p-about-badge" style="background-color: <?php echo d4p_panel()->a()->settings()->i()->color(); ?>;">
-		<?php echo d4p_panel()->r()->icon( 'plugin-' . d4p_panel()->a()->plugin ); ?>
-		<?php printf( __( "Version %s", "d4plib" ), d4p_panel()->a()->settings()->i()->version ); ?>
+    <div class="d4p-about-badge" style="background-color: <?php echo panel()->a()->settings()->i()->color(); ?>;">
+		<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin ); ?>
+		<?php printf( __( "Version %s", "d4plib" ), panel()->a()->settings()->i()->version ); ?>
     </div>
 
     <h2 class="nav-tab-wrapper wp-clearfix">
 		<?php
 
-		if ( d4p_panel()->a()->variant == 'submenu' ) {
-			echo '<a href="' . d4p_panel()->a()->panel_url( 'dashboard' ) . '" class="nav-tab"><i class="d4p-icon d4p-ui-home"></i></a>';
+		if ( panel()->a()->variant == 'submenu' ) {
+			echo '<a href="' . panel()->a()->panel_url() . '" class="nav-tab"><i class="d4p-icon d4p-ui-home"></i></a>';
 		}
 
 		foreach ( $_subpanels as $_tab => $obj ) {
-			echo '<a href="' . d4p_panel()->a()->panel_url( 'about', $_tab ) . '" class="nav-tab' . ( $_tab == $_subpanel ? ' nav-tab-active' : '' ) . '">' . $obj['title'] . '</a>';
+			echo '<a href="' . panel()->a()->panel_url( 'about', $_tab ) . '" class="nav-tab' . ( $_tab == $_subpanel ? ' nav-tab-active' : '' ) . '">' . $obj['title'] . '</a>';
 		}
 
 		?>

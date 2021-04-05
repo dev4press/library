@@ -1,21 +1,26 @@
+<?php
+
+use function Dev4Press\v35\Functions\panel;
+
+?>
 <div class="d4p-content">
 	<?php
 
-	foreach ( d4p_panel()->subpanels() as $subpanel => $obj ) {
+	foreach ( panel()->subpanels() as $subpanel => $obj ) {
 		if ( $subpanel == 'index' || $subpanel == 'full' ) {
 			continue;
 		}
 
-		$url = d4p_panel()->a()->panel_url( 'settings', $subpanel );
+		$url = panel()->a()->panel_url( 'settings', $subpanel );
 
 		if ( isset( $obj['break'] ) ) {
-			echo d4p_panel()->r()->settings_break( $obj['break'], $obj['break-icon'] );
+			echo panel()->r()->settings_break( $obj['break'], $obj['break-icon'] );
 		}
 
 		?>
 
         <div class="d4p-options-panel">
-			<?php echo d4p_panel()->r()->icon( $obj['icon'] ); ?>
+			<?php echo panel()->r()->icon( $obj['icon'] ); ?>
             <h5 aria-label="<?php echo $obj['info']; ?>" data-balloon-pos="up-left" data-balloon-length="large"><?php echo $obj['title']; ?></h5>
             <div>
                 <a class="button-primary" href="<?php echo $url; ?>"><?php _e( "Settings Panel", "d4plib" ); ?></a>

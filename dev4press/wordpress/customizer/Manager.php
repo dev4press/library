@@ -99,8 +99,8 @@ abstract class Manager {
 			$requirements[] = 'd4p-wp-color-picker-alpha';
 		}
 
-		wp_enqueue_style( 'd4p-customizer', $this->_file( 'css', 'customizer', true ), array( 'wp-color-picker' ), D4P_CORE_VERSION );
-		wp_enqueue_script( 'd4p-customizer', $this->_file( 'js', 'customizer', true ), $requirements, D4P_CORE_VERSION, true );
+		wp_enqueue_style( 'd4p-customizer', $this->_file( 'css', 'customizer' ), array( 'wp-color-picker' ), D4P_CORE_VERSION );
+		wp_enqueue_script( 'd4p-customizer', $this->_file( 'js', 'customizer' ), $requirements, D4P_CORE_VERSION, true );
 	}
 
 	public function register() {

@@ -2,6 +2,8 @@
 
 namespace Dev4Press\v35\Core\UI\Admin;
 
+use function Dev4Press\v35\Functions\panel;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -76,7 +78,7 @@ class PanelTools extends Panel {
 
 		echo "<input type='hidden' name='option_page' value='" . esc_attr( $group ) . "' />";
 		echo "<input type='hidden' name='" . $action . "' value='postback' />";
-		echo "<input type='hidden' name='" . d4p_panel()->a()->n() . "[subpanel]' value='" . $this->a()->subpanel . "' />";
+		echo "<input type='hidden' name='" . panel()->a()->n() . "[subpanel]' value='" . $this->a()->subpanel . "' />";
 
 		wp_nonce_field( $group . '-options' );
 	}

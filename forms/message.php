@@ -1,5 +1,6 @@
 <?php
 
+use function Dev4Press\v35\Functions\panel;
 use function Dev4Press\v35\Functions\sanitize_slug;
 
 $_message = '';
@@ -36,8 +37,8 @@ if ( isset( $_GET['message'] ) && $_GET['message'] != '' ) {
 			break;
 	}
 
-	$msg = d4p_panel()->a()->message_process( $msg_code, array( 'message' => $_message, 'color' => $_color ) );
-	$msg = apply_filters( d4p_panel()->a()->h( 'admin_panel_message' ), $msg );
+	$msg = panel()->a()->message_process( $msg_code, array( 'message' => $_message, 'color' => $_color ) );
+	$msg = apply_filters( panel()->a()->h( 'admin_panel_message' ), $msg );
 
 	$_message = $msg['message'];
 	$_color   = $msg['color'];

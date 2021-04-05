@@ -1,9 +1,11 @@
 <?php
 
-$_panels    = d4p_panel()->a()->panels();
-$_subpanels = d4p_panel()->subpanels();
-$_panel     = d4p_panel()->a()->panel;
-$_subpanel  = d4p_panel()->a()->subpanel;
+use function Dev4Press\v35\Functions\panel;
+
+$_panels    = panel()->a()->panels();
+$_subpanels = panel()->subpanels();
+$_panel     = panel()->a()->panel;
+$_subpanel  = panel()->a()->subpanel;
 
 if ( ! empty( $_subpanels ) ) {
 	$_available = array_keys( $_subpanels );
@@ -22,7 +24,7 @@ if ( ! empty( $_subpanel ) ) {
 	$_classes[] = 'd4p-subpanel-' . $_subpanel;
 }
 
-if ( d4p_panel()->has_sidebar() ) {
+if ( panel()->has_sidebar() ) {
 	$_classes[] = 'd4p-with-sidebar';
 } else {
 	$_classes[] = 'd4p-full-width';
@@ -34,13 +36,13 @@ if ( isset( $_panels[ $_panel ]['table'] ) && $_panels[ $_panel ]['table'] ) {
 
 ?>
 <div class="<?php echo join( ' ', $_classes ); ?>">
-	<?php d4p_panel()->include_notices(); ?>
+	<?php panel()->include_notices(); ?>
 
     <div class="d4p-header">
         <div class="d4p-navigator">
             <ul>
                 <li class="d4p-nav-button">
-                    <a href="#"><?php echo d4p_panel()->r()->icon( $_panels[ $_panel ]['icon'] ); ?><?php echo $_panels[ $_panel ]['title']; ?></a>
+                    <a href="#"><?php echo panel()->r()->icon( $_panels[ $_panel ]['icon'] ); ?><?php echo $_panels[ $_panel ]['title']; ?></a>
 					<?php if ( $_panel != 'install' && $_panel != 'update' ) { ?>
                         <ul>
 							<?php
@@ -48,9 +50,9 @@ if ( isset( $_panels[ $_panel ]['table'] ) && $_panels[ $_panel ]['table'] ) {
 							foreach ( $_panels as $panel => $obj ) {
 								if ( ! isset( $obj['type'] ) ) {
 									if ( $panel != $_panel ) {
-										echo '<li><a href="' . d4p_panel()->a()->panel_url( $panel ) . '">' . d4p_panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>';
+										echo '<li><a href="' . panel()->a()->panel_url( $panel ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>';
 									} else {
-										echo '<li class="d4p-nav-current">' . d4p_panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</li>';
+										echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</li>';
 									}
 								}
 							}
@@ -61,15 +63,15 @@ if ( isset( $_panels[ $_panel ]['table'] ) && $_panels[ $_panel ]['table'] ) {
                 </li>
 				<?php if ( ! empty( $_subpanels ) ) { ?>
                     <li class="d4p-nav-button">
-                        <a href="#"><?php echo d4p_panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ); ?><?php echo $_subpanels[ $_subpanel ]['title']; ?></a>
+                        <a href="#"><?php echo panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ); ?><?php echo $_subpanels[ $_subpanel ]['title']; ?></a>
                         <ul>
 							<?php
 
 							foreach ( $_subpanels as $subpanel => $obj ) {
 								if ( $subpanel != $_subpanel ) {
-									echo '<li><a href="' . d4p_panel()->a()->panel_url( $_panel, $subpanel ) . '">' . d4p_panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>';
+									echo '<li><a href="' . panel()->a()->panel_url( $_panel, $subpanel ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>';
 								} else {
-									echo '<li class="d4p-nav-current">' . d4p_panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</li>';
+									echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</li>';
 								}
 							}
 
@@ -80,8 +82,8 @@ if ( isset( $_panels[ $_panel ]['table'] ) && $_panels[ $_panel ]['table'] ) {
             </ul>
         </div>
         <div class="d4p-plugin">
-			<?php echo d4p_panel()->a()->title(); ?>
+			<?php echo panel()->a()->title(); ?>
         </div>
     </div>
-	<?php d4p_panel()->include_messages(); ?>
+	<?php panel()->include_messages(); ?>
     <div class="d4p-main">
