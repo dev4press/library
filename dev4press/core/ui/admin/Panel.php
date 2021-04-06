@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Panel {
+	static private $_current_instance = null;
+
 	/** @var \Dev4Press\v35\Core\Admin\Plugin|\Dev4Press\v35\Core\Admin\Menu\Plugin|\Dev4Press\v35\Core\Admin\Submenu\Plugin */
 	private $admin;
 
@@ -31,7 +33,16 @@ abstract class Panel {
 		add_action( $this->h( 'enqueue_scripts_early' ), array( $this, 'enqueue_scripts_early' ) );
 	}
 
-	abstract public static function instance( $admin = null );
+	/** @return \Dev4Press\Core\UI\Admin\Panel */
+	public static function instance( $admin = null ) {
+		$class = get_called_class();
+
+		if ( is_null( self::$_current_instance ) && ! is_null( $admin ) ) {
+			self::$_current_instance = new $class( $admin );
+		}
+
+		return self::$_current_instance;
+	}
 
 	public function a() {
 		return $this->admin;

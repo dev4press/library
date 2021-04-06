@@ -13,16 +13,6 @@ class PanelDashboard extends Panel {
 		'about'  => array()
 	);
 
-	public static function instance( $admin = null ) : PanelDashboard {
-		static $instance = null;
-
-		if ( ! isset( $instance ) ) {
-			$instance = new PanelDashboard( $admin );
-		}
-
-		return $instance;
-	}
-
 	public function __construct( $admin ) {
 		parent::__construct( $admin );
 

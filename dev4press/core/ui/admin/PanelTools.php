@@ -15,16 +15,6 @@ class PanelTools extends Panel {
 		$this->init_default_subpanels();
 	}
 
-	public static function instance( $admin = null ) : PanelTools {
-		static $instance = null;
-
-		if ( ! isset( $instance ) ) {
-			$instance = new PanelTools( $admin );
-		}
-
-		return $instance;
-	}
-
 	protected function init_default_subpanels() {
 		$this->subpanels = array(
 			'index'   => array(
