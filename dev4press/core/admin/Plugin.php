@@ -321,6 +321,8 @@ abstract class Plugin {
 				$this->enqueue->css( 'rtl' );
 			}
 
+			$this->extra_enqueue_scripts_plugin();
+
 			do_action( $this->h( 'enqueue_scripts' ) );
 		}
 
@@ -418,6 +420,9 @@ abstract class Plugin {
 
 	protected function is_metabox_available() : bool {
 		return true;
+	}
+
+	protected function extra_enqueue_scripts_plugin() {
 	}
 
 	protected function extra_enqueue_scripts_widgets() {
