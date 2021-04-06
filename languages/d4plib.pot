@@ -3,74 +3,74 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 04/02/2021 10:01:08 PM\n"
+"POT-Creation-Date: 04/06/2021 12:37:56 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GD i18n 2.7; www.dev4press.com\n"
 
-#: dev4press/core/admin/GetBack.php:95
+#: dev4press/core/admin/GetBack.php:97
 msgid "Only administrators can use export features."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:235
-#: dev4press/core/admin/Plugin.php:236
+#: dev4press/core/admin/Plugin.php:225
+#: dev4press/core/admin/Plugin.php:226
 msgid "Help & Support"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:236
+#: dev4press/core/admin/Plugin.php:226
 msgid "To get help with %s, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers)."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:237
-#: dev4press/core/admin/Plugin.php:107
-#: dev4press/core/admin/Plugin.php:222
+#: dev4press/core/admin/Plugin.php:227
+#: dev4press/core/admin/Plugin.php:97
+#: dev4press/core/admin/Plugin.php:212
 msgid "Knowledge Base"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:237
-#: dev4press/core/admin/Plugin.php:108
-#: dev4press/core/admin/Plugin.php:223
+#: dev4press/core/admin/Plugin.php:227
+#: dev4press/core/admin/Plugin.php:98
+#: dev4press/core/admin/Plugin.php:213
 msgid "Support Forum"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:244
-#: dev4press/core/admin/Plugin.php:245
+#: dev4press/core/admin/Plugin.php:234
+#: dev4press/core/admin/Plugin.php:235
 msgid "Found a bug?"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:245
+#: dev4press/core/admin/Plugin.php:235
 msgid "If you find a bug in %s, you can report it in the support forum."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:246
+#: dev4press/core/admin/Plugin.php:236
 msgid "Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:247
+#: dev4press/core/admin/Plugin.php:237
 msgid "Open new topic"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:292
+#: dev4press/core/admin/Plugin.php:282
 msgid "%s is activated and it needs to finish installation."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:293
-#: dev4press/core/admin/Plugin.php:302
+#: dev4press/core/admin/Plugin.php:283
+#: dev4press/core/admin/Plugin.php:292
 msgid "Click Here"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:301
+#: dev4press/core/admin/Plugin.php:291
 msgid "%s is updated, and you need to review the update process."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:98
+#: dev4press/core/admin/Plugin.php:88
 #: dev4press/core/ui/admin/PanelDashboard.php:23
 msgid "Settings"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:221
+#: dev4press/core/admin/Plugin.php:211
 msgid "Home Page"
 msgstr ""
 
@@ -116,172 +116,172 @@ msgstr ""
 msgid "Loaded Template"
 msgstr ""
 
-#: dev4press/core/options/Render.php:505
+#: dev4press/core/options/Render.php:509
 msgid "Add New Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:534
-#: dev4press/core/options/Render.php:565
+#: dev4press/core/options/Render.php:538
+#: dev4press/core/options/Render.php:569
 msgid "No items to show"
 msgstr ""
 
-#: dev4press/core/options/Render.php:583
+#: dev4press/core/options/Render.php:587
 msgid "Add Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:587
+#: dev4press/core/options/Render.php:591
 msgid "No images selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:597
-#: dev4press/core/ui/admin/PanelTools.php:54
-#: dev4press/core/ui/Enqueue.php:541
+#: dev4press/core/options/Render.php:601
+#: dev4press/core/ui/admin/PanelTools.php:56
+#: dev4press/core/ui/Enqueue.php:565
 msgid "Remove"
 msgstr ""
 
-#: dev4press/core/options/Render.php:598
-#: dev4press/core/ui/Enqueue.php:542
+#: dev4press/core/options/Render.php:602
+#: dev4press/core/ui/Enqueue.php:566
 msgid "Preview"
 msgstr ""
 
-#: dev4press/core/options/Render.php:611
-#: dev4press/core/ui/Enqueue.php:543
+#: dev4press/core/options/Render.php:615
+#: dev4press/core/ui/Enqueue.php:567
 msgid "Select Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:612
+#: dev4press/core/options/Render.php:616
 msgid "Show Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:613
+#: dev4press/core/options/Render.php:617
 msgid "Clear Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:616
-#: dev4press/core/ui/Enqueue.php:545
+#: dev4press/core/options/Render.php:620
+#: dev4press/core/ui/Enqueue.php:569
 msgid "Image not selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:639
+#: dev4press/core/options/Render.php:643
 msgid "Enabled"
 msgstr ""
 
-#: dev4press/core/options/Render.php:816
+#: dev4press/core/options/Render.php:820
 msgid "Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:819
+#: dev4press/core/options/Render.php:823
 msgid "Unit"
 msgstr ""
 
-#: dev4press/core/options/Render.php:832
-#: functions/admin.php:266
-#: functions/admin.php:370
+#: dev4press/core/options/Render.php:836
+#: dev4press/core/ui/Elements.php:256
+#: dev4press/core/ui/Elements.php:334
 msgid "Check All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:833
-#: functions/admin.php:267
-#: functions/admin.php:371
+#: dev4press/core/options/Render.php:837
+#: dev4press/core/ui/Elements.php:257
+#: dev4press/core/ui/Elements.php:335
 msgid "Uncheck All"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:166
+#: dev4press/core/plugins/Core.php:157
 msgctxt "System requirement version"
 msgid "%s version %s (%s is not active on your website)"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:168
+#: dev4press/core/plugins/Core.php:159
 msgctxt "System requirement version"
 msgid "%s version %s (your system runs version %s)"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:173
+#: dev4press/core/plugins/Core.php:164
 msgctxt "System requirement notice"
 msgid "System requirements check for %s failed. This plugin requires %s. The plugin will now be disabled."
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:149
+#: dev4press/core/plugins/Information.php:139
 msgid "Beta"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:152
+#: dev4press/core/plugins/Information.php:142
 msgid "Alpha"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:155
+#: dev4press/core/plugins/Information.php:145
 msgid "RC"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:158
+#: dev4press/core/plugins/Information.php:148
 msgid "Nightly"
 msgstr ""
 
-#: dev4press/core/plugins/InstallDB.php:78
+#: dev4press/core/plugins/InstallDB.php:67
 msgid "Some columns are missing."
 msgstr ""
 
-#: dev4press/core/plugins/InstallDB.php:84
+#: dev4press/core/plugins/InstallDB.php:73
 msgid "Table is missing."
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:94
+#: dev4press/core/plugins/Widget.php:99
 msgid "Global"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:98
+#: dev4press/core/plugins/Widget.php:103
 msgid "Extra"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:102
+#: dev4press/core/plugins/Widget.php:107
 msgid "Advanced"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:109
+#: dev4press/core/plugins/Widget.php:114
 msgid "Shortcode"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:398
+#: dev4press/core/plugins/Widget.php:403
 msgid "Everyone"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:399
+#: dev4press/core/plugins/Widget.php:404
 msgid "Logged in users"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:400
+#: dev4press/core/plugins/Widget.php:405
 msgid "Not logged in visitors"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:401
+#: dev4press/core/plugins/Widget.php:406
 msgid "Users with specified roles"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:402
+#: dev4press/core/plugins/Widget.php:407
 msgid "Users with specified capabilities"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:408
+#: dev4press/core/plugins/Widget.php:413
 msgid "Descending"
 msgstr ""
 
-#: dev4press/core/plugins/Widget.php:409
+#: dev4press/core/plugins/Widget.php:414
 msgid "Ascending"
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:89
+#: dev4press/core/task/AJAX.php:80
 msgid "Process is starting."
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:98
+#: dev4press/core/task/AJAX.php:89
 msgid "Process has been interrupted by user."
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:105
+#: dev4press/core/task/AJAX.php:96
 msgid "Process has completed."
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:112
+#: dev4press/core/task/AJAX.php:103
 msgid "Completed %s out of %s items."
 msgstr ""
 
@@ -322,7 +322,7 @@ msgid "All plugin settings are split into several panels, and you access each st
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelSettings.php:27
-#: forms/sidebar-settings.php:15
+#: forms/sidebar-settings.php:17
 msgid "All Settings"
 msgstr ""
 
@@ -330,104 +330,104 @@ msgstr ""
 msgid "All plugin settings are displayed on this page, and you can use live search to find the settings you need."
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:18
+#: dev4press/core/ui/admin/PanelTools.php:20
 msgid "Tools Index"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:22
+#: dev4press/core/ui/admin/PanelTools.php:24
 msgid "This panel links all the plugin tools, and you access each starting from the right."
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:25
+#: dev4press/core/ui/admin/PanelTools.php:27
 msgid "Recheck and Update"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:27
+#: dev4press/core/ui/admin/PanelTools.php:29
 msgid "Maintenance"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:31
+#: dev4press/core/ui/admin/PanelTools.php:33
 msgid "Run the update procedure and recheck plugin setup."
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:34
+#: dev4press/core/ui/admin/PanelTools.php:36
 msgid "Export Settings"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:37
+#: dev4press/core/ui/admin/PanelTools.php:39
 msgid "Export"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:39
+#: dev4press/core/ui/admin/PanelTools.php:41
 msgid "Export all plugin settings into file."
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:42
+#: dev4press/core/ui/admin/PanelTools.php:44
 msgid "Import Settings"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:45
+#: dev4press/core/ui/admin/PanelTools.php:47
 msgid "Import"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:46
+#: dev4press/core/ui/admin/PanelTools.php:48
 msgid "Import all plugin settings from export file."
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:49
+#: dev4press/core/ui/admin/PanelTools.php:51
 msgid "Reset / Remove"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:51
+#: dev4press/core/ui/admin/PanelTools.php:53
 msgid "Plugin Reset"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:55
+#: dev4press/core/ui/admin/PanelTools.php:57
 msgid "Remove selected plugin settings and optionally disable plugin."
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:544
+#: dev4press/core/ui/Enqueue.php:568
 msgid "Use Selected Image"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:546
-#: dev4press/core/ui/Enqueue.php:580
+#: dev4press/core/ui/Enqueue.php:570
+#: dev4press/core/ui/Enqueue.php:604
 msgid "Are you sure you want to do this?"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:570
+#: dev4press/core/ui/Enqueue.php:594
 msgid "OK"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:571
+#: dev4press/core/ui/Enqueue.php:595
 msgid "Cancel"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:572
+#: dev4press/core/ui/Enqueue.php:596
 msgid "Delete"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:573
+#: dev4press/core/ui/Enqueue.php:597
 msgid "Disable"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:574
+#: dev4press/core/ui/Enqueue.php:598
 msgid "Empty"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:575
+#: dev4press/core/ui/Enqueue.php:599
 msgid "Start"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:576
+#: dev4press/core/ui/Enqueue.php:600
 msgid "Stop"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:577
+#: dev4press/core/ui/Enqueue.php:601
 msgid "Wait"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:581
+#: dev4press/core/ui/Enqueue.php:605
 msgid "Please Wait..."
 msgstr ""
 
@@ -675,80 +675,80 @@ msgctxt "Taxonomy label"
 msgid "&larr; Back to %s"
 msgstr ""
 
-#: forms/content-about-info.php:9
+#: forms/content-about-info.php:11
 msgid "Current Version"
 msgstr ""
 
-#: forms/content-about-info.php:13
+#: forms/content-about-info.php:15
 msgid "Version"
 msgstr ""
 
-#: forms/content-about-info.php:14
+#: forms/content-about-info.php:16
 msgid "Status"
 msgstr ""
 
-#: forms/content-about-info.php:15
+#: forms/content-about-info.php:17
 msgid "Edition"
 msgstr ""
 
-#: forms/content-about-info.php:16
+#: forms/content-about-info.php:18
 msgid "Build"
 msgstr ""
 
-#: forms/content-about-info.php:17
+#: forms/content-about-info.php:19
 msgid "Date"
 msgstr ""
 
-#: forms/content-about-info.php:21
+#: forms/content-about-info.php:23
 msgid "First released"
 msgstr ""
 
-#: forms/content-about-info.php:28
+#: forms/content-about-info.php:30
 msgid "System Requirements"
 msgstr ""
 
-#: forms/content-about-translations.php:3
+#: forms/content-about-translations.php:8
 msgid "List of included Languages"
 msgstr ""
 
-#: forms/content-about-translations.php:13
+#: forms/content-about-translations.php:18
 msgid "Plugin Version"
 msgstr ""
 
-#: forms/content-about-translations.php:22
+#: forms/content-about-translations.php:27
 msgid "Contributors"
 msgstr ""
 
-#: forms/content-settings-index.php:20
+#: forms/content-settings-index.php:25
 msgid "Settings Panel"
 msgstr ""
 
-#: forms/content-tools-export.php:2
-#: forms/content-tools-import.php:2
+#: forms/content-tools-export.php:7
+#: forms/content-tools-import.php:7
 msgid "Important Information"
 msgstr ""
 
-#: forms/content-tools-export.php:4
+#: forms/content-tools-export.php:9
 msgid "With this tool you export plugin settings into plain text file (JSON serialized content). Do not modify export file! Making changes to export file will make it unusable."
 msgstr ""
 
-#: forms/content-tools-import.php:4
+#: forms/content-tools-import.php:9
 msgid "With this tool you can import all plugin settings from the export file made using the Export tool. If you made changes to the export file, the import will fail."
 msgstr ""
 
-#: forms/content-tools-import.php:5
+#: forms/content-tools-import.php:10
 msgid "For import tools to work correctly, you must import a file made with the export tool running the same versions of the plugin for both import and export!"
 msgstr ""
 
-#: forms/content-tools-import.php:10
+#: forms/content-tools-import.php:15
 msgid "Import from File"
 msgstr ""
 
-#: forms/content-tools-import.php:12
+#: forms/content-tools-import.php:17
 msgid "Select file you want to import from"
 msgstr ""
 
-#: forms/content-tools-index.php:20
+#: forms/content-tools-index.php:25
 msgid "Tools Panel"
 msgstr ""
 
@@ -756,134 +756,134 @@ msgstr ""
 msgid "Nothing to show."
 msgstr ""
 
-#: forms/header-about.php:26
+#: forms/header-about.php:28
 msgid "Welcome to %s&nbsp;%s"
 msgstr ""
 
-#: forms/header-about.php:32
+#: forms/header-about.php:34
 msgid "Version %s"
 msgstr ""
 
-#: forms/message.php:10
+#: forms/message.php:13
 msgid "Settings are saved."
 msgstr ""
 
-#: forms/message.php:13
+#: forms/message.php:16
 msgid "Import operation completed."
 msgstr ""
 
-#: forms/message.php:16
+#: forms/message.php:19
 msgid "Removal operation completed."
 msgstr ""
 
-#: forms/message.php:20
+#: forms/message.php:23
 msgid "Nothing done."
 msgstr ""
 
-#: forms/message.php:24
+#: forms/message.php:27
 msgid "Nothing removed."
 msgstr ""
 
-#: forms/message.php:27
+#: forms/message.php:30
 msgid "Requested operation is invalid."
 msgstr ""
 
-#: forms/message.php:31
+#: forms/message.php:34
 msgid "Import operation failed."
 msgstr ""
 
-#: forms/notices-bbpress.php:18
-#: forms/notices-bbpress.php:32
-#: forms/notices-bbpress.php:47
-#: forms/notices-bbpress.php:61
-#: forms/notices-bbpress.php:75
-#: forms/notices-bbpress.php:89
-#: forms/notices-bbpress.php:104
+#: forms/notices-bbpress.php:22
+#: forms/notices-bbpress.php:36
+#: forms/notices-bbpress.php:51
+#: forms/notices-bbpress.php:65
+#: forms/notices-bbpress.php:79
+#: forms/notices-bbpress.php:93
+#: forms/notices-bbpress.php:108
 msgid "Plugin Home Page"
 msgstr ""
 
-#: forms/notices-bbpress.php:19
-#: forms/notices-bbpress.php:33
-#: forms/notices-bbpress.php:48
-#: forms/notices-bbpress.php:62
-#: forms/notices-bbpress.php:76
-#: forms/notices-bbpress.php:90
-#: forms/notices-bbpress.php:105
+#: forms/notices-bbpress.php:23
+#: forms/notices-bbpress.php:37
+#: forms/notices-bbpress.php:52
+#: forms/notices-bbpress.php:66
+#: forms/notices-bbpress.php:80
+#: forms/notices-bbpress.php:94
+#: forms/notices-bbpress.php:109
 msgid "Do not show this notice anymore"
 msgstr ""
 
-#: forms/notices-bbpress.php:16
-#: forms/notices-bbpress.php:30
-#: forms/notices-bbpress.php:45
-#: forms/notices-bbpress.php:59
-#: forms/notices-bbpress.php:73
-#: forms/notices-bbpress.php:87
-#: forms/notices-bbpress.php:102
+#: forms/notices-bbpress.php:20
+#: forms/notices-bbpress.php:34
+#: forms/notices-bbpress.php:49
+#: forms/notices-bbpress.php:63
+#: forms/notices-bbpress.php:77
+#: forms/notices-bbpress.php:91
+#: forms/notices-bbpress.php:106
 msgid "Please, take a few minutes to check out another Dev4Press plugin for bbPress: %s."
 msgstr ""
 
-#: forms/sidebar-dashboard.php:7
+#: forms/sidebar-dashboard.php:12
 msgid "Version: %s"
 msgstr ""
 
-#: forms/sidebar-settings.php:27
+#: forms/sidebar-settings.php:29
 msgid "Search through settings by typing what you need to find in this field."
 msgstr ""
 
-#: forms/sidebar-settings.php:28
+#: forms/sidebar-settings.php:30
 msgid "Search Settings"
 msgstr ""
 
-#: forms/sidebar-settings.php:36
+#: forms/sidebar-settings.php:38
 msgid "Save Settings"
 msgstr ""
 
-#: forms/sidebar-settings.php:39
-#: forms/sidebar-tools.php:38
+#: forms/sidebar-settings.php:41
+#: forms/sidebar-tools.php:40
 msgid "Return to top"
 msgstr ""
 
-#: forms/sidebar-settings.php:43
+#: forms/sidebar-settings.php:45
 msgid "Show All Settings"
 msgstr ""
 
-#: forms/sidebar-settings.php:30
+#: forms/sidebar-settings.php:32
 msgid "Clear Search"
 msgstr ""
 
-#: forms/widget-advanced.php:0
+#: forms/widget-advanced.php:7
 msgid "Widget Visibility"
 msgstr ""
 
-#: forms/widget-advanced.php:5
+#: forms/widget-advanced.php:12
 msgid "Show widget to"
 msgstr ""
 
-#: forms/widget-advanced.php:22
+#: forms/widget-advanced.php:29
 msgid "Roles"
 msgstr ""
 
-#: forms/widget-advanced.php:31
+#: forms/widget-advanced.php:38
 msgid "If no roles are selected, widget will assume that all roles are selected."
 msgstr ""
 
-#: forms/widget-advanced.php:44
+#: forms/widget-advanced.php:51
 msgid "Capabilities"
 msgstr ""
 
-#: forms/widget-advanced.php:48
+#: forms/widget-advanced.php:55
 msgid "One or more capabilities, separated by comma."
 msgstr ""
 
-#: forms/widget-advanced.php:56
+#: forms/widget-advanced.php:63
 msgid "Visibility Filter"
 msgstr ""
 
-#: forms/widget-advanced.php:61
+#: forms/widget-advanced.php:68
 msgid "Custom filter name"
 msgstr ""
 
-#: forms/widget-advanced.php:65
+#: forms/widget-advanced.php:72
 msgid "Using this value, widget will run filter for the final visibility check. This filter will be %s, replace the %s with your custom filter name defined here."
 msgstr ""
 
@@ -943,19 +943,19 @@ msgstr ""
 msgid "This widget has a shortcode equivalent with all the same settings. The shortcode is displayed below, and you can copy and use it in your posts or pages. This shortcode reflects latest saved widget settings - if you make changes to widget settings, save it, before getting shortcode from this tab."
 msgstr ""
 
-#: functions/wordpress.php:95
+#: functions/Deprecated.php:73
 msgid "Clear"
 msgstr ""
 
-#: functions/wordpress.php:96
+#: functions/Deprecated.php:74
 msgid "Default"
 msgstr ""
 
-#: functions/wordpress.php:97
+#: functions/Deprecated.php:75
 msgid "Select Color"
 msgstr ""
 
-#: functions/wordpress.php:98
+#: functions/Deprecated.php:76
 msgid "Current Color"
 msgstr ""
 
