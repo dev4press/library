@@ -29,6 +29,7 @@ namespace Dev4Press\v35\Functions\WP;
 use Dev4Press\v35\Core\Helpers\Error;
 use WP_Error;
 use WP_Query;
+use WP_Term;
 use wpdb;
 
 if ( ! function_exists( __NAMESPACE__ . '\is_plugin_active' ) ) {
@@ -743,5 +744,17 @@ if ( ! function_exists( __NAMESPACE__ . '\remove_cron' ) ) {
 				_set_cron_array( $crons );
 			}
 		}
+	}
+}
+
+if ( ! function_exists( __NAMESPACE__ . '\get_term' ) ) {
+	function get_term( $term, $taxonomy = '', $output = OBJECT, $filter = 'raw' ) {
+		if ( $term instanceof WP_Term || is_numeric( $term ) ) {
+			return \get_term( $term, $taxonomy, $output, $filter );
+		} else if ( is_string( $term ) ) {
+			return \get_term_by( 'slug', $term, $taxonomy, $output, $filter );
+		}
+
+		return false;
 	}
 }

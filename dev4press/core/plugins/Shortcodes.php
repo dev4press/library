@@ -43,7 +43,6 @@ abstract class Shortcodes {
 		$this->init();
 
 		$this->_register();
-		$this->_shortcake();
 	}
 
 	abstract public function init();
@@ -81,10 +80,6 @@ abstract class Shortcodes {
 		}
 	}
 
-	protected function _shortcake() {
-		add_action( 'shortcode_ui_before_do_shortcode', array( $this, 'shortcake_before' ) );
-	}
-
 	protected function _args( $code ) {
 		return isset( $this->shortcodes[ $code ]['args'] ) ? $this->shortcodes[ $code ]['args'] : array();
 	}
@@ -100,7 +95,20 @@ abstract class Shortcodes {
 		$default               = $this->shortcodes[ $code ]['atts'];
 		$default[ $real_code ] = '';
 
-		return shortcode_atts( $default, $atts );
+		$atts = shortcode_atts( $default, $atts );
+		$bool = isset( $this->shortcodes[ $code ]['bool'] ) ? $this->shortcodes[ $code ]['bool'] : array();
+
+		foreach ( $bool as $key ) {
+			if ( ! is_bool( $atts[ $key ] ) ) {
+				$atts[ $key ] = $atts[ $key ] === 1 ||
+				                $atts[ $key ] === '1' ||
+				                $atts[ $key ] === 'on' ||
+				                $atts[ $key ] === 'yes' ||
+				                $atts[ $key ] === 'true';
+			}
+		}
+
+		return $atts;
 	}
 
 	protected function _content( $content, $raw = false ) {
@@ -148,35 +156,5 @@ abstract class Shortcodes {
 		       . ')'
 		       . '(\\]?)';
 
-	}
-
-	public function shortcake_before( $shortcode ) {
-		$matches = array();
-		$regex   = $this->_regex();
-
-		preg_match( "/$regex/s", $shortcode, $matches );
-
-		if ( ! empty( $matches ) ) {
-			$name = $matches[2];
-
-			if ( isset( $this->registered[ $name ] ) ) {
-				$this->shortcake      = $this->registered[ $name ];
-				$this->shortcake_full = $shortcode;
-			}
-		}
-	}
-
-	public function shortcake_preview( $atts, $shortcode ) {
-		$render = '<div style="line-height: 1.3; border: 2px dashed #444444; margin: 5px; padding: 10px;">';
-		$render .= '<div style="color: #666666; font-size: 11px; text-transform: uppercase;">' . $this->shortcake_title . '</div>';
-		$render .= '<div style="color: #333333; font-size: 14px; font-weight: bold;">' . $this->shortcodes[ $shortcode ]['name'] . '</div>';
-		$render .= '<div style="color: #333333; font-size: 12px; font-family: monospace; margin: 5px 0 0 5px;">' . $this->shortcake_full . '</div>';
-		$render .= '</div>';
-
-		return $render;
-	}
-
-	public function in_shortcake_preview( $name ) {
-		return $this->shortcake == $name;
 	}
 }
