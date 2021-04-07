@@ -33,8 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class GetBack {
-	/** @var \Dev4Press\v35\Core\Admin\Plugin|\Dev4Press\v35\Core\Admin\Menu\Plugin|\Dev4Press\v35\Core\Admin\Submenu\Plugin */
-	private $admin;
+	protected $admin;
 
 	public function __construct( $admin ) {
 		$this->admin = $admin;
@@ -114,15 +113,15 @@ abstract class GetBack {
 		}
 	}
 
-	protected function is_single_action( $name, $key = 'single-action' ) {
+	protected function is_single_action( $name, $key = 'single-action' ) : bool {
 		return isset( $_GET[ $key ] ) && $_GET[ $key ] == $name;
 	}
 
-	protected function is_bulk_action() {
+	protected function is_bulk_action() : bool {
 		return ( isset( $_GET['action'] ) && $_GET['action'] != '-1' ) || ( isset( $_GET['action2'] ) && $_GET['action2'] != '-1' );
 	}
 
-	protected function get_bulk_action() {
+	protected function get_bulk_action() : string {
 		$action = isset( $_GET['action'] ) && $_GET['action'] != '' && $_GET['action'] != '-1' ? $_GET['action'] : '';
 
 		if ( $action == '' ) {

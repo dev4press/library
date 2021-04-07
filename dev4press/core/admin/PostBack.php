@@ -33,10 +33,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class PostBack {
-	/** @var \Dev4Press\v35\Core\Admin\Plugin|\Dev4Press\v35\Core\Admin\Menu\Plugin|\Dev4Press\v35\Core\Admin\Submenu\Plugin */
-	private $admin;
-
-	private $page;
+	protected $admin;
+	protected $page;
 
 	public function __construct( $admin ) {
 		$this->admin = $admin;
@@ -56,7 +54,7 @@ abstract class PostBack {
 		return $this->page;
 	}
 
-	protected function get_page_name( $name ) {
+	protected function get_page_name( $name ) : string {
 		return $this->a()->plugin . '-' . $name;
 	}
 

@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 04/06/2021 12:37:56 PM\n"
+"POT-Creation-Date: 04/07/2021 11:55:20 AM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GD i18n 2.7; www.dev4press.com\n"
 
-#: dev4press/core/admin/GetBack.php:97
+#: dev4press/core/admin/GetBack.php:96
 msgid "Only administrators can use export features."
 msgstr ""
 
@@ -750,6 +750,14 @@ msgstr ""
 
 #: forms/content-tools-index.php:25
 msgid "Tools Panel"
+msgstr ""
+
+#: forms/content-tools-updater.php:2
+msgid "Update status"
+msgstr ""
+
+#: forms/content-tools-updater.php:4
+msgid "Nothing to do here."
 msgstr ""
 
 #: forms/fallback.php:1
