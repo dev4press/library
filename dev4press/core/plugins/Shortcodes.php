@@ -31,10 +31,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Shortcodes {
-	public $shortcake = '';
-	public $shortcake_full = '';
-	public $shortcake_title = 'Dev4Press';
-
 	public $prefix = 'd4p';
 	public $shortcodes = array();
 	public $registered = array();
@@ -47,11 +43,11 @@ abstract class Shortcodes {
 
 	abstract public function init();
 
-	protected function _real_code( $code ) {
-		return $this->prefix != '' ? $this->prefix . '_' . $code : $code;
+	protected function _real_code( $code ) : string {
+		return ! empty( $this->prefix ) ? $this->prefix . '_' . $code : $code;
 	}
 
-	protected function _wrapper( $content, $name, $extra_class = '', $tag = 'div' ) {
+	protected function _wrapper( $content, $name, $extra_class = '', $tag = 'div' ) : string {
 		$classes = array(
 			$this->prefix . '-shortcode-wrapper',
 			$this->prefix . '-shortcode-' . str_replace( '_', '-', $name )
@@ -80,11 +76,11 @@ abstract class Shortcodes {
 		}
 	}
 
-	protected function _args( $code ) {
+	protected function _args( $code ) : array {
 		return isset( $this->shortcodes[ $code ]['args'] ) ? $this->shortcodes[ $code ]['args'] : array();
 	}
 
-	protected function _atts( $code, $atts = array() ) {
+	protected function _atts( $code, $atts = array() ) : array {
 		$real_code = $this->_real_code( $code );
 
 		if ( isset( $atts[0] ) ) {
@@ -97,21 +93,24 @@ abstract class Shortcodes {
 
 		$atts = shortcode_atts( $default, $atts );
 		$bool = isset( $this->shortcodes[ $code ]['bool'] ) ? $this->shortcodes[ $code ]['bool'] : array();
+		$list = isset( $this->shortcodes[ $code ]['list'] ) ? $this->shortcodes[ $code ]['list'] : array();
 
 		foreach ( $bool as $key ) {
 			if ( ! is_bool( $atts[ $key ] ) ) {
-				$atts[ $key ] = $atts[ $key ] === 1 ||
-				                $atts[ $key ] === '1' ||
-				                $atts[ $key ] === 'on' ||
-				                $atts[ $key ] === 'yes' ||
-				                $atts[ $key ] === 'true';
+				$atts[ $key ] = $this->_convert_bool( $atts[ $key ] );
+			}
+		}
+
+		foreach ( $list as $key ) {
+			if ( is_string( $atts[ $key ] ) && ! empty( $atts[ $key ] ) ) {
+				$atts[ $key ] = $this->_split_array( $atts[ $key ] );
 			}
 		}
 
 		return $atts;
 	}
 
-	protected function _content( $content, $raw = false ) {
+	protected function _content( $content, $raw = false ) : string {
 		if ( $raw ) {
 			return $content;
 		} else {
@@ -119,42 +118,15 @@ abstract class Shortcodes {
 		}
 	}
 
-	protected function _regex( $list = array() ) {
-		if ( empty( $list ) ) {
-			$tagnames  = array_keys( $this->registered );
-			$tagregexp = join( '|', array_map( 'preg_quote', $tagnames ) );
-		} else {
-			$tagregexp = join( '|', $list );
-		}
+	private function _convert_bool( $value ) : bool {
+		return $value === 1 || $value === '1' || $value === 'on' || $value === 'yes' || $value === 'true';
+	}
 
-		return '\\['
-		       . '(\\[?)'
-		       . "($tagregexp)"
-		       . '(?![\\w-])'
-		       . '('
-		       . '[^\\]\\/]*'
-		       . '(?:'
-		       . '\\/(?!\\])'
-		       . '[^\\]\\/]*'
-		       . ')*?'
-		       . ')'
-		       . '(?:'
-		       . '(\\/)'
-		       . '\\]'
-		       . '|'
-		       . '\\]'
-		       . '(?:'
-		       . '('
-		       . '[^\\[]*+'
-		       . '(?:'
-		       . '\\[(?!\\/\\2\\])'
-		       . '[^\\[]*+'
-		       . ')*+'
-		       . ')'
-		       . '\\[\\/\\2\\]'
-		       . ')?'
-		       . ')'
-		       . '(\\]?)';
+	private function _split_array( $value, $sep = ',' ) : array {
+		$value = explode( $sep, $value );
+		$value = array_map( 'trim', $value );
+		$value = array_unique( $value );
 
+		return array_filter( $value );
 	}
 }
