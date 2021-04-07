@@ -1554,6 +1554,11 @@ a > .d4p-icon {
   margin: 0 0 15px;
   font-size: 1.15em;
 }
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner hr {
+  margin: 15px 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+}
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul {
   list-style: none;
   margin: 0;

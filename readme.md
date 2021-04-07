@@ -2,7 +2,7 @@
 
 * Version: v3.5
 * Build:   3500
-* Release: 2021.04.12.
+* Release: 2021.04.14.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/

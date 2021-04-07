@@ -1,7 +1,7 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.5 - 2021.04.12 =
+= Version 3.5 - 2021.04.14 =
 * New: Major refactoring to include version for every namespace
 * New: Major refactoring to add namespaces to functions
 * New: Reorganization of functions and function files
@@ -11,6 +11,8 @@
 * New: Options core Element support for switch section visibility
 * Updated: Widget interface improvements and few tweaks
 * Updated: Frontend Enqueue change action priorities
+* Updated: Improvements to main icons font organization and size
+* Updated: Many styling improvements
 * Removed: HTML tags rendering functions
 * Removed: IP wrapper functions
 * Removed: Many obsolete function
