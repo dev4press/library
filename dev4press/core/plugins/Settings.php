@@ -291,11 +291,11 @@ abstract class Settings {
 	}
 
 	public function file_version() : string {
-		return $this->info_version . '.' . $this->info_build;
+		return $this->information()->version . '.' . $this->information()->build;
 	}
 
 	public function plugin_version() : string {
-		return 'v' . $this->info_version . '_b' . $this->info_build;
+		return 'v' . $this->information()->version . '_b' . $this->information()->build;
 	}
 
 	protected function _db() {
