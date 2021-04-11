@@ -78,7 +78,7 @@ class Process {
 
 		foreach ( $this->settings as $setting ) {
 			if ( $setting->type != '_' ) {
-				$post = isset( $request[ $this->base ][ $setting->type ] ) ? $request[ $this->base ][ $setting->type ] : array();
+				$post = $request[ $this->base ][ $setting->type ] ?? array();
 
 				$list[ $setting->type ][ $setting->name ] = $this->process_single( $setting, $post );
 			}

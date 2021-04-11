@@ -261,7 +261,7 @@ class Enqueue {
 	}
 
 	public function registered_locale( $script ) {
-		return isset( $this->_locales[ $script ] ) ? $this->_locales[ $script ] : false;
+		return $this->_locales[ $script ] ?? false;
 	}
 
 	public function start() {
@@ -289,7 +289,7 @@ class Enqueue {
 	public function register_styles() {
 		foreach ( $this->_libraries['css'] as $name => $args ) {
 			$code = $args['lib'] ? $this->_enqueue_prefix . $name : $name;
-			$req  = isset( $args['req'] ) ? $args['req'] : array();
+			$req  = $args['req'] ?? array();
 
 			if ( isset( $args['int'] ) && ! empty( $args['int'] ) ) {
 				foreach ( $args['int'] as $lib ) {
@@ -306,8 +306,8 @@ class Enqueue {
 	public function register_scripts() {
 		foreach ( $this->_libraries['js'] as $name => $args ) {
 			$code   = $args['lib'] ? $this->_enqueue_prefix . $name : $name;
-			$req    = isset( $args['req'] ) ? $args['req'] : array();
-			$footer = isset( $args['footer'] ) ? $args['footer'] : true;
+			$req    = $args['req'] ?? array();
+			$footer = $args['footer'] ?? true;
 
 			if ( isset( $args['int'] ) && ! empty( $args['int'] ) ) {
 				foreach ( $args['int'] as $lib ) {

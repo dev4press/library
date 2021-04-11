@@ -78,7 +78,7 @@ class Render {
 				echo '<h3><span>' . $obj['label'] . '</span></h3>';
 				echo '</div>';
 			} else {
-				$args = isset( $obj['args'] ) ? $obj['args'] : array();
+				$args = $obj['args'] ?? array();
 
 				$classes = array( 'd4p-group', 'd4p-group-' . $group );
 
@@ -94,7 +94,7 @@ class Render {
 				$kb = isset( $obj['kb'] ) ? str_replace( '%url%', $obj['kb']['url'], $this->kb ) : '';
 
 				if ( $kb != '' ) {
-					$type = isset( $obj['kb']['type'] ) ? $obj['kb']['type'] : 'article';
+					$type = $obj['kb']['type'] ?? 'article';
 					$kb   = str_replace( '%type%', $type, $kb );
 
 					$kb = '<a class="d4p-kb-group" href="' . $kb . '" target="_blank" rel="noopener">' . $obj['kb']['label'] . '</a>';
@@ -514,12 +514,12 @@ class Render {
 	}
 
 	protected function draw_dropdown_categories( $element, $value, $name_base, $id_base = '' ) {
-		$label_none   = isset( $element->args['label_none'] ) ? $element->args['label_none'] : ' ';
-		$taxonomy     = isset( $element->args['taxonomy'] ) ? $element->args['taxonomy'] : 'category';
-		$hierarchical = isset( $element->args['hierarchical'] ) ? $element->args['hierarchical'] : true;
-		$child        = isset( $element->args['child_of'] ) ? $element->args['child_of'] : 0;
-		$depth        = isset( $element->args['depth'] ) ? $element->args['depth'] : 0;
-		$hide_empty   = isset( $element->args['hide_empty'] ) ? $element->args['hide_empty'] : false;
+		$label_none   = $element->args['label_none'] ?? ' ';
+		$taxonomy     = $element->args['taxonomy'] ?? 'category';
+		$hierarchical = $element->args['hierarchical'] ?? true;
+		$child        = $element->args['child_of'] ?? 0;
+		$depth        = $element->args['depth'] ?? 0;
+		$hide_empty   = $element->args['hide_empty'] ?? false;
 
 		$list = wp_dropdown_categories( array(
 			'echo'              => false,
@@ -548,10 +548,10 @@ class Render {
 	}
 
 	protected function draw_dropdown_pages( $element, $value, $name_base, $id_base = '' ) {
-		$label_none = isset( $element->args['label_none'] ) ? $element->args['label_none'] : ' ';
-		$post_type  = isset( $element->args['post_type'] ) ? $element->args['post_type'] : 'page';
-		$child      = isset( $element->args['child_of'] ) ? $element->args['child_of'] : 0;
-		$depth      = isset( $element->args['depth'] ) ? $element->args['depth'] : 0;
+		$label_none = $element->args['label_none'] ?? ' ';
+		$post_type  = $element->args['post_type'] ?? 'page';
+		$child      = $element->args['child_of'] ?? 0;
+		$depth      = $element->args['depth'] ?? 0;
 
 		$list = wp_dropdown_pages( array(
 			'echo'              => false,

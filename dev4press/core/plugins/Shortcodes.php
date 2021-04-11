@@ -77,7 +77,7 @@ abstract class Shortcodes {
 	}
 
 	protected function _args( $code ) : array {
-		return isset( $this->shortcodes[ $code ]['args'] ) ? $this->shortcodes[ $code ]['args'] : array();
+		return $this->shortcodes[ $code ]['args'] ?? array();
 	}
 
 	protected function _atts( $code, $atts = array() ) : array {
@@ -92,8 +92,9 @@ abstract class Shortcodes {
 		$default[ $real_code ] = '';
 
 		$atts = shortcode_atts( $default, $atts );
-		$bool = isset( $this->shortcodes[ $code ]['bool'] ) ? $this->shortcodes[ $code ]['bool'] : array();
-		$list = isset( $this->shortcodes[ $code ]['list'] ) ? $this->shortcodes[ $code ]['list'] : array();
+		$bool = $this->shortcodes[ $code ]['bool'] ?? array();
+		$list = $this->shortcodes[ $code ]['list'] ?? array();
+		$int  = $this->shortcodes[ $code ]['int'] ?? array();
 
 		foreach ( $bool as $key ) {
 			if ( ! is_bool( $atts[ $key ] ) ) {
@@ -104,6 +105,12 @@ abstract class Shortcodes {
 		foreach ( $list as $key ) {
 			if ( is_string( $atts[ $key ] ) && ! empty( $atts[ $key ] ) ) {
 				$atts[ $key ] = $this->_split_array( $atts[ $key ] );
+			}
+		}
+
+		foreach ( $int as $key ) {
+			if ( ! empty( $atts[ $key ] ) ) {
+				$atts[ $key ] = intval( $atts[ $key ] );
 			}
 		}
 
