@@ -24,4 +24,4 @@
 ## Optional
 
 * bbPress 2.6 or newer
-* BuddyPress 4.0 or newer
+* BuddyPress 6.0 or newer

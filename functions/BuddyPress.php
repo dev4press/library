@@ -37,7 +37,7 @@ if ( ! function_exists( __NAMESPACE__ . '\is_active' ) ) {
 		if ( is_plugin_active( 'buddypress/bp-loader.php' ) ) {
 			$version = major_version_code();
 
-			return $version > 39;
+			return $version > 59;
 		} else {
 			return false;
 		}
