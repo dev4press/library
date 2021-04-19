@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.5.1 - 2021.04.20 =
+* Fixed: Few issues related to sanitize functions scope
+
 = Version 3.5 - 2021.04.14 =
 * New: Major refactoring to include version for every namespace
 * New: Major refactoring to add namespaces to functions

@@ -209,7 +209,7 @@ class Process {
 					$value = array();
 				} else {
 					$value = (array) $post[ $key ];
-					$value = array_map( '\Dev4Press\v35\Functions\Sanitize\sanitize_basic', $value );
+					$value = array_map( '\Dev4Press\v35\Functions\sanitize_basic', $value );
 				}
 				break;
 			case 'css_size':
