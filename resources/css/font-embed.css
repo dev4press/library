@@ -28,6 +28,42 @@ a > .d4p-icon {
 }
 
 /* Icons */
+.d4p-icon.d4p-ui-chevron-right {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.d4p-icon.d4p-ui-caret-up {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.d4p-icon.d4p-ui-poll-horizontal {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.d4p-icon.d4p-ui-quote-right {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.d4p-icon.d4p-ui-sliders-hor {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.d4p-icon.d4p-ui-sliders-base-hor {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
 .d4p-icon.d4p-addon-gd-knowledge-base:before {
   content: "\f101";
 }
