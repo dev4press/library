@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.4.2 - 2021.04.21 =
+* New: Icon and information about ArchivesPress plugin
+
 = Version 3.4.1 - 2021.02.24 =
 * Fixed: Issue with the checkboxes rendering function
 
