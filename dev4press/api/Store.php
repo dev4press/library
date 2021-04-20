@@ -32,6 +32,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Store {
 	private $_plugins = array(
+		"archivespress"                    => array(
+			"code"        => "archivespress",
+			"name"        => "ArchivesPress",
+			"description" => "Display indexes based on the dates (years, months, and days archives), authors, and taxonomy terms for quick navigation and filtering of posts.",
+			"punchline"   => "Easy archives index based website navigation",
+			"color"       => "#46537A",
+			'free'        => true,
+			'pro'         => false
+		),
 		"breadcrumbspress"                 => array(
 			"code"        => "breadcrumbspress",
 			"name"        => "BreadcrumbsPress",

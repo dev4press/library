@@ -1,7 +1,8 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.5.1 - 2021.04.20 =
+= Version 3.5.1 - 2021.04.22 =
+* New: Icon and information about ArchivesPress plugin
 * Fixed: Few issues related to sanitize functions scope
 
 = Version 3.5 - 2021.04.14 =
