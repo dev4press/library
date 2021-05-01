@@ -34,13 +34,13 @@ class ObjectsSort {
 	public $properties;
 	public $sorted;
 
-	public function __construct( $objects_array, $properties = array(), $uasort = false ) {
+	public function __construct( $objects_array, $properties = array(), $associative = false ) {
 		$properties = (array) $properties;
 
 		if ( count( $properties ) > 0 ) {
 			$this->properties = $properties;
 
-			if ( $uasort ) {
+			if ( $associative ) {
 				uasort( $objects_array, array( $this, 'array_compare' ) );
 			} else {
 				usort( $objects_array, array( $this, 'array_compare' ) );
@@ -50,7 +50,7 @@ class ObjectsSort {
 		$this->sorted = $objects_array;
 	}
 
-	public function array_compare( $one, $two, $i = 0 ) {
+	public function array_compare( $one, $two, $i = 0 ) : int {
 		$column = $this->properties[ $i ]['property'];
 		$order  = strtolower( $this->properties[ $i ]['order'] );
 
