@@ -33,7 +33,7 @@ abstract class Panel {
 		add_action( $this->h( 'enqueue_scripts_early' ), array( $this, 'enqueue_scripts_early' ) );
 	}
 
-	/** @return \Dev4Press\Core\UI\Admin\Panel */
+	/** @return \Dev4Press\v35\Core\UI\Admin\Panel */
 	public static function instance( $admin = null ) {
 		$class = get_called_class();
 
