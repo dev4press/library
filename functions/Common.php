@@ -222,18 +222,16 @@ if ( ! function_exists( __NAMESPACE__ . '\gzip_uncompressed_size' ) ) {
 }
 
 if ( ! function_exists( __NAMESPACE__ . '\remove_from_array_by_value' ) ) {
-	function remove_from_array_by_value( $input, $val, $preserve_keys = true ) {
+	function remove_from_array_by_value( $input, $val, $preserve_keys = true ) : array {
 		if ( empty( $input ) || ! is_array( $input ) ) {
-			return false;
+			return array();
 		}
 
 		while ( in_array( $val, $input ) ) {
 			unset( $input[ array_search( $val, $input ) ] );
 		}
 
-		$output = $preserve_keys ? $input : array_values( $input );
-
-		return (array) $output;
+		return $preserve_keys ? $input : array_values( $input );
 	}
 }
 
