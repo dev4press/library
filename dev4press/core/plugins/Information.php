@@ -48,11 +48,11 @@ abstract class Information {
 	public $author_name = 'Milan Petrovic';
 	public $author_url = 'https://www.dev4press.com/';
 
-	public $php = '5.6';
+	public $php = '7.0';
 	public $mysql = '5.1';
 
 	public $cms = array(
-		'wordpress'    => '5.0',
+		'wordpress'    => '5.1',
 		'classicpress' => '1.0'
 	);
 
@@ -70,33 +70,33 @@ abstract class Information {
 	function __construct() {
 	}
 
-	public function to_array() {
+	public function to_array() : array {
 		return (array) $this;
 	}
 
 	abstract public static function instance();
 
-	public function name() {
+	public function name() : string {
 		return Store::instance()->name( $this->code );
 	}
 
-	public function description() {
+	public function description() : string {
 		return Store::instance()->description( $this->code );
 	}
 
-	public function punchline() {
+	public function punchline() : string {
 		return Store::instance()->punchline( $this->code );
 	}
 
-	public function color() {
+	public function color() : string {
 		return Store::instance()->color( $this->code );
 	}
 
-	public function url() {
+	public function url() : string {
 		return Store::instance()->url( $this->code );
 	}
 
-	public function system_requirements() {
+	public function system_requirements() : array {
 		$list = array(
 			'PHP'   => $this->php,
 			'MySQL' => $this->mysql
@@ -131,7 +131,7 @@ abstract class Information {
 		return false;
 	}
 
-	public function version_full() {
+	public function version_full() : string {
 		$version = $this->version;
 
 		if ( $this->status != 'stable' ) {

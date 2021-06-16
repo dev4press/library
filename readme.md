@@ -1,8 +1,8 @@
 # Dev4Press Library
 
-* Version: v3.5.1
-* Build:   3501
-* Release: 2021.05.01.
+* Version: v3.5.2
+* Build:   3502
+* Release: 2021.06.18.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
@@ -15,7 +15,7 @@
 
 ## WordPress Requirements
 
-* WordPress: 5.0 or newer
+* WordPress: 5.1 or newer
 
 ## ClassicPress Requirements
 
