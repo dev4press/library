@@ -58,7 +58,7 @@ class Enqueue {
 				'lib'        => true,
 				'path'       => 'flatpickr/',
 				'file'       => 'flatpickr.min',
-				'ver'        => '4.6.3',
+				'ver'        => '4.6.9',
 				'ext'        => 'js',
 				'min'        => false,
 				'min_locale' => true,
@@ -68,7 +68,7 @@ class Enqueue {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'confirm-date',
-				'ver'  => '4.6.3',
+				'ver'  => '4.6.9',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -77,7 +77,7 @@ class Enqueue {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'month-select',
-				'ver'  => '4.6.3',
+				'ver'  => '4.6.9',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -86,7 +86,7 @@ class Enqueue {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'range',
-				'ver'  => '4.6.3',
+				'ver'  => '4.6.9',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -193,7 +193,7 @@ class Enqueue {
 				'lib'  => true,
 				'path' => 'flatpickr/',
 				'file' => 'flatpickr.min',
-				'ver'  => '4.6.3',
+				'ver'  => '4.6.9',
 				'ext'  => 'css',
 				'min'  => false
 			),
@@ -201,7 +201,7 @@ class Enqueue {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'confirm-date',
-				'ver'  => '4.6.3',
+				'ver'  => '4.6.9',
 				'ext'  => 'css',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -210,7 +210,7 @@ class Enqueue {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'month-select',
-				'ver'  => '4.6.3',
+				'ver'  => '4.6.9',
 				'ext'  => 'css',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )

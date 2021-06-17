@@ -3,6 +3,7 @@
 
 = Version 3.5.2 - 2021.06.18 =
 * Updated: Various core classes PHP specifications
+* Updated: Flatpickr 4.6.9
 
 = Version 3.5.1 - 2021.05.01 =
 * New: Icon and information about ArchivesPress plugin
