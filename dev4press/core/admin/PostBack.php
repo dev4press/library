@@ -39,7 +39,7 @@ abstract class PostBack {
 	public function __construct( $admin ) {
 		$this->admin = $admin;
 
-		$this->page = isset( $_POST['option_page'] ) ? $_POST['option_page'] : false;
+		$this->page = $_POST['option_page'] ?? false;
 
 		if ( $this->page !== false ) {
 			$this->process();

@@ -1,8 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.5.2 - 2021.06.18 =
+= Version 3.5.2 - 2021.06.21 =
 * Updated: Various core classes PHP specifications
+* Updated: Many small tweaks and changes
 * Updated: Flatpickr 4.6.9
 
 = Version 3.5.1 - 2021.05.01 =
