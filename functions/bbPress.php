@@ -104,6 +104,28 @@ if ( ! function_exists( __NAMESPACE__ . '\get_moderator_roles' ) ) {
 	}
 }
 
+if ( ! function_exists( __NAMESPACE__ . '\can_user_moderate' ) ) {
+	function can_user_moderate() {
+		$roles = array_keys( get_moderator_roles() );
+
+		if ( is_user_logged_in() ) {
+			if ( is_super_admin() ) {
+				return true;
+			} else {
+				global $current_user;
+
+				if ( is_array( $current_user->roles ) ) {
+					$matched = array_intersect( $current_user->roles, $roles );
+
+					return ! empty( $matched );
+				}
+			}
+		}
+
+		return false;
+	}
+}
+
 if ( ! function_exists( __NAMESPACE__ . '\get_forums_list' ) ) {
 	function get_forums_list( $args = array() ) : array {
 		$defaults = array(
