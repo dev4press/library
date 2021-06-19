@@ -306,19 +306,19 @@ abstract class Widget extends WP_Widget {
 		$class   = array( 'd4p-widget-wrapper' );
 		$class[] = str_replace( '_', '-', $this->widget_base );
 
-		if ( $instance['_class'] != '' ) {
+		if ( isset( $instance['_class'] ) && ! empty( $instance['_class'] ) ) {
 			$class[] = $instance['_class'];
 		}
 
 		echo '<div class="' . join( ' ', $class ) . '">' . D4P_EOL;
 
-		if ( isset( $instance['_before'] ) && $instance['_before'] != '' ) {
+		if ( isset( $instance['_before'] ) && ! empty( $instance['_before'] ) ) {
 			echo '<div class="d4p-widget-before">' . $instance['_before'] . '</div>';
 		}
 	}
 
 	protected function render_widget_footer( $instance ) {
-		if ( isset( $instance['_after'] ) && $instance['_after'] != '' ) {
+		if ( isset( $instance['_after'] ) && ! empty( $instance['_after'] ) ) {
 			echo '<div class="d4p-widget-after">' . $instance['_after'] . '</div>';
 		}
 
@@ -334,7 +334,7 @@ abstract class Widget extends WP_Widget {
 	}
 
 	public function title( $instance ) : string {
-		return isset( $instance['title'] ) ? $instance['title'] : '';
+		return $instance['title'] ?? '';
 	}
 
 	public function is_visible( $instance ) : bool {
