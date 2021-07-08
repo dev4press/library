@@ -239,15 +239,6 @@ class Store {
 			'free'        => false,
 			'pro'         => true
 		),
-		"gd-swift-navigator"               => array(
-			"code"        => "gd-swift-navigator",
-			"name"        => "GD Swift Navigator",
-			"description" => "Add Swift, powerful and easy to use navigation control in the page corner with custom number of action buttons, popup navigation menus or custom HTML content.",
-			"punchline"   => "Swift, powerful and easy to use Navigation",
-			"color"       => "#0773B7",
-			'free'        => false,
-			'pro'         => true
-		),
 		"gd-topic-polls"                   => array(
 			"code"        => "gd-topic-polls",
 			"name"        => "GD Topic Polls for bbPress",
@@ -264,15 +255,6 @@ class Store {
 			"punchline"   => "Easy to use topic prefixes for bbPress forums",
 			"color"       => "#A10A0A",
 			'free'        => false,
-			'pro'         => true
-		),
-		"gd-webfonts-toolbox"              => array(
-			"code"        => "gd-webfonts-toolbox",
-			"name"        => "GD WebFonts Toolbox",
-			"description" => "An easy way to add Web Fonts (Google, Adobe, Typekit) and local FontFaces to standard and custom CSS selectors, with WordPress editor integration and more.",
-			"punchline"   => "Easy and powerful Web fonts integration",
-			"color"       => "#6F0392",
-			'free'        => true,
 			'pro'         => true
 		)
 	);

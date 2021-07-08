@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.5.3 - 2021.07.08 =
+* Updated: Several minor updates
+
 = Version 3.5.2 - 2021.06.21 =
 * New: bbPress related functions
 * Updated: Various core classes PHP specifications
