@@ -111,7 +111,7 @@ abstract class Manager {
 	}
 
 	public function sanitize_checkbox( $input ) {
-		return $input ? true : false;
+		return (bool) $input;
 	}
 
 	public function sanitize_color( $input, $setting ) {
@@ -129,9 +129,9 @@ abstract class Manager {
 			$input = $setting->default;
 		}
 
-		$min  = isset( $atts['min'] ) ? $atts['min'] : $input;
-		$max  = isset( $atts['max'] ) ? $atts['max'] : $input;
-		$step = isset( $atts['step'] ) ? $atts['step'] : 1;
+		$min  = $atts['min'] ?? $input;
+		$max  = $atts['max'] ?? $input;
+		$step = $atts['step'] ?? 1;
 
 		$number = $step != 1 ? floor( $input / $step ) * $step : $input;
 

@@ -165,7 +165,7 @@ abstract class Settings {
 	}
 
 	public function set( $name, $value, $group = 'settings', $save = false ) {
-		$old = isset( $this->current[ $group ][ $name ] ) ? $this->current[ $group ][ $name ] : null;
+		$old = $this->current[ $group ][ $name ] ?? null;
 
 		$this->current[ $group ][ $name ] = $value;
 
@@ -239,9 +239,9 @@ abstract class Settings {
 	}
 
 	public function import_from_secure_json( $import ) : bool {
-		$name = isset( $import['name'] ) ? $import['name'] : false;
-		$ctrl = isset( $import['ctrl'] ) ? $import['ctrl'] : false;
-		$raw  = isset( $import['data'] ) ? $import['data'] : false;
+		$name = $import['name'] ?? false;
+		$ctrl = $import['ctrl'] ?? false;
+		$raw  = $import['data'] ?? false;
 
 		$data = gzuncompress( base64_decode( urldecode( $raw ) ) );
 

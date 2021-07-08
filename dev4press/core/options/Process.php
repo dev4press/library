@@ -89,9 +89,8 @@ class Process {
 
 	public function slug_slashes( $key ) {
 		$key = strtolower( $key );
-		$key = preg_replace( '/[^a-z0-9.\/_\-]/', '', $key );
 
-		return $key;
+		return preg_replace( '/[^a-z0-9.\/_\-]/', '', $key );
 	}
 
 	public function process_single( $setting, $post ) {

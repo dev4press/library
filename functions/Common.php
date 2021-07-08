@@ -371,8 +371,7 @@ if ( ! function_exists( __NAMESPACE__ . '\ids_from_string' ) ) {
 		$ids = explode( $delimiter, $ids );
 		$ids = array_map( 'trim', $ids );
 		$ids = array_map( $map, $ids );
-		$ids = array_filter( $ids );
 
-		return $ids;
+		return array_filter( $ids );
 	}
 }

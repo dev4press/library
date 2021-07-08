@@ -168,7 +168,7 @@ abstract class Widget extends WP_Widget {
 			return $value;
 		}
 
-		return isset( $this->defaults[ $name ] ) ? $this->defaults[ $name ] : $this->shared_defaults[ $name ];
+		return $this->defaults[ $name ] ?? $this->shared_defaults[ $name ];
 	}
 
 	protected function shared_update( $new_instance, $old_instance ) {
@@ -274,9 +274,9 @@ abstract class Widget extends WP_Widget {
 		$visible = $this->is_visible( $instance );
 
 		if ( $visible ) {
-			$users = isset( $instance['_users'] ) ? $instance['_users'] : 'all';
-			$roles = isset( $instance['_roles'] ) ? $instance['_roles'] : array();
-			$cap   = isset( $instance['_cap'] ) ? $instance['_cap'] : '';
+			$users = $instance['_users'] ?? 'all';
+			$roles = $instance['_roles'] ?? array();
+			$cap   = $instance['_cap'] ?? '';
 
 			$logged = is_user_logged_in();
 

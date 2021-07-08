@@ -94,6 +94,8 @@ abstract class DB extends DBLite {
 		} else if ( isset( $this->wpdb()->$name ) ) {
 			return $this->wpdb()->$name;
 		}
+
+		return false;
 	}
 
 	public function sanitize_meta( $key ) {

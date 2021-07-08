@@ -191,9 +191,8 @@ class Four {
 	private function _url( $url, $campaign = 'install' ) : string {
 		$url = add_query_arg( 'utm_source', $this->data['url'], $url );
 		$url = add_query_arg( 'utm_medium', 'web-' . $this->data['name'], $url );
-		$url = add_query_arg( 'utm_campaign', $campaign . '-panel', $url );
 
-		return $url;
+		return add_query_arg( 'utm_campaign', $campaign . '-panel', $url );
 	}
 
 	private function _request_url( $endpoint ) {

@@ -77,8 +77,7 @@ class Image {
 		$url = add_query_arg( 'cs', 'tinysrgb', $url );
 		$url = add_query_arg( 'fit', 'crop', $url );
 		$url = add_query_arg( 'h', absint( $height ), $url );
-		$url = add_query_arg( 'w', absint( $width ), $url );
 
-		return $url;
+		return add_query_arg( 'w', absint( $width ), $url );
 	}
 }

@@ -463,7 +463,7 @@ final class Enqueue {
 		if ( isset( $this->_libraries[ $type ][ $name ] ) ) {
 			if ( ! $this->is_added( $type, $name ) ) {
 				$obj = $this->_libraries[ $type ][ $name ];
-				$req = isset( $obj['req'] ) ? $obj['req'] : array();
+				$req = $obj['req'] ?? array();
 
 				if ( isset( $obj['int'] ) && ! empty( $obj['int'] ) ) {
 					foreach ( $obj['int'] as $lib ) {
@@ -476,8 +476,8 @@ final class Enqueue {
 				}
 
 				$handle = $this->prefix() . $name;
-				$ver    = isset( $obj['ver'] ) ? $obj['ver'] : D4P_CORE_VERSION;
-				$footer = isset( $obj['footer'] ) ? $obj['footer'] : true;
+				$ver    = $obj['ver'] ?? D4P_CORE_VERSION;
+				$footer = $obj['footer'] ?? true;
 
 				$this->enqueue( $type, $handle, $this->url( $obj ), $req, $ver, $footer );
 

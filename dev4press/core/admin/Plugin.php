@@ -401,9 +401,8 @@ abstract class Plugin {
 
 		$url = add_query_arg( $this->v(), 'getback', $url );
 		$url = add_query_arg( 'run', $run, $url );
-		$url = add_query_arg( '_wpnonce', wp_create_nonce( $nonce ), $url );
 
-		return $url;
+		return add_query_arg( '_wpnonce', wp_create_nonce( $nonce ), $url );
 	}
 
 	protected function screen_setup() {

@@ -507,7 +507,7 @@ class Render {
 
 		echo '</ol>';
 
-		$label = isset( $element->args['label_button_add'] ) ? $element->args['label_button_add'] : __( "Add New Value", "d4plib" );
+		$label = $element->args['label_button_add'] ?? __( "Add New Value", "d4plib" );
 
 		echo '<a role="button" class="button-primary" href="#">' . $label . '</a>';
 		echo '<input type="hidden" value="' . esc_attr( $i ) . '" class="d4p-next-id" />';

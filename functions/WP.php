@@ -31,6 +31,7 @@ use WP_Error;
 use WP_Query;
 use WP_Term;
 use wpdb;
+use function get_term_by;
 
 if ( ! function_exists( __NAMESPACE__ . '\is_plugin_active' ) ) {
 	function is_plugin_active( $plugin ) : bool {
@@ -128,7 +129,7 @@ if ( ! function_exists( __NAMESPACE__ . '\is_oembed_link' ) ) {
 		$oembed = _wp_oembed_get_object();
 		$result = $oembed->get_html( $url );
 
-		return $result === false ? false : true;
+		return ! ( $result === false );
 	}
 }
 
@@ -337,9 +338,8 @@ if ( ! function_exists( __NAMESPACE__ . '\get_post_content' ) ) {
 		}
 
 		$content = apply_filters( 'the_content', $content );
-		$content = str_replace( ']]>', ']]&gt;', $content );
 
-		return $content;
+		return str_replace( ']]>', ']]&gt;', $content );
 	}
 }
 
@@ -752,7 +752,7 @@ if ( ! function_exists( __NAMESPACE__ . '\get_term' ) ) {
 		if ( $term instanceof WP_Term || is_numeric( $term ) ) {
 			return \get_term( $term, $taxonomy, $output, $filter );
 		} else if ( is_string( $term ) ) {
-			return \get_term_by( 'slug', $term, $taxonomy, $output, $filter );
+			return get_term_by( 'slug', $term, $taxonomy, $output, $filter );
 		}
 
 		return false;

@@ -48,6 +48,8 @@ abstract class DBLite {
 		if ( isset( $this->wpdb()->$name ) ) {
 			return $this->wpdb()->$name;
 		}
+
+		return false;
 	}
 
 	public function clean_ids_list( $ids ) : array {

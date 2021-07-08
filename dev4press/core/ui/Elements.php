@@ -86,7 +86,7 @@ class Elements {
 
 		$render      = '';
 		$attributes  = array();
-		$selected    = is_null( $selected ) ? array_keys( $values ) : (array) $selected;
+		$selected    = is_null( $selected ) ? array_keys( $values ) : $selected;
 		$associative = ! is_associative_array( $values );
 		$id          = $this->id_from_name( $name, $id );
 
@@ -164,7 +164,7 @@ class Elements {
 
 		$render     = '';
 		$attributes = array();
-		$selected   = (array) $selected;
+		$selected   = $selected;
 		$id         = $this->id_from_name( $name, $id );
 
 		if ( $class != '' ) {
@@ -246,7 +246,6 @@ class Elements {
 		}
 
 		$render      = '<div class="' . $wrapper_class . '">';
-		$selected    = (array) $selected;
 		$associative = is_associative_array( $values );
 		$id          = $this->id_from_name( $name, $id );
 		$name        = $multi ? $name . '[]' : $name;
@@ -326,7 +325,7 @@ class Elements {
 		extract( $args );
 
 		$render      = '<div class="d4p-setting-checkboxes-hierarchy">';
-		$selected    = (array) $selected;
+		$selected    = $selected;
 		$id          = $this->id_from_name( $name, $id );
 
 		if ( $multi ) {

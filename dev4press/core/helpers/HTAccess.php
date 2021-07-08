@@ -184,6 +184,10 @@ class HTAccess {
 			}
 
 			fclose( $f );
+
+			return true;
 		}
+
+		return false;
 	}
 }
