@@ -104,9 +104,8 @@ if ( ! function_exists( __NAMESPACE__ . '\sanitize_file_path' ) ) {
 if ( ! function_exists( __NAMESPACE__ . '\sanitize_key_expanded' ) ) {
 	function sanitize_key_expanded( $key ) : string {
 		$key = strtolower( $key );
-		$key = preg_replace( '/[^a-z0-9._\-]/', '', $key );
 
-		return $key;
+		return preg_replace( '/[^a-z0-9._\-]/', '', $key );
 	}
 }
 
@@ -176,8 +175,7 @@ if ( ! function_exists( __NAMESPACE__ . '\sanitize_ids_list' ) ) {
 
 		$ids = array_map( $map, $ids );
 		$ids = array_unique( $ids );
-		$ids = array_filter( $ids );
 
-		return $ids;
+		return array_filter( $ids );
 	}
 }
