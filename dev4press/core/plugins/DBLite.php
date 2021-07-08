@@ -223,7 +223,17 @@ abstract class DBLite {
 	}
 
 	public function mysqli() : bool {
-		return isset( $this->wpdb()->use_mysqli ) ? $this->wpdb()->use_mysqli : false;
+		$use_mysqli = false;
+
+		if ( function_exists( 'mysqli_connect' ) ) {
+			$use_mysqli = true;
+
+			if ( defined( 'WP_USE_EXT_MYSQL' ) ) {
+				$use_mysqli = ! WP_USE_EXT_MYSQL;
+			}
+		}
+
+		return $use_mysqli;
 	}
 
 	public function prefix() : string {
