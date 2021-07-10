@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Core {
-	public $widgets = array();
+	public $widgets = false;
 	public $enqueue = false;
 	public $cap = 'activate_plugins';
 	public $svg_icon = '';
@@ -69,7 +69,7 @@ abstract class Core {
 
 		$this->wp_version = substr( str_replace( '.', '', $this->cms_version ), 0, 2 );
 
-		if ( ! empty( $this->widgets ) ) {
+		if ( $this->widgets === true || ! empty( $this->widgets ) ) {
 			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		}
 
