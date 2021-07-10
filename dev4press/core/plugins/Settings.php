@@ -182,11 +182,11 @@ abstract class Settings {
 		$this->_settings_update( $group, $this->current[ $group ] );
 	}
 
-	public function is_install() {
+	public function is_install() : bool {
 		return (bool)$this->get( 'install', 'info' );
 	}
 
-	public function is_update() {
+	public function is_update() : bool {
 		return (bool)$this->get( 'update', 'info' );
 	}
 
