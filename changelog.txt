@@ -6,6 +6,7 @@
 * Updated: Minor updates to some functions
 * Updated: Removed retired plugins from the list
 * Updated: Various PHP related improvements
+* Updated: Built-in cacert.pem 20210705
 * Removed: Previously deprecated functions
 * Fixed: mysqli method for DBLite class
 
