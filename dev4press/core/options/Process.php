@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v35\Core\Options\Process
-Version: v3.5
+Name:    Dev4Press\v36\Core\Options\Process
+Version: v3.6
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,17 +24,17 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v35\Core\Options;
+namespace Dev4Press\v36\Core\Options;
 
-use function Dev4Press\v35\Functions\list_css_size_units;
-use function Dev4Press\v35\Functions\sanitize_basic;
-use function Dev4Press\v35\Functions\sanitize_date;
-use function Dev4Press\v35\Functions\sanitize_html;
-use function Dev4Press\v35\Functions\sanitize_key_expanded;
-use function Dev4Press\v35\Functions\sanitize_month;
-use function Dev4Press\v35\Functions\sanitize_slug;
-use function Dev4Press\v35\Functions\sanitize_time;
-use function Dev4Press\v35\Functions\split_textarea_to_list;
+use function Dev4Press\v36\Functions\list_css_size_units;
+use function Dev4Press\v36\Functions\sanitize_basic;
+use function Dev4Press\v36\Functions\sanitize_date;
+use function Dev4Press\v36\Functions\sanitize_html;
+use function Dev4Press\v36\Functions\sanitize_key_expanded;
+use function Dev4Press\v36\Functions\sanitize_month;
+use function Dev4Press\v36\Functions\sanitize_slug;
+use function Dev4Press\v36\Functions\sanitize_time;
+use function Dev4Press\v36\Functions\split_textarea_to_list;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -208,7 +208,7 @@ class Process {
 					$value = array();
 				} else {
 					$value = (array) $post[ $key ];
-					$value = array_map( '\Dev4Press\v35\Functions\sanitize_basic', $value );
+					$value = array_map( '\Dev4Press\v36\Functions\sanitize_basic', $value );
 				}
 				break;
 			case 'css_size':

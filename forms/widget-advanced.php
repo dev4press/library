@@ -1,7 +1,7 @@
 <?php
 
-use Dev4Press\v35\Core\UI\Elements;
-use function Dev4Press\v35\Functions\WP\all_user_roles;
+use Dev4Press\v36\Core\UI\Elements;
+use function Dev4Press\v36\Functions\WP\all_user_roles;
 
 ?>
 

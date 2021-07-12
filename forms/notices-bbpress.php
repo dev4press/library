@@ -1,8 +1,8 @@
 <?php
 
-use function Dev4Press\v35\Functions\panel;
-use function Dev4Press\v35\Functions\WP\is_plugin_active;
-use function Dev4Press\v35\Functions\url_campaign_tracking;
+use function Dev4Press\v36\Functions\panel;
+use function Dev4Press\v36\Functions\WP\is_plugin_active;
+use function Dev4Press\v36\Functions\url_campaign_tracking;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

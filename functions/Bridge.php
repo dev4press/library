@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: Bridge
-Version: v3.5
+Version: v3.6
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,21 +24,21 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v35\Functions;
+namespace Dev4Press\v36\Functions;
 
-use Dev4Press\v35\Core\Cache\Store;
-use Dev4Press\v35\Core\Helpers\Download;
-use Dev4Press\v35\Core\Helpers\ObjectsSort;
-use Dev4Press\v35\Core\UI\Admin\Panel;
-use Dev4Press\v35\WordPress\Media\ToLibrary\LocalImage;
-use Dev4Press\v35\WordPress\Media\ToLibrary\RemoteImage;
+use Dev4Press\v36\Core\Cache\Store;
+use Dev4Press\v36\Core\Helpers\Download;
+use Dev4Press\v36\Core\Helpers\ObjectsSort;
+use Dev4Press\v36\Core\UI\Admin\Panel;
+use Dev4Press\v36\WordPress\Media\ToLibrary\LocalImage;
+use Dev4Press\v36\WordPress\Media\ToLibrary\RemoteImage;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ! function_exists( __NAMESPACE__ . '\panel' ) ) {
-	/** @return \Dev4Press\v35\Core\UI\Admin\Panel */
+	/** @return \Dev4Press\v36\Core\UI\Admin\Panel */
 	function panel() {
 		return Panel::instance();
 	}

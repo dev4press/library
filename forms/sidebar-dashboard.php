@@ -1,6 +1,6 @@
 <?php
 
-use function Dev4Press\v35\Functions\panel;
+use function Dev4Press\v36\Functions\panel;
 
 ?>
 <div class="d4p-sidebar">

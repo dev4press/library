@@ -1,10 +1,10 @@
 <?php
 
-namespace Dev4Press\v35\Core\Admin\Network\Menu;
+namespace Dev4Press\v36\Core\Admin\Network\Menu;
 
-use Dev4Press\v35\Core\Admin\Menu\Plugin as BasePlugin;
-use Dev4Press\v35\Core\UI\Enqueue;
-use function Dev4Press\v35\Functions\sanitize_slug;
+use Dev4Press\v36\Core\Admin\Menu\Plugin as BasePlugin;
+use Dev4Press\v36\Core\UI\Enqueue;
+use function Dev4Press\v36\Functions\sanitize_slug;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

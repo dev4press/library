@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v35\Core\Plugins\Widget
-Version: v3.5
+Name:    Dev4Press\v36\Core\Plugins\Widget
+Version: v3.6
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,14 +24,14 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v35\Core\Plugins;
+namespace Dev4Press\v36\Core\Plugins;
 
 use WP_Widget;
-use function Dev4Press\v35\Functions\sanitize_basic;
-use function Dev4Press\v35\Functions\sanitize_html;
-use function Dev4Press\v35\Functions\sanitize_key_expanded;
-use function Dev4Press\v35\Functions\WP\all_user_roles;
-use function Dev4Press\v35\Functions\WP\is_current_user_roles;
+use function Dev4Press\v36\Functions\sanitize_basic;
+use function Dev4Press\v36\Functions\sanitize_html;
+use function Dev4Press\v36\Functions\sanitize_key_expanded;
+use function Dev4Press\v36\Functions\WP\all_user_roles;
+use function Dev4Press\v36\Functions\WP\is_current_user_roles;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -75,7 +75,7 @@ abstract class Widget extends WP_Widget {
 	protected $cache_time = 0;
 	protected $cache_key = '';
 
-	/** @var \Dev4Press\v35\Core\UI\Widgets */
+	/** @var \Dev4Press\v36\Core\UI\Widgets */
 	protected $widgets_render;
 
 	public function __construct( $id_base = false, $name = '', $widget_options = array(), $control_options = array() ) {
@@ -190,7 +190,7 @@ abstract class Widget extends WP_Widget {
 		$instance['_roles'] = array();
 
 		if ( isset( $new_instance['_roles'] ) ) {
-			$_roles      = array_map( '\Dev4Press\v35\Functions\sanitize_basic', $new_instance['_roles'] );
+			$_roles      = array_map( '\Dev4Press\v36\Functions\sanitize_basic', $new_instance['_roles'] );
 			$valid_roles = all_user_roles();
 
 			foreach ( $_roles as $role ) {

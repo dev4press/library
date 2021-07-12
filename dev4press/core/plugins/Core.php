@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v35\Core\Plugins\Core
-Version: v3.5
+Name:    Dev4Press\v36\Core\Plugins\Core
+Version: v3.6
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,11 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v35\Core\Plugins;
+namespace Dev4Press\v36\Core\Plugins;
 
-use Dev4Press\v35\API\Four;
-use function Dev4Press\v35\Functions\bbPress\major_version_number;
-use function Dev4Press\v35\Functions\WP\is_classicpress;
+use Dev4Press\v36\API\Four;
+use function Dev4Press\v36\Functions\bbPress\major_version_number;
+use function Dev4Press\v36\Functions\WP\is_classicpress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -219,7 +219,7 @@ abstract class Core {
 		return $this->_widget_instance;
 	}
 
-	/** @return \Dev4Press\v35\Core\Plugins\Settings */
+	/** @return \Dev4Press\v36\Core\Plugins\Settings */
 	abstract public function s();
 
 	abstract public function run();

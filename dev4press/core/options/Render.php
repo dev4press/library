@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v35\Core\Options\Render
-Version: v3.5
+Name:    Dev4Press\v36\Core\Options\Render
+Version: v3.6
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,13 +24,13 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v35\Core\Options;
+namespace Dev4Press\v36\Core\Options;
 
-use Dev4Press\v35\Core\UI\Elements;
-use Dev4Press\v35\Core\UI\Walker\CheckboxRadio;
-use function Dev4Press\v35\Functions\is_associative_array;
-use function Dev4Press\v35\Functions\list_css_size_units;
-use function Dev4Press\v35\Functions\sanitize_slug;
+use Dev4Press\v36\Core\UI\Elements;
+use Dev4Press\v36\Core\UI\Walker\CheckboxRadio;
+use function Dev4Press\v36\Functions\is_associative_array;
+use function Dev4Press\v36\Functions\list_css_size_units;
+use function Dev4Press\v36\Functions\sanitize_slug;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -1,6 +1,6 @@
 <?php
 
-use function Dev4Press\v35\Functions\panel;
+use function Dev4Press\v36\Functions\panel;
 
 $_panels    = panel()->a()->panels();
 $_subpanels = panel()->subpanels();

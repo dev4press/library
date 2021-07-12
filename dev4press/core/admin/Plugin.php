@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v35\Core\Admin\Plugin
-Version: v3.5
+Name:    Dev4Press\v36\Core\Admin\Plugin
+Version: v3.6
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v35\Core\Admin;
+namespace Dev4Press\v36\Core\Admin;
 
-use Dev4Press\v35\Core\UI\Enqueue;
+use Dev4Press\v36\Core\UI\Enqueue;
 use WP_Screen;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -56,10 +56,10 @@ abstract class Plugin {
 
 	public $screen_id = '';
 
-	/** @var \Dev4Press\v35\Core\UI\Admin\Panel */
+	/** @var \Dev4Press\v36\Core\UI\Admin\Panel */
 	public $object = null;
 
-	/** @var \Dev4Press\v35\Core\UI\Enqueue */
+	/** @var \Dev4Press\v36\Core\UI\Enqueue */
 	public $enqueue = null;
 
 	public $enqueue_packed = true;
@@ -105,7 +105,7 @@ abstract class Plugin {
 	public function plugins_loaded() {
 		$this->is_debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
 
-		$this->enqueue = Enqueue::instance( $this->url . 'd4plib/', $this );
+		$this->enqueue = Enqueue::instance( $this->url, $this );
 
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
@@ -171,20 +171,6 @@ abstract class Plugin {
 		return $this->plugin_title;
 	}
 
-	public function file( $type, $name, $min = true, $base_url = null ) : string {
-		$get = is_null( $base_url ) ? $this->url : $base_url;
-
-		$get .= $type . '/' . $name;
-
-		if ( ! $this->is_debug && $min ) {
-			$get .= '.min';
-		}
-
-		$get .= '.' . $type;
-
-		return $get;
-	}
-
 	public function admin_load_hooks() {
 		foreach ( $this->page_ids as $id ) {
 			add_action( 'load-' . $id, array( $this, 'load_admin_page' ) );
@@ -242,7 +228,7 @@ abstract class Plugin {
 		do_action( $this->plugin_prefix . '_admin_help_tabs', $this );
 	}
 
-	protected function load_postget_back() {
+	protected function load_post_get_back() {
 		if ( isset( $_POST[ $this->v() ] ) && $_POST[ $this->v() ] == 'postback' ) {
 			$this->run_postback();
 		} else if ( isset( $_GET[ $this->v() ] ) && $_GET[ $this->v() ] == 'getback' ) {
@@ -304,6 +290,8 @@ abstract class Plugin {
 	}
 
 	public function enqueue_scripts( $hook ) {
+		$this->register_scripts_and_styles();
+
 		if ( $this->page ) {
 			$this->enqueue->wp( $this->enqueue_wp );
 
@@ -323,7 +311,7 @@ abstract class Plugin {
 
 			$this->extra_enqueue_scripts_plugin();
 
-			do_action( $this->h( 'enqueue_scripts' ) );
+			do_action( $this->h( 'enqueue_scripts' ), $this->page );
 		}
 
 		if ( $this->has_widgets && $hook == 'widgets.php' ) {
@@ -351,30 +339,6 @@ abstract class Plugin {
 
 			do_action( $this->h( 'enqueue_scripts_postslist' ) );
 		}
-	}
-
-	public function css( $name, $min = true, $req = array() ) {
-		$url = trailingslashit( $this->url ) . 'css/' . $name;
-
-		if ( ! $this->is_debug && $min ) {
-			$url .= '.min';
-		}
-
-		$url .= '.css';
-
-		wp_enqueue_style( $this->plugin_prefix . '-' . $name, $url, $req, $this->settings()->file_version() );
-	}
-
-	public function js( $name, $min = true, $req = array(), $in_footer = true ) {
-		$url = trailingslashit( $this->url ) . 'js/' . $name;
-
-		if ( ! $this->is_debug && $min ) {
-			$url .= '.min';
-		}
-
-		$url .= '.js';
-
-		wp_enqueue_script( $this->plugin_prefix . '-' . $name, $url, $req, $this->settings()->file_version(), $in_footer );
 	}
 
 	public function admin_panel() {
@@ -407,7 +371,7 @@ abstract class Plugin {
 
 	protected function screen_setup() {
 		$this->install_or_update();
-		$this->load_postget_back();
+		$this->load_post_get_back();
 
 		$panel = $this->panel_object();
 		$class = $panel->class;
@@ -419,6 +383,9 @@ abstract class Plugin {
 
 	protected function is_metabox_available() : bool {
 		return true;
+	}
+
+	protected function register_scripts_and_styles() {
 	}
 
 	protected function extra_enqueue_scripts_plugin() {
@@ -437,6 +404,28 @@ abstract class Plugin {
 	}
 
 	public function after_setup_theme() {
+	}
+
+	public function get_post_type() {
+		$post_type = '';
+
+		if ( isset( $_GET['post_type'] ) ) {
+			$post_type = sanitize_key( $_GET['post_type'] );
+		} else {
+			global $post;
+
+			if ( $post ) {
+				$post_type = $post->post_type;
+			}
+		}
+
+		if ( $post_type == '' ) {
+			global $typenow;
+
+			$post_type = $typenow;
+		}
+
+		return $post_type;
 	}
 
 	abstract public function main_url();

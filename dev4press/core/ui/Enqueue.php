@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v35\Core\UI\Enqueue
-Version: v3.5
+Name:    Dev4Press\v36\Core\UI\Enqueue
+Version: v3.6
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,19 +24,21 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v35\Core\UI;
+namespace Dev4Press\v36\Core\UI;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 final class Enqueue {
+	private $_version = '3.6';
 	private $_enqueue_prefix = 'd4plib3-';
+	private $_library = 'd4plib';
 	private $_debug;
 	private $_url;
-	private $_rtl;
+	private $_rtl = false;
 
-	/** @var \Dev4Press\v35\Core\Admin\Plugin|\Dev4Press\v35\Core\Admin\Menu\Plugin|\Dev4Press\v35\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v36\Core\Admin\Plugin|\Dev4Press\v36\Core\Admin\Menu\Plugin|\Dev4Press\v36\Core\Admin\Submenu\Plugin */
 	private $_admin;
 
 	private $_loaded = array(
@@ -104,7 +106,7 @@ final class Enqueue {
 			'flatpickr'              => array(
 				'path'       => 'libraries/flatpickr/',
 				'file'       => 'flatpickr.min',
-				'ver'        => '4.6.3',
+				'ver'        => '4.6.9',
 				'ext'        => 'js',
 				'min'        => false,
 				'min_locale' => true,
@@ -113,7 +115,7 @@ final class Enqueue {
 			'flatpickr-confirm-date' => array(
 				'path' => 'libraries/flatpickr/plugins',
 				'file' => 'confirm-date',
-				'ver'  => '4.6.3',
+				'ver'  => '4.6.9',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -121,7 +123,7 @@ final class Enqueue {
 			'flatpickr-month-select' => array(
 				'path' => 'libraries/flatpickr/plugins',
 				'file' => 'month-select',
-				'ver'  => '4.6.3',
+				'ver'  => '4.6.9',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -129,7 +131,7 @@ final class Enqueue {
 			'flatpickr-range'        => array(
 				'path' => 'libraries/flatpickr/plugins',
 				'file' => 'range',
-				'ver'  => '4.6.3',
+				'ver'  => '4.6.9',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -329,14 +331,14 @@ final class Enqueue {
 			'flatpickr'              => array(
 				'path' => 'libraries/flatpickr/',
 				'file' => 'flatpickr.min',
-				'ver'  => '4.6.3',
+				'ver'  => '4.6.9',
 				'ext'  => 'css',
 				'min'  => false
 			),
 			'flatpickr-confirm-date' => array(
 				'path' => 'libraries/flatpickr/plugins',
 				'file' => 'confirm-date',
-				'ver'  => '4.6.3',
+				'ver'  => '4.6.9',
 				'ext'  => 'css',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -344,7 +346,7 @@ final class Enqueue {
 			'flatpickr-month-select' => array(
 				'path' => 'libraries/flatpickr/plugins',
 				'file' => 'month-select',
-				'ver'  => '4.6.3',
+				'ver'  => '4.6.9',
 				'ext'  => 'css',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -359,9 +361,10 @@ final class Enqueue {
 		add_action( 'admin_init', array( $this, 'start' ), 15 );
 	}
 
-	/** @return Enqueue */
-	public static function instance( $base_url, $admin ) {
+	public static function instance( $base_url, $admin ) : Enqueue {
 		static $_d4p_lib_loader = array();
+
+		$base_url = trailingslashit( $base_url );
 
 		if ( ! isset( $_d4p_lib_loader[ $base_url ] ) ) {
 			$_d4p_lib_loader[ $base_url ] = new Enqueue( $base_url, $admin );
@@ -370,7 +373,7 @@ final class Enqueue {
 		return $_d4p_lib_loader[ $base_url ];
 	}
 
-	public function is_rtl() {
+	public function is_rtl() : bool {
 		return $this->_rtl;
 	}
 
@@ -379,22 +382,25 @@ final class Enqueue {
 		$this->_debug = $this->_admin->is_debug;
 	}
 
-	/** @return Enqueue */
-	public function js( $name ) {
+	public function register( $type, $name, $args = array() ) : Enqueue {
+		$this->_libraries[ $type ][ $name ] = $args;
+
+		return $this;
+	}
+
+	public function js( $name ) : Enqueue {
 		$this->add( 'js', $name );
 
 		return $this;
 	}
 
-	/** @return Enqueue */
-	public function css( $name ) {
+	public function css( $name ) : Enqueue {
 		$this->add( 'css', $name );
 
 		return $this;
 	}
 
-	/** @return Enqueue */
-	public function flatpickr( $plugins = array() ) {
+	public function flatpickr( $plugins = array() ) : Enqueue {
 		$this->add( 'js', 'flatpickr' );
 		$this->add( 'css', 'flatpickr' );
 
@@ -408,8 +414,7 @@ final class Enqueue {
 		return $this;
 	}
 
-	/** @return Enqueue */
-	public function wp( $includes = array() ) {
+	public function wp( $includes = array() ) : Enqueue {
 		$defaults = array( 'dialog' => false, 'color_picker' => false, 'media' => false, 'sortable' => false );
 		$includes = shortcode_atts( $defaults, $includes );
 
@@ -437,7 +442,7 @@ final class Enqueue {
 		return $this;
 	}
 
-	public function prefix() {
+	public function prefix() : string {
 		return $this->_enqueue_prefix;
 	}
 
@@ -476,7 +481,7 @@ final class Enqueue {
 				}
 
 				$handle = $this->prefix() . $name;
-				$ver    = $obj['ver'] ?? D4P_CORE_VERSION;
+				$ver    = $obj['ver'] ?? $this->_version;
 				$footer = $obj['footer'] ?? true;
 
 				$this->enqueue( $type, $handle, $this->url( $obj ), $req, $ver, $footer );
@@ -506,8 +511,10 @@ final class Enqueue {
 		}
 	}
 
-	private function url( $obj, $locale = null ) {
-		$path = trailingslashit( 'resources/' . $obj['path'] );
+	private function url( $obj, $locale = null ) : string {
+		$plugin = isset( $obj['src'] ) && $obj['src'] == 'plugin';
+		$path   = $plugin ? trailingslashit( $obj['path'] ) : trailingslashit( 'resources/' . $obj['path'] );
+		$base   = $this->_url;
 
 		if ( is_null( $locale ) ) {
 			$min  = $obj['min'];
@@ -523,10 +530,14 @@ final class Enqueue {
 
 		$path .= '.' . $obj['ext'];
 
-		return trailingslashit( $this->_url ) . $path;
+		if ( ! $plugin ) {
+			$base .= $this->_library . '/';
+		}
+
+		return $base . $path;
 	}
 
-	private function is_added( $type, $name ) {
+	private function is_added( $type, $name ) : bool {
 		return in_array( $name, $this->_loaded[ $type ] );
 	}
 
@@ -539,19 +550,20 @@ final class Enqueue {
 	}
 
 	private function localize_admin() {
-		wp_localize_script( $this->prefix() . 'admin', 'd4plib_admin_data', array(
-			                                                                    'plugin'  => array(
-				                                                                    'name'   => $this->_admin->plugin,
-				                                                                    'prefix' => $this->_admin->plugin_prefix
-			                                                                    ),
-			                                                                    'page'    => array(
-				                                                                    'panel'    => $this->_admin->panel,
-				                                                                    'subpanel' => $this->_admin->subpanel
-			                                                                    ),
-			                                                                    'content' => array(
-				                                                                    'nonce' => wp_create_nonce( $this->_admin->plugin . '-admin-internal' )
-			                                                                    )
-		                                                                    ) + $this->localize_shared_args() );
+		wp_localize_script( $this->prefix() . 'admin', 'd4plib_admin_data',
+			array(
+				'plugin'  => array(
+					'name'   => $this->_admin->plugin,
+					'prefix' => $this->_admin->plugin_prefix
+				),
+				'page'    => array(
+					'panel'    => $this->_admin->panel,
+					'subpanel' => $this->_admin->subpanel
+				),
+				'content' => array(
+					'nonce' => wp_create_nonce( $this->_admin->plugin . '-admin-internal' )
+				)
+			) + $this->localize_shared_args() );
 	}
 
 	private function localize_meta() {
@@ -577,7 +589,7 @@ final class Enqueue {
 		) );
 	}
 
-	private function localize_shared_args() {
+	private function localize_shared_args() : array {
 		return array(
 			'lib' => array(
 				'flatpickr' => $this->locale_js_code( 'flatpickr' )

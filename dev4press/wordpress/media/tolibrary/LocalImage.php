@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v35\WordPress\Media\LocalImageToMediaLibrary
-Version: v3.5
+Name:    Dev4Press\v36\WordPress\Media\LocalImageToMediaLibrary
+Version: v3.6
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v35\WordPress\Media\ToLibrary;
+namespace Dev4Press\v36\WordPress\Media\ToLibrary;
 
-use Dev4Press\v35\WordPress\Media\ImageToMediaLibrary;
+use Dev4Press\v36\WordPress\Media\ImageToMediaLibrary;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
