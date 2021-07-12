@@ -6,6 +6,7 @@
 * Updated: Minor updates to some functions
 * Updated: Removed retired plugins from the list
 * Updated: Various PHP related improvements
+* Removed: Previously deprecated functions
 * Fixed: mysqli method for DBLite class
 
 = Version 3.5.2 - 2021.06.21 =
