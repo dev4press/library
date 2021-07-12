@@ -4,6 +4,9 @@
 .d4plib-meta-box-wrapper * {
   box-sizing: border-box;
 }
+.d4plib-meta-box-wrapper ul {
+  margin: 0;
+}
 .d4plib-meta-box-wrapper ul.wp-tab-bar {
   margin: 12px 0 -1px;
 }
@@ -25,13 +28,16 @@
 }
 .d4plib-meta-box-wrapper div.wp-tab-panel {
   max-height: 360px;
+  padding: 1em;
 }
-.d4plib-meta-box-wrapper p {
-  margin: 0.9em 0;
+.d4plib-meta-box-wrapper div.wp-tab-panel > p {
+  margin: 1em 0;
 }
-.d4plib-meta-box-wrapper p label {
-  display: inline-block;
-  margin-bottom: 2px;
+.d4plib-meta-box-wrapper div.wp-tab-panel > p:first-child {
+  margin-top: 0;
+}
+.d4plib-meta-box-wrapper div.wp-tab-panel > p:last-child {
+  margin-bottom: 0;
 }
 .d4plib-meta-box-wrapper h4 {
   font-size: 1.1em;
@@ -43,9 +49,11 @@
   padding: 0 0 10px;
   border-bottom: 1px solid #DDD;
 }
+.d4plib-meta-box-wrapper .d4plib-meta-box-element .d4plib-meta-box-element-inner > label,
 .d4plib-meta-box-wrapper .d4plib-meta-box-element > label {
   font-weight: bold;
   display: block;
+  line-height: 2;
 }
 .d4plib-meta-box-wrapper .d4plib-meta-box-element .d4p-setting-checkboxes,
 .d4plib-meta-box-wrapper .d4plib-meta-box-element .d4p-setting-checkboxes-hierarchy {

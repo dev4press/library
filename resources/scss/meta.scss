@@ -5,39 +5,47 @@
         box-sizing: border-box;
     }
 
-    ul.wp-tab-bar {
-        margin: 12px 0 -1px;
+    ul {
+        margin: 0;
 
-        a {
-            box-shadow: none;
-            outline: none;
-        }
+        &.wp-tab-bar {
+            margin: 12px 0 -1px;
 
-        li {
-            display: inline-block;
-            padding: 3px 5px 4px;
-            margin: 0;
-            position: relative;
+            a {
+                box-shadow: none;
+                outline: none;
+            }
 
-            span.dashicons {
-                font-size: 16px;
-                height: 16px;
-                margin: 2px 3px 0 0;
-                vertical-align: top;
+            li {
+                display: inline-block;
+                padding: 3px 5px 4px;
+                margin: 0;
+                position: relative;
+
+                span.dashicons {
+                    font-size: 16px;
+                    height: 16px;
+                    margin: 2px 3px 0 0;
+                    vertical-align: top;
+                }
             }
         }
     }
 
     div.wp-tab-panel {
         max-height: 360px;
-    }
+        padding: 1em;
 
-    p {
-        margin: .9em 0;
+        > p {
+            margin: 1em 0;
 
-        label {
-            display: inline-block;
-            margin-bottom: 2px;
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 
@@ -54,9 +62,11 @@
             border-bottom: 1px solid #DDD;
         }
 
+        .d4plib-meta-box-element-inner > label,
         > label {
             font-weight: bold;
             display: block;
+            line-height: 2;
         }
 
         .d4p-setting-checkboxes,
