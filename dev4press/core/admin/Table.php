@@ -39,7 +39,7 @@ abstract class Table extends WP_List_Table {
 	public $_checkbox_field = '';
 	public $_table_class_name = '';
 
-	public function get_table_classes() {
+	public function get_table_classes() : array {
 		$classes = parent::get_table_classes();
 
 		if ( ! empty( $this->_table_class_name ) ) {
@@ -53,11 +53,15 @@ abstract class Table extends WP_List_Table {
 		$this->_column_headers = array( $this->get_columns(), array(), $this->get_sortable_columns() );
 	}
 
-	protected function get_sortable_columns() {
+	public function get_columns() : array {
 		return array();
 	}
 
-	public function get_row_classes( $item ) {
+	protected function get_sortable_columns() : array {
+		return array();
+	}
+
+	public function get_row_classes( $item ) : array {
 		return array();
 	}
 

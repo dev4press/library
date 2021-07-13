@@ -10,6 +10,8 @@ if ( $_subpanels[ $_subpanel ]['method'] == 'post' ) {
 	panel()->settings_fields();
 }
 
+$_button_id = $_subpanels[ $_subpanel ]['button_id'] ?? panel()->a()->plugin_prefix . '-tools-' . $_subpanel;
+
 ?>
 <div class="d4p-sidebar">
     <div class="d4p-panel-scroller d4p-scroll-active">
@@ -30,11 +32,11 @@ if ( $_subpanels[ $_subpanel ]['method'] == 'post' ) {
 		<?php if ( $_subpanel != 'index' && $_subpanels[ $_subpanel ]['method'] != '' ) { ?>
             <div class="d4p-panel-buttons">
 				<?php if ( $_subpanels[ $_subpanel ]['method'] == 'get' ) { ?>
-                    <a type="button" href="<?php echo $_subpanels[ $_subpanel ]['button_url']; ?>" class="button-primary"><?php echo $_subpanels[ $_subpanel ]['button_label']; ?></a>
+                    <a id="<?php echo $_button_id; ?>" type="button" href="<?php echo $_subpanels[ $_subpanel ]['button_url']; ?>" class="button-primary"><?php echo $_subpanels[ $_subpanel ]['button_label']; ?></a>
 				<?php } else if ( $_subpanels[ $_subpanel ]['method'] == 'ajax' ) { ?>
-                    <input type="button" value="<?php echo $_subpanels[ $_subpanel ]['button_label']; ?>" class="button-primary"/>
+                    <input id="<?php echo $_button_id; ?>" type="button" value="<?php echo $_subpanels[ $_subpanel ]['button_label']; ?>" class="button-primary"/>
 				<?php } else { ?>
-                    <input type="submit" value="<?php echo $_subpanels[ $_subpanel ]['button_label']; ?>" class="button-primary"/>
+                    <input id="<?php echo $_button_id; ?>" type="submit" value="<?php echo $_subpanels[ $_subpanel ]['button_label']; ?>" class="button-primary"/>
 				<?php } ?>
             </div>
             <div class="d4p-return-to-top">
