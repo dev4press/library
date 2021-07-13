@@ -20,6 +20,8 @@ abstract class Panel {
 	protected $subpanels = array();
 	protected $render_class = '\\Dev4Press\\v36\\Core\\UI\\Admin\\Render';
 
+	public $storage = array();
+
 	public function __construct( $admin ) {
 		$this->admin = $admin;
 
