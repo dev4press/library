@@ -270,13 +270,13 @@
                             type = $(this).closest("tr").data("switch-type");
 
                         if (type === 'option') {
-                            any    = ".d4p-switch-value-" + option;
+                            any = ".d4p-switch-value-" + option;
                             active = ".d4p-switch-option-value-" + value;
 
                             $(any).addClass("d4p-switch-option-is-hidden");
                             $(any + active).removeClass("d4p-switch-option-is-hidden");
                         } else if (type === 'section') {
-                            any    = ".d4p-switch-section-" + option;
+                            any = ".d4p-switch-section-" + option;
                             active = ".d4p-switch-section-value-" + value;
 
                             $(any).addClass("d4p-switch-section-is-hidden");
@@ -338,6 +338,10 @@
         },
         icons: function(id, icon_html) {
             $(id).next().find(".ui-dialog-buttonset button").each(function() {
+                if ($(this).find("span.ui-button-text").length === 0) {
+                    $(this).html("<span class='ui-button-text'>" + $(this).html() + "</span>");
+                }
+
                 if (typeof icon_html === "undefined") {
                     var icon = $(this).data("icon");
 
