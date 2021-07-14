@@ -387,6 +387,7 @@
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-links-group a span {
   font-size: 120%;
   font-weight: bold;
+  vertical-align: top;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-cards-wrapper {
   width: 100%;
