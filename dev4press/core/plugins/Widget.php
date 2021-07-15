@@ -91,10 +91,6 @@ abstract class Widget extends WP_Widget {
 		parent::__construct( $this->widget_base, $this->widget_name, $widget_options, $control_options );
 	}
 
-	protected function _strip($value) : string {
-		return strip_tags( stripslashes( $value ) );
-	}
-
 	public function form( $instance ) {
 		$instance = wp_parse_args( (array) $instance, $this->get_defaults() );
 		$the_tabs = $this->the_form( $instance );
@@ -327,6 +323,14 @@ abstract class Widget extends WP_Widget {
 		}
 
 		echo '</div>';
+	}
+
+	protected function _strip($value) : string {
+		return strip_tags( stripslashes( $value ) );
+	}
+
+	protected function _instance($instance) : array {
+		return wp_parse_args( (array) $instance, $this->get_defaults() );
 	}
 
 	public function get_tabkey( $tab ) {
