@@ -91,6 +91,10 @@ abstract class Widget extends WP_Widget {
 		parent::__construct( $this->widget_base, $this->widget_name, $widget_options, $control_options );
 	}
 
+	protected function _strip($value) : string {
+		return strip_tags( stripslashes( $value ) );
+	}
+
 	public function form( $instance ) {
 		$instance = wp_parse_args( (array) $instance, $this->get_defaults() );
 		$the_tabs = $this->the_form( $instance );

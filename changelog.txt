@@ -4,7 +4,9 @@
 = Version 3.6 - 2021.07.20 =
 * New: Added 10+ new icons
 * New: Improved admin Plugin and Enqueue handling
+* New: Many changes to various core classes
 * Updated: Minor updates to some functions
+* Updated: Many updates to the admin styling
 * Updated: Removed retired plugins from the list
 * Updated: Various PHP related improvements
 * Updated: Built-in cacert.pem 20210705
