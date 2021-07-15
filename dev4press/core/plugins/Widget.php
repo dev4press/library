@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Widget extends WP_Widget {
 	public $selective_refresh = true;
 	public $allow_empty_title = false;
-	public $results_cachable = false;
+	public $results_cacheable = false;
 
 	public $shortcode_mirror = false;
 	public $shortcode_name = '';
@@ -50,7 +50,9 @@ abstract class Widget extends WP_Widget {
 
 	public $widget_base = '';
 	public $widget_name = '';
+	public $widget_class = '';
 	public $widget_description = '';
+	public $widget_wrapper_class = '';
 
 	public $widget_id = '';
 
@@ -117,7 +119,7 @@ abstract class Widget extends WP_Widget {
 			);
 		}
 
-		if ( $this->results_cachable ) {
+		if ( $this->results_cacheable ) {
 			$tabs['global']['include'][] = 'widget-cache';
 		}
 
@@ -216,7 +218,7 @@ abstract class Widget extends WP_Widget {
 	}
 
 	protected function prepare_cache( $instance ) {
-		if ( $this->results_cachable ) {
+		if ( $this->results_cacheable ) {
 			$this->cache_time = isset( $instance['_cached'] ) ? absint( $instance['_cached'] ) : 0;
 
 			if ( $this->cache_time > 0 ) {
@@ -302,15 +304,29 @@ abstract class Widget extends WP_Widget {
 		return $visible;
 	}
 
-	protected function render_widget_header( $instance ) {
+	protected function render_header_classes( $instance ) : array {
 		$class   = array( 'd4p-widget-wrapper' );
 		$class[] = str_replace( '_', '-', $this->widget_base );
+
+		if ( ! empty( $this->widget_wrapper_class ) ) {
+			$class[] = $this->widget_wrapper_class;
+		}
+
+		if ( ! empty( $this->widget_class ) ) {
+			$class[] = $this->widget_class;
+		}
 
 		if ( isset( $instance['_class'] ) && ! empty( $instance['_class'] ) ) {
 			$class[] = $instance['_class'];
 		}
 
-		echo '<div class="' . join( ' ', $class ) . '">' . D4P_EOL;
+		return $class;
+	}
+
+	protected function render_widget_header( $instance ) {
+		$classes = $this->render_header_classes( $instance );
+
+		echo '<div class="' . join( ' ', $classes ) . '">' . D4P_EOL;
 
 		if ( isset( $instance['_before'] ) && ! empty( $instance['_before'] ) ) {
 			echo '<div class="d4p-widget-before">' . $instance['_before'] . '</div>';
@@ -325,11 +341,11 @@ abstract class Widget extends WP_Widget {
 		echo '</div>';
 	}
 
-	protected function _strip($value) : string {
+	protected function _strip( $value ) : string {
 		return strip_tags( stripslashes( $value ) );
 	}
 
-	protected function _instance($instance) : array {
+	protected function _instance( $instance ) : array {
 		return wp_parse_args( (array) $instance, $this->get_defaults() );
 	}
 
@@ -401,7 +417,7 @@ abstract class Widget extends WP_Widget {
 		return join( ' ', $shortcode );
 	}
 
-	abstract public function the_form( $instance );
+	abstract public function the_form( $instance ) : array;
 
 	abstract public function the_render( $instance, $results = false );
 
