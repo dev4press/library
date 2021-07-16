@@ -270,7 +270,7 @@ if ( ! function_exists( __NAMESPACE__ . '\cache_posts_by_ids' ) ) {
 		$posts = array_filter( $posts );
 
 		if ( ! empty( $posts ) ) {
-			$sql = 'SELECT * FROM ' . $wpdb->posts . ' WHERE ID IN (' . join( ',', (array) $posts ) . ')';
+			$sql = 'SELECT * FROM ' . $wpdb->posts . ' WHERE ID IN (' . join( ',', $posts ) . ')';
 			$raw = $wpdb->get_results( $sql );
 
 			foreach ( $raw as $_post ) {

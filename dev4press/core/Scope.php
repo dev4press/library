@@ -34,7 +34,7 @@ class Scope {
 	/**
 	 * @var string
 	 */
-	private $scope = '';
+	private $scope;
 
 	/**
 	 * @var bool
