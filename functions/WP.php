@@ -241,7 +241,7 @@ if ( ! function_exists( __NAMESPACE__ . '\cache_flush' ) ) {
 	 *
 	 * @global wpdb $wpdb
 	 */
-	function cache_flush( $cache = true, $queries = true ) {
+	function cache_flush( bool $cache = true, bool $queries = true ) {
 		if ( $cache ) {
 			wp_cache_flush();
 		}
@@ -263,7 +263,7 @@ if ( ! function_exists( __NAMESPACE__ . '\cache_posts_by_ids' ) ) {
 	 *
 	 * @global wpdb $wpdb
 	 */
-	function cache_posts_by_ids( $posts ) {
+	function cache_posts_by_ids( array $posts ) {
 		global $wpdb;
 
 		$posts = _get_non_cached_ids( $posts, 'posts' );

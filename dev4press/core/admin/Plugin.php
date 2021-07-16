@@ -123,7 +123,7 @@ abstract class Plugin {
 	 * @return string
 	 */
 
-	public function h( $hook ) : string {
+	public function h( string $hook ) : string {
 		return $this->plugin_prefix . '_' . $hook;
 	}
 

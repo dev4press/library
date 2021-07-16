@@ -23,7 +23,7 @@ class CheckboxRadio extends Walker {
 		$output .= "$indent</ul>\n";
 	}
 
-	public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
+	public function start_el( &$output, $object, $depth = 0, $args = array(), $current_object_id = 0 ) {
 		if ( $depth ) {
 			$indent = str_repeat( "\t", $depth );
 		} else {
@@ -32,29 +32,29 @@ class CheckboxRadio extends Walker {
 
 		$css_class = array(
 			'option-item',
-			'option-item-parent-' . $page->parent,
-			'option-item' . $page->id
+			'option-item-parent-' . $object->parent,
+			'option-item' . $object->id
 		);
 
 		$css_classes = implode( ' ', $css_class );
 
 		$args['input'] = empty( $args['input'] ) ? 'checkbox' : $args['input'];
 
-		$selected = in_array( $page->id, $args['selected'] ) ? ' checked="checked"' : '';
+		$selected = in_array( $object->id, $args['selected'] ) ? ' checked="checked"' : '';
 
 		$output .= $indent . sprintf(
 				'<li class="%s"><label><input type="%s" value="%s" name="%s%s"%s class="widefat" />%s</label>',
 				esc_attr( $css_classes ),
 				esc_attr( $args['input'] ),
-				esc_attr( $page->id ),
+				esc_attr( $object->id ),
 				esc_attr( $args['name'] ),
 				$args['input'] == 'checkbox' ? '[]' : '',
 				$selected,
-				$page->title
+				$object->title
 			);
 	}
 
-	public function end_el( &$output, $page, $depth = 0, $args = array() ) {
+	public function end_el( &$output, $object, $depth = 0, $args = array() ) {
 		$output .= "</li>\n";
 	}
 }
