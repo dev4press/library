@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 trait Taxonomy {
-	public function generate_capabilities() {
+	public function generate_capabilities() : array {
 		return array(
 			'manage_terms' => 'manage_categories',
 			'edit_terms'   => 'manage_categories',
@@ -40,7 +40,7 @@ trait Taxonomy {
 		);
 	}
 
-	public function generate_labels( $singular, $plural ) {
+	public function generate_labels( $singular, $plural ) : array {
 		$labels = array(
 			'name'          => $plural,
 			'singular_name' => $singular,

@@ -113,7 +113,7 @@ abstract class Manager {
 		$this->_controls();
 	}
 
-	public function sanitize_checkbox( $input ) {
+	public function sanitize_checkbox( $input ) : bool {
 		return (bool) $input;
 	}
 
@@ -153,7 +153,7 @@ abstract class Manager {
 		return $input;
 	}
 
-	protected function _file( $type, $name, $min = true ) {
+	protected function _file( $type, $name, $min = true ) : string {
 		$get = $this->_lib_url . 'resources/' . $type . '/' . $name;
 
 		if ( ! $this->_is_debug && $min ) {

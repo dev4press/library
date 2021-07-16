@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 trait PostType {
-	public function generate_labels( $singular, $plural ) {
+	public function generate_labels( $singular, $plural ) : array {
 		$labels = array(
 			'name'           => $plural,
 			'singular_name'  => $singular,

@@ -53,15 +53,15 @@ final class Widgets {
 		return $this->_admin;
 	}
 
-	public function forms_path_library() {
+	public function forms_path_library() : string {
 		return $this->a()->path . 'd4plib/forms/';
 	}
 
-	public function forms_path_plugin() {
+	public function forms_path_plugin() : string {
 		return $this->a()->path . 'forms/widgets/';
 	}
 
-	public function find( $name, $fallback = 'fallback.php' ) {
+	public function find( $name, $fallback = 'fallback.php' ) : string {
 		if ( file_exists( $this->forms_path_plugin() . $name ) ) {
 			return $this->forms_path_plugin() . $name;
 		} else {
