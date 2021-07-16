@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v36\Functions;
 
+use Dev4Press\v36\Library;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -164,7 +166,7 @@ if ( ! function_exists( __NAMESPACE__ . '\entity_decode' ) ) {
 		}
 
 		if ( null === $charset ) {
-			$charset = D4P_CHARSET;
+			$charset = Library::instance()->charset();
 		}
 
 		return html_entity_decode( $content, $quote_style, $charset );

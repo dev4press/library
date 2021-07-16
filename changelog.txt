@@ -1,8 +1,12 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.6 - 2021.07.20 =
+= Version 3.6 - 2021.07.27 =
+* New: Core Library class
+* New: Core WordPress class
+* New: Core Resources class
 * New: Added 10+ new icons
+* New: Improved library loading and initialization
 * New: Improved admin Plugin and Enqueue handling
 * New: Many changes to various core classes
 * Updated: Minor updates to some functions
@@ -11,6 +15,7 @@
 * Updated: Various PHP related improvements
 * Updated: Built-in cacert.pem 20210705
 * Removed: Previously deprecated functions
+* Removed: Many defines for system flags
 * Fixed: mysqli method for DBLite class
 
 = Version 3.5.2 - 2021.06.21 =

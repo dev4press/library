@@ -183,11 +183,11 @@ abstract class Settings {
 	}
 
 	public function is_install() : bool {
-		return (bool)$this->get( 'install', 'info' );
+		return (bool) $this->get( 'install', 'info' );
 	}
 
 	public function is_update() : bool {
-		return (bool)$this->get( 'update', 'info' );
+		return (bool) $this->get( 'update', 'info' );
 	}
 
 	public function mark_for_update() {

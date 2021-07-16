@@ -26,6 +26,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v36\Core\Shared;
 
+use Dev4Press\v36\Library;
+use Dev4Press\v36\WordPress;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -39,195 +42,29 @@ class Enqueue {
 	private $_debug;
 
 	private $_locales = array();
-	private $_actuals = array(
+	private $_actual = array(
 		'js'  => array(),
 		'css' => array()
 	);
 
 	private $_libraries = array(
-		'js'  => array(
-			'animated-popup'         => array(
-				'lib'  => true,
-				'path' => 'animated-popup/',
-				'file' => 'animated-popup.min',
-				'ver'  => '1.8',
-				'ext'  => 'js',
-				'min'  => false
-			),
-			'flatpickr'              => array(
-				'lib'        => true,
-				'path'       => 'flatpickr/',
-				'file'       => 'flatpickr.min',
-				'ver'        => '4.6.9',
-				'ext'        => 'js',
-				'min'        => false,
-				'min_locale' => true,
-				'locales'    => array( 'de', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'sr' )
-			),
-			'flatpickr-confirm-date' => array(
-				'lib'  => true,
-				'path' => 'flatpickr/plugins',
-				'file' => 'confirm-date',
-				'ver'  => '4.6.9',
-				'ext'  => 'js',
-				'min'  => true,
-				'int'  => array( 'flatpickr' )
-			),
-			'flatpickr-month-select' => array(
-				'lib'  => true,
-				'path' => 'flatpickr/plugins',
-				'file' => 'month-select',
-				'ver'  => '4.6.9',
-				'ext'  => 'js',
-				'min'  => true,
-				'int'  => array( 'flatpickr' )
-			),
-			'flatpickr-range'        => array(
-				'lib'  => true,
-				'path' => 'flatpickr/plugins',
-				'file' => 'range',
-				'ver'  => '4.6.9',
-				'ext'  => 'js',
-				'min'  => true,
-				'int'  => array( 'flatpickr' )
-			),
-			'clipboard'              => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'clipboard.min',
-				'ver'  => '2.0.4',
-				'ext'  => 'js',
-				'min'  => false
-			),
-			'cookies'                => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'cookies.min',
-				'ver'  => '2.2.1',
-				'ext'  => 'js',
-				'min'  => false
-			),
-			'alphanumeric'           => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.alphanumeric.min',
-				'ver'  => '2017',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'mark'                   => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.mark.min',
-				'ver'  => '8.11.1',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'fitvids'                => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.fitvids.min',
-				'ver'  => '1.2.0',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'jqeasycharcounter'      => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.jqeasycharcounter.min',
-				'ver'  => '1.0',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'limitkeypress'          => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.limitkeypress.min',
-				'ver'  => '2016',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'numeric'                => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.numeric.min',
-				'ver'  => '1.4.1',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'select'                 => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.select.min',
-				'ver'  => '2.2.6',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'textrange'              => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.textrange.min',
-				'ver'  => '1.4.0',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			)
-		),
-		'css' => array(
-			'animated-popup'         => array(
-				'lib'  => true,
-				'path' => 'animated-popup/',
-				'file' => 'animated-popup.min',
-				'ver'  => '1.8',
-				'ext'  => 'css',
-				'min'  => false
-			),
-			'flatpickr'              => array(
-				'lib'  => true,
-				'path' => 'flatpickr/',
-				'file' => 'flatpickr.min',
-				'ver'  => '4.6.9',
-				'ext'  => 'css',
-				'min'  => false
-			),
-			'flatpickr-confirm-date' => array(
-				'lib'  => true,
-				'path' => 'flatpickr/plugins',
-				'file' => 'confirm-date',
-				'ver'  => '4.6.9',
-				'ext'  => 'css',
-				'min'  => true,
-				'int'  => array( 'flatpickr' )
-			),
-			'flatpickr-month-select' => array(
-				'lib'  => true,
-				'path' => 'flatpickr/plugins',
-				'file' => 'month-select',
-				'ver'  => '4.6.9',
-				'ext'  => 'css',
-				'min'  => true,
-				'int'  => array( 'flatpickr' )
-			)
-		)
+		'js'  => array(),
+		'css' => array()
 	);
 
-	public function __construct( $base_url ) {
-		$this->_url = trailingslashit( $base_url );
+	public function __construct() {
+		$this->_url = Library::instance()->url();
+
+		$this->_libraries['js']  = Resources::instance()->shared_js();
+		$this->_libraries['css'] = Resources::instance()->shared_css();
 
 		add_action( 'init', array( $this, 'start' ), 15 );
 	}
 
 	/** @return Enqueue */
-	public static function init( $base_url = '' ) {
+	public static function init() {
 		if ( is_null( self::$_current_instance ) ) {
-			self::$_current_instance = new Enqueue( $base_url );
+			self::$_current_instance = new Enqueue();
 		}
 
 		return self::$_current_instance;
@@ -235,10 +72,10 @@ class Enqueue {
 
 	/** @return Enqueue */
 	public static function i() {
-		return self::$_current_instance;
+		return self::init();
 	}
 
-	public function prefix() {
+	public function prefix() : string {
 		return $this->_enqueue_prefix;
 	}
 
@@ -266,7 +103,7 @@ class Enqueue {
 
 	public function start() {
 		$this->_rtl   = is_rtl();
-		$this->_debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+		$this->_debug = WordPress::instance()->is_script_debug();
 
 		do_action( 'd4plib_shared_enqueue_prepare' );
 
@@ -293,13 +130,13 @@ class Enqueue {
 
 			if ( isset( $args['int'] ) && ! empty( $args['int'] ) ) {
 				foreach ( $args['int'] as $lib ) {
-					$req[] = $this->_actuals['css'][ $lib ];
+					$req[] = $this->_actual['css'][ $lib ];
 				}
 			}
 
 			wp_register_style( $code, $this->url( $args ), $req, $args['ver'] );
 
-			$this->_actuals['css'][ $name ] = $code;
+			$this->_actual['css'][ $name ] = $code;
 		}
 	}
 
@@ -311,13 +148,13 @@ class Enqueue {
 
 			if ( isset( $args['int'] ) && ! empty( $args['int'] ) ) {
 				foreach ( $args['int'] as $lib ) {
-					$req[] = $this->_actuals['js'][ $lib ];
+					$req[] = $this->_actual['js'][ $lib ];
 				}
 			}
 
 			wp_register_script( $code, $this->url( $args ), $req, $args['ver'], $footer );
 
-			$this->_actuals['js'][ $name ] = $code;
+			$this->_actual['js'][ $name ] = $code;
 
 			if ( isset( $args['locales'] ) ) {
 				$_locale = $this->locale_js_code( $name );
@@ -328,13 +165,13 @@ class Enqueue {
 
 					wp_register_script( $loc_code, $this->url( $args, $_locale ), array( $code ), $args['ver'], $footer );
 
-					$this->_actuals['js'][ $name ] = $loc_code;
+					$this->_actual['js'][ $name ] = $loc_code;
 				}
 			}
 		}
 	}
 
-	private function url( $obj, $locale = null ) {
+	private function url( $obj, $locale = null ) : string {
 		$url = $obj['lib'] ? trailingslashit( $this->_url . 'resources/libraries/' . $obj['path'] ) : trailingslashit( $obj['url'] );
 
 		if ( is_null( $locale ) ) {

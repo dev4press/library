@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v36\Core\Plugins;
 
 use Dev4Press\v36\API\Four;
+use Dev4Press\v36\WordPress;
 use function Dev4Press\v36\Functions\bbPress\major_version_number;
 use function Dev4Press\v36\Functions\WP\is_classicpress;
 
@@ -77,7 +78,7 @@ abstract class Core {
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		}
 
-		$this->is_debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+		$this->is_debug = WordPress::instance()->is_script_debug();
 
 		$this->load_textdomain();
 
@@ -110,21 +111,7 @@ abstract class Core {
 		}
 	}
 
-	public function file( $type, $name, $min = true, $base_url = null ) {
-		$get = is_null( $base_url ) ? $this->url : $base_url;
-
-		$get .= $type . '/' . $name;
-
-		if ( ! $this->is_debug && $min ) {
-			$get .= '.min';
-		}
-
-		$get .= '.' . $type;
-
-		return $get;
-	}
-
-	public function plugin_name() {
+	public function plugin_name() : string {
 		return $this->plugin . '/' . $this->plugin . '.php';
 	}
 
@@ -133,7 +120,7 @@ abstract class Core {
 		deactivate_plugins( $this->plugin_name(), false );
 	}
 
-	public function recommend( $panel = 'update' ) {
+	public function recommend( $panel = 'update' ) : string {
 		$four = Four::instance( 'plugin', $this->plugin, $this->s()->i()->version, $this->s()->i()->build );
 		$four->ad();
 
@@ -170,7 +157,7 @@ abstract class Core {
 		$this->deactivate();
 	}
 
-	protected function check_system_requirements() {
+	protected function check_system_requirements() : array {
 		if ( defined( 'DEV4PRESS_NO_SYSREQ_CHECK' ) && DEV4PRESS_NO_SYSREQ_CHECK ) {
 			return array();
 		}
@@ -212,10 +199,10 @@ abstract class Core {
 	}
 
 	public function store_widget_instance( $instance ) {
-		$this->_widget_instance = $instance;
+		$this->_widget_instance = (array) $instance;
 	}
 
-	public function widget_instance() {
+	public function widget_instance() : array {
 		return $this->_widget_instance;
 	}
 

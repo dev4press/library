@@ -4,6 +4,7 @@ namespace Dev4Press\v36\Core\Admin\Network\Menu;
 
 use Dev4Press\v36\Core\Admin\Menu\Plugin as BasePlugin;
 use Dev4Press\v36\Core\UI\Enqueue;
+use Dev4Press\v36\WordPress;
 use function Dev4Press\v36\Functions\sanitize_slug;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -47,9 +48,9 @@ abstract class Plugin extends BasePlugin {
 	}
 
 	public function plugins_loaded() {
-		$this->is_debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+		$this->is_debug = WordPress::instance()->is_script_debug();
 
-		$this->enqueue = Enqueue::instance( $this->url . 'd4plib/', $this );
+		$this->enqueue = Enqueue::instance( $this );
 
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 

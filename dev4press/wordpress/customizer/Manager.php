@@ -26,6 +26,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v36\WordPress\Customizer;
 
+use Dev4Press\v36\Library;
+use Dev4Press\v36\WordPress;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -48,7 +51,7 @@ abstract class Manager {
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue' ) );
 		add_action( 'customize_register', array( $this, 'register' ) );
 
-		$this->_is_debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+		$this->_is_debug = WordPress::instance()->is_script_debug();
 	}
 
 	/** @return \WP_Customize_Manager */
@@ -95,12 +98,12 @@ abstract class Manager {
 		);
 
 		if ( $this->_enqueue_alpha_color ) {
-			wp_enqueue_script( 'd4p-wp-color-picker-alpha', $this->_file( 'libraries', 'wp-color-picker-alpha.min', false ), array( 'wp-color-picker' ), D4P_CORE_VERSION, true );
+			wp_enqueue_script( 'd4p-wp-color-picker-alpha', $this->_file( 'libraries', 'wp-color-picker-alpha.min', false ), array( 'wp-color-picker' ), Library::instance()->version(), true );
 			$requirements[] = 'd4p-wp-color-picker-alpha';
 		}
 
-		wp_enqueue_style( 'd4p-customizer', $this->_file( 'css', 'customizer' ), array( 'wp-color-picker' ), D4P_CORE_VERSION );
-		wp_enqueue_script( 'd4p-customizer', $this->_file( 'js', 'customizer' ), $requirements, D4P_CORE_VERSION, true );
+		wp_enqueue_style( 'd4p-customizer', $this->_file( 'css', 'customizer' ), array( 'wp-color-picker' ), Library::instance()->version() );
+		wp_enqueue_script( 'd4p-customizer', $this->_file( 'js', 'customizer' ), $requirements, Library::instance()->version(), true );
 	}
 
 	public function register() {

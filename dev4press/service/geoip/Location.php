@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v36\Service\GEOIP;
 
+use Dev4Press\v36\Library;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -71,14 +73,14 @@ class Location {
 	public function flag( $not_found = 'image' ) {
 		if ( $this->status == 'active' ) {
 			if ( $this->country_code != '' ) {
-				return '<img src="' . D4PLIB_URL . 'resources/flags/blank.gif" class="flag flag-' . strtolower( $this->country_code ) . '" title="' . $this->location() . '" alt="' . $this->location() . '" />';
+				return '<img src="' . Library::instance()->url() . 'resources/flags/blank.gif" class="flag flag-' . strtolower( $this->country_code ) . '" title="' . $this->location() . '" alt="' . $this->location() . '" />';
 			}
 		} else if ( $this->status == 'private' ) {
-			return '<img src="' . D4PLIB_URL . 'resources/flags/blank.gif" class="flag flag-localhost" title="' . __( "Localhost or Private IP", "d4plib" ) . '" alt="' . __( "Localhost or Private IP", "d4plib" ) . '" />';
+			return '<img src="' . Library::instance()->url() . 'resources/flags/blank.gif" class="flag flag-localhost" title="' . __( "Localhost or Private IP", "d4plib" ) . '" alt="' . __( "Localhost or Private IP", "d4plib" ) . '" />';
 		}
 
 		if ( $not_found == 'image' ) {
-			return '<img src="' . D4PLIB_URL . 'resources/flags/blank.gif" class="flag flag-invalid" title="' . __( "IP can't be geolocated.", "d4plib" ) . '" alt="' . __( "IP can't be geolocated.", "d4plib" ) . '" />';
+			return '<img src="' . Library::instance()->url() . 'resources/flags/blank.gif" class="flag flag-invalid" title="' . __( "IP can't be geolocated.", "d4plib" ) . '" alt="' . __( "IP can't be geolocated.", "d4plib" ) . '" />';
 		} else {
 			return '';
 		}

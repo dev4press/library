@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v36\Core\UI;
 
+use Dev4Press\v36\Core\Shared\Resources;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -47,330 +49,38 @@ final class Enqueue {
 	);
 
 	private $_libraries = array(
-		'js'  => array(
-			'meta'                   => array(
-				'path' => 'js/',
-				'file' => 'meta',
-				'ext'  => 'js',
-				'min'  => true
-			),
-			'media'                  => array(
-				'path' => 'js/',
-				'file' => 'media',
-				'ext'  => 'js',
-				'min'  => true
-			),
-			'ctrl'                   => array(
-				'path' => 'js/',
-				'file' => 'ctrl',
-				'ext'  => 'js',
-				'min'  => true
-			),
-			'helpers'                => array(
-				'path' => 'js/',
-				'file' => 'helpers',
-				'ext'  => 'js',
-				'min'  => true
-			),
-			'customizer'             => array(
-				'path' => 'js/',
-				'file' => 'customizer',
-				'ext'  => 'js',
-				'min'  => true
-			),
-			'widgets'                => array(
-				'path' => 'js/',
-				'file' => 'widgets',
-				'ext'  => 'js',
-				'min'  => true
-			),
-			'wizard'                 => array(
-				'path' => 'js/',
-				'file' => 'wizard',
-				'ext'  => 'js',
-				'min'  => true
-			),
-			'confirmsubmit'          => array(
-				'path' => 'js/',
-				'file' => 'confirmsubmit',
-				'ext'  => 'js',
-				'min'  => true
-			),
-			'admin'                  => array(
-				'path' => 'js/',
-				'file' => 'admin',
-				'ext'  => 'js',
-				'min'  => true,
-				'int'  => array( 'confirmsubmit' )
-			),
-			'flatpickr'              => array(
-				'path'       => 'libraries/flatpickr/',
-				'file'       => 'flatpickr.min',
-				'ver'        => '4.6.9',
-				'ext'        => 'js',
-				'min'        => false,
-				'min_locale' => true,
-				'locales'    => array( 'de', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'sr' )
-			),
-			'flatpickr-confirm-date' => array(
-				'path' => 'libraries/flatpickr/plugins',
-				'file' => 'confirm-date',
-				'ver'  => '4.6.9',
-				'ext'  => 'js',
-				'min'  => true,
-				'int'  => array( 'flatpickr' )
-			),
-			'flatpickr-month-select' => array(
-				'path' => 'libraries/flatpickr/plugins',
-				'file' => 'month-select',
-				'ver'  => '4.6.9',
-				'ext'  => 'js',
-				'min'  => true,
-				'int'  => array( 'flatpickr' )
-			),
-			'flatpickr-range'        => array(
-				'path' => 'libraries/flatpickr/plugins',
-				'file' => 'range',
-				'ver'  => '4.6.9',
-				'ext'  => 'js',
-				'min'  => true,
-				'int'  => array( 'flatpickr' )
-			),
-			'clipboard'              => array(
-				'path' => 'libraries/',
-				'file' => 'clipboard.min',
-				'ver'  => '2.0.4',
-				'ext'  => 'js',
-				'min'  => false
-			),
-			'cookies'                => array(
-				'path' => 'libraries/',
-				'file' => 'cookies.min',
-				'ver'  => '2.2.1',
-				'ext'  => 'js',
-				'min'  => false
-			),
-			'alphanumeric'           => array(
-				'path' => 'libraries/',
-				'file' => 'jquery.alphanumeric.min',
-				'ver'  => '2017',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'mark'                   => array(
-				'path' => 'libraries/',
-				'file' => 'jquery.mark.min',
-				'ver'  => '8.11.1',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'fitvids'                => array(
-				'path' => 'libraries/',
-				'file' => 'jquery.fitvids.min',
-				'ver'  => '1.2.0',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'jqeasycharcounter'      => array(
-				'path' => 'libraries/',
-				'file' => 'jquery.jqeasycharcounter.min',
-				'ver'  => '1.0',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'limitkeypress'          => array(
-				'path' => 'libraries/',
-				'file' => 'jquery.limitkeypress.min',
-				'ver'  => '2016',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'numeric'                => array(
-				'path' => 'libraries/',
-				'file' => 'jquery.numeric.min',
-				'ver'  => '1.4.1',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'select'                 => array(
-				'path' => 'libraries/',
-				'file' => 'jquery.select.min',
-				'ver'  => '2.2.6',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'textrange'              => array(
-				'path' => 'libraries/',
-				'file' => 'jquery.textrange.min',
-				'ver'  => '1.4.0',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'wpcolorpickeralpha'     => array(
-				'path' => 'libraries/',
-				'file' => 'wp-color-picker-alpha.min',
-				'ver'  => '2.1.3',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'wp-color-picker' )
-			)
-		),
-		'css' => array(
-			'pack'                   => array(
-				'path' => 'css/',
-				'file' => 'pack',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'about'                  => array(
-				'path' => 'css/',
-				'file' => 'about',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'flags'                  => array(
-				'path' => 'css/',
-				'file' => 'flags',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'font'                   => array(
-				'path' => 'css/',
-				'file' => 'font',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'font-embed'             => array(
-				'path' => 'css/',
-				'file' => 'font-embed',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'grid'                   => array(
-				'path' => 'css/',
-				'file' => 'grid',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'ctrl'                   => array(
-				'path' => 'css/',
-				'file' => 'ctrl',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'meta'                   => array(
-				'path' => 'css/',
-				'file' => 'meta',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'options'                => array(
-				'path' => 'css/',
-				'file' => 'options',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'shared'                 => array(
-				'path' => 'css/',
-				'file' => 'shared',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'widgets'                => array(
-				'path' => 'css/',
-				'file' => 'widgets',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'customizer'             => array(
-				'path' => 'css/',
-				'file' => 'customizer',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'responsive'             => array(
-				'path' => 'css/',
-				'file' => 'responsive',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'admin'                  => array(
-				'path' => 'css/',
-				'file' => 'admin',
-				'ext'  => 'css',
-				'min'  => true,
-				'int'  => array( 'shared' )
-			),
-			'wizard'                 => array(
-				'path' => 'css/',
-				'file' => 'wizard',
-				'ext'  => 'css',
-				'min'  => true,
-				'int'  => array( 'admin' )
-			),
-			'rtl'                    => array(
-				'path' => 'css/',
-				'file' => 'rtl',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'balloon'                => array(
-				'path' => 'css/',
-				'file' => 'balloon',
-				'ext'  => 'css',
-				'min'  => true
-			),
-			'flatpickr'              => array(
-				'path' => 'libraries/flatpickr/',
-				'file' => 'flatpickr.min',
-				'ver'  => '4.6.9',
-				'ext'  => 'css',
-				'min'  => false
-			),
-			'flatpickr-confirm-date' => array(
-				'path' => 'libraries/flatpickr/plugins',
-				'file' => 'confirm-date',
-				'ver'  => '4.6.9',
-				'ext'  => 'css',
-				'min'  => true,
-				'int'  => array( 'flatpickr' )
-			),
-			'flatpickr-month-select' => array(
-				'path' => 'libraries/flatpickr/plugins',
-				'file' => 'month-select',
-				'ver'  => '4.6.9',
-				'ext'  => 'css',
-				'min'  => true,
-				'int'  => array( 'flatpickr' )
-			)
-		)
+		'js'  => array(),
+		'css' => array()
 	);
 
-	public function __construct( $base_url, $admin ) {
-		$this->_url   = $base_url;
+	/**
+	 * @param $admin \Dev4Press\v36\Core\Admin\Plugin|\Dev4Press\v36\Core\Admin\Menu\Plugin|\Dev4Press\v36\Core\Admin\Submenu\Plugin
+	 */
+	public function __construct( $admin ) {
+		$this->_libraries['js']  = Resources::instance()->ui_js() + Resources::instance()->shared_js();
+		$this->_libraries['css'] = Resources::instance()->ui_css() + Resources::instance()->shared_css();
+
+		$this->_url   = $admin->url;
 		$this->_admin = $admin;
 
 		add_action( 'admin_init', array( $this, 'start' ), 15 );
 	}
 
-	public static function instance( $base_url, $admin ) : Enqueue {
+	/**
+	 * @param $admin \Dev4Press\v36\Core\Admin\Plugin|\Dev4Press\v36\Core\Admin\Menu\Plugin|\Dev4Press\v36\Core\Admin\Submenu\Plugin
+	 *
+	 * @return \Dev4Press\v36\Core\UI\Enqueue
+	 */
+	public static function instance( $admin ) : Enqueue {
 		static $_d4p_lib_loader = array();
 
-		$base_url = trailingslashit( $base_url );
+		$base = $admin->plugin;
 
-		if ( ! isset( $_d4p_lib_loader[ $base_url ] ) ) {
-			$_d4p_lib_loader[ $base_url ] = new Enqueue( $base_url, $admin );
+		if ( ! isset( $_d4p_lib_loader[ $base ] ) ) {
+			$_d4p_lib_loader[ $base ] = new Enqueue( $admin );
 		}
 
-		return $_d4p_lib_loader[ $base_url ];
+		return $_d4p_lib_loader[ $base ];
 	}
 
 	public function is_rtl() : bool {

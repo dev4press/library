@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v36\Core\Admin;
 
 use Dev4Press\v36\Core\UI\Enqueue;
+use Dev4Press\v36\WordPress;
 use WP_Screen;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -103,9 +104,9 @@ abstract class Plugin {
 	}
 
 	public function plugins_loaded() {
-		$this->is_debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+		$this->is_debug = WordPress::instance()->is_script_debug();
 
-		$this->enqueue = Enqueue::instance( $this->url, $this );
+		$this->enqueue = Enqueue::instance( $this );
 
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );

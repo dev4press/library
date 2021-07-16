@@ -31,17 +31,41 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Scope {
-	private $scope;
+	/**
+	 * @var string
+	 */
+	private $scope = '';
 
+	/**
+	 * @var bool
+	 */
 	private $multisite;
 
+	/**
+	 * @var bool
+	 */
 	private $admin = false;
+	/**
+	 * @var bool
+	 */
 	private $network_admin = false;
+	/**
+	 * @var bool
+	 */
 	private $user_admin = false;
+	/**
+	 * @var bool
+	 */
 	private $blog_admin = false;
 
+	/**
+	 * @var bool
+	 */
 	private $frontend = false;
 
+	/**
+	 * @var int
+	 */
 	private $blog_id;
 
 	function __construct() {
@@ -69,27 +93,37 @@ class Scope {
 		}
 	}
 
-	public function is_multisite() {
+	public static function instance() : Scope {
+		static $instance = null;
+
+		if ( ! isset( $instance ) ) {
+			$instance = new Scope();
+		}
+
+		return $instance;
+	}
+
+	public function is_multisite() : bool {
 		return $this->multisite;
 	}
 
-	public function is_admin() {
+	public function is_admin() : bool {
 		return $this->admin;
 	}
 
-	public function is_network_admin() {
+	public function is_network_admin() : bool {
 		return $this->network_admin;
 	}
 
-	public function is_master_network_admin() {
+	public function is_master_network_admin() : bool {
 		return ! $this->is_multisite() || $this->is_network_admin();
 	}
 
-	public function is_user_admin() {
+	public function is_user_admin() : bool {
 		return $this->user_admin;
 	}
 
-	public function is_multisite_blog_admin( $blog_id = 0 ) {
+	public function is_multisite_blog_admin( $blog_id = 0 ) : bool {
 		if ( ! $this->is_multisite() ) {
 			return false;
 		}
@@ -103,7 +137,7 @@ class Scope {
 		}
 	}
 
-	public function is_blog_admin( $blog_id = 0 ) {
+	public function is_blog_admin( $blog_id = 0 ) : bool {
 		$blog_id = absint( $blog_id );
 
 		if ( $blog_id == 0 ) {
@@ -113,7 +147,7 @@ class Scope {
 		}
 	}
 
-	public function is_frontend( $blog_id = 0 ) {
+	public function is_frontend( $blog_id = 0 ) : bool {
 		$blog_id = absint( $blog_id );
 
 		if ( $blog_id == 0 ) {
@@ -123,15 +157,15 @@ class Scope {
 		}
 	}
 
-	public function get_blog_id() {
+	public function get_blog_id() : int {
 		return $this->blog_id;
 	}
 
-	public function get_scope() {
+	public function get_scope() : string {
 		return $this->scope;
 	}
 
-	public function scope() {
+	public function scope() : array {
 		return array(
 			'is_multisite'            => $this->is_multisite(),
 			'is_frontend'             => $this->is_frontend(),

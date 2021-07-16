@@ -24,13 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
+use Dev4Press\v36\WordPress;
+use Dev4Press\v36\Library;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-}
-
-if ( ! defined( 'D4P_CORE_VERSION' ) ) {
-	define( 'D4P_CORE_VERSION', '3.6' );
-	define( 'D4P_CORE_BUILD', '3600' );
 }
 
 if ( ! defined( 'D4P_EOL' ) ) {
@@ -41,57 +39,20 @@ if ( ! defined( 'D4P_TAB' ) ) {
 	define( 'D4P_TAB', "\t" );
 }
 
-if ( ! defined( 'D4P_PHP_VERSION' ) ) {
-	$version = str_replace( '.', '', phpversion() );
-	$version = intval( substr( $version, 0, 2 ) );
+$_library_path = dirname( __FILE__ ) . '/';
 
-	define( 'D4P_PHP_VERSION', $version );
-}
+include( $_library_path . 'autoload.php' );
 
-if ( ! defined( 'D4P_CHARSET' ) ) {
-	define( 'D4P_CHARSET', get_option( 'blog_charset' ) );
-}
+include( $_library_path . 'functions/Bridge.php' );
+include( $_library_path . 'functions/Debug.php' );
+include( $_library_path . 'functions/Common.php' );
+include( $_library_path . 'functions/URL.php' );
+include( $_library_path . 'functions/Sanitize.php' );
+include( $_library_path . 'functions/Conditions.php' );
+include( $_library_path . 'functions/Transient.php' );
+include( $_library_path . 'functions/WP.php' );
+include( $_library_path . 'functions/bbPress.php' );
+include( $_library_path . 'functions/BuddyPress.php' );
 
-if ( ! defined( 'D4P_ADMIN' ) ) {
-	define( 'D4P_ADMIN', defined( 'WP_ADMIN' ) && WP_ADMIN );
-}
-
-if ( ! defined( 'D4P_AJAX' ) ) {
-	define( 'D4P_AJAX', defined( 'DOING_AJAX' ) && DOING_AJAX );
-}
-
-if ( ! defined( 'D4P_ASYNC_UPLOAD' ) && D4P_AJAX ) {
-	define( 'D4P_ASYNC_UPLOAD', isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action'] );
-}
-
-if ( ! defined( 'D4P_CRON' ) ) {
-	define( 'D4P_CRON', defined( 'DOING_CRON' ) && DOING_CRON );
-}
-
-if ( ! defined( 'D4P_DEBUG' ) ) {
-	define( 'D4P_DEBUG', defined( 'WP_DEBUG' ) && WP_DEBUG );
-}
-
-if ( ! defined( 'D4P_SCRIPT_DEBUG' ) ) {
-	define( 'D4P_SCRIPT_DEBUG', defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
-}
-
-if ( ! defined( 'D4PLIB_CACERT_PATH' ) ) {
-	define( 'D4PLIB_CACERT_PATH', dirname( __FILE__ ) . '/resources/curl/cacert.pem' );
-}
-
-include( dirname( __FILE__ ) . '/autoload.php' );
-
-include( dirname( __FILE__ ) . '/functions/Bridge.php' );
-include( dirname( __FILE__ ) . '/functions/Debug.php' );
-
-include( dirname( __FILE__ ) . '/functions/Common.php' );
-include( dirname( __FILE__ ) . '/functions/URL.php' );
-include( dirname( __FILE__ ) . '/functions/Sanitize.php' );
-include( dirname( __FILE__ ) . '/functions/Conditions.php' );
-include( dirname( __FILE__ ) . '/functions/Transient.php' );
-include( dirname( __FILE__ ) . '/functions/WP.php' );
-include( dirname( __FILE__ ) . '/functions/bbPress.php' );
-include( dirname( __FILE__ ) . '/functions/BuddyPress.php' );
-
-//include( dirname( __FILE__ ) . '/functions/Deprecated.php' );
+WordPress::instance();
+Library::instance();
