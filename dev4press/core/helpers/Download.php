@@ -43,7 +43,6 @@ class Download {
 		}
 	}
 
-	/** @return Download */
 	public static function instance( $file_path, $file_name = null ) : Download {
 		static $_download = array();
 

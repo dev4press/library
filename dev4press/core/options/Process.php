@@ -52,7 +52,6 @@ class Process {
 		$this->prefix = $prefix;
 	}
 
-	/** @return Process */
 	public static function instance( $base = 'd4pvalue', $prefix = 'd4p' ) : Process {
 		static $process = array();
 

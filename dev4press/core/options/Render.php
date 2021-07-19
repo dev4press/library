@@ -49,7 +49,6 @@ class Render {
 		$this->prefix = $prefix;
 	}
 
-	/** @return Render */
 	public static function instance( $base = 'd4pvalue', $prefix = 'd4p' ) : Render {
 		static $render = array();
 

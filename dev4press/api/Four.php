@@ -108,7 +108,6 @@ class Four {
 		$this->data['plugins'] = join( ',', $this->data['plugins'] );
 	}
 
-	/** @return Four */
 	public static function instance( $type, $name, $version, $build, $lic = '' ) : Four {
 		static $_d4p_four = null;
 
