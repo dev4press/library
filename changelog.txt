@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.4.3 - 2021.07.26 =
+* New: WordPress 5.8 compatibility
+
 = Version 3.4.2 - 2021.04.21 =
 * New: Icon and information about ArchivesPress plugin
 

@@ -193,3 +193,15 @@
 .d4plib-widget .d4plib-widget-tabs-content .wp-picker-container .iris-border .iris-square {
   margin-right: 10px;
 }
+
+.editor-styles-wrapper .d4plib-widget h4 {
+  margin: 15px 0 5px !important;
+  line-height: 1.4 !important;
+}
+.editor-styles-wrapper .d4plib-widget table {
+  margin: 0 0 10px !important;
+  border-bottom: 0 !important;
+}
+.editor-styles-wrapper .d4plib-widget table td {
+  border-top: 0 !important;
+}
