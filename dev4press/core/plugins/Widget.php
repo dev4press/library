@@ -144,7 +144,7 @@ abstract class Widget extends WP_Widget {
 			return $value;
 		}
 
-		return isset( $this->defaults[ $name ] ) ? $this->defaults[ $name ] : $this->shared_defaults[ $name ];
+		return $this->defaults[ $name ] ?? $this->shared_defaults[ $name ];
 	}
 
 	protected function shared_update( $new_instance, $old_instance ) {
@@ -282,7 +282,7 @@ abstract class Widget extends WP_Widget {
 		$class   = array( 'd4p-widget-wrapper' );
 		$class[] = str_replace( '_', '-', $this->widget_base );
 
-		if ( $instance['_class'] != '' ) {
+		if ( isset( $instance['_class'] ) && $instance['_class'] != '' ) {
 			$class[] = $instance['_class'];
 		}
 
