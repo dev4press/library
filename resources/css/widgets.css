@@ -201,14 +201,27 @@
   margin-right: 10px;
 }
 
+.editor-styles-wrapper .d4plib-widget {
+  border-bottom: 0;
+  margin: 0;
+}
 .editor-styles-wrapper .d4plib-widget h4 {
-  margin: 15px 0 5px !important;
-  line-height: 1.4 !important;
+  margin: 15px 0 5px;
+  padding: 2px 5px;
+  font-weight: bold;
+  text-decoration: none;
+  border: 0;
+  color: #fff;
+  font-size: 0.95em;
+}
+.editor-styles-wrapper .d4plib-widget em {
+  font-size: 0.9em;
+  line-height: 1.5;
 }
 .editor-styles-wrapper .d4plib-widget table {
   margin: 0 0 10px !important;
-  border-bottom: 0 !important;
+  border: 0 !important;
 }
 .editor-styles-wrapper .d4plib-widget table td {
-  border-top: 0 !important;
+  border: 0 !important;
 }
