@@ -1,8 +1,8 @@
 # Dev4Press Library
 
-* Version: v3.5.2
-* Build:   3502
-* Release: 2021.06.21.
+* Version: v3.5.3
+* Build:   3503
+* Release: 2021.07.26.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
