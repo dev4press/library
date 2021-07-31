@@ -32,6 +32,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! function_exists( __NAMESPACE__ . '\string_ends_with' ) ) {
+	function string_ends_with( $haystack, $needle ) : bool {
+		$length = strlen( $needle );
+
+		return ! ( $length === 0 ) && substr( $haystack, - $length ) === $needle;
+	}
+}
+
 if ( ! function_exists( __NAMESPACE__ . '\replace_tags_in_content' ) ) {
 	function replace_tags_in_content( $content, $tags, $before = '%', $after = '%' ) : string {
 		foreach ( $tags as $tag => $replace ) {
