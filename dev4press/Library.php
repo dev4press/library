@@ -62,8 +62,8 @@ class Library {
 
 	public function __construct() {
 		$this->_php_version  = (string) phpversion();
-		$this->_php_code     = intval( substr( str_replace( '.', '', $this->_php_version ), 0, 2 ) );
-		$this->_library_path = wp_normalize_path( trailingslashit( dirname( dirname( __FILE__ ) ) ) );
+		$this->_php_code     = absint( substr( str_replace( '.', '', $this->_php_version ), 0, 2 ) );
+		$this->_library_path = wp_normalize_path( trailingslashit( dirname( __FILE__, 2 ) ) );
 		$this->_library_url  = str_replace( '/d4plib/dev4press/', '/d4plib/', plugins_url( '/', __FILE__ ) );
 		$this->_cacert_path  = wp_normalize_path( $this->_library_path . 'resources/curl/cacert.pem' );
 	}
@@ -88,6 +88,10 @@ class Library {
 
 	public function build() : string {
 		return $this->_build;
+	}
+
+	public function php_version() : string {
+		return $this->_php_version;
 	}
 
 	public function php_code() : int {

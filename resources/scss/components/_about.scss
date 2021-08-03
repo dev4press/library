@@ -45,9 +45,7 @@
         }
 
         .nav-tab {
-            padding-right: 15px;
-            padding-left: 15px;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .d4p-about-inner {
@@ -283,6 +281,25 @@
                         }
 
                     }
+                }
+            }
+        }
+
+        .d4p-info-list {
+            li {
+                display: flex;
+
+                span {
+                    flex-grow: 0;
+                    flex-shrink: 0;
+                    flex-basis: 200px;
+                }
+
+                strong {
+                    flex-grow: 0;
+                    flex-shrink: 1;
+                    font-family: monospace;
+                    font-weight: normal;
                 }
             }
         }

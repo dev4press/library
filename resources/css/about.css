@@ -40,9 +40,7 @@
   margin-bottom: 10px;
 }
 .d4p-wrap.d4p-panel-about .nav-tab {
-  padding-right: 15px;
-  padding-left: 15px;
-  font-size: 18px;
+  font-size: 16px;
 }
 .d4p-wrap.d4p-panel-about .d4p-about-inner {
   margin: 20px 0 0;
@@ -230,4 +228,18 @@
 .d4p-wrap.d4p-panel-about .d4p-whatsnew-heading .d4p-layout-grid h2 p.lead-description {
   font-size: 28px;
   font-weight: 300;
+}
+.d4p-wrap.d4p-panel-about .d4p-info-list li {
+  display: flex;
+}
+.d4p-wrap.d4p-panel-about .d4p-info-list li span {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 200px;
+}
+.d4p-wrap.d4p-panel-about .d4p-info-list li strong {
+  flex-grow: 0;
+  flex-shrink: 1;
+  font-family: monospace;
+  font-weight: normal;
 }

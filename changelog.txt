@@ -1,14 +1,16 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.6 - 2021.08.02 =
+= Version 3.6 - 2021.08.06 =
 * New: Core Library class
 * New: Core WordPress class
 * New: Core Resources class
 * New: Added 10+ new icons
+* New: Many new functions
 * New: Improved library loading and initialization
 * New: Improved admin Plugin and Enqueue handling
 * New: Many changes to various core classes
+* New: About panel with System tab
 * New: WordPress 5.8 compatibility
 * Updated: Minor updates to some functions
 * Updated: Many updates to the admin styling

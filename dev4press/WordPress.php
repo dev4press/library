@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v36;
 
+use function Dev4Press\v36\Functions\WP\is_classicpress;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -34,22 +36,43 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @method bool is_admin()
  * @method bool is_ajax()
  * @method bool is_cron()
+ * @method bool is_rest()
  * @method bool is_debug()
  * @method bool is_script_debug()
  * @method bool is_async_upload()
+ * @method bool is_wordpress()
+ * @method bool is_classicpress()
  */
 class WordPress {
+	private $_versions;
 	private $_switches;
 
 	public function __construct() {
+		global $wp_version;
+
+		$this->_versions = array(
+			'wp' => $wp_version
+		);
+
 		$this->_switches = array(
+			'wordpress'    => true,
+			'classicpress' => false,
 			'admin'        => defined( 'WP_ADMIN' ) && WP_ADMIN,
 			'ajax'         => defined( 'DOING_AJAX' ) && DOING_AJAX,
 			'cron'         => defined( 'DOING_CRON' ) && DOING_CRON,
+			'rest'         => defined( 'REST_REQUEST' ) && REST_REQUEST,
 			'debug'        => defined( 'WP_DEBUG' ) && WP_DEBUG,
 			'script_debug' => defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG,
 			'async_upload' => defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action']
 		);
+
+		if ( is_classicpress() ) {
+			$this->_switches['wordpress']    = false;
+			$this->_switches['classicpress'] = true;
+			$this->_versions['cp']           = function_exists( 'classicpress_version' ) ? classicpress_version() : '1.0';
+		}
+
+		$this->_versions['cms'] = $this->_versions['cp'] ?? $this->_versions['wp'];
 	}
 
 	public function __call( $name, $arguments ) {
@@ -72,5 +95,25 @@ class WordPress {
 		}
 
 		return $instance;
+	}
+
+	public function cms() : string {
+		return $this->is_classicpress() ? 'classicpress' : 'wordpress';
+	}
+
+	public function cms_title() : string {
+		return $this->is_classicpress() ? 'ClassicPress' : 'WordPress';
+	}
+
+	public function version( $key = 'cms' ) : string {
+		return $this->_versions[ $key ] ?? '0.0.0';
+	}
+
+	public function is_version_equal_or_higher( string $version = '', string $key = 'cms' ) : bool {
+		return version_compare( $this->version( $key ), $version, '>=' );
+	}
+
+	public function is_version_lower( string $version = '', string $key = 'cms' ) : bool {
+		return version_compare( $this->version( $key ), $version, '<' );
 	}
 }

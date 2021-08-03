@@ -27,26 +27,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v36\Core\Plugins;
 
 use Dev4Press\v36\API\Four;
+use Dev4Press\v36\Library;
 use Dev4Press\v36\WordPress;
 use function Dev4Press\v36\Functions\bbPress\major_version_number;
-use function Dev4Press\v36\Functions\WP\is_classicpress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 abstract class Core {
+	public $is_debug = false;
 	public $widgets = false;
 	public $enqueue = false;
 	public $cap = 'activate_plugins';
 	public $svg_icon = '';
 	public $plugin = '';
 	public $url = '';
-
-	public $is_debug;
-	public $cms = 'wordpress';
-	public $cms_version;
-	public $wp_version;
 
 	private $_system_requirements = array();
 	private $_widget_instance = array();
@@ -59,16 +55,7 @@ abstract class Core {
 	abstract public static function instance();
 
 	public function plugins_loaded() {
-		if ( is_classicpress() ) {
-			$this->cms         = 'classicpress';
-			$this->cms_version = classicpress_version_short();
-		} else {
-			global $wp_version;
-
-			$this->cms_version = $wp_version;
-		}
-
-		$this->wp_version = substr( str_replace( '.', '', $this->cms_version ), 0, 2 );
+		$this->is_debug = WordPress::instance()->is_script_debug();
 
 		if ( $this->widgets === true || ! empty( $this->widgets ) ) {
 			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
@@ -77,8 +64,6 @@ abstract class Core {
 		if ( $this->enqueue ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		}
-
-		$this->is_debug = WordPress::instance()->is_script_debug();
 
 		$this->load_textdomain();
 
@@ -166,17 +151,16 @@ abstract class Core {
 
 		$list = array();
 
-		$cms = $this->s()->i()->requirement_version( $this->cms );
+		$cms = $this->s()->i()->requirement_version( WordPress::instance()->cms() );
 
-		if ( version_compare( $this->cms_version, $cms, '>=' ) === false ) {
-			$cms_name = $this->cms == 'classicpress' ? 'ClassicPress' : 'WordPress';
-			$list[]   = array( $cms_name, $this->cms_version, $cms );
+		if ( WordPress::instance()->is_version_equal_or_higher( $cms ) === false ) {
+			$list[] = array( WordPress::instance()->cms_title(), WordPress::instance()->version(), $cms );
 		}
 
 		$php = $this->s()->i()->requirement_version( 'php' );
 
-		if ( version_compare( PHP_VERSION, $php, '>=' ) === false ) {
-			$list[] = array( 'PHP', PHP_VERSION, $php );
+		if ( version_compare( Library::instance()->php_version(), $php, '>=' ) === false ) {
+			$list[] = array( 'PHP', Library::instance()->php_version(), $php );
 		}
 
 		$mysql = $this->s()->i()->requirement_version( 'mysql' );
