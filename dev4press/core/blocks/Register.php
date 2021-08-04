@@ -36,7 +36,7 @@ abstract class Register {
 	public function __construct() {
 		add_action( 'init', array( $this, 'blocks' ), 20 );
 
-		if ( WordPress::instance()->is_version_equal_or_higher( '5.8.0', 'wp' ) ) {
+		if ( WordPress::instance()->is_version_equal_or_higher( '5.8', 'wp' ) ) {
 			add_filter( 'block_categories_all', array( $this, 'categories' ) );
 		} else {
 			add_filter( 'block_categories', array( $this, 'categories' ) );
