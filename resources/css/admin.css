@@ -612,6 +612,7 @@
   width: 116px;
   height: 96px;
   display: block;
+  line-height: 1;
 }
 #dev4press-recommend .dev4press-plugin-links {
   clear: both;
