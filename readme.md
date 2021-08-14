@@ -2,7 +2,7 @@
 
 * Version: v3.6
 * Build:   3600
-* Release: 2021.08.06.
+* Release: 2021.08.14.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/

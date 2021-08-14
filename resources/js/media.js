@@ -109,7 +109,7 @@
                 }
             });
 
-            $(".d4plib-images-add").click(function(e) {
+            $(document).on("click", ".d4plib-images-add", function(e) {
                 e.preventDefault();
 
                 wp.dev4press.media.control.active_element = $(this).parent();

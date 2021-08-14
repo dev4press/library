@@ -17,7 +17,7 @@
                 wp.dev4press.admin.panels.settings.run();
             }
 
-            $(window).bind("load resize orientationchange", function() {
+            $(window).on("load resize orientationchange", function() {
                 wp.dev4press.admin.components.scroller.resize();
             });
         },
@@ -33,7 +33,7 @@
                     }
                 },
                 mark: function() {
-                    $(".d4p-panel-mark button").click(function() {
+                    $(document).on("click", ".d4p-panel-mark button", function(e) {
                         $("#d4p-settings-mark").val("").trigger("input");
                     });
 
@@ -136,7 +136,7 @@
             },
             interface: {
                 run: function() {
-                    $(".d4p-nav-button > a").click(function(e) {
+                    $(document).on("click", ".d4p-nav-button > a", function(e) {
                         e.preventDefault();
 
                         $(this).next().slideToggle("fast");
@@ -171,7 +171,7 @@
             },
             check_uncheck: {
                 run: function() {
-                    $(".d4p-check-uncheck a").click(function(e) {
+                    $(document).on("click", ".d4p-check-uncheck a", function(e) {
                         e.preventDefault();
 
                         var checkall = $(this).attr("href").substr(1) === "checkall";
@@ -201,7 +201,7 @@
                         wp.dev4press.admin.settings.expandables.remove(this, e);
                     });
 
-                    $(".d4p-setting-expandable_pairs a.button-primary").click(function(e) {
+                    $(document).on("click", ".d4p-setting-expandable_pairs a.button-primary", function(e) {
                         e.preventDefault();
 
                         var list = $(this).closest(".d4p-setting-expandable_pairs"),
@@ -223,11 +223,11 @@
                         next.val(next_id);
                     });
 
-                    $(".d4p-setting-expandable_text a.button-primary").click(function(e) {
+                    $(document).on("click", ".d4p-setting-expandable_text a.button-primary", function(e) {
                         wp.dev4press.admin.settings.expandables.add(this, e, ".d4p-setting-expandable_text");
                     });
 
-                    $(".d4p-setting-expandable_raw a.button-primary").click(function(e) {
+                    $(document).on("click", ".d4p-setting-expandable_raw a.button-primary", function(e) {
                         wp.dev4press.admin.settings.expandables.add(this, e, ".d4p-setting-expandable_raw");
                     });
                 },
@@ -372,7 +372,7 @@
             this.handler = handler;
             this.nonce = nonce;
 
-            $(this.button).click(function(e) {
+            $(document).on("click", this.button, function(e) {
                 if (wp.dev4press.ajaxtask.progres.active) {
                     wp.dev4press.ajaxtask.stop();
                 } else {
