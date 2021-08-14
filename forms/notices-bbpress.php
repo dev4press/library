@@ -97,19 +97,4 @@ if ( ! is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-bbpres
 
 	<?php
 
-} else if ( ! is_plugin_active( 'gd-members-directory-for-bbpress/gd-members-directory-for-bbpress.php' ) && panel()->a()->settings()->get( 'notice_gdmed_hide', 'core' ) === false ) {
-	$url = 'https://plugins.dev4press.com/gd-members-directory-for-bbpress/';
-	$url = url_campaign_tracking( $url, 'front-panel', $_utm_medium );
-
-	?>
-
-    <div class="d4p-notice-info">
-		<?php echo sprintf( __( "Please, take a few minutes to check out another Dev4Press plugin for bbPress: %s.", "d4plib" ), '<strong>GD Members Directory Pro for bbPress</strong>' ); ?>
-        <blockquote>Easy to use plugin for adding forum members directory page into bbPress powered forums including members filtering and additional widgets for listing members in the sidebar.</blockquote>
-        <a target="_blank" rel="noopener" href="<?php echo $url; ?>" class="button-primary"><?php _e( "Plugin Home Page", "d4plib" ); ?></a>
-        <a href="<?php echo $_dismiss_url; ?>dismiss-members-directory" class="button-secondary"><?php _e( "Do not show this notice anymore", "d4plib" ); ?></a>
-    </div>
-
-	<?php
-
 }
