@@ -75,6 +75,9 @@
   margin: 0;
   padding: 0;
 }
+.d4p-wrap.d4p-panel-about .d4p-info-block.d4p-info-block-addons > div {
+  background: transparent;
+}
 .d4p-wrap.d4p-panel-about .d4p-info-block.d4p-info-block-changelog h4 {
   font-size: 1.2em;
   margin: 0 0 15px;
@@ -242,4 +245,14 @@
   flex-shrink: 1;
   font-family: monospace;
   font-weight: normal;
+}
+.d4p-wrap.d4p-panel-about .d4p-addon-information {
+  border: 1px solid #999;
+  padding: 1em;
+  background: #FFF;
+}
+.d4p-wrap.d4p-panel-about .d4p-addon-information h6 {
+  margin: 0 0 0.5em;
+  font-weight: 600;
+  font-size: 1.2em;
 }
