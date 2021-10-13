@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Core\Cache\Core
-Version: v3.6
+Name:    Dev4Press\v37\Core\Cache\Core
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Core\Cache;
+namespace Dev4Press\v37\Core\Cache;
 
-use function Dev4Press\v36\Functions\object_cache;
+use function Dev4Press\v37\Functions\object_cache;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

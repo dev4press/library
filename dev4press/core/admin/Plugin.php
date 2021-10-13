@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Core\Admin\Plugin
-Version: v3.6
+Name:    Dev4Press\v37\Core\Admin\Plugin
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Core\Admin;
+namespace Dev4Press\v37\Core\Admin;
 
-use Dev4Press\v36\Core\UI\Enqueue;
-use Dev4Press\v36\WordPress;
+use Dev4Press\v37\Core\UI\Enqueue;
+use Dev4Press\v37\WordPress;
 use WP_Screen;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -57,10 +57,10 @@ abstract class Plugin {
 
 	public $screen_id = '';
 
-	/** @var \Dev4Press\v36\Core\UI\Admin\Panel */
+	/** @var \Dev4Press\v37\Core\UI\Admin\Panel */
 	public $object = null;
 
-	/** @var \Dev4Press\v36\Core\UI\Enqueue */
+	/** @var \Dev4Press\v37\Core\UI\Enqueue */
 	public $enqueue = null;
 
 	public $enqueue_packed = true;

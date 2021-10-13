@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Functions
-Version: v3.6
+Name:    Dev4Press\v37\Functions
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,40 +24,12 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Functions;
+namespace Dev4Press\v37\Functions;
 
-use Dev4Press\v36\Library;
+use Dev4Press\v37\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-}
-
-if ( ! function_exists( __NAMESPACE__ . '\string_ends_with' ) ) {
-	function string_ends_with( $haystack, $needle ) : bool {
-		$length = strlen( $needle );
-
-		return ! ( $length === 0 ) && substr( $haystack, - $length ) === $needle;
-	}
-}
-
-if ( ! function_exists( __NAMESPACE__ . '\replace_tags_in_content' ) ) {
-	function replace_tags_in_content( $content, $tags, $before = '%', $after = '%' ) : string {
-		foreach ( $tags as $tag => $replace ) {
-			$_tag = $before . $tag . $after;
-
-			if ( strpos( $content, $_tag ) !== false ) {
-				$content = str_replace( $_tag, $replace, $content );
-			}
-		}
-
-		return $content;
-	}
-}
-
-if ( ! function_exists( __NAMESPACE__ . '\strleft' ) ) {
-	function strleft( $s1, $s2 ) {
-		return substr( $s1, 0, strpos( $s1, $s2 ) );
-	}
 }
 
 if ( ! function_exists( __NAMESPACE__ . '\scan_dir' ) ) {
@@ -123,28 +95,6 @@ if ( ! function_exists( __NAMESPACE__ . '\file_size_format' ) ) {
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\list_css_size_units' ) ) {
-	function list_css_size_units() : array {
-		return array(
-			'px'   => 'px',
-			'%'    => '%',
-			'em'   => 'em',
-			'rem'  => 'rem',
-			'in'   => 'in',
-			'cm'   => 'cm',
-			'mm'   => 'mm',
-			'pt'   => 'pt',
-			'pc'   => 'pc',
-			'ex'   => 'ex',
-			'ch'   => 'ch',
-			'vw'   => 'vw',
-			'vh'   => 'vh',
-			'vmin' => 'vmin',
-			'vmax' => 'vmax'
-		);
-	}
-}
-
 if ( ! function_exists( __NAMESPACE__ . '\text_length_limit' ) ) {
 	function text_length_limit( $text, $length = 200, $append = '&hellip;' ) : string {
 		$text_length = function_exists( 'mb_strlen' )
@@ -178,18 +128,6 @@ if ( ! function_exists( __NAMESPACE__ . '\entity_decode' ) ) {
 		}
 
 		return html_entity_decode( $content, $quote_style, $charset );
-	}
-}
-
-if ( ! function_exists( __NAMESPACE__ . '\str_replace_first' ) ) {
-	function str_replace_first( $search, $replace, $subject ) {
-		$pos = strpos( $subject, $search );
-
-		if ( $pos !== false ) {
-			$subject = substr_replace( $subject, $replace, $pos, strlen( $search ) );
-		}
-
-		return $subject;
 	}
 }
 
@@ -228,28 +166,6 @@ if ( ! function_exists( __NAMESPACE__ . '\gzip_uncompressed_size' ) ) {
 		$elm = unpack( "V", $buf );
 
 		return end( $elm );
-	}
-}
-
-if ( ! function_exists( __NAMESPACE__ . '\remove_from_array_by_value' ) ) {
-	function remove_from_array_by_value( $input, $val, $preserve_keys = true ) : array {
-		if ( empty( $input ) || ! is_array( $input ) ) {
-			return array();
-		}
-
-		while ( in_array( $val, $input ) ) {
-			unset( $input[ array_search( $val, $input ) ] );
-		}
-
-		return $preserve_keys ? $input : array_values( $input );
-	}
-}
-
-if ( ! function_exists( __NAMESPACE__ . '\slug_to_name' ) ) {
-	function slug_to_name( $code, $sep = '_' ) : string {
-		$exp = explode( $sep, $code );
-
-		return ucwords( strtolower( join( ' ', $exp ) ) );
 	}
 }
 
@@ -292,68 +208,6 @@ if ( ! function_exists( __NAMESPACE__ . '\php_ini_size_value' ) ) {
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\url_campaign_tracking' ) ) {
-	function url_campaign_tracking( $url, $campaign = '', $medium = '', $content = '', $term = '', $source = null ) : string {
-		if ( ! empty( $campaign ) ) {
-			$url = add_query_arg( 'utm_campaign', $campaign, $url );
-		}
-
-		if ( ! empty( $medium ) ) {
-			$url = add_query_arg( 'utm_medium', $medium, $url );
-		}
-
-		if ( ! empty( $content ) ) {
-			$url = add_query_arg( 'utm_content', $content, $url );
-		}
-
-		if ( ! empty( $term ) ) {
-			$url = add_query_arg( 'utm_term', $term, $url );
-		}
-
-		if ( is_null( $source ) ) {
-			$source = parse_url( get_bloginfo( 'url' ), PHP_URL_HOST );
-		}
-
-		if ( ! empty( $source ) ) {
-			$url = add_query_arg( 'utm_source', $source, $url );
-		}
-
-		return $url;
-	}
-}
-
-if ( ! function_exists( __NAMESPACE__ . '\array_to_html_attributes' ) ) {
-	function array_to_html_attributes( $input ) : string {
-		$list = array();
-
-		foreach ( $input as $item => $value ) {
-			if ( is_bool( $value ) ) {
-				$list[] = $item;
-			} else {
-				$list[] = $item . '="' . esc_attr( $value ) . '"';
-			}
-		}
-
-		return join( ' ', $list );
-	}
-}
-
-if ( ! function_exists( __NAMESPACE__ . '\get_regex_error' ) ) {
-	function get_regex_error( $error_code ) : string {
-		if ( is_bool( $error_code ) ) {
-			return 'OK';
-		}
-
-		$errors = array_flip( get_defined_constants( true )['pcre'] );
-
-		if ( isset( $errors[ $error_code ] ) ) {
-			return $errors[ $error_code ];
-		}
-
-		return 'UNKNOWN_ERROR';
-	}
-}
-
 if ( ! function_exists( __NAMESPACE__ . '\split_textarea_to_list' ) ) {
 	function split_textarea_to_list( $value, $empty_lines = false ) {
 		$elements = preg_split( "/[\n\r]/", $value );
@@ -371,17 +225,5 @@ if ( ! function_exists( __NAMESPACE__ . '\split_textarea_to_list' ) ) {
 		} else {
 			return $elements;
 		}
-	}
-}
-
-if ( ! function_exists( __NAMESPACE__ . '\ids_from_string' ) ) {
-	function ids_from_string( $input, $delimiter = ',', $map = 'absint' ) : string {
-		$ids = strip_tags( stripslashes( $input ) );
-
-		$ids = explode( $delimiter, $ids );
-		$ids = array_map( 'trim', $ids );
-		$ids = array_map( $map, $ids );
-
-		return array_filter( $ids );
 	}
 }

@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Functions\WP
-Version: v3.6
+Name:    Dev4Press\v37\Core\Quick\WP
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,23 +24,28 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Functions\WP;
+namespace Dev4Press\v37\Core\Quick;
 
-use Dev4Press\v36\Core\Helpers\Error;
+use Dev4Press\v37\Core\Helpers\Error;
 use WP_Error;
 use WP_Query;
 use WP_Term;
 use wpdb;
+use function add_action;
+use function add_filter;
+use function get_term;
 use function get_term_by;
 
-if ( ! function_exists( __NAMESPACE__ . '\is_plugin_active' ) ) {
-	function is_plugin_active( $plugin ) : bool {
-		return in_array( $plugin, (array) get_option( 'active_plugins', array() ), true ) || is_plugin_active_for_network( $plugin );
-	}
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\is_plugin_active_for_network' ) ) {
-	function is_plugin_active_for_network( $plugin ) : bool {
+class WPR {
+	public static function is_plugin_active( $plugin ) : bool {
+		return in_array( $plugin, (array) get_option( 'active_plugins', array() ), true ) || WPR::is_plugin_active_for_network( $plugin );
+	}
+
+	public static function is_plugin_active_for_network( $plugin ) : bool {
 		if ( ! is_multisite() ) {
 			return false;
 		}
@@ -52,41 +57,29 @@ if ( ! function_exists( __NAMESPACE__ . '\is_plugin_active_for_network' ) ) {
 
 		return false;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_classicpress' ) ) {
-	function is_classicpress() : bool {
+	public static function is_classicpress() : bool {
 		return function_exists( 'classicpress_version' ) &&
 		       function_exists( 'classicpress_version_short' );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_wp_error' ) ) {
-	function is_wp_error( $thing ) : bool {
+	public static function is_wp_error( $thing ) : bool {
 		return ( $thing instanceof WP_Error ) || ( $thing instanceof Error );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_login_page' ) ) {
-	function is_login_page() : bool {
+	public static function is_login_page() : bool {
 		return isset( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] === 'wp-login.php';
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_signup_page' ) ) {
-	function is_signup_page() : bool {
+	public static function is_signup_page() : bool {
 		return isset( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] === 'wp-signup.php';
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_activate_page' ) ) {
-	function is_activate_page() : bool {
+	public static function is_activate_page() : bool {
 		return isset( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] == 'wp-activate.php';
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_login_page_action' ) ) {
-	function is_login_page_action( $action = '' ) : bool {
+	public static function is_login_page_action( $action = '' ) : bool {
 		$login_page = isset( $GLOBALS['pagenow'] ) && in_array( $GLOBALS['pagenow'], array(
 				'wp-login.php',
 				'wp-register.php'
@@ -104,26 +97,20 @@ if ( ! function_exists( __NAMESPACE__ . '\is_login_page_action' ) ) {
 			return false;
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_posts_page' ) ) {
-	function is_posts_page() : bool {
+	public static function is_posts_page() : bool {
 		global $wp_query;
 
 		return $wp_query->is_posts_page;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_any_tax' ) ) {
-	function is_any_tax() : bool {
+	public static function is_any_tax() : bool {
 		return is_tag() ||
 		       is_tax() ||
 		       is_category();
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_oembed_link' ) ) {
-	function is_oembed_link( $url ) : bool {
+	public static function is_oembed_link( $url ) : bool {
 		require_once( ABSPATH . WPINC . '/class-oembed.php' );
 
 		$oembed = _wp_oembed_get_object();
@@ -131,10 +118,8 @@ if ( ! function_exists( __NAMESPACE__ . '\is_oembed_link' ) ) {
 
 		return ! ( $result === false );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_user_allowed' ) ) {
-	function is_user_allowed( $super_admin, $user_roles, $visitor ) : bool {
+	public static function is_user_allowed( $super_admin, $user_roles, $visitor ) : bool {
 		if ( is_super_admin() ) {
 			return $super_admin;
 		} else if ( is_user_logged_in() ) {
@@ -159,23 +144,17 @@ if ( ! function_exists( __NAMESPACE__ . '\is_user_allowed' ) ) {
 
 		return false;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_permalinks_enabled' ) ) {
-	function is_permalinks_enabled() : bool {
+	public static function is_permalinks_enabled() : bool {
 		return ! empty( get_option( 'permalink_structure' ) );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_current_user_admin' ) ) {
-	function is_current_user_admin() : bool {
-		return is_current_user_roles( 'administrator' );
+	public static function is_current_user_admin() : bool {
+		return WPR::is_current_user_roles( 'administrator' );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\is_current_user_roles' ) ) {
-	function is_current_user_roles( $roles = array() ) : bool {
-		$current = current_user_roles();
+	public static function is_current_user_roles( $roles = array() ) : bool {
+		$current = WPR::current_user_roles();
 		$roles   = (array) $roles;
 
 		if ( is_array( $current ) && ! empty( $roles ) ) {
@@ -186,10 +165,8 @@ if ( ! function_exists( __NAMESPACE__ . '\is_current_user_roles' ) ) {
 			return false;
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\current_user_roles' ) ) {
-	function current_user_roles() : array {
+	public static function current_user_roles() : array {
 		if ( is_user_logged_in() ) {
 			global $current_user;
 
@@ -198,30 +175,24 @@ if ( ! function_exists( __NAMESPACE__ . '\current_user_roles' ) ) {
 			return array();
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\add_action' ) ) {
-	function add_action( $tags, $function_to_add, $priority = 10, $accepted_args = 1 ) {
+	public static function add_action( $tags, $function_to_add, $priority = 10, $accepted_args = 1 ) {
 		$tags = (array) $tags;
 
 		foreach ( $tags as $tag ) {
-			\add_action( $tag, $function_to_add, $priority, $accepted_args );
+			add_action( $tag, $function_to_add, $priority, $accepted_args );
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\add_filter' ) ) {
-	function add_filter( $tags, $function_to_add, $priority = 10, $accepted_args = 1 ) {
+	public static function add_filter( $tags, $function_to_add, $priority = 10, $accepted_args = 1 ) {
 		$tags = (array) $tags;
 
 		foreach ( $tags as $tag ) {
-			\add_filter( $tag, $function_to_add, $priority, $accepted_args );
+			add_filter( $tag, $function_to_add, $priority, $accepted_args );
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\all_user_roles' ) ) {
-	function all_user_roles() : array {
+	public static function all_user_roles() : array {
 		global $wp_roles;
 
 		$roles = array();
@@ -232,16 +203,14 @@ if ( ! function_exists( __NAMESPACE__ . '\all_user_roles' ) ) {
 
 		return $roles;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\cache_flush' ) ) {
 	/**
 	 * @param bool  $cache
 	 * @param bool  $queries
 	 *
 	 * @global wpdb $wpdb
 	 */
-	function cache_flush( bool $cache = true, bool $queries = true ) {
+	public static function cache_flush( bool $cache = true, bool $queries = true ) {
 		if ( $cache ) {
 			wp_cache_flush();
 		}
@@ -255,15 +224,13 @@ if ( ! function_exists( __NAMESPACE__ . '\cache_flush' ) ) {
 			}
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\cache_posts_by_ids' ) ) {
 	/**
 	 * @param int[] $posts
 	 *
 	 * @global wpdb $wpdb
 	 */
-	function cache_posts_by_ids( array $posts ) {
+	public static function cache_posts_by_ids( array $posts ) {
 		global $wpdb;
 
 		$posts = _get_non_cached_ids( $posts, 'posts' );
@@ -279,38 +246,28 @@ if ( ! function_exists( __NAMESPACE__ . '\cache_posts_by_ids' ) ) {
 			}
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\flush_rewrite_rules' ) ) {
-	function flush_rewrite_rules() {
+	public static function flush_rewrite_rules() {
 		global $wp_rewrite;
 
 		$wp_rewrite->flush_rules();
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\redirect_self' ) ) {
-	function redirect_self() {
+	public static function redirect_self() {
 		wp_redirect( $_SERVER['REQUEST_URI'] );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\redirect_referer' ) ) {
-	function redirect_referer() {
+	public static function redirect_referer() {
 		wp_redirect( wp_get_referer() );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\get_the_slug' ) ) {
-	function get_the_slug( $post = null ) {
+	public static function get_the_slug( $post = null ) {
 		$post = get_post( $post );
 
 		return ! empty( $post ) ? $post->post_name : false;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\get_post_excerpt' ) ) {
-	function get_post_excerpt( $post, $word_limit = 50 ) : string {
+	public static function get_post_excerpt( $post, $word_limit = 50 ) : string {
 		$content = $post->post_excerpt == '' ? $post->post_content : $post->post_excerpt;
 
 		$content = strip_shortcodes( $content );
@@ -327,10 +284,8 @@ if ( ! function_exists( __NAMESPACE__ . '\get_post_excerpt' ) ) {
 
 		return $content;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\get_post_content' ) ) {
-	function get_post_content( $post ) {
+	public static function get_post_content( $post ) {
 		$content = $post->post_content;
 
 		if ( post_password_required( $post ) ) {
@@ -341,10 +296,8 @@ if ( ! function_exists( __NAMESPACE__ . '\get_post_content' ) ) {
 
 		return str_replace( ']]>', ']]&gt;', $content );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\get_thumbnail_url' ) ) {
-	function get_thumbnail_url( $post_id, $size = 'full' ) : string {
+	public static function get_thumbnail_url( $post_id, $size = 'full' ) : string {
 		if ( has_post_thumbnail( $post_id ) ) {
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), $size );
 
@@ -353,14 +306,12 @@ if ( ! function_exists( __NAMESPACE__ . '\get_thumbnail_url' ) ) {
 			return '';
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\get_attachment_id_from_url' ) ) {
 	/*
 	 * Function by Micah Wood
 	 * https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
 	 */
-	function get_attachment_id_from_url( $url ) : int {
+	public static function get_attachment_id_from_url( $url ) : int {
 		$attachment_id = 0;
 		$dir           = wp_upload_dir();
 
@@ -398,16 +349,12 @@ if ( ! function_exists( __NAMESPACE__ . '\get_attachment_id_from_url' ) ) {
 
 		return $attachment_id;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\switch_to_default_theme' ) ) {
-	function switch_to_default_theme() {
+	public static function switch_to_default_theme() {
 		switch_theme( WP_DEFAULT_THEME, WP_DEFAULT_THEME );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\kses_expanded_list_of_tags' ) ) {
-	function kses_expanded_list_of_tags() : array {
+	public static function kses_expanded_list_of_tags() : array {
 		return array(
 			'a'          => array(
 				'class'    => true,
@@ -562,10 +509,8 @@ if ( ! function_exists( __NAMESPACE__ . '\kses_expanded_list_of_tags' ) ) {
 			)
 		);
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\list_post_types' ) ) {
-	function list_post_types( $args = array() ) : array {
+	public static function list_post_types( $args = array() ) : array {
 		$list       = array();
 		$post_types = get_post_types( $args, 'objects' );
 
@@ -575,10 +520,8 @@ if ( ! function_exists( __NAMESPACE__ . '\list_post_types' ) ) {
 
 		return $list;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\list_taxonomies' ) ) {
-	function list_taxonomies( $args = array() ) : array {
+	public static function list_taxonomies( $args = array() ) : array {
 		$list       = array();
 		$taxonomies = get_taxonomies( $args, 'objects' );
 
@@ -588,10 +531,8 @@ if ( ! function_exists( __NAMESPACE__ . '\list_taxonomies' ) ) {
 
 		return $list;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\list_user_roles' ) ) {
-	function list_user_roles() : array {
+	public static function list_user_roles() : array {
 		$roles = array();
 
 		foreach ( wp_roles()->roles as $role => $details ) {
@@ -600,10 +541,8 @@ if ( ! function_exists( __NAMESPACE__ . '\list_user_roles' ) ) {
 
 		return $roles;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\get_gmt_offset' ) ) {
-	function get_gmt_offset() {
+	public static function get_gmt_offset() {
 		$offset = get_option( 'gmt_offset' );
 
 		if ( empty( $offset ) ) {
@@ -612,16 +551,12 @@ if ( ! function_exists( __NAMESPACE__ . '\get_gmt_offset' ) ) {
 
 		return $offset === false ? 0 : $offset;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\html_excerpt' ) ) {
-	function html_excerpt( $text, $limit, $more = null ) : string {
+	public static function html_excerpt( $text, $limit, $more = null ) : string {
 		return wp_html_excerpt( strip_shortcodes( $text ), $limit, $more );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\check_ajax_referer' ) ) {
-	function check_ajax_referer( $action, $nonce, $die = true ) {
+	public static function check_ajax_referer( $action, $nonce, $die = true ) {
 		$result = wp_verify_nonce( $nonce, $action );
 
 		if ( $die && false === $result ) {
@@ -636,10 +571,8 @@ if ( ! function_exists( __NAMESPACE__ . '\check_ajax_referer' ) ) {
 
 		return $result;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\post_type_has_archive' ) ) {
-	function post_type_has_archive( $post_type ) : bool {
+	public static function post_type_has_archive( $post_type ) : bool {
 		if ( post_type_exists( $post_type ) ) {
 			$cpt = get_post_type_object( $post_type );
 
@@ -648,10 +581,8 @@ if ( ! function_exists( __NAMESPACE__ . '\post_type_has_archive' ) ) {
 			return false;
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\json_die' ) ) {
-	function json_die( $data, $response = null ) {
+	public static function json_die( $data, $response = null ) {
 		if ( ! headers_sent() ) {
 			header( 'Content-Type: application/json; charset=utf-8' );
 
@@ -664,10 +595,8 @@ if ( ! function_exists( __NAMESPACE__ . '\json_die' ) ) {
 
 		die( wp_json_encode( $data ) );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\next_scheduled' ) ) {
-	function next_scheduled( $hook, $args = null ) {
+	public static function next_scheduled( $hook, $args = null ) {
 		if ( ! is_null( $args ) ) {
 			return wp_next_scheduled( $hook, $args );
 		} else {
@@ -689,10 +618,8 @@ if ( ! function_exists( __NAMESPACE__ . '\next_scheduled' ) ) {
 			return $t == - 1 ? false : $t;
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\delete_cron_job' ) ) {
-	function delete_cron_job( $timestamp, $hook, $hash ) {
+	public static function delete_cron_job( $timestamp, $hook, $hash ) {
 		$crons = _get_cron_array();
 
 		if ( ! empty( $crons ) ) {
@@ -720,10 +647,8 @@ if ( ! function_exists( __NAMESPACE__ . '\delete_cron_job' ) ) {
 			}
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\remove_cron' ) ) {
-	function remove_cron( $hook ) {
+	public static function remove_cron( $hook ) {
 		$crons = _get_cron_array();
 
 		if ( ! empty( $crons ) ) {
@@ -745,12 +670,10 @@ if ( ! function_exists( __NAMESPACE__ . '\remove_cron' ) ) {
 			}
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\get_term' ) ) {
-	function get_term( $term, $taxonomy = '', $output = OBJECT, $filter = 'raw' ) {
+	public static function get_term( $term, $taxonomy = '', $output = OBJECT, $filter = 'raw' ) {
 		if ( $term instanceof WP_Term || is_numeric( $term ) ) {
-			return \get_term( $term, $taxonomy, $output, $filter );
+			return get_term( $term, $taxonomy, $output, $filter );
 		} else if ( is_string( $term ) ) {
 			return get_term_by( 'slug', $term, $taxonomy, $output, $filter );
 		}

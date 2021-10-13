@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Core\Admin\PostBack
-Version: v3.6
+Name:    Dev4Press\v37\Core\Admin\PostBack
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Core\Admin;
+namespace Dev4Press\v37\Core\Admin;
 
-use Dev4Press\v36\Core\Options\Process;
+use Dev4Press\v37\Core\Options\Process;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

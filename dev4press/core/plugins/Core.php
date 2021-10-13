@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Core\Plugins\Core
-Version: v3.6
+Name:    Dev4Press\v37\Core\Plugins\Core
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,12 +24,12 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Core\Plugins;
+namespace Dev4Press\v37\Core\Plugins;
 
-use Dev4Press\v36\API\Four;
-use Dev4Press\v36\Library;
-use Dev4Press\v36\WordPress;
-use function Dev4Press\v36\Functions\bbPress\major_version_number;
+use Dev4Press\v37\API\Four;
+use Dev4Press\v37\Library;
+use Dev4Press\v37\WordPress;
+use function Dev4Press\v37\Functions\bbPress\major_version_number;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -142,6 +142,14 @@ abstract class Core {
 		$this->deactivate();
 	}
 
+	public function store_widget_instance( $instance ) {
+		$this->_widget_instance = (array) $instance;
+	}
+
+	public function widget_instance() : array {
+		return $this->_widget_instance;
+	}
+
 	protected function check_system_requirements() : array {
 		if ( defined( 'DEV4PRESS_NO_SYSREQ_CHECK' ) && DEV4PRESS_NO_SYSREQ_CHECK ) {
 			return array();
@@ -182,15 +190,7 @@ abstract class Core {
 		return $list;
 	}
 
-	public function store_widget_instance( $instance ) {
-		$this->_widget_instance = (array) $instance;
-	}
-
-	public function widget_instance() : array {
-		return $this->_widget_instance;
-	}
-
-	/** @return \Dev4Press\v36\Core\Plugins\Settings */
+	/** @return \Dev4Press\v37\Core\Plugins\Settings */
 	abstract public function s();
 
 	abstract public function run();

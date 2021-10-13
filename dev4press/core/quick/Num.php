@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v37\Service\Media\Pexels\Video
+Name:    Dev4Press\v37\Core\Quick\Num
 Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,40 +24,18 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v37\Service\Media\Pexels;
+namespace Dev4Press\v37\Core\Quick;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Video {
-	public $id;
-	public $url;
-	public $name;
+class Num {
+	public static function is_odd( $number ) : bool {
+		return $number % 2 == 0;
+	}
 
-	public $videos;
-
-	public $user;
-
-	public function __construct( $response ) {
-		$this->id   = $response->id;
-		$this->url  = $response->url;
-		$this->user = $response->user;
-
-		preg_match( '/pexels\.com\/photo\/(.+?)-\d+?\//', $this->url, $output );
-
-		if ( ! empty( $output ) && isset( $output[1] ) ) {
-			$this->name = str_replace( '-', ' ', $output[1] );
-			$this->name = ucfirst( $this->name );
-		}
-
-		foreach ( $response->video_files as $video ) {
-			$video->url = $video->link;
-			unset( $video->link );
-
-			$video->preview = 'https://i.vimeocdn.com/video/' . $video->id . '_' . $video->width . 'x' . $video->height . '.jpg';
-
-			$this->videos[] = $video;
-		}
+	public static function is_divisible( $number, $by_number ) : bool {
+		return $number % $by_number == 0;
 	}
 }

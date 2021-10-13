@@ -1,13 +1,14 @@
 <?php
 
-use function Dev4Press\v36\Functions\panel;
-use function Dev4Press\v36\Functions\sanitize_slug;
+use Dev4Press\v37\Core\Quick\Sanitize;
+use function Dev4Press\v37\Functions\panel;
+use function Dev4Press\v37\Functions\sanitize_slug;
 
 $_message = '';
 $_color   = 'success';
 
 if ( isset( $_GET['message'] ) && $_GET['message'] != '' ) {
-	$msg_code = sanitize_slug( $_GET['message'] );
+	$msg_code = Sanitize::slug( $_GET['message'] );
 
 	switch ( $msg_code ) {
 		case 'saved':

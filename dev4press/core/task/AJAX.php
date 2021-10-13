@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Core\Task\AJAX
-Version: v3.6
+Name:    Dev4Press\v37\Core\Task\AJAX
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Core\Task;
+namespace Dev4Press\v37\Core\Task;
 
-use function Dev4Press\v36\Functions\WP\json_die;
+use Dev4Press\v37\Core\Quick\WPR;
+use function Dev4Press\v37\Functions\WP\json_die;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -111,7 +112,7 @@ abstract class AJAX {
 
 		$response['message'] = join( D4P_EOL, $this->messages );
 
-		json_die( $response );
+		WPR::json_die( $response );
 	}
 
 	protected function init_data() : array {

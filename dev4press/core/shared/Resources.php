@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Core\Shared\Enqueue
-Version: v3.6
+Name:    Dev4Press\v37\Core\Shared\Enqueue
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Core\Shared;
+namespace Dev4Press\v37\Core\Shared;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -268,15 +268,6 @@ class Resources {
 				'ext'  => 'js',
 				'min'  => false
 			),
-			'alphanumeric'           => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.alphanumeric.min',
-				'ver'  => '2017',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
 			'mark'                   => array(
 				'lib'  => true,
 				'path' => '',
@@ -300,24 +291,6 @@ class Resources {
 				'path' => '',
 				'file' => 'jquery.jqeasycharcounter.min',
 				'ver'  => '1.0',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'limitkeypress'          => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.limitkeypress.min',
-				'ver'  => '2016',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'numeric'                => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.numeric.min',
-				'ver'  => '1.4.1',
 				'ext'  => 'js',
 				'min'  => false,
 				'req'  => array( 'jquery' )

@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Functions\bbPress
-Version: v3.6
+Name:    Dev4Press\v37\Functions\bbPress
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Functions\bbPress;
+namespace Dev4Press\v37\Functions\bbPress;
 
-use function Dev4Press\v36\Functions\WP\is_plugin_active;
+use Dev4Press\v37\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( __NAMESPACE__ . '\is_active' ) ) {
 	function is_active() : bool {
-		if ( is_plugin_active( 'bbpress/bbpress.php' ) ) {
+		if ( WPR::is_plugin_active( 'bbpress/bbpress.php' ) ) {
 			$version = major_version_code();
 
 			return $version > 25;

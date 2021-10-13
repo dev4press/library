@@ -1,6 +1,14 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.7 - 2021.12.01 =
+* New: Static classes to replace namespaced functions
+* Updated: Built-in cacert.pem 20210930
+* Updated: Flatpickr 2.0.8
+* Updated: Cookie 3.0.1
+* Updated: MarkJS 9.0.0
+* Updated: WP Color Picker Alpha 3.0.0
+
 = Version 3.6 - 2021.08.14 =
 * New: Core Library class
 * New: Core WordPress class

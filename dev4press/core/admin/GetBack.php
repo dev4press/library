@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Core\Admin\GetBack
-Version: v3.6
+Name:    Dev4Press\v37\Core\Admin\GetBack
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Core\Admin;
+namespace Dev4Press\v37\Core\Admin;
 
-use function Dev4Press\v36\Functions\WP\is_current_user_admin;
+use Dev4Press\v37\Core\Quick\WPR;
+use function Dev4Press\v37\Functions\WP\is_current_user_admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -93,7 +94,7 @@ abstract class GetBack {
 	protected function tools_export() {
 		check_ajax_referer( 'dev4press-plugin-' . $this->a()->plugin_prefix );
 
-		if ( ! is_current_user_admin() ) {
+		if ( ! WPR::is_current_user_admin() ) {
 			wp_die( __( "Only administrators can use export features.", "d4plib" ) );
 		}
 

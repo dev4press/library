@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Core\Plugins\DB
-Version: v3.6
+Name:    Dev4Press\v37\Core\Plugins\DB
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Core\Plugins;
+namespace Dev4Press\v37\Core\Plugins;
 
+use Dev4Press\v37\Core\Quick\Sanitize;
 use wpdb;
-use function Dev4Press\v36\Functions\sanitize_ids_list;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -53,7 +53,7 @@ abstract class DBLite {
 	}
 
 	public function clean_ids_list( $ids ) : array {
-		return sanitize_ids_list( $ids );
+		return Sanitize::ids_list( $ids );
 	}
 
 	public function build_query( $sql, $calc_found_rows = true ) : string {
@@ -105,7 +105,7 @@ abstract class DBLite {
 		return $_value;
 	}
 
-	public function run_and_index( $query, $field, $output = OBJECT ) {
+	public function run_and_index( $query, $field, $output = OBJECT ) : array {
 		$raw = $this->wpdb()->get_results( $query, $output );
 
 		$_value = $this->index( $raw, $field );
@@ -204,15 +204,15 @@ abstract class DBLite {
 		return get_metadata( $this->_prefix . '_' . $meta_type, $object_id, $meta_key, $single );
 	}
 
-	public function delete_meta( $meta_type, $object_id, $meta_key, $delete_all = false ) {
+	public function delete_meta( $meta_type, $object_id, $meta_key, $delete_all = false ) : bool {
 		return delete_metadata( $this->_prefix . '_' . $meta_type, $object_id, $meta_key, $delete_all );
 	}
 
-	public function pluck( $list, $field, $index_key = null ) {
+	public function pluck( $list, $field, $index_key = null ) : array {
 		return wp_list_pluck( $list, $field, $index_key );
 	}
 
-	public function index( $list, $field ) {
+	public function index( $list, $field ) : array {
 		$new = array();
 
 		foreach ( $list as $item ) {
@@ -295,7 +295,7 @@ abstract class DBLite {
 		return SAVEQUERIES === true;
 	}
 
-	public function log_get_queries() {
+	public function log_get_queries() : array {
 		return $this->_queries_log;
 	}
 
@@ -332,6 +332,34 @@ abstract class DBLite {
 		return current_time( 'mysql', $gmt );
 	}
 
+	public function transient_query( $query, $key, $method, $output = OBJECT, $x = 0, $y = 0, $ttl = 86400 ) {
+		$var = get_transient( $key );
+
+		if ( $var === false ) {
+			$var = $this->_run_transient_query( $query, $method, $output, $x, $y );
+
+			if ( $var !== false ) {
+				set_transient( $key, $var, $ttl );
+			}
+		}
+
+		return $var;
+	}
+
+	public function transient_query_site( $query, $key, $method, $output = OBJECT, $x = 0, $y = 0, $ttl = 86400 ) {
+		$var = get_site_transient( $key );
+
+		if ( $var === false ) {
+			$var = $this->_run_transient_query( $query, $method, $output, $x, $y );
+
+			if ( $var !== false ) {
+				set_site_transient( $key, $var, $ttl );
+			}
+		}
+
+		return $var;
+	}
+
 	/**
 	 * @return wpdb
 	 *
@@ -348,5 +376,18 @@ abstract class DBLite {
 			$id                   = count( $this->wpdb()->queries ) - 1;
 			$this->_queries_log[] = $this->wpdb()->queries[ $id ];
 		}
+	}
+
+	protected function _run_transient_query( $query, $method, $output = OBJECT, $x = 0, $y = 0 ) {
+		switch ( $method ) {
+			case 'var':
+				return $this->get_var( $query, $x, $y );
+			case 'row':
+				return $this->get_row( $query, $output, $y );
+			case 'results':
+				return $this->get_results( $query, $output );
+		}
+
+		return false;
 	}
 }

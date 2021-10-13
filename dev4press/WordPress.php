@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\WordPress
-Version: v3.6
+Name:    Dev4Press\v37\WordPress
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36;
+namespace Dev4Press\v37;
 
-use function Dev4Press\v36\Functions\WP\is_classicpress;
+use Dev4Press\v37\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -66,7 +66,7 @@ class WordPress {
 			'async_upload' => defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action']
 		);
 
-		if ( is_classicpress() ) {
+		if ( WPR::is_classicpress() ) {
 			$this->_switches['wordpress']    = false;
 			$this->_switches['classicpress'] = true;
 			$this->_versions['cp']           = function_exists( 'classicpress_version' ) ? classicpress_version() : '1.0';

@@ -1,7 +1,7 @@
 <?php
 
-use Dev4Press\v36\Core\Helpers\Languages;
-use function Dev4Press\v36\Functions\panel;
+use Dev4Press\v37\Core\Helpers\Languages;
+use function Dev4Press\v37\Functions\panel;
 
 ?>
 <div class="d4p-info-block">

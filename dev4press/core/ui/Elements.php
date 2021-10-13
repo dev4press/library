@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Core\UI\Elements
-Version: v3.6
+Name:    Dev4Press\v37\Core\UI\Elements
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,10 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Core\UI;
+namespace Dev4Press\v37\Core\UI;
 
-use Dev4Press\v36\Core\UI\Walker\CheckboxRadio;
-use function Dev4Press\v36\Functions\is_associative_array;
+use Dev4Press\v37\Core\Quick\Arr;
+use Dev4Press\v37\Core\UI\Walker\CheckboxRadio;
+use function Dev4Press\v37\Functions\is_associative_array;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -87,7 +88,7 @@ class Elements {
 		$render      = '';
 		$attributes  = array();
 		$selected    = is_null( $selected ) ? array_keys( $values ) : (array) $selected;
-		$associative = ! is_associative_array( $values );
+		$associative = ! Arr::is_associative( $values );
 		$id          = $this->id_from_name( $name, $id );
 
 		if ( $class != '' ) {
@@ -247,7 +248,7 @@ class Elements {
 
 		$render      = '<div class="' . $wrapper_class . '">';
 		$selected    = (array) $selected;
-		$associative = is_associative_array( $values );
+		$associative = Arr::is_associative( $values );
 		$id          = $this->id_from_name( $name, $id );
 		$name        = $multi ? $name . '[]' : $name;
 

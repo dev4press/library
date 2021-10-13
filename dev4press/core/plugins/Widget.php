@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Core\Plugins\Widget
-Version: v3.6
+Name:    Dev4Press\v37\Core\Plugins\Widget
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,14 +24,13 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Core\Plugins;
+namespace Dev4Press\v37\Core\Plugins;
 
+use Dev4Press\v37\Core\Quick\Sanitize;
+use Dev4Press\v37\Core\Quick\WPR;
 use WP_Widget;
-use function Dev4Press\v36\Functions\sanitize_basic;
-use function Dev4Press\v36\Functions\sanitize_html;
-use function Dev4Press\v36\Functions\sanitize_key_expanded;
-use function Dev4Press\v36\Functions\WP\all_user_roles;
-use function Dev4Press\v36\Functions\WP\is_current_user_roles;
+use function Dev4Press\v37\Functions\WP\all_user_roles;
+use function Dev4Press\v37\Functions\WP\is_current_user_roles;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -77,7 +76,7 @@ abstract class Widget extends WP_Widget {
 	protected $cache_time = 0;
 	protected $cache_key = '';
 
-	/** @var \Dev4Press\v36\Core\UI\Widgets */
+	/** @var \Dev4Press\v37\Core\UI\Widgets */
 	protected $widgets_render;
 
 	public function __construct( $id_base = false, $name = '', $widget_options = array(), $control_options = array() ) {
@@ -164,7 +163,7 @@ abstract class Widget extends WP_Widget {
 	}
 
 	protected function get_valid_list_value( $name, $value, $list ) {
-		$value = sanitize_basic( $value );
+		$value = Sanitize::basic( $value );
 
 		if ( in_array( $value, $list ) ) {
 			return $value;
@@ -176,24 +175,24 @@ abstract class Widget extends WP_Widget {
 	protected function shared_update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
-		$instance['title'] = sanitize_basic( $new_instance['title'] );
+		$instance['title'] = Sanitize::basic( $new_instance['title'] );
 
-		$instance['_class'] = sanitize_basic( $new_instance['_class'] );
-		$instance['_tab']   = sanitize_key_expanded( $new_instance['_tab'] );
-		$instance['_hook']  = sanitize_key_expanded( $new_instance['_hook'] );
-		$instance['_devid'] = sanitize_key_expanded( $new_instance['_devid'] );
+		$instance['_class'] = Sanitize::basic( $new_instance['_class'] );
+		$instance['_tab']   = Sanitize::key_expanded( $new_instance['_tab'] );
+		$instance['_hook']  = Sanitize::key_expanded( $new_instance['_hook'] );
+		$instance['_devid'] = Sanitize::key_expanded( $new_instance['_devid'] );
 
 		$instance['_users'] = $this->get_valid_list_value( '_users', $new_instance['_users'], array_keys( $this->get_list_user_visibility() ) );
 
-		$_caps             = sanitize_basic( $new_instance['_caps'] );
+		$_caps             = Sanitize::basic( $new_instance['_caps'] );
 		$_caps             = explode( ',', $_caps );
 		$instance['_caps'] = array_map( 'trim', $_caps );
 
 		$instance['_roles'] = array();
 
 		if ( isset( $new_instance['_roles'] ) ) {
-			$_roles      = array_map( '\Dev4Press\v36\Functions\sanitize_basic', $new_instance['_roles'] );
-			$valid_roles = all_user_roles();
+			$_roles      = array_map( '\Dev4Press\v37\Core\Quick\Sanitize::basic', $new_instance['_roles'] );
+			$valid_roles = WPR::all_user_roles();
 
 			foreach ( $_roles as $role ) {
 				if ( isset( $valid_roles[ $role ] ) ) {
@@ -210,8 +209,8 @@ abstract class Widget extends WP_Widget {
 			$instance['_before'] = $new_instance['_before'];
 			$instance['_after']  = $new_instance['_after'];
 		} else {
-			$instance['_before'] = sanitize_html( $new_instance['_before'] );
-			$instance['_after']  = sanitize_html( $new_instance['_after'] );
+			$instance['_before'] = Sanitize::html( $new_instance['_before'] );
+			$instance['_after']  = Sanitize::html( $new_instance['_after'] );
 		}
 
 		return $instance;
@@ -290,7 +289,7 @@ abstract class Widget extends WP_Widget {
 				if ( empty( $roles ) ) {
 					$visible = $logged;
 				} else {
-					$visible = is_current_user_roles( $roles );
+					$visible = WPR::is_current_user_roles( $roles );
 				}
 			} else if ( $users == 'caps' && ! empty( $cap ) ) {
 				$visible = current_user_can( $cap );

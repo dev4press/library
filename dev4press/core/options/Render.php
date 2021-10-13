@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Core\Options\Render
-Version: v3.6
+Name:    Dev4Press\v37\Core\Options\Render
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,13 +24,12 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Core\Options;
+namespace Dev4Press\v37\Core\Options;
 
-use Dev4Press\v36\Core\UI\Elements;
-use Dev4Press\v36\Core\UI\Walker\CheckboxRadio;
-use function Dev4Press\v36\Functions\is_associative_array;
-use function Dev4Press\v36\Functions\list_css_size_units;
-use function Dev4Press\v36\Functions\sanitize_slug;
+use Dev4Press\v37\Core\Quick\Arr;
+use Dev4Press\v37\Core\Quick\Sanitize;
+use Dev4Press\v37\Core\UI\Elements;
+use Dev4Press\v37\Core\UI\Walker\CheckboxRadio;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -431,7 +430,7 @@ class Render {
 		}
 
 		$value       = is_null( $value ) || $value === true ? array_keys( $data ) : (array) $value;
-		$associative = is_associative_array( $data );
+		$associative = Arr::is_associative( $data );
 
 		if ( $multiple ) {
 			$this->part_check_uncheck_all();
@@ -735,7 +734,7 @@ class Render {
 
 	protected function draw_password( $element, $value, $name_base, $id_base ) {
 		$readonly     = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
-		$autocomplete = isset( $element->args['autocomplete'] ) ? sanitize_slug( $element->args['autocomplete'] ) : 'off';
+		$autocomplete = isset( $element->args['autocomplete'] ) ? Sanitize::slug( $element->args['autocomplete'] ) : 'off';
 
 		echo sprintf( '<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="password" name="%s" id="%s" value="%s" class="widefat" autocomplete="' . $autocomplete . '" />',
 			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ) );
@@ -799,7 +798,7 @@ class Render {
 	}
 
 	protected function draw_css_size( $element, $value, $name_base, $id_base = '' ) {
-		$sizes = list_css_size_units();
+		$sizes = Arr::get_css_size_units()();
 
 		$pairs = array();
 

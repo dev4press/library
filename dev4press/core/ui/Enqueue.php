@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Core\UI\Enqueue
-Version: v3.6
+Name:    Dev4Press\v37\Core\UI\Enqueue
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Core\UI;
+namespace Dev4Press\v37\Core\UI;
 
-use Dev4Press\v36\Core\Shared\Resources;
+use Dev4Press\v37\Core\Shared\Resources;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -40,7 +40,7 @@ final class Enqueue {
 	private $_url;
 	private $_rtl = false;
 
-	/** @var \Dev4Press\v36\Core\Admin\Plugin|\Dev4Press\v36\Core\Admin\Menu\Plugin|\Dev4Press\v36\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v37\Core\Admin\Plugin|\Dev4Press\v37\Core\Admin\Menu\Plugin|\Dev4Press\v37\Core\Admin\Submenu\Plugin */
 	private $_admin;
 
 	private $_loaded = array(
@@ -54,7 +54,7 @@ final class Enqueue {
 	);
 
 	/**
-	 * @param $admin \Dev4Press\v36\Core\Admin\Plugin|\Dev4Press\v36\Core\Admin\Menu\Plugin|\Dev4Press\v36\Core\Admin\Submenu\Plugin
+	 * @param $admin \Dev4Press\v37\Core\Admin\Plugin|\Dev4Press\v37\Core\Admin\Menu\Plugin|\Dev4Press\v37\Core\Admin\Submenu\Plugin
 	 */
 	public function __construct( $admin ) {
 		$this->_libraries['js']  = Resources::instance()->ui_js() + Resources::instance()->shared_js();
@@ -67,9 +67,9 @@ final class Enqueue {
 	}
 
 	/**
-	 * @param $admin \Dev4Press\v36\Core\Admin\Plugin|\Dev4Press\v36\Core\Admin\Menu\Plugin|\Dev4Press\v36\Core\Admin\Submenu\Plugin
+	 * @param $admin \Dev4Press\v37\Core\Admin\Plugin|\Dev4Press\v37\Core\Admin\Menu\Plugin|\Dev4Press\v37\Core\Admin\Submenu\Plugin
 	 *
-	 * @return \Dev4Press\v36\Core\UI\Enqueue
+	 * @return \Dev4Press\v37\Core\UI\Enqueue
 	 */
 	public static function instance( $admin ) : Enqueue {
 		static $_d4p_lib_loader = array();

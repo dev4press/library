@@ -1,7 +1,8 @@
 <?php
 
-use Dev4Press\v36\Core\UI\Elements;
-use function Dev4Press\v36\Functions\WP\all_user_roles;
+use Dev4Press\v37\Core\Quick\WPR;
+use Dev4Press\v37\Core\UI\Elements;
+use function Dev4Press\v37\Functions\WP\all_user_roles;
 
 ?>
 
@@ -28,7 +29,7 @@ use function Dev4Press\v36\Functions\WP\all_user_roles;
         <tr>
             <td class="cell-singular">
                 <label for="<?php echo $this->get_field_id( '_roles' ); ?>"><?php _e( "Roles", "d4plib" ); ?>:</label>
-				<?php Elements::instance()->checkboxes( all_user_roles(), array(
+				<?php Elements::instance()->checkboxes( WPR::all_user_roles(), array(
 					'id'       => $this->get_field_id( '_roles' ),
 					'class'    => 'widefat',
 					'name'     => $this->get_field_name( '_roles' ),

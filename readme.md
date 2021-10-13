@@ -1,8 +1,8 @@
 # Dev4Press Library
 
-* Version: v3.6
-* Build:   3600
-* Release: 2021.08.14.
+* Version: v3.7
+* Build:   3700
+* Release: 2021.12.01.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
@@ -15,13 +15,13 @@
 
 ## WordPress Requirements
 
-* WordPress: 5.1 or newer
+* WordPress: 5.3 or newer
 
 ## ClassicPress Requirements
 
-* ClassicPress: 1.0 or newer
+* ClassicPress: 1.2 or newer
 
 ## Optional
 
 * bbPress 2.6 or newer
-* BuddyPress 6.0 or newer
+* BuddyPress 8.0 or newer

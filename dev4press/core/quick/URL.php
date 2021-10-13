@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v36\Functions
-Version: v3.6
+Name:    Dev4Press\v37\Core\Quick\URL
+Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,28 +24,24 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v36\Functions;
+namespace Dev4Press\v37\Core\Quick;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\domain_name' ) ) {
-	function domain_name( $url ) {
+class URL {
+	public static function domain_name( $url ) {
 		return parse_url( $url, PHP_URL_HOST );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\current_request_path' ) ) {
-	function current_request_path() {
+	public static function current_request_path() {
 		$uri = $_SERVER['REQUEST_URI'];
 
 		return parse_url( $uri, PHP_URL_PATH );
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\current_url_request' ) ) {
-	function current_url_request() : string {
+	public static function current_url_request() : string {
 		$pathinfo = $_SERVER['PATH_INFO'] ?? '';
 		list( $pathinfo ) = explode( '?', $pathinfo );
 		$pathinfo = str_replace( '%', '%25', $pathinfo );
@@ -69,18 +65,44 @@ if ( ! function_exists( __NAMESPACE__ . '\current_url_request' ) ) {
 
 		return $url_request;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\current_url' ) ) {
-	function current_url( $use_wp = true ) : string {
+	public static function current_url( $use_wp = true ) : string {
 		if ( $use_wp ) {
-			return home_url( current_url_request() );
+			return home_url( URL::current_url_request() );
 		} else {
 			$s        = empty( $_SERVER['HTTPS'] ) ? '' : ( $_SERVER['HTTPS'] == 'on' ? 's' : '' );
-			$protocol = strleft( strtolower( $_SERVER['SERVER_PROTOCOL'] ), '/' ) . $s;
+			$protocol = Str::left( strtolower( $_SERVER['SERVER_PROTOCOL'] ), '/' ) . $s;
 			$port     = $_SERVER['SERVER_PORT'] == '80' || $_SERVER['SERVER_PORT'] == '443' ? '' : ':' . $_SERVER['SERVER_PORT'];
 
 			return $protocol . '://' . $_SERVER['SERVER_NAME'] . $port . $_SERVER['REQUEST_URI'];
 		}
+	}
+
+	public static function add_campaign_tracking( $url, $campaign = '', $medium = '', $content = '', $term = '', $source = null ) : string {
+		if ( ! empty( $campaign ) ) {
+			$url = add_query_arg( 'utm_campaign', $campaign, $url );
+		}
+
+		if ( ! empty( $medium ) ) {
+			$url = add_query_arg( 'utm_medium', $medium, $url );
+		}
+
+		if ( ! empty( $content ) ) {
+			$url = add_query_arg( 'utm_content', $content, $url );
+		}
+
+		if ( ! empty( $term ) ) {
+			$url = add_query_arg( 'utm_term', $term, $url );
+		}
+
+		if ( is_null( $source ) ) {
+			$source = parse_url( get_bloginfo( 'url' ), PHP_URL_HOST );
+		}
+
+		if ( ! empty( $source ) ) {
+			$url = add_query_arg( 'utm_source', $source, $url );
+		}
+
+		return $url;
 	}
 }
