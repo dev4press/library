@@ -55,6 +55,18 @@ class Download {
 		return $_download[ $key ];
 	}
 
+	public static function file_simple( $file_path, $file_name = null, $gdr_readfile = true ) {
+		Download::instance( $file_path, $file_name )->simple( ! $gdr_readfile );
+	}
+
+	public static function file_resume( $file_path, $file_name = null ) {
+		Download::instance( $file_path, $file_name )->resume();
+	}
+
+	public static function file_read( $file_path, $part_size_mb = 2, $return_size = true ) {
+		return Download::instance( $file_path )->read_file( $part_size_mb, $return_size );
+	}
+
 	public function read_file( $part_size_mb = 2, $return_size = true ) {
 		$counter   = 0;
 		$part_size = $part_size_mb * 1024 * 1024;

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v37\Request
+Name:    Dev4Press\v37\Core\Quick\Misc
 Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,36 +24,14 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v37;
+namespace Dev4Press\v37\Core\Quick;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Server {
-	public function __construct() {
-
-	}
-
-	public static function instance() : Server {
-		static $instance = null;
-
-		if ( ! isset( $instance ) ) {
-			$instance = new Server();
-		}
-
-		return $instance;
-	}
-
-	public function is_request_post() : bool {
-		return $_SERVER['REQUEST_METHOD'] === 'POST';
-	}
-
-	public function is_request_get() : bool {
-		return $_SERVER['REQUEST_METHOD'] === 'GET';
-	}
-
-	public function get_regex_error( $error_code ) : string {
+class Misc {
+	public static function get_regex_error( $error_code ) : string {
 		if ( is_bool( $error_code ) ) {
 			return 'OK';
 		}
@@ -65,5 +43,31 @@ class Server {
 		}
 
 		return 'UNKNOWN_ERROR';
+	}
+
+	public static function php_ini_size_value( $name ) {
+		$ini = ini_get( $name );
+
+		if ( $ini === false ) {
+			return 0;
+		}
+
+		$ini  = trim( $ini );
+		$last = strtoupper( $ini[ strlen( $ini ) - 1 ] );
+		$ini  = absint( substr( $ini, 0, strlen( $ini ) - 1 ) );
+
+		switch ( $last ) {
+			case 'G':
+				$ini = $ini * GB_IN_BYTES;
+				break;
+			case 'M':
+				$ini = $ini * MB_IN_BYTES;
+				break;
+			case 'K':
+				$ini = $ini * KB_IN_BYTES;
+				break;
+		}
+
+		return $ini;
 	}
 }

@@ -70,4 +70,10 @@ class ObjectsSort {
 			return ( $one->$column < $two->$column ) ? 1 : - 1;
 		}
 	}
+
+	public static function run($objects_array, $properties = array(), $uasort = false) {
+		$_sort = new ObjectsSort( $objects_array, $properties, $uasort );
+
+		return $_sort->sorted;
+	}
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Base Library Functions: Bridge
+Name:    Dev4Press\v37\Core\Quick\Request
 Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,16 +24,18 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v37\Functions;
-
-use Dev4Press\v37\Core\UI\Admin\Panel;
+namespace Dev4Press\v37\Core\Quick;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\panel' ) ) {
-	function panel() : Panel {
-		return Panel::instance();
+class Request {
+	public static function is_post() : bool {
+		return $_SERVER['REQUEST_METHOD'] === 'POST';
+	}
+
+	public static function is_get() : bool {
+		return $_SERVER['REQUEST_METHOD'] === 'GET';
 	}
 }

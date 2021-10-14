@@ -24,8 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-use Dev4Press\v37\WordPress;
 use Dev4Press\v37\Library;
+use Dev4Press\v37\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -45,9 +45,13 @@ include( $_library_path . 'autoload.php' );
 
 include( $_library_path . 'functions/Bridge.php' );
 include( $_library_path . 'functions/Debug.php' );
-include( $_library_path . 'functions/Common.php' );
 include( $_library_path . 'functions/bbPress.php' );
 include( $_library_path . 'functions/BuddyPress.php' );
+
+if ( defined( 'D4P_LOAD_DEPRECATED_FUNCTIONS' ) && D4P_LOAD_DEPRECATED_FUNCTIONS ) {
+	include( $_library_path . 'deprecated/Common.php' );
+	include( $_library_path . 'deprecated/WP.php' );
+}
 
 WordPress::instance();
 Library::instance();

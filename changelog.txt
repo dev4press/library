@@ -8,6 +8,7 @@
 * Updated: Cookie 3.0.1
 * Updated: MarkJS 9.0.0
 * Updated: WP Color Picker Alpha 3.0.0
+* Removed: Various unused JavaScript libraries
 
 = Version 3.6 - 2021.08.14 =
 * New: Core Library class

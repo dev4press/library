@@ -680,4 +680,13 @@ class WPR {
 
 		return false;
 	}
+
+	public static function has_gravatar( $email ) : bool {
+		$hash = md5( strtolower( trim( $email ) ) );
+
+		$url     = 'https://www.gravatar.com/avatar/' . $hash . '?d=404';
+		$headers = get_headers( $url );
+
+		return preg_match( "/200/", $headers[0] ) === 1;
+	}
 }

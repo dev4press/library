@@ -34,8 +34,12 @@ class Languages {
 	static private $_current_instance = null;
 
 	public $list = array(
+		'et'    => array( 'native' => 'Eesti', 'english' => 'Estonian' ),
+		'fi'    => array( 'native' => 'Suomi', 'english' => 'Finnish' ),
 		'hr'    => array( 'native' => 'Hrvatski', 'english' => 'Croatian' ),
 		'ja'    => array( 'native' => '日本語', 'english' => 'Japanese' ),
+		'bg_BG' => array( 'native' => 'Български', 'english' => 'Bulgarian' ),
+		'cs_CZ' => array( 'native' => 'Čeština', 'english' => 'Czech' ),
 		'da_DK' => array( 'native' => 'Dansk', 'english' => 'Danish' ),
 		'de_AT' => array( 'native' => 'Deutsch Österreich', 'english' => 'German Austria' ),
 		'de_DE' => array( 'native' => 'Deutsch', 'english' => 'German' ),
@@ -47,12 +51,15 @@ class Languages {
 		'fr_BE' => array( 'native' => 'Français de Belgique', 'english' => 'French Belgian' ),
 		'fr_CA' => array( 'native' => 'Français Canadien', 'english' => 'French Canadian' ),
 		'it_IT' => array( 'native' => 'Italiano', 'english' => 'Italian' ),
+		'lt_LT' => array( 'native' => 'Lietuvių kalba', 'english' => 'Lithuanian' ),
 		'nl_NL' => array( 'native' => 'Nederlands', 'english' => 'Dutch' ),
 		'pl_PL' => array( 'native' => 'Polski', 'english' => 'Polish' ),
 		'pt_BR' => array( 'native' => 'Português do Brasil', 'english' => 'Brazilian Portuguese' ),
 		'pt_PT' => array( 'native' => 'Português', 'english' => 'Portuguese' ),
 		'ru_RU' => array( 'native' => 'Русский', 'english' => 'Russian' ),
-		'sr_RS' => array( 'native' => 'Српски', 'english' => 'Serbian' )
+		'sl_SI' => array( 'native' => 'Slovenščina', 'english' => 'Slovenian' ),
+		'sr_RS' => array( 'native' => 'Српски', 'english' => 'Serbian' ),
+		'sv_SE' => array( 'native' => 'Svenska', 'english' => 'Swedish' )
 	);
 
 	public function __construct() {
@@ -66,7 +73,7 @@ class Languages {
 		return self::$_current_instance;
 	}
 
-	public function plugin_translations( $translations ) {
+	public function plugin_translations( $translations ) : array {
 		$list = array();
 
 		foreach ( $translations as $code => $obj ) {

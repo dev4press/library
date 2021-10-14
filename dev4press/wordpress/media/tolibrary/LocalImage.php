@@ -76,4 +76,10 @@ class LocalImage {
 
 		return $attachment_id;
 	}
+
+	public static function run( $path, $data = array(), $post_parent = 0, $args = array() ) {
+		$obj = new LocalImage( $path, $data, $args );
+
+		return $obj->upload( $post_parent );
+	}
 }

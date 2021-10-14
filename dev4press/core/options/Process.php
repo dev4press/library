@@ -28,7 +28,7 @@ namespace Dev4Press\v37\Core\Options;
 
 use Dev4Press\v37\Core\Quick\Arr;
 use Dev4Press\v37\Core\Quick\Sanitize;
-use function Dev4Press\v37\Functions\split_textarea_to_list;
+use Dev4Press\v37\Core\Quick\Str;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -185,7 +185,7 @@ class Process {
 				}
 				break;
 			case 'listing':
-				$value = split_textarea_to_list( stripslashes( $post[ $key ] ) );
+				$value = Str::split_to_list( stripslashes( $post[ $key ] ) );
 				break;
 			case 'media':
 				$value = 0;

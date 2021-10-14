@@ -190,8 +190,8 @@ abstract class Core {
 		return $list;
 	}
 
+	abstract public function run();
+
 	/** @return \Dev4Press\v37\Core\Plugins\Settings */
 	abstract public function s();
-
-	abstract public function run();
 }

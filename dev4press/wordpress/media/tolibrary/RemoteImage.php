@@ -86,4 +86,10 @@ class RemoteImage {
 
 		return $attachment_id;
 	}
+
+	public static function run( $url, $data = array(), $post_parent = 0, $args = array() ) {
+		$obj = new RemoteImage( $url, $data, $args );
+
+		return $obj->download( $post_parent );
+	}
 }

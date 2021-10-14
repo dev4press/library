@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v37\Core\Quick;
 
 use DateTime;
+use Dev4Press\v37\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -103,5 +104,80 @@ class Str {
 		}
 
 		return $content;
+	}
+
+	public static function split_to_list( $value, $empty_lines = false ) {
+		$elements = preg_split( "/[\n\r]/", $value );
+
+		if ( ! $empty_lines ) {
+			$results = array();
+
+			foreach ( $elements as $el ) {
+				if ( trim( $el ) != '' ) {
+					$results[] = $el;
+				}
+			}
+
+			return $results;
+		} else {
+			return $elements;
+		}
+	}
+
+	public static function to_length( $text, $length = 200, $append = '&hellip;' ) : string {
+		$text_length = function_exists( 'mb_strlen' )
+			?
+			mb_strlen( $text )
+			:
+			strlen( $text );
+
+		if ( ! empty( $length ) && ( $text_length > $length ) ) {
+
+			$text = function_exists( 'mb_substr' )
+				?
+				mb_substr( $text, 0, $length - 1 )
+				:
+				substr( $text, 0, $length - 1 );
+			$text .= $append;
+		}
+
+		return $text;
+	}
+
+	public static function entity_decode( $content, $quote_style = null, $charset = null ) : string {
+		if ( null === $quote_style ) {
+			$quote_style = ENT_QUOTES;
+		}
+
+		if ( null === $charset ) {
+			$charset = Library::instance()->charset();
+		}
+
+		return html_entity_decode( $content, $quote_style, $charset );
+	}
+
+	public static function extract_images_urls( $search, $limit = 0 ) {
+		$images  = array();
+		$matches = array();
+
+		if ( preg_match_all( "/<img(.+?)>/", $search, $matches ) ) {
+			foreach ( $matches[1] as $image ) {
+				$match = array();
+
+				if ( preg_match( '/src=(["\'])(.*?)\1/', $image, $match ) ) {
+					$images[] = $match[2];
+				}
+			}
+		}
+
+		if ( $limit > 0 && ! empty( $images ) ) {
+			$images = array_slice( $images, 0, $limit );
+		}
+
+		if ( $limit == 1 ) {
+			return count( $images ) > 0 ? $images[0] : '';
+		} else {
+			return $images;
+		}
 	}
 }

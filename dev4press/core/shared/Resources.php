@@ -256,7 +256,7 @@ class Resources {
 				'lib'  => true,
 				'path' => '',
 				'file' => 'clipboard.min',
-				'ver'  => '2.0.4',
+				'ver'  => '2.0.8',
 				'ext'  => 'js',
 				'min'  => false
 			),
@@ -264,7 +264,7 @@ class Resources {
 				'lib'  => true,
 				'path' => '',
 				'file' => 'cookies.min',
-				'ver'  => '2.2.1',
+				'ver'  => '3.0.1',
 				'ext'  => 'js',
 				'min'  => false
 			),
@@ -272,7 +272,7 @@ class Resources {
 				'lib'  => true,
 				'path' => '',
 				'file' => 'jquery.mark.min',
-				'ver'  => '8.11.1',
+				'ver'  => '9.0.0',
 				'ext'  => 'js',
 				'min'  => false,
 				'req'  => array( 'jquery' )
@@ -286,29 +286,11 @@ class Resources {
 				'min'  => false,
 				'req'  => array( 'jquery' )
 			),
-			'jqeasycharcounter'      => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.jqeasycharcounter.min',
-				'ver'  => '1.0',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
 			'select'                 => array(
 				'lib'  => true,
 				'path' => '',
 				'file' => 'jquery.select.min',
 				'ver'  => '2.2.6',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'jquery' )
-			),
-			'textrange'              => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'jquery.textrange.min',
-				'ver'  => '1.4.0',
 				'ext'  => 'js',
 				'min'  => false,
 				'req'  => array( 'jquery' )
