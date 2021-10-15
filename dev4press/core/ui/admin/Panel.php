@@ -105,11 +105,13 @@ abstract class Panel {
 			echo $this->form_tag_open();
 		}
 
+		echo '<div class="d4p-content-wrapper">';
 		if ( $this->has_sidebar() ) {
 			$this->include_sidebar();
 		}
 
 		$this->include_content();
+		echo '</div>';
 
 		if ( $this->has_form() ) {
 			echo $this->form_tag_close();

@@ -280,3 +280,25 @@ details.d4p-section-details {
     display: inline-block;
     padding: 1px 7px;
 }
+
+.d4p-panel-group-break {
+    border-bottom: 2px solid #555;
+    margin: 0 0 15px;
+    padding: 0;
+
+    h2 {
+        background-color: #555;
+        color: #FFF;
+        display: inline-block;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 24px;
+        margin: 0 0 0 20px;
+        padding: 5px 20px 5px 15px;
+
+        i {
+            margin: 0 4px 0 0;
+            font-size: 16px;
+        }
+    }
+}

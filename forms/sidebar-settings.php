@@ -10,7 +10,9 @@ $_subpanels = panel()->subpanels();
 <div class="d4p-sidebar">
     <div class="d4p-panel-scroller d4p-scroll-active">
         <div class="d4p-panel-title">
+            <div class="_icon">
 			<?php echo panel()->r()->icon( $_panel->icon ); ?>
+            </div>
             <h3><?php echo $_panel->title; ?></h3>
 			<?php
 
@@ -21,9 +23,9 @@ $_subpanels = panel()->subpanels();
 			}
 
 			?>
-        </div>
-        <div class="d4p-panel-info">
-			<?php echo $_subpanels[ $_subpanel ]['info']; ?>
+            <div class="_info">
+		        <?php echo $_subpanels[ $_subpanel ]['info']; ?>
+            </div>
         </div>
 		<?php if ( $_subpanel == 'full' ) { ?>
             <div class="d4p-panel-mark">

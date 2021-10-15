@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .d4p-group-separator {
   margin: 0;
   float: left;
@@ -207,4 +208,177 @@ details.d4p-section-details > div .form-table code {
   color: #111;
   display: inline-block;
   padding: 1px 7px;
+}
+
+.d4p-panel-group-break {
+  border-bottom: 2px solid #555;
+  margin: 0 0 15px;
+  padding: 0;
+}
+.d4p-panel-group-break h2 {
+  background-color: #555;
+  color: #FFF;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 24px;
+  margin: 0 0 0 20px;
+  padding: 5px 20px 5px 15px;
+}
+.d4p-panel-group-break h2 i {
+  margin: 0 4px 0 0;
+  font-size: 16px;
+}
+
+.d4p-features-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  line-height: 1.75;
+  margin: -1em;
+}
+.d4p-features-wrapper .d4p-feature-box {
+  flex: 0 0 300px;
+  background: #FFF;
+  border: 1px solid #BBB;
+  border-radius: 5px;
+  margin: 1em;
+  padding: 0;
+  float: left;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width: 640px) {
+  .d4p-features-wrapper .d4p-feature-box {
+    flex-basis: calc(50% - 2em);
+  }
+}
+@media screen and (max-width: 440px) {
+  .d4p-features-wrapper .d4p-feature-box {
+    flex-basis: calc(100% - 2em);
+  }
+}
+.d4p-features-wrapper .d4p-feature-box ._info {
+  padding: 2em;
+  text-align: center;
+  flex: 1 1 100%;
+}
+.d4p-features-wrapper .d4p-feature-box ._info ._icon {
+  line-height: 1;
+  background-color: #F2F2F2;
+  padding: 1em;
+  display: inline-block;
+  border-radius: 5px;
+}
+.d4p-features-wrapper .d4p-feature-box ._info ._icon i {
+  font-size: 2em;
+  color: #555;
+}
+.d4p-features-wrapper .d4p-feature-box ._info ._title {
+  font-size: 1.5em;
+  font-weight: 400;
+  margin: 0.5em 0;
+}
+.d4p-features-wrapper .d4p-feature-box ._info ._description {
+  font-size: 1em;
+  font-weight: 300;
+  margin: 0;
+}
+.d4p-features-wrapper .d4p-feature-box ._ctrl {
+  border-radius: 0 0 5px 5px;
+  border-top: 1px solid #BBB;
+  background: #F6F6F6;
+  padding: 1em;
+  display: flex;
+}
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._open {
+  flex: 1 1 100%;
+  text-align: center;
+  position: relative;
+}
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._activation {
+  flex: 1 1 100%;
+  text-align: left;
+  position: relative;
+}
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox] {
+  height: 24px;
+  width: 32px;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 0;
+}
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox] + label {
+  display: block;
+  position: relative;
+  line-height: 1;
+  vertical-align: top;
+}
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox] + label:before {
+  font-family: "dev4press";
+  display: inline-block;
+  content: "";
+  font-size: 2em;
+  line-height: 1;
+}
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox]:checked + label:before {
+  content: "";
+}
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._settings a {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 2em;
+  line-height: 1;
+  vertical-align: top;
+  color: #111;
+}
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._settings a i {
+  vertical-align: bottom;
+}
+.d4p-features-wrapper .d4p-feature-box:not(._is-active) ._ctrl ._settings {
+  display: none;
+}
+.d4p-features-wrapper .d4p-feature-box._is-active {
+  border-color: #00A32A;
+}
+.d4p-features-wrapper .d4p-feature-box._is-active ._ctrl {
+  border-color: #00A32A;
+  background-color: #E7FFEC;
+}
+.d4p-features-wrapper .d4p-feature-box._is-active ._info ._icon {
+  background-color: #E7FFEC;
+}
+.d4p-features-wrapper .d4p-feature-box._is-active ._info ._icon i {
+  color: #00A32A;
+}
+.d4p-features-wrapper .d4p-feature-box._is-active ._ctrl ._activation label:before {
+  color: #00A32A;
+}
+.d4p-features-wrapper .d4p-feature-break {
+  border-bottom: 2px solid #555;
+  margin: 1em;
+  padding: 0;
+  flex: 1 0 calc(100% - 2em);
+}
+.d4p-features-wrapper .d4p-feature-break h1 {
+  background-color: #555;
+  color: #FFF;
+  display: inline-block;
+  font-size: 1.5em;
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: 1px;
+  border-radius: 5px 5px 0 0;
+  margin: 0;
+  padding: 0.5em 1em 0.5em 1em;
+}
+.d4p-features-wrapper .d4p-feature-break h1 i {
+  margin: 0 7px 0 0;
+  font-size: 18px;
 }

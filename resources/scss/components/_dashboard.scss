@@ -2,17 +2,9 @@
     &.d4p-panel-dashboard {
         .d4p-sidebar {
             .d4p-dashboard-badge {
-                padding: 15px;
+                padding: 2em;
                 text-align: center;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
-
-                .d4p-dashboard-sidebard-svg-sign {
-                    max-width: 360px;
-                    width: 80%;
-                    height: auto;
-                    text-align: center;
-                    margin: 0 auto;
-                }
+                border-radius: 5px;
 
                 * {
                     color: #FFF;
@@ -20,32 +12,31 @@
 
                 h3 {
                     word-break: keep-all;
-                    font-weight: 600;
+                    font-weight: 300;
                     letter-spacing: -1px;
-                    margin: 5px 0 15px;
+                    margin: .5em 0 0;
                     padding: 0;
                     text-transform: uppercase;
                     line-height: 1.1;
-                    font-size: 30px;
+                    font-size: 32px;
                 }
 
                 h5 {
-                    margin: 0;
-                    padding: 10px 0 0;
+                    margin: 1.6em -1.6em -1.6em;
+                    padding: 1em;
                     border-top: 1px solid #DDD;
                     font-size: 1.3em;
-                    text-align: right;
+                    text-align: center;
+                    font-weight: 300;
                 }
             }
 
             .d4p-links-group {
-                margin: 15px 0 0;
-                padding: 15px 0 0;
-                border-top: 1px solid #DDD;
+                margin: 2em 0 0;
 
                 a {
                     display: block;
-                    margin: 0 0 5px;
+                    margin: 0 0 .5em;
 
                     i {
                         font-size: 1.3em;

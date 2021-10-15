@@ -62,13 +62,11 @@
 .d4p-group {
     background: #FFF;
     border: 1px solid #BBB;
-    margin: 0 0 15px;
-    float: left;
+    border-radius: 5px;
+    margin: 0 0 2em;
     text-align: center;
     max-width: 800px;
     width: 100%;
-    clear: both;
-    overflow: auto;
 
     h3 {
         margin: 0;
@@ -76,9 +74,12 @@
         color: #111;
         border-bottom: 1px solid #BBB;
         text-align: left;
-        padding: 10px;
-        line-height: 120%;
+        padding: .75em 1em;
+        line-height: 1.4;
+        font-size: 1.4em;
+        font-weight: 400;
         vertical-align: top;
+        border-radius: 5px 5px 0 0;
 
         i {
             float: right;
@@ -112,8 +113,14 @@
     }
 
     .d4p-group-inner {
-        padding: 15px;
+        padding: 1.5em;
         text-align: left;
+        font-size: 15px;
+        line-height: 1.6;
+
+        p {
+            font-size: 1em;
+        }
 
         > *:first-child {
             margin-top: 0;

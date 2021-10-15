@@ -17,11 +17,29 @@
                 wp.dev4press.admin.panels.settings.run();
             }
 
+            if (d4plib_admin_data.page.panel === 'features') {
+                wp.dev4press.admin.panels.features.run();
+            }
+
             $(window).on("load resize orientationchange", function() {
                 wp.dev4press.admin.components.scroller.resize();
             });
         },
         panels: {
+            features: {
+                run: function() {
+                    $(document).on("change", ".d4p-feature-box ._activation input", function() {
+                        var active = $(this).is(":checked"),
+                            feature = $(this).closest(".d4p-feature-box");
+
+                        if (active) {
+                            feature.addClass("_is-active");
+                        } else {
+                            feature.removeClass("_is-active");
+                        }
+                    });
+                }
+            },
             settings: {
                 run: function() {
                     wp.dev4press.admin.settings.init();
