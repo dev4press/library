@@ -56,32 +56,39 @@
         .d4p-content {
             .d4p-cards-wrapper {
                 width: 100%;
-                max-width: 1195px;
+                max-width: 1200px;
+                display: flex;
+                flex-wrap: wrap;
+                margin: -1em;
+
+                .d4p-group {
+                    &.d4p-dashboard-card {
+                        flex: 1 1 calc(50% - 2em);
+                        margin: 1em;
+                    }
+
+                    &.d4p-card-double {
+                        flex: 1 0 100%;
+                        max-width: calc(100% - 2em);
+                    }
+                }
+
+                @media screen and (max-width: 1200px) {
+                    flex-direction: column;
+
+                    .d4p-group {
+                        &.d4p-dashboard-card {
+                            max-width: calc(100% - 2em);
+                        }
+                    }
+                }
             }
 
             .d4p-group {
                 &.d4p-dashboard-card {
                     display: block;
-                    width: calc((100% - 15px) / 2);
-                    max-width: 590px;
-                    margin: 0 0 15px;
-                    clear: none;
-
-                    &:nth-child(odd) {
-                        margin-right: 15px;
-                    }
-
-                    &.d4p-card-basic {
-                        float: none;
-                        width: 100%;
-                        max-width: 800px;
-                    }
 
                     &.d4p-card-double {
-                        float: none;
-                        width: 100%;
-                        max-width: 1195px;
-
                         .d4p-group-inner {
                             font-size: 105%;
                         }
@@ -98,7 +105,7 @@
                         hr {
                             margin: 15px 0;
                             border: 0;
-                            border-top: 1px solid #ddd;
+                            border-top: 1px solid #DDD;
                         }
 
                         ul {
