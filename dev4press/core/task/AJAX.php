@@ -27,7 +27,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v37\Core\Task;
 
 use Dev4Press\v37\Core\Quick\WPR;
-use function Dev4Press\v37\Functions\WP\json_die;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

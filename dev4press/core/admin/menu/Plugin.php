@@ -4,7 +4,6 @@ namespace Dev4Press\v37\Core\Admin\Menu;
 
 use Dev4Press\v37\Core\Admin\Plugin as BasePlugin;
 use Dev4Press\v37\Core\Quick\Sanitize;
-use function Dev4Press\v37\Functions\sanitize_slug;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -28,7 +28,6 @@ namespace Dev4Press\v37\Core\Plugins;
 
 use Dev4Press\v37\API\Store;
 use Dev4Press\v37\Core\Quick\WPR;
-use function Dev4Press\v37\Functions\WP\is_classicpress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -2,7 +2,6 @@
 
 use Dev4Press\v37\Core\Quick\Sanitize;
 use function Dev4Press\v37\Functions\panel;
-use function Dev4Press\v37\Functions\sanitize_slug;
 
 $_message = '';
 $_color   = 'success';

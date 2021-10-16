@@ -6,7 +6,6 @@ use Dev4Press\v37\Core\Admin\Menu\Plugin as BasePlugin;
 use Dev4Press\v37\Core\Quick\Sanitize;
 use Dev4Press\v37\Core\UI\Enqueue;
 use Dev4Press\v37\WordPress;
-use function Dev4Press\v37\Functions\sanitize_slug;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

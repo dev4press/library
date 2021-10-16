@@ -29,8 +29,6 @@ namespace Dev4Press\v37\Core\Plugins;
 use Dev4Press\v37\Core\Quick\Sanitize;
 use Dev4Press\v37\Core\Quick\WPR;
 use WP_Widget;
-use function Dev4Press\v37\Functions\WP\all_user_roles;
-use function Dev4Press\v37\Functions\WP\is_current_user_roles;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

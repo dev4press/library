@@ -2,7 +2,6 @@
 
 use Dev4Press\v37\Core\Quick\WPR;
 use Dev4Press\v37\Core\UI\Elements;
-use function Dev4Press\v37\Functions\WP\all_user_roles;
 
 ?>
 

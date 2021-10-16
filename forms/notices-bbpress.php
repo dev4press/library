@@ -3,7 +3,6 @@
 use Dev4Press\v37\Core\Quick\URL;
 use Dev4Press\v37\Core\Quick\WPR;
 use function Dev4Press\v37\Functions\panel;
-use function Dev4Press\v37\Functions\url_campaign_tracking;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

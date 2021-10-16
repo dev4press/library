@@ -28,7 +28,6 @@ namespace Dev4Press\v37\Core\UI;
 
 use Dev4Press\v37\Core\Quick\Arr;
 use Dev4Press\v37\Core\UI\Walker\CheckboxRadio;
-use function Dev4Press\v37\Functions\is_associative_array;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

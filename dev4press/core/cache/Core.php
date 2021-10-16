@@ -26,8 +26,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v37\Core\Cache;
 
-use function Dev4Press\v37\Functions\object_cache;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -46,32 +44,32 @@ abstract class Core {
 	}
 
 	public function add( $group, $key, $data ) : bool {
-		return object_cache()->add( $this->_key( $group, $key ), $data, $this->store );
+		return Store::instance()->add( $this->_key( $group, $key ), $data, $this->store );
 	}
 
 	public function set( $group, $key, $data ) : bool {
-		return object_cache()->set( $this->_key( $group, $key ), $data, $this->store );
+		return Store::instance()->set( $this->_key( $group, $key ), $data, $this->store );
 	}
 
 	public function get( $group, $key, $default = false ) : bool {
-		$obj = object_cache()->get( $this->_key( $group, $key ), $this->store );
+		$obj = Store::instance()->get( $this->_key( $group, $key ), $this->store );
 
 		return $obj === false ? $default : $obj;
 	}
 
 	public function delete( $group, $key ) : bool {
-		return object_cache()->delete( $this->_key( $group, $key ), $this->store );
+		return Store::instance()->delete( $this->_key( $group, $key ), $this->store );
 	}
 
 	public function in( $group, $key ) : bool {
-		return object_cache()->in( $this->_key( $group, $key ), $this->store );
+		return Store::instance()->in( $this->_key( $group, $key ), $this->store );
 	}
 
 	public function clear() {
-		object_cache()->flush( $this->store );
+		Store::instance()->flush( $this->store );
 	}
 
 	public function storage() : array {
-		return object_cache()->get_group( $this->store );
+		return Store::instance()->get_group( $this->store );
 	}
 }
