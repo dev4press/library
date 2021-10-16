@@ -1,4 +1,11 @@
-@import 'includes/_functions';
-@import 'includes/_variables';
+@import "includes/grid";
 
-@import 'components/_grid';
+@import "mixins/grid";
+@import "mixins/visibility";
+
+.core-grid {
+    margin: 0 -#{$gutter};
+
+    @import "elements/grid";
+    @import "elements/visibility";
+}

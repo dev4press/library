@@ -1,0 +1,330 @@
+.d4p-settings-section {
+    h4 {
+        background-color: #EEE;
+        color: #111;
+        margin: 0;
+        padding: .75em .75em .75em 1.5em;
+        font-size: 1em;
+        font-weight: 400;
+        letter-spacing: 1px;
+        border-bottom: 1px solid #DDD;
+        border-top: 1px solid #DDD;
+
+        span {
+            font-size: 1.2em;
+        }
+    }
+
+    &:first-child {
+        h4 {
+            border-top: 0;
+        }
+    }
+
+    &.d4p-switch-section-is-hidden {
+        display: none;
+    }
+
+    .d4p-settings-table {
+        margin: 0;
+
+        > tbody {
+            > tr {
+                > th,
+                > td {
+                    text-align: left;
+                    vertical-align: top;
+                    border-bottom: 1px solid #BBB;
+                    line-height: 1.8;
+                }
+
+                > th {
+                    width: 250px;
+                    padding: 1.5em;
+                    font-size: 1em;
+
+                    span {
+                        font-size: 1.2em;
+                        font-weight: 400;
+                    }
+                }
+
+                > td {
+                    padding: 1.5em 1.5em 1.5em 0;
+                }
+
+                &.d4p-switch-option-is-hidden {
+                    display: none;
+                }
+
+                &:last-child {
+                    > th,
+                    > td {
+                        border-bottom: 0;
+                    }
+                }
+            }
+        }
+
+        .d4p-setting-wrapper {
+            input[type=number],
+            input[type=text],
+            input[type=email],
+            input[type=password] {
+                padding: .3em .8em;
+                border-radius: 5px;
+                width: 100%;
+            }
+
+            label {
+                line-height: 1.8;
+            }
+
+            input[type=checkbox] {
+                width: 18px;
+                height: 18px;
+                margin-top: -.25rem;
+                margin-right: .5em;
+            }
+
+            input[type=number] {
+                width: 40%;
+            }
+
+            select {
+                max-width: 100%;
+            }
+
+            .d4p-check-uncheck {
+                font-size: 1em;
+                padding: 0 0 .5em;
+                margin: 0 0 .5em;
+                border-bottom: 1px dotted #DDD;
+
+                a {
+                    text-decoration: none;
+
+                    &.d4p-check-all {
+                        margin-right: 10px;
+                    }
+
+                    i {
+                        vertical-align: -2px;
+                    }
+                }
+            }
+
+            .d4p-content-wrapper {
+                border: 1px solid #DDD;
+                padding: 5px 10px;
+                max-height: 160px;
+                overflow: auto;
+
+                .d4p-wrapper-hierarchy {
+                    margin: 0;
+
+                    li {
+                        margin: 2px 0;
+                    }
+
+                    ul.children {
+                        margin-left: 12px;
+                    }
+                }
+            }
+
+            .d4p-description {
+                margin: 1em 0 0 0;
+                padding: 0;
+                display: block;
+                font-size: 14px;
+                font-style: italic;
+            }
+
+            &.d4p-setting-color {
+                .wp-color-result {
+                    height: 24px;
+                    padding-left: 36px;
+                    margin: 0 8px 0 0;
+                }
+
+                .wp-picker-container {
+                    input.wp-color-picker[type="text"] {
+                        height: 24px;
+                    }
+                }
+            }
+
+            &.d4p-setting-range_integer,
+            &.d4p-setting-range_absint,
+            &.d4p-setting-x_by_y {
+                input {
+                    width: 25%;
+                }
+            }
+
+            &.d4p-setting-checkboxes,
+            &.d4p-setting-radios {
+                label {
+                    display: block;
+                    margin: 0 0 4px;
+                }
+            }
+
+            &.d4p-setting-expandable_raw,
+            &.d4p-setting-expandable_text {
+                ol {
+                    list-style: none;
+                    margin: 0 0 .5em;
+                }
+
+                .exp-text-element {
+                    a {
+                        margin-left: 10px;
+                        text-align: center;
+                        height: 30px;
+                        line-height: 28px;
+                    }
+                }
+            }
+
+            &.d4p-setting-css_size {
+                input {
+                    width: 100px;
+                    vertical-align: top;
+                }
+
+                select {
+                    width: 60px;
+                    vertical-align: top;
+                    margin-left: 10px;
+                }
+            }
+
+            &.d4p-setting-expandable_pairs {
+                > div {
+                    border: 1px solid #CCC;
+                    padding: 10px;
+                    margin: 0 0 10px;
+
+                    a {
+                        font-size: .9em;
+                    }
+
+                    input {
+                        margin: 0 0 5px;
+                    }
+                }
+            }
+        }
+
+        .d4p-settings-item-error {
+            th {
+                border-left: 3px solid #D00 !important;
+                padding: 10px !important;
+                background-color: #FFEBEB;
+            }
+
+            td {
+                padding: 10px 10px 10px 0 !important;
+                background-color: #FFEBEB;
+            }
+        }
+    }
+}
+
+details.d4p-section-details {
+    margin: 10px 0 0;
+    border: 1px solid #DDD;
+
+    summary {
+        background-color: #DDD;
+        padding: 5px;
+        color: #222;
+        cursor: pointer;
+    }
+
+    > div {
+        padding: 10px;
+        overflow: auto;
+        height: 160px;
+
+        .form-table {
+            margin: 0;
+
+            > tbody {
+                > tr {
+                    > * {
+                        line-height: 22px;
+                        width: auto;
+                        padding: 2px 0;
+                    }
+                }
+            }
+
+            code {
+                font-style: normal;
+            }
+        }
+    }
+}
+
+.dev4press-info-default-value {
+    background-color: #EEE;
+    font-family: monospace;
+    color: #111;
+    display: inline-block;
+    padding: 1px 7px;
+}
+
+.d4p-panel-group-break {
+    border-bottom: 2px solid #555;
+    margin: 0 0 2em;
+    padding: 0;
+
+    h2 {
+        background-color: #555;
+        color: #FFF;
+        display: inline-block;
+        font-size: 1.5em;
+        font-weight: 300;
+        line-height: 1.7;
+        letter-spacing: 1px;
+        border-radius: 5px 5px 0 0;
+        margin: 0;
+        padding: .5em 1em .5em 1em;
+
+        i {
+            margin: 0 7px 0 0;
+            font-size: 18px;
+        }
+    }
+}
+
+.d4p-group-separator {
+    margin: 0;
+    float: left;
+    text-align: left;
+    max-width: 800px;
+    width: 100%;
+    clear: both;
+    overflow: auto;
+
+    h3 {
+        border-bottom: 2px solid #CCC;
+        text-transform: uppercase;
+        margin: 0 0 30px;
+        font-size: 22px;
+        line-height: 24px;
+
+        > span {
+            padding: 0 15px 2px;
+            position: relative;
+            top: 12px;
+            background: #CCC;
+            color: #111;
+            font-weight: bold;
+            margin: 0 0 0 30px;
+        }
+    }
+}

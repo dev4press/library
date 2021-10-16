@@ -78,7 +78,7 @@ class Render {
 			} else {
 				$args = $obj['args'] ?? array();
 
-				$classes = array( 'd4p-group', 'd4p-group-' . $group );
+				$classes = array( 'd4p-group', 'd4p-group-with-settings', 'd4p-group-' . $group );
 
 				if ( isset( $args['hidden'] ) && $args['hidden'] ) {
 					$classes[] = 'd4p-hidden-group';

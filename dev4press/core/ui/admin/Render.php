@@ -59,7 +59,7 @@ class Render {
 
 	public function settings_break( $label, $icon = '' ) : string {
 		$break = '<div class="d4p-feature-break">';
-		$break .= '<h1 id="settings-break-' . sanitize_key( $label ) . '">' . $this->icon( $icon ) . $label . '</h1>';
+		$break .= '<h2 id="settings-break-' . sanitize_key( $label ) . '">' . $this->icon( $icon ) . $label . '</h2>';
 		$break .= '</div>';
 
 		return $break;

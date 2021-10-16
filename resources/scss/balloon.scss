@@ -1,5 +1,5 @@
 @import "includes/variables";
-@import "includes/mixins";
+@import "mixins/balloon";
 
 :root {
     --balloon-border-radius: #{$balloon-radius};

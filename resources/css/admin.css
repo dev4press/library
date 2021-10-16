@@ -271,6 +271,144 @@
   min-width: 160px;
 }
 
+.d4p-group-divider {
+  margin: 10px 0 15px;
+  float: left;
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  clear: both;
+  font-size: 2em;
+  overflow: auto;
+  line-height: normal;
+  padding: 5px 0 0;
+  border-top: 2px solid #DDD;
+}
+
+.d4p-options-panel {
+  background: #FFF;
+  border: 1px solid #DDD;
+  margin: 0 15px 15px 0;
+  padding: 15px;
+  float: left;
+  text-align: center;
+  width: 400px;
+}
+.d4p-options-panel i {
+  float: left;
+  font-size: 5em;
+  margin-right: 15px;
+  text-align: center;
+  width: 1em;
+}
+.d4p-options-panel i.d4p-icon-fw {
+  width: 1.28571429em;
+}
+.d4p-options-panel h5 {
+  margin: 0 0 10px 85px;
+  padding: 0 0 5px;
+  text-align: left;
+  font-size: 20px;
+  border-bottom: 1px solid #DDD;
+}
+.d4p-options-panel div {
+  text-align: right;
+  margin: 0 0 0 85px;
+}
+.d4p-options-panel div span {
+  float: left;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+.d4p-options-panel div a.button-primary {
+  padding: 0 20px 1px;
+}
+
+.d4p-group {
+  background: #FFF;
+  border: 1px solid #BBB;
+  border-radius: 5px;
+  margin: 0 0 2em;
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+}
+.d4p-group h3 {
+  margin: 0;
+  background: #E0E0E0;
+  color: #111;
+  border-bottom: 1px solid #BBB;
+  text-align: left;
+  padding: 0.75em 1em;
+  line-height: 1.4;
+  font-size: 1.4em;
+  font-weight: 400;
+  vertical-align: top;
+  border-radius: 5px 5px 0 0;
+}
+.d4p-group h3 i {
+  float: right;
+  cursor: pointer;
+}
+.d4p-group h3 textarea {
+  height: 160px;
+}
+.d4p-group h3 .d4p-kb-group {
+  float: right;
+  background: #C00;
+  color: #FFF;
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-size: 14px;
+}
+.d4p-group.d4p-group-tools label {
+  display: block;
+  line-height: 1.8;
+}
+.d4p-group.d4p-hidden-group {
+  display: none;
+}
+.d4p-group .d4p-group-inner {
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.d4p-group .d4p-group-inner p {
+  font-size: 1em;
+  line-height: 1.7;
+}
+.d4p-group:not(.d4p-group-with-settings) .d4p-group-inner {
+  padding: 1.5em;
+}
+.d4p-group:not(.d4p-group-with-settings) .d4p-group-inner > *:first-child {
+  margin-top: 0;
+}
+.d4p-group:not(.d4p-group-with-settings) .d4p-group-inner > *:last-child {
+  margin-bottom: 0;
+}
+
+.d4p-group-error {
+  border-color: #D00;
+}
+.d4p-group-error h3 {
+  background: #D00;
+  color: #FFF;
+}
+.d4p-group-error .d4p-group-inner {
+  text-align: left;
+}
+.d4p-group-error .d4p-group-inner p {
+  margin-top: 0;
+  font-weight: bold;
+}
+.d4p-group-error .d4p-group-inner ul {
+  margin: 0;
+  list-style: inside;
+}
+
 .d4p-update-info {
   float: left;
 }
@@ -602,141 +740,6 @@
   text-shadow: 0 -1px 1px #900, 1px 0 1px #900, 0 1px 1px #900, -1px 0 1px #900;
 }
 
-.d4p-group-divider {
-  margin: 10px 0 15px;
-  float: left;
-  text-align: center;
-  max-width: 800px;
-  width: 100%;
-  clear: both;
-  font-size: 2em;
-  overflow: auto;
-  line-height: normal;
-  padding: 5px 0 0;
-  border-top: 2px solid #DDD;
-}
-
-.d4p-options-panel {
-  background: #FFF;
-  border: 1px solid #DDD;
-  margin: 0 15px 15px 0;
-  padding: 15px;
-  float: left;
-  text-align: center;
-  width: 400px;
-}
-.d4p-options-panel i {
-  float: left;
-  font-size: 5em;
-  margin-right: 15px;
-  text-align: center;
-  width: 1em;
-}
-.d4p-options-panel i.d4p-icon-fw {
-  width: 1.28571429em;
-}
-.d4p-options-panel h5 {
-  margin: 0 0 10px 85px;
-  padding: 0 0 5px;
-  text-align: left;
-  font-size: 20px;
-  border-bottom: 1px solid #DDD;
-}
-.d4p-options-panel div {
-  text-align: right;
-  margin: 0 0 0 85px;
-}
-.d4p-options-panel div span {
-  float: left;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 28px;
-  text-transform: uppercase;
-}
-.d4p-options-panel div a.button-primary {
-  padding: 0 20px 1px;
-}
-
-.d4p-group {
-  background: #FFF;
-  border: 1px solid #BBB;
-  border-radius: 5px;
-  margin: 0 0 2em;
-  text-align: center;
-  max-width: 800px;
-  width: 100%;
-}
-.d4p-group h3 {
-  margin: 0;
-  background: #E0E0E0;
-  color: #111;
-  border-bottom: 1px solid #BBB;
-  text-align: left;
-  padding: 0.75em 1em;
-  line-height: 1.4;
-  font-size: 1.4em;
-  font-weight: 400;
-  vertical-align: top;
-  border-radius: 5px 5px 0 0;
-}
-.d4p-group h3 i {
-  float: right;
-  cursor: pointer;
-}
-.d4p-group h3 textarea {
-  height: 160px;
-}
-.d4p-group h3 .d4p-kb-group {
-  float: right;
-  background: #C00;
-  color: #FFF;
-  padding: 2px 8px;
-  border-radius: 2px;
-  text-decoration: none;
-  font-size: 14px;
-}
-.d4p-group.d4p-group-tools label {
-  display: block;
-  line-height: 1.8;
-}
-.d4p-group.d4p-hidden-group {
-  display: none;
-}
-.d4p-group .d4p-group-inner {
-  padding: 1.5em;
-  text-align: left;
-  font-size: 15px;
-  line-height: 1.6;
-}
-.d4p-group .d4p-group-inner p {
-  font-size: 1em;
-}
-.d4p-group .d4p-group-inner > *:first-child {
-  margin-top: 0;
-}
-.d4p-group .d4p-group-inner > *:last-child {
-  margin-bottom: 0;
-}
-
-.d4p-group-error {
-  border-color: #D00;
-}
-.d4p-group-error h3 {
-  background: #D00;
-  color: #FFF;
-}
-.d4p-group-error .d4p-group-inner {
-  text-align: left;
-}
-.d4p-group-error .d4p-group-inner p {
-  margin-top: 0;
-  font-weight: bold;
-}
-.d4p-group-error .d4p-group-inner ul {
-  margin: 0;
-  list-style: inside;
-}
-
 .d4p-wrap.d4p-with-table .tablenav {
   height: auto;
   margin: 10px 0;
@@ -756,17 +759,6 @@
 
 .d4p-field-unit {
   margin-left: 8px;
-}
-
-.d4p-panel-buttons input.button-primary {
-  font-size: 18px;
-  font-weight: bold;
-  height: 44px;
-  width: 100%;
-}
-
-.d4plib-button-inner {
-  margin: 0 5px 0 0 !important;
 }
 
 .d4plib-button-action {
