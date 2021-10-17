@@ -170,12 +170,6 @@ class Resources {
 				'ext'  => 'css',
 				'min'  => true
 			),
-			'responsive' => array(
-				'path' => 'css/',
-				'file' => 'responsive',
-				'ext'  => 'css',
-				'min'  => true
-			),
 			'admin'      => array(
 				'path' => 'css/',
 				'file' => 'admin',

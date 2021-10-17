@@ -26,13 +26,19 @@ if ( ! empty( $_subpanel ) ) {
 
 ?>
 <div class="<?php echo join( ' ', $_classes ); ?>">
-    <h1><?php printf( __( "Welcome to %s&nbsp;%s", "d4plib" ), panel()->a()->title(), panel()->a()->settings()->i()->version ); ?></h1>
-    <p class="d4p-about-text">
-		<?php echo panel()->a()->settings()->i()->description(); ?>
-    </p>
-    <div class="d4p-about-badge" style="background-color: <?php echo panel()->a()->settings()->i()->color(); ?>;">
-		<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin ); ?>
-		<?php printf( __( "Version %s", "d4plib" ), panel()->a()->settings()->i()->version ); ?>
+    <div class="d4p-about-head-wrapper">
+        <div class="d4p-about-information">
+            <h1><?php printf( __( "Welcome to %s&nbsp;%s", "d4plib" ), panel()->a()->title(), panel()->a()->settings()->i()->version ); ?></h1>
+            <p class="d4p-about-text">
+				<?php echo panel()->a()->settings()->i()->description(); ?>
+            </p>
+        </div>
+        <div class="d4p-about-badge">
+            <div class="d4p-about-badge-inner" style="background-color: <?php echo panel()->a()->settings()->i()->color(); ?>;">
+				<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin ); ?>
+				<?php printf( __( "Version %s", "d4plib" ), panel()->a()->settings()->i()->version ); ?>
+            </div>
+        </div>
     </div>
 
     <h2 class="nav-tab-wrapper wp-clearfix">

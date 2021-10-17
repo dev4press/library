@@ -307,8 +307,7 @@ abstract class Plugin {
 				              ->css( 'shared' )
 				              ->css( 'grid' )
 				              ->css( 'admin' )
-				              ->css( 'options' )
-				              ->css( 'responsive' );
+				              ->css( 'options' );
 			}
 
 			if ( $this->enqueue->is_rtl() ) {

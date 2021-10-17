@@ -25,16 +25,12 @@ class PanelAbout extends Panel {
 				'title' => __( "Info", "d4plib" ),
 				'icon'  => ''
 			),
-			'system'       => array(
-				'title' => __( "System", "d4plib" ),
-				'icon'  => ''
-			),
 			'changelog'    => array(
 				'title' => __( "Changelog", "d4plib" ),
 				'icon'  => ''
 			),
-			'translations' => array(
-				'title' => __( "Translations", "d4plib" ),
+			'system'       => array(
+				'title' => __( "System", "d4plib" ),
 				'icon'  => ''
 			),
 			'dev4press'    => array(
