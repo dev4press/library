@@ -35,7 +35,6 @@
             padding: 20px 10px;
             display: inline-block;
             width: 140px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 
             i {
                 font-size: 90px;
@@ -53,8 +52,8 @@
         }
 
         .d4p-about-minor {
+            border-bottom: 1px solid var(--d4p-color-main-border);
             margin: 0 0 40px;
-            border-bottom: 1px solid #DDD;
 
             h3 {
                 font-size: 18px;

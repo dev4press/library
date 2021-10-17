@@ -1,15 +1,15 @@
 .d4p-wrap,
 .d4p-wrap * {
+    font-size: #{$layout-font-size};
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    font-size: #{$layout-font-size};
 }
 
 .d4p-return-to-top {
+    border-top: 1px dotted #{$color-main-border};
     text-align: right;
     margin: 15px 0 0;
-    border-top: 1px dotted #{$color-main-border};
     padding: 5px 0 0;
     text-transform: lowercase;
 
@@ -27,15 +27,15 @@
     }
 
     .d4p-notice-info {
-        background: #FFF;
-        border-left: 4px solid #00A0D2;
+        border-left: 4px solid var(--d4p-color-layout-accent);
+        background: var(--d4p-color-main-background);
         padding: 12px;
         margin: 40px 0 0 0;
 
         blockquote {
+            border-left: 2px solid var(--d4p-color-layout-border);
             margin: 15px 0;
             padding-left: 5px;
-            border-left: 2px solid #BBB;
             font-style: italic;
         }
     }
@@ -78,8 +78,8 @@
             flex: 1 1 100%;
 
             a {
+                color: var(--d4p-color-layout-accent);
                 text-decoration: none;
-                color: #0074A2;
             }
 
             ul {
@@ -104,12 +104,12 @@
                     }
 
                     > a {
+                        border-radius: var(--d4p-layout-main-border-radius);
+                        border: 1px solid var(--d4p-color-main-border);
+                        background-color: var(--d4p-color-main-background);
                         position: relative;
                         display: inline-block;
                         outline: none;
-                        background-color: #FFF;
-                        border: 1px solid #BBB;
-                        border-radius: var(--d4p-layout-main-border-radius);
                         font-size: 15px;
                         line-height: 1.7;
                         padding: .5em 1em;
@@ -123,13 +123,13 @@
                     }
 
                     ul {
+                        border: 1px solid var(--d4p-color-main-border);
+                        border-radius: var(--d4p-layout-main-border-radius);
+                        background-color: var(--d4p-color-main-background);
                         display: none;
-                        background-color: #FFF;
-                        border: 1px solid #BBB;
                         font-size: 15px;
                         line-height: 2;
                         padding: 5px 0;
-                        border-radius: var(--d4p-layout-main-border-radius);
                         position: absolute;
                         top: 40px;
                         width: 250px;
@@ -140,15 +140,15 @@
                             padding: 0 10px;
 
                             &:hover {
-                                background: #0074A2;
+                                background: var(--d4p-color-layout-accent);
                                 color: #FFF;
                             }
                         }
 
                         .d4p-nav-current {
+                            background: var(--d4p-color-main-text);
                             display: block;
                             padding: 0 10px;
-                            background: #444;
                             color: #FFF;
 
                             i.d4p-icon {
@@ -172,9 +172,9 @@
             }
 
             .d4p-content {
-                flex: 1 1 100%;
-                padding: 1.5em 0 1.5em 1.5em;
                 border-left: 1px solid var(--d4p-color-layout-border);
+                padding: 1.5em 0 1.5em 1.5em;
+                flex: 1 1 100%;
             }
 
             @media screen and (max-width: 640px) {
@@ -186,8 +186,8 @@
                 }
 
                 .d4p-content {
-                    padding: 2em 0;
                     border-top: 1px solid var(--d4p-color-layout-border);
+                    padding: 2em 0;
                     border-left: 0;
                 }
             }
@@ -214,14 +214,14 @@
             text-align: center;
 
             > ._icon {
-                background-color: var(--d4p-color-icon-background);
+                background-color: var(--d4p-color-sidebar-icon-background);
                 border-radius: var(--d4p-layout-main-border-radius);
                 padding: 1em;
                 display: inline-block;
                 line-height: 1;
 
                 i {
-                    color: var(--d4p-color-icon-text);
+                    color: var(--d4p-color-sidebar-icon-text);
                     font-size: 48px;
                 }
             }
@@ -261,10 +261,10 @@
         }
 
         .d4p-panel-mark {
+            border-top: 1px solid var(--d4p-color-main-border);
             position: relative;
             margin: 15px 0 0;
             padding: 15px 0 0;
-            border-top: 1px solid #BBB;
 
             p {
                 text-align: center;
@@ -290,10 +290,10 @@
 
             .button-secondary,
             .button-primary {
+                border-radius: var(--d4p-layout-main-border-radius);
                 width: 100%;
                 font-weight: 300;
                 text-align: center;
-                border-radius: var(--d4p-layout-main-border-radius);
             }
 
             .button-primary {

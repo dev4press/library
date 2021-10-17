@@ -18,6 +18,7 @@ $layout-font-size: 14px;
 
 // Colors //
 $color-layout-border: #888 !default;
+$color-layout-accent: #004185 !default;
 $color-main-border: #BBB !default;
 $color-main-background: #FFF !default;
 $color-main-text: #333 !default;
@@ -27,8 +28,10 @@ $color-section-background: #F4F4F4 !default;
 $color-section-text: #111 !default;
 $color-header-background: #E4E4E4 !default;
 $color-header-text: #000 !default;
-$color-icon-background: #F4F4F4 !default;
-$color-icon-text: #555 !default;
+$color-sidebar-icon-background: #F4F4F4 !default;
+$color-sidebar-icon-text: #004185 !default;
+$color-feature-icon-background: #F4F4F4 !default;
+$color-feature-icon-text: #555 !default;
 
 // Layout //
 $layout-main-border-radius: 5px !default;

@@ -14,7 +14,8 @@ use function Dev4Press\v37\Functions\panel;
 
 			$_classes = array(
 				'd4p-feature-box',
-				'feature-' . $subpanel
+				'feature-' . $subpanel,
+                '_is-feature'
 			);
 
 			if ( $obj['active'] ) {

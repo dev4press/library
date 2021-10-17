@@ -14,8 +14,8 @@ use function Dev4Press\v37\Functions\panel;
 
 			$_classes = array(
 				'd4p-feature-box',
-				'tool-' . $subpanel,
-				'_is-tool'
+				'settings-' . $subpanel,
+				'_is-settings'
 			);
 
 			$url = panel()->a()->panel_url( 'settings', $subpanel );
