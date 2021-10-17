@@ -57,25 +57,19 @@ class Render {
 		return sprintf( $icon, $class );
 	}
 
+	public function settings_group_break( $label, $icon = '' ) : string {
+		$break = '<div class="d4p-feature-group-break">';
+		$break .= '<h3 id="settings-group-break-' . sanitize_key( $label ) . '">' . $this->icon( $icon ) . $label . '</h2>';
+		$break .= '</div>';
+
+		return $break;
+	}
+
 	public function settings_break( $label, $icon = '' ) : string {
 		$break = '<div class="d4p-feature-break">';
-		$break .= '<h2 id="settings-break-' . sanitize_key( $label ) . '">' . $this->icon( $icon ) . $label . '</h2>';
+		$break .= '<h2 id="settings-break-' . sanitize_key( $label ) . '">' . $this->icon( $icon ) . $label . '</h3>';
 		$break .= '</div>';
 
 		return $break;
-	}
-
-	public function settings_group_break( $label, $icon = '' ) : string {
-		$break = $this->div_break();
-		$break .= '<div class="d4p-panel-group-break d4p-clearfix">';
-		$break .= '<h2 id="settings-group-break-' . sanitize_key( $label ) . '">' . $this->icon( $icon ) . $label . '</h2>';
-		$break .= '</div>';
-		$break .= $this->div_break();
-
-		return $break;
-	}
-
-	public function div_break() : string {
-		return '<div style="clear: both"></div>';
 	}
 }

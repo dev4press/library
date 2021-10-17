@@ -237,28 +237,6 @@ details.d4p-section-details > div .form-table code {
   padding: 1px 7px;
 }
 
-.d4p-panel-group-break {
-  border-bottom: 2px solid #555;
-  margin: 0 0 2em;
-  padding: 0;
-}
-.d4p-panel-group-break h2 {
-  border-radius: var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius) 0 0;
-  background-color: #555;
-  color: #FFF;
-  display: inline-block;
-  font-size: 1.5em;
-  font-weight: 300;
-  line-height: 1.7;
-  letter-spacing: 1px;
-  margin: 0;
-  padding: 0.5em 1em 0.5em 1em;
-}
-.d4p-panel-group-break h2 i {
-  margin: 0 7px 0 0;
-  font-size: 18px;
-}
-
 .d4p-group-separator {
   margin: 0;
   float: left;
@@ -283,6 +261,50 @@ details.d4p-section-details > div .form-table code {
   color: #111;
   font-weight: bold;
   margin: 0 0 0 30px;
+}
+
+.d4p-feature-group-break {
+  margin: 0 0 2em;
+  padding: 0;
+  border-bottom: 1px solid #555;
+}
+.d4p-feature-group-break h3 {
+  border-radius: var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius) 0 0;
+  background-color: #555;
+  color: #FFF;
+  display: inline-block;
+  font-size: 1.3em;
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0.4em 1.2em;
+}
+.d4p-feature-group-break h3 i {
+  margin: 0 7px 0 0;
+  font-size: 16px;
+}
+
+.d4p-feature-break {
+  margin: 0 0 2em;
+  padding: 0;
+  border-bottom: 2px solid #555;
+}
+.d4p-feature-break h2 {
+  border-radius: var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius) 0 0;
+  background-color: #555;
+  color: #FFF;
+  display: inline-block;
+  font-size: 1.5em;
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0.5em 1em;
+}
+.d4p-feature-break h2 i {
+  margin: 0 7px 0 0;
+  font-size: 18px;
 }
 
 .d4p-features-wrapper {
@@ -418,23 +440,6 @@ details.d4p-section-details > div .form-table code {
 }
 .d4p-features-wrapper .d4p-feature-break {
   flex: 1 0 calc(100% - 2em);
-  border-bottom: 2px solid #555;
   margin: 1em;
   padding: 0;
-}
-.d4p-features-wrapper .d4p-feature-break h2 {
-  border-radius: var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius) 0 0;
-  background-color: #555;
-  color: #FFF;
-  display: inline-block;
-  font-size: 1.5em;
-  font-weight: 300;
-  line-height: 1.7;
-  letter-spacing: 1px;
-  margin: 0;
-  padding: 0.5em 1em 0.5em 1em;
-}
-.d4p-features-wrapper .d4p-feature-break h2 i {
-  margin: 0 7px 0 0;
-  font-size: 18px;
 }
