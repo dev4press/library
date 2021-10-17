@@ -66,7 +66,29 @@
             }
         }
 
+        @media screen and (max-width: 840px) {
+            > tbody {
+                > tr {
+                    > th,
+                    > td {
+                        width: 100%;
+                        padding: 1.5em;
+                        display: block;
+                    }
+
+                    > th {
+                        border-bottom: 0;
+                        padding-bottom: 0;
+                    }
+                }
+            }
+        }
+
         .d4p-setting-wrapper {
+            label {
+                line-height: 1.8;
+            }
+
             input[type=number],
             input[type=text],
             input[type=email],
@@ -76,15 +98,13 @@
                 width: 100%;
             }
 
-            label {
-                line-height: 1.8;
-            }
-
             input[type=number] {
                 width: 40%;
             }
 
             select {
+                border-radius: var(--d4p-layout-main-border-radius);
+                padding: .3em 2em .3em .8em;
                 max-width: 100%;
             }
 
@@ -109,7 +129,7 @@
 
             .d4p-content-wrapper {
                 border: 1px solid #DDD;
-                padding: 5px 10px;
+                padding: .5em 1em;
                 max-height: 160px;
                 overflow: auto;
 
@@ -117,11 +137,11 @@
                     margin: 0;
 
                     li {
-                        margin: 2px 0;
+                        margin: .3em 0;
                     }
 
                     ul.children {
-                        margin-left: 12px;
+                        margin-left: 1em;
                     }
                 }
             }
@@ -130,21 +150,24 @@
                 margin: 1em 0 0 0;
                 padding: 0;
                 display: block;
-                font-size: 14px;
+                font-size: 1em;
                 font-style: italic;
             }
 
             &.d4p-setting-color {
-                .wp-color-result {
-                    height: 24px;
-                    padding-left: 36px;
-                    margin: 0 8px 0 0;
+                .wp-picker-input-wrap {
+                    input[type=text] {
+                        width: 5rem;
+                    }
+
+                    input[type=button] {
+                        line-height: 3.1em;
+                    }
                 }
 
-                .wp-picker-container {
-                    input.wp-color-picker[type="text"] {
-                        height: 24px;
-                    }
+                .wp-color-result {
+                    padding-left: 4em;
+                    margin: 0 1em 0 0;
                 }
             }
 
@@ -182,15 +205,15 @@
             }
 
             &.d4p-setting-css_size {
-                input {
-                    width: 100px;
+                input[type=number] {
+                    width: 80px;
                     vertical-align: top;
+                    margin-right: .5em;
                 }
 
                 select {
-                    width: 60px;
+                    width: 80px;
                     vertical-align: top;
-                    margin-left: 10px;
                 }
             }
 
@@ -206,6 +229,52 @@
 
                     input {
                         margin: 0 0 5px;
+                    }
+                }
+            }
+
+            @media screen and (max-width: 840px) {
+                input[type=number] {
+                    width: 60%;
+                }
+
+                .d4p-check-uncheck {
+                    font-size: 1.1em;
+                }
+
+                &.d4p-setting-css_size {
+                    input[type=number] {
+                        width: 50%;
+                    }
+
+                    select {
+                        display: inline;
+                    }
+                }
+            }
+
+            @media screen and (max-width: 768px) {
+                &.d4p-setting-color {
+                    .wp-picker-input-wrap {
+                        input[type=button] {
+                            line-height: 2.8em;
+                        }
+                    }
+
+                    .wp-color-result {
+                        line-height: 2.8em;
+                    }
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                input[type=number] {
+                    width: 100%;
+                }
+
+                &.d4p-setting-css_size {
+                    input[type=number] {
+                        width: 50%;
                     }
                 }
             }

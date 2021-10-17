@@ -303,7 +303,12 @@ abstract class Plugin {
 			if ( $this->enqueue_packed ) {
 				$this->enqueue->css( 'pack' );
 			} else {
-				$this->enqueue->css( 'font' )->css( 'grid' )->css( 'admin' )->css( 'options' )->css( 'balloon' )->css( 'responsive' );
+				$this->enqueue->css( 'font' )
+				              ->css( 'shared' )
+				              ->css( 'grid' )
+				              ->css( 'admin' )
+				              ->css( 'options' )
+				              ->css( 'responsive' );
 			}
 
 			if ( $this->enqueue->is_rtl() ) {

@@ -47,6 +47,21 @@
 .d4p-settings-section .d4p-settings-table > tbody > tr:last-child > td {
   border-bottom: 0;
 }
+@media screen and (max-width: 840px) {
+  .d4p-settings-section .d4p-settings-table > tbody > tr > th,
+.d4p-settings-section .d4p-settings-table > tbody > tr > td {
+    width: 100%;
+    padding: 1.5em;
+    display: block;
+  }
+  .d4p-settings-section .d4p-settings-table > tbody > tr > th {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper label {
+  line-height: 1.8;
+}
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number],
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=text],
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=email],
@@ -55,13 +70,12 @@
   padding: 0.3em 0.8em;
   width: 100%;
 }
-.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper label {
-  line-height: 1.8;
-}
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
   width: 40%;
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper select {
+  border-radius: var(--d4p-layout-main-border-radius);
+  padding: 0.3em 2em 0.3em 0.8em;
   max-width: 100%;
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck {
@@ -81,7 +95,7 @@
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-content-wrapper {
   border: 1px solid #DDD;
-  padding: 5px 10px;
+  padding: 0.5em 1em;
   max-height: 160px;
   overflow: auto;
 }
@@ -89,25 +103,27 @@
   margin: 0;
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-content-wrapper .d4p-wrapper-hierarchy li {
-  margin: 2px 0;
+  margin: 0.3em 0;
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-content-wrapper .d4p-wrapper-hierarchy ul.children {
-  margin-left: 12px;
+  margin-left: 1em;
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-description {
   margin: 1em 0 0 0;
   padding: 0;
   display: block;
-  font-size: 14px;
+  font-size: 1em;
   font-style: italic;
 }
-.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-color .wp-color-result {
-  height: 24px;
-  padding-left: 36px;
-  margin: 0 8px 0 0;
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-color .wp-picker-input-wrap input[type=text] {
+  width: 5rem;
 }
-.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-color .wp-picker-container input.wp-color-picker[type=text] {
-  height: 24px;
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-color .wp-picker-input-wrap input[type=button] {
+  line-height: 3.1em;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-color .wp-color-result {
+  padding-left: 4em;
+  margin: 0 1em 0 0;
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-range_integer input, .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-range_absint input, .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-x_by_y input {
   width: 25%;
@@ -126,14 +142,14 @@
   height: 30px;
   line-height: 28px;
 }
-.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-css_size input {
-  width: 100px;
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-css_size input[type=number] {
+  width: 80px;
   vertical-align: top;
+  margin-right: 0.5em;
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-css_size select {
-  width: 60px;
+  width: 80px;
   vertical-align: top;
-  margin-left: 10px;
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs > div {
   border: 1px solid #CCC;
@@ -145,6 +161,36 @@
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs > div input {
   margin: 0 0 5px;
+}
+@media screen and (max-width: 840px) {
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
+    width: 60%;
+  }
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck {
+    font-size: 1.1em;
+  }
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-css_size input[type=number] {
+    width: 50%;
+  }
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-css_size select {
+    display: inline;
+  }
+}
+@media screen and (max-width: 768px) {
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-color .wp-picker-input-wrap input[type=button] {
+    line-height: 2.8em;
+  }
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-color .wp-color-result {
+    line-height: 2.8em;
+  }
+}
+@media screen and (max-width: 480px) {
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
+    width: 100%;
+  }
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-css_size input[type=number] {
+    width: 50%;
+  }
 }
 .d4p-settings-section .d4p-settings-table .d4p-settings-item-error th {
   border-left: 3px solid #D00 !important;
