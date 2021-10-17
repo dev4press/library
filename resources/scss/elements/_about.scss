@@ -103,7 +103,8 @@
 
         .d4p-about-minor {
             border-bottom: 1px solid var(--d4p-color-main-border);
-            margin: 0 0 40px;
+            margin-bottom: 2em;
+            padding: 0 0 2em;
 
             h3 {
                 font-size: 18px;
@@ -292,14 +293,14 @@
         }
 
         .d4p-whatsnew-section {
-            margin: 0 0 40px;
-            padding: 0 0 40px;
-            border-bottom: 1px solid #DDD;
+            border-bottom: 1px solid var(--d4p-color-main-border);
+            margin-bottom: 2em;
+            padding: 0 0 2em;
 
             img {
+                border-radius: var(--d4p-layout-main-border-radius);
                 width: 100%;
                 height: auto;
-                box-shadow: 0 0 2px rgba(0, 0, 0, .64);
             }
 
             h3 {
@@ -326,22 +327,22 @@
             .d4p-layout-grid {
                 max-width: 800px;
                 width: 90%;
-                margin: 56px auto 0;
+                margin: 3em auto 0;
+                text-align: center;
 
                 h2 {
-                    font-size: 56px;
+                    font-size: 3.5em;
                     font-weight: 100;
-                    margin: 0 0 20px;
+                    margin: 0 0 .5em;
                     line-height: 1;
+                }
 
-                    p {
-                        font-size: 16px;
+                p {
+                    font-size: 1.1em;
 
-                        &.lead-description {
-                            font-size: 28px;
-                            font-weight: 300;
-                        }
-
+                    &.lead-description {
+                        font-size: 1.4em;
+                        font-weight: 300;
                     }
                 }
             }
