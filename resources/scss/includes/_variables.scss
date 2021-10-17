@@ -3,8 +3,6 @@ $font-name: "dev4press";
 $font-version: "3.7";
 $font-prefix: "d4p";
 $font-prefix-ctrl: "d4p-icon";
-
-// Typography //
 $font-size: 14px;
 
 // Balloon //
@@ -14,3 +12,24 @@ $balloon-base-size: 15px !default;
 $balloon-arrow-size: 10px !default;
 $balloon-move: 8px !default;
 $balloon-radius: 0px !default;
+
+// Typography //
+$layout-font-size: 14px;
+
+// Colors //
+$color-layout-border: #888 !default;
+$color-main-border: #BBB !default;
+$color-main-background: #FFF !default;
+$color-main-text: #333 !default;
+$color-sidebar-background: #F0F0F0 !default;
+$color-sidebar-text: #111 !default;
+$color-section-background: #F4F4F4 !default;
+$color-section-text: #111 !default;
+$color-header-background: #E4E4E4 !default;
+$color-header-text: #000 !default;
+$color-icon-background: #F4F4F4 !default;
+$color-icon-text: #555 !default;
+
+// Layout //
+$layout-main-border-radius: 5px !default;
+$layout-badge-border-radius: 2px !default;

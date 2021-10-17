@@ -1,14 +1,13 @@
-@charset "UTF-8";
 .d4p-settings-section h4 {
+  padding: 0.75em 0.75em 0.75em 1.5em;
+  border-bottom: 1px solid #DDD;
+  border-top: 1px solid #DDD;
   background-color: #EEE;
   color: #111;
   margin: 0;
-  padding: 0.75em 0.75em 0.75em 1.5em;
   font-size: 1em;
   font-weight: 400;
   letter-spacing: 1px;
-  border-bottom: 1px solid #DDD;
-  border-top: 1px solid #DDD;
 }
 .d4p-settings-section h4 span {
   font-size: 1.2em;
@@ -24,9 +23,9 @@
 }
 .d4p-settings-section .d4p-settings-table > tbody > tr > th,
 .d4p-settings-section .d4p-settings-table > tbody > tr > td {
+  border-bottom: 1px solid var(--d4p-color-main-border);
   text-align: left;
   vertical-align: top;
-  border-bottom: 1px solid #BBB;
   line-height: 1.8;
 }
 .d4p-settings-section .d4p-settings-table > tbody > tr > th {
@@ -52,18 +51,12 @@
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=text],
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=email],
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=password] {
+  border-radius: var(--d4p-layout-main-border-radius);
   padding: 0.3em 0.8em;
-  border-radius: 5px;
   width: 100%;
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper label {
   line-height: 1.8;
-}
-.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=checkbox] {
-  width: 18px;
-  height: 18px;
-  margin-top: -0.25rem;
-  margin-right: 0.5em;
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
   width: 40%;
@@ -204,6 +197,7 @@ details.d4p-section-details > div .form-table code {
   padding: 0;
 }
 .d4p-panel-group-break h2 {
+  border-radius: var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius) 0 0;
   background-color: #555;
   color: #FFF;
   display: inline-block;
@@ -211,7 +205,6 @@ details.d4p-section-details > div .form-table code {
   font-weight: 300;
   line-height: 1.7;
   letter-spacing: 1px;
-  border-radius: 5px 5px 0 0;
   margin: 0;
   padding: 0.5em 1em 0.5em 1em;
 }
@@ -257,7 +250,7 @@ details.d4p-section-details > div .form-table code {
   flex: 0 0 300px;
   background: #FFF;
   border: 1px solid #BBB;
-  border-radius: 5px;
+  border-radius: var(--d4p-layout-main-border-radius);
   margin: 1em;
   padding: 0;
   float: left;
@@ -286,7 +279,7 @@ details.d4p-section-details > div .form-table code {
   background-color: #F2F2F2;
   padding: 1em;
   display: inline-block;
-  border-radius: 5px;
+  border-radius: var(--d4p-layout-main-border-radius);
 }
 .d4p-features-wrapper .d4p-feature-box ._info ._icon i {
   font-size: 2em;
@@ -299,13 +292,14 @@ details.d4p-section-details > div .form-table code {
 }
 .d4p-features-wrapper .d4p-feature-box ._info ._description {
   font-size: 1em;
-  font-weight: 300;
+  font-weight: 400;
   margin: 0;
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl {
-  border-radius: 0 0 5px 5px;
-  border-top: 1px solid #BBB;
-  background: #F6F6F6;
+  border-radius: 0 0 var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius);
+  border-top: 1px solid var(--d4p-color-main-border);
+  background: var(--d4p-color-section-background);
+  color: var(--d4p-color-section-text);
   padding: 1em;
   display: flex;
 }
@@ -337,12 +331,12 @@ details.d4p-section-details > div .form-table code {
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox] + label:before {
   font-family: "dev4press";
   display: inline-block;
-  content: "";
+  content: "\f1ab";
   font-size: 2em;
   line-height: 1;
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox]:checked + label:before {
-  content: "";
+  content: "\f1ac";
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._settings a {
   background: none;
@@ -377,12 +371,13 @@ details.d4p-section-details > div .form-table code {
   color: #00A32A;
 }
 .d4p-features-wrapper .d4p-feature-break {
+  flex: 1 0 calc(100% - 2em);
   border-bottom: 2px solid #555;
   margin: 1em;
   padding: 0;
-  flex: 1 0 calc(100% - 2em);
 }
 .d4p-features-wrapper .d4p-feature-break h2 {
+  border-radius: var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius) 0 0;
   background-color: #555;
   color: #FFF;
   display: inline-block;
@@ -390,7 +385,6 @@ details.d4p-section-details > div .form-table code {
   font-weight: 300;
   line-height: 1.7;
   letter-spacing: 1px;
-  border-radius: 5px 5px 0 0;
   margin: 0;
   padding: 0.5em 1em 0.5em 1em;
 }

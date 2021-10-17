@@ -798,7 +798,7 @@ class Render {
 	}
 
 	protected function draw_css_size( $element, $value, $name_base, $id_base = '' ) {
-		$sizes = Arr::get_css_size_units()();
+		$sizes = Arr::get_css_size_units();
 
 		$pairs = array();
 

@@ -1,68 +1,8 @@
-.d4p-group-divider {
-    margin: 10px 0 15px;
-    float: left;
-    text-align: center;
-    max-width: 800px;
-    width: 100%;
-    clear: both;
-    font-size: 2em;
-    overflow: auto;
-    line-height: normal;
-    padding: 5px 0 0;
-    border-top: 2px solid #DDD;
-}
-
-.d4p-options-panel {
-    background: #FFF;
-    border: 1px solid #DDD;
-    margin: 0 15px 15px 0;
-    padding: 15px;
-    float: left;
-    text-align: center;
-    width: 400px;
-
-    i {
-        float: left;
-        font-size: 5em;
-        margin-right: 15px;
-        text-align: center;
-        width: 1em;
-
-        &.d4p-icon-fw {
-            width: 1.28571429em;
-        }
-    }
-
-    h5 {
-        margin: 0 0 10px 85px;
-        padding: 0 0 5px;
-        text-align: left;
-        font-size: 20px;
-        border-bottom: 1px solid #DDD;
-    }
-
-    div {
-        text-align: right;
-        margin: 0 0 0 85px;
-
-        span {
-            float: left;
-            font-size: 16px;
-            font-weight: bold;
-            line-height: 28px;
-            text-transform: uppercase;
-        }
-
-        a.button-primary {
-            padding: 0 20px 1px
-        }
-    }
-}
-
 .d4p-group {
-    background: #FFF;
-    border: 1px solid #BBB;
-    border-radius: 5px;
+    background: var(--d4p-color-main-background);
+    border: 1px solid var(--d4p-color-main-border);
+    color: var(--d4p-color-main-text);
+    border-radius: var(--d4p-layout-main-border-radius);
     margin: 0 0 2em;
     text-align: center;
     max-width: 800px;
@@ -70,16 +10,16 @@
 
     h3 {
         margin: 0;
-        background: #E0E0E0;
-        color: #111;
-        border-bottom: 1px solid #BBB;
+        background: #{$color-header-background};
+        color: #{$color-header-text};
+        border-bottom: 1px solid #{$color-main-border};
         text-align: left;
         padding: .75em 1em;
         line-height: 1.4;
         font-size: 1.4em;
         font-weight: 400;
         vertical-align: top;
-        border-radius: 5px 5px 0 0;
+        border-radius: var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius) 0 0;
 
         i {
             float: right;
@@ -95,7 +35,7 @@
             background: #C00;
             color: #FFF;
             padding: 2px 8px;
-            border-radius: 2px;
+            border-radius: var(--d4p-layout-badge-border-radius);
             text-decoration: none;
             font-size: 14px;
         }

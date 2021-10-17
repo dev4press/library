@@ -1,3 +1,20 @@
+:root {
+  --d4p-layout-main-border-radius: 5px;
+  --d4p-layout-badge-border-radius: 2px;
+  --d4p-color-layout-border: #888;
+  --d4p-color-main-border: #BBB;
+  --d4p-color-main-background: #FFF;
+  --d4p-color-main-text: #333;
+  --d4p-color-sidebar-background: #F0F0F0;
+  --d4p-color-sidebar-text: #333;
+  --d4p-color-section-background: #F4F4F4;
+  --d4p-color-section-text: #111;
+  --d4p-color-header-background: #E4E4E4;
+  --d4p-color-header-text: #000;
+  --d4p-color-icon-background: #F4F4F4;
+  --d4p-color-icon-text: #555;
+}
+
 .d4p-clearfix:before, .d4p-clearfix:after {
   content: " ";
   display: table;

@@ -4,7 +4,7 @@
             .d4p-dashboard-badge {
                 padding: 2em;
                 text-align: center;
-                border-radius: 5px;
+                border-radius: var(--d4p-layout-main-border-radius);
 
                 * {
                     color: #FFF;
@@ -24,7 +24,7 @@
                 h5 {
                     margin: 1.6em -1.6em -1.6em;
                     padding: 1em;
-                    border-top: 1px solid #DDD;
+                    border-top: 1px solid var(--d4p-color-main-border);
                     font-size: 1.3em;
                     text-align: center;
                     font-weight: 300;
@@ -134,7 +134,7 @@
                     }
 
                     .d4p-card-badge {
-                        border-radius: 2px;
+                        border-radius: var(--d4p-layout-badge-border-radius);
                         margin-left: 5px;
                         color: #FFF;
                         display: inline-block;

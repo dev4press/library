@@ -1,3 +1,7 @@
+@use "sass:map";
+
+@import "../font/icons";
+
 .d4p-features-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -9,7 +13,7 @@
         flex: 0 0 300px;
         background: #FFF;
         border: 1px solid #BBB;
-        border-radius: 5px;
+        border-radius: var(--d4p-layout-main-border-radius);
         margin: 1em;
         padding: 0;
         float: left;
@@ -36,7 +40,7 @@
                 background-color: #F2F2F2;
                 padding: 1em;
                 display: inline-block;
-                border-radius: 5px;
+                border-radius: var(--d4p-layout-main-border-radius);
 
                 i {
                     font-size: 2em;
@@ -52,15 +56,16 @@
 
             ._description {
                 font-size: 1em;
-                font-weight: 300;
+                font-weight: 400;
                 margin: 0;
             }
         }
 
         ._ctrl {
-            border-radius: 0 0 5px 5px;
-            border-top: 1px solid #BBB;
-            background: #F6F6F6;
+            border-radius: 0 0 var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius);
+            border-top: 1px solid var(--d4p-color-main-border);
+            background: var(--d4p-color-section-background);
+            color: var(--d4p-color-section-text);
             padding: 1em;
             display: flex;
 
@@ -94,14 +99,14 @@
                     + label:before {
                         font-family: "dev4press";
                         display: inline-block;
-                        content: "\f1ab";
+                        content: icon(map.get($icons, "ui-toggle-off"));
                         font-size: 2em;
                         line-height: 1;
                     }
 
                     &:checked {
                         + label:before {
-                            content: "\f1ac";
+                            content: icon(map.get($icons, "ui-toggle-on"));
                         }
                     }
                 }
@@ -166,12 +171,13 @@
     }
 
     .d4p-feature-break {
+        flex: 1 0 calc(100% - 2em);
         border-bottom: 2px solid #555;
         margin: 1em;
         padding: 0;
-        flex: 1 0 calc(100% - 2em);
 
         h2 {
+            border-radius: var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius) 0 0;
             background-color: #555;
             color: #FFF;
             display: inline-block;
@@ -179,7 +185,6 @@
             font-weight: 300;
             line-height: 1.7;
             letter-spacing: 1px;
-            border-radius: 5px 5px 0 0;
             margin: 0;
             padding: .5em 1em .5em 1em;
 
