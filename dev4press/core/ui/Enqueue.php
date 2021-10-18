@@ -27,13 +27,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v37\Core\UI;
 
 use Dev4Press\v37\Core\Shared\Resources;
+use Dev4Press\v37\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 final class Enqueue {
-	private $_version = '3.6';
+	private $_version;
 	private $_enqueue_prefix = 'd4plib3-';
 	private $_library = 'd4plib';
 	private $_debug;
@@ -62,6 +63,7 @@ final class Enqueue {
 
 		$this->_url   = $admin->url;
 		$this->_admin = $admin;
+		$this->_version = Library::instance()->version();
 
 		add_action( 'admin_init', array( $this, 'start' ), 15 );
 	}

@@ -3,12 +3,13 @@
 ;(function($, window, document, undefined) {
     window.wp = window.wp || {};
     window.wp.dev4press = window.wp.dev4press || {};
+    window.wp.dev4press.ctrl = window.wp.dev4press.ctrl || {};
 
-    window.wp.dev4press.tabs = {
+    window.wp.dev4press.ctrl.tabs = {
         run: function() {
             $(document).on("click", ".d4p-ctrl-tabs button[role='tab']", function(e) {
                 var tabs = $(this).parent(),
-                    content = tabs.next(),
+                    content = tabs.parent(),
                     id = $(this).attr("id"),
                     tab = $(this).attr("aria-controls");
 
@@ -31,5 +32,5 @@
         }
     };
 
-    window.wp.dev4press.tabs.run();
+    window.wp.dev4press.ctrl.tabs.run();
 })(jQuery, window, document);
