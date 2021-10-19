@@ -2309,9 +2309,12 @@ a > .d4p-icon {
   color: #111;
   cursor: pointer;
 }
+.d4p-wrap .d4p-sidebar .d4p-panel-control,
 .d4p-wrap .d4p-sidebar .d4p-panel-buttons {
   margin: 2em 0 0;
 }
+.d4p-wrap .d4p-sidebar .d4p-panel-control .button-secondary,
+.d4p-wrap .d4p-sidebar .d4p-panel-control .button-primary,
 .d4p-wrap .d4p-sidebar .d4p-panel-buttons .button-secondary,
 .d4p-wrap .d4p-sidebar .d4p-panel-buttons .button-primary {
   border-radius: var(--d4p-layout-main-border-radius);
@@ -2319,13 +2322,35 @@ a > .d4p-icon {
   font-weight: 300;
   text-align: center;
 }
+.d4p-wrap .d4p-sidebar .d4p-panel-control .button-primary,
 .d4p-wrap .d4p-sidebar .d4p-panel-buttons .button-primary {
   font-size: 1.4em;
   line-height: 2.5em;
 }
+.d4p-wrap .d4p-sidebar .d4p-panel-control .button-secondary,
 .d4p-wrap .d4p-sidebar .d4p-panel-buttons .button-secondary {
   font-size: 1.3em;
   line-height: 2.4em;
+}
+.d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-features-bulk-ctrl-options {
+  border-radius: var(--d4p-layout-main-border-radius);
+  background: var(--d4p-color-main-background);
+  color: var(--d4p-color-main-text);
+  padding: 1em;
+  margin: 2em 0 0;
+  text-align: center;
+}
+.d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-features-bulk-ctrl-options p {
+  margin: 0 0 0.5em;
+}
+.d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-features-bulk-ctrl-options div {
+  display: flex;
+  margin: 0 -0.5em;
+}
+.d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-features-bulk-ctrl-options div button {
+  margin: 0.5em;
+  font-size: 1em;
+  line-height: 1.5;
 }
 .d4p-wrap .d4p-content .d4p-accessibility-button {
   border-top: 1px solid var(--d4p-color-layout-border);
@@ -3234,6 +3259,10 @@ details.d4p-section-details > div .form-table code {
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._settings a i {
   vertical-align: bottom;
+}
+.d4p-features-wrapper .d4p-feature-box._is-always-on ._ctrl ._settings {
+  flex: 1 1 100%;
+  text-align: right;
 }
 .d4p-features-wrapper .d4p-feature-box:not(._is-active) ._ctrl ._settings {
   display: none;

@@ -34,7 +34,16 @@ $_subpanels = panel()->subpanels();
                 <a href="#wpwrap"><?php _e( "Return to top", "d4plib" ); ?></a>
             </div>
 		<?php } else { ?>
-
+            <div class="d4p-panel-control">
+                <button type="button" class="button-primary d4p-features-bulk-ctrl"><?php _e("Bulk Control"); ?></button>
+                <div class="d4p-features-bulk-ctrl-options" style="display: none">
+                    <p><?php _e("You can enable or disable all the features at once."); ?></p>
+                    <div>
+                        <button class="button-primary" type="button" data-action="enable"><?php _e("Enable All"); ?></button>
+                        <button class="button-secondary" type="button" data-action="disable"><?php _e("Disable All"); ?></button>
+                    </div>
+                </div>
+            </div>
 		<?php } ?>
     </div>
 </div>

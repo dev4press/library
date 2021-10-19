@@ -110,6 +110,14 @@ class WPR {
 		       is_category();
 	}
 
+	public static function is_bbpress() : bool {
+		if ( class_exists( 'bbPress' ) && function_exists( 'is_bbpress' ) ) {
+			return is_bbpress();
+		} else {
+			return false;
+		}
+	}
+
 	public static function is_oembed_link( $url ) : bool {
 		require_once( ABSPATH . WPINC . '/class-oembed.php' );
 

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press Core Loader
+Name:    Dev4Press\v37\Functions\BuddyPress
 Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,34 +24,28 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-use Dev4Press\v37\Library;
-use Dev4Press\v37\WordPress;
+namespace Dev4Press\v37\Functions\BuddyPress;
+
+use Dev4Press\v37\Core\Quick\BP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! defined( 'D4P_EOL' ) ) {
-	define( 'D4P_EOL', "\r\n" );
+if ( ! function_exists( __NAMESPACE__ . '\is_active' ) ) {
+	function is_active() : bool {
+		return BP::is_active();
+	}
 }
 
-if ( ! defined( 'D4P_TAB' ) ) {
-	define( 'D4P_TAB', "\t" );
+if ( ! function_exists( __NAMESPACE__ . '\major_version_code' ) ) {
+	function major_version_code() : int {
+		return BP::major_version_code();
+	}
 }
 
-$_library_path = dirname( __FILE__ ) . '/';
-
-include( $_library_path . 'autoload.php' );
-
-include( $_library_path . 'functions/Bridge.php' );
-include( $_library_path . 'functions/Debug.php' );
-
-if ( defined( 'D4P_LOAD_DEPRECATED_FUNCTIONS' ) && D4P_LOAD_DEPRECATED_FUNCTIONS ) {
-	include( $_library_path . 'deprecated/Common.php' );
-	include( $_library_path . 'deprecated/WP.php' );
-	include( $_library_path . 'deprecated/bbPress.php' );
-	include( $_library_path . 'deprecated/BuddyPress.php' );
+if ( ! function_exists( __NAMESPACE__ . '\major_version_number' ) ) {
+	function major_version_number( $ret = 'number' ) {
+		return BP::major_version_number( $ret );
+	}
 }
-
-WordPress::instance();
-Library::instance();

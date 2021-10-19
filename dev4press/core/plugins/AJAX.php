@@ -27,8 +27,35 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v37\Core\Plugins;
 
 abstract class AJAX {
+	private $_no_cache = true;
+
 	public function __construct() {
 	}
 
 	abstract public static function instance();
+
+	public function error( string $message = '', int $code = 400, array $args = array() ) {
+		$result = array(
+			'status'  => 'error',
+			'message' => empty( $message ) ? __( "Invalid Request" ) : $message
+		);
+
+		if ( ! empty( $args ) ) {
+			$result += $args;
+		}
+
+		$this->respond( $result, $code );
+	}
+
+	public function respond( array $response, int $code = 200 ) {
+		status_header( $code );
+
+		if ( $this->_no_cache ) {
+			nocache_headers();
+		}
+
+		header( 'Content-Type: application/json' );
+
+		die( json_encode( $response ) );
+	}
 }

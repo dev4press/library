@@ -30,12 +30,60 @@
                 run: function() {
                     $(document).on("change", ".d4p-feature-box ._activation input", function() {
                         var active = $(this).is(":checked"),
-                            feature = $(this).closest(".d4p-feature-box");
+                            feature = $(this).closest(".d4p-feature-box"),
+                            name = $(this).data("feature");
 
                         if (active) {
                             feature.addClass("_is-active");
                         } else {
                             feature.removeClass("_is-active");
+                        }
+
+                        var request = "?action=" + d4plib_admin_data.plugin.prefix + "_feature_activation&_ajax_nonce=" + d4plib_admin_data.content.nonce,
+                            args = {
+                                url: ajaxurl + request,
+                                type: "post",
+                                dataType: "json",
+                                data: {
+                                    feature: name,
+                                    status: active ? 'on' : 'off'
+                                }
+                            };
+
+                        $.ajax(args);
+                    });
+
+                    $(document).on("click", ".d4p-features-bulk-ctrl-options button", function(e) {
+                        e.preventDefault();
+
+                        var action = $(this).data("action");
+
+                        if (action === "enable") {
+                            $(".d4p-feature-box ._activation input").each(function() {
+                                if (!$(this).is(":checked")) {
+                                    $(this).prop("checked", true).trigger("change");
+                                }
+                            });
+                        } else {
+                            $(".d4p-feature-box ._activation input").each(function() {
+                                if ($(this).is(":checked")) {
+                                    $(this).prop("checked", false).trigger("change");
+                                }
+                            });
+                        }
+                    });
+
+                    $(document).on("click", ".d4p-features-bulk-ctrl", function(e) {
+                        e.preventDefault();
+
+                        var active = $(this).hasClass("button-secondary");
+
+                        if (active) {
+                            $(this).removeClass("button-secondary").addClass("button-primary");
+                            $(this).next().hide();
+                        } else {
+                            $(this).removeClass("button-primary").addClass("button-secondary");
+                            $(this).next().show();
                         }
                     });
                 }

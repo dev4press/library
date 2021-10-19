@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v37\Functions\bbPress
+Name:    Dev4Press\v37\Core\Quick\BBP
 Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,28 +24,24 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v37\Functions\bbPress;
-
-use Dev4Press\v37\Core\Quick\WPR;
+namespace Dev4Press\v37\Core\Quick;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\is_active' ) ) {
-	function is_active() : bool {
+class BBP {
+	public static function is_active() : bool {
 		if ( WPR::is_plugin_active( 'bbpress/bbpress.php' ) ) {
-			$version = major_version_code();
+			$version = BBP::major_version_code();
 
 			return $version > 25;
 		} else {
 			return false;
 		}
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\major_version_code' ) ) {
-	function major_version_code() : int {
+	public static function major_version_code() : int {
 		if ( function_exists( 'bbp_get_version' ) ) {
 			$version = bbp_get_version();
 
@@ -54,10 +50,8 @@ if ( ! function_exists( __NAMESPACE__ . '\major_version_code' ) ) {
 
 		return 0;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\major_version_number' ) ) {
-	function major_version_number( $ret = 'number' ) {
+	public static function major_version_number( $ret = 'number' ) {
 		if ( function_exists( 'bbp_get_version' ) ) {
 			$version = bbp_get_version();
 
@@ -72,10 +66,8 @@ if ( ! function_exists( __NAMESPACE__ . '\major_version_number' ) ) {
 
 		return 0;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\get_user_roles' ) ) {
-	function get_user_roles() : array {
+	public static function get_user_roles() : array {
 		$roles = array();
 
 		$dynamic_roles = bbp_get_dynamic_roles();
@@ -86,10 +78,8 @@ if ( ! function_exists( __NAMESPACE__ . '\get_user_roles' ) ) {
 
 		return $roles;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\get_moderator_roles' ) ) {
-	function get_moderator_roles() : array {
+	public static function get_moderator_roles() : array {
 		$roles = array();
 
 		$dynamic_roles = bbp_get_dynamic_roles();
@@ -102,11 +92,9 @@ if ( ! function_exists( __NAMESPACE__ . '\get_moderator_roles' ) ) {
 
 		return $roles;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\can_user_moderate' ) ) {
-	function can_user_moderate() {
-		$roles = array_keys( get_moderator_roles() );
+	public static function can_user_moderate() {
+		$roles = array_keys( BBP::get_moderator_roles() );
 
 		if ( is_user_logged_in() ) {
 			if ( is_super_admin() ) {
@@ -124,10 +112,8 @@ if ( ! function_exists( __NAMESPACE__ . '\can_user_moderate' ) ) {
 
 		return false;
 	}
-}
 
-if ( ! function_exists( __NAMESPACE__ . '\get_forums_list' ) ) {
-	function get_forums_list( $args = array() ) : array {
+	public static function get_forums_list( $args = array() ) : array {
 		$defaults = array(
 			'post_type'   => bbp_get_forum_post_type(),
 			'numberposts' => - 1,

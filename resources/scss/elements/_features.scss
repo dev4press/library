@@ -130,6 +130,15 @@
             }
         }
 
+        &._is-always-on {
+            ._ctrl {
+                ._settings {
+                    flex: 1 1 100%;
+                    text-align: right;
+                }
+            }
+        }
+
         &:not(._is-active) {
             ._ctrl {
                 ._settings {

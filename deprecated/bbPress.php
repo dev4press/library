@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v37\Functions\BuddyPress
+Name:    Dev4Press\v37\Functions\bbPress
 Version: v3.7
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,52 +24,59 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v37\Functions\BuddyPress;
+namespace Dev4Press\v37\Functions\bbPress;
 
-use Dev4Press\v37\Core\Quick\WPR;
+use Dev4Press\v37\Core\Quick\BBP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ! function_exists( __NAMESPACE__ . '\is_active' ) ) {
+	/** @deprecated since 3.7 to be removed in 3.8 */
 	function is_active() : bool {
-		if ( WPR::is_plugin_active( 'buddypress/bp-loader.php' ) ) {
-			$version = major_version_code();
-
-			return $version > 59;
-		} else {
-			return false;
-		}
+		return BBP::is_active();
 	}
 }
 
 if ( ! function_exists( __NAMESPACE__ . '\major_version_code' ) ) {
+	/** @deprecated since 3.7 to be removed in 3.8 */
 	function major_version_code() : int {
-		if ( function_exists( 'bp_get_version' ) ) {
-			$version = bp_get_version();
-
-			return intval( substr( str_replace( '.', '', $version ), 0, 2 ) );
-		}
-
-		return 0;
+		return BBP::major_version_code();
 	}
 }
 
 if ( ! function_exists( __NAMESPACE__ . '\major_version_number' ) ) {
+	/** @deprecated since 3.7 to be removed in 3.8 */
 	function major_version_number( $ret = 'number' ) {
-		if ( function_exists( 'bp_get_version' ) ) {
-			$version = bp_get_version();
+		return BBP::major_version_number( $ret );
+	}
+}
 
-			if ( isset( $version ) ) {
-				if ( $ret == 'number' ) {
-					return substr( str_replace( '.', '', $version ), 0, 2 );
-				} else {
-					return $version;
-				}
-			}
-		}
+if ( ! function_exists( __NAMESPACE__ . '\get_user_roles' ) ) {
+	/** @deprecated since 3.7 to be removed in 3.8 */
+	function get_user_roles() : array {
+		return BBP::get_user_roles();
+	}
+}
 
-		return 0;
+if ( ! function_exists( __NAMESPACE__ . '\get_moderator_roles' ) ) {
+	/** @deprecated since 3.7 to be removed in 3.8 */
+	function get_moderator_roles() : array {
+		return BBP::get_moderator_roles();
+	}
+}
+
+if ( ! function_exists( __NAMESPACE__ . '\can_user_moderate' ) ) {
+	/** @deprecated since 3.7 to be removed in 3.8 */
+	function can_user_moderate() {
+		return BBP::can_user_moderate();
+	}
+}
+
+if ( ! function_exists( __NAMESPACE__ . '\get_forums_list' ) ) {
+	/** @deprecated since 3.7 to be removed in 3.8 */
+	function get_forums_list( $args = array() ) : array {
+		return BBP::get_forums_list( $args );
 	}
 }

@@ -419,6 +419,10 @@ details.d4p-section-details > div .form-table code {
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._settings a i {
   vertical-align: bottom;
 }
+.d4p-features-wrapper .d4p-feature-box._is-always-on ._ctrl ._settings {
+  flex: 1 1 100%;
+  text-align: right;
+}
 .d4p-features-wrapper .d4p-feature-box:not(._is-active) ._ctrl ._settings {
   display: none;
 }
