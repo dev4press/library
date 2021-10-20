@@ -12,8 +12,8 @@ use function Dev4Press\v37\Functions\panel;
 
 	$subpanel = panel()->a()->subpanel;
 	$class    = panel()->settings_class;
-	$options  = $class::instance();
-	$groups   = $options->get( $subpanel );
+	$options  = $class::instance( $subpanel );
+	$groups   = $options->get();
 
 	Render::instance( panel()->a()->n(), panel()->a()->plugin_prefix )->prepare( $subpanel, $groups )->render();
 

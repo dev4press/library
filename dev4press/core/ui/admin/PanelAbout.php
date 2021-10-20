@@ -17,23 +17,23 @@ class PanelAbout extends Panel {
 
 	protected function init_default_subpanels() {
 		$this->subpanels = array(
-			'whatsnew'     => array(
+			'whatsnew'  => array(
 				'title' => __( "What&#8217;s New", "d4plib" ),
 				'icon'  => ''
 			),
-			'info'         => array(
+			'info'      => array(
 				'title' => __( "Info", "d4plib" ),
 				'icon'  => ''
 			),
-			'changelog'    => array(
+			'changelog' => array(
 				'title' => __( "Changelog", "d4plib" ),
 				'icon'  => ''
 			),
-			'system'       => array(
+			'system'    => array(
 				'title' => __( "System", "d4plib" ),
 				'icon'  => ''
 			),
-			'dev4press'    => array(
+			'dev4press' => array(
 				'title' => __( "Dev4Press", "d4plib" ),
 				'icon'  => ''
 			)

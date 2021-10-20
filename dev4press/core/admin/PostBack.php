@@ -74,6 +74,12 @@ abstract class PostBack {
 
 			$this->settings();
 		}
+
+		if ( $this->p() == $this->get_page_name( 'features' ) ) {
+			$this->check_referer( 'features' );
+
+			$this->features();
+		}
 	}
 
 	protected function tools() {
@@ -85,28 +91,19 @@ abstract class PostBack {
 	}
 
 	protected function settings() {
-		$this->save_settings( $this->a()->subpanel );
+		$base = $this->a()->settings_definitions()->settings( $this->a()->subpanel );
+		$this->_process_save_data( $base );
 
 		wp_redirect( $this->a()->current_url() . '&message=saved' );
 		exit;
 	}
 
-	protected function save_settings( $panel ) {
-		$base = $this->a()->settings_definitions()->settings( $panel );
-		$data = Process::instance( $this->a()->n(), $this->a()->plugin_prefix )->prepare( $base )->process();
+	protected function features() {
+		$base = $this->a()->features_definitions( $this->a()->subpanel )->settings();
+		$this->_process_save_data( $base );
 
-		foreach ( $data as $group => $values ) {
-			if ( ! empty( $group ) ) {
-				foreach ( $values as $name => $value ) {
-					$filter = $this->a()->h( 'settings_save_settings_value' );
-					$value  = apply_filters( $filter, $value, $name, $group );
-
-					$this->a()->settings()->set( $name, $value, $group );
-				}
-
-				$this->a()->settings()->save( $group );
-			}
-		}
+		wp_redirect( $this->a()->current_url() . '&message=saved' );
+		exit;
 	}
 
 	protected function import() {
@@ -129,6 +126,23 @@ abstract class PostBack {
 
 		wp_redirect( $url . '&message=' . $message );
 		exit;
+	}
+
+	protected function _process_save_data( $base ) {
+		$data   = Process::instance( $this->a()->n(), $this->a()->plugin_prefix )->prepare( $base )->process();
+		$filter = $this->a()->h( 'settings_save_settings_value' );
+
+		foreach ( $data as $group => $values ) {
+			if ( ! empty( $group ) ) {
+				foreach ( $values as $name => $value ) {
+					$value = apply_filters( $filter, $value, $name, $group );
+
+					$this->a()->settings()->set( $name, $value, $group );
+				}
+
+				$this->a()->settings()->save( $group );
+			}
+		}
 	}
 
 	abstract protected function remove();

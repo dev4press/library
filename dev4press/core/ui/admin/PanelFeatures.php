@@ -28,7 +28,7 @@ class PanelFeatures extends Panel {
 	}
 
 	public function settings_fields() {
-		$group  = $this->a()->plugin . '-settings';
+		$group  = $this->a()->plugin . '-features';
 		$action = $this->a()->v();
 
 		echo "<input type='hidden' name='option_page' value='" . esc_attr( $group ) . "' />";

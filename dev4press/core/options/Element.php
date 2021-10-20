@@ -38,6 +38,7 @@ class Element {
 	public $input;
 	public $value;
 	public $source;
+
 	public $data;
 	public $args;
 	public $switch;
@@ -53,6 +54,14 @@ class Element {
 
 	public static function i( $type, $name, $title = '', $notice = '', $input = 'text', $value = '' ) : Element {
 		return new Element( $type, $name, $title, $notice, $input, $value );
+	}
+
+	public static function f( $name, $title = '', $notice = '', $input = '', $value = '' ) : Element {
+		return new Element( 'features', $name, $title, $notice, $input, $value );
+	}
+
+	public static function s( $name, $title = '', $notice = '', $input = '', $value = '' ) : Element {
+		return new Element( 'settings', $name, $title, $notice, $input, $value );
 	}
 
 	public static function l( $type, $name, $title = '', $notice = '', $input = 'text', $value = '', $source = '', $data = '', $args = array() ) : Element {

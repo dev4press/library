@@ -61,8 +61,8 @@ final class Enqueue {
 		$this->_libraries['js']  = Resources::instance()->ui_js() + Resources::instance()->shared_js();
 		$this->_libraries['css'] = Resources::instance()->ui_css() + Resources::instance()->shared_css();
 
-		$this->_url   = $admin->url;
-		$this->_admin = $admin;
+		$this->_url     = $admin->url;
+		$this->_admin   = $admin;
 		$this->_version = Library::instance()->version();
 
 		add_action( 'admin_init', array( $this, 'start' ), 15 );
