@@ -2332,6 +2332,9 @@ a > .d4p-icon {
   font-size: 1.3em;
   line-height: 2.4em;
 }
+.d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-feature-more-ctrl {
+  font-size: 1.1em;
+}
 .d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-feature-more-ctrl-options,
 .d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-features-bulk-ctrl-options {
   border-radius: var(--d4p-layout-main-border-radius);
@@ -2344,6 +2347,10 @@ a > .d4p-icon {
 .d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-feature-more-ctrl-options p,
 .d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-features-bulk-ctrl-options p {
   margin: 0 0 0.5em;
+}
+.d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-feature-more-ctrl-options a.button-primary,
+.d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-features-bulk-ctrl-options a.button-primary {
+  font-size: 1em;
 }
 .d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-feature-more-ctrl-options div,
 .d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-features-bulk-ctrl-options div {

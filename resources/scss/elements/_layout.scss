@@ -355,6 +355,10 @@
         }
 
         .d4p-panel-control {
+            .d4p-feature-more-ctrl {
+                font-size: 1.1em;
+            }
+
             .d4p-feature-more-ctrl-options,
             .d4p-features-bulk-ctrl-options {
                 border-radius: var(--d4p-layout-main-border-radius);
@@ -366,6 +370,10 @@
 
                 p {
                     margin: 0 0 .5em;
+                }
+
+                a.button-primary {
+                    font-size: 1em;
                 }
 
                 div {
