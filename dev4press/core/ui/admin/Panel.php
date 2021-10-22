@@ -177,6 +177,12 @@ abstract class Panel {
 		return '</form>';
 	}
 
+	public function enqueue_scripts_early() {
+	}
+
+	public function include_accessibility_control() {
+	}
+
 	protected function load( $name, $fallback = 'fallback.php' ) {
 		if ( file_exists( $this->forms_path_plugin() . $name ) ) {
 			include( $this->forms_path_plugin() . $name );
@@ -189,11 +195,5 @@ abstract class Panel {
 				include( $this->forms_path_library() . $fallback );
 			}
 		}
-	}
-
-	public function enqueue_scripts_early() {
-	}
-
-	public function include_accessibility_control() {
 	}
 }

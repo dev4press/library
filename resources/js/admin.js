@@ -73,12 +73,24 @@
                         }
                     });
 
+                    $(document).on("click", ".d4p-feature-more-ctrl", function(e) {
+                        e.preventDefault();
+
+                        if ($(this).hasClass("_is-open")) {
+                            $(this).removeClass("_is-open")
+                            $(this).next().hide();
+                            $(this).next().next().show();
+                        } else {
+                            $(this).addClass("_is-open")
+                            $(this).next().show();
+                            $(this).next().next().hide();
+                        }
+                    });
+
                     $(document).on("click", ".d4p-features-bulk-ctrl", function(e) {
                         e.preventDefault();
 
-                        var active = $(this).hasClass("button-secondary");
-
-                        if (active) {
+                        if ($(this).hasClass("button-secondary")) {
                             $(this).removeClass("button-secondary").addClass("button-primary");
                             $(this).next().hide();
                         } else {

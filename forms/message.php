@@ -13,6 +13,9 @@ if ( isset( $_GET['message'] ) && $_GET['message'] != '' ) {
 		case 'saved':
 			$_message = __( "Settings are saved.", "d4plib" );
 			break;
+		case 'feature-reset':
+			$_message = __( "Feature Settings reset completed.", "d4plib" );
+			break;
 		case 'imported':
 			$_message = __( "Import operation completed.", "d4plib" );
 			break;

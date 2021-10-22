@@ -314,6 +314,7 @@
   font-size: 1.3em;
   line-height: 2.4em;
 }
+.d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-feature-more-ctrl-options,
 .d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-features-bulk-ctrl-options {
   border-radius: var(--d4p-layout-main-border-radius);
   background: var(--d4p-color-main-background);
@@ -322,13 +323,16 @@
   margin: 2em 0 0;
   text-align: center;
 }
+.d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-feature-more-ctrl-options p,
 .d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-features-bulk-ctrl-options p {
   margin: 0 0 0.5em;
 }
+.d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-feature-more-ctrl-options div,
 .d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-features-bulk-ctrl-options div {
   display: flex;
   margin: 0 -0.5em;
 }
+.d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-feature-more-ctrl-options div button,
 .d4p-wrap .d4p-sidebar .d4p-panel-control .d4p-features-bulk-ctrl-options div button {
   margin: 0.5em;
   font-size: 1em;

@@ -122,7 +122,6 @@ abstract class Plugin {
 	 *
 	 * @return string
 	 */
-
 	public function h( string $hook ) : string {
 		return $this->plugin_prefix . '_' . $hook;
 	}
@@ -227,14 +226,6 @@ abstract class Plugin {
 		);
 
 		do_action( $this->plugin_prefix . '_admin_help_tabs', $this );
-	}
-
-	protected function load_post_get_back() {
-		if ( isset( $_POST[ $this->v() ] ) && $_POST[ $this->v() ] == 'postback' ) {
-			$this->run_postback();
-		} else if ( isset( $_GET[ $this->v() ] ) && $_GET[ $this->v() ] == 'getback' ) {
-			$this->run_getback();
-		}
 	}
 
 	public function install_or_update() : bool {
@@ -374,6 +365,14 @@ abstract class Plugin {
 		return add_query_arg( '_wpnonce', wp_create_nonce( $nonce ), $url );
 	}
 
+	protected function load_post_get_back() {
+		if ( isset( $_POST[ $this->v() ] ) && $_POST[ $this->v() ] == 'postback' ) {
+			$this->run_postback();
+		} else if ( isset( $_GET[ $this->v() ] ) && $_GET[ $this->v() ] == 'getback' ) {
+			$this->run_getback();
+		}
+	}
+
 	protected function screen_setup() {
 		$this->install_or_update();
 		$this->load_post_get_back();
@@ -449,6 +448,7 @@ abstract class Plugin {
 
 	abstract public function run_postback();
 
+	/** @return \Dev4Press\v37\Core\Plugins\Settings */
 	abstract public function settings();
 
 	abstract public function settings_definitions();

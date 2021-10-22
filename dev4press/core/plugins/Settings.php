@@ -48,11 +48,6 @@ abstract class Settings {
 	abstract public static function instance();
 
 	/** @return Information */
-	public function information() {
-		return $this->info;
-	}
-
-	/** @return Information */
 	public function i() {
 		return $this->info;
 	}
@@ -119,14 +114,20 @@ abstract class Settings {
 		}
 	}
 
-	public function prefix_get( $prefix, $group = 'settings' ) : array {
+	public function feature_get( $name, $get_defaults = false ) : array {
+		return $this->prefix_get( $name . '__', 'features', $get_defaults );
+	}
+
+	public function prefix_get( $prefix, $group = 'settings', $get_defaults = false ) : array {
 		$settings = array_merge( array_keys( $this->settings[ $group ] ), array_keys( $this->current[ $group ] ) );
 
 		$results = array();
 
 		foreach ( $settings as $key ) {
 			if ( substr( $key, 0, strlen( $prefix ) ) == $prefix ) {
-				$results[ substr( $key, strlen( $prefix ) ) ] = $this->get( $key, $group );
+				$new = substr( $key, strlen( $prefix ) );
+
+				$results[ $new ] = $get_defaults ? $this->get_default( $key, $group ) : $this->get( $key, $group );
 			}
 		}
 
@@ -148,16 +149,12 @@ abstract class Settings {
 		$this->settings[ $group ][ $name ] = $value;
 	}
 
-	public function raw_get( $name, $group = 'settings', $default = null ) {
-		if ( isset( $this->current[ $group ][ $name ] ) ) {
-			$exit = $this->current[ $group ][ $name ];
-		} else if ( isset( $this->settings[ $group ][ $name ] ) ) {
-			$exit = $this->settings[ $group ][ $name ];
-		} else {
-			$exit = $default;
-		}
+	public function get_default( $name, $group = 'settings', $default = null ) {
+		return $this->settings[ $group ][ $name ] ?? $default;
+	}
 
-		return $exit;
+	public function raw_get( $name, $group = 'settings', $default = null ) {
+		return $this->current[ $group ][ $name ] ?? ( $this->settings[ $group ][ $name ] ?? $default );
 	}
 
 	public function get( $name, $group = 'settings', $default = null ) {
@@ -286,16 +283,28 @@ abstract class Settings {
 		return json_encode( $export, JSON_PRETTY_PRINT );
 	}
 
-	public function export_to_serialized_php( $list = array() ) : string {
-		return serialize( $this->_settings_to_array( $list ) );
-	}
-
 	public function file_version() : string {
-		return $this->information()->version . '.' . $this->information()->build;
+		return $this->i()->version . '.' . $this->i()->build;
 	}
 
 	public function plugin_version() : string {
-		return 'v' . $this->information()->version . '_b' . $this->information()->build;
+		return 'v' . $this->i()->version . '_b' . $this->i()->build;
+	}
+
+	public function reset_feature( $name ) : bool {
+		$defaults = $this->feature_get( $name, true );
+
+		if ( ! empty( $defaults ) ) {
+			foreach ( $defaults as $key => $value ) {
+				$this->set( $name . '__' . $key, $value, 'features' );
+			}
+
+			$this->save( 'features' );
+
+			return true;
+		}
+
+		return false;
 	}
 
 	protected function _db() {

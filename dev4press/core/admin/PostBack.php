@@ -46,6 +46,7 @@ abstract class PostBack {
 		}
 	}
 
+	/** @return \Dev4Press\v37\Core\Admin\Plugin|\Dev4Press\v37\Core\Admin\Menu\Plugin|\Dev4Press\v37\Core\Admin\Submenu\Plugin */
 	public function a() {
 		return $this->admin;
 	}
@@ -115,7 +116,7 @@ abstract class PostBack {
 			$raw  = file_get_contents( $_FILES['import_file']['tmp_name'] );
 			$data = json_decode( $raw, true );
 
-			if ( ! is_null( $data ) && is_array( $data ) && ! empty( $data ) ) {
+			if ( is_array( $data ) && ! empty( $data ) ) {
 				$result = $this->a()->settings()->import_from_secure_json( $data );
 
 				if ( $result === true ) {

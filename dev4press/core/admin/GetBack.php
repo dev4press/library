@@ -41,6 +41,7 @@ abstract class GetBack {
 		$this->process();
 	}
 
+	/** @return \Dev4Press\v37\Core\Admin\Plugin|\Dev4Press\v37\Core\Admin\Menu\Plugin|\Dev4Press\v37\Core\Admin\Submenu\Plugin */
 	public function a() {
 		return $this->admin;
 	}
@@ -70,9 +71,11 @@ abstract class GetBack {
 			if ( $this->is_single_action( 'dismiss-quantum-theme', 'action' ) ) {
 				$this->front_dismiss_plugin( 'notice_gdqnt_hide' );
 			}
+		}
 
-			if ( $this->is_single_action( 'dismiss-members-directory', 'action' ) ) {
-				$this->front_dismiss_plugin( 'notice_gdmed_hide' );
+		if ( $this->a()->panel == 'features' ) {
+			if ( ! empty( $this->a()->subpanel ) && $this->is_single_action( 'reset' ) ) {
+				$this->feature_reset();
 			}
 		}
 
@@ -81,6 +84,15 @@ abstract class GetBack {
 				$this->tools_export();
 			}
 		}
+	}
+
+	public function feature_reset() {
+		check_ajax_referer( $this->a()->plugin_prefix . '-feature-reset-' . $this->a()->subpanel );
+
+		$this->a()->settings()->reset_feature( $this->a()->subpanel );
+
+		wp_redirect( $this->a()->current_url( true ) . '&message=feature-reset' );
+		exit;
 	}
 
 	protected function front_dismiss_plugin( $option ) {
