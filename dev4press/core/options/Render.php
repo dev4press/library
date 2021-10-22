@@ -349,9 +349,10 @@ class Render {
 		$readonly    = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 		$placeholder = isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? ' placeholder="' . $element->args['placeholder'] . '"' : '';
 		$type        = isset( $element->args['type'] ) && ! empty( $element->args['type'] ) ? $element->args['type'] : $type;
+		$pattern     = isset( $element->args['pattern'] ) && ! empty( $element->args['pattern'] ) ? ' pattern="' . $element->args['pattern'] . '"' : '';
 
-		echo sprintf( '<input aria-labelledby="%s__label"%s%s type="%s" name="%s" id="%s" value="%s" class="%s" />',
-			$id_base, $readonly, $placeholder, $type, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ), esc_attr( $class ) );
+		echo sprintf( '<input aria-labelledby="%s__label"%s%s%s type="%s" name="%s" id="%s" value="%s" class="%s" />',
+			$id_base, $readonly, $placeholder, $pattern, $type, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ), esc_attr( $class ) );
 	}
 
 	protected function draw_html( $element, $value, $name_base, $id_base ) {
@@ -705,14 +706,26 @@ class Render {
 	}
 
 	protected function draw_slug( $element, $value, $name_base, $id_base ) {
+		if ( ! isset( $element->args['pattern'] ) ) {
+			$element->args['pattern'] = '[a-z0-9\-]+';
+		}
+
 		$this->draw_text( $element, $value, $name_base, $id_base );
 	}
 
 	protected function draw_slug_ext( $element, $value, $name_base, $id_base ) {
+		if ( ! isset( $element->args['pattern'] ) ) {
+			$element->args['pattern'] = '[a-z0-9_\.\-]+';
+		}
+
 		$this->draw_text( $element, $value, $name_base, $id_base );
 	}
 
 	protected function draw_slug_slash( $element, $value, $name_base, $id_base ) {
+		if ( ! isset( $element->args['pattern'] ) ) {
+			$element->args['pattern'] = '[a-z0-9\-\.\/]+';
+		}
+
 		$this->draw_text( $element, $value, $name_base, $id_base );
 	}
 

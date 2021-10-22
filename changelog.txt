@@ -7,6 +7,7 @@
 * New: Now uses CSS variables as a base for styling
 * New: Basis for styling layouts is the flexbox
 * New: Flexbox based core grid styling implementation
+* New: Pattern validation for slug field types
 * Updated: Many improvements and tweaks to the About panel
 * Updated: Built-in cacert.pem 20210930
 * Updated: Clipboard 2.0.8
