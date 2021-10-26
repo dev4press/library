@@ -18,12 +18,18 @@
   border-bottom-color: transparent;
   display: inline-block;
   margin: 0 0.5em 0 0;
-  padding: 0.5em 1.5em 0.75em;
+  padding: 0.5em 1.5em 0.5em;
+  line-height: 1.7;
   font-size: 1.1em;
   font-weight: normal;
   bottom: -1px;
   cursor: pointer;
   position: relative;
+  vertical-align: top;
+}
+.d4p-ctrl-tabs div[role=tablist] button[role=tab] i.d4p-icon {
+  vertical-align: middle;
+  margin: 0 0.2em 0 0;
 }
 .d4p-ctrl-tabs div[role=tablist] button[role=tab][aria-selected=true] {
   background: var(--d4p-ctrl-color-tabs-background);

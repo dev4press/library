@@ -1,40 +1,14 @@
 .d4plib-meta-box-wrapper {
     box-sizing: border-box;
+    margin: 1.5em 0;
 
     * {
         box-sizing: border-box;
     }
 
-    ul {
-        margin: 0;
-
-        &.wp-tab-bar {
-            margin: 12px 0 -1px;
-
-            a {
-                box-shadow: none;
-                outline: none;
-            }
-
-            li {
-                display: inline-block;
-                padding: 3px 5px 4px;
-                margin: 0;
-                position: relative;
-
-                span.dashicons {
-                    font-size: 16px;
-                    height: 16px;
-                    margin: 2px 3px 0 0;
-                    vertical-align: top;
-                }
-            }
-        }
-    }
-
-    div.wp-tab-panel {
+    div.d4p-ctrl-tabs-content {
         max-height: 360px;
-        padding: 1em;
+        padding: 1.5em;
 
         > p {
             margin: 1em 0;
@@ -47,12 +21,6 @@
                 margin-bottom: 0;
             }
         }
-    }
-
-    h4 {
-        font-size: 1.1em;
-        padding: 0;
-        margin: 0.5em 0;
     }
 
     .d4plib-meta-box-element {
@@ -119,77 +87,6 @@
 
                 i {
                     vertical-align: -2px;
-                }
-            }
-        }
-    }
-
-    .__row {
-        width: 100%;
-        overflow: auto;
-
-        > div {
-            float: left;
-            padding: 0 10px;
-
-            &.__column-half {
-                width: 50%;
-            }
-
-            &.__column-third {
-                width: 33.33%;
-            }
-
-            &.__column-two-thirds {
-                width: 66.66%;
-            }
-
-            &.__column-fourth {
-                width: 25%;
-            }
-
-            &.__column-three-fourths {
-                width: 75%;
-            }
-
-            &.__column-full {
-                width: 100%;
-                float: none;
-            }
-
-            &:first-child {
-                padding-left: 0;
-            }
-
-            &:last-child {
-                padding-right: 0;
-            }
-
-            .gdfon-rule-item:last-child {
-                margin: 0 !important;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 720px) {
-    .d4plib-meta-box-wrapper {
-        .__row {
-            > div {
-                float: none;
-
-                &.__column-third,
-                &.__column-half,
-                &.__column-two-ninths,
-                &.__column-fourth,
-                &.__column-three-fourths,
-                &.__column-two-thirds {
-                    width: 100%;
-                }
-
-                &:first-child,
-                &:last-child {
-                    padding: 0;
                 }
             }
         }

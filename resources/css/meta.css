@@ -1,48 +1,22 @@
 .d4plib-meta-box-wrapper {
   box-sizing: border-box;
+  margin: 1.5em 0;
 }
 .d4plib-meta-box-wrapper * {
   box-sizing: border-box;
 }
-.d4plib-meta-box-wrapper ul {
-  margin: 0;
-}
-.d4plib-meta-box-wrapper ul.wp-tab-bar {
-  margin: 12px 0 -1px;
-}
-.d4plib-meta-box-wrapper ul.wp-tab-bar a {
-  box-shadow: none;
-  outline: none;
-}
-.d4plib-meta-box-wrapper ul.wp-tab-bar li {
-  display: inline-block;
-  padding: 3px 5px 4px;
-  margin: 0;
-  position: relative;
-}
-.d4plib-meta-box-wrapper ul.wp-tab-bar li span.dashicons {
-  font-size: 16px;
-  height: 16px;
-  margin: 2px 3px 0 0;
-  vertical-align: top;
-}
-.d4plib-meta-box-wrapper div.wp-tab-panel {
+.d4plib-meta-box-wrapper div.d4p-ctrl-tabs-content {
   max-height: 360px;
-  padding: 1em;
+  padding: 1.5em;
 }
-.d4plib-meta-box-wrapper div.wp-tab-panel > p {
+.d4plib-meta-box-wrapper div.d4p-ctrl-tabs-content > p {
   margin: 1em 0;
 }
-.d4plib-meta-box-wrapper div.wp-tab-panel > p:first-child {
+.d4plib-meta-box-wrapper div.d4p-ctrl-tabs-content > p:first-child {
   margin-top: 0;
 }
-.d4plib-meta-box-wrapper div.wp-tab-panel > p:last-child {
+.d4plib-meta-box-wrapper div.d4p-ctrl-tabs-content > p:last-child {
   margin-bottom: 0;
-}
-.d4plib-meta-box-wrapper h4 {
-  font-size: 1.1em;
-  padding: 0;
-  margin: 0.5em 0;
 }
 .d4plib-meta-box-wrapper .d4plib-meta-box-element:not(:last-child) {
   margin: 0 0 10px;
@@ -99,52 +73,4 @@
 }
 .d4plib-meta-box-wrapper .d4plib-meta-box-element .d4p-check-uncheck a i {
   vertical-align: -2px;
-}
-.d4plib-meta-box-wrapper .__row {
-  width: 100%;
-  overflow: auto;
-}
-.d4plib-meta-box-wrapper .__row > div {
-  float: left;
-  padding: 0 10px;
-}
-.d4plib-meta-box-wrapper .__row > div.__column-half {
-  width: 50%;
-}
-.d4plib-meta-box-wrapper .__row > div.__column-third {
-  width: 33.33%;
-}
-.d4plib-meta-box-wrapper .__row > div.__column-two-thirds {
-  width: 66.66%;
-}
-.d4plib-meta-box-wrapper .__row > div.__column-fourth {
-  width: 25%;
-}
-.d4plib-meta-box-wrapper .__row > div.__column-three-fourths {
-  width: 75%;
-}
-.d4plib-meta-box-wrapper .__row > div.__column-full {
-  width: 100%;
-  float: none;
-}
-.d4plib-meta-box-wrapper .__row > div:first-child {
-  padding-left: 0;
-}
-.d4plib-meta-box-wrapper .__row > div:last-child {
-  padding-right: 0;
-}
-.d4plib-meta-box-wrapper .__row > div .gdfon-rule-item:last-child {
-  margin: 0 !important;
-}
-
-@media screen and (max-width: 720px) {
-  .d4plib-meta-box-wrapper .__row > div {
-    float: none;
-  }
-  .d4plib-meta-box-wrapper .__row > div.__column-third, .d4plib-meta-box-wrapper .__row > div.__column-half, .d4plib-meta-box-wrapper .__row > div.__column-two-ninths, .d4plib-meta-box-wrapper .__row > div.__column-fourth, .d4plib-meta-box-wrapper .__row > div.__column-three-fourths, .d4plib-meta-box-wrapper .__row > div.__column-two-thirds {
-    width: 100%;
-  }
-  .d4plib-meta-box-wrapper .__row > div:first-child, .d4plib-meta-box-wrapper .__row > div:last-child {
-    padding: 0;
-  }
 }
