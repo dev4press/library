@@ -93,7 +93,7 @@ class BBP {
 		return $roles;
 	}
 
-	public static function can_user_moderate() {
+	public static function can_user_moderate() : bool {
 		$roles = array_keys( BBP::get_moderator_roles() );
 
 		if ( is_user_logged_in() ) {

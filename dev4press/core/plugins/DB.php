@@ -105,4 +105,20 @@ abstract class DB extends DBLite {
 
 		return $key;
 	}
+
+	public function update_meta( $meta_type, $object_id, $meta_key, $meta_value, $prev_value = '' ) {
+		return update_metadata( $this->_prefix . '_' . $meta_type, $object_id, $meta_key, $meta_value, $prev_value );
+	}
+
+	public function add_meta( $meta_type, $object_id, $meta_key, $meta_value, $unique = false ) {
+		return add_metadata( $this->_prefix . '_' . $meta_type, $object_id, $meta_key, $meta_value, $unique );
+	}
+
+	public function get_meta( $meta_type, $object_id, $meta_key, $single = false ) {
+		return get_metadata( $this->_prefix . '_' . $meta_type, $object_id, $meta_key, $single );
+	}
+
+	public function delete_meta( $meta_type, $object_id, $meta_key, $delete_all = false ) : bool {
+		return delete_metadata( $this->_prefix . '_' . $meta_type, $object_id, $meta_key, $delete_all );
+	}
 }

@@ -453,5 +453,7 @@ abstract class Plugin {
 
 	abstract public function settings_definitions();
 
-	abstract public function features_definitions( $feature );
+	public function features_definitions( $feature ) {
+
+	}
 }

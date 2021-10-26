@@ -97,11 +97,7 @@ abstract class Settings {
 	}
 
 	public function group( $group ) {
-		if ( isset( $this->settings[ $group ] ) ) {
-			return $this->settings[ $group ];
-		} else {
-			return null;
-		}
+		return $this->settings[ $group ] ?? null;
 	}
 
 	public function exists( $name, $group = 'settings' ) : bool {

@@ -27,9 +27,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v37\Core\Plugins;
 
 use Dev4Press\v37\API\Four;
+use Dev4Press\v37\Core\Quick\BBP;
 use Dev4Press\v37\Library;
 use Dev4Press\v37\WordPress;
-use function Dev4Press\v37\Functions\bbPress\major_version_number;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -180,7 +180,7 @@ abstract class Core {
 		$bbpress = $this->s()->i()->requirement_version( 'bbpress' );
 
 		if ( $bbpress !== false ) {
-			$installed = major_version_number( 'full' );
+			$installed = BBP::major_version_number( 'full' );
 
 			if ( $installed === 0 || version_compare( $installed, $bbpress, '>=' ) === false ) {
 				$list[] = array( 'bbPress', $installed, $bbpress );

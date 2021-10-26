@@ -263,11 +263,7 @@ class IP {
 	public static function is_cloudflare( $ip = null ) : bool {
 		if ( is_null( $ip ) ) {
 			if ( isset( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
-				if ( isset( $_SERVER['HTTP_X_REAL_IP'] ) ) {
-					$ip = $_SERVER['HTTP_X_REAL_IP'];
-				} else {
-					$ip = $_SERVER['REMOTE_ADDR'];
-				}
+				$ip = $_SERVER['HTTP_X_REAL_IP'] ?? $_SERVER['REMOTE_ADDR'];
 			} else {
 				return false;
 			}

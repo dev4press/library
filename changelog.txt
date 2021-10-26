@@ -60,13 +60,13 @@
 * New: Options core Element support for switch section visibility
 * Updated: Widget interface improvements and few tweaks
 * Updated: Frontend Enqueue change action priorities
-* Updated: Improvements to main icons font organization and size
+* Updated: Improvements to main icons' font organization and size
 * Updated: Many small tweaks and changes
 * Updated: Many styling improvements
 * Removed: HTML tags rendering functions
 * Removed: IP wrapper functions
 * Removed: Many obsolete function
-* Fixed: Issues with the names of some of the CSS files
+* Fixed: Issues with the names of some CSS files
 * Fixed: Detection of the RTL text orientation
 * Fixed: Various small issues
 
