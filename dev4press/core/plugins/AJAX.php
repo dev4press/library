@@ -37,7 +37,7 @@ abstract class AJAX {
 	public function error( string $message = '', int $code = 400, array $args = array() ) {
 		$result = array(
 			'status'  => 'error',
-			'message' => empty( $message ) ? __( "Invalid Request" ) : $message
+			'message' => empty( $message ) ? __( "Invalid Request", "d4plib" ) : $message
 		);
 
 		if ( ! empty( $args ) ) {

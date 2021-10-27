@@ -42,12 +42,12 @@ use function Dev4Press\v37\Functions\panel;
 	                <?php if ( !$obj['always_on'] ) { ?>
                     <div class="_activation">
                         <input<?php echo $_checked; ?> data-feature="<?php echo $subpanel; ?>" id="d4p-feature-toggle-<?php echo $subpanel; ?>" type="checkbox"/>
-                        <label for="d4p-feature-toggle-<?php echo $subpanel; ?>"><span class="d4p-accessibility-show-for-sr"><?php _e( "Active" ); ?></span></label>
+                        <label for="d4p-feature-toggle-<?php echo $subpanel; ?>"><span class="d4p-accessibility-show-for-sr"><?php _e( "Active", "d4plib" ); ?></span></label>
                     </div>
                     <?php } ?>
 					<?php if ( $obj['settings'] ) { ?>
                         <div class="_settings">
-                            <a title="<?php echo sprintf( __( "Settings for '%s'" ), $obj['title'] ); ?>" href="<?php echo $url; ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
+                            <a title="<?php echo sprintf( __( "Settings for '%s'", "d4plib" ), $obj['title'] ); ?>" href="<?php echo $url; ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
                         </div>
 					<?php } ?>
                 </div>
