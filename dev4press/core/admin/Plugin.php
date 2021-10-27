@@ -321,8 +321,8 @@ abstract class Plugin {
 
 		if ( $this->has_metabox && ( $hook == 'post.php' || $hook == 'post-new.php' ) ) {
 			if ( $this->is_metabox_available() ) {
-				$this->enqueue->js( 'meta' );
-				$this->enqueue->css( 'meta' )->css( 'font' );
+				$this->enqueue->js( 'ctrl' )->js( 'meta' );
+				$this->enqueue->css( 'ctrl' )->css( 'meta' )->css( 'font' );
 
 				$this->extra_enqueue_scripts_metabox();
 

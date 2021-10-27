@@ -3,6 +3,7 @@
         border-bottom: 1px solid var(--d4p-ctrl-color-tabs-border);
         position: relative;
         margin: 0;
+        display: flex;
 
         button[role="tab"] {
             color: var(--d4p-ctrl-color-tabs-text);
