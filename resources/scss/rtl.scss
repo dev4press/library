@@ -1,45 +1,27 @@
 .d4p-wrap {
-    margin: 0 0 0 15px;
-
-    .d4p-header {
-        .d4p-navigator {
-            float: right;
-
-            ul li.d4p-nav-button {
-                float: right;
-                margin-right: 0;
-                margin-left: 30px;
-
-                &:last-child {
-                    margin-left: 0;
-                }
-            }
-        }
-
-        .d4p-plugin {
-            float: left;
-        }
-    }
+    margin: 0 0 0 1em;
 
     .d4p-main {
         .d4p-inside-wrapper {
             .d4p-sidebar {
-                float: right;
-                padding: 15px 0 15px 15px;
+                padding: 1.5em 0 1.5em 1.5em;
             }
 
             .d4p-content {
-                padding: 15px 15px 15px 0;
+                padding: 1.5em 1.5em 1.5em 0;
                 border-left: 0;
                 border-right: 1px solid #777;
 
                 .d4p-group {
-                    &.d4p-dashboard-card {
-                        &:nth-child(odd) {
-                            margin-right: 0;
-                            margin-left: 15px;
-                        }
+                    .d4p-group-inner {
+                        text-align: right;
+                    }
 
+                    h3 {
+                        text-align: right;
+                    }
+
+                    &.d4p-dashboard-card {
                         .d4p-group-inner {
                             ul {
                                 &.d4p-with-bullets {
@@ -67,24 +49,6 @@
                             text-align: right;
                         }
 
-                        .d4p-group-inner,
-                        .d4p-group-header,
-                        .d4p-group-footer {
-                            ul {
-                                li {
-                                    &:nth-child(odd) {
-                                        padding-right: 0;
-                                        padding-left: 10px;
-                                    }
-
-                                    &:nth-child(even) {
-                                        padding-left: 0;
-                                        padding-right: 10px;
-                                    }
-                                }
-                            }
-                        }
-
                         .d4p-status-message {
                             text-align: right;
                         }
@@ -99,26 +63,27 @@
             }
         }
     }
-}
 
-.d4p-options-panel {
-    float: right;
-    margin: 0 0 15px 15px;
+    .d4p-header  {
+        .d4p-navigator {
+            ul {
+                li.d4p-nav-button {
+                    margin-right: 0;
+                    margin-left: 3em;
+                }
+            }
+        }
 
-    i {
-        float: right;
-        margin-right: 0;
-        margin-left: 15px;
-    }
-
-    h5 {
-        margin: 0 85px 10px 0;
-        text-align: right;
-    }
-
-    div {
-        text-align: left;
-        margin: 0 85px 0 0;
+        @media screen and (max-width: 768px) {
+            .d4p-navigator {
+                ul {
+                    li.d4p-nav-button {
+                        margin-right: 0;
+                        margin-left: 2%;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -132,40 +97,26 @@
     }
 }
 
-.d4p-group {
-    float: right;
-}
-
 .d4p-settings-section {
-    h4 {
-        text-align: right;
+    .d4p-settings-table {
+        > tbody > tr {
+            > th,
+            > td {
+                text-align: right;
+            }
 
-        span {
-            margin: 0 15px 0 0;
-        }
-    }
-}
-
-.d4p-settings-table {
-    > tbody > tr {
-        > th {
-            padding: 10px 0 10px 15px;
+            > td {
+                padding: 1.5em 0 1.5em 1.5em;
+            }
         }
 
-        > th,
-        > td {
-            text-align: right;
-        }
-    }
-
-    .d4p-setting-wrapper {
-        .d4p-check-uncheck {
-            a {
-                display: inline-block;
-
-                &.d4p-check-all {
-                    margin-left: 10px;
-                    margin-right: 0;
+        .d4p-setting-wrapper {
+            .d4p-check-uncheck {
+                a {
+                    &.d4p-check-all {
+                        margin-left: 10px;
+                        margin-right: 0;
+                    }
                 }
             }
         }

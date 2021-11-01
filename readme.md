@@ -2,7 +2,7 @@
 
 * Version: v3.7
 * Build:   3700
-* Release: 2021.11.01.
+* Release: 2021.11.02.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/

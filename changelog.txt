@@ -1,7 +1,7 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.7 - 2021.11.01 =
+= Version 3.7 - 2021.11.02 =
 * New: Static classes to replace namespaced functions
 * New: Big redesign for the admin side interface
 * New: Now uses CSS variables as a base for styling
@@ -9,6 +9,7 @@
 * New: Flexbox based core grid styling implementation
 * New: Pattern validation for slug field types
 * Updated: Many improvements and tweaks to the About panel
+* Updated: Improvements to the RTL styling
 * Updated: Built-in cacert.pem 20210930
 * Updated: Clipboard 2.0.8
 * Updated: Cookie 3.0.1
