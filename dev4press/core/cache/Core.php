@@ -51,7 +51,7 @@ abstract class Core {
 		return Store::instance()->set( $this->_key( $group, $key ), $data, $this->store );
 	}
 
-	public function get( $group, $key, $default = false ) : bool {
+	public function get( $group, $key, $default = false ) {
 		$obj = Store::instance()->get( $this->_key( $group, $key ), $this->store );
 
 		return $obj === false ? $default : $obj;

@@ -91,7 +91,7 @@ abstract class DB extends DBLite {
 	public function __get( $name ) {
 		if ( isset( $this->db->$name ) ) {
 			return $this->db->$name;
-		} else if ( isset( $this->wpdb()->$name ) ) {
+		} else if ( property_exists( $this->wpdb(), $name ) || isset( $this->wpdb()->$name ) ) {
 			return $this->wpdb()->$name;
 		}
 

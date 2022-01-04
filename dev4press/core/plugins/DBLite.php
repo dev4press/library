@@ -33,6 +33,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * @property string comments
+ * @property string commentmeta
+ * @property string posts
+ * @property string postmeta
+ * @property string options
+ * @property string terms
+ * @property string termmeta
+ * @property string term_taxonomy
+ * @property string term_relationships
+ * @property string users
+ * @property string usermeta
+ * @property string base_prefix
+ * @property string prefix
+ * @property int    blogid
+ * @property int    insert_id
+ * @property int    rows_affected
+ */
 abstract class DBLite {
 	protected $_queries_log = array();
 
@@ -45,7 +63,7 @@ abstract class DBLite {
 	abstract public static function instance();
 
 	public function __get( $name ) {
-		if ( isset( $this->wpdb()->$name ) ) {
+		if ( property_exists( $this->wpdb(), $name ) || isset( $this->wpdb()->$name ) ) {
 			return $this->wpdb()->$name;
 		}
 

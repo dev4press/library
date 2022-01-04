@@ -105,6 +105,12 @@ class WordPress {
 		return $this->is_classicpress() ? 'ClassicPress' : 'WordPress';
 	}
 
+	public function major_version( $key = 'cms' ) : string {
+		$version = $this->version( $key );
+
+		return substr( $version, 0, 3 );
+	}
+
 	public function version( $key = 'cms' ) : string {
 		return $this->_versions[ $key ] ?? '0.0.0';
 	}
