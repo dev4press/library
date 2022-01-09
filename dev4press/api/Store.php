@@ -62,9 +62,9 @@ class Store {
 		"sweeppress"                       => array(
 			"code"        => "sweeppress",
 			"name"        => "SweepPress",
-			"description" => "Remove various old, unused or obsolete data from the database, optimize database for best performance. Schedule cleanup task to un automatically.",
+			"description" => "Remove various old, unused or obsolete data from the database, optimize database for best performance. Schedule cleanup task to run automatically.",
 			"punchline"   => "Powerful database cleanup for WordPress",
-			"color"       => "#C65C0F",
+			"color"       => "#67AF12",
 			'free'        => true,
 			'pro'         => true
 		),

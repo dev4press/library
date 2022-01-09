@@ -1,4 +1,3 @@
-@charset "UTF-8";
 #customize-theme-controls .d4p-link-section-title {
   font-size: 14px;
   border-bottom: 1px solid #DDD;
@@ -19,7 +18,7 @@
   top: 12px;
   right: 10px;
   z-index: 1;
-  content: "";
+  content: "\f504";
   font: normal 20px/1 dashicons;
   speak: none;
   display: block;

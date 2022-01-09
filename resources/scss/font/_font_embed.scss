@@ -39,8 +39,6 @@ a {
 /* Icons */
 @each $icon, $deg in $rotate {
     .#{$font-prefix-ctrl}.#{$font-prefix}-#{$icon} {
-        -webkit-transform: rotate(#{$deg}deg);
-        -ms-transform: rotate(#{$deg}deg);
         transform: rotate(#{$deg}deg);
     }
 }
@@ -85,64 +83,41 @@ a {
 
 /* Rotate */
 .#{$font-prefix-ctrl}-rotate-90 {
-    -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
     transform: rotate(90deg)
 }
 
 .#{$font-prefix-ctrl}-rotate-45 {
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
     transform: rotate(45deg)
 }
 
 .#{$font-prefix-ctrl}-rotate-270 {
-    -webkit-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
     transform: rotate(270deg)
 }
 
 /* Flip */
 .#{$font-prefix-ctrl}-flip-horizontal {
-    -webkit-transform: scaleX(-1);
     transform: scaleX(-1)
 }
 
 .#{$font-prefix-ctrl}-flip-vertical {
-    -webkit-transform: scaleY(-1);
     transform: scaleY(-1)
 }
 
 .#{$font-prefix-ctrl}-flip-both,
 .#{$font-prefix-ctrl}-flip-horizontal.#{$font-prefix-ctrl}-flip-vertical {
-    -webkit-transform: scale(-1);
     transform: scale(-1)
 }
 
 /* Spin */
 .#{$font-prefix-ctrl}-spin {
-    -webkit-animation: #{$font-prefix}-icon-spin 2s infinite linear;
     animation: #{$font-prefix}-icon-spin 2s infinite linear;
-}
-
-@-webkit-keyframes #{$font-prefix}-icon-spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(359deg);
-        transform: rotate(359deg);
-    }
 }
 
 @keyframes #{$font-prefix}-icon-spin {
     0% {
-        -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
     100% {
-        -webkit-transform: rotate(359deg);
         transform: rotate(359deg);
     }
 }

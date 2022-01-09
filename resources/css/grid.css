@@ -5,8 +5,6 @@
   box-sizing: border-box;
   margin: 0 auto;
   width: 100%;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   flex: 0 1 auto;
   flex-direction: row;
@@ -795,8 +793,6 @@
   display: block !important;
 }
 .core-grid .core-row.show {
-  display: -webkit-flex !important;
-  display: -ms-flexbox !important;
   display: flex !important;
 }
 .core-grid .hide {
@@ -806,8 +802,6 @@
   display: block !important;
 }
 .core-grid .core-row.show-xs {
-  display: -webkit-flex !important;
-  display: -ms-flexbox !important;
   display: flex !important;
 }
 .core-grid .hide-xs {
@@ -818,8 +812,6 @@
     display: block !important;
   }
   .core-grid .core-row.show-xs-only {
-    display: -webkit-flex !important;
-    display: -ms-flexbox !important;
     display: flex !important;
   }
   .core-grid .hide-xs-only {
@@ -831,8 +823,6 @@
     display: block !important;
   }
   .core-grid .core-row.show-sm {
-    display: -webkit-flex !important;
-    display: -ms-flexbox !important;
     display: flex !important;
   }
   .core-grid .hide-sm {
@@ -844,8 +834,6 @@
     display: block !important;
   }
   .core-grid .core-row.show-sm-only {
-    display: -webkit-flex !important;
-    display: -ms-flexbox !important;
     display: flex !important;
   }
   .core-grid .hide-sm-only {
@@ -857,8 +845,6 @@
     display: block !important;
   }
   .core-grid .core-row.show-md {
-    display: -webkit-flex !important;
-    display: -ms-flexbox !important;
     display: flex !important;
   }
   .core-grid .hide-md {
@@ -870,8 +856,6 @@
     display: block !important;
   }
   .core-grid .core-row.show-md-only {
-    display: -webkit-flex !important;
-    display: -ms-flexbox !important;
     display: flex !important;
   }
   .core-grid .hide-md-only {
@@ -883,8 +867,6 @@
     display: block !important;
   }
   .core-grid .core-row.show-lg {
-    display: -webkit-flex !important;
-    display: -ms-flexbox !important;
     display: flex !important;
   }
   .core-grid .hide-lg {
@@ -896,8 +878,6 @@
     display: block !important;
   }
   .core-grid .core-row.show-lg-only {
-    display: -webkit-flex !important;
-    display: -ms-flexbox !important;
     display: flex !important;
   }
   .core-grid .hide-lg-only {
@@ -909,8 +889,6 @@
     display: block !important;
   }
   .core-grid .core-row.show-xl {
-    display: -webkit-flex !important;
-    display: -ms-flexbox !important;
     display: flex !important;
   }
   .core-grid .hide-xl {

@@ -3,8 +3,6 @@
 }
 
 .core-row.show {
-    display: -webkit-flex !important;
-    display: -ms-flexbox !important;
     display: flex !important;
 }
 
@@ -18,8 +16,6 @@
         display: block !important;
     }
     .core-row.show-#{$thisPrefix} {
-        display: -webkit-flex !important;
-        display: -ms-flexbox !important;
         display: flex !important;
     }
     .hide-#{$thisPrefix} {
