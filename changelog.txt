@@ -3,6 +3,7 @@
 
 = Version 3.7.1 - 2021.01.12 =
 * New: Added few new icons
+* Updated: Some additional visual improvements
 * Updated: Removed obsolete CSS properties
 
 = Version 3.7 - 2021.11.02 =

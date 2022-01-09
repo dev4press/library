@@ -4,6 +4,7 @@ use function Dev4Press\v37\Functions\panel;
 
 $_panels    = panel()->a()->panels();
 $_subpanels = panel()->subpanels();
+$_plugin    = panel()->a()->plugin;
 $_panel     = panel()->a()->panel;
 $_subpanel  = panel()->a()->subpanel;
 
@@ -17,6 +18,7 @@ if ( ! empty( $_subpanels ) ) {
 
 $_classes = array(
 	'd4p-wrap',
+	'd4p-plugin-' . $_plugin,
 	'd4p-panel-' . $_panel
 );
 
@@ -32,6 +34,19 @@ if ( panel()->has_sidebar() ) {
 
 if ( isset( $_panels[ $_panel ]['table'] ) && $_panels[ $_panel ]['table'] ) {
 	$_classes[] = 'd4p-with-table';
+}
+
+if ( panel()->a()->auto_mod_interface_colors ) {
+
+	?>
+    <style>
+        .<?php echo 'd4p-plugin-'.$_plugin; ?> {
+            --d4p-color-layout-accent: <?php echo panel()->a()->settings()->i()->color(); ?>;
+            --d4p-color-sidebar-icon-text: <?php echo panel()->a()->settings()->i()->color(); ?>;
+        }
+    </style>
+	<?php
+
 }
 
 ?>

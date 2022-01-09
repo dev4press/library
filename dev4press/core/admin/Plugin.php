@@ -50,6 +50,7 @@ abstract class Plugin {
 	public $path = '';
 
 	public $is_debug = false;
+	public $auto_mod_interface_colors = false;
 
 	public $page = false;
 	public $panel = '';
