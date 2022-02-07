@@ -48,7 +48,7 @@ abstract class Information {
 	public $author_name = 'Milan Petrovic';
 	public $author_url = 'https://www.dev4press.com/';
 
-	public $php = '7.0';
+	public $php = '7.2';
 	public $mysql = '5.0';
 
 	public $cms = array(
