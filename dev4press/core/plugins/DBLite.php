@@ -45,6 +45,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @property string term_relationships
  * @property string users
  * @property string usermeta
+ * @property string site
+ * @property string sitemeta
+ * @property string blogs
+ * @property string blogmeta
+ * @property string blog_versions
  * @property string base_prefix
  * @property string prefix
  * @property int    blogid
