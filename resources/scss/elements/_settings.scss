@@ -89,6 +89,8 @@
                 line-height: 1.8;
             }
 
+            input[type=datetime-local],
+            input[type=datetime],
             input[type=number],
             input[type=text],
             input[type=email],
@@ -98,6 +100,8 @@
                 width: 100%;
             }
 
+            input[type=time],
+            input[type=month],
             input[type=number] {
                 width: 40%;
             }
@@ -234,6 +238,8 @@
             }
 
             @media screen and (max-width: 840px) {
+                input[type=time],
+                input[type=month],
                 input[type=number] {
                     width: 60%;
                 }
@@ -268,6 +274,8 @@
             }
 
             @media screen and (max-width: 480px) {
+                input[type=time],
+                input[type=month],
                 input[type=number] {
                     width: 100%;
                 }

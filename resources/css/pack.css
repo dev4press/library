@@ -2860,6 +2860,8 @@ a > .d4p-icon {
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper label {
   line-height: 1.8;
 }
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=datetime-local],
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=datetime],
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number],
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=text],
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=email],
@@ -2868,6 +2870,8 @@ a > .d4p-icon {
   padding: 0.3em 0.8em;
   width: 100%;
 }
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=time],
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=month],
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
   width: 40%;
 }
@@ -2961,7 +2965,9 @@ a > .d4p-icon {
   margin: 0 0 5px;
 }
 @media screen and (max-width: 840px) {
-  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=time],
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=month],
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
     width: 60%;
   }
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck {
@@ -2983,7 +2989,9 @@ a > .d4p-icon {
   }
 }
 @media screen and (max-width: 480px) {
-  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=time],
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=month],
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
     width: 100%;
   }
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-css_size input[type=number] {
