@@ -72,24 +72,28 @@ class Scope {
 		$this->multisite = is_multisite();
 		$this->blog_id   = get_current_blog_id();
 
-		if ( is_admin() ) {
-			$this->admin = true;
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			$this->scope = 'cli';
+		} else {
+			if ( is_admin() ) {
+				$this->admin = true;
 
-			if ( is_blog_admin() ) {
-				$this->blog_admin = true;
-			} else if ( is_network_admin() ) {
-				$this->network_admin = true;
-			} else if ( is_user_admin() ) {
-				$this->user_admin = true;
+				if ( is_blog_admin() ) {
+					$this->blog_admin = true;
+				} else if ( is_network_admin() ) {
+					$this->network_admin = true;
+				} else if ( is_user_admin() ) {
+					$this->user_admin = true;
+				}
+			} else {
+				$this->frontend = true;
 			}
-		} else {
-			$this->frontend = true;
-		}
 
-		if ( is_network_admin() ) {
-			$this->scope = 'network';
-		} else {
-			$this->scope = 'blog';
+			if ( is_network_admin() ) {
+				$this->scope = 'network';
+			} else {
+				$this->scope = 'blog';
+			}
 		}
 	}
 
