@@ -121,11 +121,11 @@ abstract class Panel {
 		$this->include_footer();
 	}
 
-	public function forms_path_library() {
+	public function forms_path_library() : string {
 		return $this->a()->path . 'd4plib/forms/';
 	}
 
-	public function forms_path_plugin() {
+	public function forms_path_plugin() : string {
 		return $this->a()->path . 'forms/';
 	}
 
@@ -169,11 +169,11 @@ abstract class Panel {
 		$this->load( $name, $main );
 	}
 
-	public function form_tag_open() {
-		return '<form method="post" action="" id="' . $this->a()->plugin_prefix . '-form-settings" enctype="multipart/form-data" autocomplete="off">';
+	public function form_tag_open() : string {
+		return '<form method="post" action="" id="' . $this->a()->plugin_prefix . '-form-' . $this->a()->panel . '" enctype="multipart/form-data" autocomplete="off">';
 	}
 
-	public function form_tag_close() {
+	public function form_tag_close() : string {
 		return '</form>';
 	}
 
