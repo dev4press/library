@@ -127,7 +127,7 @@ class Scope {
 		return $this->user_admin;
 	}
 
-	public function is_multisite_blog_admin( $blog_id = 0 ) : bool {
+	public function is_multisite_blog_admin( int $blog_id = 0 ) : bool {
 		if ( ! $this->is_multisite() ) {
 			return false;
 		}
@@ -141,7 +141,7 @@ class Scope {
 		}
 	}
 
-	public function is_blog_admin( $blog_id = 0 ) : bool {
+	public function is_blog_admin( int $blog_id = 0 ) : bool {
 		$blog_id = absint( $blog_id );
 
 		if ( $blog_id == 0 ) {
@@ -151,7 +151,7 @@ class Scope {
 		}
 	}
 
-	public function is_frontend( $blog_id = 0 ) : bool {
+	public function is_frontend( int $blog_id = 0 ) : bool {
 		$blog_id = absint( $blog_id );
 
 		if ( $blog_id == 0 ) {
@@ -159,6 +159,16 @@ class Scope {
 		} else {
 			return $this->frontend && $this->blog_id = $blog_id;
 		}
+	}
+
+	public function is_main_blog( int $blog_id = 0 ) : bool {
+		if ( $this->multisite ) {
+			$blog_id = $blog_id == 0 ? $this->blog_id : $blog_id;
+
+			return $blog_id == get_main_site_id();
+		}
+
+		return true;
 	}
 
 	public function get_blog_id() : int {
