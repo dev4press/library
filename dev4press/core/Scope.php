@@ -72,7 +72,7 @@ class Scope {
 		$this->multisite = is_multisite();
 		$this->blog_id   = get_current_blog_id();
 
-		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+		if ( defined( 'WP_CLI' ) && defined( 'WP_CLI_VERSION' ) && defined( 'WP_CLI_START_MICROTIME' ) && WP_CLI ) {
 			$this->scope = 'cli';
 		} else {
 			if ( is_admin() ) {
@@ -169,6 +169,10 @@ class Scope {
 		}
 
 		return true;
+	}
+
+	public function is_scope_cli() : bool {
+		return $this->scope === 'cli';
 	}
 
 	public function get_blog_id() : int {
