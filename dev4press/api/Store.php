@@ -50,7 +50,7 @@ class Store {
 			'free'        => true,
 			'pro'         => true
 		),
-		"coreseo"                          => array(
+		/*"coreseo"                          => array(
 			"code"        => "coreseo",
 			"name"        => "CoreSEO",
 			"description" => "Toolbox plugin with a number of search engine optimization related modules for Sitemaps, Robots.txt, Robots Meta and Knowledge Graph control, with more modules to be added.",
@@ -58,7 +58,7 @@ class Store {
 			"color"       => "#C65C0F",
 			'free'        => false,
 			'pro'         => true
-		),
+		),*/
 		"sweeppress"                       => array(
 			"code"        => "sweeppress",
 			"name"        => "SweepPress",
