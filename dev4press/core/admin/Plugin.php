@@ -433,6 +433,13 @@ abstract class Plugin {
 		return $post_type;
 	}
 
+	public function getback_url( $args = array() ) : string {
+		$url = $this->current_url();
+		$url = add_query_arg( $this->v(), 'getback', $url );
+
+		return add_query_arg( $args, $url );
+	}
+
 	abstract public function main_url();
 
 	abstract public function current_url( $with_subpanel = true );
