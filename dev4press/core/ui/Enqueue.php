@@ -227,7 +227,6 @@ final class Enqueue {
 		$plugin = isset( $obj['src'] ) && $obj['src'] == 'plugin';
 		$path   = $plugin ? trailingslashit( $obj['path'] ) : trailingslashit( 'resources/' . $obj['path'] );
 		$base   = $this->_url;
-		$path   = trailingslashit( $obj['path'] );
 
 		if ( ! $plugin ) {
 			$dir  = isset( $obj['lib'] ) && $obj['lib'] === true ? 'resources/libraries/' : 'resources/';

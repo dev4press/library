@@ -77,11 +77,11 @@
                         e.preventDefault();
 
                         if ($(this).hasClass("_is-open")) {
-                            $(this).removeClass("_is-open")
+                            $(this).removeClass("_is-open");
                             $(this).next().hide();
                             $(this).next().next().show();
                         } else {
-                            $(this).addClass("_is-open")
+                            $(this).addClass("_is-open");
                             $(this).next().show();
                             $(this).next().next().hide();
                         }
@@ -111,7 +111,7 @@
                     }
                 },
                 mark: function() {
-                    $(document).on("click", ".d4p-panel-mark button", function(e) {
+                    $(document).on("click", ".d4p-panel-mark button", function() {
                         $("#d4p-settings-mark").val("").trigger("input");
                     });
 
@@ -242,8 +242,10 @@
             },
             color_picker: {
                 run: function() {
-                    if ($(".d4p-color-picker").length > 0) {
-                        $(".d4p-color-picker").wpColorPicker();
+                    var picker = $(".d4p-color-picker");
+
+                    if (picker.length > 0) {
+                        picker.wpColorPicker();
                     }
                 }
             },
@@ -450,7 +452,7 @@
             this.handler = handler;
             this.nonce = nonce;
 
-            $(document).on("click", this.button, function(e) {
+            $(document).on("click", this.button, function() {
                 if (wp.dev4press.ajaxtask.progres.active) {
                     wp.dev4press.ajaxtask.stop();
                 } else {

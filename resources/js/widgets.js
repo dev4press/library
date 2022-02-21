@@ -40,7 +40,7 @@
                 }
             });
 
-            $(document).on("change", ".d4plib-widget-save", function(e) {
+            $(document).on("change", ".d4plib-widget-save", function() {
                 $(this).closest("form").find(".widget-control-actions input.button").click();
             });
 
@@ -54,7 +54,7 @@
                 $(block + "-" + method, parent).show();
             });
 
-            $(document).on("change", ".d4plib-block-switch", function(e) {
+            $(document).on("change", ".d4plib-block-switch", function() {
                 var block = $(this).data("block"),
                     selected = $(this).val(),
                     parent = $(this).closest("table");

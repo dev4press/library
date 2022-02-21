@@ -50,7 +50,7 @@ abstract class Features {
 	public function settings() : array {
 		$list = array();
 
-		foreach ($this->settings[$this->feature] as $group => $data) {
+		foreach ($this->settings[$this->feature] as $data) {
 			foreach ($data['sections'] as $section) {
 				foreach ( $section['settings'] as $o ) {
 					if ( ! empty( $o->type ) ) {

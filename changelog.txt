@@ -1,6 +1,11 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.7.3 - 2022.03.01 =
+* Fixed: Minor issue with the Enqueue method generated path
+* Fixed: Few minor issues in the JavaScript
+* Fixed: Wrong email sanitation call
+
 = Version 3.7.2 - 2022.02.20 =
 * New: Main Admin class method to generate getback URL
 * Updated: Scope class support for WP CLI

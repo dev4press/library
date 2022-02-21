@@ -226,7 +226,7 @@ class Process {
 				$value = $this->slug_slashes( $post[ $key ] );
 				break;
 			case 'email':
-				$value = Sanitize::email( $post[ $key ] );
+				$value = sanitize_email( $post[ $key ] );
 				break;
 			case 'date':
 				$value = Sanitize::date( $post[ $key ] );
