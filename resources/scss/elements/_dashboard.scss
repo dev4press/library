@@ -21,13 +21,27 @@
                     font-size: 32px;
                 }
 
-                h5 {
+                ._version-wrapper {
                     margin: 1.6em -1.6em -1.6em;
                     padding: 1em;
                     border-top: 1px solid var(--d4p-color-main-border);
                     font-size: 1.3em;
                     text-align: center;
                     font-weight: 300;
+                    display: flex;
+
+                    > span {
+                        display: block;
+                    }
+
+                    ._edition {
+                        font-weight: bold;
+                    }
+
+                    ._version {
+                        text-align: right;
+                        flex-grow: 1;
+                    }
                 }
             }
 

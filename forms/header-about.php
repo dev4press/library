@@ -28,7 +28,7 @@ if ( ! empty( $_subpanel ) ) {
 <div class="<?php echo join( ' ', $_classes ); ?>">
     <div class="d4p-about-head-wrapper">
         <div class="d4p-about-information">
-            <h1><?php printf( __( "Welcome to %s&nbsp;%s", "d4plib" ), panel()->a()->title(), panel()->a()->settings()->i()->version ); ?></h1>
+            <h1><?php printf( __( "Welcome to %s %s&nbsp;%s", "d4plib" ), panel()->a()->title(), ucfirst( panel()->a()->settings()->i()->edition ), panel()->a()->settings()->i()->version ); ?></h1>
             <p class="d4p-about-text">
 				<?php echo panel()->a()->settings()->i()->description(); ?>
             </p>

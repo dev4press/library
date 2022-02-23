@@ -2423,13 +2423,24 @@ a > .d4p-icon {
   line-height: 1.1;
   font-size: 32px;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge h5 {
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge ._version-wrapper {
   margin: 1.6em -1.6em -1.6em;
   padding: 1em;
   border-top: 1px solid var(--d4p-color-main-border);
   font-size: 1.3em;
   text-align: center;
   font-weight: 300;
+  display: flex;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge ._version-wrapper > span {
+  display: block;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge ._version-wrapper ._edition {
+  font-weight: bold;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge ._version-wrapper ._version {
+  text-align: right;
+  flex-grow: 1;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-links-group {
   margin: 2em 0 0;

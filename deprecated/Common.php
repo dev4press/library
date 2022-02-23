@@ -377,20 +377,20 @@ if ( ! function_exists( __NAMESPACE__ . '\object_cache' ) ) {
 if ( ! function_exists( __NAMESPACE__ . '\local_image_to_media_library' ) ) {
 	/** @deprecated since 3.7 to be removed in 3.8 */
 	function local_image_to_media_library( $path, $data = array(), $post_parent = 0, $args = array() ) {
-		return LocalImage::run($path, $data, $post_parent, $args);
+		return LocalImage::run( $path, $data, $post_parent, $args );
 	}
 }
 
 if ( ! function_exists( __NAMESPACE__ . '\remote_image_to_media_library' ) ) {
 	/** @deprecated since 3.7 to be removed in 3.8 */
 	function remote_image_to_media_library( $url, $data = array(), $post_parent = 0, $args = array() ) {
-		return RemoteImage::run($url, $data, $post_parent, $args);
+		return RemoteImage::run( $url, $data, $post_parent, $args );
 	}
 }
 
 if ( ! function_exists( __NAMESPACE__ . '\get_objects_sort' ) ) {
 	/** @deprecated since 3.7 to be removed in 3.8 */
 	function get_objects_sort( $objects_array, $properties = array(), $uasort = false ) {
-		return ObjectsSort::run($objects_array, $properties, $uasort);
+		return ObjectsSort::run( $objects_array, $properties, $uasort );
 	}
 }

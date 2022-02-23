@@ -12,16 +12,16 @@ use function Dev4Press\v37\Functions\panel;
 				continue;
 			}
 
-            $_checked = '';
+			$_checked = '';
 			$_classes = array(
 				'd4p-feature-box',
 				'feature-' . $subpanel,
-                '_is-feature'
+				'_is-feature'
 			);
 
 			if ( $obj['active'] ) {
 				$_classes[] = '_is-active';
-				$_checked = ' checked="checked"';
+				$_checked   = ' checked="checked"';
 			}
 
 			if ( $obj['always_on'] ) {
@@ -39,12 +39,12 @@ use function Dev4Press\v37\Functions\panel;
                     <p class="_description"><?php echo $obj['info']; ?></p>
                 </div>
                 <div class="_ctrl">
-	                <?php if ( !$obj['always_on'] ) { ?>
-                    <div class="_activation">
-                        <input<?php echo $_checked; ?> data-feature="<?php echo $subpanel; ?>" id="d4p-feature-toggle-<?php echo $subpanel; ?>" type="checkbox"/>
-                        <label for="d4p-feature-toggle-<?php echo $subpanel; ?>"><span class="d4p-accessibility-show-for-sr"><?php _e( "Active", "d4plib" ); ?></span></label>
-                    </div>
-                    <?php } ?>
+					<?php if ( ! $obj['always_on'] ) { ?>
+                        <div class="_activation">
+                            <input<?php echo $_checked; ?> data-feature="<?php echo $subpanel; ?>" id="d4p-feature-toggle-<?php echo $subpanel; ?>" type="checkbox"/>
+                            <label for="d4p-feature-toggle-<?php echo $subpanel; ?>"><span class="d4p-accessibility-show-for-sr"><?php _e( "Active", "d4plib" ); ?></span></label>
+                        </div>
+					<?php } ?>
 					<?php if ( $obj['settings'] ) { ?>
                         <div class="_settings">
                             <a title="<?php echo sprintf( __( "Settings for '%s'", "d4plib" ), $obj['title'] ); ?>" href="<?php echo $url; ?>"><i class="d4p-icon d4p-ui-cog"></i></a>

@@ -2,6 +2,7 @@
 == Changelog ==
 
 = Version 3.7.3 - 2022.03.01 =
+* Updated: Various minor display and styling tweaks
 * Fixed: Minor issue with the Enqueue method generated path
 * Fixed: Few minor issues in the JavaScript
 * Fixed: Wrong email sanitation call

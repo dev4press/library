@@ -17,7 +17,7 @@ $_button_id = $_subpanels[ $_subpanel ]['button_id'] ?? panel()->a()->plugin_pre
     <div class="d4p-panel-scroller d4p-scroll-active">
         <div class="d4p-panel-title">
             <div class="_icon">
-			<?php echo panel()->r()->icon( $_panel->icon ); ?>
+				<?php echo panel()->r()->icon( $_panel->icon ); ?>
             </div>
             <h3><?php echo $_panel->title; ?></h3>
 			<?php
@@ -28,7 +28,7 @@ $_button_id = $_subpanels[ $_subpanel ]['button_id'] ?? panel()->a()->plugin_pre
 
 			?>
             <div class="_info">
-		        <?php echo$_subpanels[ $_subpanel ]['description'] ?? $_subpanels[ $_subpanel ]['info']; ?>
+				<?php echo $_subpanels[ $_subpanel ]['description'] ?? $_subpanels[ $_subpanel ]['info']; ?>
             </div>
         </div>
 		<?php if ( $_subpanel != 'index' && $_subpanels[ $_subpanel ]['method'] != '' ) { ?>
