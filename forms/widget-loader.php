@@ -1,4 +1,10 @@
-<?php $_tab = $instance['_tab']; ?>
+<?php
+
+include( dirname( dirname( __FILE__ ) ) . '/functions/admin.php' );
+
+$_tab = $instance['_tab'];
+
+?>
 
 <div class="d4plib-widget <?php echo $this->widget_base; ?>-wrapper">
     <div class="d4plib-widget-tabs" role="tablist">

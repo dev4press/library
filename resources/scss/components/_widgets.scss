@@ -63,7 +63,7 @@
 
         p {
             margin: 0;
-            line-height: 21.5px;
+            line-height: 21px;
         }
 
         em {
@@ -148,6 +148,7 @@
 
             ul {
                 margin: 0;
+                padding: 0;
                 list-style: none;
             }
 
@@ -244,6 +245,37 @@
                 .iris-square {
                     margin-right: 10px;
                 }
+            }
+        }
+    }
+}
+
+.editor-styles-wrapper {
+    .d4plib-widget {
+        border-bottom: 0;
+        margin: 0;
+
+        h4 {
+            margin: 15px 0 5px;
+            padding: 2px 5px;
+            font-weight: bold;
+            text-decoration: none;
+            border: 0;
+            color: #fff;
+            font-size: .95em;
+        }
+
+        em {
+            font-size: .9em;
+            line-height: 1.5;
+        }
+
+        table {
+            margin: 0 0 10px !important;
+            border: 0 !important;
+
+            td {
+                border: 0 !important;
             }
         }
     }
