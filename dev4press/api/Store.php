@@ -59,15 +59,6 @@ class Store {
 			'free'        => false,
 			'pro'         => true
 		),*/
-		"sweeppress"                       => array(
-			"code"        => "sweeppress",
-			"name"        => "SweepPress",
-			"description" => "Remove various old, unused or obsolete data from the database, optimize database for best performance. Schedule cleanup task to run automatically.",
-			"punchline"   => "Powerful database cleanup for WordPress",
-			"color"       => "#67AF12",
-			'free'        => true,
-			'pro'         => true
-		),
 		"debugpress"                       => array(
 			"code"        => "debugpress",
 			"name"        => "DebugPress",
@@ -85,6 +76,15 @@ class Store {
 			"color"       => "#0F1086",
 			'free'        => true,
 			'pro'         => false
+		),
+		"sweeppress"                       => array(
+			"code"        => "sweeppress",
+			"name"        => "SweepPress",
+			"description" => "Remove various old, unused or obsolete data from the database, optimize the database for best performance. Schedule cleanup tasks to run automatically.",
+			"punchline"   => "Powerful database cleanup for WordPress",
+			"color"       => "#67AF12",
+			'free'        => true,
+			'pro'         => true
 		),
 		"dev4press-updater"                => array(
 			"code"        => "dev4press-updater",
