@@ -24,7 +24,7 @@ $_subpanels = panel()->subpanels();
 
 			?>
             <div class="_info">
-				<?php echo $_subpanels[ $_subpanel ]['info']; ?>
+				<?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
             </div>
         </div>
 		<?php if ( $_subpanel == 'full' ) { ?>

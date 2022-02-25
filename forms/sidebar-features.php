@@ -29,7 +29,7 @@ $_url_reset = add_query_arg( array(
 
 			?>
             <div class="_info">
-				<?php echo $_subpanels[ $_subpanel ]['info']; ?>
+				<?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
             </div>
         </div>
 
