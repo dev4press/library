@@ -34,11 +34,11 @@ $_button_id = $_subpanels[ $_subpanel ]['button_id'] ?? panel()->a()->plugin_pre
 		<?php if ( $_subpanel != 'index' && $_subpanels[ $_subpanel ]['method'] != '' ) { ?>
             <div class="d4p-panel-buttons">
 				<?php if ( $_subpanels[ $_subpanel ]['method'] == 'get' ) { ?>
-                    <a id="<?php echo $_button_id; ?>" type="button" href="<?php echo $_subpanels[ $_subpanel ]['button_url']; ?>" class="button-primary"><?php echo $_subpanels[ $_subpanel ]['button_label']; ?></a>
+                    <a id="<?php echo esc_attr( $_button_id ); ?>" type="button" href="<?php echo esc_url( $_subpanels[ $_subpanel ]['button_url'] ); ?>" class="button-primary"><?php echo $_subpanels[ $_subpanel ]['button_label']; ?></a>
 				<?php } else if ( $_subpanels[ $_subpanel ]['method'] == 'ajax' ) { ?>
-                    <input id="<?php echo $_button_id; ?>" type="button" value="<?php echo $_subpanels[ $_subpanel ]['button_label']; ?>" class="button-primary"/>
+                    <input id="<?php echo esc_attr( $_button_id ); ?>" type="button" value="<?php echo esc_attr( $_subpanels[ $_subpanel ]['button_label'] ); ?>" class="button-primary"/>
 				<?php } else { ?>
-                    <input id="<?php echo $_button_id; ?>" type="submit" value="<?php echo $_subpanels[ $_subpanel ]['button_label']; ?>" class="button-primary"/>
+                    <input id="<?php echo esc_attr( $_button_id ); ?>" type="submit" value="<?php echo esc_attr( $_subpanels[ $_subpanel ]['button_label'] ); ?>" class="button-primary"/>
 				<?php } ?>
             </div>
             <div class="d4p-return-to-top">

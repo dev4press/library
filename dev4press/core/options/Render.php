@@ -95,7 +95,7 @@ class Render {
 					$type = $obj['kb']['type'] ?? 'article';
 					$kb   = str_replace( '%type%', $type, $kb );
 
-					$kb = '<a class="d4p-kb-group" href="' . $kb . '" target="_blank" rel="noopener">' . $obj['kb']['label'] . '</a>';
+					$kb = '<a class="d4p-kb-group" href="' . esc_url( $kb ) . '" target="_blank" rel="noopener">' . $obj['kb']['label'] . '</a>';
 				}
 
 				echo '<h3>' . $obj['name'] . $kb . '</h3>';
@@ -287,14 +287,14 @@ class Render {
 		echo '<label for="' . esc_attr( $id ) . '_value">' . $element->args['label_value'] . ':</label>';
 		echo '<input type="text" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value['value'] ) . '" class="widefat" />';
 
-		echo '<a role="button" class="button-secondary" href="#">' . $element->args['label_buttom_remove'] . '</a>';
+		echo '<a role="button" class="button-secondary" href="#">' . $element->args['label_button_remove'] . '</a>';
 		echo '</div>';
 	}
 
 	protected function _text_element( $name, $id, $i, $value, $element, $hide = false ) {
 		echo '<li class="exp-text-element exp-text-element-' . $i . '" style="display: ' . ( $hide ? 'none' : 'list-item' ) . '">';
 
-		$button       = isset( $element->args['label_buttom_remove'] ) && $element->args['label_buttom_remove'] != '';
+		$button       = isset( $element->args['label_button_remove'] ) && $element->args['label_button_remove'] != '';
 		$button_width = isset( $element->args['width_button_remove'] ) ? intval( $element->args['width_button_remove'] ) : 100;
 		$type         = isset( $element->args['type'] ) && ! empty( $element->args['type'] ) ? $element->args['type'] : 'text';
 
@@ -308,7 +308,7 @@ class Render {
 		echo '<input aria-labelledby="' . $id . '__label" type="' . $type . '" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value ) . '" class="widefat"' . $style_input . ' />';
 
 		if ( $button ) {
-			echo '<a role="button" class="button-secondary" href="#"' . $style_button . '>' . $element->args['label_buttom_remove'] . '</a>';
+			echo '<a role="button" class="button-secondary" href="#"' . $style_button . '>' . $element->args['label_button_remove'] . '</a>';
 		}
 
 		echo '</li>';
@@ -339,10 +339,7 @@ class Render {
 	}
 
 	protected function draw_datetime( $element, $value, $name_base, $id_base ) {
-		$flatpickr = isset( $element->args['flatpickr'] ) && $element->args['flatpickr'];
-		$class     = $flatpickr ? 'widefat d4p-input-field-datetime' : 'widefat';
-
-		$this->draw_text( $element, $value, $name_base, $id_base, 'text', $class );
+		$this->_datetime_element( $element, $value, $name_base, $id_base, 'datetime-local', 'd4p-input-field-datetime' );
 	}
 
 	protected function draw_text( $element, $value, $name_base, $id_base, $type = 'text', $class = 'widefat' ) {
@@ -598,8 +595,8 @@ class Render {
 
 			echo "<div class='d4plib-images-image'>";
 			echo "<input type='hidden' value='" . esc_attr( $id ) . "' name='" . esc_attr( $name_base ) . "[]' />";
-			echo "<a class='button d4plib-button-action d4plib-images-remove' aria-label='" . __( "Remove", "d4plib" ) . "'><i aria-hidden='true' class='d4p-icon d4p-ui-cancel'></i></a>";
-			echo "<a class='button d4plib-button-action d4plib-images-preview' aria-label='" . __( "Preview", "d4plib" ) . "'><i aria-hidden='true' class='d4p-icon d4p-ui-search'></i></a>";
+			echo "<a class='button d4plib-button-action d4plib-images-remove' aria-label='" . esc_attr__( "Remove", "d4plib" ) . "'><i aria-hidden='true' class='d4p-icon d4p-ui-cancel'></i></a>";
+			echo "<a class='button d4plib-button-action d4plib-images-preview' aria-label='" . esc_attr__( "Preview", "d4plib" ) . "'><i aria-hidden='true' class='d4p-icon d4p-ui-search'></i></a>";
 			echo "<span class='d4plib-image-name'>" . $title . "</span>";
 			echo "<img src='" . $url . "' />";
 			echo "</div>";
@@ -612,7 +609,7 @@ class Render {
 		echo sprintf( '<input class="d4plib-image" type="hidden" name="%s" id="%s" value="%s" />',
 			$name_base, $id_base, esc_attr( $value ) );
 
-		echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-image-add"><i aria-hidden="trye" class="d4p-icon d4p-ui-photo"></i> ' . __( "Select Image", "d4plib" ) . '</a>';
+		echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-image-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> ' . __( "Select Image", "d4plib" ) . '</a>';
 		echo '<a role="button" style="display: ' . ( $value > 0 ? "inline-block" : "none" ) . '" href="#" class="button d4plib-button-inner d4plib-image-preview"><i aria-hidden="true" class="d4p-icon d4p-ui-search"></i> ' . __( "Show Image", "d4plib" ) . '</a>';
 		echo '<a role="button" style="display: ' . ( $value > 0 ? "inline-block" : "none" ) . '" href="#" class="button d4plib-button-inner d4plib-image-remove"><i aria-hidden="true" class="d4p-icon d4p-ui-cancel"></i> ' . __( "Clear Image", "d4plib" ) . '</a>';
 
@@ -731,7 +728,7 @@ class Render {
 
 	protected function draw_link( $element, $value, $name_base, $id_base ) {
 		if ( ! isset( $element->args['placeholder'] ) ) {
-			$element->args['placeholder'] = 'http://';
+			$element->args['placeholder'] = 'https://';
 		}
 
 		$this->draw_text( $element, $value, $name_base, $id_base, 'url' );

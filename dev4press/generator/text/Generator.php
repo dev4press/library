@@ -260,7 +260,7 @@ abstract class Generator {
 
 		$value = $z * $std_dev + $mean;
 
-		return $value < 1 ? 1 : $value;
+		return max( $value, 1 );
 	}
 
 	protected function punctuate( &$sentences ) {

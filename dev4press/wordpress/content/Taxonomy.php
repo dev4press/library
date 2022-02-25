@@ -47,7 +47,6 @@ trait Taxonomy {
 			'menu_name'     => $plural
 		);
 
-		$labels['menu_name']                  = $plural;
 		$labels['all_items']                  = sprintf( _x( "All %s", "Taxonomy label", "d4plib" ), $plural );
 		$labels['edit_item']                  = sprintf( _x( "Edit %s", "Taxonomy label", "d4plib" ), $singular );
 		$labels['view_item']                  = sprintf( _x( "View %s", "Taxonomy label", "d4plib" ), $singular );

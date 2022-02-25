@@ -4,7 +4,7 @@ use function Dev4Press\v37\Functions\panel;
 
 ?>
 <div class="d4p-sidebar">
-    <div class="d4p-dashboard-badge" style="background-color: <?php echo panel()->a()->settings()->i()->color(); ?>;">
+    <div class="d4p-dashboard-badge" style="background-color: <?php echo esc_attr( panel()->a()->settings()->i()->color() ); ?>;">
         <div class="_icon">
 			<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin, '9x' ); ?>
         </div>
@@ -24,7 +24,7 @@ use function Dev4Press\v37\Functions\panel;
 			echo '<div class="d4p-links-group">';
 
 			foreach ( $group as $link ) {
-				echo '<a class="' . $link['class'] . '" href="' . $link['url'] . '">' . panel()->r()->icon( $link['icon'] ) . '<span>' . $link['label'] . '</span></a>';
+				echo '<a class="' . esc_attr( $link['class'] ) . '" href="' . esc_url( $link['url'] ) . '">' . panel()->r()->icon( $link['icon'] ) . '<span>' . $link['label'] . '</span></a>';
 			}
 
 			echo '</div>';

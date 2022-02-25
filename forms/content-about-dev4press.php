@@ -23,8 +23,8 @@ $_plugins = Store::instance()->plugins();
 
         <div class="d4p-dev4press-plugin">
             <div class="_badge">
-                <div class="_icon" style="background-color: <?php echo $plugin['color']; ?>;">
-                    <a href="<?php echo $_url; ?>" target="_blank" rel="noopener"><i class="d4p-icon d4p-plugin-<?php echo $plugin['code']; ?>"></i></a>
+                <div class="_icon" style="background-color: <?php echo esc_attr( $plugin['color'] ); ?>;">
+                    <a href="<?php echo esc_url( $_url ); ?>" target="_blank" rel="noopener"><i class="d4p-icon d4p-plugin-<?php echo $plugin['code']; ?>"></i></a>
                 </div>
                 <div class="_edition <?php echo $_edition; ?>"><?php if ( $_pro ) {
 						echo '<span class="_pro">Pro</span>';
@@ -33,7 +33,8 @@ $_plugins = Store::instance()->plugins();
 					} ?></div>
             </div>
             <div class="_info">
-                <h5><a href="<?php echo $_url; ?>" target="_blank" rel="noopener"><?php echo $plugin['name']; ?></a>
+                <h5>
+                    <a href="<?php echo esc_url( $_url ); ?>" target="_blank" rel="noopener"><?php echo $plugin['name']; ?></a>
                 </h5>
                 <em><?php echo $plugin['punchline']; ?></em>
                 <p><?php echo $plugin['description']; ?></p>

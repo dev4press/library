@@ -65,7 +65,7 @@ if ( panel()->a()->auto_mod_interface_colors ) {
 							foreach ( $_panels as $panel => $obj ) {
 								if ( ! isset( $obj['type'] ) ) {
 									if ( $panel != $_panel ) {
-										echo '<li><a href="' . panel()->a()->panel_url( $panel ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>';
+										echo '<li><a href="' . esc_url( panel()->a()->panel_url( $panel ) ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>';
 									} else {
 										echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</li>';
 									}
@@ -84,7 +84,7 @@ if ( panel()->a()->auto_mod_interface_colors ) {
 
 							foreach ( $_subpanels as $subpanel => $obj ) {
 								if ( $subpanel != $_subpanel ) {
-									echo '<li><a href="' . panel()->a()->panel_url( $_panel, $subpanel ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>';
+									echo '<li><a href="' . esc_url( panel()->a()->panel_url( $_panel, $subpanel ) ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>';
 								} else {
 									echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</li>';
 								}

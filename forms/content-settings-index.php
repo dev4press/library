@@ -34,7 +34,7 @@ use function Dev4Press\v37\Functions\panel;
                 </div>
                 <div class="_ctrl">
                     <div class="_open">
-                        <a class="button-primary" href="<?php echo $url; ?>"><?php _e( "Open", "d4plib" ); ?></a>
+                        <a class="button-primary" href="<?php echo esc_url( $url ); ?>"><?php _e( "Open", "d4plib" ); ?></a>
                     </div>
                 </div>
             </div>

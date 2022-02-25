@@ -50,8 +50,6 @@ trait PostType {
 		$labels['parent_item_colon']        = sprintf( _x( "Parent %s:", "Post type label", "d4plib" ), $plural );
 		$labels['all_items']                = sprintf( _x( "All %s", "Post type label", "d4plib" ), $plural );
 		$labels['archives']                 = sprintf( _x( "%s Archives", "Post type label", "d4plib" ), $singular );
-		$labels['name_admin_bar']           = $singular;
-		$labels['menu_name']                = $plural;
 		$labels['insert_into_item']         = sprintf( _x( "Insert into %s", "Post type label", "d4plib" ), $singular );
 		$labels['uploaded_to_this_item']    = sprintf( _x( "Uploaded to this %s", "Post type label", "d4plib" ), $singular );
 		$labels['featured_image']           = _x( "Featured Image", "Post type label", "d4plib" );

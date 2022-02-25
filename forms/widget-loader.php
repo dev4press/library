@@ -1,8 +1,8 @@
 <?php $_tab = $instance['_tab']; ?>
 
-<div class="d4plib-widget <?php echo $this->widget_base; ?>-wrapper">
+<div class="d4plib-widget <?php echo esc_attr( $this->widget_base ); ?>-wrapper">
     <div class="d4plib-widget-tabs" role="tablist">
-        <input class="d4plib-widget-active-tab" value="<?php echo $_tab; ?>" id="<?php echo $this->get_field_id( '_tab' ); ?>" name="<?php echo $this->get_field_name( '_tab' ); ?>" type="hidden"/>
+        <input class="d4plib-widget-active-tab" value="<?php echo esc_attr( $_tab ); ?>" id="<?php echo $this->get_field_id( '_tab' ); ?>" name="<?php echo $this->get_field_name( '_tab' ); ?>" type="hidden"/>
 		<?php
 
 		foreach ( $tabs as $tab => $obj ) {
@@ -21,7 +21,7 @@
 				$selected = 'true';
 			}
 
-			echo '<a tabindex="0" id="' . $tabkey . '-tab" aria-controls="' . $tabkey . '" aria-selected="' . $selected . '" role="tab" data-tabname="' . $tab . '" href="#' . $tabkey . '" class="' . $class . '">' . $obj['name'] . '</a>';
+			echo '<a tabindex="0" id="' . esc_attr( $tabkey ) . '-tab" aria-controls="' . esc_attr( $tabkey ) . '" aria-selected="' . esc_attr( $selected ) . '" role="tab" data-tabname="' . esc_attr( $tab ) . '" href="#' . esc_attr( $tabkey ) . '" class="' . esc_attr( $class ) . '">' . esc_html( $obj['name'] ) . '</a>';
 		}
 
 		?>
@@ -45,7 +45,7 @@
 				$selected = 'false';
 			}
 
-			echo '<div id="' . $tabkey . '" aria-hidden="' . $selected . '" role="tabpanel" class="' . $class . '" aria-labelledby="' . $tabkey . '-tab">';
+			echo '<div id="' . esc_attr( $tabkey ) . '" aria-hidden="' . esc_attr( $selected ) . '" role="tabpanel" class="' . esc_attr( $class ) . '" aria-labelledby="' . esc_attr( $tabkey ) . '-tab">';
 
 			foreach ( $obj['include'] as $inc ) {
 				$template = $this->widgets_render->find( $inc . '.php' );

@@ -38,10 +38,10 @@ $_url_reset = add_query_arg( array(
                 <button type="button" class="button-secondary d4p-feature-more-ctrl"><?php _e( "More Controls", "d4plib" ); ?></button>
                 <div class="d4p-feature-more-ctrl-options" style="display: none">
                     <p><?php _e( "If you want, you can reset all the settings for this Feature to default values.", "d4plib" ); ?></p>
-                    <a class="button-primary" href="<?php echo $_url_reset; ?>"><?php _e( "Reset Feature Settings", "d4plib" ); ?></a>
+                    <a class="button-primary" href="<?php echo esc_url( $_url_reset ); ?>"><?php _e( "Reset Feature Settings", "d4plib" ); ?></a>
                 </div>
                 <div class="d4p-panel-buttons">
-                    <input type="submit" value="<?php _e( "Save Settings", "d4plib" ); ?>" class="button-primary"/>
+                    <input type="submit" value="<?php esc_attr_e( "Save Settings", "d4plib" ); ?>" class="button-primary"/>
                 </div>
             </div>
             <div class="d4p-return-to-top">

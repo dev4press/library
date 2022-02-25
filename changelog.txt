@@ -1,10 +1,15 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.7.3 - 2022.03.01 =
+= Version 3.7.3 - 2022.02.27 =
+* Updated: Rendering of the settings datatime field
+* Updated: Additional sanitation calls for settings fields
 * Updated: Various minor display and styling tweaks
 * Fixed: Minor issue with the Enqueue method generated path
 * Fixed: Few minor issues in the JavaScript
+* Fixed: Few missing escape on echo calls
+* Fixed: Some minor rendering issues
+* Fixed: Wrong argument names for some settings
 * Fixed: Wrong email sanitation call
 
 = Version 3.7.2 - 2022.02.20 =

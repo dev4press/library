@@ -38,7 +38,7 @@ class PanelSettings extends Panel {
 
 		echo "<input type='hidden' name='option_page' value='" . esc_attr( $group ) . "' />";
 		echo "<input type='hidden' name='action' value='update' />";
-		echo "<input type='hidden' name='" . $action . "' value='postback' />";
+		echo "<input type='hidden' name='" . esc_attr( $action ) . "' value='postback' />";
 
 		wp_nonce_field( $group . '-options' );
 	}

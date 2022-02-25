@@ -34,7 +34,7 @@ if ( ! empty( $_subpanel ) ) {
             </p>
         </div>
         <div class="d4p-about-badge">
-            <div class="d4p-about-badge-inner" style="background-color: <?php echo panel()->a()->settings()->i()->color(); ?>;">
+            <div class="d4p-about-badge-inner" style="background-color: <?php echo esc_attr( panel()->a()->settings()->i()->color() ); ?>;">
 				<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin ); ?>
 				<?php printf( __( "Version %s", "d4plib" ), panel()->a()->settings()->i()->version ); ?>
             </div>
@@ -45,11 +45,11 @@ if ( ! empty( $_subpanel ) ) {
 		<?php
 
 		if ( panel()->a()->variant == 'submenu' ) {
-			echo '<a href="' . panel()->a()->panel_url() . '" class="nav-tab"><i class="d4p-icon d4p-ui-home"></i></a>';
+			echo '<a href="' . esc_url( panel()->a()->panel_url() ) . '" class="nav-tab"><i class="d4p-icon d4p-ui-home"></i></a>';
 		}
 
 		foreach ( $_subpanels as $_tab => $obj ) {
-			echo '<a href="' . panel()->a()->panel_url( 'about', $_tab ) . '" class="nav-tab' . ( $_tab == $_subpanel ? ' nav-tab-active' : '' ) . '">' . $obj['title'] . '</a>';
+			echo '<a href="' . esc_url( panel()->a()->panel_url( 'about', $_tab ) ) . '" class="nav-tab' . ( $_tab == $_subpanel ? ' nav-tab-active' : '' ) . '">' . $obj['title'] . '</a>';
 		}
 
 		?>

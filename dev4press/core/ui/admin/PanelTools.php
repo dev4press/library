@@ -77,8 +77,8 @@ class PanelTools extends Panel {
 		$action = $this->a()->v();
 
 		echo "<input type='hidden' name='option_page' value='" . esc_attr( $group ) . "' />";
-		echo "<input type='hidden' name='" . $action . "' value='postback' />";
-		echo "<input type='hidden' name='" . panel()->a()->n() . "[subpanel]' value='" . $this->a()->subpanel . "' />";
+		echo "<input type='hidden' name='" . esc_attr( $action ) . "' value='postback' />";
+		echo "<input type='hidden' name='" . panel()->a()->n() . "[subpanel]' value='" . esc_attr( $this->a()->subpanel ) . "' />";
 
 		wp_nonce_field( $group . '-options' );
 	}
@@ -93,9 +93,9 @@ class PanelTools extends Panel {
 				echo '<div class="d4p-accessibility-button">';
 
 				if ( $method == 'get' ) {
-					echo '<a type="button" href="' . $this->subpanels[ $_subpanel ]['button_url'] . '" class="button-primary">' . $this->subpanels[ $_subpanel ]['button_label'] . '</a>';
+					echo '<a type="button" href="' . esc_url( $this->subpanels[ $_subpanel ]['button_url'] ) . '" class="button-primary">' . $this->subpanels[ $_subpanel ]['button_label'] . '</a>';
 				} else if ( $method == 'post' ) {
-					echo '<input type="submit" value="' . $this->subpanels[ $_subpanel ]['button_label'] . '" class="button-primary" />';
+					echo '<input type="submit" value="' . esc_attr( $this->subpanels[ $_subpanel ]['button_label'] ) . '" class="button-primary" />';
 				}
 
 				echo '</div>';
