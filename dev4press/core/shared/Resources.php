@@ -33,68 +33,60 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Resources {
 	private $_ui = array(
 		'js'  => array(
-			'meta'               => array(
+			'meta'          => array(
 				'path' => 'js/',
 				'file' => 'meta',
 				'ext'  => 'js',
 				'min'  => true
 			),
-			'media'              => array(
+			'media'         => array(
 				'path' => 'js/',
 				'file' => 'media',
 				'ext'  => 'js',
 				'min'  => true
 			),
-			'ctrl'               => array(
+			'ctrl'          => array(
 				'path' => 'js/',
 				'file' => 'ctrl',
 				'ext'  => 'js',
 				'min'  => true
 			),
-			'helpers'            => array(
+			'helpers'       => array(
 				'path' => 'js/',
 				'file' => 'helpers',
 				'ext'  => 'js',
 				'min'  => true
 			),
-			'customizer'         => array(
+			'customizer'    => array(
 				'path' => 'js/',
 				'file' => 'customizer',
 				'ext'  => 'js',
 				'min'  => true
 			),
-			'widgets'            => array(
+			'widgets'       => array(
 				'path' => 'js/',
 				'file' => 'widgets',
 				'ext'  => 'js',
 				'min'  => true
 			),
-			'wizard'             => array(
+			'wizard'        => array(
 				'path' => 'js/',
 				'file' => 'wizard',
 				'ext'  => 'js',
 				'min'  => true
 			),
-			'confirmsubmit'      => array(
+			'confirmsubmit' => array(
 				'path' => 'js/',
 				'file' => 'confirmsubmit',
 				'ext'  => 'js',
 				'min'  => true
 			),
-			'admin'              => array(
+			'admin'         => array(
 				'path' => 'js/',
 				'file' => 'admin',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'confirmsubmit' )
-			),
-			'wpcolorpickeralpha' => array(
-				'path' => 'libraries/',
-				'file' => 'wp-color-picker-alpha.min',
-				'ver'  => '2.1.3',
-				'ext'  => 'js',
-				'min'  => false,
-				'req'  => array( 'wp-color-picker' )
 			)
 		),
 		'css' => array(

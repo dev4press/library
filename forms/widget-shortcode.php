@@ -9,7 +9,7 @@
     <tr>
         <td class="cell-singular">
             <div class="cell-shortcode">
-                [<?php echo $this->shortcode_name; ?> <?php echo $this->the_shortcode( $instance ); ?>]
+                [<?php echo esc_html( $this->shortcode_name ); ?> <?php echo $this->the_shortcode( $instance ); ?>]
             </div>
         </td>
     </tr>

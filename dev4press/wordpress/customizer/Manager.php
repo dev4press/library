@@ -43,8 +43,6 @@ abstract class Manager {
 	protected $_panel = 'dev4press-panel';
 	protected $_defaults = array();
 
-	protected $_enqueue_alpha_color = false;
-
 	public function __construct() {
 		$this->_init();
 
@@ -96,11 +94,6 @@ abstract class Manager {
 			'jquery',
 			'customize-preview'
 		);
-
-		if ( $this->_enqueue_alpha_color ) {
-			wp_enqueue_script( 'd4p-wp-color-picker-alpha', $this->_file( 'libraries', 'wp-color-picker-alpha.min', false ), array( 'wp-color-picker' ), Library::instance()->version(), true );
-			$requirements[] = 'd4p-wp-color-picker-alpha';
-		}
 
 		wp_enqueue_style( 'd4p-customizer', $this->_file( 'css', 'customizer' ), array( 'wp-color-picker' ), Library::instance()->version() );
 		wp_enqueue_script( 'd4p-customizer', $this->_file( 'js', 'customizer' ), $requirements, Library::instance()->version(), true );

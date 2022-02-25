@@ -54,7 +54,7 @@ class Render {
 		$icon  = '<i aria-hidden="true" class="%s"></i> ';
 		$class = $this->icon_class( $name, $modifiers, $extra_class );
 
-		return sprintf( $icon, $class );
+		return sprintf( $icon, esc_attr( $class ) );
 	}
 
 	public function settings_group_break( $label, $icon = '' ) : string {

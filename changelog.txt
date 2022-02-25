@@ -5,6 +5,7 @@
 * Updated: Rendering of the settings datatime field
 * Updated: Additional sanitation calls for settings fields
 * Updated: Various minor display and styling tweaks
+* Removed: Alpha Color Library
 * Fixed: Minor issue with the Enqueue method generated path
 * Fixed: Few minor issues in the JavaScript
 * Fixed: Few missing escape on echo calls

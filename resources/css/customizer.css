@@ -142,13 +142,3 @@
   color: #D4D4D4;
   size: 16px;
 }
-
-.d4p-ctrl-alpha-color .picker-reset {
-  float: right;
-  cursor: pointer;
-}
-.d4p-ctrl-alpha-color .dashicons-image-rotate {
-  margin-top: 3px;
-  color: #D4D4D4;
-  size: 16px;
-}

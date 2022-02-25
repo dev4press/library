@@ -28,7 +28,7 @@ use function Dev4Press\v37\Functions\panel;
 
             <div class="<?php echo join( ' ', $_classes ); ?>">
                 <div class="_info">
-                    <div class="_icon"><i class="d4p-icon d4p-<?php echo $obj['icon']; ?>"></i></div>
+                    <div class="_icon"><i class="d4p-icon d4p-<?php echo esc_attr( $obj['icon'] ); ?>"></i></div>
                     <h4 class="_title"><?php echo $obj['title']; ?></h4>
                     <p class="_description"><?php echo $obj['info']; ?></p>
                 </div>

@@ -164,7 +164,7 @@ class Four {
 					$render .= '<div class="dev4press-plugin-thumb">';
 					$render .= '<a target="_blank" rel="noopener" href="' . esc_url( $this->_url( $plugin->url_home, $panel ) ) . '"><i class="d4p-icon d4p-plugin-' . $plugin->code . '"></i></a>';
 					$render .= '</div>';
-					$render .= '<em>' . esc_html( $plugin->description ). '</em>';
+					$render .= '<em>' . esc_html( $plugin->description ) . '</em>';
 					$render .= '<div class="dev4press-plugin-links">';
 					$render .= '<a target="_blank" rel="noopener" class="button-primary dev4press-buynow" href="' . esc_url( $this->_url( $plugin->url_buy, $panel ) ) . '">Buy Now</a>';
 

@@ -170,7 +170,9 @@ abstract class Panel {
 	}
 
 	public function form_tag_open() : string {
-		return '<form method="post" action="" id="' . $this->a()->plugin_prefix . '-form-' . $this->a()->panel . '" enctype="multipart/form-data" autocomplete="off">';
+		$id = $this->a()->plugin_prefix . '-form-' . $this->a()->panel;
+
+		return '<form method="post" action="" id="' . esc_attr( $id ) . '" enctype="multipart/form-data" autocomplete="off">';
 	}
 
 	public function form_tag_close() : string {
