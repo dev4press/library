@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v37\Core\Task;
 
+use Dev4Press\v37\Core\Quick\Sanitize;
 use Dev4Press\v37\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -55,7 +56,8 @@ abstract class AJAX {
 	abstract public static function instance();
 
 	public function check_nonce() {
-		$nonce = wp_verify_nonce( $_REQUEST['_ajax_nonce'], $this->nonce );
+		$ajax_nonce = isset( $_REQUEST['_ajax_nonce'] ) ? Sanitize::key_expanded( $_REQUEST['_ajax_nonce'] ) : '';
+		$nonce      = wp_verify_nonce( $ajax_nonce, $this->nonce );
 
 		if ( $nonce === false ) {
 			wp_die( - 1 );
@@ -71,7 +73,7 @@ abstract class AJAX {
 		@ini_set( 'memory_limit', '256M' );
 		@set_time_limit( 0 );
 
-		$operation = $_POST['operation'];
+		$operation = isset( $_POST['operation'] ) ? Sanitize::key_expanded( $_POST['operation'] ) : '';
 		$response  = array();
 
 		switch ( $operation ) {

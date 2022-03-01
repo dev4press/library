@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v37\Core\Admin;
 
 use Dev4Press\v37\Core\Options\Process;
+use Dev4Press\v37\Core\Quick\Sanitize;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -39,7 +40,7 @@ abstract class PostBack {
 	public function __construct( $admin ) {
 		$this->admin = $admin;
 
-		$this->page = $_POST['option_page'] ?? false;
+		$this->page = isset($_POST['option_page']) ? Sanitize::key_expanded( $_POST['option_page'] ) : false;
 
 		if ( $this->page !== false ) {
 			$this->process();

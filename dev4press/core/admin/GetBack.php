@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v37\Core\Admin;
 
+use Dev4Press\v37\Core\Quick\Sanitize;
 use Dev4Press\v37\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -126,20 +127,26 @@ abstract class GetBack {
 	}
 
 	protected function is_single_action( $name, $key = 'single-action' ) : bool {
-		return isset( $_GET[ $key ] ) && $_GET[ $key ] == $name;
+		return $this->_get( $key ) == $name;
 	}
 
 	protected function is_bulk_action() : bool {
-		return ( isset( $_GET['action'] ) && $_GET['action'] != '-1' ) || ( isset( $_GET['action2'] ) && $_GET['action2'] != '-1' );
+		return $this->_get() != '-1' || $this->_get( 'action2' ) != '-1';
 	}
 
 	protected function get_bulk_action() : string {
-		$action = isset( $_GET['action'] ) && $_GET['action'] != '' && $_GET['action'] != '-1' ? $_GET['action'] : '';
+		$action = $this->_get();
+		$action = $action == '-1' ? '' : $action;
 
 		if ( $action == '' ) {
-			$action = isset( $_GET['action2'] ) && $_GET['action2'] != '' && $_GET['action2'] != '-1' ? $_GET['action2'] : '';
+			$action = $this->_get( 'action2' );
+			$action = $action == '-1' ? '' : $action;
 		}
 
 		return $action;
+	}
+
+	protected function _get( $key = 'action' ) : string {
+		return isset( $_GET[ $key ] ) ? Sanitize::key_expanded( $_GET[ $key ] ) : '';
 	}
 }

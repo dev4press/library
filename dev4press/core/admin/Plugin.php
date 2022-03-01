@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v37\Core\Admin;
 
+use Dev4Press\v37\Core\Quick\Sanitize;
 use Dev4Press\v37\Core\UI\Enqueue;
 use Dev4Press\v37\WordPress;
 use WP_Screen;
@@ -367,9 +368,9 @@ abstract class Plugin {
 	}
 
 	protected function load_post_get_back() {
-		if ( isset( $_POST[ $this->v() ] ) && $_POST[ $this->v() ] == 'postback' ) {
+		if ( isset( $_POST[ $this->v() ] ) && Sanitize::key_expanded( $_POST[ $this->v() ] ) == 'postback' ) {
 			$this->run_postback();
-		} else if ( isset( $_GET[ $this->v() ] ) && $_GET[ $this->v() ] == 'getback' ) {
+		} else if ( isset( $_GET[ $this->v() ] ) && Sanitize::key_expanded( $_GET[ $this->v() ] ) == 'getback' ) {
 			$this->run_getback();
 		}
 	}
@@ -415,7 +416,7 @@ abstract class Plugin {
 		$post_type = '';
 
 		if ( isset( $_GET['post_type'] ) ) {
-			$post_type = sanitize_key( $_GET['post_type'] );
+			$post_type = Sanitize::key_expanded( $_GET['post_type'] );
 		} else {
 			global $post;
 

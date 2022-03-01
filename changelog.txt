@@ -1,9 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.7.3 - 2022.02.27 =
+= Version 3.7.3 - 2022.03.02 =
 * Updated: Rendering of the settings datatime field
 * Updated: Additional sanitation calls for settings fields
+* Updated: Many improvements to the Getback class
 * Updated: Various minor display and styling tweaks
 * Removed: Alpha Color Library
 * Fixed: Minor issue with the Enqueue method generated path
