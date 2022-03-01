@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v37\Core\Quick\Sanitize;
 use function Dev4Press\v37\Functions\panel;
 
 $_panels    = panel()->a()->panels();
@@ -50,14 +51,14 @@ if ( panel()->a()->auto_mod_interface_colors ) {
 }
 
 ?>
-<div class="<?php echo join( ' ', $_classes ); ?>">
+<div class="<?php echo Sanitize::html_classes( $_classes ); ?>">
 	<?php panel()->include_notices(); ?>
 
     <div class="d4p-header">
         <div class="d4p-navigator">
             <ul>
                 <li class="d4p-nav-button">
-                    <a href="#"><?php echo panel()->r()->icon( $_panels[ $_panel ]['icon'] ); ?><?php echo $_panels[ $_panel ]['title']; ?></a>
+                    <a href="#"><?php echo panel()->r()->icon( $_panels[ $_panel ]['icon'] ); ?><?php echo esc_html( $_panels[ $_panel ]['title'] ); ?></a>
 					<?php if ( $_panel != 'install' && $_panel != 'update' ) { ?>
                         <ul>
 							<?php
@@ -78,15 +79,15 @@ if ( panel()->a()->auto_mod_interface_colors ) {
                 </li>
 				<?php if ( ! empty( $_subpanels ) ) { ?>
                     <li class="d4p-nav-button">
-                        <a href="#"><?php echo panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ); ?><?php echo $_subpanels[ $_subpanel ]['title']; ?></a>
+                        <a href="#"><?php echo panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ); ?><?php echo esc_html( $_subpanels[ $_subpanel ]['title'] ); ?></a>
                         <ul>
 							<?php
 
 							foreach ( $_subpanels as $subpanel => $obj ) {
 								if ( $subpanel != $_subpanel ) {
-									echo '<li><a href="' . esc_url( panel()->a()->panel_url( $_panel, $subpanel ) ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>';
+									echo '<li><a href="' . esc_url( panel()->a()->panel_url( $_panel, $subpanel ) ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . esc_html( $obj['title'] ) . '</a></li>';
 								} else {
-									echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</li>';
+									echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . esc_html( $obj['title'] ) . '</li>';
 								}
 							}
 

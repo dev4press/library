@@ -51,7 +51,7 @@ class Slider extends Control {
                     slider-reset-value="<?php echo esc_attr( $this->default_value() ); ?>"></span>
 
 			<?php if ( ! empty( $this->description ) ) { ?>
-                <span class="customize-control-description"><?php echo $this->description; ?></span>
+                <span class="customize-control-description"><?php echo wp_kses_post( $this->description ); ?></span>
 			<?php } ?>
         </div>
 		<?php

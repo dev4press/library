@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v37\Core\Quick\Sanitize;
 use function Dev4Press\v37\Functions\panel;
 
 $_subpanels = panel()->subpanels();
@@ -25,7 +26,7 @@ if ( ! empty( $_subpanel ) ) {
 }
 
 ?>
-<div class="<?php echo join( ' ', $_classes ); ?>">
+<div class="<?php echo Sanitize::html_classes( $_classes ); ?>">
     <div class="d4p-about-head-wrapper">
         <div class="d4p-about-information">
             <h1><?php printf( __( "Welcome to %s %s&nbsp;%s", "d4plib" ), panel()->a()->title(), ucfirst( panel()->a()->settings()->i()->edition ), panel()->a()->settings()->i()->version ); ?></h1>

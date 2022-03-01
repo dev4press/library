@@ -54,7 +54,7 @@ class Divider extends Control {
 		<?php endif;
 		if ( ! empty( $this->description ) ) : ?>
             <span id="_customize-description-<?php echo esc_attr( $this->id ); ?>"
-                    class="description customize-control-description"><?php echo $this->description; ?></span>
+                    class="description customize-control-description"><?php echo wp_kses_post( $this->description ); ?></span>
 		<?php endif;
 	}
 }

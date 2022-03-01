@@ -9,11 +9,11 @@ use function Dev4Press\v37\Functions\panel;
 			<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin, '9x' ); ?>
         </div>
         <h3>
-			<?php echo panel()->a()->title(); ?>
+			<?php echo esc_html( panel()->a()->title() ); ?>
         </h3>
         <div class="_version-wrapper">
-            <span class="_edition"><?php echo ucfirst( panel()->a()->settings()->i()->edition ); ?></span>
-            <span class="_version"><?php printf( __( "Version: %s", "d4plib" ), '<strong>' . panel()->a()->settings()->i()->version_full() . '</strong>' ); ?></span>
+            <span class="_edition"><?php echo esc_html( ucfirst( panel()->a()->settings()->i()->edition ) ); ?></span>
+            <span class="_version"><?php printf( __( "Version: %s", "d4plib" ), '<strong>' . esc_html( panel()->a()->settings()->i()->version_full() ) . '</strong>' ); ?></span>
         </div>
     </div>
 

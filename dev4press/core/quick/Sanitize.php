@@ -132,7 +132,7 @@ class Sanitize {
 	}
 
 	public static function html_classes( $classes ) : string {
-		$list = explode( ' ', trim( stripslashes( $classes ) ) );
+		$list = is_array( $classes ) ? $classes : explode( ' ', trim( stripslashes( $classes ) ) );
 		$list = array_map( 'sanitize_html_class', $list );
 
 		return trim( join( ' ', $list ) );

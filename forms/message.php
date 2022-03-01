@@ -48,5 +48,5 @@ if ( isset( $_GET['message'] ) && $_GET['message'] != '' ) {
 }
 
 if ( $_message != '' ) {
-	echo '<div class="d4p-message"><div class="notice notice-' . $_color . ' is-dismissible">' . $_message . '</div></div>';
+	echo '<div class="d4p-message"><div class="notice notice-' . esc_attr( $_color ) . ' is-dismissible">' . wp_kses_post( $_message ) . '</div></div>';
 }

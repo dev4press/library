@@ -13,7 +13,7 @@ $_subpanels = panel()->subpanels();
             <div class="_icon">
 				<?php echo panel()->r()->icon( $_panel->icon ); ?>
             </div>
-            <h3><?php echo $_panel->title; ?></h3>
+            <h3><?php echo esc_html( $_panel->title ); ?></h3>
 			<?php
 
 			if ( $_subpanel == 'full' ) {
