@@ -51,7 +51,7 @@ $translations = Languages::instance()->plugin_translations( $translations );
 			<?php
 
 			foreach ( $sysreq as $name => $version ) {
-				echo '<li><span>' . $name . ':</span><strong>' . $version . '</strong></li>';
+				echo '<li><span>' . esc_html( $name ) . ':</span><strong>' . esc_html( $version ). '</strong></li>';
 			}
 
 			?>
@@ -70,7 +70,9 @@ $translations = Languages::instance()->plugin_translations( $translations );
 		$translations = Languages::instance()->plugin_translations( $translations );
 
 		foreach ( $translations as $code => $obj ) {
-			echo '<div class="d4p-block-language"><h4>' . $code . ': ' . $obj['native'] . ' / ' . $obj['english'] . '</h4>';
+            $_lang = $code . ': ' . $obj['native'] . ' / ' . $obj['english'];
+
+			echo '<div class="d4p-block-language"><h4>' . esc_html( $_lang ) . '</h4>';
 			echo '<p>' . esc_html__( "Plugin Version", "d4plib" ) . ': ' . esc_html( $obj['version'] ) . '</p>';
 
 			if ( ! empty( $obj['contributors'] ) ) {

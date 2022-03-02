@@ -159,10 +159,10 @@ class Four {
 
 				foreach ( $plugins as $plugin ) {
 					$render .= '<div class="dev4press-recommend-plugin" style="border-color: ' . esc_attr( $plugin->color_dark ) . '; background-color: ' . esc_attr( $plugin->color ) . '">';
-					$render .= '<h6 style="background-color: ' . esc_attr( $plugin->color_dark ) . ';"><a target="_blank" rel="noopener" href="' . esc_url( $this->_url( $plugin->url_home, $panel ) ) . '">' . $plugin->name . '</a></h6>';
+					$render .= '<h6 style="background-color: ' . esc_attr( $plugin->color_dark ) . ';"><a target="_blank" rel="noopener" href="' . esc_url( $this->_url( $plugin->url_home, $panel ) ) . '">' . esc_html( $plugin->name ) . '</a></h6>';
 					$render .= '<div class="dev4press-plugin-inner">';
 					$render .= '<div class="dev4press-plugin-thumb">';
-					$render .= '<a target="_blank" rel="noopener" href="' . esc_url( $this->_url( $plugin->url_home, $panel ) ) . '"><i class="d4p-icon d4p-plugin-' . $plugin->code . '"></i></a>';
+					$render .= '<a target="_blank" rel="noopener" href="' . esc_url( $this->_url( $plugin->url_home, $panel ) ) . '"><i class="d4p-icon d4p-plugin-' . esc_attr( $plugin->code ). '"></i></a>';
 					$render .= '</div>';
 					$render .= '<em>' . esc_html( $plugin->description ) . '</em>';
 					$render .= '<div class="dev4press-plugin-links">';

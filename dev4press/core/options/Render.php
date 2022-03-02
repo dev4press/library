@@ -73,7 +73,7 @@ class Render {
 		foreach ( $this->groups as $group => $obj ) {
 			if ( isset( $obj['type'] ) && $obj['type'] == 'separator' ) {
 				echo '<div class="d4p-group-separator">';
-				echo '<h3><span>' . $obj['label'] . '</span></h3>';
+				echo '<h3><span>' . esc_html( $obj['label'] ) . '</span></h3>';
 				echo '</div>';
 			} else {
 				$args = $obj['args'] ?? array();
@@ -88,17 +88,17 @@ class Render {
 					$classes[] = $args['class'];
 				}
 
-				echo '<div class="' . join( ' ', $classes ) . '" id="d4p-group-' . $group . '">';
+				echo '<div class="' . Sanitize::html_classes( $classes ) . '" id="d4p-group-' . esc_attr( $group ) . '">';
 				$kb = isset( $obj['kb'] ) ? str_replace( '%url%', $obj['kb']['url'], $this->kb ) : '';
 
 				if ( $kb != '' ) {
 					$type = $obj['kb']['type'] ?? 'article';
 					$kb   = str_replace( '%type%', $type, $kb );
 
-					$kb = '<a class="d4p-kb-group" href="' . esc_url( $kb ) . '" target="_blank" rel="noopener">' . $obj['kb']['label'] . '</a>';
+					$kb = '<a class="d4p-kb-group" href="' . esc_url( $kb ) . '" target="_blank" rel="noopener">' . esc_html( $obj['kb']['label'] ) . '</a>';
 				}
 
-				echo '<h3>' . $obj['name'] . $kb . '</h3>';
+				echo '<h3>' . esc_html( $obj['name'] ) . $kb . '</h3>';
 				echo '<div class="d4p-group-inner">';
 
 				if ( isset( $obj['settings'] ) ) {
@@ -155,10 +155,10 @@ class Render {
 			}
 		}
 
-		echo '<div class="' . $class . '">';
+		echo '<div class="' . Sanitize::html_classes( $class ) . '">';
 
 		if ( ! empty( $section['label'] ) ) {
-			echo '<h4><span>' . $section['label'] . '</span></h4>';
+			echo '<h4><span>' . esc_html( $section['label'] ) . '</span></h4>';
 		}
 
 		echo '<table class="form-table d4p-settings-table">';
@@ -224,7 +224,7 @@ class Render {
 		} else {
 			if ( isset( $setting->args['data'] ) && is_array( $setting->args['data'] ) && ! empty( $setting->args['data'] ) ) {
 				foreach ( $setting->args['data'] as $key => $value ) {
-					$data[] = 'data-' . $key . '="' . $value . '"';
+					$data[] = 'data-' . esc_attr( $key ) . '="' . esc_attr( $value ) . '"';
 				}
 			}
 
@@ -238,7 +238,7 @@ class Render {
 				echo '<tr' . $data . ' valign="top" class="d4p-settings-option-custom ' . $wrapper_class . '">';
 				echo '<td colspan="2">';
 
-				echo '<div class="' . $class . '">';
+				echo '<div class="' . Sanitize::html_classes( $class ) . '">';
 				echo $setting->notice;
 				echo '</div>';
 
@@ -247,7 +247,7 @@ class Render {
 			} else {
 				$wrapper_class = 'd4p-settings-option-' . ( $setting->input == 'info' ? 'info' : 'item' ) . ' ' . $wrapper_class;
 
-				echo '<tr' . $data . ' class="' . $wrapper_class . '">';
+				echo '<tr' . $data . ' class="' . Sanitize::html_classes( $wrapper_class ) . '">';
 
 				if ( isset( $setting->args['readonly'] ) && $setting->args['readonly'] ) {
 					$class .= 'd4p-setting-disabled';
@@ -255,12 +255,12 @@ class Render {
 
 				echo '<th scope="row">';
 				if ( empty( $setting->name ) ) {
-					echo '<span>' . $setting->title . '</span>';
+					echo '<span>' . esc_html( $setting->title ) . '</span>';
 				} else {
-					echo '<span id="' . $id_base . '__label">' . $setting->title . '</span>';
+					echo '<span id="' . esc_attr( $id_base ) . '__label">' . esc_html( $setting->title ) . '</span>';
 				}
 				echo '</th><td>';
-				echo '<div class="' . $class . '">';
+				echo '<div class="' . Sanitize::html_classes( $class ) . '">';
 
 				do_action( 'd4p_settings_group_top', $setting, $group );
 
@@ -280,19 +280,19 @@ class Render {
 	}
 
 	protected function _pair_element( $name, $id, $i, $value, $element, $hide = false ) {
-		echo '<div class="pair-element-' . $i . '" style="display: ' . ( $hide ? 'none' : 'block' ) . '">';
+		echo '<div class="pair-element-' . esc_attr( $i ) . '" style="display: ' . ( $hide ? 'none' : 'block' ) . '">';
 		echo '<label for="' . esc_attr( $id ) . '_key">' . $element->args['label_key'] . ':</label>';
 		echo '<input type="text" name="' . esc_attr( $name ) . '[key]" id="' . esc_attr( $id ) . '_key" value="' . esc_attr( $value['key'] ) . '" class="widefat" />';
 
 		echo '<label for="' . esc_attr( $id ) . '_value">' . $element->args['label_value'] . ':</label>';
 		echo '<input type="text" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value['value'] ) . '" class="widefat" />';
 
-		echo '<a role="button" class="button-secondary" href="#">' . $element->args['label_button_remove'] . '</a>';
+		echo '<a role="button" class="button-secondary" href="#">' . esc_html( $element->args['label_button_remove'] ) . '</a>';
 		echo '</div>';
 	}
 
 	protected function _text_element( $name, $id, $i, $value, $element, $hide = false ) {
-		echo '<li class="exp-text-element exp-text-element-' . $i . '" style="display: ' . ( $hide ? 'none' : 'list-item' ) . '">';
+		echo '<li class="exp-text-element exp-text-element-' . esc_attr( $i ) . '" style="display: ' . ( $hide ? 'none' : 'list-item' ) . '">';
 
 		$button       = isset( $element->args['label_button_remove'] ) && $element->args['label_button_remove'] != '';
 		$button_width = isset( $element->args['width_button_remove'] ) ? intval( $element->args['width_button_remove'] ) : 100;
@@ -301,14 +301,14 @@ class Render {
 		$style_input  = '';
 		$style_button = '';
 		if ( $button ) {
-			$style_input  = ' style="width: calc(100% - ' . ( $button_width + 10 ) . 'px);"';
-			$style_button = ' style="width: ' . $button_width . 'px;"';
+			$style_input  = ' style="width: calc(100% - ' . absint( $button_width + 10 ) . 'px);"';
+			$style_button = ' style="width: ' . absint( $button_width ) . 'px;"';
 		}
 
-		echo '<input aria-labelledby="' . $id . '__label" type="' . $type . '" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value ) . '" class="widefat"' . $style_input . ' />';
+		echo '<input aria-labelledby="' . esc_attr( $id ) . '__label" type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value ) . '" class="widefat"' . $style_input . ' />';
 
 		if ( $button ) {
-			echo '<a role="button" class="button-secondary" href="#"' . $style_button . '>' . $element->args['label_button_remove'] . '</a>';
+			echo '<a role="button" class="button-secondary" href="#"' . $style_button . '>' . esc_html( $element->args['label_button_remove'] ) . '</a>';
 		}
 
 		echo '</li>';
@@ -320,7 +320,7 @@ class Render {
 		$max       = isset( $element->args['max'] ) ? ' max="' . esc_attr( $element->args['max'] ) . '"' : '';
 		$flatpickr = isset( $element->args['flatpickr'] ) && $element->args['flatpickr'];
 		$type      = $flatpickr ? 'text' : $type;
-		$class     = 'widefat' . ( $flatpickr ? ' ' . $class : '' );
+		$class     = 'widefat' . ( $flatpickr ? ' ' . esc_attr( $class ) : '' );
 
 		echo sprintf( '<input aria-labelledby="%s__label" type="%s" name="%s" id="%s" value="%s" class="%s"%s%s%s />',
 			$id_base, $type, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ), $class, $readonly, $min, $max );
@@ -344,9 +344,9 @@ class Render {
 
 	protected function draw_text( $element, $value, $name_base, $id_base, $type = 'text', $class = 'widefat' ) {
 		$readonly    = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
-		$placeholder = isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? ' placeholder="' . $element->args['placeholder'] . '"' : '';
+		$placeholder = isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? ' placeholder="' . esc_attr( $element->args['placeholder'] ) . '"' : '';
 		$type        = isset( $element->args['type'] ) && ! empty( $element->args['type'] ) ? $element->args['type'] : $type;
-		$pattern     = isset( $element->args['pattern'] ) && ! empty( $element->args['pattern'] ) ? ' pattern="' . $element->args['pattern'] . '"' : '';
+		$pattern     = isset( $element->args['pattern'] ) && ! empty( $element->args['pattern'] ) ? ' pattern="' . esc_attr( $element->args['pattern'] ) . '"' : '';
 
 		echo sprintf( '<input aria-labelledby="%s__label"%s%s%s type="%s" name="%s" id="%s" value="%s" class="%s" />',
 			$id_base, $readonly, $placeholder, $pattern, $type, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ), esc_attr( $class ) );
@@ -370,7 +370,7 @@ class Render {
 			$id_base, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ), $min, $max, $step );
 
 		if ( isset( $element->args['label_unit'] ) ) {
-			echo '<span class="d4p-field-unit">' . $element->args['label_unit'] . '</span>';
+			echo '<span class="d4p-field-unit">' . esc_html( $element->args['label_unit'] ) . '</span>';
 		}
 	}
 
@@ -505,7 +505,7 @@ class Render {
 
 		$label = $element->args['label_button_add'] ?? __( "Add New Value", "d4plib" );
 
-		echo '<a role="button" class="button-primary" href="#">' . esc_html( $label ). '</a>';
+		echo '<a role="button" class="button-primary" href="#">' . esc_html( $label ) . '</a>';
 		echo '<input type="hidden" value="' . esc_attr( $i ) . '" class="d4p-next-id" />';
 	}
 
@@ -583,7 +583,7 @@ class Render {
 
 		echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-images-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> ' . esc_html__( "Add Image", "d4plib" ) . '</a>';
 
-		echo '<div class="d4plib-selected-image" data-name="' . $name_base . '">';
+		echo '<div class="d4plib-selected-image" data-name="' . esc_html( $name_base ) . '">';
 
 		echo '<div style="display: ' . ( empty( $value ) ? "block" : "none" ) . '" class="d4plib-images-none"><span class="d4plib-image-name">' . esc_html__( "No images selected.", "d4plib" ) . '</span></div>';
 
@@ -597,8 +597,8 @@ class Render {
 			echo "<input type='hidden' value='" . esc_attr( $id ) . "' name='" . esc_attr( $name_base ) . "[]' />";
 			echo "<a class='button d4plib-button-action d4plib-images-remove' aria-label='" . esc_attr__( "Remove", "d4plib" ) . "'><i aria-hidden='true' class='d4p-icon d4p-ui-cancel'></i></a>";
 			echo "<a class='button d4plib-button-action d4plib-images-preview' aria-label='" . esc_attr__( "Preview", "d4plib" ) . "'><i aria-hidden='true' class='d4p-icon d4p-ui-search'></i></a>";
-			echo "<span class='d4plib-image-name'>" . $title . "</span>";
-			echo "<img src='" . $url . "' />";
+			echo "<span class='d4plib-image-name'>" . esc_html( $title ) . "</span>";
+			echo "<img src='" . esc_url( $url ) . "' alt='' />";
 			echo "</div>";
 		}
 
@@ -625,7 +625,7 @@ class Render {
 		}
 
 		echo '<span class="d4plib-image-name">' . esc_html( $title ) . '</span>';
-		echo '<img src="' . $url . '" />';
+		echo '<img src="' . esc_url( $url ) . '" alt="" />';
 		echo '</div>';
 	}
 
@@ -689,10 +689,10 @@ class Render {
         var editorSettings = wp.codeEditor.defaultSettings ? _.clone(wp.codeEditor.defaultSettings) : {};
 
         editorSettings.codemirror = _.extend({}, editorSettings.codemirror, 
-            { indentWithTabs: false, indentUnit: 2, tabSize: 2, mode: \'' . $mode . '\' }
+            { indentWithTabs: false, indentUnit: 2, tabSize: 2, mode: \'' . esc_html( $mode ) . '\' }
         );
 
-        var editor = wp.codeEditor.initialize($(\'#' . $id_base . '\'), editorSettings);                        
+        var editor = wp.codeEditor.initialize($(\'#' . esc_html( $id_base ) . '\'), editorSettings);                        
     });
 })(jQuery);
 </script>';
@@ -799,7 +799,7 @@ class Render {
 			$i ++;
 		}
 
-		echo '<a role="button" class="button-primary" href="#">' . $element->args['label_button_add'] . '</a>';
+		echo '<a role="button" class="button-primary" href="#">' . esc_html( $element->args['label_button_add'] ) . '</a>';
 		echo '<input type="hidden" value="' . esc_attr( $i ) . '" class="d4p-next-id" />';
 	}
 

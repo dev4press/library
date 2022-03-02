@@ -41,9 +41,9 @@ if ( panel()->a()->auto_mod_interface_colors ) {
 
 	?>
     <style>
-        .<?php echo 'd4p-plugin-'.$_plugin; ?> {
-            --d4p-color-layout-accent: <?php echo panel()->a()->settings()->i()->color(); ?>;
-            --d4p-color-sidebar-icon-text: <?php echo panel()->a()->settings()->i()->color(); ?>;
+        .<?php echo 'd4p-plugin-'.esc_html( $_plugin ); ?> {
+            --d4p-color-layout-accent: <?php echo esc_html( panel()->a()->settings()->i()->color() ); ?>;
+            --d4p-color-sidebar-icon-text: <?php echo esc_html( panel()->a()->settings()->i()->color() ); ?>;
         }
     </style>
 	<?php
