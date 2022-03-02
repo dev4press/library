@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class File {
-	public static function size_format( $size, $decimals = 2, $sep = ' ' ) : string {
+	public static function size_format( $size, $decimals = 2, $sep = ' ', $strong = true ) : string {
 		$_size = intval( $size );
 
 		if ( strlen( $_size ) >= 10 ) {
@@ -51,7 +51,11 @@ class File {
 			$_size = intval( $_size );
 		}
 
-		return $_size . $sep . $unit;
+		if ( $strong ) {
+			return '<strong>' . $_size . '</strong>' . $sep . $unit;
+		} else {
+			return $_size . $sep . $unit;
+		}
 	}
 
 	public static function gzip_uncompressed_size( $file_path ) {
