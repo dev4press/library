@@ -35,26 +35,26 @@ $_url_reset = add_query_arg( array(
 
 		<?php if ( $_subpanel != 'index' ) { ?>
             <div class="d4p-panel-control">
-                <button type="button" class="button-secondary d4p-feature-more-ctrl"><?php _e( "More Controls", "d4plib" ); ?></button>
+                <button type="button" class="button-secondary d4p-feature-more-ctrl"><?php esc_html_e( "More Controls", "d4plib" ); ?></button>
                 <div class="d4p-feature-more-ctrl-options" style="display: none">
-                    <p><?php _e( "If you want, you can reset all the settings for this Feature to default values.", "d4plib" ); ?></p>
-                    <a class="button-primary" href="<?php echo esc_url( $_url_reset ); ?>"><?php _e( "Reset Feature Settings", "d4plib" ); ?></a>
+                    <p><?php esc_html_e( "If you want, you can reset all the settings for this Feature to default values.", "d4plib" ); ?></p>
+                    <a class="button-primary" href="<?php echo esc_url( $_url_reset ); ?>"><?php esc_html_e( "Reset Feature Settings", "d4plib" ); ?></a>
                 </div>
                 <div class="d4p-panel-buttons">
                     <input type="submit" value="<?php esc_attr_e( "Save Settings", "d4plib" ); ?>" class="button-primary"/>
                 </div>
             </div>
             <div class="d4p-return-to-top">
-                <a href="#wpwrap"><?php _e( "Return to top", "d4plib" ); ?></a>
+                <a href="#wpwrap"><?php esc_html_e( "Return to top", "d4plib" ); ?></a>
             </div>
 		<?php } else { ?>
             <div class="d4p-panel-control">
-                <button type="button" class="button-primary d4p-features-bulk-ctrl"><?php _e( "Bulk Control", "d4plib" ); ?></button>
+                <button type="button" class="button-primary d4p-features-bulk-ctrl"><?php esc_html_e( "Bulk Control", "d4plib" ); ?></button>
                 <div class="d4p-features-bulk-ctrl-options" style="display: none">
-                    <p><?php _e( "You can enable or disable all the features at once.", "d4plib" ); ?></p>
+                    <p><?php esc_html_e( "You can enable or disable all the features at once.", "d4plib" ); ?></p>
                     <div>
-                        <button class="button-primary" type="button" data-action="enable"><?php _e( "Enable All", "d4plib" ); ?></button>
-                        <button class="button-secondary" type="button" data-action="disable"><?php _e( "Disable All", "d4plib" ); ?></button>
+                        <button class="button-primary" type="button" data-action="enable"><?php esc_html_e( "Enable All", "d4plib" ); ?></button>
+                        <button class="button-secondary" type="button" data-action="disable"><?php esc_html_e( "Disable All", "d4plib" ); ?></button>
                     </div>
                 </div>
             </div>

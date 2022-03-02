@@ -5,12 +5,12 @@ use Dev4Press\v37\Core\UI\Elements;
 
 ?>
 
-<h4><?php _e( "Widget Visibility", "d4plib" ); ?></h4>
+<h4><?php esc_html_e( "Widget Visibility", "d4plib" ); ?></h4>
 <table>
     <tbody>
     <tr>
         <td class="cell-singular">
-            <label for="<?php echo $this->get_field_id( '_users' ); ?>"><?php _e( "Show widget to", "d4plib" ); ?>:</label>
+            <label for="<?php echo $this->get_field_id( '_users' ); ?>"><?php esc_html_e( "Show widget to", "d4plib" ); ?>:</label>
 			<?php Elements::instance()->select( $this->get_list_user_visibility(), array(
 				'id'       => $this->get_field_id( '_users' ),
 				'class'    => 'widefat d4plib-div-switch',
@@ -27,7 +27,7 @@ use Dev4Press\v37\Core\UI\Elements;
         <tbody>
         <tr>
             <td class="cell-singular">
-                <label for="<?php echo $this->get_field_id( '_roles' ); ?>"><?php _e( "Roles", "d4plib" ); ?>:</label>
+                <label for="<?php echo $this->get_field_id( '_roles' ); ?>"><?php esc_html_e( "Roles", "d4plib" ); ?>:</label>
 				<?php Elements::instance()->checkboxes( WPR::all_user_roles(), array(
 					'id'       => $this->get_field_id( '_roles' ),
 					'class'    => 'widefat',
@@ -36,7 +36,7 @@ use Dev4Press\v37\Core\UI\Elements;
 				) ); ?>
 
                 <em>
-					<?php _e( "If no roles are selected, widget will assume that all roles are selected.", "d4plib" ); ?>
+					<?php esc_html_e( "If no roles are selected, widget will assume that all roles are selected.", "d4plib" ); ?>
                 </em>
             </td>
         </tr>
@@ -49,11 +49,11 @@ use Dev4Press\v37\Core\UI\Elements;
         <tbody>
         <tr>
             <td class="cell-singular">
-                <label for="<?php echo $this->get_field_id( '_caps' ); ?>"><?php _e( "Capabilities", "d4plib" ); ?>:</label>
+                <label for="<?php echo $this->get_field_id( '_caps' ); ?>"><?php esc_html_e( "Capabilities", "d4plib" ); ?>:</label>
                 <input class="widefat" id="<?php echo $this->get_field_id( '_caps' ); ?>" name="<?php echo $this->get_field_name( '_caps' ); ?>" type="text" value="<?php echo esc_attr( join( ', ', $instance['_caps'] ) ); ?>"/>
 
                 <em>
-					<?php _e( "One or more capabilities, separated by comma.", "d4plib" ); ?>
+					<?php esc_html_e( "One or more capabilities, separated by comma.", "d4plib" ); ?>
                 </em>
             </td>
         </tr>
@@ -61,12 +61,12 @@ use Dev4Press\v37\Core\UI\Elements;
     </table>
 </div>
 
-<h4><?php _e( "Visibility Filter", "d4plib" ); ?></h4>
+<h4><?php esc_html_e( "Visibility Filter", "d4plib" ); ?></h4>
 <table>
     <tbody>
     <tr>
         <td class="cell-singular">
-            <label for="<?php echo $this->get_field_id( '_hook' ); ?>"><?php _e( "Custom filter name", "d4plib" ); ?>:</label>
+            <label for="<?php echo $this->get_field_id( '_hook' ); ?>"><?php esc_html_e( "Custom filter name", "d4plib" ); ?>:</label>
             <input class="widefat" id="<?php echo $this->get_field_id( '_hook' ); ?>" name="<?php echo $this->get_field_name( '_hook' ); ?>" type="text" value="<?php echo esc_attr( $instance['_hook'] ); ?>"/>
 
             <em>

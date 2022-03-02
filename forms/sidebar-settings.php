@@ -17,9 +17,9 @@ $_subpanels = panel()->subpanels();
 			<?php
 
 			if ( $_subpanel == 'full' ) {
-				echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . __( "All Settings", "d4plib" ) . '</h4>';
+				echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . esc_html__( "All Settings", "d4plib" ) . '</h4>';
 			} else if ( $_subpanel != 'index' ) {
-				echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . $_subpanels[ $_subpanel ]['title'] . '</h4>';
+				echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . esc_html( $_subpanels[ $_subpanel ]['title'] ) . '</h4>';
 			}
 
 			?>
@@ -29,7 +29,7 @@ $_subpanels = panel()->subpanels();
         </div>
 		<?php if ( $_subpanel == 'full' ) { ?>
             <div class="d4p-panel-mark">
-                <p><?php _e( "Search through settings by typing what you need to find in this field.", "d4plib" ); ?></p>
+                <p><?php esc_html_e( "Search through settings by typing what you need to find in this field.", "d4plib" ); ?></p>
                 <input type="text" class="widefat" id="d4p-settings-mark" aria-label="<?php esc_attr_e( "Search Settings", "d4plib" ); ?>"/>
                 <button type="button">
                     <i class="d4p-icon d4p-ui-clear" title="<?php esc_attr_e( "Clear Search", "d4plib" ); ?>"></i>
@@ -41,11 +41,11 @@ $_subpanels = panel()->subpanels();
                 <input type="submit" value="<?php esc_attr_e( "Save Settings", "d4plib" ); ?>" class="button-primary"/>
             </div>
             <div class="d4p-return-to-top">
-                <a href="#wpwrap"><?php _e( "Return to top", "d4plib" ); ?></a>
+                <a href="#wpwrap"><?php esc_html_e( "Return to top", "d4plib" ); ?></a>
             </div>
 		<?php } else { ?>
             <div class="d4p-panel-buttons">
-                <a style="text-align: center" href="<?php echo esc_url( panel()->a()->panel_url( 'settings', 'full' ) ); ?>" class="button-secondary"><?php _e( "Show All Settings", "d4plib" ); ?></a>
+                <a style="text-align: center" href="<?php echo esc_url( panel()->a()->panel_url( 'settings', 'full' ) ); ?>" class="button-secondary"><?php esc_html_e( "Show All Settings", "d4plib" ); ?></a>
             </div>
 		<?php } ?>
     </div>

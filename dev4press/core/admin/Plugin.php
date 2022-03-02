@@ -260,8 +260,8 @@ abstract class Plugin {
 	public function install_notice() {
 		if ( current_user_can( 'install_plugins' ) && $this->page === false ) {
 			echo '<div class="notice notice-info is-dismissible"><p>';
-			echo sprintf( __( "%s is activated and it needs to finish installation.", "d4plib" ), $this->title() );
-			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . __( "Click Here", "d4plib" ) . '</a>.';
+			echo esc_html( sprintf( __( "%s is activated and it needs to finish installation.", "d4plib" ), $this->title() ) );
+			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( "Click Here", "d4plib" ) . '</a>.';
 			echo '</p></div>';
 		}
 	}
@@ -269,8 +269,8 @@ abstract class Plugin {
 	public function update_notice() {
 		if ( current_user_can( 'install_plugins' ) && $this->page === false ) {
 			echo '<div class="notice notice-info is-dismissible"><p>';
-			echo sprintf( __( "%s is updated, and you need to review the update process.", "d4plib" ), $this->title() );
-			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . __( "Click Here", "d4plib" ) . '</a>.';
+			echo esc_html( sprintf( __( "%s is updated, and you need to review the update process.", "d4plib" ), $this->title() ) );
+			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( "Click Here", "d4plib" ) . '</a>.';
 			echo '</p></div>';
 		}
 	}

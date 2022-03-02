@@ -505,7 +505,7 @@ class Render {
 
 		$label = $element->args['label_button_add'] ?? __( "Add New Value", "d4plib" );
 
-		echo '<a role="button" class="button-primary" href="#">' . $label . '</a>';
+		echo '<a role="button" class="button-primary" href="#">' . esc_html( $label ). '</a>';
 		echo '<input type="hidden" value="' . esc_attr( $i ) . '" class="d4p-next-id" />';
 	}
 
@@ -581,11 +581,11 @@ class Render {
 	protected function draw_images( $element, $value, $name_base, $id_base = '' ) {
 		$value = (array) $value;
 
-		echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-images-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> ' . __( "Add Image", "d4plib" ) . '</a>';
+		echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-images-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> ' . esc_html__( "Add Image", "d4plib" ) . '</a>';
 
 		echo '<div class="d4plib-selected-image" data-name="' . $name_base . '">';
 
-		echo '<div style="display: ' . ( empty( $value ) ? "block" : "none" ) . '" class="d4plib-images-none"><span class="d4plib-image-name">' . __( "No images selected.", "d4plib" ) . '</span></div>';
+		echo '<div style="display: ' . ( empty( $value ) ? "block" : "none" ) . '" class="d4plib-images-none"><span class="d4plib-image-name">' . esc_html__( "No images selected.", "d4plib" ) . '</span></div>';
 
 		foreach ( $value as $id ) {
 			$image = get_post( $id );
@@ -609,9 +609,9 @@ class Render {
 		echo sprintf( '<input class="d4plib-image" type="hidden" name="%s" id="%s" value="%s" />',
 			$name_base, $id_base, esc_attr( $value ) );
 
-		echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-image-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> ' . __( "Select Image", "d4plib" ) . '</a>';
-		echo '<a role="button" style="display: ' . ( $value > 0 ? "inline-block" : "none" ) . '" href="#" class="button d4plib-button-inner d4plib-image-preview"><i aria-hidden="true" class="d4p-icon d4p-ui-search"></i> ' . __( "Show Image", "d4plib" ) . '</a>';
-		echo '<a role="button" style="display: ' . ( $value > 0 ? "inline-block" : "none" ) . '" href="#" class="button d4plib-button-inner d4plib-image-remove"><i aria-hidden="true" class="d4p-icon d4p-ui-cancel"></i> ' . __( "Clear Image", "d4plib" ) . '</a>';
+		echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-image-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> ' . esc_html__( "Select Image", "d4plib" ) . '</a>';
+		echo '<a role="button" style="display: ' . ( $value > 0 ? "inline-block" : "none" ) . '" href="#" class="button d4plib-button-inner d4plib-image-preview"><i aria-hidden="true" class="d4p-icon d4p-ui-search"></i> ' . esc_html__( "Show Image", "d4plib" ) . '</a>';
+		echo '<a role="button" style="display: ' . ( $value > 0 ? "inline-block" : "none" ) . '" href="#" class="button d4plib-button-inner d4plib-image-remove"><i aria-hidden="true" class="d4p-icon d4p-ui-cancel"></i> ' . esc_html__( "Clear Image", "d4plib" ) . '</a>';
 
 		echo '<div class="d4plib-selected-image">';
 		$title = __( "Image not selected.", "d4plib" );
@@ -624,7 +624,7 @@ class Render {
 			$url   = $media[0];
 		}
 
-		echo '<span class="d4plib-image-name">' . $title . '</span>';
+		echo '<span class="d4plib-image-name">' . esc_html( $title ) . '</span>';
 		echo '<img src="' . $url . '" />';
 		echo '</div>';
 	}
@@ -641,7 +641,7 @@ class Render {
 		$value    = isset( $element->args['value'] ) && $element->args['value'] != '' ? $element->args['value'] : 'on';
 
 		echo sprintf( '<label for="%s"><input%s type="checkbox" name="%s" id="%s"%s class="widefat" value="%s" /><span class="d4p-accessibility-show-for-sr">%s: </span>%s</label>',
-			esc_attr( $id_base ), $readonly, esc_attr( $name_base ), esc_attr( $id_base ), $selected, $value, $element->title, $label );
+			esc_attr( $id_base ), $readonly, esc_attr( $name_base ), esc_attr( $id_base ), $selected, esc_attr( $value ), esc_html( $element->title ), esc_html( $label ) );
 	}
 
 	protected function draw_range_absint( $element, $value, $name_base, $id_base ) {
@@ -826,10 +826,10 @@ class Render {
 
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
-		echo sprintf( '<label for="%s_val"><span class="d4p-accessibility-show-for-sr">' . __( "Value", "d4plib" ) . ': </span></label><input%s type="number" name="%s[val]" id="%s_val" value="%s" class="widefat" step="0.01" />',
+		echo sprintf( '<label for="%s_val"><span class="d4p-accessibility-show-for-sr">' . esc_html__( "Value", "d4plib" ) . ': </span></label><input%s type="number" name="%s[val]" id="%s_val" value="%s" class="widefat" step="0.01" />',
 			$id_base, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[0] ) );
 
-		echo sprintf( '<label for="%s_unit"><span class="d4p-accessibility-show-for-sr">' . __( "Unit", "d4plib" ) . ': </span></label>', $id_base );
+		echo sprintf( '<label for="%s_unit"><span class="d4p-accessibility-show-for-sr">' . esc_html__( "Unit", "d4plib" ) . ': </span></label>', $id_base );
 
 		Elements::instance()->select( $sizes, array(
 			'selected' => $pairs[1],
@@ -842,8 +842,8 @@ class Render {
 	protected function part_check_uncheck_all() {
 		echo '<div class="d4p-check-uncheck">';
 
-		echo '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> ' . __( "Check All", "d4plib" ) . '</a>';
-		echo '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . __( "Uncheck All", "d4plib" ) . '</a>';
+		echo '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> ' . esc_html__( "Check All", "d4plib" ) . '</a>';
+		echo '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . esc_html__( "Uncheck All", "d4plib" ) . '</a>';
 
 		echo '</div>';
 	}

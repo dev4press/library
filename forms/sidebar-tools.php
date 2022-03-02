@@ -42,7 +42,7 @@ $_button_id = $_subpanels[ $_subpanel ]['button_id'] ?? panel()->a()->plugin_pre
 				<?php } ?>
             </div>
             <div class="d4p-return-to-top">
-                <a href="#wpwrap"><?php _e( "Return to top", "d4plib" ); ?></a>
+                <a href="#wpwrap"><?php esc_html_e( "Return to top", "d4plib" ); ?></a>
             </div>
 		<?php } ?>
     </div>

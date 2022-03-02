@@ -1,9 +1,9 @@
-<h4><?php _e( "Widget as a Shortcode", "d4plib" ); ?></h4>
+<h4><?php esc_html_e( "Widget as a Shortcode", "d4plib" ); ?></h4>
 <table>
     <tbody>
     <tr>
         <td class="cell-singular">
-			<?php _e( "This widget has a shortcode equivalent with all the same settings. The shortcode is displayed below, and you can copy and use it in your posts or pages. This shortcode reflects latest saved widget settings - if you make changes to widget settings, save it, before getting shortcode from this tab.", "d4plib" ); ?>
+			<?php esc_html_e( "This widget has a shortcode equivalent with all the same settings. The shortcode is displayed below, and you can copy and use it in your posts or pages. This shortcode reflects latest saved widget settings - if you make changes to widget settings, save it, before getting shortcode from this tab.", "d4plib" ); ?>
         </td>
     </tr>
     <tr>
