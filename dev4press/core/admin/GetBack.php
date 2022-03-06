@@ -107,7 +107,7 @@ abstract class GetBack {
 		check_ajax_referer( 'dev4press-plugin-' . $this->a()->plugin_prefix );
 
 		if ( ! WPR::is_current_user_admin() ) {
-			wp_die( __( "Only administrators can use export features.", "d4plib" ) );
+			wp_die( esc_html__( "Only administrators can use export features.", "d4plib" ) );
 		}
 
 		$data = $this->a()->settings()->export_to_secure_json();
