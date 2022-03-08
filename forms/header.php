@@ -58,7 +58,7 @@ if ( panel()->a()->auto_mod_interface_colors ) {
         <div class="d4p-navigator">
             <ul>
                 <li class="d4p-nav-button">
-                    <a href="#"><?php echo panel()->r()->icon( $_panels[ $_panel ]['icon'] ); ?><?php echo esc_html( $_panels[ $_panel ]['title'] ); ?></a>
+                    <a href="#"><?php echo panel()->r()->icon( $_panels[ $_panel ]['icon'] ); ?><?php echo $_panels[ $_panel ]['title']; ?></a>
 					<?php if ( $_panel != 'install' && $_panel != 'update' ) { ?>
                         <ul>
 							<?php
