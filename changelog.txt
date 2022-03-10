@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.7.4 - 2022.03.11 =
+* Updated: Several minor improvements and tweaks
+
 = Version 3.7.3 - 2022.03.02 =
 * Updated: Rendering of the settings datatime field
 * Updated: Additional sanitation calls for settings fields
