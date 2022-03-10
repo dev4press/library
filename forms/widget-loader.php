@@ -21,7 +21,7 @@
 				$selected = 'true';
 			}
 
-			echo '<a tabindex="0" id="' . esc_attr( $tabkey ) . '-tab" aria-controls="' . esc_attr( $tabkey ) . '" aria-selected="' . esc_attr( $selected ) . '" role="tab" data-tabname="' . esc_attr( $tab ) . '" href="#' . esc_attr( $tabkey ) . '" class="' . esc_attr( $class ) . '">' . esc_html( $obj['name'] ) . '</a>';
+			echo '<a tabindex="0" id="' . esc_attr( $tabkey ) . '-tab" aria-controls="' . esc_attr( $tabkey ) . '" aria-selected="' . esc_attr( $selected ) . '" role="tab" data-tabname="' . esc_attr( $tab ) . '" href="#' . esc_attr( $tabkey ) . '" class="' . esc_attr( $class ) . '">' . $obj['name'] . '</a>';
 		}
 
 		?>
