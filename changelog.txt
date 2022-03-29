@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.8 - 2022.04.14 =
+* Updated: Built-in cacert.pem 20220329
+
 = Version 3.7.4 - 2022.03.11 =
 * Updated: Several minor improvements and tweaks
 

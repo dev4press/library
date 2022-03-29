@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v37\Core\Admin\GetBack
-Version: v3.7
+Name:    Dev4Press\v38\Core\Admin\GetBack
+Version: v3.8
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2021 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v37\Core\Admin;
+namespace Dev4Press\v38\Core\Admin;
 
-use Dev4Press\v37\Core\Quick\Sanitize;
-use Dev4Press\v37\Core\Quick\WPR;
+use Dev4Press\v38\Core\Quick\Sanitize;
+use Dev4Press\v38\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -42,7 +42,7 @@ abstract class GetBack {
 		$this->process();
 	}
 
-	/** @return \Dev4Press\v37\Core\Admin\Plugin|\Dev4Press\v37\Core\Admin\Menu\Plugin|\Dev4Press\v37\Core\Admin\Submenu\Plugin */
+	/** @return \Dev4Press\v38\Core\Admin\Plugin|\Dev4Press\v38\Core\Admin\Menu\Plugin|\Dev4Press\v38\Core\Admin\Submenu\Plugin */
 	public function a() {
 		return $this->admin;
 	}

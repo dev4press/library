@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v37\Core\UI\Widgets
-Version: v3.7
+Name:    Dev4Press\v38\Core\UI\Widgets
+Version: v3.8
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2021 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,14 +24,14 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v37\Core\UI;
+namespace Dev4Press\v38\Core\UI;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 final class Widgets {
-	/** @var \Dev4Press\v37\Core\Admin\Plugin|\Dev4Press\v37\Core\Admin\Menu\Plugin|\Dev4Press\v37\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v38\Core\Admin\Plugin|\Dev4Press\v38\Core\Admin\Menu\Plugin|\Dev4Press\v38\Core\Admin\Submenu\Plugin */
 	private $_admin;
 
 	public function __construct( $admin ) {

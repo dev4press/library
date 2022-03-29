@@ -1,8 +1,8 @@
 # Dev4Press Library
 
-* Version: v3.7.4
-* Build:   3740
-* Release: 2022.03.11.
+* Version: v3.8
+* Build:   3800
+* Release: 2022.04.14.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
@@ -10,7 +10,7 @@
 
 ## Server Requirements
 
-* PHP: 7.0 or newer
+* PHP: 7.2 or newer
 * mySQL: 5.1 or newer
 
 ## WordPress Requirements

@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v37\Core\Admin\Plugin
-Version: v3.7
+Name:    Dev4Press\v38\Core\Admin\Plugin
+Version: v3.8
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2021 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,11 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v37\Core\Admin;
+namespace Dev4Press\v38\Core\Admin;
 
-use Dev4Press\v37\Core\Quick\Sanitize;
-use Dev4Press\v37\Core\UI\Enqueue;
-use Dev4Press\v37\WordPress;
+use Dev4Press\v38\Core\Quick\Sanitize;
+use Dev4Press\v38\Core\UI\Enqueue;
+use Dev4Press\v38\WordPress;
 use WP_Screen;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -59,10 +59,10 @@ abstract class Plugin {
 
 	public $screen_id = '';
 
-	/** @var \Dev4Press\v37\Core\UI\Admin\Panel */
+	/** @var \Dev4Press\v38\Core\UI\Admin\Panel */
 	public $object = null;
 
-	/** @var \Dev4Press\v37\Core\UI\Enqueue */
+	/** @var \Dev4Press\v38\Core\UI\Enqueue */
 	public $enqueue = null;
 
 	public $enqueue_packed = true;
@@ -457,7 +457,7 @@ abstract class Plugin {
 
 	abstract public function run_postback();
 
-	/** @return \Dev4Press\v37\Core\Plugins\Settings */
+	/** @return \Dev4Press\v38\Core\Plugins\Settings */
 	abstract public function settings();
 
 	abstract public function settings_definitions();

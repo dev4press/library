@@ -1,7 +1,7 @@
 <?php
 
-use Dev4Press\v37\Core\Quick\Sanitize;
-use function Dev4Press\v37\Functions\panel;
+use Dev4Press\v38\Core\Quick\Sanitize;
+use function Dev4Press\v38\Functions\panel;
 
 $_subpanels = panel()->subpanels();
 $_panel     = panel()->a()->panel;

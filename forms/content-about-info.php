@@ -1,7 +1,7 @@
 <?php
 
-use Dev4Press\v37\Core\Helpers\Languages;
-use function Dev4Press\v37\Functions\panel;
+use Dev4Press\v38\Core\Helpers\Languages;
+use function Dev4Press\v38\Functions\panel;
 
 $plugin = panel()->a()->settings()->i();
 $sysreq = $plugin->system_requirements();

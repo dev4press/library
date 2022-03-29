@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev4Press\v37\Core\UI\Admin;
+namespace Dev4Press\v38\Core\UI\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
