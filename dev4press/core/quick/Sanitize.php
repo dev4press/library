@@ -54,7 +54,7 @@ class Sanitize {
 	public static function file_path( $filename ) : string {
 		$filename_raw = $filename;
 
-		$special_chars = apply_filters( __NAMESPACE__ . '\sanitize_file_path_chars', array(
+		$special_chars = apply_filters( __NAMESPACE__ . '\sanitize\file_path_chars', array(
 			"?",
 			"[",
 			"]",
@@ -91,13 +91,17 @@ class Sanitize {
 		$filename = preg_replace( '/[\r\n\t -]+/', '-', $filename );
 		$filename = trim( $filename, '.-_' );
 
-		return apply_filters( __NAMESPACE__ . '\sanitize_file_path', $filename, $filename_raw );
+		return apply_filters( __NAMESPACE__ . '\sanitize\file_path', $filename, $filename_raw );
 	}
 
-	public static function key_expanded( $key ) : string {
+	public static function key( $key ) : string {
 		$key = strtolower( $key );
 
 		return preg_replace( '/[^a-z0-9._\-]/', '', $key );
+	}
+
+	public static function slug( $text ) : string {
+		return trim( sanitize_title_with_dashes( stripslashes( $text ) ), "-_ \t\n\r\0\x0B" );
 	}
 
 	public static function extended( $text, $tags = null, $protocols = array(), $strip_shortcodes = false ) : string {
@@ -127,10 +131,6 @@ class Sanitize {
 		return wp_kses( trim( stripslashes( $text ) ), $tags, $protocols );
 	}
 
-	public static function slug( $text ) : string {
-		return trim( sanitize_title_with_dashes( stripslashes( $text ) ), "-_ \t\n\r\0\x0B" );
-	}
-
 	public static function html_classes( $classes ) : string {
 		$list = is_array( $classes ) ? $classes : explode( ' ', trim( stripslashes( $classes ) ) );
 		$list = array_map( 'sanitize_html_class', $list );
@@ -155,5 +155,10 @@ class Sanitize {
 		$ids = array_unique( $ids );
 
 		return array_filter( $ids );
+	}
+
+	/** @deprecated since 3.8 to be removed in 3.9 */
+	public static function key_expanded( $key ) : string {
+		return Sanitize::key($key);
 	}
 }
