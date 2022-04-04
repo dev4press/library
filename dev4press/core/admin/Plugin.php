@@ -368,9 +368,9 @@ abstract class Plugin {
 	}
 
 	protected function load_post_get_back() {
-		if ( isset( $_POST[ $this->v() ] ) && Sanitize::key_expanded( $_POST[ $this->v() ] ) == 'postback' ) {
+		if ( isset( $_POST[ $this->v() ] ) && Sanitize::key( $_POST[ $this->v() ] ) == 'postback' ) {
 			$this->run_postback();
-		} else if ( isset( $_GET[ $this->v() ] ) && Sanitize::key_expanded( $_GET[ $this->v() ] ) == 'getback' ) {
+		} else if ( isset( $_GET[ $this->v() ] ) && Sanitize::key( $_GET[ $this->v() ] ) == 'getback' ) {
 			$this->run_getback();
 		}
 	}
@@ -416,7 +416,7 @@ abstract class Plugin {
 		$post_type = '';
 
 		if ( isset( $_GET['post_type'] ) ) {
-			$post_type = Sanitize::key_expanded( $_GET['post_type'] );
+			$post_type = Sanitize::key( $_GET['post_type'] );
 		} else {
 			global $post;
 

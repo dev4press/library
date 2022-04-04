@@ -244,7 +244,7 @@ if ( ! function_exists( __NAMESPACE__ . '\sanitize_file_path' ) ) {
 if ( ! function_exists( __NAMESPACE__ . '\sanitize_key_expanded' ) ) {
 	/** @deprecated since 3.7 to be removed in 3.9 */
 	function sanitize_key_expanded( $key ) : string {
-		return Sanitize::key_expanded( $key );
+		return Sanitize::key( $key );
 	}
 }
 

@@ -50,15 +50,15 @@ class Store {
 			'free'        => true,
 			'pro'         => true
 		),
-		/*"coreseo"                          => array(
-			"code"        => "coreseo",
-			"name"        => "CoreSEO",
-			"description" => "Toolbox plugin with a number of search engine optimization related modules for Sitemaps, Robots.txt, Robots Meta and Knowledge Graph control, with more modules to be added.",
-			"punchline"   => "Search Engine Optimization for WordPress",
-			"color"       => "#C65C0F",
+		"coresocial"                       => array(
+			"code"        => "coresocial",
+			"name"        => "CoreSocial",
+			"description" => "DebugPress is an easy to use plugin implementing popup for debugging and profiling currently loaded WordPress powered website page with support for intercepting AJAX requests.",
+			"punchline"   => "Share to social networks with ease",
+			"color"       => "#2277bb",
 			'free'        => false,
 			'pro'         => true
-		),*/
+		),
 		"debugpress"                       => array(
 			"code"        => "debugpress",
 			"name"        => "DebugPress",
@@ -275,6 +275,15 @@ class Store {
 			'free'        => false,
 			'pro'         => true
 		)
+		/*"coreseo"                          => array(
+			"code"        => "coreseo",
+			"name"        => "CoreSEO",
+			"description" => "Toolbox plugin with a number of search engine optimization related modules for Sitemaps, Robots.txt, Robots Meta and Knowledge Graph control, with more modules to be added.",
+			"punchline"   => "Search Engine Optimization for WordPress",
+			"color"       => "#C65C0F",
+			'free'        => false,
+			'pro'         => true
+		),*/
 	);
 
 	public function __construct() {

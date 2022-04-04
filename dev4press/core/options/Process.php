@@ -220,7 +220,7 @@ class Process {
 				$value = Sanitize::slug( $post[ $key ] );
 				break;
 			case 'slug_ext':
-				$value = Sanitize::key_expanded( $post[ $key ] );
+				$value = Sanitize::key( $post[ $key ] );
 				break;
 			case 'slug_slash':
 				$value = $this->slug_slashes( $post[ $key ] );

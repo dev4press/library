@@ -56,7 +56,7 @@ abstract class AJAX {
 	abstract public static function instance();
 
 	public function check_nonce() {
-		$ajax_nonce = isset( $_REQUEST['_ajax_nonce'] ) ? Sanitize::key_expanded( $_REQUEST['_ajax_nonce'] ) : '';
+		$ajax_nonce = isset( $_REQUEST['_ajax_nonce'] ) ? Sanitize::key( $_REQUEST['_ajax_nonce'] ) : '';
 		$nonce      = wp_verify_nonce( $ajax_nonce, $this->nonce );
 
 		if ( $nonce === false ) {
@@ -73,7 +73,7 @@ abstract class AJAX {
 		@ini_set( 'memory_limit', '256M' );
 		@set_time_limit( 0 );
 
-		$operation = isset( $_POST['operation'] ) ? Sanitize::key_expanded( $_POST['operation'] ) : '';
+		$operation = isset( $_POST['operation'] ) ? Sanitize::key( $_POST['operation'] ) : '';
 		$response  = array();
 
 		switch ( $operation ) {

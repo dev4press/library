@@ -40,7 +40,7 @@ abstract class PostBack {
 	public function __construct( $admin ) {
 		$this->admin = $admin;
 
-		$this->page = isset($_POST['option_page']) ? Sanitize::key_expanded( $_POST['option_page'] ) : false;
+		$this->page = isset($_POST['option_page']) ? Sanitize::key( $_POST['option_page'] ) : false;
 
 		if ( $this->page !== false ) {
 			$this->process();

@@ -65,6 +65,7 @@ class Elements {
 			'id'       => '',
 			'class'    => '',
 			'style'    => '',
+			'title'    => '',
 			'multi'    => false,
 			'echo'     => true,
 			'readonly' => false
@@ -78,6 +79,7 @@ class Elements {
 		 * @var string $id
 		 * @var string $class
 		 * @var string $style
+		 * @var string $title
 		 * @var bool   $multi
 		 * @var bool   $echo
 		 * @var bool   $readonly
@@ -96,6 +98,10 @@ class Elements {
 
 		if ( $style != '' ) {
 			$attributes[] = 'style="' . esc_attr( $style ) . '"';
+		}
+
+		if ( $title != '' ) {
+			$attributes[] = 'title="' . esc_attr( $title ) . '"';
 		}
 
 		if ( $multi ) {
@@ -134,6 +140,7 @@ class Elements {
 				'select' => array(
 					'class'    => true,
 					'style'    => true,
+					'title'    => true,
 					'multiple' => true,
 					'readonly' => true,
 					'id'       => true,
@@ -157,6 +164,7 @@ class Elements {
 			'id'       => '',
 			'class'    => '',
 			'style'    => '',
+			'title'    => '',
 			'multi'    => false,
 			'echo'     => true,
 			'readonly' => false
@@ -170,6 +178,7 @@ class Elements {
 		 * @var string $id
 		 * @var string $class
 		 * @var string $style
+		 * @var string $title
 		 * @var bool   $multi
 		 * @var bool   $echo
 		 * @var bool   $readonly
@@ -187,6 +196,10 @@ class Elements {
 
 		if ( $style != '' ) {
 			$attributes[] = 'style="' . esc_attr( $style ) . '"';
+		}
+
+		if ( $title != '' ) {
+			$attributes[] = 'title="' . esc_attr( $title ) . '"';
 		}
 
 		if ( $multi ) {
@@ -227,6 +240,7 @@ class Elements {
 				'select'   => array(
 					'class'    => true,
 					'style'    => true,
+					'title'    => true,
 					'multiple' => true,
 					'readonly' => true,
 					'id'       => true,
@@ -413,10 +427,10 @@ class Elements {
 					'class' => true,
 					'href'  => true
 				),
-				'ul'   => array(
+				'ul'    => array(
 					'class' => true
 				),
-				'li'   => array(
+				'li'    => array(
 					'class' => true
 				),
 				'div'   => array(

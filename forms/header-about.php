@@ -25,11 +25,18 @@ if ( ! empty( $_subpanel ) ) {
 	$_classes[] = 'd4p-subpanel-' . $_subpanel;
 }
 
+$_plugin_title = sprintf(
+	__( "Welcome to %s%s %s", "d4plib" ),
+	panel()->a()->title(),
+	panel()->a()->settings()->i()->edition == 'free' ? '' : ' ' . ucfirst( panel()->a()->settings()->i()->edition ),
+	panel()->a()->settings()->i()->version
+);
+
 ?>
 <div class="<?php echo Sanitize::html_classes( $_classes ); ?>">
     <div class="d4p-about-head-wrapper">
         <div class="d4p-about-information">
-            <h1><?php printf( __( "Welcome to %s %s&nbsp;%s", "d4plib" ), panel()->a()->title(), ucfirst( panel()->a()->settings()->i()->edition ), panel()->a()->settings()->i()->version ); ?></h1>
+            <h1><?php echo esc_html( $_plugin_title ); ?></h1>
             <p class="d4p-about-text">
 				<?php echo panel()->a()->settings()->i()->description(); ?>
             </p>

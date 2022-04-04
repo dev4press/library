@@ -147,6 +147,6 @@ abstract class GetBack {
 	}
 
 	protected function _get( $key = 'action' ) : string {
-		return isset( $_GET[ $key ] ) ? Sanitize::key_expanded( $_GET[ $key ] ) : '';
+		return isset( $_GET[ $key ] ) ? Sanitize::key( $_GET[ $key ] ) : '';
 	}
 }

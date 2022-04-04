@@ -176,9 +176,9 @@ abstract class Widget extends WP_Widget {
 		$instance['title'] = Sanitize::basic( $new_instance['title'] );
 
 		$instance['_class'] = Sanitize::basic( $new_instance['_class'] );
-		$instance['_tab']   = Sanitize::key_expanded( $new_instance['_tab'] );
-		$instance['_hook']  = Sanitize::key_expanded( $new_instance['_hook'] );
-		$instance['_devid'] = Sanitize::key_expanded( $new_instance['_devid'] );
+		$instance['_tab']   = Sanitize::key( $new_instance['_tab'] );
+		$instance['_hook']  = Sanitize::key( $new_instance['_hook'] );
+		$instance['_devid'] = Sanitize::key( $new_instance['_devid'] );
 
 		$instance['_users'] = $this->get_valid_list_value( '_users', $new_instance['_users'], array_keys( $this->get_list_user_visibility() ) );
 
