@@ -2,13 +2,20 @@
 == Changelog ==
 
 = Version 3.8 - 2022.04.14 =
+* New: Base Panel object now builds the classes
+* Updated: Various minor updates to the Panel class
+* Updated: Post Type and Taxonomy traits updated labels
+* Updated: Each menu item can have own capability
+* Updated: Sanitize method names updates
 * Updated: Built-in cacert.pem 20220329
+* Updated: Flatpickr 4.6.11
+* Fix: Loading of sub-templates in some cases
 
 = Version 3.7.4 - 2022.03.11 =
 * Updated: Several minor improvements and tweaks
 
 = Version 3.7.3 - 2022.03.02 =
-* Updated: Rendering of the settings datatime field
+* Updated: Rendering of the settings datetime field
 * Updated: Additional sanitation calls for settings fields
 * Updated: Many improvements to the Getback class
 * Updated: Various minor display and styling tweaks

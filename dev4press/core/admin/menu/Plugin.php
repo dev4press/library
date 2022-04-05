@@ -51,7 +51,7 @@ abstract class Plugin extends BasePlugin {
 			$this->page_ids[] = add_submenu_page( $parent,
 				$this->plugin_title . ': ' . $data['title'],
 				$data['title'],
-				$this->menu_cap,
+				$data['cap'] ?? $this->menu_cap,
 				$this->plugin . '-' . $item,
 				array( $this, 'admin_panel' ) );
 		}

@@ -205,17 +205,33 @@ class Resources {
 				'lib'        => true,
 				'path'       => 'flatpickr/',
 				'file'       => 'flatpickr.min',
-				'ver'        => '4.6.9',
+				'ver'        => '4.6.11',
 				'ext'        => 'js',
 				'min'        => false,
 				'min_locale' => true,
-				'locales'    => array( 'de', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'sr' )
+				'locales'    => array(
+					'bg',
+					'da',
+					'de',
+					'es',
+					'fr',
+					'it',
+					'nl',
+					'nn',
+					'no',
+					'pl',
+					'pt',
+					'ru',
+					'sl',
+					'sr',
+					'sv'
+				)
 			),
 			'flatpickr-confirm-date' => array(
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'confirm-date',
-				'ver'  => '4.6.9',
+				'ver'  => '4.6.11',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -224,7 +240,25 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'month-select',
-				'ver'  => '4.6.9',
+				'ver'  => '4.6.11',
+				'ext'  => 'js',
+				'min'  => true,
+				'int'  => array( 'flatpickr' )
+			),
+			'flatpickr-week-select'  => array(
+				'lib'  => true,
+				'path' => 'flatpickr/plugins',
+				'file' => 'week-select',
+				'ver'  => '4.6.11',
+				'ext'  => 'js',
+				'min'  => true,
+				'int'  => array( 'flatpickr' )
+			),
+			'flatpickr-minmax-time'  => array(
+				'lib'  => true,
+				'path' => 'flatpickr/plugins',
+				'file' => 'minmax-time',
+				'ver'  => '4.6.11',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -233,7 +267,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'range',
-				'ver'  => '4.6.9',
+				'ver'  => '4.6.11',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -295,7 +329,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/',
 				'file' => 'flatpickr.min',
-				'ver'  => '4.6.9',
+				'ver'  => '4.6.11',
 				'ext'  => 'css',
 				'min'  => false
 			),
@@ -303,7 +337,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'confirm-date',
-				'ver'  => '4.6.9',
+				'ver'  => '4.6.11',
 				'ext'  => 'css',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
@@ -312,7 +346,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'month-select',
-				'ver'  => '4.6.9',
+				'ver'  => '4.6.11',
 				'ext'  => 'css',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )

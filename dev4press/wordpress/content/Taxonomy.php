@@ -66,6 +66,12 @@ trait Taxonomy {
 		$labels['items_list']                 = sprintf( _x( "%s list", "Taxonomy label", "d4plib" ), $plural );
 		$labels['most_used']                  = _x( "Most Used", "Taxonomy label", "d4plib" );
 		$labels['back_to_items']              = sprintf( _x( "&larr; Back to %s", "Taxonomy label", "d4plib" ), $plural );
+		$labels['item_link']                  = sprintf( _x( "%s Link", "Taxonomy label", "d4plib" ), $singular );
+		$labels['item_link_description']      = sprintf( _x( "A link to a %s", "Taxonomy label", "d4plib" ), $singular );
+		$labels['name_field_description']     = _x( "The name is how it appears on your site.", "Taxonomy label", "d4plib" );
+		$labels['slug_field_description']     = _x( "The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.", "Taxonomy label", "d4plib" );
+		$labels['parent_field_description']   = _x( "Assign a parent term to create a hierarchy. The term Jazz, for example, would be the parent of Bebop and Big Band.", "Taxonomy label", "d4plib" );
+		$labels['desc_field_description']     = _x( "The description is not prominent by default; however, some themes may show it.", "Taxonomy label", "d4plib" );
 
 		return $labels;
 	}

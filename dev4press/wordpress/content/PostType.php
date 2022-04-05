@@ -66,6 +66,9 @@ trait PostType {
 		$labels['item_reverted_to_draft']   = sprintf( _x( "%s reverted to draft", "Post type label", "d4plib" ), $singular );
 		$labels['item_scheduled']           = sprintf( _x( "%s scheduled", "Post type label", "d4plib" ), $singular );
 		$labels['item_updated']             = sprintf( _x( "%s updated", "Post type label", "d4plib" ), $singular );
+		$labels['filter_by_date']           = _x( "Filter by Date", "Post type label", "d4plib" );
+		$labels['item_link']                = sprintf( _x( "%s Link", "Post type label", "d4plib" ), $singular );
+		$labels['item_link_description']    = sprintf( _x( "A link to a %s", "Post type label", "d4plib" ), $singular );
 
 		return $labels;
 	}

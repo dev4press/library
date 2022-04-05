@@ -45,10 +45,14 @@ abstract class Plugin extends BasePlugin {
 	}
 
 	public function admin_menu() {
-		$this->page_ids[] = add_submenu_page( $this->menu, $this->plugin_title, $this->plugin_menu, $this->menu_cap, $this->plugin, array(
-			$this,
-			'admin_panel'
-		) );
+		$this->page_ids[] = add_submenu_page(
+			$this->menu,
+			$this->plugin_title,
+			$this->plugin_menu,
+			$this->menu_cap,
+			$this->plugin,
+			array( $this, 'admin_panel' )
+		);
 
 		$this->admin_load_hooks();
 	}
