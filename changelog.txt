@@ -3,6 +3,8 @@
 
 = Version 3.8 - 2022.04.14 =
 * New: Base Panel object now builds the classes
+* Updated: Method to detect the bbPress activity
+* Updated: Method to detect the BuddyPress activity
 * Updated: Various minor updates to the Panel class
 * Updated: Post Type and Taxonomy traits updated labels
 * Updated: Each menu item can have own capability

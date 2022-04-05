@@ -31,39 +31,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class BP {
-	public static function is_active() : bool {
-		if ( WPR::is_plugin_active( 'buddypress/bp-loader.php' ) ) {
-			$version = BP::major_version_code();
-
-			return $version > 59;
+	public static function is_active( $min_version = '7.0' ) : bool {
+		if ( WPR::is_plugin_active( 'buddypress/bp-loader.php' ) && function_exists( 'bp_get_version' ) ) {
+			return version_compare( bp_get_version(), $min_version, '>=' );
 		} else {
 			return false;
 		}
-	}
-
-	public static function major_version_code() : int {
-		if ( function_exists( 'bp_get_version' ) ) {
-			$version = bp_get_version();
-
-			return intval( substr( str_replace( '.', '', $version ), 0, 2 ) );
-		}
-
-		return 0;
-	}
-
-	public static function major_version_number( $ret = 'number' ) {
-		if ( function_exists( 'bp_get_version' ) ) {
-			$version = bp_get_version();
-
-			if ( isset( $version ) ) {
-				if ( $ret == 'number' ) {
-					return substr( str_replace( '.', '', $version ), 0, 2 );
-				} else {
-					return $version;
-				}
-			}
-		}
-
-		return 0;
 	}
 }

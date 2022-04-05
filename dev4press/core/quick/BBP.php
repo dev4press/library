@@ -31,40 +31,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class BBP {
-	public static function is_active() : bool {
-		if ( WPR::is_plugin_active( 'bbpress/bbpress.php' ) ) {
-			$version = BBP::major_version_code();
-
-			return $version > 25;
+	public static function is_active( $min_version = '2.6' ) : bool {
+		if ( WPR::is_plugin_active( 'bbpress/bbpress.php' ) && function_exists( 'bbp_get_version' ) ) {
+			return version_compare( bbp_get_version(), $min_version, '>=' );
 		} else {
 			return false;
 		}
-	}
-
-	public static function major_version_code() : int {
-		if ( function_exists( 'bbp_get_version' ) ) {
-			$version = bbp_get_version();
-
-			return intval( substr( str_replace( '.', '', $version ), 0, 2 ) );
-		}
-
-		return 0;
-	}
-
-	public static function major_version_number( $ret = 'number' ) {
-		if ( function_exists( 'bbp_get_version' ) ) {
-			$version = bbp_get_version();
-
-			if ( isset( $version ) ) {
-				if ( $ret == 'number' ) {
-					return substr( str_replace( '.', '', $version ), 0, 2 );
-				} else {
-					return $version;
-				}
-			}
-		}
-
-		return 0;
 	}
 
 	public static function get_user_roles() : array {
