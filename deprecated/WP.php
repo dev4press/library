@@ -309,7 +309,7 @@ if ( ! function_exists( __NAMESPACE__ . '\post_type_has_archive' ) ) {
 if ( ! function_exists( __NAMESPACE__ . '\json_die' ) ) {
 	/** @deprecated since 3.7 to be removed in 3.9 */
 	function json_die( $data, $response = null ) {
-		return WPR::json_die( $data, $response );
+		WPR::json_die( $data, $response );
 	}
 }
 
@@ -330,7 +330,7 @@ if ( ! function_exists( __NAMESPACE__ . '\delete_cron_job' ) ) {
 if ( ! function_exists( __NAMESPACE__ . '\remove_cron' ) ) {
 	/** @deprecated since 3.7 to be removed in 3.9 */
 	function remove_cron( $hook ) {
-		return WPR::remove_cron( $hook );
+		WPR::remove_cron( $hook );
 	}
 }
 

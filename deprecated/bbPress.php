@@ -39,20 +39,6 @@ if ( ! function_exists( __NAMESPACE__ . '\is_active' ) ) {
 	}
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\major_version_code' ) ) {
-	/** @deprecated since 3.7 to be removed in 3.9 */
-	function major_version_code() : int {
-		return BBP::major_version_code();
-	}
-}
-
-if ( ! function_exists( __NAMESPACE__ . '\major_version_number' ) ) {
-	/** @deprecated since 3.7 to be removed in 3.9 */
-	function major_version_number( $ret = 'number' ) {
-		return BBP::major_version_number( $ret );
-	}
-}
-
 if ( ! function_exists( __NAMESPACE__ . '\get_user_roles' ) ) {
 	/** @deprecated since 3.7 to be removed in 3.9 */
 	function get_user_roles() : array {

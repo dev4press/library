@@ -307,7 +307,7 @@ if ( ! function_exists( __NAMESPACE__ . '\is_odd' ) ) {
 if ( ! function_exists( __NAMESPACE__ . '\is_divisible' ) ) {
 	/** @deprecated since 3.7 to be removed in 3.9 */
 	function is_divisible( $number, $by_number ) : bool {
-		return Num::is_divisible( $number );
+		return Num::is_divisible( $number, $by_number );
 	}
 }
 

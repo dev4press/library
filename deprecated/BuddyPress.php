@@ -37,15 +37,3 @@ if ( ! function_exists( __NAMESPACE__ . '\is_active' ) ) {
 		return BP::is_active();
 	}
 }
-
-if ( ! function_exists( __NAMESPACE__ . '\major_version_code' ) ) {
-	function major_version_code() : int {
-		return BP::major_version_code();
-	}
-}
-
-if ( ! function_exists( __NAMESPACE__ . '\major_version_number' ) ) {
-	function major_version_number( $ret = 'number' ) {
-		return BP::major_version_number( $ret );
-	}
-}
