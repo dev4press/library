@@ -17,8 +17,11 @@ abstract class Panel {
 
 	protected $sidebar = true;
 	protected $form = false;
+	protected $table = false;
 	protected $subpanels = array();
 	protected $render_class = '\\Dev4Press\\v38\\Core\\UI\\Admin\\Render';
+	protected $wrapper_class = '';
+	protected $default_subpanel = 'index';
 
 	public $storage = array();
 
@@ -54,20 +57,38 @@ abstract class Panel {
 		return $this->render;
 	}
 
-	public function h( $hook ) {
+	public function h( $hook ) : string {
 		return $this->a()->plugin_prefix . '_' . $hook;
 	}
 
-	public function subpanels() {
+	public function subpanels() : array {
 		return $this->subpanels;
 	}
 
-	public function has_form() {
+	public function current_subpanel() : string {
+		$_subpanel = $this->a()->subpanel;
+
+		if ( ! empty( $this->subpanels ) ) {
+			$_available = array_keys( $this->subpanels );
+
+			if ( ! in_array( $_subpanel, $_available ) ) {
+				$_subpanel = $this->default_subpanel;
+			}
+		}
+
+		return $_subpanel;
+	}
+
+	public function has_form() : bool {
 		return $this->form;
 	}
 
-	public function has_sidebar() {
+	public function has_sidebar() : bool {
 		return $this->sidebar;
+	}
+
+	public function has_table() : bool {
+		return $this->table;
 	}
 
 	public function validate_subpanel( $name ) {
@@ -85,6 +106,7 @@ abstract class Panel {
 	}
 
 	public function enqueue_scripts() {
+
 	}
 
 	public function screen_options_show() {
@@ -92,6 +114,36 @@ abstract class Panel {
 
 	public function screen_options_save( $status, $option, $value ) {
 		return $status;
+	}
+
+	public function wrapper_class() : array {
+		$_classes = array(
+			'd4p-wrap',
+			'd4p-plugin-' . $this->a()->plugin,
+			'd4p-panel-' . $this->a()->panel
+		);
+
+		$_subpanel = $this->current_subpanel();
+
+		if ( ! empty( $_subpanel ) ) {
+			$_classes[] = 'd4p-subpanel-' . $_subpanel;
+		}
+
+		if ( $this->has_sidebar() ) {
+			$_classes[] = 'd4p-with-sidebar';
+		} else {
+			$_classes[] = 'd4p-full-width';
+		}
+
+		if ( $this->table ) {
+			$_classes[] = 'd4p-with-table';
+		}
+
+		if ( ! empty( $this->wrapper_class ) ) {
+			$_classes[] = $this->wrapper_class;
+		}
+
+		return $_classes;
 	}
 
 	public function prepare() {
@@ -131,6 +183,8 @@ abstract class Panel {
 
 	public function include_header( $name = '' ) {
 		$name = empty( $name ) ? $this->a()->panel : $name;
+
+		$this->interface_colors();
 		$this->load( 'header-' . $name . '.php', 'header.php' );
 	}
 
@@ -180,9 +234,25 @@ abstract class Panel {
 	}
 
 	public function enqueue_scripts_early() {
+
 	}
 
 	public function include_accessibility_control() {
+	}
+
+	protected function interface_colors() {
+		if ( $this->a()->auto_mod_interface_colors ) {
+			?>
+
+            <style>
+                .<?php echo 'd4p-plugin-'.esc_html( $this->a()->plugin ); ?> {
+                    --d4p-color-layout-accent: <?php echo esc_html( $this->a()->settings()->i()->color() ); ?>;
+                    --d4p-color-sidebar-icon-text: <?php echo esc_html( $this->a()->settings()->i()->color() ); ?>;
+                }
+            </style>
+
+			<?php
+		}
 	}
 
 	protected function load( $name, $fallback = 'fallback.php' ) {

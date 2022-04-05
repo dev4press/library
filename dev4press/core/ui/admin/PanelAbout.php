@@ -8,6 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class PanelAbout extends Panel {
 	protected $sidebar = false;
+	protected $default_subpanel = 'whatsnew';
+	protected $wrapper_class = 'd4p-page-about';
 
 	public function __construct( $admin ) {
 		parent::__construct( $admin );

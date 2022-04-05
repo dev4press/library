@@ -3,32 +3,15 @@
 use Dev4Press\v38\Core\Quick\Sanitize;
 use function Dev4Press\v38\Functions\panel;
 
+$_panels    = panel()->a()->panels();
 $_subpanels = panel()->subpanels();
-$_panel     = panel()->a()->panel;
-$_subpanel  = panel()->a()->subpanel;
-
-if ( ! empty( $_subpanels ) ) {
-	$_available = array_keys( $_subpanels );
-
-	if ( ! in_array( $_subpanel, $_available ) ) {
-		$_subpanel = 'whatsnew';
-	}
-}
-
-$_classes = array(
-	'd4p-wrap',
-	'd4p-page-about',
-	'd4p-panel-' . $_panel
-);
-
-if ( ! empty( $_subpanel ) ) {
-	$_classes[] = 'd4p-subpanel-' . $_subpanel;
-}
+$_subpanel  = panel()->current_subpanel();
+$_classes   = panel()->wrapper_class();
 
 $_plugin_title = sprintf(
 	__( "Welcome to %s%s %s", "d4plib" ),
 	panel()->a()->title(),
-	panel()->a()->settings()->i()->edition == 'free' ? '' : ' ' . ucfirst( panel()->a()->settings()->i()->edition ),
+	panel()->a()->settings()->i()->is_pro() ? ' Pro' : '',
 	panel()->a()->settings()->i()->version
 );
 

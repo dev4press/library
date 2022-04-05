@@ -76,6 +76,10 @@ abstract class Information {
 
 	abstract public static function instance();
 
+	public function is_pro() : bool {
+		return $this->edition === 'pro';
+	}
+
 	public function name() : string {
 		return Store::instance()->name( $this->code );
 	}
@@ -131,22 +135,22 @@ abstract class Information {
 		return false;
 	}
 
-	public function version_full() : string {
+	public function version_full( $sep = ' ' ) : string {
 		$version = $this->version;
 
 		if ( $this->status != 'stable' ) {
 			switch ( $this->status ) {
 				case 'beta':
-					$version .= ' ' . __( "Beta", "d4plib" );
+					$version .= $sep . __( "Beta", "d4plib" );
 					break;
 				case 'alpha':
-					$version .= ' ' . __( "Alpha", "d4plib" );
+					$version .= $sep . __( "Alpha", "d4plib" );
 					break;
 				case 'rc':
-					$version .= ' ' . __( "RC", "d4plib" );
+					$version .= $sep . __( "RC", "d4plib" );
 					break;
 				case 'nightly':
-					$version .= ' ' . __( "Nightly", "d4plib" );
+					$version .= $sep . __( "Nightly", "d4plib" );
 					break;
 			}
 		}
