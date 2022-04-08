@@ -3,6 +3,7 @@
 
 = Version 3.8 - 2022.04.14 =
 * New: Base Panel object now builds the classes
+* New: Admin object flag to skip update/install panels
 * Updated: Method to detect the bbPress activity
 * Updated: Method to detect the BuddyPress activity
 * Updated: Various minor updates to the Panel class

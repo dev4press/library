@@ -52,6 +52,7 @@ abstract class Plugin {
 
 	public $is_debug = false;
 	public $auto_mod_interface_colors = false;
+	public $auto_mod_install_update = true;
 
 	public $page = false;
 	public $panel = '';
@@ -231,16 +232,20 @@ abstract class Plugin {
 	}
 
 	public function install_or_update() : bool {
-		$install = $this->settings()->is_install();
-		$update  = $this->settings()->is_update();
+		if ( $this->auto_mod_install_update ) {
+			$install = $this->settings()->is_install();
+			$update  = $this->settings()->is_update();
 
-		if ( $install ) {
-			$this->panel = 'install';
-		} else if ( $update ) {
-			$this->panel = 'update';
+			if ( $install ) {
+				$this->panel = 'install';
+			} else if ( $update ) {
+				$this->panel = 'update';
+			}
+
+			return $install || $update;
 		}
 
-		return $install || $update;
+		return false;
 	}
 
 	public function svg_icon() : string {
