@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v38\Core\Plugins;
 
 use Dev4Press\v38\API\Four;
+use Dev4Press\v38\Core\DateTime;
 use Dev4Press\v38\Core\Quick\BBP;
 use Dev4Press\v38\Library;
 use Dev4Press\v38\WordPress;
@@ -44,15 +45,22 @@ abstract class Core {
 	public $plugin = '';
 	public $url = '';
 
+	private $_datetime;
 	private $_system_requirements = array();
 	private $_widget_instance = array();
 
 	public function __construct() {
+		$this->_datetime = new DateTime();
+
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
 	}
 
 	abstract public static function instance();
+
+	public function datetime() : DateTime {
+		return $this->_datetime;
+	}
 
 	public function plugins_loaded() {
 		$this->is_debug = WordPress::instance()->is_script_debug();
