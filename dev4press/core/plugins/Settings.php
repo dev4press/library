@@ -130,7 +130,11 @@ abstract class Settings {
 		return $results;
 	}
 
-	public function group_get( $group ) {
+	public function group_get( $group, $get_defaults = false ) {
+		if ( $get_defaults ) {
+			return $this->settings[ $group ];
+		}
+
 		$default = $this->settings[ $group ];
 		$current = $this->current[ $group ];
 
