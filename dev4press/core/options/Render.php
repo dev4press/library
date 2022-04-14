@@ -825,13 +825,22 @@ class Render {
 		}
 
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
+		$allowed  = isset( $element->args['allowed'] ) && ! empty( $element->args['allowed'] ) ? (array) $element->args['allowed'] : array();
+
+		$allowed_sizes = array();
+
+		foreach ( $sizes as $size => $label ) {
+			if ( empty( $allowed_sizes ) || in_array( $size, $allowed ) ) {
+				$allowed_sizes[ $size ] = $label;
+			}
+		}
 
 		echo sprintf( '<label for="%s_val"><span class="d4p-accessibility-show-for-sr">' . esc_html__( "Value", "d4plib" ) . ': </span></label><input%s type="number" name="%s[val]" id="%s_val" value="%s" class="widefat" step="0.01" />',
 			$id_base, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[0] ) );
 
 		echo sprintf( '<label for="%s_unit"><span class="d4p-accessibility-show-for-sr">' . esc_html__( "Unit", "d4plib" ) . ': </span></label>', $id_base );
 
-		Elements::instance()->select( $sizes, array(
+		Elements::instance()->select( $allowed_sizes, array(
 			'selected' => $pairs[1],
 			'name'     => $name_base . '[unit]',
 			'id'       => $id_base . '_unit',
