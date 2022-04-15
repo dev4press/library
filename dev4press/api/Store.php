@@ -53,9 +53,9 @@ class Store {
 		"coresocial"                       => array(
 			"code"        => "coresocial",
 			"name"        => "CoreSocial",
-			"description" => "DebugPress is an easy to use plugin implementing popup for debugging and profiling currently loaded WordPress powered website page with support for intercepting AJAX requests.",
+			"description" => "Add popular social networks share buttons to posts and pages, lists of social network profiles with customizable styling and full block editor support.",
 			"punchline"   => "Share to social networks with ease",
-			"color"       => "#2277bb",
+			"color"       => "#e121c4",
 			'free'        => false,
 			'pro'         => true
 		),
