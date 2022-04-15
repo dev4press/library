@@ -830,7 +830,7 @@ class Render {
 		$allowed_sizes = array();
 
 		foreach ( $sizes as $size => $label ) {
-			if ( empty( $allowed_sizes ) || in_array( $size, $allowed ) ) {
+			if ( empty( $allowed ) || in_array( $size, $allowed ) ) {
 				$allowed_sizes[ $size ] = $label;
 			}
 		}
