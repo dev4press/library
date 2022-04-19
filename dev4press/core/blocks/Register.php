@@ -45,6 +45,10 @@ abstract class Register {
 		add_filter( 'widget_types_to_hide_from_legacy_widget_block', array( $this, 'hide_equivalent_widgets' ) );
 	}
 
+	public function is_editor() : bool {
+		return WordPress::instance()->is_rest() && isset( $_GET['context'] ) && $_GET['context'] === 'edit';
+	}
+
 	public function categories( array $categories ) : array {
 		return $categories;
 	}
