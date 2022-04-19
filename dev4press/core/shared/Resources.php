@@ -201,6 +201,14 @@ class Resources {
 				'ext'  => 'js',
 				'min'  => false
 			),
+			'micromodal'         => array(
+				'lib'  => true,
+				'path' => '',
+				'file' => 'micromodal.min',
+				'ver'  => '0.4.10',
+				'ext'  => 'js',
+				'min'  => false
+			),
 			'flatpickr'              => array(
 				'lib'        => true,
 				'path'       => 'flatpickr/',

@@ -6,6 +6,7 @@
 * New: Admin object flag to skip update/install panels
 * New: Core object initializes DateTime by default
 * New: Settings for CSS Size can allow some units only
+* New: Micromodal JS library 0.4.10
 * Updated: Method to detect the bbPress activity
 * Updated: Method to detect the BuddyPress activity
 * Updated: Various minor updates to the Panel class
