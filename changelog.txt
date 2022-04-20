@@ -3,6 +3,7 @@
 
 = Version 3.8 - 2022.04.14 =
 * New: Base Panel object now builds the classes
+* New: Base Micromodal object to creating modal dialogs markup
 * New: Admin object flag to skip update/install panels
 * New: Core object initializes DateTime by default
 * New: Settings for CSS Size can allow some units only

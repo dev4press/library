@@ -258,7 +258,7 @@ class Icons {
 
 	}
 
-	public static function instance() {
+	public static function instance() : Icons {
 		static $instance = false;
 
 		if ( $instance === false ) {
