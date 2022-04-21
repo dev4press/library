@@ -51,6 +51,73 @@ class Sanitize {
 		return Sanitize::date( $value, $format, $return_on_error );
 	}
 
+	public static function key( $key ) : string {
+		$key = strtolower( $key );
+
+		return preg_replace( '/[^a-z0-9._\-]/', '', $key );
+	}
+
+	public static function slug( $text ) : string {
+		return trim( sanitize_title_with_dashes( stripslashes( $text ) ), "-_ \t\n\r\0\x0B" );
+	}
+
+	public static function email( $email ) : string {
+		return sanitize_email( $email );
+	}
+
+	public static function basic( $text, $strip_shortcodes = true ) : string {
+		$text = stripslashes( $text );
+
+		if ( $strip_shortcodes ) {
+			$text = strip_shortcodes( $text );
+		}
+
+		return trim( wp_kses( $text, array() ) );
+	}
+
+	public static function extended( $text, $tags = null, $protocols = array(), $strip_shortcodes = false ) : string {
+		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
+		$text = stripslashes( $text );
+
+		if ( $strip_shortcodes ) {
+			$text = strip_shortcodes( $text );
+		}
+
+		return wp_kses( trim( $text ), $tags, $protocols );
+	}
+
+	public static function html( $text, $tags = null, $protocols = array() ) : string {
+		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
+
+		return wp_kses( trim( stripslashes( $text ) ), $tags, $protocols );
+	}
+
+	public static function html_classes( $classes ) : string {
+		$list = is_array( $classes ) ? $classes : explode( ' ', trim( stripslashes( $classes ) ) );
+		$list = array_map( 'sanitize_html_class', $list );
+
+		return trim( join( ' ', $list ) );
+	}
+
+	public static function basic_array( $input, $strip_shortcodes = true ) : array {
+		$output = array();
+
+		foreach ( $input as $key => $value ) {
+			$output[ $key ] = Sanitize::basic( $value, $strip_shortcodes );
+		}
+
+		return $output;
+	}
+
+	public static function ids_list( $ids, $map = 'absint' ) : array {
+		$ids = (array) $ids;
+
+		$ids = array_map( $map, $ids );
+		$ids = array_unique( $ids );
+
+		return array_filter( $ids );
+	}
+
 	public static function file_path( $filename ) : string {
 		$filename_raw = $filename;
 
@@ -94,71 +161,8 @@ class Sanitize {
 		return apply_filters( __NAMESPACE__ . '\sanitize\file_path', $filename, $filename_raw );
 	}
 
-	public static function key( $key ) : string {
-		$key = strtolower( $key );
-
-		return preg_replace( '/[^a-z0-9._\-]/', '', $key );
-	}
-
-	public static function slug( $text ) : string {
-		return trim( sanitize_title_with_dashes( stripslashes( $text ) ), "-_ \t\n\r\0\x0B" );
-	}
-
-	public static function extended( $text, $tags = null, $protocols = array(), $strip_shortcodes = false ) : string {
-		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
-		$text = stripslashes( $text );
-
-		if ( $strip_shortcodes ) {
-			$text = strip_shortcodes( $text );
-		}
-
-		return wp_kses( trim( $text ), $tags, $protocols );
-	}
-
-	public static function basic( $text, $strip_shortcodes = true ) : string {
-		$text = stripslashes( $text );
-
-		if ( $strip_shortcodes ) {
-			$text = strip_shortcodes( $text );
-		}
-
-		return trim( wp_kses( $text, array() ) );
-	}
-
-	public static function html( $text, $tags = null, $protocols = array() ) : string {
-		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
-
-		return wp_kses( trim( stripslashes( $text ) ), $tags, $protocols );
-	}
-
-	public static function html_classes( $classes ) : string {
-		$list = is_array( $classes ) ? $classes : explode( ' ', trim( stripslashes( $classes ) ) );
-		$list = array_map( 'sanitize_html_class', $list );
-
-		return trim( join( ' ', $list ) );
-	}
-
-	public static function basic_array( $input, $strip_shortcodes = true ) : array {
-		$output = array();
-
-		foreach ( $input as $key => $value ) {
-			$output[ $key ] = Sanitize::basic( $value, $strip_shortcodes );
-		}
-
-		return $output;
-	}
-
-	public static function ids_list( $ids, $map = 'absint' ) : array {
-		$ids = (array) $ids;
-
-		$ids = array_map( $map, $ids );
-		$ids = array_unique( $ids );
-
-		return array_filter( $ids );
-	}
-
 	/** @deprecated since 3.8 to be removed in 3.9 */
 	public static function key_expanded( $key ) : string {
-		return Sanitize::key($key);
+		return Sanitize::key( $key );
 	}
 }
