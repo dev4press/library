@@ -1,7 +1,7 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.8 - 2022.04.14 =
+= Version 3.8 - 2022.04.25 =
 * New: Base Panel object now builds the classes
 * New: Base Micromodal object to creating modal dialogs markup
 * New: Admin object flag to skip update/install panels
@@ -10,6 +10,7 @@
 * New: Micromodal JS library 0.4.10
 * Updated: Method to detect the bbPress activity
 * Updated: Method to detect the BuddyPress activity
+* Updated: Expanded class for AJAX handling
 * Updated: Various minor updates to the Panel class
 * Updated: Post Type and Taxonomy traits updated labels
 * Updated: Each menu item can have own capability
