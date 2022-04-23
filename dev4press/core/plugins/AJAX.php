@@ -31,8 +31,9 @@ use Dev4Press\v38\Core\Quick\Sanitize;
 abstract class AJAX {
 	protected $prefix = 'd4plib';
 	protected $form = 'd4plib-form';
+	protected $action = 'd4plib-action';
 	protected $no_cache_headers = true;
-	protected $forms = array();
+	protected $validation = array();
 
 	public function __construct() {
 		add_action( $this->prefix . '_ajax_request_error', array( $this, 'process_error' ), 10, 5 );
@@ -55,12 +56,18 @@ abstract class AJAX {
 		$this->return_error( $message, $code );
 	}
 
+	protected function request_for_action( string $action_key = '' ) : array {
+		$action_key = empty( $action_key ) ? $this->action : $action_key;
+
+		return $this->request_for_form( $action_key );
+	}
+
 	protected function request_for_form( string $form_key = '' ) : array {
+		$form_key = empty( $form_key ) ? $this->form : $form_key;
+
 		if ( $_SERVER['REQUEST_METHOD'] != 'POST' ) {
 			$this->raise_error( 'request_invalid_method', null, 'Invalid Request method.', 405 );
 		}
-
-		$form_key = empty( $form_key ) ? $this->form : $form_key;
 
 		if ( ! isset( $_REQUEST[ $form_key ] ) ) {
 			$this->raise_malformed_error( null );
@@ -82,10 +89,10 @@ abstract class AJAX {
 		if ( isset( $request['action'] ) && isset( $request['nonce'] ) ) {
 			$action = $request['action'];
 
-			if ( isset( $this->forms[ $action ] ) ) {
-				$key = $this->forms[ $action ]['key'];
-				$can = $this->forms[ $action ]['can'] ?? '';
-				$non = $this->forms[ $action ]['nonce'] ?? false;
+			if ( isset( $this->validation[ $action ] ) ) {
+				$key = $this->validation[ $action ]['key'];
+				$can = $this->validation[ $action ]['can'] ?? '';
+				$non = $this->validation[ $action ]['nonce'] ?? false;
 
 				if ( ! empty( $can ) && ! current_user_can( $can ) ) {
 					$this->raise_unauthorized_error( $request );
@@ -104,8 +111,8 @@ abstract class AJAX {
 					}
 
 					if ( $valid ) {
-						if ( isset( $this->forms[ $action ]['required'] ) ) {
-							foreach ( $this->forms[ $action ]['required'] as $req ) {
+						if ( isset( $this->validation[ $action ]['required'] ) ) {
+							foreach ( $this->validation[ $action ]['required'] as $req ) {
 								if ( ! isset( $request[ $req ] ) ) {
 									$valid = false;
 									break;
