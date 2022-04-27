@@ -162,9 +162,10 @@ class Elements {
 			'selected' => '',
 			'name'     => '',
 			'id'       => '',
+			'title'    => '',
+			'empty'    => '',
 			'class'    => '',
 			'style'    => '',
-			'title'    => '',
 			'multi'    => false,
 			'echo'     => true,
 			'readonly' => false
@@ -179,6 +180,7 @@ class Elements {
 		 * @var string $class
 		 * @var string $style
 		 * @var string $title
+		 * @var string $empty
 		 * @var bool   $multi
 		 * @var bool   $echo
 		 * @var bool   $readonly
@@ -225,6 +227,9 @@ class Elements {
 		}
 
 		$render .= '<select ' . join( ' ', $attributes ) . '>';
+		if ( ! empty( $empty ) ) {
+			$render .= '<option value="">' . esc_html( $empty ) . '</option>';
+		}
 		foreach ( $values as $group ) {
 			$render .= '<optgroup label="' . $group['title'] . '">';
 			foreach ( $group['values'] as $value => $display ) {
