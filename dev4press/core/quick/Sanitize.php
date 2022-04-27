@@ -51,6 +51,10 @@ class Sanitize {
 		return Sanitize::date( $value, $format, $return_on_error );
 	}
 
+	public static function absint( $value ) : int {
+		return absint( $value );
+	}
+
 	public static function key( $key ) : string {
 		$key = strtolower( $key );
 
