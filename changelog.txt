@@ -19,6 +19,7 @@
 * Updated: Mark.js 9.0.0
 * Updated: Clipboard.js 2.0.10
 * Updated: Flatpickr 4.6.13
+* Fix: REST API request detection in WordPress object
 * Fix: Loading of sub-templates in some cases
 
 = Version 3.7.4 - 2022.03.11 =

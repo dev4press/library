@@ -57,10 +57,10 @@ class WordPress {
 		$this->_switches = array(
 			'wordpress'    => true,
 			'classicpress' => false,
+			'rest'         => false,
 			'admin'        => defined( 'WP_ADMIN' ) && WP_ADMIN,
 			'ajax'         => defined( 'DOING_AJAX' ) && DOING_AJAX,
 			'cron'         => defined( 'DOING_CRON' ) && DOING_CRON,
-			'rest'         => defined( 'REST_REQUEST' ) && REST_REQUEST,
 			'debug'        => defined( 'WP_DEBUG' ) && WP_DEBUG,
 			'script_debug' => defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG,
 			'async_upload' => defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action']
@@ -73,6 +73,8 @@ class WordPress {
 		}
 
 		$this->_versions['cms'] = $this->_versions['cp'] ?? $this->_versions['wp'];
+
+		add_action( 'rest_api_init', array( $this, 'rest_api' ) );
 	}
 
 	public function __call( $name, $arguments ) {
@@ -121,5 +123,9 @@ class WordPress {
 
 	public function is_version_lower( string $version = '', string $key = 'cms' ) : bool {
 		return version_compare( $this->version( $key ), $version, '<' );
+	}
+
+	public function rest_api() {
+		$this->_switches['rest'] = defined( 'REST_REQUEST' ) && REST_REQUEST;
 	}
 }
