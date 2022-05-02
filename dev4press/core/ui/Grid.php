@@ -38,7 +38,13 @@ abstract class Grid {
 	protected $show_search = true;
 	protected $prefix = 'd4plib';
 	protected $table_classes = '';
+	protected $table_columns = array();
+	protected $sortable_columns = array();
 
+	protected $sortables = array(
+		'up'   => '▲',
+		'down' => '▼'
+	);
 	protected $vars = array();
 	protected $filters = array();
 
@@ -47,8 +53,12 @@ abstract class Grid {
 	protected $items;
 	protected $total;
 
+	protected $current_url;
+
 	public function __construct() {
+		$this->current_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 		$this->parse_args();
+		$this->table_init();
 	}
 
 	public function prepare() {
@@ -68,6 +78,10 @@ abstract class Grid {
 
 	public function has_items() : bool {
 		return ! empty( $this->items );
+	}
+
+	protected function table_init() {
+
 	}
 
 	protected function no_items() {
@@ -98,17 +112,9 @@ abstract class Grid {
 	}
 
 	protected function orderby_value() {
-		$columns = $this->sortable_columns();
+		$columns = $this->sortable_columns;
 
 		return $columns[ $this->filters['orderby'] ] ?? $this->filters['orderby'];
-	}
-
-	protected function columns() : array {
-		return array();
-	}
-
-	protected function sortable_columns() : array {
-		return array();
 	}
 
 	protected function header() {
@@ -117,11 +123,10 @@ abstract class Grid {
         <tr>
 			<?php
 
-			$current_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-			$current_url = remove_query_arg( 'paged', $current_url );
+			$current_url = remove_query_arg( 'paged', $this->current_url );
 
-			$columns  = $this->columns();
-			$sortable = $this->sortable_columns();
+			$columns  = $this->table_columns;
+			$sortable = $this->sortable_columns;
 
 			foreach ( $columns as $column_key => $column_label ) {
 				$class = array( 'grid-column', 'column-' . $column_key );
@@ -139,10 +144,11 @@ abstract class Grid {
 						$order = 'DESC';
 					}
 
-					$url = add_query_arg( 'orderby', $column_key, $current_url );
-					$url = add_query_arg( 'order', strtolower( $order ), $url );
+					$icon = $order == 'DESC' ? $this->sortables['up'] : $this->sortables['down'];
+					$url  = add_query_arg( 'orderby', $column_key, $current_url );
+					$url  = add_query_arg( 'order', strtolower( $order ), $url );
 
-					$column_label = sprintf( '<a href="%s"><span>%s</span><span class="sorting-indicator"></span></a>', esc_url( $url ), $column_label );
+					$column_label = sprintf( '<a href="%s"><span>%s</span><span class="sorting-icon">%s</span></a>', esc_url( $url ), $column_label, $icon );
 				}
 
 				echo '<th scope="col" class="' . join( ' ', $class ) . '">' . $column_label . '</th>';
@@ -160,7 +166,7 @@ abstract class Grid {
 				$this->row( $item );
 			}
 		} else {
-			echo '<tr class="no-items"><td class="colspanchange" colspan="' . count( $this->columns() ) . '">';
+			echo '<tr class="no-items"><td class="colspanchange" colspan="' . count( $this->table_columns ) . '">';
 			$this->no_items();
 			echo '</td></tr>';
 		}
@@ -169,7 +175,7 @@ abstract class Grid {
 	protected function row( $item ) {
 		echo '<tr>';
 
-		$columns = $this->columns();
+		$columns = $this->table_columns;
 
 		foreach ( $columns as $column_name => $column_label ) {
 			echo '<td data-label="' . esc_attr( $column_label ) . '" class="column-' . $column_name . '">';
