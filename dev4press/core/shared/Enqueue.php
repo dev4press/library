@@ -127,6 +127,7 @@ class Enqueue {
 		foreach ( $this->_libraries['css'] as $name => $args ) {
 			$code = $args['lib'] ? $this->_enqueue_prefix . $name : $name;
 			$req  = $args['req'] ?? array();
+			$ver  = $args['ver'] ?? Library::instance()->version();
 
 			if ( isset( $args['int'] ) && ! empty( $args['int'] ) ) {
 				foreach ( $args['int'] as $lib ) {
@@ -134,7 +135,7 @@ class Enqueue {
 				}
 			}
 
-			wp_register_style( $code, $this->url( $args ), $req, $args['ver'] );
+			wp_register_style( $code, $this->url( $args ), $req, $ver );
 
 			$this->_actual['css'][ $name ] = $code;
 		}
@@ -172,7 +173,7 @@ class Enqueue {
 	}
 
 	private function url( $obj, $locale = null ) : string {
-		$url = $obj['lib'] ? trailingslashit( $this->_url . 'resources/libraries/' . $obj['path'] ) : trailingslashit( $obj['url'] );
+		$url = $obj['lib'] ? trailingslashit( $this->_url . 'resources/libraries/' . $obj['path'] ) : ( isset( $obj['url'] ) ? trailingslashit( $obj['url'] ) : trailingslashit( $this->_url . 'resources/' . $obj['path'] ) );
 
 		if ( is_null( $locale ) ) {
 			$min = $obj['min'];

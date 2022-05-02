@@ -201,7 +201,7 @@ class Resources {
 				'ext'  => 'js',
 				'min'  => false
 			),
-			'micromodal'         => array(
+			'micromodal'             => array(
 				'lib'  => true,
 				'path' => '',
 				'file' => 'micromodal.min',
@@ -358,6 +358,13 @@ class Resources {
 				'ext'  => 'css',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
+			),
+			'grid-table'             => array(
+				'lib'  => false,
+				'path' => 'css/',
+				'file' => 'table',
+				'ext'  => 'css',
+				'min'  => true
 			)
 		)
 	);
