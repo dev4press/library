@@ -57,6 +57,7 @@
   visibility: visible;
 }
 .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td {
+  vertical-align: top;
   text-align: left;
   padding: 0.5em;
   border: none;
@@ -130,6 +131,15 @@
     flex: 0 1 75%;
     padding: 0.5em;
   }
+}
+.d4p-grid-table-wrapper div.d4p-grid-filter {
+  margin: 0 0 1em;
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}
+.d4p-grid-table-wrapper div.d4p-grid-filter > * {
+  max-width: 220px;
 }
 .d4p-grid-table-wrapper div.d4p-grid-pager {
   margin: 1em 0 0;

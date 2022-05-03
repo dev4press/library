@@ -65,6 +65,7 @@ class Elements {
 			'id'       => '',
 			'class'    => '',
 			'style'    => '',
+			'empty'    => '',
 			'title'    => '',
 			'multi'    => false,
 			'echo'     => true,
@@ -80,6 +81,7 @@ class Elements {
 		 * @var string $class
 		 * @var string $style
 		 * @var string $title
+		 * @var string $empty
 		 * @var bool   $multi
 		 * @var bool   $echo
 		 * @var bool   $readonly
@@ -127,10 +129,15 @@ class Elements {
 		}
 
 		$render .= '<select ' . join( ' ', $attributes ) . '>';
+		if ( ! empty( $empty ) ) {
+			$render .= '<option value="">' . esc_html( $empty ) . '</option>';
+		}
+
 		foreach ( $values as $value => $display ) {
 			$real_value = $associative ? $display : $value;
+			$strict = $real_value === 0;
 
-			$sel    = in_array( $real_value, $selected ) ? ' selected="selected"' : '';
+			$sel    = in_array( $real_value, $selected, $strict ) ? ' selected="selected"' : '';
 			$render .= '<option value="' . esc_attr( $value ) . '"' . $sel . '>' . esc_html( $display ) . '</option>';
 		}
 		$render .= '</select>';
@@ -230,10 +237,12 @@ class Elements {
 		if ( ! empty( $empty ) ) {
 			$render .= '<option value="">' . esc_html( $empty ) . '</option>';
 		}
+
 		foreach ( $values as $group ) {
 			$render .= '<optgroup label="' . $group['title'] . '">';
 			foreach ( $group['values'] as $value => $display ) {
-				$sel    = in_array( $value, $selected ) ? ' selected="selected"' : '';
+				$strict = $real_value === 0;
+				$sel    = in_array( $value, $selected, $strict ) ? ' selected="selected"' : '';
 				$render .= '<option value="' . esc_attr( $value ) . '"' . $sel . '>' . esc_html( $display ) . '</option>';
 			}
 			$render .= '</optgroup>';

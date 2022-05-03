@@ -74,6 +74,7 @@
         tbody {
             tr {
                 td {
+                    vertical-align: top;
                     text-align: left;
                     padding: .5em;
                     border: none;
@@ -176,6 +177,17 @@
                     }
                 }
             }
+        }
+    }
+
+    div.d4p-grid-filter {
+        margin: 0 0 1em;
+        display: flex;
+        gap: .5em;
+        flex-wrap: wrap;
+
+        > * {
+            max-width: 220px;
         }
     }
 
