@@ -179,11 +179,13 @@ abstract class Grid {
 
 		foreach ( $columns as $column_name => $column_label ) {
 			echo '<td data-label="' . esc_attr( $column_label ) . '" class="column-' . $column_name . '">';
+            echo '<div class="cell-wrapper">';
 			if ( method_exists( $this, 'column_' . $column_name ) ) {
 				call_user_func( array( $this, 'column_' . $column_name ), $item );
 			} else {
 				$this->column_default( $item, $column_name );
 			}
+            echo '</div>';
 			echo '</td>';
 		}
 
