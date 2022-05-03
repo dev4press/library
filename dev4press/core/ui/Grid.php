@@ -37,13 +37,17 @@ abstract class Grid {
 	protected $items_per_page = 20;
 	protected $show_search = true;
 	protected $prefix = 'd4plib';
-	protected $table_classes = '';
+	protected $grid_classes = '';
 	protected $table_columns = array();
 	protected $sortable_columns = array();
 
 	protected $sortables = array(
-		'up'   => '▲',
-		'down' => '▼'
+		'up'    => '▲',
+		'down'  => '▼',
+		'first' => '«',
+		'prev'  => '‹',
+		'next'  => '›',
+		'last'  => '»'
 	);
 	protected $vars = array();
 	protected $filters = array();
@@ -67,12 +71,18 @@ abstract class Grid {
 
 	public function display() {
 		?>
-        <table class="d4p-grid-table <?php echo $this->table_classes; ?>">
-			<?php $this->header(); ?>
-            <tbody>
-			<?php $this->rows(); ?>
-            </tbody>
-        </table>
+        <div class="d4p-grid-table-wrapper <?php echo $this->grid_classes; ?>">
+            <form method="get">
+				<?php $this->filter(); ?>
+                <table class="d4p-grid-table">
+					<?php $this->header(); ?>
+                    <tbody>
+					<?php $this->rows(); ?>
+                    </tbody>
+                </table>
+				<?php $this->pager(); ?>
+            </form>
+        </div>
 		<?php
 	}
 
@@ -89,18 +99,18 @@ abstract class Grid {
 	}
 
 	protected function current_page() {
-		if ( empty( $this->filters['paged'] ) || ! is_numeric( $this->filters['paged'] ) || $this->filters['paged'] <= 0 ) {
+		if ( empty( $this->filters['pg'] ) || ! is_numeric( $this->filters['pg'] ) || $this->filters['pg'] <= 0 ) {
 			return 1;
 		}
 
-		return $this->filters['paged'];
+		return $this->filters['pg'];
 	}
 
 	protected function parse_args() {
 		$this->filters['order']   = isset( $_GET['order'] ) && strtoupper( $_GET['order'] ) === 'ASC' ? 'ASC' : 'DESC';
 		$this->filters['orderby'] = isset( $_GET['orderby'] ) && ! empty( $_GET['orderby'] ) ? Sanitize::basic( $_GET['orderby'] ) : $this->default_orderby;
 		$this->filters['search']  = isset( $_GET['search'] ) && ! empty( $_GET['search'] ) ? Sanitize::basic( $_GET['search'] ) : '';
-		$this->filters['paged']   = isset( $_GET['paged'] ) && ! empty( $_GET['paged'] ) ? Sanitize::absint( $_GET['paged'] ) : 1;
+		$this->filters['pg']   = isset( $_GET['pg'] ) && ! empty( $_GET['pg'] ) ? Sanitize::absint( $_GET['pg'] ) : 1;
 
 		foreach ( $this->vars as $key => $method ) {
 			$real = $this->prefix . '-' . $key;
@@ -117,13 +127,110 @@ abstract class Grid {
 		return $columns[ $this->filters['orderby'] ] ?? $this->filters['orderby'];
 	}
 
+	protected function filter() {
+
+	}
+
+	protected function pager() {
+		$current     = $this->pager['current_page'];
+		$total_pages = $this->pager['total_pages'];
+		$total_items = $this->pager['total_items'];
+		$current_url = $this->current_url;
+
+		$total_pages_before = '<span class="paging-input">';
+		$total_pages_after  = '</span></span>';
+
+		$page_links = array();
+
+		$disable_first = false;
+		$disable_last  = false;
+		$disable_prev  = false;
+		$disable_next  = false;
+
+		if ( 1 == $current ) {
+			$disable_first = true;
+			$disable_prev  = true;
+		}
+		if ( $total_pages == $current ) {
+			$disable_last = true;
+			$disable_next = true;
+		}
+
+		if ( $disable_first ) {
+			$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['first'] . '</span>';
+		} else {
+			$page_links[] = sprintf(
+				"<a class='first-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
+				esc_url( remove_query_arg( 'pg', $current_url ) ),
+				__( 'First page' ),
+				$this->sortables['first']
+			);
+		}
+
+		if ( $disable_prev ) {
+			$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['prev'] . '</span>';
+		} else {
+			$page_links[] = sprintf(
+				"<a class='prev-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
+				esc_url( add_query_arg( 'pg', max( 1, $current - 1 ), $current_url ) ),
+				__( 'Previous page' ),
+				$this->sortables['prev']
+			);
+		}
+
+		$html_current_page = sprintf(
+			"%s<input class='current-page' id='current-page-selector' type='number' step='1' min='1' max='%d' name='pg' value='%s' aria-describedby='table-paging' /><span class='tablenav-paging-text'>",
+			'<label for="current-page-selector" class="screen-reader-text">' . __( 'Current Page' ) . '</label>',
+			$total_pages,
+            $current
+		);
+
+		$html_total_pages = sprintf( "<span class='total-pages'>%s</span>", number_format_i18n( $total_pages ) );
+		$page_links[]     = $total_pages_before . sprintf(
+				_x( '%1$s of %2$s', 'paging' ),
+				$html_current_page,
+				$html_total_pages
+			) . $total_pages_after;
+
+		if ( $disable_next ) {
+			$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['next'] . '</span>';
+		} else {
+			$page_links[] = sprintf(
+				"<a class='next-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
+				esc_url( add_query_arg( 'pg', min( $total_pages, $current + 1 ), $current_url ) ),
+				__( 'Next page' ),
+				$this->sortables['next']
+			);
+		}
+
+		if ( $disable_last ) {
+			$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['last'] . '</span>';
+		} else {
+			$page_links[] = sprintf(
+				"<a class='last-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
+				esc_url( add_query_arg( 'pg', $total_pages, $current_url ) ),
+				__( 'Last page' ),
+				$this->sortables['last']
+			);
+		}
+
+		$output = '<span class="displaying-num">' . sprintf(
+				_n( '%s item', '%s items', $total_items ),
+				number_format_i18n( $total_items )
+			) . '</span>';
+
+		$output .= "\n<span class='pagination-links'>" . implode( "\n", $page_links ) . '</span>';
+
+		echo "<div class='d4p-grid-pager'>$output</div>";
+	}
+
 	protected function header() {
 		?>
         <thead>
         <tr>
 			<?php
 
-			$current_url = remove_query_arg( 'paged', $this->current_url );
+			$current_url = remove_query_arg( 'pg', $this->current_url );
 
 			$columns  = $this->table_columns;
 			$sortable = $this->sortable_columns;
@@ -179,13 +286,13 @@ abstract class Grid {
 
 		foreach ( $columns as $column_name => $column_label ) {
 			echo '<td data-label="' . esc_attr( $column_label ) . '" class="column-' . $column_name . '">';
-            echo '<div class="cell-wrapper">';
+			echo '<div class="cell-wrapper">';
 			if ( method_exists( $this, 'column_' . $column_name ) ) {
 				call_user_func( array( $this, 'column_' . $column_name ), $item );
 			} else {
 				$this->column_default( $item, $column_name );
 			}
-            echo '</div>';
+			echo '</div>';
 			echo '</td>';
 		}
 
@@ -198,9 +305,10 @@ abstract class Grid {
 
 	protected function complete() {
 		$this->pager = array(
-			'per_page'    => $this->items_per_page,
-			'total_items' => $this->total,
-			'total_pages' => ceil( $this->total / $this->items_per_page )
+			'per_page'     => $this->items_per_page,
+			'total_items'  => $this->total,
+			'total_pages'  => ceil( $this->total / $this->items_per_page ),
+			'current_page' => $this->filters['pg']
 		);
 	}
 }
