@@ -293,7 +293,7 @@ abstract class Grid {
 	}
 
 	protected function row( $item ) {
-		echo '<tr>';
+		echo '<tr class="'.$this->row_class($item).'">';
 
 		$columns = $this->table_columns;
 
@@ -311,6 +311,10 @@ abstract class Grid {
 
 		echo '</tr>';
 	}
+
+    protected function row_class($item) : string{
+        return '';
+    }
 
 	protected function filter_elements() {
 
