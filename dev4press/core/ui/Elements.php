@@ -135,7 +135,7 @@ class Elements {
 
 		foreach ( $values as $value => $display ) {
 			$real_value = $associative ? $display : $value;
-			$strict = $real_value === 0;
+			$strict     = $real_value === 0;
 
 			$sel    = in_array( $real_value, $selected, $strict ) ? ' selected="selected"' : '';
 			$render .= '<option value="' . esc_attr( $value ) . '"' . $sel . '>' . esc_html( $display ) . '</option>';
@@ -241,7 +241,8 @@ class Elements {
 		foreach ( $values as $group ) {
 			$render .= '<optgroup label="' . $group['title'] . '">';
 			foreach ( $group['values'] as $value => $display ) {
-				$strict = $real_value === 0;
+				$strict = $value === 0;
+
 				$sel    = in_array( $value, $selected, $strict ) ? ' selected="selected"' : '';
 				$render .= '<option value="' . esc_attr( $value ) . '"' . $sel . '>' . esc_html( $display ) . '</option>';
 			}
