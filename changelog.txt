@@ -4,14 +4,15 @@
 = Version 3.8 - 2022.05.09 =
 * New: Base Panel object now builds the classes
 * New: Base Micromodal object to creating modal dialogs markup
+* New: Base Grid Table object and SCSS/CSS with styling
 * New: Admin object flag to skip update/install panels
-* New: Core object initializes DateTime by default
 * New: Settings for CSS Size can allow some units only
-* New: Grid Table object and SCSS/CSS with styling
+* New: Core object initializes DateTime by default
 * New: Micromodal JS library 0.4.10
 * Updated: Method to detect the bbPress activity
 * Updated: Method to detect the BuddyPress activity
 * Updated: Expanded class for AJAX handling
+* Updated: Some styling elements for the plugin dashboard
 * Updated: Various minor updates to the Panel class
 * Updated: Post Type and Taxonomy traits updated labels
 * Updated: Each menu item can have own capability

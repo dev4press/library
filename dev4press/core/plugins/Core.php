@@ -188,10 +188,14 @@ abstract class Core {
 		$bbpress = $this->s()->i()->requirement_version( 'bbpress' );
 
 		if ( $bbpress !== false ) {
-			$installed = BBP::major_version_number( 'full' );
+			if ( BBP::is_active() ) {
+				$installed = bbp_get_version();
 
-			if ( $installed === 0 || version_compare( $installed, $bbpress, '>=' ) === false ) {
-				$list[] = array( 'bbPress', $installed, $bbpress );
+				if ( version_compare( $installed, $bbpress, '>=' ) === false ) {
+					$list[] = array( 'bbPress', $installed, $bbpress );
+				}
+			} else {
+				$list[] = array( 'bbPress', 0, $bbpress );
 			}
 		}
 
