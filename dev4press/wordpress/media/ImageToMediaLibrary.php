@@ -134,7 +134,7 @@ trait ImageToMediaLibrary {
 
 		$this->file = $this->name . '.' . $this->ext;
 
-		if ( isset( $args['mimes'] ) && $args['mimes'] !== false && $args['mimes'] !== null && is_array( $args['mimes'] ) && ! empty( $args['mimes'] ) ) {
+		if ( isset( $args['mimes'] ) && is_array( $args['mimes'] ) && ! empty( $args['mimes'] ) ) {
 			$this->_mimes = $args['mimes'];
 		}
 

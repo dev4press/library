@@ -92,7 +92,7 @@ abstract class GetBack {
 
 		$this->a()->settings()->reset_feature( $this->a()->subpanel );
 
-		wp_redirect( $this->a()->current_url( true ) . '&message=feature-reset' );
+		wp_redirect( $this->a()->current_url() . '&message=feature-reset' );
 		exit;
 	}
 

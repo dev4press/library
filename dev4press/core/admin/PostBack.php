@@ -109,7 +109,7 @@ abstract class PostBack {
 	}
 
 	protected function import() {
-		$url = $this->a()->current_url( true );
+		$url = $this->a()->current_url();
 
 		$message = 'import-failed';
 

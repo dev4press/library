@@ -134,7 +134,7 @@ class Four {
 
 		$data = get_site_transient( $key );
 
-		if ( $data === false || is_null( $data ) || empty( $data ) ) {
+		if ( empty( $data ) ) {
 			$url = $this->_request_url( 'recommend' );
 
 			$data = $this->_request( $url );

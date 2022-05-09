@@ -38,7 +38,7 @@ class Download {
 		$this->_file_path = $file_path;
 		$this->_file_name = $file_name;
 
-		if ( is_null( $this->_file_name ) || empty( $this->_file_name ) || ! is_string( $this->_file_name ) ) {
+		if ( empty( $this->_file_name ) || ! is_string( $this->_file_name ) ) {
 			$this->_file_name = basename( $this->_file_path );
 		}
 	}
