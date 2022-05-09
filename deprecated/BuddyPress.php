@@ -33,6 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! function_exists( __NAMESPACE__ . '\is_active' ) ) {
+	/** @deprecated since 3.7 to be removed in 3.9 */
 	function is_active() : bool {
 		return BP::is_active();
 	}

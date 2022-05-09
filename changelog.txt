@@ -1,7 +1,7 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.8 - 2022.05.02 =
+= Version 3.8 - 2022.05.09 =
 * New: Base Panel object now builds the classes
 * New: Base Micromodal object to creating modal dialogs markup
 * New: Admin object flag to skip update/install panels
