@@ -142,7 +142,7 @@ class Download {
 				exit;
 			}
 
-			if ( $range{0} == '-' ) {
+			if ( $range[0] == '-' ) {
 				$c_start = $size - substr( $range, 1 );
 			} else {
 				$range   = explode( '-', $range );

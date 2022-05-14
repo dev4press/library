@@ -1,7 +1,7 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.8 - 2022.05.09 =
+= Version 3.8 - 2022.05.14 =
 * New: Base Panel object now builds the classes
 * New: Base Micromodal object to creating modal dialogs markup
 * New: Base Grid Table object and SCSS/CSS with styling
@@ -23,6 +23,7 @@
 * Updated: Flatpickr 4.6.13
 * Fix: REST API request detection in WordPress object
 * Fix: Loading of sub-templates in some cases
+* Fix: curly braces access for array in one instance
 
 = Version 3.7.4 - 2022.03.11 =
 * Updated: Several minor improvements and tweaks
