@@ -82,7 +82,16 @@ abstract class Plugin {
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), 20 );
 	}
 
-	abstract public static function instance();
+	/** @return static */
+	public static function instance() {
+		static $instance = false;
+
+		if ( $instance === false ) {
+			$instance = new static();
+		}
+
+		return $instance;
+	}
 
 	public function screen() : WP_Screen {
 		return get_current_screen();

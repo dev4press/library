@@ -30,6 +30,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * @method bool is_active()
+ * @method bool is_always_on()
+ * @method bool has_settings()
+ * @method bool has_menu()
+ * @method bool has_meta_tab()
+ */
 abstract class Admin {
+	public $name = '';
 
+	/** @return static */
+	public static function instance() {
+		static $instance = false;
+
+		if ( $instance === false ) {
+			$instance = new static();
+		}
+
+		return $instance;
+	}
+
+	abstract public function f();
+
+	public function __call( $name, $arguments ) {
+		return $this->f()->attribute( $name, $this->name );
+	}
 }
