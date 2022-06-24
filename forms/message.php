@@ -1,7 +1,7 @@
 <?php
 
-use Dev4Press\v38\Core\Quick\Sanitize;
-use function Dev4Press\v38\Functions\panel;
+use Dev4Press\v39\Core\Quick\Sanitize;
+use function Dev4Press\v39\Functions\panel;
 
 $_message = '';
 $_color   = 'success';

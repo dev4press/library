@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press Core Autoloader
-Version: v3.8
+Version: v3.9
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-if ( ! function_exists( 'd4p_core_library_autoloader_38' ) ) {
-	function d4p_core_library_autoloader_38( $class ) {
+if ( ! function_exists( 'd4p_core_library_autoloader_39' ) ) {
+	function d4p_core_library_autoloader_39( $class ) {
 		$path = dirname( __FILE__ ) . '/';
-		$base = 'Dev4Press\\v38\\';
+		$base = 'Dev4Press\\v39\\';
 
 		if ( substr( $class, 0, strlen( $base ) ) == $base ) {
 			$clean = substr( $class, strlen( $base ) );
@@ -48,5 +48,5 @@ if ( ! function_exists( 'd4p_core_library_autoloader_38' ) ) {
 		}
 	}
 
-	spl_autoload_register( 'd4p_core_library_autoloader_38' );
+	spl_autoload_register( 'd4p_core_library_autoloader_39' );
 }

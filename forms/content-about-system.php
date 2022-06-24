@@ -1,8 +1,8 @@
 <?php
 
-use Dev4Press\v38\Library;
-use Dev4Press\v38\WordPress;
-use function Dev4Press\v38\Functions\panel;
+use Dev4Press\v39\Library;
+use Dev4Press\v39\WordPress;
+use function Dev4Press\v39\Functions\panel;
 
 ?>
 <div class="d4p-info-block">

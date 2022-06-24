@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v38\Core\Plugins\Widget
-Version: v3.8
+Name:    Dev4Press\v39\Core\Plugins\Widget
+Version: v3.9
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v38\Core\Plugins;
+namespace Dev4Press\v39\Core\Plugins;
 
-use Dev4Press\v38\Core\Quick\Sanitize;
-use Dev4Press\v38\Core\Quick\WPR;
+use Dev4Press\v39\Core\Quick\Sanitize;
+use Dev4Press\v39\Core\Quick\WPR;
 use WP_Widget;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -74,7 +74,7 @@ abstract class Widget extends WP_Widget {
 	protected $cache_time = 0;
 	protected $cache_key = '';
 
-	/** @var \Dev4Press\v38\Core\UI\Widgets */
+	/** @var \Dev4Press\v39\Core\UI\Widgets */
 	protected $widgets_render;
 
 	public function __construct( $id_base = false, $name = '', $widget_options = array(), $control_options = array() ) {
@@ -189,7 +189,7 @@ abstract class Widget extends WP_Widget {
 		$instance['_roles'] = array();
 
 		if ( isset( $new_instance['_roles'] ) ) {
-			$_roles      = array_map( '\Dev4Press\v38\Core\Quick\Sanitize::basic', $new_instance['_roles'] );
+			$_roles      = array_map( '\Dev4Press\v39\Core\Quick\Sanitize::basic', $new_instance['_roles'] );
 			$valid_roles = WPR::all_user_roles();
 
 			foreach ( $_roles as $role ) {

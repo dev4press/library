@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v38\Core\Quick\DB
-Version: v3.8
+Name:    Dev4Press\v39\Core\Quick\DB
+Version: v3.9
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ GNU General Public License for more details.
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v38\Core\Quick;
+namespace Dev4Press\v39\Core\Quick;
 
-use Dev4Press\v38\Core\Plugins\DBLite;
+use Dev4Press\v39\Core\Plugins\DBLite;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

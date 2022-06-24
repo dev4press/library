@@ -2,7 +2,7 @@
 
 /*
 Name:    Base Library Functions: Bridge
-Version: v3.8
+Version: v3.9
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v38\Functions;
+namespace Dev4Press\v39\Functions;
 
-use Dev4Press\v38\Core\UI\Admin\Panel;
+use Dev4Press\v39\Core\UI\Admin\Panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

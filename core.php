@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press Core Loader
-Version: v3.8
+Version: v3.9
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,8 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-use Dev4Press\v38\Library;
-use Dev4Press\v38\WordPress;
+use Dev4Press\v39\Library;
+use Dev4Press\v39\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -47,10 +47,7 @@ include( $_library_path . 'functions/Bridge.php' );
 include( $_library_path . 'functions/Debug.php' );
 
 if ( defined( 'D4P_LOAD_DEPRECATED_FUNCTIONS' ) && D4P_LOAD_DEPRECATED_FUNCTIONS ) {
-	include( $_library_path . 'deprecated/Common.php' );
-	include( $_library_path . 'deprecated/WP.php' );
-	include( $_library_path . 'deprecated/bbPress.php' );
-	include( $_library_path . 'deprecated/BuddyPress.php' );
+
 }
 
 WordPress::instance();

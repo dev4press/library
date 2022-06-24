@@ -1,6 +1,6 @@
 <?php
 
-use function Dev4Press\v38\Functions\panel;
+use function Dev4Press\v39\Functions\panel;
 
 ?>
 <div class="d4p-content">

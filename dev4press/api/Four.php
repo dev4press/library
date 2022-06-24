@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v38\API\Four
-Version: v3.8
+Name:    Dev4Press\v39\API\Four
+Version: v3.9
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v38\API;
+namespace Dev4Press\v39\API;
 
-use Dev4Press\v38\Core\Helpers\IP;
+use Dev4Press\v39\Core\Helpers\IP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

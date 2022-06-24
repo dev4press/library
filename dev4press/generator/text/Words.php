@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v38\Generator\Text\Words
-Version: v3.8
+Name:    Dev4Press\v39\Generator\Text\Words
+Version: v3.9
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -28,7 +28,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v38\Generator\Text;
+namespace Dev4Press\v39\Generator\Text;
 
 abstract class Words extends Generator {
 	protected $first = false;

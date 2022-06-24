@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v38\Functions\BuddyPress
-Version: v3.8
+Name:    Dev4Press\v39\Core\Features\Admin
+Version: v3.9
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,17 +24,12 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v38\Functions\BuddyPress;
-
-use Dev4Press\v38\Core\Quick\BP;
+namespace Dev4Press\v39\Core\Features;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( __NAMESPACE__ . '\is_active' ) ) {
-	/** @deprecated since 3.7 to be removed in 3.9 */
-	function is_active() : bool {
-		return BP::is_active();
-	}
+abstract class Admin {
+
 }
