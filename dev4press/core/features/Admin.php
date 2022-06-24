@@ -32,10 +32,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * @method bool is_active()
+ * @method bool is_enabled()
+ * @method bool is_early()
  * @method bool is_always_on()
  * @method bool has_settings()
  * @method bool has_menu()
  * @method bool has_meta_tab()
+ * @method string get_scope()
  */
 abstract class Admin {
 	public $name = '';

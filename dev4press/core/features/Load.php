@@ -34,6 +34,7 @@ abstract class Load {
 	protected $_load;
 	protected $_list;
 	protected $_active = array();
+	protected $_scopes = array( 'global', 'admin', 'front' );
 
 	/** @return static */
 	public static function instance() {
@@ -46,9 +47,25 @@ abstract class Load {
 		return $instance;
 	}
 
-	public function load_main() {
-		foreach ( array_keys( $this->_list ) as $feature ) {
-			if ( $this->_list[ $feature ]['always_on'] || ( isset( $this->_load[ $feature ] ) && $this->_load[ $feature ] === true ) ) {
+	protected function allow_load( string $feature, bool $early = false, string $scope = '' ) : bool {
+		if ( $this->is_always_on( $feature ) || $this->is_enabled( $feature ) ) {
+			if ( $early === $this->is_early( $feature ) ) {
+				if ( empty( $scope ) || $scope == $this->get_scope( $feature ) ) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public function list() : array {
+		return array_keys( $this->_list );
+	}
+
+	public function load_main( bool $early = false, string $scope = '' ) {
+		foreach ( $this->list() as $feature ) {
+			if ( $this->allow_load( $feature, $early, $scope ) ) {
 				$this->_active[] = $feature;
 				$this->_list[ $feature ]['main']::instance();
 			}
@@ -56,15 +73,21 @@ abstract class Load {
 	}
 
 	public function load_admin() {
-		foreach ( array_keys( $this->_list ) as $feature ) {
+		foreach ( $this->list() as $feature ) {
 			$this->_list[ $feature ]['admin']::instance();
 		}
 	}
 
 	public function attribute( string $attr, string $feature, $default = null ) {
+		if ( $attr == 'get_scope' ) {
+			$attr = 'scope';
+		}
+
 		$default = $default ?? ( in_array( $attr, array(
 				'is_active',
+				'is_enabled',
 				'is_always_on',
+				'is_early',
 				'has_settings',
 				'has_menu',
 				'has_meta_tab'
@@ -73,9 +96,17 @@ abstract class Load {
 		if ( $this->is_valid( $feature ) ) {
 			if ( $attr == 'is_active' ) {
 				return $this->is_active( $feature );
+			} else if ( $attr == 'is_enabled' ) {
+				return $this->is_enabled( $feature );
 			}
 
-			return $this->_list[ $feature ]['attributes'][ $attr ] ?? $default;
+			$value = $this->_list[ $feature ]['attributes'][ $attr ] ?? $default;
+
+			if ( $attr == 'scope' && ! in_array( $value, $this->_scopes ) ) {
+				$value = 'global';
+			}
+
+			return $value;
 		}
 
 		return $default;
@@ -85,12 +116,20 @@ abstract class Load {
 		return isset( $this->_list[ $feature ] );
 	}
 
+	public function is_enabled( string $feature ) : bool {
+		return isset( $this->_load[ $feature ] ) && $this->_load[ $feature ] === true;
+	}
+
 	public function is_active( string $feature ) : bool {
 		return in_array( $feature, $this->_active );
 	}
 
 	public function is_always_on( string $feature ) : bool {
 		return (bool) $this->attribute( 'is_always_on', $feature );
+	}
+
+	public function is_early( string $feature ) : bool {
+		return (bool) $this->attribute( 'is_early', $feature );
 	}
 
 	public function has_settings( string $feature ) : bool {
@@ -103,6 +142,10 @@ abstract class Load {
 
 	public function has_meta_tab( string $feature ) : bool {
 		return (bool) $this->attribute( 'has_meta_tab', $feature );
+	}
+
+	public function get_scope( string $feature ) : string {
+		return $this->attribute( 'scope', $feature );
 	}
 
 	public function panels( array $panels ) : array {

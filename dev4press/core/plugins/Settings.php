@@ -38,6 +38,8 @@ abstract class Settings {
 
 	public $current = array();
 	public $settings = array();
+	public $legacy = array();
+	public $temp = array();
 
 	public $skip_update = array();
 
@@ -307,9 +309,6 @@ abstract class Settings {
 		return false;
 	}
 
-	protected function _db() {
-	}
-
 	protected function _name( $name ) : string {
 		return 'd4p_' . $this->scope . '_' . $this->info->code . '_' . $name;
 	}
@@ -340,21 +339,40 @@ abstract class Settings {
 
 		$settings = $this->_merge();
 
+		foreach ( $this->legacy as $key ) {
+			$settings[ $key ] = array();
+		}
+
 		foreach ( $settings as $key => $data ) {
 			$now = $this->_settings_get( $key );
 
-			if ( ! is_array( $now ) ) {
-				$now = $data;
-			} else if ( ! in_array( $key, $this->skip_update ) ) {
-				$now = $this->_upgrade( $now, $data );
+			if ( $now !== false && is_array( $now ) ) {
+				$this->temp[ $key ] = $now;
 			}
 
-			$this->current[ $key ] = $now;
+			if ( ! in_array( $key, $this->legacy ) ) {
+				if ( ! is_array( $now ) ) {
+					$now = $data;
+				} else if ( ! in_array( $key, $this->skip_update ) ) {
+					$now = $this->_upgrade( $now, $data );
+				}
 
-			$this->_settings_update( $key, $now );
+				$this->current[ $key ] = $now;
+
+				$this->_settings_update( $key, $now );
+			} else {
+				$this->_settings_delete( $key );
+			}
 		}
 
 		$this->_db();
+		$this->_migrate();
+	}
+
+	protected function _db() {
+	}
+
+	protected function _migrate() {
 	}
 
 	protected function _upgrade( $old, $new ) {
@@ -385,17 +403,7 @@ abstract class Settings {
 	}
 
 	protected function _merge() : array {
-		$merged = array();
-
-		foreach ( $this->settings as $key => $data ) {
-			$merged[ $key ] = array();
-
-			foreach ( $data as $name => $value ) {
-				$merged[ $key ][ $name ] = $value;
-			}
-		}
-
-		return $merged;
+		return $this->settings;
 	}
 
 	protected function _settings_get( $name ) {

@@ -1,6 +1,12 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.9 - 2022.08.01 =
+* New: Features base classes
+* Updated: Instance methods for some abstract classes
+* Updated: Improvements for the Settings class
+* Removed: All previously deprecated functions
+
 = Version 3.8 - 2022.05.14 =
 * New: Base Panel object now builds the classes
 * New: Base Micromodal object to creating modal dialogs markup

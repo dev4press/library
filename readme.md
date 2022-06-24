@@ -2,7 +2,7 @@
 
 * Version: v3.9
 * Build:   3900
-* Release: 2022.05.14.
+* Release: 2022.08.01.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
