@@ -47,7 +47,7 @@ abstract class Item {
 
 	public function __construct() {
 		if ( $this->has_settings() ) {
-			$this->settings = $this->f()->s()->prefix_get( $this->name . '__', 'features' );
+			$this->settings = $this->f()->s()->feature_get( $this->name );
 		}
 	}
 

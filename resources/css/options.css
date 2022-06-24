@@ -407,12 +407,12 @@ details.d4p-section-details > div .form-table code {
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox] + label:before {
   font-family: "dev4press";
   display: inline-block;
-  content: "\f1ad";
+  content: "\f1b8";
   font-size: 2em;
   line-height: 1;
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox]:checked + label:before {
-  content: "\f1ae";
+  content: "\f1b9";
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._settings a {
   background: none;

@@ -3,9 +3,7 @@
     src: url('fonts/dev4press.eot?#{$font-version}');
     src: url('fonts/dev4press.eot?#{$font-version}#iefix') format('embedded-opentype'),
     url('fonts/dev4press.woff2?#{$font-version}') format('woff2'),
-    url('fonts/dev4press.woff?#{$font-version}') format('woff'),
-    url('fonts/dev4press.ttf?#{$font-version}') format('truetype'),
-    url('fonts/dev4press.svg?#{$font-version}#dev4press') format('svg');
+    url('fonts/dev4press.woff?#{$font-version}') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: auto;
