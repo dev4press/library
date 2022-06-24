@@ -39,6 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @method bool has_menu()
  * @method bool has_meta_tab()
  * @method string get_scope()
+ * @property string $feature_name
  */
 abstract class Item {
 	public $name = '';
@@ -68,7 +69,7 @@ abstract class Item {
 	}
 
 	public function __get( $name ) {
-		return $this->settings[ $name ] ?? '';
+		return $name == 'feature_name' ? $this->name : ( $this->settings[ $name ] ?? '' );
 	}
 
 	public function get( $name, $default = '' ) {
