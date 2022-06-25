@@ -53,7 +53,16 @@ abstract class AJAX {
 		}
 	}
 
-	abstract public static function instance();
+	/** @return static */
+	public static function instance() {
+		static $instance = null;
+
+		if ( ! isset( $instance ) ) {
+			$instance = new static();
+		}
+
+		return $instance;
+	}
 
 	public function check_nonce() {
 		$ajax_nonce = isset( $_REQUEST['_ajax_nonce'] ) ? Sanitize::key( $_REQUEST['_ajax_nonce'] ) : '';

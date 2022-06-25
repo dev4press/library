@@ -37,7 +37,16 @@ abstract class Core {
 		$this->clear();
 	}
 
-	abstract public static function instance();
+	/** @return static */
+	public static function instance() {
+		static $instance = null;
+
+		if ( ! isset( $instance ) ) {
+			$instance = new static();
+		}
+
+		return $instance;
+	}
 
 	private function _key( $group, $key ) : string {
 		return $group . '::' . $key;

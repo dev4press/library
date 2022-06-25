@@ -65,7 +65,16 @@ abstract class DBLite {
 	public function init() {
 	}
 
-	abstract public static function instance();
+	/** @return static */
+	public static function instance() {
+		static $instance = null;
+
+		if ( ! isset( $instance ) ) {
+			$instance = new static();
+		}
+
+		return $instance;
+	}
 
 	public function __get( $name ) {
 		if ( property_exists( $this->wpdb(), $name ) || isset( $this->wpdb()->$name ) ) {

@@ -47,7 +47,16 @@ abstract class Settings {
 		$this->constructor();
 	}
 
-	abstract public static function instance();
+	/** @return static */
+	public static function instance() {
+		static $instance = null;
+
+		if ( ! isset( $instance ) ) {
+			$instance = new static();
+		}
+
+		return $instance;
+	}
 
 	/** @return Information */
 	public function i() {

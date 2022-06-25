@@ -56,7 +56,16 @@ abstract class Core {
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
 	}
 
-	abstract public static function instance();
+	/** @return static */
+	public static function instance() {
+		static $instance = null;
+
+		if ( ! isset( $instance ) ) {
+			$instance = new static();
+		}
+
+		return $instance;
+	}
 
 	public function datetime() : DateTime {
 		return $this->_datetime;
