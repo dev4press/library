@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v39\Core\Features;
 
+use Dev4Press\v39\Core\Scope;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -50,7 +52,9 @@ abstract class Load {
 	protected function allow_load( string $feature, bool $early = false, string $scope = '' ) : bool {
 		if ( $this->is_always_on( $feature ) || $this->is_enabled( $feature ) ) {
 			if ( $early === $this->is_early( $feature ) ) {
-				if ( empty( $scope ) || $scope == $this->get_scope( $feature ) ) {
+				$actual = $this->get_scope( $feature );
+
+				if ( empty( $scope ) || $actual == 'global' || $actual == $scope ) {
 					return true;
 				}
 			}
@@ -63,7 +67,9 @@ abstract class Load {
 		return array_keys( $this->_list );
 	}
 
-	public function load_main( bool $early = false, string $scope = '' ) {
+	public function load_main( bool $early = false ) {
+		$scope = Scope::instance()->is_frontend() ? 'front' : 'admin';
+
 		foreach ( $this->list() as $feature ) {
 			if ( $this->allow_load( $feature, $early, $scope ) ) {
 				$this->_active[] = $feature;
