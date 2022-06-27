@@ -73,14 +73,18 @@ abstract class Load {
 		foreach ( $this->list() as $feature ) {
 			if ( $this->allow_load( $feature, $early, $scope ) ) {
 				$this->_active[] = $feature;
-				$this->_list[ $feature ]['main']::instance();
+				if ( class_exists( $this->_list[ $feature ]['main'] ) ) {
+					$this->_list[ $feature ]['main']::instance();
+				}
 			}
 		}
 	}
 
 	public function load_admin() {
 		foreach ( $this->list() as $feature ) {
-			$this->_list[ $feature ]['admin']::instance();
+			if ( class_exists( $this->_list[ $feature ]['admin'] ) ) {
+				$this->_list[ $feature ]['admin']::instance();
+			}
 		}
 	}
 
@@ -165,7 +169,7 @@ abstract class Load {
 				'always_on' => $this->is_always_on( $feature )
 			);
 		}
-debugpress_store_object($panels);
+
 		return $panels;
 	}
 
