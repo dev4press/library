@@ -118,7 +118,7 @@ class Four {
 		return $_d4p_four;
 	}
 
-	public function request_headers( $r, $url ) {
+	public function request_headers( $r, $url ) : array {
 		if ( strpos( $url, 'www.dev4press.com/service/core' ) !== false ) {
 			$r['headers']['X-Dev4press-Checkin-Product']  = $this->_header_product();
 			$r['headers']['X-Dev4press-Checkin-Origin']   = $this->_header_origin();

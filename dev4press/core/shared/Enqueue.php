@@ -47,6 +47,11 @@ class Enqueue {
 		'css' => array()
 	);
 
+	private $_deps = array(
+		'js'  => array(),
+		'css' => array()
+	);
+
 	private $_libraries = array(
 		'js'  => array(),
 		'css' => array()
@@ -109,6 +114,10 @@ class Enqueue {
 
 		$this->register_styles();
 		$this->register_scripts();
+
+		debugpress_store_object( wp_scripts() );
+
+		debugpress_store_object( $this );
 	}
 
 	public function add_css( $name, $args = array() ) {
@@ -117,6 +126,14 @@ class Enqueue {
 
 	public function add_js( $name, $args = array() ) {
 		$this->_libraries['js'][ $name ] = $args;
+	}
+
+	public function get_actual( $type, $name ) {
+		return $this->_actual[ $type ][ $name ] ?? '';
+	}
+
+	public function get_locale( $name ) {
+		return $this->_locales[ $name ] ?? '';
 	}
 
 	public function is_rtl() {
@@ -138,6 +155,7 @@ class Enqueue {
 			wp_register_style( $code, $this->url( $args ), $req, $ver );
 
 			$this->_actual['css'][ $name ] = $code;
+			$this->_deps['css'][ $name ]   = $req;
 		}
 	}
 
@@ -156,6 +174,7 @@ class Enqueue {
 			wp_register_script( $code, $this->url( $args ), $req, $args['ver'], $footer );
 
 			$this->_actual['js'][ $name ] = $code;
+			$this->_deps['js'][ $name ]   = $req;
 
 			if ( isset( $args['locales'] ) ) {
 				$_locale = $this->locale_js_code( $name );
@@ -170,6 +189,20 @@ class Enqueue {
 				}
 			}
 		}
+	}
+
+	public function enqueue( $type, $name ) {
+		$handle = $this->get_actual( $type, $name );
+
+		if ( ! empty( $handle ) ) {
+			if ( $type == 'css' ) {
+				wp_enqueue_style( $handle );
+			} else {
+				wp_enqueue_script( $handle );
+			}
+		}
+
+		return $handle;
 	}
 
 	private function url( $obj, $locale = null ) : string {

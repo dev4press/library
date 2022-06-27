@@ -46,9 +46,5 @@ include( $_library_path . 'autoload.php' );
 include( $_library_path . 'functions/Bridge.php' );
 include( $_library_path . 'functions/Debug.php' );
 
-if ( defined( 'D4P_LOAD_DEPRECATED_FUNCTIONS' ) && D4P_LOAD_DEPRECATED_FUNCTIONS ) {
-
-}
-
 WordPress::instance();
 Library::instance();
