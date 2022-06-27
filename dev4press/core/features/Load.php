@@ -127,7 +127,7 @@ abstract class Load {
 	}
 
 	public function is_active( string $feature ) : bool {
-		return in_array( $feature, $this->_active );
+		return $this->is_always_on( $feature ) || in_array( $feature, $this->_active );
 	}
 
 	public function is_always_on( string $feature ) : bool {
@@ -160,12 +160,12 @@ abstract class Load {
 				'title'     => $obj['label'],
 				'icon'      => $obj['icon'],
 				'info'      => $obj['description'],
-				'settings'  => $obj['has_settings'],
+				'settings'  => $this->has_settings( $feature ),
 				'active'    => $this->is_active( $feature ),
 				'always_on' => $this->is_always_on( $feature )
 			);
 		}
-
+debugpress_store_object($panels);
 		return $panels;
 	}
 

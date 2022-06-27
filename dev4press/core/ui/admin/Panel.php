@@ -34,16 +34,14 @@ abstract class Panel {
 		add_action( 'load_' . $this->a()->screen_id, array( $this, 'screen_options_show' ) );
 		add_filter( 'set-screen-option', array( $this, 'screen_options_save' ), 10, 3 );
 
-		add_action( $this->h( 'enqueue_scripts' ), array( $this, 'enqueue_scripts' ) );
 		add_action( $this->h( 'enqueue_scripts_early' ), array( $this, 'enqueue_scripts_early' ) );
+		add_action( $this->h( 'enqueue_scripts' ), array( $this, 'enqueue_scripts' ) );
 	}
 
-	/** @return \Dev4Press\v39\Core\UI\Admin\Panel */
+	/** @return static */
 	public static function instance( $admin = null ) {
-		$class = get_called_class();
-
 		if ( is_null( self::$_current_instance ) && ! is_null( $admin ) ) {
-			self::$_current_instance = new $class( $admin );
+			self::$_current_instance = new static( $admin );
 		}
 
 		return self::$_current_instance;
@@ -103,6 +101,10 @@ abstract class Panel {
 		$valid = array_keys( $this->subpanels );
 
 		return $valid[0];
+	}
+
+	public function enqueue_scripts_early() {
+
 	}
 
 	public function enqueue_scripts() {
@@ -181,23 +183,6 @@ abstract class Panel {
 		return $this->a()->path . 'forms/';
 	}
 
-	public function include_header( $name = '' ) {
-		$name = empty( $name ) ? $this->a()->panel : $name;
-
-		$this->interface_colors();
-		$this->load( 'header-' . $name . '.php', 'header.php' );
-	}
-
-	public function include_footer( $name = '' ) {
-		$name = empty( $name ) ? $this->a()->panel : $name;
-		$this->load( 'footer-' . $name . '.php', 'footer.php' );
-	}
-
-	public function include_sidebar( $name = '' ) {
-		$name = empty( $name ) ? $this->a()->panel : $name;
-		$this->load( 'sidebar-' . $name . '.php', 'sidebar.php' );
-	}
-
 	public function include_messages() {
 		$this->load( 'message.php' );
 	}
@@ -210,17 +195,21 @@ abstract class Panel {
 		}
 	}
 
-	public function include_content() {
-		$main = $name = 'content-' . $this->a()->panel;
+	public function include_header( $name = '', $subname = '' ) {
+		$this->interface_colors();
+		$this->include_generic( 'header', $name, $subname );
+	}
 
-		if ( ! empty( $this->a()->subpanel ) ) {
-			$name .= '-' . $this->a()->subpanel;
-		}
+	public function include_footer( $name = '', $subname = '' ) {
+		$this->include_generic( 'footer', $name, $subname );
+	}
 
-		$main .= '.php';
-		$name .= '.php';
+	public function include_sidebar( $name = '', $subname = '' ) {
+		$this->include_generic( 'sidebar', $name, $subname );
+	}
 
-		$this->load( $name, $main );
+	public function include_content( $name = '', $subname = '' ) {
+		$this->include_generic( 'content', $name, $subname );
 	}
 
 	public function form_tag_open() : string {
@@ -231,10 +220,6 @@ abstract class Panel {
 
 	public function form_tag_close() : string {
 		return '</form>';
-	}
-
-	public function enqueue_scripts_early() {
-
 	}
 
 	public function include_accessibility_control() {
@@ -255,15 +240,42 @@ abstract class Panel {
 		}
 	}
 
-	protected function load( $name, $fallback = 'fallback.php' ) {
-		if ( file_exists( $this->forms_path_plugin() . $name ) ) {
-			include( $this->forms_path_plugin() . $name );
-		} else if ( file_exists( $this->forms_path_library() . $name ) ) {
-			include( $this->forms_path_library() . $name );
-		} else if ( file_exists( $this->forms_path_plugin() . $fallback ) ) {
-			include( $this->forms_path_plugin() . $fallback );
-		} else {
-			include( $this->forms_path_library() . $fallback );
+	protected function include_generic( $base, $name = '', $subname = '' ) {
+		$name     = empty( $name ) ? $this->a()->panel : $name;
+		$subname  = empty( $subname ) ? ( empty( $this->a()->subpanel ) ? '' : $this->a()->subpanel ) : $subname;
+		$fallback = $content = $base . '-' . $name;
+
+		if ( ! empty( $subname ) ) {
+			$content .= '-' . $subname;
+		}
+
+		$fallback .= '.php';
+		$content  .= '.php';
+
+		$this->load( $content, $fallback, $base . '.php' );
+	}
+
+	protected function load( $name, $fallback = '', $default = '' ) {
+		$list = array(
+			$this->forms_path_plugin() . $name,
+			$this->forms_path_library() . $name
+		);
+
+		if ( ! empty( $fallback ) ) {
+			$list[] = $this->forms_path_plugin() . $fallback;
+			$list[] = $this->forms_path_library() . $fallback;
+		}
+
+		if ( ! empty( $default ) ) {
+			$list[] = $this->forms_path_plugin() . $default;
+			$list[] = $this->forms_path_library() . $default;
+		}
+
+		foreach ( $list as $path ) {
+			if ( file_exists( $path ) ) {
+				include( $path );
+				break;
+			}
 		}
 	}
 }

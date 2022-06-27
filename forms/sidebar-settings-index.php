@@ -14,20 +14,12 @@ $_subpanels = panel()->subpanels();
 				<?php echo panel()->r()->icon( $_panel->icon ); ?>
             </div>
             <h3><?php echo esc_html( $_panel->title ); ?></h3>
-			<?php
-
-			echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . esc_html( $_subpanels[ $_subpanel ]['title'] ) . '</h4>';
-
-			?>
             <div class="_info">
 				<?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
             </div>
         </div>
         <div class="d4p-panel-buttons">
-            <input type="submit" value="<?php esc_attr_e( "Save Settings", "d4plib" ); ?>" class="button-primary"/>
-        </div>
-        <div class="d4p-return-to-top">
-            <a href="#wpwrap"><?php esc_html_e( "Return to top", "d4plib" ); ?></a>
+            <a style="text-align: center" href="<?php echo esc_url( panel()->a()->panel_url( 'settings', 'full' ) ); ?>" class="button-secondary"><?php esc_html_e( "Show All Settings", "d4plib" ); ?></a>
         </div>
     </div>
 </div>

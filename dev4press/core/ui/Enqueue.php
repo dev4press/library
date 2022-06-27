@@ -48,7 +48,6 @@ final class Enqueue {
 		'js'  => array(),
 		'css' => array()
 	);
-
 	private $_libraries = array(
 		'js'  => array(),
 		'css' => array()

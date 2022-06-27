@@ -330,7 +330,7 @@ abstract class Plugin {
 			$this->enqueue->js( 'widgets' );
 			$this->enqueue->css( 'widgets' )->css( 'font' );
 
-			$this->extra_enqueue_scripts_widgets();
+			$this->extra_enqueue_scripts_widgets( $hook );
 
 			do_action( $this->h( 'enqueue_scripts_widgets' ) );
 		}
@@ -340,17 +340,21 @@ abstract class Plugin {
 				$this->enqueue->js( 'ctrl' )->js( 'meta' );
 				$this->enqueue->css( 'ctrl' )->css( 'meta' )->css( 'font' );
 
-				$this->extra_enqueue_scripts_metabox();
+				$this->extra_enqueue_scripts_metabox( $hook );
 
-				do_action( $this->h( 'enqueue_scripts_metabox' ) );
+				do_action( $this->h( 'enqueue_scripts_metabox' ), $hook );
 			}
 		}
 
 		if ( $hook == 'edit.php' ) {
-			$this->extra_enqueue_scripts_postslist();
+			$this->extra_enqueue_scripts_postslist( $hook );
 
-			do_action( $this->h( 'enqueue_scripts_postslist' ) );
+			do_action( $this->h( 'enqueue_scripts_postslist' ), $hook );
 		}
+
+		$this->extra_enqueue_scripts_final( $hook );
+
+		do_action( $this->h( 'enqueue_scripts_final' ), $hook, $this );
 	}
 
 	public function admin_panel() {
@@ -419,13 +423,16 @@ abstract class Plugin {
 	protected function extra_enqueue_scripts_plugin() {
 	}
 
-	protected function extra_enqueue_scripts_widgets() {
+	protected function extra_enqueue_scripts_widgets( $hook ) {
 	}
 
-	protected function extra_enqueue_scripts_metabox() {
+	protected function extra_enqueue_scripts_metabox( $hook ) {
 	}
 
-	protected function extra_enqueue_scripts_postslist() {
+	protected function extra_enqueue_scripts_postslist( $hook ) {
+	}
+
+	protected function extra_enqueue_scripts_final( $hook ) {
 	}
 
 	public function admin_init() {

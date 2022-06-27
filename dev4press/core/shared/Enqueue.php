@@ -114,10 +114,6 @@ class Enqueue {
 
 		$this->register_styles();
 		$this->register_scripts();
-
-		debugpress_store_object( wp_scripts() );
-
-		debugpress_store_object( $this );
 	}
 
 	public function add_css( $name, $args = array() ) {
