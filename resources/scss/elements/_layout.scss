@@ -123,6 +123,8 @@
                         top: 40px;
                         width: 250px;
                         z-index: 100;
+                        max-height: 372px;
+                        overflow: auto;
 
                         a {
                             display: block;

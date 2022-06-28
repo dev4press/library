@@ -125,8 +125,15 @@ final class Enqueue {
 		return $this;
 	}
 
-	public function wp( $includes = array() ) : Enqueue {
-		$defaults = array( 'dialog' => false, 'color_picker' => false, 'media' => false, 'sortable' => false );
+	public function wp( $includes ) : Enqueue {
+		$default  = $includes === true;
+		$defaults = array(
+			'dialog'       => $default,
+			'color_picker' => $default,
+			'media'        => $default,
+			'sortable'     => $default
+		);
+		$includes = ! is_array( $includes ) ? array() : $includes;
 		$includes = shortcode_atts( $defaults, $includes );
 
 		wp_enqueue_script( 'jquery' );

@@ -165,6 +165,10 @@ abstract class Plugin {
 		return $this->plugin_prefix;
 	}
 
+	public function e() : ?Enqueue {
+		return $this->enqueue;
+	}
+
 	/**
 	 * Generate plugin name according to WordPress specification.
 	 *
@@ -301,34 +305,34 @@ abstract class Plugin {
 		$this->register_scripts_and_styles();
 
 		if ( $this->page ) {
-			$this->enqueue->wp( $this->enqueue_wp );
+			$this->e()->wp( $this->enqueue_wp );
 
 			do_action( $this->h( 'enqueue_scripts_early' ) );
 
-			$this->enqueue->js( 'shared' )->js( 'admin' );
+			$this->e()->js( 'shared' )->js( 'admin' );
 
 			if ( $this->enqueue_packed ) {
-				$this->enqueue->css( 'pack' );
+				$this->e()->css( 'pack' );
 			} else {
-				$this->enqueue->css( 'font' )
+				$this->e()->css( 'font' )
 				              ->css( 'shared' )
 				              ->css( 'grid' )
 				              ->css( 'admin' )
 				              ->css( 'options' );
 			}
 
-			if ( $this->enqueue->is_rtl() ) {
-				$this->enqueue->css( 'rtl' );
+			if ( $this->e()->is_rtl() ) {
+				$this->e()->css( 'rtl' );
 			}
 
 			$this->extra_enqueue_scripts_plugin();
 
-			do_action( $this->h( 'enqueue_scripts' ), $this->page );
+			do_action( $this->h( 'enqueue_scripts' ), $this->panel );
 		}
 
 		if ( $this->has_widgets && $hook == 'widgets.php' ) {
-			$this->enqueue->js( 'widgets' );
-			$this->enqueue->css( 'widgets' )->css( 'font' );
+			$this->e()->js( 'widgets' );
+			$this->e()->css( 'widgets' )->css( 'font' );
 
 			$this->extra_enqueue_scripts_widgets( $hook );
 
@@ -337,8 +341,8 @@ abstract class Plugin {
 
 		if ( $this->has_metabox && ( $hook == 'post.php' || $hook == 'post-new.php' ) ) {
 			if ( $this->is_metabox_available() ) {
-				$this->enqueue->js( 'ctrl' )->js( 'meta' );
-				$this->enqueue->css( 'ctrl' )->css( 'meta' )->css( 'font' );
+				$this->e()->js( 'ctrl' )->js( 'meta' );
+				$this->e()->css( 'ctrl' )->css( 'meta' )->css( 'font' );
 
 				$this->extra_enqueue_scripts_metabox( $hook );
 

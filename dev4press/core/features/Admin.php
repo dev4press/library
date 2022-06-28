@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v39\Core\Features;
 
+use Dev4Press\v39\Core\Options\Element as EL;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -58,5 +60,17 @@ abstract class Admin {
 
 	public function __call( $name, $arguments ) {
 		return $this->f()->attribute( $name, $this->name );
+	}
+
+	public function settings( array $settings = array() ) : array {
+		return $settings;
+	}
+
+	public function el( $name, $title = '', $notice = '', $input = '' ) : EL {
+		return EL::f( $this->name . '__' . $name, $title, $notice, $input, $this->get( $name ) );
+	}
+
+	public function info( $title = '', $notice = '' ) : EL {
+		return EL::info( $title, $notice );
 	}
 }
