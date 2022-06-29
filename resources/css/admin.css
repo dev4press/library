@@ -349,7 +349,7 @@
   border-top: 1px solid var(--d4p-color-layout-border);
   margin: 2em 0 0;
   padding: 2em 0;
-  max-width: 800px;
+  max-width: 920px;
   text-align: center;
   clear: both;
 }
@@ -364,7 +364,7 @@
   border-radius: var(--d4p-layout-main-border-radius);
   margin: 0 0 2em;
   text-align: center;
-  max-width: 800px;
+  max-width: 920px;
   width: 100%;
 }
 .d4p-group h3 {
@@ -840,7 +840,7 @@
   margin: 10px 0 15px;
   float: left;
   text-align: center;
-  max-width: 800px;
+  max-width: 920px;
   width: 100%;
   clear: both;
   font-size: 2em;
