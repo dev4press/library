@@ -121,6 +121,10 @@ abstract class Settings {
 		}
 	}
 
+	public function storage_get( $name, $get_defaults = false ) : array {
+		return $this->prefix_get( $name . '__', 'storage', $get_defaults );
+	}
+
 	public function feature_get( $name, $get_defaults = false ) : array {
 		return $this->prefix_get( $name . '__', 'features', $get_defaults );
 	}
