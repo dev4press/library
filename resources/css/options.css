@@ -407,13 +407,16 @@ details.d4p-section-details > div .form-table code {
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox] + label:before {
   font-family: "dev4press";
   display: inline-block;
-  content: "\f1ce";
+  content: "\f1d2";
   font-size: 2em;
   line-height: 1;
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox]:checked + label:before {
-  content: "\f1cf";
+  content: "\f1d3";
 }
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._scope span,
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._scope a,
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._settings span,
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._settings a {
   background: none;
   border: 0;
@@ -422,10 +425,19 @@ details.d4p-section-details > div .form-table code {
   font-size: 2em;
   line-height: 1;
   vertical-align: top;
-  color: #111;
 }
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._scope span i,
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._scope a i,
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._settings span i,
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._settings a i {
   vertical-align: bottom;
+  color: #111;
+}
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._scope {
+  padding-left: 1em;
+}
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._scope span {
+  cursor: help;
 }
 .d4p-features-wrapper .d4p-feature-box._is-always-on ._ctrl ._settings {
   flex: 1 1 100%;
@@ -435,20 +447,24 @@ details.d4p-section-details > div .form-table code {
   display: none;
 }
 .d4p-features-wrapper .d4p-feature-box._is-active {
-  border-color: #00A32A;
+  border-color: var(--d4p-color-feature-active-text);
 }
 .d4p-features-wrapper .d4p-feature-box._is-active ._ctrl {
-  border-color: #00A32A;
-  background-color: #E7FFEC;
+  border-color: var(--d4p-color-feature-active-text);
+  background-color: var(--d4p-color-feature-active-background);
 }
 .d4p-features-wrapper .d4p-feature-box._is-active ._info ._icon {
-  background-color: #E7FFEC;
+  background-color: var(--d4p-color-feature-active-background);
 }
 .d4p-features-wrapper .d4p-feature-box._is-active ._info ._icon i {
-  color: #00A32A;
+  color: var(--d4p-color-feature-active-text);
 }
 .d4p-features-wrapper .d4p-feature-box._is-active ._ctrl ._activation label:before {
-  color: #00A32A;
+  color: var(--d4p-color-feature-active-text);
+}
+.d4p-features-wrapper .d4p-feature-box._is-active ._ctrl ._scope i,
+.d4p-features-wrapper .d4p-feature-box._is-active ._ctrl ._settings i {
+  color: var(--d4p-color-feature-active-text);
 }
 .d4p-features-wrapper .d4p-feature-break {
   flex: 1 0 calc(100% - 2em);

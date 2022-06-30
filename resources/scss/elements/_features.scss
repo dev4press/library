@@ -112,7 +112,9 @@
                 }
             }
 
+            ._scope,
             ._settings {
+                span,
                 a {
                     background: none;
                     border: 0;
@@ -121,11 +123,19 @@
                     font-size: 2em;
                     line-height: 1;
                     vertical-align: top;
-                    color: #111;
 
                     i {
                         vertical-align: bottom;
+                        color: #111;
                     }
+                }
+            }
+
+            ._scope {
+                padding-left: 1em;
+
+                span {
+                    cursor: help;
                 }
             }
         }
@@ -152,19 +162,19 @@
         }
 
         &._is-active {
-            border-color: #00A32A;
+            border-color: var(--d4p-color-feature-active-text);
 
             ._ctrl {
-                border-color: #00A32A;
-                background-color: #E7FFEC;
+                border-color: var(--d4p-color-feature-active-text);
+                background-color: var(--d4p-color-feature-active-background);
             }
 
             ._info {
                 ._icon {
-                    background-color: #E7FFEC;
+                    background-color: var(--d4p-color-feature-active-background);
 
                     i {
-                        color: #00A32A;
+                        color: var(--d4p-color-feature-active-text);
                     }
                 }
             }
@@ -172,7 +182,14 @@
             ._ctrl {
                 ._activation {
                     label:before {
-                        color: #00A32A;
+                        color: var(--d4p-color-feature-active-text);
+                    }
+                }
+
+                ._scope,
+                ._settings {
+                    i {
+                        color: var(--d4p-color-feature-active-text);
                     }
                 }
             }

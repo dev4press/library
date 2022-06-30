@@ -164,6 +164,7 @@ abstract class Load {
 				'title'     => $obj['label'],
 				'icon'      => $obj['icon'],
 				'info'      => $obj['description'],
+				'scope'     => $this->get_scope( $feature ),
 				'settings'  => $this->has_settings( $feature ),
 				'active'    => $this->is_active( $feature ),
 				'always_on' => $this->is_always_on( $feature )

@@ -3,6 +3,18 @@
 use Dev4Press\v39\Core\Quick\Sanitize;
 use function Dev4Press\v39\Functions\panel;
 
+$_scope_labels = array(
+	'global' => __( "Global" ),
+	'front'  => __( "Frontend" ),
+	'admin'  => __( "Admin" )
+);
+
+$_scope_icons = array(
+	'global' => 'd4p-ui-globe',
+	'front'  => 'd4p-ui-desktop',
+	'admin'  => 'd4p-ui-dashboard'
+);
+
 ?>
 <div class="d4p-content">
     <div class="d4p-features-wrapper">
@@ -17,6 +29,7 @@ use function Dev4Press\v39\Functions\panel;
 			$_classes = array(
 				'd4p-feature-box',
 				'feature-' . $subpanel,
+				'scope-' . $obj['scope'],
 				'_is-feature'
 			);
 
@@ -27,6 +40,10 @@ use function Dev4Press\v39\Functions\panel;
 
 			if ( $obj['always_on'] ) {
 				$_classes[] = '_is-always-on';
+			}
+
+			if ( $obj['settings'] ) {
+				$_classes[] = '_has-settings';
 			}
 
 			$url = panel()->a()->panel_url( 'features', $subpanel );
@@ -40,17 +57,22 @@ use function Dev4Press\v39\Functions\panel;
                     <p class="_description"><?php echo esc_html( $obj['info'] ); ?></p>
                 </div>
                 <div class="_ctrl">
-					<?php if ( ! $obj['always_on'] ) { ?>
-                        <div class="_activation">
+                    <div class="_activation">
+						<?php if ( ! $obj['always_on'] ) { ?>
                             <input<?php echo $_checked; ?> data-feature="<?php echo esc_attr( $subpanel ); ?>" id="d4p-feature-toggle-<?php echo esc_attr( $subpanel ); ?>" type="checkbox"/>
                             <label for="d4p-feature-toggle-<?php echo esc_attr( $subpanel ); ?>"><span class="d4p-accessibility-show-for-sr"><?php esc_html_e( "Active", "d4plib" ); ?></span></label>
-                        </div>
-					<?php } ?>
-					<?php if ( $obj['settings'] ) { ?>
-                        <div class="_settings">
+						<?php } ?>
+                    </div>
+                    <div class="_settings">
+						<?php if ( $obj['settings'] ) { ?>
                             <a title="<?php echo sprintf( __( "Settings for '%s'", "d4plib" ), $obj['title'] ); ?>" href="<?php echo esc_url( $url ); ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
-                        </div>
-					<?php } ?>
+						<?php } else { ?>
+                            <span title="<?php esc_html_e( "This feature has no settings" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
+						<?php } ?>
+                    </div>
+                    <div class="_scope">
+                        <span title="<?php echo $_scope_labels[ $obj['scope'] ]; ?>"><i class="d4p-icon <?php echo $_scope_icons[ $obj['scope'] ]; ?>"></i></span>
+                    </div>
                 </div>
             </div>
 
