@@ -16,6 +16,8 @@
   --d4p-color-sidebar-icon-text: #004185;
   --d4p-color-feature-active-background: #E7FFEC;
   --d4p-color-feature-active-text: #00A32A;
+  --d4p-color-feature-beta-background: #FDE7FF;
+  --d4p-color-feature-beta-text: #A30093;
 }
 
 .d4p-wrap,

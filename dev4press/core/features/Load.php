@@ -134,6 +134,10 @@ abstract class Load {
 		return $this->is_always_on( $feature ) || in_array( $feature, $this->_active );
 	}
 
+	public function is_beta( string $feature ) : bool {
+		return (bool) $this->attribute( 'is_beta', $feature );
+	}
+
 	public function is_always_on( string $feature ) : bool {
 		return (bool) $this->attribute( 'is_always_on', $feature );
 	}
@@ -166,6 +170,7 @@ abstract class Load {
 				'info'      => $obj['description'],
 				'scope'     => $this->get_scope( $feature ),
 				'settings'  => $this->has_settings( $feature ),
+				'beta'      => $this->is_beta( $feature ),
 				'active'    => $this->is_active( $feature ),
 				'always_on' => $this->is_always_on( $feature )
 			);

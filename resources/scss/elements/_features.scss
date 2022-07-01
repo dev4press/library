@@ -194,6 +194,40 @@
                 }
             }
         }
+
+        &._is-beta._is-active {
+            border-color: var(--d4p-color-feature-beta-text);
+
+            ._ctrl {
+                border-color: var(--d4p-color-feature-beta-text);
+                background-color: var(--d4p-color-feature-beta-background);
+            }
+
+            ._info {
+                ._icon {
+                    background-color: var(--d4p-color-feature-beta-background);
+
+                    i {
+                        color: var(--d4p-color-feature-beta-text);
+                    }
+                }
+            }
+
+            ._ctrl {
+                ._activation {
+                    label:before {
+                        color: var(--d4p-color-feature-beta-text);
+                    }
+                }
+
+                ._scope,
+                ._settings {
+                    i {
+                        color: var(--d4p-color-feature-beta-text);
+                    }
+                }
+            }
+        }
     }
 
     .d4p-feature-break {

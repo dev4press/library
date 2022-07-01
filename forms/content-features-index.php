@@ -4,9 +4,9 @@ use Dev4Press\v39\Core\Quick\Sanitize;
 use function Dev4Press\v39\Functions\panel;
 
 $_scope_labels = array(
-	'global' => __( "Global" ),
-	'front'  => __( "Frontend" ),
-	'admin'  => __( "Admin" )
+	'global' => __( "Global", "d4plib" ),
+	'front'  => __( "Frontend", "d4plib" ),
+	'admin'  => __( "Admin", "d4plib" )
 );
 
 $_scope_icons = array(
@@ -42,6 +42,10 @@ $_scope_icons = array(
 				$_classes[] = '_is-always-on';
 			}
 
+			if ( $obj['beta'] ) {
+				$_classes[] = '_is-beta';
+			}
+
 			if ( $obj['settings'] ) {
 				$_classes[] = '_has-settings';
 			}
@@ -67,9 +71,14 @@ $_scope_icons = array(
 						<?php if ( $obj['settings'] ) { ?>
                             <a title="<?php echo sprintf( __( "Settings for '%s'", "d4plib" ), $obj['title'] ); ?>" href="<?php echo esc_url( $url ); ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
 						<?php } else { ?>
-                            <span title="<?php esc_html_e( "This feature has no settings" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
+                            <span title="<?php esc_html_e( "This feature has no settings", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
 						<?php } ?>
                     </div>
+					<?php if ( $obj['beta'] ) { ?>
+                        <div class="_scope">
+                            <span title="<?php esc_attr_e( "This is a Beta feature, and it can be unstable!", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-flask"></i></span>
+                        </div>
+					<?php } ?>
                     <div class="_scope">
                         <span title="<?php echo $_scope_labels[ $obj['scope'] ]; ?>"><i class="d4p-icon <?php echo $_scope_icons[ $obj['scope'] ]; ?>"></i></span>
                     </div>
