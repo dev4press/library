@@ -88,6 +88,12 @@ abstract class DBLite {
 		return Sanitize::ids_list( $ids );
 	}
 
+	public function prepare_in_list( array $items, string $mod = '%s' ) {
+		$replace = array_fill( 0, count( $items ), $mod );
+
+		return $this->wpdb()->prepare( join( ', ', $replace ), $items );
+	}
+
 	public function build_query( $sql, $calc_found_rows = true ) : string {
 		$defaults = array(
 			'select' => array(),
@@ -274,8 +280,8 @@ abstract class DBLite {
 		return $this->wpdb()->insert_id;
 	}
 
-	public function get_found_rows() {
-		return $this->get_var( 'SELECT FOUND_ROWS()' );
+	public function get_found_rows() : int {
+		return absint( $this->get_var( 'SELECT FOUND_ROWS()' ) );
 	}
 
 	public function save_queries() : bool {
