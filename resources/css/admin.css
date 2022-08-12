@@ -416,6 +416,20 @@
   font-size: 1em;
   line-height: 1.7;
 }
+.d4p-group .d4p-group-inner ul {
+  list-style: none;
+  margin: 0;
+}
+.d4p-group .d4p-group-inner ul li {
+  margin: 3px 0;
+}
+.d4p-group .d4p-group-inner ul.d4p-with-bullets {
+  list-style: outside disc;
+  margin-left: 20px;
+}
+.d4p-group .d4p-group-inner ul.d4p-with-bullets li {
+  list-style: inherit;
+}
 .d4p-group:not(.d4p-group-with-settings) .d4p-group-inner {
   padding: 1.5em;
 }
@@ -439,10 +453,6 @@
 .d4p-group-error .d4p-group-inner p {
   margin-top: 0;
   font-weight: bold;
-}
-.d4p-group-error .d4p-group-inner ul {
-  margin: 0;
-  list-style: inside;
 }
 
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge {
