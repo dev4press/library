@@ -39,6 +39,17 @@ abstract class AJAX {
 		add_action( $this->prefix . '_ajax_request_error', array( $this, 'process_error' ), 10, 5 );
 	}
 
+	/** @return static */
+	public static function instance() {
+		static $instance = null;
+
+		if ( ! isset( $instance ) ) {
+			$instance = new static();
+		}
+
+		return $instance;
+	}
+
 	public function process_error( string $error, $request = null, string $message = '', int $code = 400, $data = null ) {
 		if ( empty( $message ) ) {
 			$message = 'Unspecified Problem.';
@@ -172,16 +183,5 @@ abstract class AJAX {
 		} else {
 			die( $response );
 		}
-	}
-
-	/** @return static */
-	public static function instance() {
-		static $instance = null;
-
-		if ( ! isset( $instance ) ) {
-			$instance = new static();
-		}
-
-		return $instance;
 	}
 }
