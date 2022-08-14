@@ -53,6 +53,7 @@ abstract class Plugin extends BasePlugin {
 		$this->enqueue = Enqueue::instance( $this );
 
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_action( 'admin_menu', array( $this, 'admin_menu_items' ), 1 );
 
 		if ( $this->is_multisite ) {
 			add_action( 'network_admin_menu', array( $this, 'admin_menu' ) );

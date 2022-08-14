@@ -94,14 +94,14 @@ abstract class Load {
 		}
 
 		$default = $default ?? ( in_array( $attr, array(
-				'is_active',
-				'is_enabled',
-				'is_always_on',
-				'is_early',
-				'has_settings',
-				'has_menu',
-				'has_meta_tab'
-			) ) ? false : '' );
+			'is_active',
+			'is_enabled',
+			'is_always_on',
+			'is_early',
+			'has_settings',
+			'has_menu',
+			'has_meta_tab'
+		) ) ? false : '' );
 
 		if ( $this->is_valid( $feature ) ) {
 			if ( $attr == 'is_active' ) {
@@ -127,7 +127,7 @@ abstract class Load {
 	}
 
 	public function is_enabled( string $feature ) : bool {
-		return isset( $this->_load[ $feature ] ) && $this->_load[ $feature ] === true;
+		return isset( $this->_load[ $feature ] ) && $this->_load[ $feature ] === true || $this->is_always_on( $feature );
 	}
 
 	public function is_active( string $feature ) : bool {
@@ -171,7 +171,7 @@ abstract class Load {
 				'scope'     => $this->get_scope( $feature ),
 				'settings'  => $this->has_settings( $feature ),
 				'beta'      => $this->is_beta( $feature ),
-				'active'    => $this->is_active( $feature ),
+				'active'    => $this->is_enabled( $feature ),
 				'always_on' => $this->is_always_on( $feature )
 			);
 		}

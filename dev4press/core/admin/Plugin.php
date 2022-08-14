@@ -121,10 +121,21 @@ abstract class Plugin {
 		$this->enqueue = Enqueue::instance( $this );
 
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_action( 'admin_menu', array( $this, 'admin_menu_items' ), 1 );
+
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 
 		add_action( 'current_screen', array( $this, 'current_screen' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+	}
+
+	public function admin_init() {
+	}
+
+	public function after_setup_theme() {
+	}
+
+	public function admin_menu_items() {
 	}
 
 	/**
@@ -315,10 +326,10 @@ abstract class Plugin {
 				$this->e()->css( 'pack' );
 			} else {
 				$this->e()->css( 'font' )
-				              ->css( 'shared' )
-				              ->css( 'grid' )
-				              ->css( 'admin' )
-				              ->css( 'options' );
+				     ->css( 'shared' )
+				     ->css( 'grid' )
+				     ->css( 'admin' )
+				     ->css( 'options' );
 			}
 
 			if ( $this->e()->is_rtl() ) {
@@ -389,6 +400,35 @@ abstract class Plugin {
 		return add_query_arg( '_wpnonce', wp_create_nonce( $nonce ), $url );
 	}
 
+	public function get_post_type() {
+		$post_type = '';
+
+		if ( isset( $_GET['post_type'] ) ) {
+			$post_type = Sanitize::key( $_GET['post_type'] );
+		} else {
+			global $post;
+
+			if ( $post ) {
+				$post_type = $post->post_type;
+			}
+		}
+
+		if ( $post_type == '' ) {
+			global $typenow;
+
+			$post_type = $typenow;
+		}
+
+		return $post_type;
+	}
+
+	public function getback_url( $args = array() ) : string {
+		$url = $this->current_url();
+		$url = add_query_arg( $this->v(), 'getback', $url );
+
+		return add_query_arg( $args, $url );
+	}
+
 	public function is_plugin_panel() : bool {
 		return ! empty( $this->panel );
 	}
@@ -437,41 +477,6 @@ abstract class Plugin {
 	}
 
 	protected function extra_enqueue_scripts_final( $hook ) {
-	}
-
-	public function admin_init() {
-	}
-
-	public function after_setup_theme() {
-	}
-
-	public function get_post_type() {
-		$post_type = '';
-
-		if ( isset( $_GET['post_type'] ) ) {
-			$post_type = Sanitize::key( $_GET['post_type'] );
-		} else {
-			global $post;
-
-			if ( $post ) {
-				$post_type = $post->post_type;
-			}
-		}
-
-		if ( $post_type == '' ) {
-			global $typenow;
-
-			$post_type = $typenow;
-		}
-
-		return $post_type;
-	}
-
-	public function getback_url( $args = array() ) : string {
-		$url = $this->current_url();
-		$url = add_query_arg( $this->v(), 'getback', $url );
-
-		return add_query_arg( $args, $url );
 	}
 
 	abstract public function main_url();

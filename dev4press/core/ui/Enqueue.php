@@ -284,7 +284,7 @@ final class Enqueue {
 					'subpanel' => $this->_admin->subpanel
 				),
 				'content' => array(
-					'nonce' => wp_create_nonce( $this->_admin->plugin . '-admin-internal' )
+					'nonce' => wp_create_nonce( $this->_admin->plugin_prefix . '-admin-internal' )
 				)
 			) + $this->localize_shared_args() );
 	}
