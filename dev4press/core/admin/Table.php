@@ -35,9 +35,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Table extends WP_List_Table {
 	public $total = 0;
 
+	public $_request_args = array();
 	public $_sanitize_orderby_fields = array();
 	public $_checkbox_field = '';
 	public $_table_class_name = '';
+
+	public function __construct( $args = array() ) {
+		parent::__construct( $args );
+
+		$this->process_request_args();
+	}
 
 	public function get_column_info_simple() {
 		$this->_column_headers = array( $this->get_columns(), array(), $this->get_sortable_columns() );
@@ -57,6 +64,10 @@ abstract class Table extends WP_List_Table {
 		echo '<tr' . ( empty( $classes ) ? '' : ' class="' . join( ' ', $classes ) . '"' ) . '>';
 		$this->single_row_columns( $item );
 		echo '</tr>';
+	}
+
+	protected function process_request_args() {
+
 	}
 
 	protected function get_table_classes() : array {
