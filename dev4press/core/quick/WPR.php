@@ -200,18 +200,6 @@ class WPR {
 		}
 	}
 
-	public static function all_user_roles() : array {
-		global $wp_roles;
-
-		$roles = array();
-
-		foreach ( $wp_roles->role_names as $role => $title ) {
-			$roles[ $role ] = $title;
-		}
-
-		return $roles;
-	}
-
 	/**
 	 * @param bool  $cache
 	 * @param bool  $queries
@@ -696,5 +684,14 @@ class WPR {
 		$headers = get_headers( $url );
 
 		return preg_match( "/200/", $headers[0] ) === 1;
+	}
+
+	/*
+	 * @deprecated since version 3.9 to be removed in 4.0
+	 */
+	public static function all_user_roles() : array {
+		_deprecated_function( __METHOD__, '3.9', 'WPR::list_user_roles()' );
+
+		return WPR::list_user_roles();
 	}
 }

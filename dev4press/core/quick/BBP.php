@@ -39,26 +39,32 @@ class BBP {
 		}
 	}
 
-	public static function get_user_roles() : array {
+	public static function list_user_roles() : array {
+		$dynamic_roles = bbp_get_dynamic_roles();
+
+		return array_keys( $dynamic_roles );
+	}
+
+	public static function get_user_roles( bool $translate = true ) : array {
 		$roles = array();
 
 		$dynamic_roles = bbp_get_dynamic_roles();
 
 		foreach ( $dynamic_roles as $role => $obj ) {
-			$roles[ $role ] = $obj['name'];
+			$roles[ $role ] = $translate ? bbp_translate_user_role( $obj['name'] ) : $obj['name'];
 		}
 
 		return $roles;
 	}
 
-	public static function get_moderator_roles() : array {
+	public static function get_moderator_roles( bool $translate = true ) : array {
 		$roles = array();
 
 		$dynamic_roles = bbp_get_dynamic_roles();
 
 		foreach ( $dynamic_roles as $role => $obj ) {
 			if ( isset( $obj['capabilities']['moderate'] ) && $obj['capabilities']['moderate'] ) {
-				$roles[ $role ] = $obj['name'];
+				$roles[ $role ] = $translate ? bbp_translate_user_role( $obj['name'] ) : $obj['name'];
 			}
 		}
 
