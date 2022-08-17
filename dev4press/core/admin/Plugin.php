@@ -304,12 +304,23 @@ abstract class Plugin {
 		}
 	}
 
-	public function panel_object() {
+	public function panel_object() : object {
 		if ( isset( $this->setup_items[ $this->panel ] ) ) {
 			return (object) $this->setup_items[ $this->panel ];
 		} else if ( isset( $this->menu_items[ $this->panel ] ) ) {
 			return (object) $this->menu_items[ $this->panel ];
 		}
+
+		return $this->default_panel_object();
+	}
+
+	protected function default_panel_object() : object {
+		return (object) array(
+			'default' => true,
+			'icon'    => 'ui-cog',
+			'title'   => __( "Panel" ),
+			'info'    => __( "Information" )
+		);
 	}
 
 	public function enqueue_scripts( $hook ) {

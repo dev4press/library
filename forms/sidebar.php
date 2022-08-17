@@ -2,7 +2,7 @@
 
 use function Dev4Press\v39\Functions\panel;
 
-$_panel = panel()->a()->panel_object();
+$_panel = panel()->object();
 
 ?>
 

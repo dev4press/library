@@ -63,6 +63,16 @@ abstract class Panel {
 		return $this->subpanels;
 	}
 
+	public function object() : object {
+		$subpanel = $this->current_subpanel();
+
+		if ( isset( $this->subpanels[ $subpanel ] ) ) {
+			return (object) $this->subpanels[ $subpanel ];
+		}
+
+		return $this->a()->panel_object();
+	}
+
 	public function current_subpanel() : string {
 		$_subpanel = $this->a()->subpanel;
 
