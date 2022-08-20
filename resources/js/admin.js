@@ -28,6 +28,21 @@
         panels: {
             features: {
                 run: function() {
+                    $(document).on("click", ".d4p-features-filter-buttons button", function(e) {
+                        e.preventDefault();
+
+                        var button = $(this),
+                            buttons = $(".d4p-features-filter-buttons button"),
+                            wrapper = $(".d4p-features-wrapper"),
+                            selector = button.data("selector");
+
+                        buttons.removeClass("is-selected");
+                        button.addClass("is-selected");
+
+                        wrapper.find("._is-feature").addClass("hide-feature");
+                        wrapper.find(selector).removeClass("hide-feature");
+                    });
+
                     $(document).on("change", ".d4p-feature-box ._activation input", function() {
                         var active = $(this).is(":checked"),
                             feature = $(this).closest(".d4p-feature-box"),
@@ -39,37 +54,53 @@
                             feature.removeClass("_is-active");
                         }
 
-                        var request = "?action=" + d4plib_admin_data.plugin.prefix + "_feature_activation&_ajax_nonce=" + d4plib_admin_data.content.nonce,
-                            args = {
-                                url: ajaxurl + request,
-                                type: "post",
-                                dataType: "json",
-                                data: {
-                                    feature: name,
-                                    status: active ? 'on' : 'off'
-                                }
-                            };
-
-                        $.ajax(args);
+                        wp.dev4press.admin.panels.features.ajax([name], active);
+                        wp.dev4press.admin.panels.features.filter();
+                        wp.dev4press.admin.panels.features.counters();
                     });
 
                     $(document).on("click", ".d4p-features-bulk-ctrl-options button", function(e) {
                         e.preventDefault();
 
-                        var action = $(this).data("action");
+                        var action = $(this).data("action"),
+                            list = [];
 
-                        if (action === "enable") {
-                            $(".d4p-feature-box ._activation input").each(function() {
-                                if (!$(this).is(":checked")) {
-                                    $(this).prop("checked", true).trigger("change");
+                        $(".d4p-feature-box ._activation input").each(function() {
+                            var active = $(this).is(":checked"),
+                                feature = $(this).closest(".d4p-feature-box"),
+                                name = $(this).data("feature");
+
+                            if (action === "enable") {
+                                if (!active) {
+                                    $(this).prop("checked", true);
+                                    feature.addClass("_is-active");
+                                    list.push(name);
                                 }
-                            });
+                            } else {
+                                if (active) {
+                                    $(this).prop("checked", false);
+                                    feature.removeClass("_is-active");
+                                    list.push(name);
+                                }
+                            }
+                        });
+
+                        $(".d4p-features-bulk-ctrl").trigger("click");
+
+                        wp.dev4press.admin.panels.features.ajax(list, action === "enable");
+                        wp.dev4press.admin.panels.features.filter();
+                        wp.dev4press.admin.panels.features.counters();
+                    });
+
+                    $(document).on("click", ".d4p-features-bulk-ctrl", function(e) {
+                        e.preventDefault();
+
+                        if ($(this).hasClass("button-secondary")) {
+                            $(this).removeClass("button-secondary").addClass("button-primary");
+                            $(this).next().hide();
                         } else {
-                            $(".d4p-feature-box ._activation input").each(function() {
-                                if ($(this).is(":checked")) {
-                                    $(this).prop("checked", false).trigger("change");
-                                }
-                            });
+                            $(this).removeClass("button-primary").addClass("button-secondary");
+                            $(this).next().show();
                         }
                     });
 
@@ -87,17 +118,41 @@
                         }
                     });
 
-                    $(document).on("click", ".d4p-features-bulk-ctrl", function(e) {
-                        e.preventDefault();
+                    wp.dev4press.admin.panels.features.counters();
+                },
+                ajax: function(list, active) {
+                    var request = "?action=" + d4plib_admin_data.plugin.prefix + "_feature_activation&_ajax_nonce=" + d4plib_admin_data.content.nonce,
+                        args = {
+                            url: ajaxurl + request,
+                            type: "post",
+                            dataType: "json",
+                            data: {
+                                feature: list,
+                                status: active ? 'on' : 'off'
+                            }
+                        };
 
-                        if ($(this).hasClass("button-secondary")) {
-                            $(this).removeClass("button-secondary").addClass("button-primary");
-                            $(this).next().hide();
-                        } else {
-                            $(this).removeClass("button-primary").addClass("button-secondary");
-                            $(this).next().show();
-                        }
+                    $.ajax(args);
+                },
+                counters: function() {
+                    var wrapper = $(".d4p-features-wrapper"),
+                        counters = $(".d4p-panel-features-counts div");
+
+                    counters.each(function() {
+                        var sel = $(this).data("selector"),
+                            cnt = wrapper.find(sel).length;
+
+                        $(this).find("span").html(cnt);
                     });
+                },
+                filter: function() {
+                    var button = $(".d4p-features-filter-buttons button.is-selected"),
+                        wrapper = $(".d4p-features-wrapper"),
+                        counters = $(".d4p-panel-features-counts div"),
+                        selector = button.data("selector");
+
+                    wrapper.find("._is-feature").addClass("hide-feature");
+                    wrapper.find(selector).removeClass("hide-feature");
                 }
             },
             settings: {

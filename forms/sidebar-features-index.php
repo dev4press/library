@@ -5,6 +5,7 @@ use function Dev4Press\v39\Functions\panel;
 $_panel     = panel()->a()->panel_object();
 $_subpanel  = panel()->a()->subpanel;
 $_subpanels = panel()->subpanels();
+$counters   = panel()->get_filter_counters();
 
 ?>
 <div class="d4p-sidebar">
@@ -14,9 +15,19 @@ $_subpanels = panel()->subpanels();
 				<?php echo panel()->r()->icon( $_panel->icon ); ?>
             </div>
             <h3><?php echo esc_html( $_panel->title ); ?></h3>
-			<div class="_info">
+            <div class="_info">
 				<?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
             </div>
+        </div>
+
+        <div class="d4p-panel-features-counts">
+			<?php
+
+			foreach ( $counters as $code => $counter ) {
+				echo '<div data-selector="' . $counter['selector'] . '">' . $counter['label'] . '<span>0</span></div>';
+			}
+
+			?>
         </div>
 
         <div class="d4p-panel-control">

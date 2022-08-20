@@ -69,7 +69,7 @@ class Sanitize {
 		return sanitize_email( $email );
 	}
 
-	public static function basic( $text, $strip_shortcodes = true ) : string {
+	public static function basic( string $text, bool $strip_shortcodes = true ) : string {
 		$text = stripslashes( $text );
 
 		if ( $strip_shortcodes ) {
@@ -79,7 +79,7 @@ class Sanitize {
 		return trim( wp_kses( $text, array() ) );
 	}
 
-	public static function extended( $text, $tags = null, $protocols = array(), $strip_shortcodes = false ) : string {
+	public static function extended( $text, $tags = null, $protocols = array(), bool $strip_shortcodes = false ) : string {
 		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
 		$text = stripslashes( $text );
 
@@ -103,11 +103,21 @@ class Sanitize {
 		return trim( join( ' ', $list ) );
 	}
 
-	public static function basic_array( $input, $strip_shortcodes = true ) : array {
+	public static function basic_array( array $input, bool $strip_shortcodes = true ) : array {
 		$output = array();
 
 		foreach ( $input as $key => $value ) {
 			$output[ $key ] = Sanitize::basic( $value, $strip_shortcodes );
+		}
+
+		return $output;
+	}
+
+	public static function key_array( array $input ) : array {
+		$output = array();
+
+		foreach ( $input as $key => $value ) {
+			$output[ $key ] = Sanitize::key( $value );
 		}
 
 		return $output;

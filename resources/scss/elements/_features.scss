@@ -2,6 +2,51 @@
 
 @import "../font/icons";
 
+.d4p-panel-features-counts {
+    background: var(--d4p-color-main-background);
+    border: 1px solid var(--d4p-color-main-border);
+    border-radius: var(--d4p-layout-main-border-radius);
+    margin: 0 0 2em;
+    padding: 1em;
+    line-height: 1.8;
+
+    div {
+        span {
+            float: right;
+            font-weight: bold;
+        }
+    }
+}
+
+.d4p-features-filter {
+    margin: 0 0 1em;
+    padding: 1em;
+    border-radius: var(--d4p-layout-main-border-radius);
+    border: 1px solid var(--d4p-color-main-border);
+    color: var(--d4p-color-main-text);
+    background: var(--d4p-color-main-background);
+
+    .d4p-features-filter-buttons {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 1em;
+
+        button {
+            border: none;
+            padding: .5em 1em;
+            cursor: pointer;
+            border-radius: var(--d4p-layout-main-border-radius);
+
+            &.is-selected {
+                font-weight: bold;
+                color: var(--d4p-color-feature-active-text);
+                border: 1px solid var(--d4p-color-feature-active-text);
+                background-color: var(--d4p-color-feature-active-background);
+            }
+        }
+    }
+}
+
 .d4p-features-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -21,6 +66,10 @@
         position: relative;
         display: flex;
         flex-direction: column;
+
+        &.hide-feature {
+            display: none;
+        }
 
         @media screen and (max-width: 640px) {
             flex-basis: calc(50% - 2em);

@@ -17,6 +17,8 @@ $_scope_icons = array(
 
 ?>
 <div class="d4p-content">
+	<?php include( "content-features-index-filter.php" ); ?>
+
     <div class="d4p-features-wrapper">
 		<?php
 
