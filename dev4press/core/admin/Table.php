@@ -46,6 +46,10 @@ abstract class Table extends WP_List_Table {
 		$this->process_request_args();
 	}
 
+	public function get_request_arg( $name, $default = '' ) {
+		return $this->_request_args[ $name ] ?? $default;
+	}
+
 	public function get_column_info_simple() {
 		$this->_column_headers = array( $this->get_columns(), array(), $this->get_sortable_columns() );
 	}
@@ -84,11 +88,11 @@ abstract class Table extends WP_List_Table {
 		return array();
 	}
 
-	protected function column_default( $item, $column_name ) {
-		return $item->$column_name;
+	protected function column_default( $item, $column_name ) : string {
+		return (string) $item->$column_name;
 	}
 
-	protected function column_cb( $item ) {
+	protected function column_cb( $item ) : string {
 		$key = $this->_checkbox_field;
 
 		return sprintf( '<input type="checkbox" name="%1$s[]" value="%2$s" />', $this->_args['singular'], $item->$key );
