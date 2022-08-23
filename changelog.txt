@@ -1,12 +1,18 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.9 - 2022.09.15 =
+= Version 3.9 - 2022.09.12 =
 * New: Features base classes
+* New: Completed Features base system and styling
+* New: Many new features related to the interface
+* New: System requirements - PHP 7.3
+* Updated: Various improvements to the admin styling
 * Updated: Instance methods for some abstract classes
 * Updated: Improvements for the Settings class
 * Updated: Various improvements to Core classes
 * Updated: Expanded BBPress static core class
+* Updated: Built-in cacert.pem 20220719
+* Updated: Clipboard.js 2.0.11
 * Removed: All previously deprecated functions
 * Deprecated: Some additional functions and methods
 

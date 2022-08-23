@@ -2,12 +2,15 @@
 
 namespace Dev4Press\v39\Core\UI\Admin;
 
+use Dev4Press\v39\Core\Admin\Plugin;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class PanelAbout extends Panel {
 	protected $sidebar = false;
+	protected $history = false;
 	protected $default_subpanel = 'whatsnew';
 	protected $wrapper_class = 'd4p-page-about';
 
@@ -31,6 +34,10 @@ class PanelAbout extends Panel {
 				'title' => __( "Changelog", "d4plib" ),
 				'icon'  => ''
 			),
+			'history'   => array(
+				'title' => __( "History", "d4plib" ),
+				'icon'  => ''
+			),
 			'system'    => array(
 				'title' => __( "System", "d4plib" ),
 				'icon'  => ''
@@ -40,6 +47,10 @@ class PanelAbout extends Panel {
 				'icon'  => ''
 			)
 		);
+
+		if ( ! $this->history ) {
+			unset( $this->subpanels['history'] );
+		}
 
 		$translations = $this->a()->settings()->i()->translations;
 

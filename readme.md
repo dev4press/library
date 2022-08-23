@@ -2,7 +2,7 @@
 
 * Version: v3.9
 * Build:   3900
-* Release: 2022.08.01.
+* Release: 2022.09.12.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
@@ -10,7 +10,7 @@
 
 ## Server Requirements
 
-* PHP: 7.2 or newer
+* PHP: 7.3 or newer
 * mySQL: 5.1 or newer
 
 ## WordPress Requirements
