@@ -28,7 +28,7 @@ use Dev4Press\v39\Core\UI\Elements;
         <tr>
             <td class="cell-singular">
                 <label for="<?php echo $this->get_field_id( '_roles' ); ?>"><?php esc_html_e( "Roles", "d4plib" ); ?>:</label>
-				<?php Elements::instance()->checkboxes( WPR::all_user_roles(), array(
+				<?php Elements::instance()->checkboxes( WPR::list_user_roles(), array(
 					'id'       => $this->get_field_id( '_roles' ),
 					'class'    => 'widefat',
 					'name'     => $this->get_field_name( '_roles' ),
@@ -49,8 +49,8 @@ use Dev4Press\v39\Core\UI\Elements;
         <tbody>
         <tr>
             <td class="cell-singular">
-                <label for="<?php echo $this->get_field_id( '_caps' ); ?>"><?php esc_html_e( "Capabilities", "d4plib" ); ?>:</label>
-                <input class="widefat" id="<?php echo $this->get_field_id( '_caps' ); ?>" name="<?php echo $this->get_field_name( '_caps' ); ?>" type="text" value="<?php echo esc_attr( join( ', ', $instance['_caps'] ) ); ?>"/>
+                <label for="<?php echo $this->get_field_id( '_capabilities' ); ?>"><?php esc_html_e( "Capabilities", "d4plib" ); ?>:</label>
+                <input class="widefat" id="<?php echo $this->get_field_id( '_capabilities' ); ?>" name="<?php echo $this->get_field_name( '_capabilities' ); ?>" type="text" value="<?php echo esc_attr( $instance['_capabilities'] ); ?>"/>
 
                 <em>
 					<?php esc_html_e( "One or more capabilities, separated by comma.", "d4plib" ); ?>
