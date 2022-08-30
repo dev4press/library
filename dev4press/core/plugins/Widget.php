@@ -100,7 +100,7 @@ abstract class Widget extends WP_Widget {
 				'include' => array( 'widget-global' )
 			),
 			'extra'    => array(
-				'name'    => __( "Extra", "d4plib" ),
+				'name'    => '<span title="' . esc_attr__( "Extra", "d4plib" ) . '" class="dashicons dashicons-flag"></span>',
 				'include' => array( 'widget-extra' )
 			),
 			'advanced' => array(
@@ -170,7 +170,7 @@ abstract class Widget extends WP_Widget {
 		return $this->defaults[ $name ] ?? $this->shared_defaults[ $name ];
 	}
 
-	protected function shared_update( $new_instance, $old_instance ) {
+	protected function shared_update( array $new_instance, array $old_instance ) : array {
 		$instance = $old_instance;
 
 		$instance['title'] = Sanitize::basic( $new_instance['title'] );
@@ -218,20 +218,7 @@ abstract class Widget extends WP_Widget {
 		return $instance;
 	}
 
-	protected function prepare_cache( $instance ) {
-		if ( $this->results_cacheable ) {
-			$this->cache_time = isset( $instance['_cached'] ) ? absint( $instance['_cached'] ) : 0;
-
-			if ( $this->cache_time > 0 ) {
-				$copy = (array) $instance;
-				unset( $copy['_cached'] );
-
-				$this->cache_key = $this->cache_prefix . '_' . md5( $this->widget_base . '_' . serialize( $copy ) );
-			}
-		}
-	}
-
-	protected function get_cached_data( $instance ) {
+	protected function get_cached_data( array $instance ) {
 		if ( $this->cache_method == 'data' && $this->cache_active && $this->cache_key !== '' ) {
 			$results = get_transient( $this->cache_key );
 
@@ -247,7 +234,7 @@ abstract class Widget extends WP_Widget {
 		}
 	}
 
-	protected function widget_output( $args, $instance ) {
+	protected function widget_output( array $args, array $instance ) {
 		extract( $args, EXTR_SKIP );
 
 		echo $before_widget;
@@ -263,7 +250,7 @@ abstract class Widget extends WP_Widget {
 		echo $after_widget;
 	}
 
-	protected function render_widget( $instance ) {
+	protected function render_widget( array $instance ) {
 		$results = $this->get_cached_data( $instance );
 
 		$this->store_instance( $instance );
@@ -273,7 +260,7 @@ abstract class Widget extends WP_Widget {
 		$this->render_widget_footer( $instance );
 	}
 
-	protected function check_visibility( $instance ) : bool {
+	protected function check_visibility( array $instance ) : bool {
 		$visible = $this->is_visible( $instance );
 
 		if ( $visible ) {
@@ -315,8 +302,13 @@ abstract class Widget extends WP_Widget {
 		return $visible;
 	}
 
-	protected function render_header_classes( $instance ) : array {
-		$class   = array( 'd4p-widget-wrapper' );
+	protected function render_header_classes( array $instance, bool $is_shortcode = false ) : array {
+		$class = array( 'd4p-widget-wrapper' );
+
+		if ( $is_shortcode ) {
+			$class[] = 'd4p-widget-is-shortcode';
+		}
+
 		$class[] = str_replace( '_', '-', $this->widget_base );
 
 		if ( ! empty( $this->widget_wrapper_class ) ) {
@@ -334,7 +326,7 @@ abstract class Widget extends WP_Widget {
 		return $class;
 	}
 
-	protected function render_widget_header( $instance ) {
+	protected function render_widget_header( array $instance ) {
 		$classes = $this->render_header_classes( $instance );
 
 		echo '<div class="' . join( ' ', $classes ) . '">' . D4P_EOL;
@@ -344,7 +336,7 @@ abstract class Widget extends WP_Widget {
 		}
 	}
 
-	protected function render_widget_footer( $instance ) {
+	protected function render_widget_footer( array $instance ) {
 		if ( isset( $instance['_after'] ) && ! empty( $instance['_after'] ) ) {
 			echo '<div class="d4p-widget-after">' . $instance['_after'] . '</div>';
 		}
@@ -352,8 +344,35 @@ abstract class Widget extends WP_Widget {
 		echo '</div>';
 	}
 
-	protected function prepare_instance( $instance ) : array {
-		return wp_parse_args( (array) $instance, $this->get_defaults() );
+	protected function prepare_cache( array $instance ) {
+		if ( $this->results_cacheable ) {
+			$this->cache_time = isset( $instance['_cached'] ) ? absint( $instance['_cached'] ) : 0;
+
+			if ( $this->cache_time > 0 ) {
+				$copy = (array) $instance;
+				unset( $copy['_cached'] );
+
+				$this->cache_key = $this->cache_prefix . '_' . md5( $this->widget_base . '_' . serialize( $copy ) );
+			}
+		}
+	}
+
+	protected function prepare_instance( array $instance ) : array {
+		return wp_parse_args( $instance, $this->get_defaults() );
+	}
+
+	protected function prepare_shortcode( array $atts ) : array {
+		$atts = shortcode_atts( $this->defaults, $atts );
+
+		foreach ( $atts as $key => &$value ) {
+			if ( is_bool( $this->defaults[ $key ] ) ) {
+				$value = $value === 'true' || $value === '1' || $value === true;
+			} else if ( is_array( $this->defaults[ $key ] ) ) {
+				$value = explode( ',', $value );
+			}
+		}
+
+		return $atts;
 	}
 
 	public function get_tabkey( $tab ) {
@@ -364,15 +383,15 @@ abstract class Widget extends WP_Widget {
 		return array_merge( $this->shared_defaults, $this->defaults );
 	}
 
-	public function title( $instance ) : string {
+	public function title( array $instance ) : string {
 		return $instance['title'] ?? '';
 	}
 
-	public function is_visible( $instance ) : bool {
+	public function is_visible( array $instance ) : bool {
 		return true;
 	}
 
-	public function standalone_render( $instance = array() ) {
+	public function standalone_render( array $instance = array() ) {
 		$instance = shortcode_atts( $this->defaults, $instance );
 
 		$this->render_widget( $instance );
@@ -382,15 +401,15 @@ abstract class Widget extends WP_Widget {
 		return $this->widget_base . '_visible_{filter_name}';
 	}
 
-	public function the_init( $instance, $args ) {
+	public function the_init( array $instance, array $args ) {
 
 	}
 
-	public function the_results( $instance ) {
-		return false;
+	public function the_results( array $instance ) {
+		return null;
 	}
 
-	public function the_shortcode( $instance ) : string {
+	public function the_shortcode( array $instance ) : string {
 		$defaults = $this->defaults;
 
 		if ( isset( $defaults['title'] ) ) {
@@ -417,11 +436,33 @@ abstract class Widget extends WP_Widget {
 
 		foreach ( $defaults as $key => $value ) {
 			if ( $instance[ $key ] !== $value ) {
-				$shortcode[] = $key . '="' . $instance[ $key ] . '"';
+				if ( is_bool( $value ) ) {
+					$shortcode[] = $key . '="' . ( $instance[ $key ] ? 'true' : 'false' ) . '"';
+				} else {
+					$shortcode[] = $key . '="' . $instance[ $key ] . '"';
+				}
 			}
 		}
 
 		return join( ' ', $shortcode );
+	}
+
+	public function shortcode_render( array $atts = array(), string $content = '' ) : string {
+		$atts    = $this->prepare_shortcode( $atts );
+		$classes = $this->render_header_classes( $atts, true );
+
+		$render = '<div class="' . join( ' ', $classes ) . '">' . D4P_EOL;
+
+		ob_start();
+
+		$this->the_render( $atts, $this->the_results( $atts ) );
+
+		$render .= ob_get_contents();
+		ob_end_clean();
+
+		$render .= '</div>';
+
+		return $render;
 	}
 
 	public function get_list_user_visibility() : array {
@@ -441,9 +482,13 @@ abstract class Widget extends WP_Widget {
 		);
 	}
 
-	abstract public function the_form( $instance ) : array;
+	public function get_shortcode_notice() : string {
+		return '';
+	}
 
-	abstract public function the_render( $instance, $results = false );
+	abstract public function the_form( array $instance ) : array;
 
-	abstract public function store_instance( $instance );
+	abstract public function the_render( array $instance, $results = null );
+
+	abstract public function store_instance( array $instance );
 }
