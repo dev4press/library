@@ -68,6 +68,9 @@ abstract class Information {
 	public $translations = array();
 
 	function __construct() {
+		if ( $this->is_bbpress_plugin ) {
+			$this->plugins['bbpress'] = '2.6.2';
+		}
 	}
 
 	public function to_array() : array {
