@@ -9,12 +9,15 @@
 * Updated: Various improvements to the admin styling
 * Updated: Instance methods for some abstract classes
 * Updated: Improvements for the Settings class
+* Updated: Improvements to the Widgets class
 * Updated: Various improvements to Core classes
 * Updated: Expanded BBPress static core class
 * Updated: Built-in cacert.pem 20220719
 * Updated: Clipboard.js 2.0.11
 * Removed: All previously deprecated functions
 * Deprecated: Some additional functions and methods
+* Fix: Problem with using capabilities in Widget class
+* Fix: Problem with storing capabilities in Widget class
 
 = Version 3.8 - 2022.05.14 =
 * New: Base Panel object now builds the classes

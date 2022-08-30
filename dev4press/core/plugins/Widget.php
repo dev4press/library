@@ -58,16 +58,16 @@ abstract class Widget extends WP_Widget {
 	);
 
 	protected $shared_defaults = array(
-		'_users'  => 'all',
-		'_roles'  => array(),
-		'_caps'   => array(),
-		'_hook'   => '',
-		'_tab'    => 'global',
-		'_cached' => 8,
-		'_devid'  => '',
-		'_class'  => '',
-		'_before' => '',
-		'_after'  => ''
+		'_users'        => 'all',
+		'_roles'        => array(),
+		'_capabilities' => '',
+		'_hook'         => '',
+		'_tab'          => 'global',
+		'_cached'       => 8,
+		'_devid'        => '',
+		'_class'        => '',
+		'_before'       => '',
+		'_after'        => ''
 	);
 
 	protected $cache_active = false;
@@ -129,7 +129,7 @@ abstract class Widget extends WP_Widget {
 		include( $this->widgets_render->find( 'widget-loader.php' ) );
 	}
 
-	public function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) : array {
 		return $this->shared_update( $new_instance, $old_instance );
 	}
 
@@ -182,9 +182,13 @@ abstract class Widget extends WP_Widget {
 
 		$instance['_users'] = $this->get_valid_list_value( '_users', $new_instance['_users'], array_keys( $this->get_list_user_visibility() ) );
 
-		$_caps             = Sanitize::basic( $new_instance['_caps'] );
-		$_caps             = explode( ',', $_caps );
-		$instance['_caps'] = array_map( 'trim', $_caps );
+		$_capabilities = Sanitize::basic( $new_instance['_capabilities'] );
+		$_capabilities = explode( ',', $_capabilities );
+		$_capabilities = array_map( 'trim', $_capabilities );
+		$_capabilities = array_unique( $_capabilities );
+		$_capabilities = array_filter( $_capabilities );
+
+		$instance['_capabilities'] = join( ', ', $_capabilities );
 
 		$instance['_roles'] = array();
 
@@ -275,7 +279,7 @@ abstract class Widget extends WP_Widget {
 		if ( $visible ) {
 			$users = $instance['_users'] ?? 'all';
 			$roles = $instance['_roles'] ?? array();
-			$cap   = $instance['_cap'] ?? '';
+			$caps  = $instance['_capabilities'] ?? '';
 
 			$logged = is_user_logged_in();
 
@@ -289,8 +293,18 @@ abstract class Widget extends WP_Widget {
 				} else {
 					$visible = WPR::is_current_user_roles( $roles );
 				}
-			} else if ( $users == 'caps' && ! empty( $cap ) ) {
-				$visible = current_user_can( $cap );
+			} else if ( $users == 'caps' && ! empty( $caps ) ) {
+				$caps = explode( ',', $caps );
+				$caps = array_map( 'trim', $caps );
+
+				if ( ! empty( $caps ) ) {
+					foreach ( $caps as $cap ) {
+						if ( current_user_can( $cap ) ) {
+							$visible = true;
+							break;
+						}
+					}
+				}
 			}
 		}
 
@@ -338,11 +352,7 @@ abstract class Widget extends WP_Widget {
 		echo '</div>';
 	}
 
-	protected function _strip( $value ) : string {
-		return strip_tags( stripslashes( $value ) );
-	}
-
-	protected function _instance( $instance ) : array {
+	protected function prepare_instance( $instance ) : array {
 		return wp_parse_args( (array) $instance, $this->get_defaults() );
 	}
 
@@ -368,7 +378,7 @@ abstract class Widget extends WP_Widget {
 		$this->render_widget( $instance );
 	}
 
-	public function visibility_hook_format() {
+	public function visibility_hook_format() : string {
 		return $this->widget_base . '_visible_{filter_name}';
 	}
 
@@ -414,12 +424,6 @@ abstract class Widget extends WP_Widget {
 		return join( ' ', $shortcode );
 	}
 
-	abstract public function the_form( $instance ) : array;
-
-	abstract public function the_render( $instance, $results = false );
-
-	abstract public function store_instance( $instance );
-
 	public function get_list_user_visibility() : array {
 		return array(
 			'all'      => __( "Everyone", "d4plib" ),
@@ -436,4 +440,10 @@ abstract class Widget extends WP_Widget {
 			'ASC'  => __( "Ascending", "d4plib" )
 		);
 	}
+
+	abstract public function the_form( $instance ) : array;
+
+	abstract public function the_render( $instance, $results = false );
+
+	abstract public function store_instance( $instance );
 }
