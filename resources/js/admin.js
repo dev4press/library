@@ -18,6 +18,7 @@
             }
 
             if (d4plib_admin_data.page.panel === 'features') {
+                wp.dev4press.admin.panels.settings.run();
                 wp.dev4press.admin.panels.features.run();
             }
 
@@ -581,5 +582,7 @@
         }
     };
 
-    wp.dev4press.admin.init();
+    $(document).ready(function() {
+        wp.dev4press.admin.init();
+    });
 })(jQuery, window, document);

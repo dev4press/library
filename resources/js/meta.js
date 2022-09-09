@@ -16,5 +16,7 @@
         }
     };
 
-    wp.dev4press.metabox.init();
+    $(document).ready(function() {
+        wp.dev4press.metabox.init();
+    });
 })(jQuery, window, document);

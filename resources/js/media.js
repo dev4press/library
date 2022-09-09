@@ -9,9 +9,13 @@
     window.wp.dev4press.media.image = {
         handler: null,
         init: function() {
-            if (wp && wp.media) {
-                if (typeof wp.media.frames.wp.dev4press.media.image_frame === "undefined") {
-                    wp.media.frames.wp.dev4press.media.image_frame = wp.media({
+            if (wp && wp.media && wp.media.frames) {
+                if (typeof wp.media.frames.dev4press === "undefined") {
+                    wp.media.frames.dev4press = {media: {}};
+                }
+
+                if (typeof wp.media.frames.dev4press === "undefined" || typeof wp.media.frames.dev4press.media.image_frame === "undefined") {
+                    wp.media.frames.dev4press.media.image_frame = wp.media({
                         title: d4plib_media_data.strings.image_title,
                         className: "media-frame d4plib-media-image-frame",
                         frame: "post",
@@ -24,8 +28,8 @@
                         }
                     });
 
-                    wp.media.frames.wp.dev4press.media.image_frame.on("insert", function() {
-                        var image = wp.media.frames.wp.dev4press.media.image_frame.state().get("selection").first().toJSON();
+                    wp.media.frames.dev4press.media.image_frame.on("insert", function() {
+                        var image = wp.media.frames.dev4press.media.image_frame.state().get("selection").first().toJSON();
 
                         if (wp.dev4press.media.image.handler) {
                             wp.dev4press.media.image.handler(image);
@@ -37,7 +41,7 @@
         open: function(handler, hide_menu) {
             wp.dev4press.media.image.handler = handler;
 
-            wp.media.frames.wp.dev4press.media.image_frame.open();
+            wp.media.frames.dev4press.media.image_frame.open();
 
             $(".d4plib-media-image-frame .media-frame-title h1").html(d4plib_media_data.strings.image_title);
             $(".d4plib-media-image-frame .media-frame-toolbar .media-toolbar-primary .media-button-insert").html(d4plib_media_data.strings.image_button);
@@ -144,5 +148,7 @@
         }
     };
 
-    wp.dev4press.media.control.run();
+    $(document).ready(function() {
+        wp.dev4press.media.control.init();
+    });
 })(jQuery, window, document);

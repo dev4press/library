@@ -19,5 +19,7 @@
         }
     };
 
-    window.wp.dev4press.wizard.init();
+    $(document).ready(function() {
+        window.wp.dev4press.wizard.init();
+    });
 })(jQuery, window, document);

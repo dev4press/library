@@ -46,6 +46,10 @@
   hyphens: auto;
 }
 
+.d4p-setting-image .d4plib-button-inner {
+  margin: 0 5px 0 0;
+}
+
 .d4plib-selected-image {
   margin: 5px 0 0 0;
   padding: 5px 0 0 0;
@@ -53,12 +57,10 @@
   max-width: 518px;
   display: block;
 }
-
 .d4plib-selected-image .d4plib-image-name {
   font-weight: bold;
   display: block;
 }
-
 .d4plib-selected-image img {
   height: auto;
   margin: 5px 0 0;

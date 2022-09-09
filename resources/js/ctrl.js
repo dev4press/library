@@ -32,5 +32,7 @@
         }
     };
 
-    window.wp.dev4press.ctrl.tabs.run();
+    $(document).ready(function() {
+        window.wp.dev4press.ctrl.tabs.run();
+    });
 })(jQuery, window, document);

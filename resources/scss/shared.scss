@@ -4,24 +4,30 @@
 @import 'elements/_root';
 @import 'elements/_common';
 
+.d4p-setting-image {
+    .d4plib-button-inner {
+        margin: 0 5px 0 0;
+    }
+}
+
 .d4plib-selected-image {
     margin: 5px 0 0 0;
     padding: 5px 0 0 0;
     border-top: 1px solid #DDD;
     max-width: 518px;
     display: block;
-}
 
-.d4plib-selected-image .d4plib-image-name {
-    font-weight: bold;
-    display: block;
-}
+    .d4plib-image-name {
+        font-weight: bold;
+        display: block;
+    }
 
-.d4plib-selected-image img {
-    height: auto;
-    margin: 5px 0 0;
-    max-width: 100%;
-    display: none;
+    img {
+        height: auto;
+        margin: 5px 0 0;
+        max-width: 100%;
+        display: none;
+    }
 }
 
 .d4plib-images-image {

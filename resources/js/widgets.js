@@ -74,6 +74,8 @@
         }
     };
 
-    wp.dev4press.widgets.init();
-    wp.dev4press.widgets.settings();
+    $(document).ready(function() {
+        wp.dev4press.widgets.init();
+        wp.dev4press.widgets.settings();
+    });
 })(jQuery, window, document);
