@@ -122,6 +122,19 @@ abstract class Load {
 		return $default;
 	}
 
+	public function are_enabled( array $features ) : bool {
+		$on = true;
+
+		foreach ( $features as $feature ) {
+			if ( ! $this->is_enabled( $feature ) ) {
+				$on = false;
+				break;
+			}
+		}
+
+		return $on;
+	}
+
 	public function is_valid( string $feature ) : bool {
 		return isset( $this->_list[ $feature ] );
 	}

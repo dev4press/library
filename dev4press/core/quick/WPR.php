@@ -263,10 +263,11 @@ class WPR {
 		return ! empty( $post ) ? $post->post_name : false;
 	}
 
-	public static function get_post_excerpt( $post, $word_limit = 50 ) : string {
+	public static function get_post_excerpt( $post, $word_limit = 50, $append = '...' ) : string {
 		$content = $post->post_excerpt == '' ? $post->post_content : $post->post_excerpt;
 
 		$content = strip_shortcodes( $content );
+		$content = str_replace( array( "\r", "\n", "  " ), ' ', $content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
 		$content = strip_tags( $content );
 
@@ -275,7 +276,7 @@ class WPR {
 		if ( count( $words ) > $word_limit ) {
 			array_pop( $words );
 			$content = implode( ' ', $words );
-			$content .= '...';
+			$content .= $append;
 		}
 
 		return $content;
