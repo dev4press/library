@@ -52,7 +52,7 @@ abstract class Information {
 	public $mysql = '5.0';
 
 	public $cms = array(
-		'wordpress'    => '5.3',
+		'wordpress'    => '5.5',
 		'classicpress' => '1.2'
 	);
 
