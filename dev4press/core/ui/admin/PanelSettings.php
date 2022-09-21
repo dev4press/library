@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class PanelSettings extends Panel {
+abstract class PanelSettings extends Panel {
 	protected $form = true;
 
 	public $settings_class = '';

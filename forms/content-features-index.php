@@ -56,7 +56,7 @@ $_scope_icons = array(
 
 			?>
 
-            <div class="<?php echo Sanitize::html_classes( $_classes ); ?>">
+            <div data-feature="<?php echo esc_attr($subpanel); ?>" class="<?php echo Sanitize::html_classes( $_classes ); ?>">
                 <div class="_info">
                     <div class="_icon"><i class="d4p-icon d4p-<?php echo esc_attr( $obj['icon'] ); ?>"></i></div>
                     <h4 class="_title"><?php echo esc_html( $obj['title'] ); ?></h4>

@@ -33,15 +33,12 @@
                         e.preventDefault();
 
                         var button = $(this),
-                            buttons = $(".d4p-features-filter-buttons button"),
-                            wrapper = $(".d4p-features-wrapper"),
-                            selector = button.data("selector");
+                            buttons = $(".d4p-features-filter-buttons button");
 
                         buttons.removeClass("is-selected");
                         button.addClass("is-selected");
 
-                        wrapper.find("._is-feature").addClass("hide-feature");
-                        wrapper.find(selector).removeClass("hide-feature");
+                        wp.dev4press.admin.panels.features.filter();
                     });
 
                     $(document).on("change", ".d4p-feature-box ._activation input", function() {
@@ -119,7 +116,61 @@
                         }
                     });
 
+                    $(".d4p-features-filter-search input").on("keyup", function(e) {
+                        var search = $(this).val(), block = $(this).parent();
+
+                        if (search.length > 0) {
+                            block.addClass("is-active");
+                        } else {
+                            block.removeClass("is-active");
+                        }
+
+                        wp.dev4press.admin.panels.features.filter();
+                    });
+
+                    $(document).on("click", ".d4p-features-filter-search i", function(e) {
+                        $(".d4p-features-filter-search input").val("").trigger("keyup");
+                        $(".d4p-features-filter-search").removeClass("is-active");
+                    });
+
                     wp.dev4press.admin.panels.features.counters();
+                },
+                filter: function() {
+                    var button = $(".d4p-features-filter-buttons button.is-selected"),
+                        wrapper = $(".d4p-features-wrapper"),
+                        selector = button.data("selector"),
+                        search = $(".d4p-features-filter-search input").val().toLowerCase();
+
+                    if (search.length < 2) {
+                        search = '';
+                    }
+
+                    wrapper.find("._is-feature").addClass("hide-feature").removeClass("search-result");
+                    wrapper.find(selector).removeClass("hide-feature");
+
+                    if (search.length > 1) {
+                        $("._is-feature:not(.hide-feature)", wrapper).each(function() {
+                            var title = $(this).find("._title").html().toLowerCase(),
+                                description = $(this).find("._description").html().toLowerCase(),
+                                in_title = title.includes(search),
+                                in_description = description.includes(search),
+                                classes = "search-result";
+
+                            if (in_title || in_description) {
+                                if (in_title) {
+                                    classes+= " search-result-title";
+                                }
+
+                                if (in_description) {
+                                    classes+= " search-result-description";
+                                }
+
+                                $(this).addClass(classes);
+                            } else {
+                                $(this).addClass("hide-feature");
+                            }
+                        });
+                    }
                 },
                 ajax: function(list, active) {
                     var request = "?action=" + d4plib_admin_data.plugin.prefix + "_feature_activation&_ajax_nonce=" + d4plib_admin_data.content.nonce,
@@ -145,15 +196,6 @@
 
                         $(this).find("span").html(cnt);
                     });
-                },
-                filter: function() {
-                    var button = $(".d4p-features-filter-buttons button.is-selected"),
-                        wrapper = $(".d4p-features-wrapper"),
-                        counters = $(".d4p-panel-features-counts div"),
-                        selector = button.data("selector");
-
-                    wrapper.find("._is-feature").addClass("hide-feature");
-                    wrapper.find(selector).removeClass("hide-feature");
                 }
             },
             settings: {

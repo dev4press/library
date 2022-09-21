@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class PanelAbout extends Panel {
+abstract class PanelAbout extends Panel {
 	protected $sidebar = false;
 	protected $history = false;
 	protected $default_subpanel = 'whatsnew';

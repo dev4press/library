@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class PanelDashboard extends Panel {
+abstract class PanelDashboard extends Panel {
 	public $sidebar_links = array(
 		'plugin' => array(),
 		'basic'  => array(),

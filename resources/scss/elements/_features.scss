@@ -25,6 +25,9 @@
     border: 1px solid var(--d4p-color-main-border);
     color: var(--d4p-color-main-text);
     background: var(--d4p-color-main-background);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
 
     .d4p-features-filter-buttons {
         display: inline-flex;
@@ -42,6 +45,35 @@
                 color: var(--d4p-color-feature-active-text);
                 border: 1px solid var(--d4p-color-feature-active-text);
                 background-color: var(--d4p-color-feature-active-background);
+            }
+        }
+    }
+
+    .d4p-features-filter-search {
+        position: relative;
+
+        input {
+            border: 1px solid var(--d4p-color-main-border);
+            padding: 0.2em 1em;
+            border-radius: var(--d4p-layout-main-border-radius);
+        }
+
+        i {
+            margin: 0.85em 0 0 -1.5em;
+            vertical-align: top;
+            color: var(--d4p-color-feature-active-text);
+            cursor: pointer;
+        }
+
+        &.is-active {
+            input {
+                border-color: var(--d4p-color-feature-active-text);
+            }
+        }
+
+        &:not(.is-active) {
+            i {
+                display: none;
             }
         }
     }
@@ -98,14 +130,18 @@
             }
 
             ._title {
+                border-radius: var(--d4p-layout-main-border-radius);
                 font-size: 1.5em;
                 font-weight: 400;
-                margin: .5em 0;
+                padding: .2em;
+                margin: .3em 0;
             }
 
             ._description {
+                border-radius: var(--d4p-layout-main-border-radius);
                 font-size: 1em;
                 font-weight: 400;
+                padding: .5em;
                 margin: 0;
             }
         }
@@ -273,6 +309,45 @@
                 ._settings {
                     i {
                         color: var(--d4p-color-feature-beta-text);
+                    }
+                }
+            }
+        }
+
+        &.search-result {
+            &.search-result-title {
+                ._title {
+                    background-color: #F2F2F2;
+                }
+            }
+            &.search-result-description {
+                ._description {
+                    background-color: #F2F2F2;
+                }
+            }
+
+            &._is-active {
+                &.search-result-title {
+                    ._title {
+                        background-color: var(--d4p-color-feature-active-background);
+                    }
+                }
+                &.search-result-description {
+                    ._description {
+                        background-color: var(--d4p-color-feature-active-background);
+                    }
+                }
+            }
+
+            &._is-beta._is-active {
+                &.search-result-title {
+                    ._title {
+                        background-color: var(--d4p-color-feature-beta-background);
+                    }
+                }
+                &.search-result-description {
+                    ._description {
+                        background-color: var(--d4p-color-feature-beta-background);
                     }
                 }
             }
