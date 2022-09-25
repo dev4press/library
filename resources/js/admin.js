@@ -145,7 +145,7 @@
                         search = '';
                     }
 
-                    wrapper.find("._is-feature").addClass("hide-feature").removeClass("search-result");
+                    wrapper.find("._is-feature").addClass("hide-feature").removeClass("search-result search-result-title search-result-description");
                     wrapper.find(selector).removeClass("hide-feature");
 
                     if (search.length > 1) {

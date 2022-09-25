@@ -1,9 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 3.9 - 2022.09.12 =
+= Version 3.9 - 2022.10.10 =
 * New: Features base classes
 * New: Completed Features base system and styling
+* New: Features panel with filtering and search
 * New: Many new features related to the interface
 * New: System requirements - PHP 7.3
 * Updated: Various improvements to the admin styling
