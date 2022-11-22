@@ -87,7 +87,7 @@ abstract class GetBack {
 		}
 	}
 
-	public function feature_reset() {
+	protected function feature_reset() {
 		check_ajax_referer( $this->a()->plugin_prefix . '-feature-reset-' . $this->a()->subpanel );
 
 		$this->a()->settings()->reset_feature( $this->a()->subpanel );
