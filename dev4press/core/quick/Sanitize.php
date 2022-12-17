@@ -174,9 +174,4 @@ class Sanitize {
 
 		return apply_filters( __NAMESPACE__ . '\sanitize\file_path', $filename, $filename_raw );
 	}
-
-	/** @deprecated since 3.8 to be removed in 3.9 */
-	public static function key_expanded( $key ) : string {
-		return Sanitize::key( $key );
-	}
 }

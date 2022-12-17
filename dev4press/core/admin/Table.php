@@ -46,11 +46,19 @@ abstract class Table extends WP_List_Table {
 		$this->process_request_args();
 	}
 
+	protected function get_views() : array {
+		return array();
+	}
+
+	public function rows_per_page() : int {
+		return 0;
+	}
+
 	public function get_request_arg( $name, $default = '' ) {
 		return $this->_request_args[ $name ] ?? $default;
 	}
 
-	public function get_column_info_simple() {
+	protected function prepare_column_headers() {
 		$this->_column_headers = array( $this->get_columns(), array(), $this->get_sortable_columns() );
 	}
 
@@ -59,6 +67,10 @@ abstract class Table extends WP_List_Table {
 	}
 
 	public function get_columns() : array {
+		return array();
+	}
+
+	protected function get_bulk_actions() : array {
 		return array();
 	}
 
@@ -71,7 +83,7 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function process_request_args() {
-
+		$this->_request_args = array();
 	}
 
 	protected function get_table_classes() : array {
