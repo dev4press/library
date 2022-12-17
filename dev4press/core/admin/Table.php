@@ -55,7 +55,17 @@ abstract class Table extends WP_List_Table {
 	}
 
 	public function get_request_arg( $name, $default = '' ) {
-		return $this->_request_args[ $name ] ?? $default;
+		$value = $this->_request_args[ $name ] ?? $default;
+
+		if ( $name == 'paged' ) {
+			if ( empty( $value ) || ! is_numeric( $value ) || $value <= 0 ) {
+				$value = 1;
+			}
+
+			$value = absint( $value );
+		}
+
+		return $value;
 	}
 
 	public function get_columns() : array {
@@ -92,7 +102,7 @@ abstract class Table extends WP_List_Table {
 	protected function extra_tablenav( $which ) {
 		if ( $which == 'top' ) {
 			$this->filter_block_top();
-		} else if ($which == 'bottom') {
+		} else if ( $which == 'bottom' ) {
 			$this->filter_block_bottom();
 		}
 	}
@@ -143,5 +153,34 @@ abstract class Table extends WP_List_Table {
 		$key = $this->_checkbox_field;
 
 		return sprintf( '<input type="checkbox" name="%1$s[]" value="%2$s" />', $this->_args['singular'], $item->$key );
+	}
+
+	protected function query_items( array $sql, int $per_page, bool $do_order = true, bool $do_limit = true, string $index_field = '' ) {
+		if ( $do_order ) {
+			$sql['order'] = $this->get_request_arg( 'orderby' ) . " " . $this->get_request_arg( 'order' );
+		}
+
+		if ( $do_limit ) {
+			$paged  = $this->get_request_arg( 'paged' );
+			$offset = absint( ( $paged - 1 ) * $per_page );
+
+			$sql['limit'] = $offset . ', ' . $per_page;
+		}
+
+		$query = gdbbx_db()->build_query( $sql );
+
+		if ( empty( $index_field ) ) {
+			$this->items = gdbbx_db()->run( $query );
+		} else {
+			$this->items = gdbbx_db()->run_and_index( $query, $index_field );
+		}
+
+		$total_rows = gdbbx_db()->get_found_rows();
+
+		$this->set_pagination_args( array(
+			'total_items' => $total_rows,
+			'total_pages' => ceil( $total_rows / $per_page ),
+			'per_page'    => $per_page,
+		) );
 	}
 }
