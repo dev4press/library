@@ -106,6 +106,12 @@
                 width: 40%;
             }
 
+            textarea {
+                min-height: 100px;
+                height: 160px;
+                resize: vertical;
+            }
+
             select {
                 border-radius: var(--d4p-layout-main-border-radius);
                 padding: .3em 2em .3em .8em;

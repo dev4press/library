@@ -77,6 +77,11 @@
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
   width: 40%;
 }
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper textarea {
+  min-height: 100px;
+  height: 160px;
+  resize: vertical;
+}
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper select {
   border-radius: var(--d4p-layout-main-border-radius);
   padding: 0.3em 2em 0.3em 0.8em;

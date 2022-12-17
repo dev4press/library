@@ -58,10 +58,6 @@ abstract class Table extends WP_List_Table {
 		return $this->_request_args[ $name ] ?? $default;
 	}
 
-	public function get_row_classes( $item ) : array {
-		return array();
-	}
-
 	public function get_columns() : array {
 		return array();
 	}
@@ -91,6 +87,26 @@ abstract class Table extends WP_List_Table {
 					return $default;
 				}
 		}
+	}
+
+	protected function extra_tablenav( $which ) {
+		if ( $which == 'top' ) {
+			$this->filter_block_top();
+		} else if ($which == 'bottom') {
+			$this->filter_block_bottom();
+		}
+	}
+
+	protected function get_row_classes( $item ) : array {
+		return array();
+	}
+
+	protected function filter_block_top() {
+
+	}
+
+	protected function filter_block_bottom() {
+
 	}
 
 	protected function prepare_column_headers() {

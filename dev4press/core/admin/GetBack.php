@@ -47,6 +47,10 @@ abstract class GetBack {
 		return $this->admin;
 	}
 
+	protected function check_nonce( $action, $nonce = '_wpnonce', $die = true ) {
+		check_ajax_referer( $action, $nonce, $die );
+	}
+
 	protected function process() {
 		if ( $this->a()->panel == 'dashboard' ) {
 			if ( $this->is_single_action( 'dismiss-topic-prefix', 'action' ) ) {
