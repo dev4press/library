@@ -52,11 +52,15 @@ $_scope_icons = array(
 				$_classes[] = '_has-settings';
 			}
 
+			if ( $obj['panel'] ) {
+				$_classes[] = '_has-panel';
+			}
+
 			$url = panel()->a()->panel_url( 'features', $subpanel );
 
 			?>
 
-            <div data-feature="<?php echo esc_attr($subpanel); ?>" class="<?php echo Sanitize::html_classes( $_classes ); ?>">
+            <div data-feature="<?php echo esc_attr( $subpanel ); ?>" class="<?php echo Sanitize::html_classes( $_classes ); ?>">
                 <div class="_info">
                     <div class="_icon"><i class="d4p-icon d4p-<?php echo esc_attr( $obj['icon'] ); ?>"></i></div>
                     <h4 class="_title"><?php echo esc_html( $obj['title'] ); ?></h4>
@@ -76,6 +80,11 @@ $_scope_icons = array(
                             <span title="<?php esc_html_e( "This feature has no settings", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
 						<?php } ?>
                     </div>
+					<?php if ( $obj['panel'] ) { ?>
+                        <div class="_scope">
+                            <span title="<?php esc_html_e( "This feature adds a new panel", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-folder"></i></span>
+                        </div>
+					<?php } ?>
 					<?php if ( $obj['beta'] ) { ?>
                         <div class="_scope">
                             <span title="<?php esc_attr_e( "This is a Beta feature, and it can be unstable!", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-flask"></i></span>

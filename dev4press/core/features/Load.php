@@ -183,6 +183,7 @@ abstract class Load {
 				'info'      => $obj['description'],
 				'scope'     => $this->get_scope( $feature ),
 				'settings'  => $this->has_settings( $feature ),
+				'panel'     => $this->has_menu( $feature ),
 				'beta'      => $this->is_beta( $feature ),
 				'active'    => $this->is_enabled( $feature ),
 				'always_on' => $this->is_always_on( $feature )

@@ -3610,9 +3610,6 @@ details.d4p-section-details > div .form-table code {
   flex: 1 1 100%;
   text-align: right;
 }
-.d4p-features-wrapper .d4p-feature-box:not(._is-active) ._ctrl ._settings {
-  display: none;
-}
 .d4p-features-wrapper .d4p-feature-box._is-active {
   border-color: var(--d4p-color-feature-active-text);
 }

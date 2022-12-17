@@ -58,19 +58,11 @@ abstract class Table extends WP_List_Table {
 		return $this->_request_args[ $name ] ?? $default;
 	}
 
-	protected function prepare_column_headers() {
-		$this->_column_headers = array( $this->get_columns(), array(), $this->get_sortable_columns() );
-	}
-
 	public function get_row_classes( $item ) : array {
 		return array();
 	}
 
 	public function get_columns() : array {
-		return array();
-	}
-
-	protected function get_bulk_actions() : array {
 		return array();
 	}
 
@@ -80,6 +72,33 @@ abstract class Table extends WP_List_Table {
 		echo '<tr' . ( empty( $classes ) ? '' : ' class="' . join( ' ', $classes ) . '"' ) . '>';
 		$this->single_row_columns( $item );
 		echo '</tr>';
+	}
+
+	public function sanitize_field( $name, $value, $default = '' ) {
+		switch ( $name ) {
+			case 'orderby':
+				if ( in_array( $value, $this->_sanitize_orderby_fields ) ) {
+					return $value;
+				} else {
+					return $default;
+				}
+			case 'order':
+				$value = strtoupper( $value );
+
+				if ( in_array( $value, array( 'ASC', 'DESC' ) ) ) {
+					return $value;
+				} else {
+					return $default;
+				}
+		}
+	}
+
+	protected function prepare_column_headers() {
+		$this->_column_headers = array( $this->get_columns(), array(), $this->get_sortable_columns() );
+	}
+
+	protected function get_bulk_actions() : array {
+		return array();
 	}
 
 	protected function process_request_args() {
@@ -108,24 +127,5 @@ abstract class Table extends WP_List_Table {
 		$key = $this->_checkbox_field;
 
 		return sprintf( '<input type="checkbox" name="%1$s[]" value="%2$s" />', $this->_args['singular'], $item->$key );
-	}
-
-	public function sanitize_field( $name, $value, $default = '' ) {
-		switch ( $name ) {
-			case 'orderby':
-				if ( in_array( $value, $this->_sanitize_orderby_fields ) ) {
-					return $value;
-				} else {
-					return $default;
-				}
-			case 'order':
-				$value = strtoupper( $value );
-
-				if ( in_array( $value, array( 'ASC', 'DESC' ) ) ) {
-					return $value;
-				} else {
-					return $default;
-				}
-		}
 	}
 }
