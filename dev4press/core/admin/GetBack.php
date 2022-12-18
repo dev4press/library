@@ -135,7 +135,7 @@ abstract class GetBack {
 	}
 
 	protected function is_bulk_action() : bool {
-		return $this->_get() != '-1' || $this->_get( 'action2' ) != '-1';
+		return ( $this->_is() && $this->_get() != '-1' ) || ( $this->_is( 'action2' ) && $this->_get( 'action2' ) != '-1' );
 	}
 
 	protected function get_bulk_action() : string {
@@ -151,6 +151,10 @@ abstract class GetBack {
 	}
 
 	protected function _get( $key = 'action' ) : string {
-		return isset( $_GET[ $key ] ) ? Sanitize::key( $_GET[ $key ] ) : '';
+		return $this->_is( $key ) ? Sanitize::key( $_GET[ $key ] ) : '';
+	}
+
+	protected function _is( $key = 'action' ) : bool {
+		return isset( $_GET[ $key ] );
 	}
 }
