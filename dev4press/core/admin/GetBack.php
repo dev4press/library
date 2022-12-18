@@ -138,6 +138,10 @@ abstract class GetBack {
 		return ( $this->_is() && $this->_get() != '-1' ) || ( $this->_is( 'action2' ) && $this->_get( 'action2' ) != '-1' );
 	}
 
+	protected function get_single_action( $key = 'single-action' ) : string {
+		return $this->_get( $key );
+	}
+
 	protected function get_bulk_action() : string {
 		$action = $this->_get();
 		$action = $action == '-1' ? '' : $action;
@@ -150,8 +154,8 @@ abstract class GetBack {
 		return $action;
 	}
 
-	protected function _get( $key = 'action' ) : string {
-		return $this->_is( $key ) ? Sanitize::key( $_GET[ $key ] ) : '';
+	protected function _get( $key = 'action', $default = '' ) : string {
+		return $this->_is( $key ) ? Sanitize::key( $_GET[ $key ] ) : $default;
 	}
 
 	protected function _is( $key = 'action' ) : bool {
