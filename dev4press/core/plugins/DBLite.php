@@ -88,13 +88,13 @@ abstract class DBLite {
 		return Sanitize::ids_list( $ids );
 	}
 
-	public function prepare_in_list( array $items, string $mod = '%s' ) {
+	public function prepare_in_list( array $items, string $mod = '%s' ) : ?string {
 		$replace = array_fill( 0, count( $items ), $mod );
 
 		return $this->wpdb()->prepare( join( ', ', $replace ), $items );
 	}
 
-	public function build_query( $sql, $calc_found_rows = true ) : string {
+	public function build_query( array $sql, bool $calc_found_rows = true ) : string {
 		$defaults = array(
 			'select' => array(),
 			'from'   => array(),
@@ -127,7 +127,7 @@ abstract class DBLite {
 		return $_build;
 	}
 
-	public function query( $query ) {
+	public function query( string $query ) {
 		$_value = $this->wpdb()->query( $query );
 
 		$this->_copy_logged_query();
@@ -135,7 +135,7 @@ abstract class DBLite {
 		return $_value;
 	}
 
-	public function run( $query = null, $output = OBJECT ) {
+	public function run( string $query, string $output = OBJECT ) {
 		$_value = $this->wpdb()->get_results( $query, $output );
 
 		$this->_copy_logged_query();
@@ -143,7 +143,7 @@ abstract class DBLite {
 		return $_value;
 	}
 
-	public function run_and_index( $query, $field, $output = OBJECT ) : array {
+	public function run_and_index( string $query, string $field, string $output = OBJECT ) : array {
 		$raw = $this->wpdb()->get_results( $query, $output );
 
 		$_value = $this->index( $raw, $field );
@@ -153,7 +153,7 @@ abstract class DBLite {
 		return $_value;
 	}
 
-	public function get_var( $query, $x = 0, $y = 0 ) {
+	public function get_var( string $query, $x = 0, $y = 0 ) {
 		$_value = $this->wpdb()->get_var( $query, $x, $y );
 
 		$this->_copy_logged_query();
@@ -161,7 +161,7 @@ abstract class DBLite {
 		return $_value;
 	}
 
-	public function get_row( $query = null, $output = OBJECT, $y = 0 ) {
+	public function get_row( string $query, string $output = OBJECT, $y = 0 ) {
 		$_value = $this->wpdb()->get_row( $query, $output, $y );
 
 		$this->_copy_logged_query();
@@ -169,7 +169,7 @@ abstract class DBLite {
 		return $_value;
 	}
 
-	public function get_col( $query = null, $x = 0 ) {
+	public function get_col( string $query, $x = 0 ) {
 		$_value = $this->wpdb()->get_col( $query, $x );
 
 		$this->_copy_logged_query();
@@ -177,7 +177,7 @@ abstract class DBLite {
 		return $_value;
 	}
 
-	public function get_results( $query = null, $output = OBJECT ) {
+	public function get_results( string $query, string $output = OBJECT ) {
 		$_value = $this->wpdb()->get_results( $query, $output );
 
 		$this->_copy_logged_query();
@@ -185,7 +185,7 @@ abstract class DBLite {
 		return $_value;
 	}
 
-	public function insert( $table, $data, $format = null ) {
+	public function insert( string $table, $data, $format = null ) {
 		$_value = $this->wpdb()->insert( $table, $data, $format );
 
 		$this->_copy_logged_query();
@@ -193,7 +193,7 @@ abstract class DBLite {
 		return $_value;
 	}
 
-	public function update( $table, $data, $where, $format = null, $where_format = null ) {
+	public function update( string $table, $data, $where, $format = null, $where_format = null ) {
 		$_value = $this->wpdb()->update( $table, $data, $where, $format, $where_format );
 
 		$this->_copy_logged_query();
@@ -201,7 +201,7 @@ abstract class DBLite {
 		return $_value;
 	}
 
-	public function delete( $table, $where, $where_format = null ) {
+	public function delete( string $table, $where, $where_format = null ) {
 		$_value = $this->wpdb()->delete( $table, $where, $where_format );
 
 		$this->_copy_logged_query();
@@ -209,7 +209,19 @@ abstract class DBLite {
 		return $_value;
 	}
 
-	public function prepare( $query, $args ) {
+	public function delete_by_ids( string $table, string $field, array $ids = array() ) {
+		$ids = $this->clean_ids_list( $ids );
+
+		if ( empty( $ids ) ) {
+			return false;
+		}
+
+		$sql = "DELETE FROM `$table` WHERE $field IN (" . $this->prepare_in_list( $ids, '%d' ) . ")";
+
+		return $this->query( $sql );
+	}
+
+	public function prepare( string $query, $args ) {
 		$args = func_get_args();
 		array_shift( $args );
 
@@ -220,7 +232,7 @@ abstract class DBLite {
 		return $this->wpdb()->prepare( $query, $args );
 	}
 
-	public function insert_meta_data( $table, $column, $id, $meta ) {
+	public function insert_meta_data( string $table, string $column, $id, $meta ) {
 		foreach ( $meta as $key => $value ) {
 			$this->insert( $table, array(
 				$column      => $id,
