@@ -507,6 +507,10 @@ details.d4p-section-details > div .form-table code {
   vertical-align: bottom;
   color: #111;
 }
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._scope span i.d4p-ui-cog-slash,
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._settings span i.d4p-ui-cog-slash {
+  opacity: 0.5;
+}
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._scope {
   padding-left: 1em;
 }
