@@ -95,7 +95,7 @@ abstract class Grid {
 	}
 
 	protected function no_items() {
-		_e( 'No items found.' );
+		_e( "No items found.", "d4plib" );
 	}
 
 	protected function current_page() {
@@ -133,10 +133,10 @@ abstract class Grid {
 		$this->filter_elements();
 
 		if ( $this->show_search ) {
-			echo '<input placeholder="' . __( "Search keywords..." ) . '" type="text" name="search" value="' . esc_attr( $this->filters['search'] ) . '" />';
+			echo '<input placeholder="' . __( "Search keywords...", "d4plib" ) . '" type="text" name="search" value="' . esc_attr( $this->filters['search'] ) . '" />';
 		}
 
-		echo '<input type="submit" value="' . __( "Filter" ) . '"/>';
+		echo '<input type="submit" value="' . __( "Filter", "d4plib" ) . '"/>';
 		echo '</div>';
 	}
 
@@ -172,7 +172,7 @@ abstract class Grid {
 		        $page_links[] = sprintf(
 			        "<a class='first-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 			        esc_url( remove_query_arg( 'pg', $current_url ) ),
-			        __( 'First page' ),
+			        __( "First page", "d4plib" ),
 			        $this->sortables['first']
 		        );
 	        }
@@ -183,21 +183,21 @@ abstract class Grid {
 		        $page_links[] = sprintf(
 			        "<a class='prev-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 			        esc_url( add_query_arg( 'pg', max( 1, $current - 1 ), $current_url ) ),
-			        __( 'Previous page' ),
+			        __( "Previous page", "d4plib" ),
 			        $this->sortables['prev']
 		        );
 	        }
 
 	        $html_current_page = sprintf(
 		        "%s<input class='current-page' id='current-page-selector' type='number' step='1' min='1' max='%d' name='pg' value='%s' aria-describedby='table-paging' /><span class='tablenav-paging-text'>",
-		        '<label for="current-page-selector" class="screen-reader-text">' . __( 'Current Page' ) . '</label>',
+		        '<label for="current-page-selector" class="screen-reader-text">' . __( "Current Page", "d4plib" ) . '</label>',
 		        $total_pages,
 		        $current
 	        );
 
 	        $html_total_pages = sprintf( "<span class='total-pages'>%s</span>", number_format_i18n( $total_pages ) );
 	        $page_links[]     = $total_pages_before . sprintf(
-			        _x( '%1$s of %2$s', 'paging' ),
+			        _x( '%1$s of %2$s', 'paging', "d4plib" ),
 			        $html_current_page,
 			        $html_total_pages
 		        ) . $total_pages_after;
@@ -208,7 +208,7 @@ abstract class Grid {
 		        $page_links[] = sprintf(
 			        "<a class='next-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 			        esc_url( add_query_arg( 'pg', min( $total_pages, $current + 1 ), $current_url ) ),
-			        __( 'Next page' ),
+			        __( "Next page", "d4plib" ),
 			        $this->sortables['next']
 		        );
 	        }
@@ -219,14 +219,14 @@ abstract class Grid {
 		        $page_links[] = sprintf(
 			        "<a class='last-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 			        esc_url( add_query_arg( 'pg', $total_pages, $current_url ) ),
-			        __( 'Last page' ),
+			        __( "Last page", "d4plib" ),
 			        $this->sortables['last']
 		        );
 	        }
         }
 
 		$output = '<span class="displaying-num">' . sprintf(
-				_n( '%s item', '%s items', $total_items ),
+				_n( "%s item", "%s items", $total_items, "d4plib" ),
 				number_format_i18n( $total_items )
 			) . '</span>';
 

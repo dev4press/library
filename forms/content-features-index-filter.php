@@ -18,6 +18,6 @@ $buttons = panel()->get_filter_buttons();
 		?>
     </div>
     <div class="d4p-features-filter-search">
-        <input placeholder="<?php esc_html_e("Search..."); ?>" type="text"/><i class="d4p-icon d4p-ui-clear"></i>
+        <input placeholder="<?php esc_html_e( "Search...", "d4plib" ); ?>" type="text"/><i class="d4p-icon d4p-ui-clear"></i>
     </div>
 </div>

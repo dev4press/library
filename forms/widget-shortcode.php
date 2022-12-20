@@ -23,7 +23,7 @@ $shortcode_notice = $this->get_shortcode_notice();
 	<?php if ( ! empty( $shortcode_notice ) ) { ?>
         <tr>
             <td class="cell-singular">
-                <h5><?php _e( "Notice" ); ?>:</h5>
+                <h5><?php _e( "Notice", "d4plib" ); ?>:</h5>
 				<?php echo $shortcode_notice; ?>
             </td>
         </tr>

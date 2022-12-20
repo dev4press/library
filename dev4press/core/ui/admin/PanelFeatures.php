@@ -44,20 +44,20 @@ abstract class PanelFeatures extends Panel {
 
 	public function get_filter_counters() : array {
 		return array(
-			'all'       => array( 'label' => __( "All" ), 'selector' => '._is-feature' ),
-			'always-on' => array( 'label' => __( "Always On" ), 'selector' => '._is-feature._is-always-on' ),
-			'active'    => array( 'label' => __( "Active" ), 'selector' => '._is-feature._is-active' ),
-			'disabled'  => array( 'label' => __( "Disabled" ), 'selector' => '._is-feature:not(._is-active)' )
+			'all'       => array( 'label' => __( "All", "d4plib" ), 'selector' => '._is-feature' ),
+			'always-on' => array( 'label' => __( "Always On", "d4plib" ), 'selector' => '._is-feature._is-always-on' ),
+			'active'    => array( 'label' => __( "Active", "d4plib" ), 'selector' => '._is-feature._is-active' ),
+			'disabled'  => array( 'label' => __( "Disabled", "d4plib" ), 'selector' => '._is-feature:not(._is-active)' )
 		);
 	}
 
 	public function get_filter_buttons() : array {
 		return array(
-			'all'              => array( 'label' => __( "All" ), 'selector' => '._is-feature', 'default' => true ),
-			'always-on'        => array( 'label' => __( "Always On" ), 'selector' => '._is-feature._is-always-on' ),
-			'always-on-active' => array( 'label' => __( "Always On + Active" ), 'selector' => '._is-feature._is-active' ),
-			'active'           => array( 'label' => __( "Active" ), 'selector' => '._is-feature._is-active:not(._is-always-on)' ),
-			'disabled'         => array( 'label' => __( "Disabled" ), 'selector' => '._is-feature:not(._is-active)' )
+			'all'              => array( 'label' => __( "All", "d4plib" ), 'selector' => '._is-feature', 'default' => true ),
+			'always-on'        => array( 'label' => __( "Always On", "d4plib" ), 'selector' => '._is-feature._is-always-on' ),
+			'always-on-active' => array( 'label' => __( "Always On + Active", "d4plib" ), 'selector' => '._is-feature._is-active' ),
+			'active'           => array( 'label' => __( "Active", "d4plib" ), 'selector' => '._is-feature._is-active:not(._is-always-on)' ),
+			'disabled'         => array( 'label' => __( "Disabled", "d4plib" ), 'selector' => '._is-feature:not(._is-active)' )
 		);
 	}
 }

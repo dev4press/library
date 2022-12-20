@@ -318,8 +318,8 @@ abstract class Plugin {
 		return (object) array(
 			'default' => true,
 			'icon'    => 'ui-cog',
-			'title'   => __( "Panel" ),
-			'info'    => __( "Information" )
+			'title'   => __( "Panel", "d4plib" ),
+			'info'    => __( "Information", "d4plib" )
 		);
 	}
 
