@@ -221,28 +221,6 @@ class WPR {
 		}
 	}
 
-	/**
-	 * @param int[] $posts
-	 *
-	 * @global wpdb $wpdb
-	 */
-	public static function cache_posts_by_ids( array $posts ) {
-		global $wpdb;
-
-		$posts = _get_non_cached_ids( $posts, 'posts' );
-		$posts = array_filter( $posts );
-
-		if ( ! empty( $posts ) ) {
-			$sql = 'SELECT * FROM ' . $wpdb->posts . ' WHERE ID IN (' . join( ',', $posts ) . ')';
-			$raw = $wpdb->get_results( $sql );
-
-			foreach ( $raw as $_post ) {
-				$_post = sanitize_post( $_post, 'raw' );
-				wp_cache_add( $_post->ID, $_post, 'posts' );
-			}
-		}
-	}
-
 	public static function flush_rewrite_rules() {
 		global $wp_rewrite;
 
@@ -687,7 +665,19 @@ class WPR {
 		return preg_match( "/200/", $headers[0] ) === 1;
 	}
 
-	/*
+	/**
+	 * @param int[] $posts
+	 *
+	 * @deprecated since version 3.9 to be removed in 4.0
+	 * @global wpdb $wpdb
+	 */
+	public static function cache_posts_by_ids( array $posts ) {
+		_deprecated_function( __METHOD__, '3.9', '_prime_post_caches()' );
+
+		_prime_post_caches( $posts );
+	}
+
+	/**
 	 * @deprecated since version 3.9 to be removed in 4.0
 	 */
 	public static function all_user_roles() : array {

@@ -194,7 +194,7 @@ abstract class Widget extends WP_Widget {
 
 		if ( isset( $new_instance['_roles'] ) ) {
 			$_roles      = array_map( '\Dev4Press\v39\Core\Quick\Sanitize::basic', $new_instance['_roles'] );
-			$valid_roles = WPR::all_user_roles();
+			$valid_roles = WPR::list_user_roles();
 
 			foreach ( $_roles as $role ) {
 				if ( isset( $valid_roles[ $role ] ) ) {
