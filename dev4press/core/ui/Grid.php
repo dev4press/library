@@ -148,91 +148,91 @@ abstract class Grid {
 
 		$page_links = array();
 
-		if ($total_items > 0) {
-	        $total_pages_before = '<span class="paging-input">';
-	        $total_pages_after  = '</span></span>';
+		if ( $total_items > 0 ) {
+			$total_pages_before = '<span class="paging-input">';
+			$total_pages_after  = '</span></span>';
 
-	        $disable_first = false;
-	        $disable_last  = false;
-	        $disable_prev  = false;
-	        $disable_next  = false;
+			$disable_first = false;
+			$disable_last  = false;
+			$disable_prev  = false;
+			$disable_next  = false;
 
-	        if ( 1 == $current ) {
-		        $disable_first = true;
-		        $disable_prev  = true;
-	        }
-	        if ( $total_pages == $current ) {
-		        $disable_last = true;
-		        $disable_next = true;
-	        }
+			if ( 1 == $current ) {
+				$disable_first = true;
+				$disable_prev  = true;
+			}
+			if ( $total_pages == $current ) {
+				$disable_last = true;
+				$disable_next = true;
+			}
 
-	        if ( $disable_first ) {
-		        $page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['first'] . '</span>';
-	        } else {
-		        $page_links[] = sprintf(
-			        "<a class='first-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
-			        esc_url( remove_query_arg( 'pg', $current_url ) ),
-			        __( "First page", "d4plib" ),
-			        $this->sortables['first']
-		        );
-	        }
+			if ( $disable_first ) {
+				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['first'] . '</span>';
+			} else {
+				$page_links[] = sprintf(
+					"<a class='first-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
+					esc_url( remove_query_arg( 'pg', $current_url ) ),
+					__( "First page", "d4plib" ),
+					$this->sortables['first']
+				);
+			}
 
-	        if ( $disable_prev ) {
-		        $page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['prev'] . '</span>';
-	        } else {
-		        $page_links[] = sprintf(
-			        "<a class='prev-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
-			        esc_url( add_query_arg( 'pg', max( 1, $current - 1 ), $current_url ) ),
-			        __( "Previous page", "d4plib" ),
-			        $this->sortables['prev']
-		        );
-	        }
+			if ( $disable_prev ) {
+				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['prev'] . '</span>';
+			} else {
+				$page_links[] = sprintf(
+					"<a class='prev-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
+					esc_url( add_query_arg( 'pg', max( 1, $current - 1 ), $current_url ) ),
+					__( "Previous page", "d4plib" ),
+					$this->sortables['prev']
+				);
+			}
 
-	        $html_current_page = sprintf(
-		        "%s<input class='current-page' id='current-page-selector' type='number' step='1' min='1' max='%d' name='pg' value='%s' aria-describedby='table-paging' /><span class='tablenav-paging-text'>",
-		        '<label for="current-page-selector" class="screen-reader-text">' . __( "Current Page", "d4plib" ) . '</label>',
-		        $total_pages,
-		        $current
-	        );
+			$html_current_page = sprintf(
+				"%s<input class='current-page' id='current-page-selector' type='number' step='1' min='1' max='%d' name='pg' value='%s' aria-describedby='table-paging' /><span class='tablenav-paging-text'>",
+				'<label for="current-page-selector" class="screen-reader-text">' . __( "Current Page", "d4plib" ) . '</label>',
+				$total_pages,
+				$current
+			);
 
-	        $html_total_pages = sprintf( "<span class='total-pages'>%s</span>", number_format_i18n( $total_pages ) );
-	        $page_links[]     = $total_pages_before . sprintf(
-			        _x( '%1$s of %2$s', 'paging', "d4plib" ),
-			        $html_current_page,
-			        $html_total_pages
-		        ) . $total_pages_after;
+			$html_total_pages = sprintf( "<span class='total-pages'>%s</span>", number_format_i18n( $total_pages ) );
+			$page_links[]     = $total_pages_before . sprintf(
+					_x( '%1$s of %2$s', 'paging', "d4plib" ),
+					$html_current_page,
+					$html_total_pages
+				) . $total_pages_after;
 
-	        if ( $disable_next ) {
-		        $page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['next'] . '</span>';
-	        } else {
-		        $page_links[] = sprintf(
-			        "<a class='next-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
-			        esc_url( add_query_arg( 'pg', min( $total_pages, $current + 1 ), $current_url ) ),
-			        __( "Next page", "d4plib" ),
-			        $this->sortables['next']
-		        );
-	        }
+			if ( $disable_next ) {
+				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['next'] . '</span>';
+			} else {
+				$page_links[] = sprintf(
+					"<a class='next-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
+					esc_url( add_query_arg( 'pg', min( $total_pages, $current + 1 ), $current_url ) ),
+					__( "Next page", "d4plib" ),
+					$this->sortables['next']
+				);
+			}
 
-	        if ( $disable_last ) {
-		        $page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['last'] . '</span>';
-	        } else {
-		        $page_links[] = sprintf(
-			        "<a class='last-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
-			        esc_url( add_query_arg( 'pg', $total_pages, $current_url ) ),
-			        __( "Last page", "d4plib" ),
-			        $this->sortables['last']
-		        );
-	        }
-        }
+			if ( $disable_last ) {
+				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['last'] . '</span>';
+			} else {
+				$page_links[] = sprintf(
+					"<a class='last-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
+					esc_url( add_query_arg( 'pg', $total_pages, $current_url ) ),
+					__( "Last page", "d4plib" ),
+					$this->sortables['last']
+				);
+			}
+		}
 
 		$output = '<span class="displaying-num">' . sprintf(
 				_n( "%s item", "%s items", $total_items, "d4plib" ),
 				number_format_i18n( $total_items )
 			) . '</span>';
 
-        if (!empty($page_links)) {
-	        $output .= "\n<span class='pagination-links'>" . implode( "\n", $page_links ) . '</span>';
-        }
+		if ( ! empty( $page_links ) ) {
+			$output .= "\n<span class='pagination-links'>" . implode( "\n", $page_links ) . '</span>';
+		}
 
 		echo "<div class='d4p-grid-pager'>$output</div>";
 	}
@@ -293,7 +293,7 @@ abstract class Grid {
 	}
 
 	protected function row( $item ) {
-		echo '<tr class="'.$this->row_class($item).'">';
+		echo '<tr class="' . $this->row_class( $item ) . '">';
 
 		$columns = $this->table_columns;
 
@@ -312,9 +312,9 @@ abstract class Grid {
 		echo '</tr>';
 	}
 
-    protected function row_class($item) : string{
-        return '';
-    }
+	protected function row_class( $item ) : string {
+		return '';
+	}
 
 	protected function filter_elements() {
 
