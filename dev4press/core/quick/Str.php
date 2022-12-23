@@ -34,25 +34,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Str {
-	public static function starts_with( $haystack, $needle ) : bool {
+	public static function starts_with( string $haystack, string $needle ) : bool {
 		$length = strlen( $needle );
 
 		return ! ( $length === 0 ) && substr( $haystack, 0, $length ) === $needle;
 	}
 
-	public static function ends_with( $haystack, $needle ) : bool {
+	public static function ends_with( string $haystack, string $needle ) : bool {
 		$length = strlen( $needle );
 
 		return ! ( $length === 0 ) && substr( $haystack, - $length ) === $needle;
 	}
 
-	public static function is_valid_datetime( $date, $format = 'Y-m-d H:i:s' ) : bool {
+	public static function is_valid_datetime( string $date, string $format = 'Y-m-d H:i:s' ) : bool {
 		$d = DateTime::createFromFormat( $format, $date );
 
 		return $d && $d->format( $format ) == $date;
 	}
 
-	public static function is_regex_valid( $regex ) {
+	public static function is_regex_valid( string $regex ) {
 		if ( preg_match( '/' . $regex . '/i', 'dev4press' ) !== false ) {
 			return true;
 		}
@@ -60,15 +60,15 @@ class Str {
 		return preg_last_error();
 	}
 
-	public static function is_valid_md5( $hash = '' ) : bool {
+	public static function is_valid_md5( string $hash = '' ) : bool {
 		return strlen( $hash ) == 32 && ctype_xdigit( $hash );
 	}
 
-	public static function left( $s1, $s2 ) {
+	public static function left( string $s1, string $s2 ) {
 		return substr( $s1, 0, strpos( $s1, $s2 ) );
 	}
 
-	public static function replace_first( $search, $replace, $subject ) {
+	public static function replace_first( string $search, string $replace, string $subject ) {
 		$pos = strpos( $subject, $search );
 
 		if ( $pos !== false ) {
@@ -78,13 +78,13 @@ class Str {
 		return $subject;
 	}
 
-	public static function slug_to_name( $code, $sep = '_' ) : string {
+	public static function slug_to_name( string $code, string $sep = '_' ) : string {
 		$exp = explode( $sep, $code );
 
 		return ucwords( strtolower( join( ' ', $exp ) ) );
 	}
 
-	public static function to_ids( $input, $delimiter = ',', $map = 'absint' ) : string {
+	public static function to_ids( string $input, string $delimiter = ',', string $map = 'absint' ) : array {
 		$ids = strip_tags( stripslashes( $input ) );
 
 		$ids = explode( $delimiter, $ids );
@@ -94,7 +94,7 @@ class Str {
 		return array_filter( $ids );
 	}
 
-	public static function replace_tags( $content, $tags, $before = '%', $after = '%' ) : string {
+	public static function replace_tags( string $content, array $tags, string $before = '%', string $after = '%' ) : string {
 		foreach ( $tags as $tag => $replace ) {
 			$_tag = $before . $tag . $after;
 
@@ -106,7 +106,7 @@ class Str {
 		return $content;
 	}
 
-	public static function split_to_list( $value, $empty_lines = false ) {
+	public static function split_to_list( string $value, bool $empty_lines = false ) {
 		$elements = preg_split( "/[\n\r]/", $value );
 
 		if ( ! $empty_lines ) {
@@ -124,7 +124,7 @@ class Str {
 		}
 	}
 
-	public static function to_length( $text, $length = 200, $append = '&hellip;' ) : string {
+	public static function to_length( string $text, int $length = 200, string $append = '&hellip;' ) : string {
 		$text_length = function_exists( 'mb_strlen' )
 			?
 			mb_strlen( $text )
@@ -144,7 +144,7 @@ class Str {
 		return $text;
 	}
 
-	public static function entity_decode( $content, $quote_style = null, $charset = null ) : string {
+	public static function entity_decode( string $content, $quote_style = null, $charset = null ) : string {
 		if ( null === $quote_style ) {
 			$quote_style = ENT_QUOTES;
 		}
@@ -156,7 +156,7 @@ class Str {
 		return html_entity_decode( $content, $quote_style, $charset );
 	}
 
-	public static function extract_images_urls( $search, $limit = 0 ) {
+	public static function extract_images_urls( string $search, int $limit = 0 ) {
 		$images  = array();
 		$matches = array();
 
