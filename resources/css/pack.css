@@ -2688,7 +2688,7 @@ a > .d4p-icon {
 }
 
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge {
-  padding: 2em;
+  padding: 2em 1.5em;
   text-align: center;
   border-radius: var(--d4p-layout-main-border-radius);
 }
@@ -2706,7 +2706,7 @@ a > .d4p-icon {
   font-size: 32px;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge ._version-wrapper {
-  margin: 1.6em -1.6em -1.6em;
+  margin: 1.6em -1.1em -1.2em;
   padding: 1em;
   border-top: 1px solid var(--d4p-color-main-border);
   font-size: 1.3em;
