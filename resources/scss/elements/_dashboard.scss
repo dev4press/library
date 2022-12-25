@@ -113,12 +113,12 @@
                         padding: 15px;
 
                         h4 {
-                            margin: 0 0 15px;
+                            margin: 0 0 1em;
                             font-size: 1.15em;
                         }
 
                         hr {
-                            margin: 15px 0;
+                            margin: 1em 0;
                             border: 0;
                             border-top: 1px solid #DDD;
                         }
@@ -133,7 +133,7 @@
 
                             &.d4p-with-bullets {
                                 list-style: outside disc;
-                                margin-left: 20px;
+                                margin-left: 1em;
 
                                 li {
                                     list-style: inherit;
@@ -149,7 +149,7 @@
                     .d4p-group-footer {
                         position: absolute;
                         border-top: 1px solid #EEE;
-                        padding: 10px 15px;
+                        padding: 1em;
                         text-align: left;
                         bottom: 0;
                         width: 100%;
@@ -196,7 +196,7 @@
 
                     .d4p-group-header {
                         border-bottom: 1px solid #EEE;
-                        padding: 10px 15px;
+                        padding: 1em;
                         background: #FAFAFA;
                         text-align: left;
                     }
@@ -205,9 +205,13 @@
                     .d4p-group-header,
                     .d4p-group-footer {
                         ul {
+                            display: flex;
+                            flex-wrap: wrap;
                             list-style: none;
                             padding: 0;
                             margin: 0;
+                            column-gap: 1em;
+                            row-gap: .5em;
 
                             li {
                                 list-style: none;
@@ -215,8 +219,7 @@
                                 margin: 0;
                                 line-height: 2em;
                                 font-size: 1em;
-                                width: 50%;
-                                float: left;
+                                flex: 1 1 calc(50% - .5em);
 
                                 a {
                                     text-decoration: none;
@@ -235,19 +238,12 @@
                                 .d4p-card-badge {
                                     margin-top: 2px;
                                 }
-
-                                &:nth-child(odd) {
-                                    padding-right: 10px;
-                                }
-
-                                &:nth-child(even) {
-                                    padding-left: 10px;
-                                }
                             }
 
                             &.d4p-full-width {
+                                display: block;
+
                                 li {
-                                    float: none;
                                     width: 100%;
                                     padding: 0;
                                 }
@@ -261,7 +257,7 @@
 
                     .d4p-dashboard-status-row {
                         display: block;
-                        margin: 8px 0 8px;
+                        margin: .5em 0;
                         font-size: 15px;
                         line-height: 24px;
 
