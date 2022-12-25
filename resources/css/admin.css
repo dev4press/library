@@ -517,7 +517,7 @@
   margin: -1em;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-cards-wrapper .d4p-group.d4p-dashboard-card {
-  flex: 1 1 calc(50% - 2em);
+  flex: 0 1 calc(50% - 2em);
   margin: 1em;
   position: relative;
 }
@@ -547,7 +547,7 @@
   font-size: 1.15em;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner hr {
-  margin: 1em 0;
+  margin: 0.5em 0;
   border: 0;
   border-top: 1px solid #DDD;
 }
@@ -627,7 +627,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  line-height: 2em;
+  line-height: 1.7;
   font-size: 1em;
   flex: 1 1 calc(50% - 0.5em);
 }

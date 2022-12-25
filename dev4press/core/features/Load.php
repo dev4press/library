@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v39\Core\Features;
 
+use Dev4Press\Plugin\GDBBX\Basic\Posts;
 use Dev4Press\v39\Core\Scope;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -197,6 +198,31 @@ abstract class Load {
 		if ( $this->is_valid( $feature ) ) {
 			$this->s()->set( $feature, $status, 'load', true );
 		}
+	}
+
+	public function get_counts() : array {
+		$features = array(
+			'total'  => count( $this->_list ),
+			'active' => 0,
+			'always' => 0,
+			'beta'   => 0
+		);
+
+		foreach ( array_keys( $this->_list ) as $feature ) {
+			if ( $this->is_enabled( $feature ) ) {
+				$features['active'] ++;
+			}
+
+			if ( $this->is_always_on( $feature ) ) {
+				$features['always'] ++;
+			}
+
+			if ( $this->is_beta( $feature ) ) {
+				$features['beta'] ++;
+			}
+		}
+
+		return $features;
 	}
 
 	abstract public function s();
