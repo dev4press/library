@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 12/20/2022 03:50:03 PM\n"
+"POT-Creation-Date: 12/25/2022 01:02:47 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -358,22 +358,22 @@ msgid "All"
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelFeatures.php:47
-#: dev4press/core/ui/admin/PanelFeatures.php:56
+#: dev4press/core/ui/admin/PanelFeatures.php:59
 msgid "Always On"
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelFeatures.php:48
-#: dev4press/core/ui/admin/PanelFeatures.php:58
+#: dev4press/core/ui/admin/PanelFeatures.php:65
 #: forms/content-features-index.php:72
 msgid "Active"
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelFeatures.php:49
-#: dev4press/core/ui/admin/PanelFeatures.php:59
+#: dev4press/core/ui/admin/PanelFeatures.php:68
 msgid "Disabled"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelFeatures.php:57
+#: dev4press/core/ui/admin/PanelFeatures.php:62
 msgid "Always On + Active"
 msgstr ""
 
