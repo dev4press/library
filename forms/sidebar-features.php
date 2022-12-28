@@ -1,10 +1,12 @@
 <?php
 
+use Dev4Press\Plugin\GDBBX\Basic\Features;
 use function Dev4Press\v39\Functions\panel;
 
 $_panel     = panel()->a()->panel_object();
 $_subpanel  = panel()->a()->subpanel;
 $_subpanels = panel()->subpanels();
+$_beta      = Features::instance()->is_beta( $_subpanel );
 
 $_url_reset = panel()->a()->current_url();
 $_url_reset = add_query_arg( array(
@@ -24,6 +26,10 @@ $_url_reset = add_query_arg( array(
 			<?php
 
 			echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . $_subpanels[ $_subpanel ]['title'] . '</h4>';
+
+			if ( $_beta ) {
+				echo '<div class="_beta"><i class="d4p-icon d4p-ui-flask"></i> <span>' . __( "Beta Feature", "d4plib" ) . '</span></div>';
+			}
 
 			?>
             <div class="_info">

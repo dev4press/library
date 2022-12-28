@@ -271,6 +271,26 @@
                 }
             }
 
+            ._beta {
+                margin: 1em 0 0;
+                padding: .5em;
+                background-color: var(--d4p-color-sidebar-icon-background);
+                border: 1px solid var(--d4p-color-feature-beta-text);
+                color: var(--d4p-color-feature-beta-text);
+                border-radius: var(--d4p-layout-main-border-radius);
+                font-size: 1.1em;
+                line-height: 1.6;
+
+                i {
+                    font-size: 1.1em;
+                    margin-right: .2em;
+                }
+
+                span {
+
+                }
+            }
+
             h3 {
                 font-size: 28px;
                 word-break: keep-all;
