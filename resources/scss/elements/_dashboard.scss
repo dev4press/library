@@ -113,12 +113,12 @@
                         padding: 15px;
 
                         h4 {
-                            margin: 0 0 1em;
+                            margin: 0 0 .75em;
                             font-size: 1.15em;
                         }
 
                         hr {
-                            margin: .5em 0;
+                            margin: .75em 0;
                             border: 0;
                             border-top: 1px solid #DDD;
                         }
@@ -140,10 +140,6 @@
                                 }
                             }
                         }
-                    }
-
-                    .d4p-group-header + .d4p-group-inner {
-                        margin-bottom: 3.5em;
                     }
 
                     .d4p-group-footer {
@@ -211,7 +207,7 @@
                             padding: 0;
                             margin: 0;
                             column-gap: 1em;
-                            row-gap: .5em;
+                            row-gap: .25em;
 
                             li {
                                 list-style: none;
@@ -241,7 +237,7 @@
                             }
 
                             &.d4p-full-width {
-                                display: block;
+                                flex-direction: column;
 
                                 li {
                                     width: 100%;
@@ -256,15 +252,32 @@
                     }
 
                     .d4p-dashboard-status-row {
-                        display: block;
+                        display: flex;
+                        gap: .75em;
+                        align-items: flex-start;
+                        flex-wrap: nowrap;
                         margin: .5em 0;
                         font-size: 15px;
                         line-height: 24px;
 
+                        button {
+                            padding: 0;
+                            border: 0;
+                            margin: 0;
+                            background: transparent;
+                            cursor: pointer;
+                        }
+
                         .d4p-type-toggle {
+                            flex-shrink: 1;
                             font-size: 22px;
-                            vertical-align: bottom;
-                            margin: 0 5px 0 0;
+                            line-height: 1;
+                            vertical-align: top;
+
+                            i {
+                                vertical-align: top;
+                                font-size: 1.2em;
+                            }
 
                             &.d4p-type-status-enabled {
                                 color: #3B7D33;
@@ -273,6 +286,20 @@
                             &.d4p-type-status-disabled {
                                 color: #D05757;
                             }
+                        }
+
+                        div {
+                            flex-grow: 1;
+
+                            em {
+                                display: block;
+                            }
+                        }
+                    }
+
+                    &:not(.d4p-dashboard-card-no-footer) {
+                        .d4p-group-header + .d4p-group-inner {
+                            margin-bottom: 3.5em;
                         }
                     }
                 }
