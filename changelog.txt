@@ -7,12 +7,14 @@
 * New: Features panel with filtering and search
 * New: Many new features related to the interface
 * New: System requirements - PHP 7.3
+* New: System requirements - Tested with PHP 8.1 and 8.2
 * Updated: Various improvements to the admin styling
 * Updated: Instance methods for some abstract classes
 * Updated: Improvements for the Settings class
 * Updated: Improvements to the Widgets class
 * Updated: Various improvements to Core classes
-* Updated: Expanded BBPress static core class
+* Updated: Expanded BBPress static Core class
+* Updated: Additional icons to the Icons font
 * Updated: Built-in cacert.pem 20221011
 * Updated: Clipboard.js 2.0.11
 * Removed: All previously deprecated functions
