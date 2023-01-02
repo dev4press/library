@@ -195,6 +195,10 @@
                         }
                     }
                 }
+
+                i {
+                    font-size: 2em;
+                }
             }
 
             ._scope,
@@ -238,6 +242,10 @@
                     text-align: right;
                 }
             }
+        }
+
+        &._is-hidden {
+            opacity: .5;
         }
 
         &._is-active {

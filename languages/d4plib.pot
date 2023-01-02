@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 12/25/2022 01:02:47 PM\n"
+"POT-Creation-Date: 01/02/2023 11:03:45 AM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -364,7 +364,7 @@ msgstr ""
 
 #: dev4press/core/ui/admin/PanelFeatures.php:48
 #: dev4press/core/ui/admin/PanelFeatures.php:65
-#: forms/content-features-index.php:72
+#: forms/content-features-index.php:76
 msgid "Active"
 msgstr ""
 
@@ -920,18 +920,30 @@ msgid "OFF"
 msgstr ""
 
 #: forms/content-features-index-filter.php:20
+msgid "Search features by keyword"
+msgstr ""
+
+#: forms/content-features-index-filter.php:20
 msgid "Search..."
 msgstr ""
 
-#: forms/content-features-index.php:89
+#: forms/content-features-index.php:100
 msgid "This is a Beta feature, and it can be unstable!"
 msgstr ""
 
 #: forms/content-features-index.php:79
-msgid "This feature has no settings"
+msgid "This feature can't be enabled because of the missing prerequisites."
 msgstr ""
 
 #: forms/content-features-index.php:84
+msgid "This feature can't be enabled at this time."
+msgstr ""
+
+#: forms/content-features-index.php:89
+msgid "This feature has no settings"
+msgstr ""
+
+#: forms/content-features-index.php:95
 msgid "This feature adds a new panel"
 msgstr ""
 
@@ -943,7 +955,7 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: forms/content-features-index.php:77
+#: forms/content-features-index.php:87
 msgid "Settings for '%s'"
 msgstr ""
 
@@ -1077,29 +1089,33 @@ msgstr ""
 msgid "Disable All"
 msgstr ""
 
-#: forms/sidebar-features.php:40
+#: forms/sidebar-features.php:46
 #: forms/sidebar-settings-full.php:33
 #: forms/sidebar-settings.php:26
 msgid "Save Settings"
 msgstr ""
 
-#: forms/sidebar-features.php:34
+#: forms/sidebar-features.php:40
 msgid "More Controls"
 msgstr ""
 
-#: forms/sidebar-features.php:36
+#: forms/sidebar-features.php:42
 msgid "If you want, you can reset all the settings for this Feature to default values."
 msgstr ""
 
-#: forms/sidebar-features.php:37
+#: forms/sidebar-features.php:43
 msgid "Reset Feature Settings"
 msgstr ""
 
-#: forms/sidebar-features.php:44
+#: forms/sidebar-features.php:50
 #: forms/sidebar-settings-full.php:36
 #: forms/sidebar-settings.php:29
 #: forms/sidebar-tools.php:44
 msgid "Return to top"
+msgstr ""
+
+#: forms/sidebar-features.php:30
+msgid "Beta Feature"
 msgstr ""
 
 #: forms/sidebar-settings-full.php:27

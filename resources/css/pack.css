@@ -1009,72 +1009,76 @@ a > .d4p-icon {
   content: "\f1d4";
 }
 
-.d4p-icon.d4p-ui-toolbox:before {
+.d4p-icon.d4p-ui-toggle-slash:before {
   content: "\f1d5";
 }
 
-.d4p-icon.d4p-ui-tools:before {
+.d4p-icon.d4p-ui-toolbox:before {
   content: "\f1d6";
 }
 
-.d4p-icon.d4p-ui-traffic:before {
+.d4p-icon.d4p-ui-tools:before {
   content: "\f1d7";
 }
 
-.d4p-icon.d4p-ui-trash:before {
+.d4p-icon.d4p-ui-traffic:before {
   content: "\f1d8";
 }
 
-.d4p-icon.d4p-ui-unlock:before {
+.d4p-icon.d4p-ui-trash:before {
   content: "\f1d9";
 }
 
-.d4p-icon.d4p-ui-upload:before {
+.d4p-icon.d4p-ui-unlock:before {
   content: "\f1da";
 }
 
-.d4p-icon.d4p-ui-user-circle:before {
+.d4p-icon.d4p-ui-upload:before {
   content: "\f1db";
 }
 
-.d4p-icon.d4p-ui-user-secret:before {
+.d4p-icon.d4p-ui-user-circle:before {
   content: "\f1dc";
 }
 
-.d4p-icon.d4p-ui-user-tag:before {
+.d4p-icon.d4p-ui-user-secret:before {
   content: "\f1dd";
 }
 
-.d4p-icon.d4p-ui-user:before {
+.d4p-icon.d4p-ui-user-tag:before {
   content: "\f1de";
 }
 
-.d4p-icon.d4p-ui-users:before {
+.d4p-icon.d4p-ui-user:before {
   content: "\f1df";
 }
 
-.d4p-icon.d4p-ui-video:before {
+.d4p-icon.d4p-ui-users:before {
   content: "\f1e0";
 }
 
-.d4p-icon.d4p-ui-vote-nay:before {
+.d4p-icon.d4p-ui-video:before {
   content: "\f1e1";
 }
 
-.d4p-icon.d4p-ui-vote-yea:before {
+.d4p-icon.d4p-ui-vote-nay:before {
   content: "\f1e2";
 }
 
-.d4p-icon.d4p-ui-warning-triangle:before {
+.d4p-icon.d4p-ui-vote-yea:before {
   content: "\f1e3";
 }
 
-.d4p-icon.d4p-ui-warning:before {
+.d4p-icon.d4p-ui-warning-triangle:before {
   content: "\f1e4";
 }
 
-.d4p-icon.d4p-ui-wrench:before {
+.d4p-icon.d4p-ui-warning:before {
   content: "\f1e5";
+}
+
+.d4p-icon.d4p-ui-wrench:before {
+  content: "\f1e6";
 }
 
 .d4p-icon.d4p-ui-arrow-right:before {
@@ -3618,6 +3622,9 @@ details.d4p-section-details > div .form-table code {
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox]:checked + label:before {
   content: "\f1d4";
 }
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._activation i {
+  font-size: 2em;
+}
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._scope span,
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._scope a,
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._settings span,
@@ -3650,6 +3657,9 @@ details.d4p-section-details > div .form-table code {
 .d4p-features-wrapper .d4p-feature-box._is-always-on ._ctrl ._settings {
   flex: 1 1 100%;
   text-align: right;
+}
+.d4p-features-wrapper .d4p-feature-box._is-hidden {
+  opacity: 0.5;
 }
 .d4p-features-wrapper .d4p-feature-box._is-active {
   border-color: var(--d4p-color-feature-active-text);

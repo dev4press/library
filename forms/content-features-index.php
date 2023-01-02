@@ -44,6 +44,10 @@ $_scope_icons = array(
 				$_classes[] = '_is-always-on';
 			}
 
+			if ( $obj['hidden'] ) {
+				$_classes[] = '_is-hidden';
+			}
+
 			if ( $obj['beta'] ) {
 				$_classes[] = '_is-beta';
 			}
@@ -68,17 +72,24 @@ $_scope_icons = array(
                 </div>
                 <div class="_ctrl">
                     <div class="_activation">
-						<?php if ( ! $obj['always_on'] ) { ?>
+						<?php if ( ! $obj['always_on'] && ! $obj['hidden'] ) { ?>
                             <input<?php echo $_checked; ?> data-feature="<?php echo esc_attr( $subpanel ); ?>" id="d4p-feature-toggle-<?php echo esc_attr( $subpanel ); ?>" type="checkbox"/>
                             <label for="d4p-feature-toggle-<?php echo esc_attr( $subpanel ); ?>"><span class="d4p-accessibility-show-for-sr"><?php esc_html_e( "Active", "d4plib" ); ?></span></label>
+						<?php }
+						if ( $obj['hidden'] ) { ?>
+                            <span title="<?php esc_html_e( "This feature can't be enabled because of the missing prerequisites.", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-toggle-slash"></i></span>
 						<?php } ?>
                     </div>
                     <div class="_settings">
-						<?php if ( $obj['settings'] ) { ?>
-                            <a title="<?php echo sprintf( __( "Settings for '%s'", "d4plib" ), $obj['title'] ); ?>" href="<?php echo esc_url( $url ); ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
-						<?php } else { ?>
-                            <span title="<?php esc_html_e( "This feature has no settings", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
-						<?php } ?>
+						<?php if ( $obj['hidden'] ) { ?>
+                            <span title="<?php esc_html_e( "This feature can't be enabled at this time.", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
+						<?php } else {
+							if ( $obj['settings'] ) { ?>
+                                <a title="<?php echo sprintf( __( "Settings for '%s'", "d4plib" ), $obj['title'] ); ?>" href="<?php echo esc_url( $url ); ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
+							<?php } else { ?>
+                                <span title="<?php esc_html_e( "This feature has no settings", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
+							<?php }
+						} ?>
                     </div>
 					<?php if ( $obj['panel'] ) { ?>
                         <div class="_scope">

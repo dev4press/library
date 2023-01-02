@@ -51,12 +51,14 @@ abstract class Load {
 	}
 
 	protected function allow_load( string $feature, bool $early = false, string $scope = '' ) : bool {
-		if ( $this->is_always_on( $feature ) || $this->is_enabled( $feature ) ) {
-			if ( $early === $this->is_early( $feature ) ) {
-				$actual = $this->get_scope( $feature );
+		if ( ! $this->is_hidden( $feature ) ) {
+			if ( $this->is_always_on( $feature ) || $this->is_enabled( $feature ) ) {
+				if ( $early === $this->is_early( $feature ) ) {
+					$actual = $this->get_scope( $feature );
 
-				if ( empty( $scope ) || $actual == 'global' || $actual == $scope ) {
-					return true;
+					if ( empty( $scope ) || $actual == 'global' || $actual == $scope ) {
+						return true;
+					}
 				}
 			}
 		}
@@ -74,6 +76,7 @@ abstract class Load {
 		foreach ( $this->list() as $feature ) {
 			if ( $this->allow_load( $feature, $early, $scope ) ) {
 				$this->_active[] = $feature;
+
 				if ( class_exists( $this->_list[ $feature ]['main'] ) ) {
 					$this->_list[ $feature ]['main']::instance();
 				}
@@ -99,6 +102,7 @@ abstract class Load {
 			'is_enabled',
 			'is_always_on',
 			'is_early',
+			'is_hidden',
 			'has_settings',
 			'has_menu',
 			'has_meta_tab'
@@ -141,7 +145,7 @@ abstract class Load {
 	}
 
 	public function is_enabled( string $feature ) : bool {
-		return isset( $this->_load[ $feature ] ) && $this->_load[ $feature ] === true || $this->is_always_on( $feature );
+		return ! $this->is_hidden( $feature ) && ( ( isset( $this->_load[ $feature ] ) && $this->_load[ $feature ] === true ) || $this->is_always_on( $feature ) );
 	}
 
 	public function is_active( string $feature ) : bool {
@@ -150,6 +154,10 @@ abstract class Load {
 
 	public function is_beta( string $feature ) : bool {
 		return (bool) $this->attribute( 'is_beta', $feature );
+	}
+
+	public function is_hidden( string $feature ) : bool {
+		return (bool) $this->attribute( 'is_hidden', $feature );
 	}
 
 	public function is_always_on( string $feature ) : bool {
@@ -186,6 +194,7 @@ abstract class Load {
 				'settings'  => $this->has_settings( $feature ),
 				'panel'     => $this->has_menu( $feature ),
 				'beta'      => $this->is_beta( $feature ),
+				'hidden'    => $this->is_hidden( $feature ),
 				'active'    => $this->is_enabled( $feature ),
 				'always_on' => $this->is_always_on( $feature )
 			);
@@ -205,6 +214,7 @@ abstract class Load {
 			'total'  => count( $this->_list ),
 			'active' => 0,
 			'always' => 0,
+			'hidden' => 0,
 			'beta'   => 0
 		);
 
@@ -215,6 +225,10 @@ abstract class Load {
 
 			if ( $this->is_always_on( $feature ) ) {
 				$features['always'] ++;
+			}
+
+			if ( $this->is_hidden( $feature ) ) {
+				$features['hidden'] ++;
 			}
 
 			if ( $this->is_beta( $feature ) ) {
