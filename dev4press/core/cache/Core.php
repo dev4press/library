@@ -52,33 +52,37 @@ abstract class Core {
 		return $group . '::' . $key;
 	}
 
+	public function store() : Store {
+		return Store::instance();
+	}
+
 	public function add( $group, $key, $data ) : bool {
-		return Store::instance()->add( $this->_key( $group, $key ), $data, $this->store );
+		return $this->store()->add( $this->_key( $group, $key ), $data, $this->store );
 	}
 
 	public function set( $group, $key, $data ) : bool {
-		return Store::instance()->set( $this->_key( $group, $key ), $data, $this->store );
+		return $this->store()->set( $this->_key( $group, $key ), $data, $this->store );
 	}
 
 	public function get( $group, $key, $default = false ) {
-		$obj = Store::instance()->get( $this->_key( $group, $key ), $this->store );
+		$obj = $this->store()->get( $this->_key( $group, $key ), $this->store );
 
 		return $obj === false ? $default : $obj;
 	}
 
 	public function delete( $group, $key ) : bool {
-		return Store::instance()->delete( $this->_key( $group, $key ), $this->store );
+		return $this->store()->delete( $this->_key( $group, $key ), $this->store );
 	}
 
 	public function in( $group, $key ) : bool {
-		return Store::instance()->in( $this->_key( $group, $key ), $this->store );
+		return $this->store()->in( $this->_key( $group, $key ), $this->store );
 	}
 
 	public function clear() {
-		Store::instance()->flush( $this->store );
+		$this->store()->flush( $this->store );
 	}
 
 	public function storage() : array {
-		return Store::instance()->get_group( $this->store );
+		return $this->store()->get_group( $this->store );
 	}
 }
