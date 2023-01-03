@@ -26,14 +26,18 @@ abstract class Plugin extends BasePlugin {
 		return self_admin_url( $page );
 	}
 
-	public function panel_url( $panel = 'dashboard', $subpanel = '' ) : string {
-		$page = 'admin.php?page=' . $this->plugin . '-' . $panel;
+	public function panel_url( $panel = 'dashboard', $subpanel = '', $args = '' ) : string {
+		$url = 'admin.php?page=' . $this->plugin . '-' . $panel;
 
 		if ( ! empty( $subpanel ) && $subpanel != 'index' ) {
-			$page .= '&subpanel=' . $subpanel;
+			$url .= '&subpanel=' . $subpanel;
 		}
 
-		return self_admin_url( $page );
+		if ( ! empty( $args ) ) {
+			$url .= '&' . trim( $args, '&' );
+		}
+
+		return self_admin_url( $url );
 	}
 
 	public function admin_menu() {

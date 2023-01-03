@@ -494,7 +494,7 @@ abstract class Plugin {
 
 	abstract public function current_url( $with_subpanel = true );
 
-	abstract public function panel_url( $panel = 'dashboard', $subpanel = '' );
+	abstract public function panel_url( $panel = 'dashboard', $subpanel = '', $args = '' );
 
 	abstract public function admin_menu();
 
