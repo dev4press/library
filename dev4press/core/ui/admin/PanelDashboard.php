@@ -16,6 +16,15 @@ abstract class PanelDashboard extends Panel {
 	public function __construct( $admin ) {
 		parent::__construct( $admin );
 
+		if ( isset( $this->a()->menu_items['features'] ) ) {
+			$this->sidebar_links['basic']['features'] = array(
+				'icon'  => $this->a()->menu_items['features']['icon'],
+				'class' => 'button-primary',
+				'url'   => $this->a()->panel_url( 'features' ),
+				'label' => __( "Features", "d4plib" )
+			);
+		}
+
 		if ( isset( $this->a()->menu_items['settings'] ) ) {
 			$this->sidebar_links['basic']['settings'] = array(
 				'icon'  => $this->a()->menu_items['settings']['icon'],
