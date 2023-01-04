@@ -64,5 +64,6 @@ abstract class Features {
 	}
 
 	abstract protected function init();
+
 	abstract public function core();
 }
