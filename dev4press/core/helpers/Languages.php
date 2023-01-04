@@ -34,28 +34,31 @@ class Languages {
 	static private $_current_instance = null;
 
 	public $list = array(
-		'et'    => array( 'native' => 'Eesti', 'english' => 'Estonian' ),
-		'fi'    => array( 'native' => 'Suomi', 'english' => 'Finnish' ),
-		'hr'    => array( 'native' => 'Hrvatski', 'english' => 'Croatian' ),
-		'ja'    => array( 'native' => '日本語', 'english' => 'Japanese' ),
 		'bg_BG' => array( 'native' => 'Български', 'english' => 'Bulgarian' ),
 		'cs_CZ' => array( 'native' => 'Čeština', 'english' => 'Czech' ),
 		'da_DK' => array( 'native' => 'Dansk', 'english' => 'Danish' ),
 		'de_AT' => array( 'native' => 'Deutsch Österreich', 'english' => 'German Austria' ),
-		'de_DE' => array( 'native' => 'Deutsch', 'english' => 'German' ),
 		'de_CH' => array( 'native' => 'Deutsch Schweiz', 'english' => 'German Switzerland' ),
+		'de_DE' => array( 'native' => 'Deutsch', 'english' => 'German' ),
 		'es_AR' => array( 'native' => 'Español de Argentina', 'english' => 'Spanish Argentina' ),
 		'es_ES' => array( 'native' => 'Español', 'english' => 'Spanish' ),
 		'es_MX' => array( 'native' => 'Español de México', 'english' => 'Spanish Mexico' ),
-		'fr_FR' => array( 'native' => 'Français', 'english' => 'French' ),
+		'et'    => array( 'native' => 'Eesti', 'english' => 'Estonian' ),
+		'fi'    => array( 'native' => 'Suomi', 'english' => 'Finnish' ),
 		'fr_BE' => array( 'native' => 'Français de Belgique', 'english' => 'French Belgian' ),
 		'fr_CA' => array( 'native' => 'Français Canadien', 'english' => 'French Canadian' ),
+		'fr_FR' => array( 'native' => 'Français', 'english' => 'French' ),
+		'hr'    => array( 'native' => 'Hrvatski', 'english' => 'Croatian' ),
+		'hu_HU' => array( 'native' => 'Magyar', 'english' => 'Hungarian' ),
 		'it_IT' => array( 'native' => 'Italiano', 'english' => 'Italian' ),
+		'ja'    => array( 'native' => '日本語', 'english' => 'Japanese' ),
 		'lt_LT' => array( 'native' => 'Lietuvių kalba', 'english' => 'Lithuanian' ),
+		'lv_LV' => array( 'native' => 'Latviešu valoda', 'english' => 'Latvian' ),
 		'nl_NL' => array( 'native' => 'Nederlands', 'english' => 'Dutch' ),
 		'pl_PL' => array( 'native' => 'Polski', 'english' => 'Polish' ),
 		'pt_BR' => array( 'native' => 'Português do Brasil', 'english' => 'Brazilian Portuguese' ),
 		'pt_PT' => array( 'native' => 'Português', 'english' => 'Portuguese' ),
+		'ro_RO' => array( 'native' => 'Română', 'english' => 'Romanian' ),
 		'ru_RU' => array( 'native' => 'Русский', 'english' => 'Russian' ),
 		'sl_SI' => array( 'native' => 'Slovenščina', 'english' => 'Slovenian' ),
 		'sr_RS' => array( 'native' => 'Српски', 'english' => 'Serbian' ),
@@ -65,7 +68,7 @@ class Languages {
 	public function __construct() {
 	}
 
-	public static function instance() {
+	public static function instance() : Languages {
 		if ( is_null( self::$_current_instance ) ) {
 			self::$_current_instance = new Languages();
 		}
@@ -77,10 +80,12 @@ class Languages {
 		$list = array();
 
 		foreach ( $translations as $code => $obj ) {
-			$list[ $code ] = $this->list[ $code ] + $obj;
+			if ( isset( $this->list[ $code ] ) ) {
+				$list[ $code ] = array_merge( $this->list[ $code ] + $obj );
 
-			if ( ! isset( $list[ $code ]['contributors'] ) ) {
-				$list[ $code ] += array( 'contributors' => array() );
+				if ( ! isset( $list[ $code ]['contributors'] ) ) {
+					$list[ $code ] += array( 'contributors' => array() );
+				}
 			}
 		}
 
