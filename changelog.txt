@@ -6,6 +6,7 @@
 * New: Completed Features base system and styling
 * New: Features panel with filtering and search
 * New: Many new features related to the interface
+* New: Many methods added to BBP Quick class
 * New: System requirements - PHP 7.3
 * New: System requirements - Tested with PHP 8.1 and 8.2
 * Updated: Various improvements to the admin styling

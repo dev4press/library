@@ -71,7 +71,7 @@ class BBP {
 		return $roles;
 	}
 
-	public static function can_user_moderate() : bool {
+	public static function has_moderator_role() : bool {
 		$roles = array_keys( BBP::get_moderator_roles() );
 
 		if ( is_user_logged_in() ) {
@@ -89,6 +89,10 @@ class BBP {
 		}
 
 		return false;
+	}
+
+	public static function can_moderate() : bool {
+		return current_user_can( 'moderate' );
 	}
 
 	public static function get_forums_list( $args = array() ) : array {
@@ -113,5 +117,31 @@ class BBP {
 		}
 
 		return $forums;
+	}
+
+	public static function is_current_user_moderator() : bool {
+		return WPR::is_current_user_roles( bbp_get_moderator_role() );
+	}
+
+	public static function is_current_user_keymaster() : bool {
+		return WPR::is_current_user_roles( bbp_get_keymaster_role() );
+	}
+
+	public static function get_user_display_name( $user_id = 0 ) : string {
+		if ( $user_id == 0 ) {
+			$user_id = bbp_get_current_user_id();
+
+			if ( $user_id > 0 ) {
+				$author_name = get_the_author_meta( 'display_name', $user_id );
+
+				if ( empty( $author_name ) ) {
+					$author_name = get_the_author_meta( 'user_login', $user_id );
+				}
+
+				return $author_name;
+			}
+		}
+
+		return '';
 	}
 }
