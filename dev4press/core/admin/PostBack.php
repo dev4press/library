@@ -96,6 +96,10 @@ abstract class PostBack {
 		$base = $this->a()->settings_definitions()->settings( $this->a()->subpanel );
 		$this->_process_save_data( $base );
 
+		$filter = $this->a()->h( 'settings_saved_for_' . $this->a()->subpanel );
+
+		do_action( $filter );
+
 		wp_redirect( $this->a()->current_url() . '&message=saved' );
 		exit;
 	}
@@ -103,6 +107,10 @@ abstract class PostBack {
 	protected function features() {
 		$base = $this->a()->features_definitions( $this->a()->subpanel )->settings();
 		$this->_process_save_data( $base );
+
+		$filter = $this->a()->h( 'settings_saved_for_feature_' . $this->a()->subpanel );
+
+		do_action( $filter );
 
 		wp_redirect( $this->a()->current_url() . '&message=saved' );
 		exit;
