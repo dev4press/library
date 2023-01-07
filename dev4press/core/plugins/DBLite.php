@@ -84,6 +84,17 @@ abstract class DBLite {
 		return false;
 	}
 
+	/**
+	 * @return wpdb
+	 *
+	 * @global wpdb $wpdb
+	 */
+	public function wpdb() : wpdb {
+		global $wpdb;
+
+		return $wpdb;
+	}
+
 	public function clean_ids_list( $ids ) : array {
 		return Sanitize::ids_list( $ids );
 	}
@@ -366,6 +377,28 @@ abstract class DBLite {
 		return current_time( 'mysql', $gmt );
 	}
 
+	public function check_table( $name ) : string {
+		$row = $this->get_row( "CHECK TABLE `" . $name . "`" );
+
+		if ( ! is_null( $row ) ) {
+			return (string) $row->Msg_text;
+		} else {
+			return '';
+		}
+	}
+
+	public function analyze_table( $name ) {
+		$this->get_results( "ANALYZE TABLE `" . $name . "`" );
+	}
+
+	public function alter_table_force( $name ) : array {
+		$this->get_results( "ALTER TABLE `" . $name . "` FORCE" );
+
+		return array(
+			'status' => 'OK'
+		);
+	}
+
 	public function transient_query( $query, $key, $method, $output = OBJECT, $x = 0, $y = 0, $ttl = 86400 ) {
 		$var = get_transient( $key );
 
@@ -394,20 +427,10 @@ abstract class DBLite {
 		return $var;
 	}
 
-	/**
-	 * @return wpdb
-	 *
-	 * @global wpdb $wpdb
-	 */
-	public function wpdb() : wpdb {
-		global $wpdb;
-
-		return $wpdb;
-	}
-
 	protected function _copy_logged_query() {
 		if ( $this->save_queries() ) {
-			$id                   = count( $this->wpdb()->queries ) - 1;
+			$id = count( $this->wpdb()->queries ) - 1;
+
 			$this->_queries_log[] = $this->wpdb()->queries[ $id ];
 		}
 	}
