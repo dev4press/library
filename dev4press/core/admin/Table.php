@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v39\Core\Admin;
 
+use Dev4Press\v39\Core\Quick\Sanitize;
 use WP_List_Table;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -78,25 +79,6 @@ abstract class Table extends WP_List_Table {
 		echo '<tr' . ( empty( $classes ) ? '' : ' class="' . join( ' ', $classes ) . '"' ) . '>';
 		$this->single_row_columns( $item );
 		echo '</tr>';
-	}
-
-	public function sanitize_field( $name, $value, $default = '' ) {
-		switch ( $name ) {
-			case 'orderby':
-				if ( in_array( $value, $this->_sanitize_orderby_fields ) ) {
-					return $value;
-				} else {
-					return $default;
-				}
-			case 'order':
-				$value = strtoupper( $value );
-
-				if ( in_array( $value, array( 'ASC', 'DESC' ) ) ) {
-					return $value;
-				} else {
-					return $default;
-				}
-		}
 	}
 
 	protected function extra_tablenav( $which ) {
@@ -182,5 +164,58 @@ abstract class Table extends WP_List_Table {
 			'total_pages' => ceil( $total_rows / $per_page ),
 			'per_page'    => $per_page,
 		) );
+	}
+
+	protected function _get_field( $name, $default = '' ) {
+		$value = isset( $_GET[ $name ] ) && ! empty( $_GET[ $name ] ) ? $_GET[ $name ] : $default;
+
+		switch ( $name ) {
+			case 'orderby':
+				$value = Sanitize::basic( $value );
+
+				if ( ! in_array( $value, $this->_sanitize_orderby_fields ) ) {
+					$value = $default;
+				}
+				break;
+			case 'order':
+				$value = strtoupper( Sanitize::slug( $value ) );
+
+				if ( ! in_array( $value, array( 'ASC', 'DESC' ) ) ) {
+					$value = $default;
+				}
+				break;
+			case 'paged':
+				$value = Sanitize::absint( $value );
+				break;
+			case 's':
+				$value = Sanitize::basic( $value );
+				break;
+		}
+
+		return $value;
+	}
+
+	/**
+	 * @deprecated since version 3.9 to be removed in 4.0
+	 */
+	public function sanitize_field( $name, $value, $default = '' ) {
+		_deprecated_function( __FUNCTION__, '3.9' );
+
+		switch ( $name ) {
+			case 'orderby':
+				if ( in_array( $value, $this->_sanitize_orderby_fields ) ) {
+					return $value;
+				} else {
+					return $default;
+				}
+			case 'order':
+				$value = strtoupper( $value );
+
+				if ( in_array( $value, array( 'ASC', 'DESC' ) ) ) {
+					return $value;
+				} else {
+					return $default;
+				}
+		}
 	}
 }

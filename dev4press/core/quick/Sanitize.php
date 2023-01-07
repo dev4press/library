@@ -174,4 +174,16 @@ class Sanitize {
 
 		return apply_filters( __NAMESPACE__ . '\sanitize\file_path', $filename, $filename_raw );
 	}
+
+	public static function _get_slug( $name, $default ) {
+		return isset( $_GET[ $name ] ) && ! empty( $_GET[ $name ] ) ? Sanitize::slug( $_GET[ $name ] ) : $default;
+	}
+
+	public static function _get_basic( $name, $default ) {
+		return isset( $_GET[ $name ] ) && ! empty( $_GET[ $name ] ) ? Sanitize::basic( $_GET[ $name ] ) : $default;
+	}
+
+	public static function _get_absint( $name, $default ) {
+		return isset( $_GET[ $name ] ) && ! empty( $_GET[ $name ] ) ? Sanitize::absint( $_GET[ $name ] ) : $default;
+	}
 }
