@@ -720,6 +720,12 @@
   margin-bottom: 3.5em;
 }
 
+.d4p-wrap.d4p-with-table ul.subsubsub {
+  margin: 0;
+}
+.d4p-wrap.d4p-with-table .search-box {
+  margin: 0 0 1em;
+}
 .d4p-wrap.d4p-with-table .tablenav {
   height: auto;
   margin: 10px 0;
