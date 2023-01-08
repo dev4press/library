@@ -728,8 +728,11 @@
 }
 .d4p-wrap.d4p-with-table .tablenav {
   height: auto;
-  margin: 10px 0;
+  margin: 1em 0;
   padding: 0;
+}
+.d4p-wrap.d4p-with-table .tablenav .tablenav-pages {
+  margin-bottom: 0;
 }
 
 .d4p-grid-hide-bulkactions .actions.bulkactions {

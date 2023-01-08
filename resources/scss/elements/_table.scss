@@ -10,8 +10,12 @@
 
         .tablenav {
             height: auto;
-            margin: 10px 0;
+            margin: 1em 0;
             padding: 0;
+
+            .tablenav-pages {
+                margin-bottom: 0;
+            }
         }
     }
 }
