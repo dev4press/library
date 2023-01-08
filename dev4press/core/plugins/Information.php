@@ -79,13 +79,13 @@ abstract class Information {
 
 	/** @return static */
 	public static function instance() {
-		static $instance = null;
+		static $instance = array();
 
-		if ( ! isset( $instance ) ) {
-			$instance = new static();
+		if ( ! isset( $instance[ static::class ] ) ) {
+			$instance[ static::class ] = new static();
 		}
 
-		return $instance;
+		return $instance[ static::class ];
 	}
 
 	public function is_pro() : bool {

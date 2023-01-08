@@ -47,13 +47,13 @@ abstract class Admin {
 
 	/** @return static */
 	public static function instance() {
-		static $instance = false;
+		static $instance = array();
 
-		if ( $instance === false ) {
-			$instance = new static();
+		if ( ! isset( $instance[ static::class ] ) ) {
+			$instance[ static::class ] = new static();
 		}
 
-		return $instance;
+		return $instance[ static::class ];
 	}
 
 	abstract public function f();

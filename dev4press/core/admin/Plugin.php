@@ -84,13 +84,13 @@ abstract class Plugin {
 
 	/** @return static */
 	public static function instance() {
-		static $instance = false;
+		static $instance = array();
 
-		if ( $instance === false ) {
-			$instance = new static();
+		if ( ! isset( $instance[ static::class ] ) ) {
+			$instance[ static::class ] = new static();
 		}
 
-		return $instance;
+		return $instance[ static::class ];
 	}
 
 	public function screen() : WP_Screen {
@@ -314,15 +314,6 @@ abstract class Plugin {
 		return $this->default_panel_object();
 	}
 
-	protected function default_panel_object() : object {
-		return (object) array(
-			'default' => true,
-			'icon'    => 'ui-cog',
-			'title'   => __( "Panel", "d4plib" ),
-			'info'    => __( "Information", "d4plib" )
-		);
-	}
-
 	public function enqueue_scripts( $hook ) {
 		$this->register_scripts_and_styles();
 
@@ -450,6 +441,15 @@ abstract class Plugin {
 
 	public function is_metabox_available() : bool {
 		return true;
+	}
+
+	protected function default_panel_object() : object {
+		return (object) array(
+			'default' => true,
+			'icon'    => 'ui-cog',
+			'title'   => __( "Panel", "d4plib" ),
+			'info'    => __( "Information", "d4plib" )
+		);
 	}
 
 	protected function load_post_get_back() {

@@ -41,13 +41,13 @@ abstract class AJAX {
 
 	/** @return static */
 	public static function instance() {
-		static $instance = null;
+		static $instance = array();
 
-		if ( ! isset( $instance ) ) {
-			$instance = new static();
+		if ( ! isset( $instance[ static::class ] ) ) {
+			$instance[ static::class ] = new static();
 		}
 
-		return $instance;
+		return $instance[ static::class ];
 	}
 
 	public function process_error( string $error, $request = null, string $message = '', int $code = 400, $data = null ) {
