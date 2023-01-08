@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 01/02/2023 11:03:45 AM\n"
+"POT-Creation-Date: 01/08/2023 10:02:02 AM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +45,7 @@ msgid "Information"
 msgstr ""
 
 #: dev4press/core/admin/Plugin.php:101
-#: dev4press/core/ui/admin/PanelDashboard.php:23
+#: dev4press/core/ui/admin/PanelDashboard.php:32
 msgid "Settings"
 msgstr ""
 
@@ -336,11 +336,15 @@ msgstr ""
 msgid "Dev4Press"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelDashboard.php:32
+#: dev4press/core/ui/admin/PanelDashboard.php:23
+msgid "Features"
+msgstr ""
+
+#: dev4press/core/ui/admin/PanelDashboard.php:41
 msgid "Tools"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelDashboard.php:42
+#: dev4press/core/ui/admin/PanelDashboard.php:51
 msgid "About"
 msgstr ""
 
@@ -353,27 +357,27 @@ msgid "Main control panel for all the plugin individual features."
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelFeatures.php:46
-#: dev4press/core/ui/admin/PanelFeatures.php:55
+#: dev4press/core/ui/admin/PanelFeatures.php:56
 msgid "All"
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelFeatures.php:47
-#: dev4press/core/ui/admin/PanelFeatures.php:59
+#: dev4press/core/ui/admin/PanelFeatures.php:61
 msgid "Always On"
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelFeatures.php:48
-#: dev4press/core/ui/admin/PanelFeatures.php:65
+#: dev4press/core/ui/admin/PanelFeatures.php:69
 #: forms/content-features-index.php:76
 msgid "Active"
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelFeatures.php:49
-#: dev4press/core/ui/admin/PanelFeatures.php:68
+#: dev4press/core/ui/admin/PanelFeatures.php:73
 msgid "Disabled"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelFeatures.php:62
+#: dev4press/core/ui/admin/PanelFeatures.php:65
 msgid "Always On + Active"
 msgstr ""
 
