@@ -119,7 +119,7 @@ abstract class Core {
 
 	public function deactivate() {
 		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		deactivate_plugins( $this->plugin_name(), false );
+		deactivate_plugins( $this->plugin_name() );
 	}
 
 	public function recommend( $panel = 'update' ) : string {

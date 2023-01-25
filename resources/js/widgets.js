@@ -9,7 +9,7 @@
             $(document).on("click", ".d4p-check-uncheck a", function(e) {
                 e.preventDefault();
 
-                var checkall = $(this).attr("href").substr(1) === "checkall";
+                var checkall = $(this).attr("href").substring(1) === "checkall";
 
                 $(this).parent().parent().find("input[type=checkbox]").prop("checked", checkall);
             });
@@ -19,7 +19,7 @@
 
                 var tabs = $(this).parent(),
                     content = tabs.next(),
-                    tab = $(this).attr("href").substr(1),
+                    tab = $(this).attr("href").substring(1),
                     tab_name = typeof $(this).data("tabname") !== 'undefined' ? $(this).data("tabname") : tab;
 
                 $(".d4plib-widget-active-tab", tabs).val(tab_name);

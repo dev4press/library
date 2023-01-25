@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.9.1 - 2023.01.26 =
+* Updated: JavaScript replacing `substr` with `substring`
+
 = Version 3.9 - 2023.01.16 =
 * New: Features base classes
 * New: Completed Features base system and styling
