@@ -431,7 +431,9 @@ abstract class DBLite {
 		if ( $this->save_queries() ) {
 			$id = count( $this->wpdb()->queries ) - 1;
 
-			$this->_queries_log[] = $this->wpdb()->queries[ $id ];
+			if ( $id > - 1 && isset( $this->wpdb()->queries[ $id ] ) ) {
+				$this->_queries_log[] = $this->wpdb()->queries[ $id ];
+			}
 		}
 	}
 
