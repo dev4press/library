@@ -100,6 +100,10 @@ abstract class DBLite {
 	}
 
 	public function prepare_in_list( array $items, string $mod = '%s' ) : ?string {
+		if ( empty( $items ) ) {
+			return '';
+		}
+
 		$replace = array_fill( 0, count( $items ), $mod );
 
 		return $this->wpdb()->prepare( join( ', ', $replace ), $items );

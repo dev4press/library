@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v39\Core\Admin;
 
+use Dev4Press\v39\Core\Plugins\DBLite;
 use Dev4Press\v39\Core\Quick\Sanitize;
 use WP_List_Table;
 
@@ -149,21 +150,25 @@ abstract class Table extends WP_List_Table {
 			$sql['limit'] = $offset . ', ' . $per_page;
 		}
 
-		$query = gdbbx_db()->build_query( $sql );
+		$query = $this->db()->build_query( $sql );
 
 		if ( empty( $index_field ) ) {
-			$this->items = gdbbx_db()->run( $query );
+			$this->items = $this->db()->run( $query );
 		} else {
-			$this->items = gdbbx_db()->run_and_index( $query, $index_field );
+			$this->items = $this->db()->run_and_index( $query, $index_field );
 		}
 
-		$total_rows = gdbbx_db()->get_found_rows();
+		$total_rows = $this->db()->get_found_rows();
 
 		$this->set_pagination_args( array(
 			'total_items' => $total_rows,
 			'total_pages' => ceil( $total_rows / $per_page ),
 			'per_page'    => $per_page,
 		) );
+	}
+
+	protected function db() : ?DBLite {
+		return null;
 	}
 
 	protected function _get_field( $name, $default = '' ) {
