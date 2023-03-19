@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 4.0 - 2023.04.13 =
+* Updated: Namespace changes for some of the classes
+
 = Version 3.9.3 - 2023.02.13 =
 * Updated: Abstract Table class now has a db() method
 * Updated: DBLite class prepare_in_list expanded with empty check

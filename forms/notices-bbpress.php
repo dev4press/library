@@ -1,8 +1,8 @@
 <?php
 
-use Dev4Press\v39\Core\Quick\URL;
-use Dev4Press\v39\Core\Quick\WPR;
-use function Dev4Press\v39\Functions\panel;
+use Dev4Press\v40\Core\Quick\URL;
+use Dev4Press\v40\Core\Quick\WPR;
+use function Dev4Press\v40\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -1,11 +1,11 @@
 <?php
 
-namespace Dev4Press\v39\Core\Admin\Network\Menu;
+namespace Dev4Press\v40\Core\Admin\Network\Menu;
 
-use Dev4Press\v39\Core\Admin\Menu\Plugin as BasePlugin;
-use Dev4Press\v39\Core\Quick\Sanitize;
-use Dev4Press\v39\Core\UI\Enqueue;
-use Dev4Press\v39\WordPress;
+use Dev4Press\v40\Core\Admin\Menu\Plugin as BasePlugin;
+use Dev4Press\v40\Core\Quick\Sanitize;
+use Dev4Press\v40\Core\UI\Enqueue;
+use Dev4Press\v40\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

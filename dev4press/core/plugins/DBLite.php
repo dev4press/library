@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v39\Core\Plugins\DB
-Version: v3.9
+Name:    Dev4Press\v40\Core\Plugins\DB
+Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v39\Core\Plugins;
+namespace Dev4Press\v40\Core\Plugins;
 
-use Dev4Press\v39\Core\Quick\Sanitize;
+use Dev4Press\v40\Core\Quick\Sanitize;
 use wpdb;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -57,6 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @property int    rows_affected
  */
 abstract class DBLite {
+	protected $plugin_name = 'dev4press-library';
 	protected $_queries_log = array();
 
 	public function __construct() {

@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v39\Services\GEOIP\GEOPlugin
-Version: v3.9
+Name:    Dev4Press\v40\Services\GEOIP\GEOPlugin
+Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v39\Service\GEOIP;
+namespace Dev4Press\v40\Service\GEOIP;
 
-use Dev4Press\v39\Core\Helpers\IP;
+use Dev4Press\v40\Core\Helpers\IP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v39\Core\Quick\DB
-Version: v3.9
+Name:    Dev4Press\v40\Core\Quick\DB
+Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-   Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
+   Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,9 +24,9 @@ GNU General Public License for more details.
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v39\Core\Quick;
+namespace Dev4Press\v40\Core\Quick;
 
-use Dev4Press\v39\Core\Plugins\DBLite;
+use Dev4Press\v40\Core\Plugins\DBLite;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v39\Core\Plugins\Core
-Version: v3.9
+Name:    Dev4Press\v40\Core\Plugins\Core
+Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,13 +24,13 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v39\Core\Plugins;
+namespace Dev4Press\v40\Core\Plugins;
 
-use Dev4Press\v39\API\Four;
-use Dev4Press\v39\Core\DateTime;
-use Dev4Press\v39\Core\Quick\BBP;
-use Dev4Press\v39\Library;
-use Dev4Press\v39\WordPress;
+use Dev4Press\v40\API\Four;
+use Dev4Press\v40\Core\DateTime;
+use Dev4Press\v40\Core\Quick\BBP;
+use Dev4Press\v40\Library;
+use Dev4Press\v40\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -213,6 +213,6 @@ abstract class Core {
 
 	abstract public function run();
 
-	/** @return \Dev4Press\v39\Core\Plugins\Settings */
+	/** @return \Dev4Press\v40\Core\Plugins\Settings */
 	abstract public function s();
 }

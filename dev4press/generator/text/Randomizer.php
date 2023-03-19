@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev4Press\v39\Generator\Text;
+namespace Dev4Press\v40\Generator\Text;
 
 class Randomizer extends Generator {
 	protected $word_mean = 6.16;
