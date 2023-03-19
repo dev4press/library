@@ -2,7 +2,8 @@
 == Changelog ==
 
 = Version 4.0 - 2023.04.13 =
-* Updated: Namespace changes for some of the classes
+* Updated: Namespace changes for some classes
+* Updated: Built-in cacert.pem 20230110
 
 = Version 3.9.3 - 2023.02.13 =
 * Updated: Abstract Table class now has a db() method
