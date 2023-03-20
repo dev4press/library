@@ -58,7 +58,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 abstract class DBLite {
 	protected $plugin_name = 'dev4press-library';
-	protected $_queries_log = array();
+	protected $plugin_instance = 'db';
+
+	protected static $_queries_log = array();
 
 	public function __construct() {
 	}
@@ -346,29 +348,25 @@ abstract class DBLite {
 	}
 
 	public function log_get_queries() : array {
-		return $this->_queries_log;
+		return self::$_queries_log;
 	}
 
 	public function log_get_elapsed_time() {
 		$time = 0;
 
-		foreach ( $this->_queries_log as $q ) {
-			$time += $q[1];
+		foreach ( self::$_queries_log as $q ) {
+			$time += $q['time'];
 		}
 
 		return $time;
 	}
 
 	public function log_get_last_query( $what = 'sql' ) {
-		if ( ! empty( $this->_queries_log ) ) {
-			$id  = count( $this->_queries_log ) - 1;
-			$log = $this->_queries_log[ $id ];
+		if ( ! empty( self::$_queries_log ) ) {
+			$id  = count( self::$_queries_log ) - 1;
+			$log = self::$_queries_log[ $id ];
 
-			if ( $what == 'sql' ) {
-				return $log[0];
-			}
-
-			return $log;
+			return $log[ $what ] ?? $log;
 		}
 
 		return false;
@@ -437,7 +435,18 @@ abstract class DBLite {
 			$id = count( $this->wpdb()->queries ) - 1;
 
 			if ( $id > - 1 && isset( $this->wpdb()->queries[ $id ] ) ) {
-				$this->_queries_log[] = $this->wpdb()->queries[ $id ];
+				$query = $this->wpdb()->queries[ $id ];
+
+				self::$_queries_log[] = array(
+					'sql'      => $query[0],
+					'time'     => $query[1],
+					'stack'    => $query[2],
+					'start'    => $query[3],
+					'data'     => $query[4],
+					'id'       => $id,
+					'plugin'   => $this->plugin_name,
+					'instance' => $this->plugin_instance
+				);
 			}
 		}
 	}
