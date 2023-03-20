@@ -9,4 +9,3 @@
 * Dev4Press\v40\Core\Admin\Table => Dev4Press\v40\WordPress\Admin\Table
 * Dev4Press\v40\Core\UI\Walker\CheckboxRadio => Dev4Press\v40\WordPress\Walker\CheckboxRadio
 * Dev4Press\v40\Core\Helpers\Languages => Dev4Press\v40\API\Languages
-* 

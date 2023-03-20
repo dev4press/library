@@ -34,26 +34,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Four {
 	private $plugins = array(
+		'sweeppress/sweeppress.php'                                             => '89',
+		'breadcrumbspress/breadcrumbspress.php'                                 => '87',
 		'dev4press-updater/dev4press-updater.php'                               => '11',
 		'gd-bbpress-toolbox/gd-bbpress-toolbox.php'                             => '29',
-		'gd-clever-widgets/gd-clever-widgets.php'                               => '36',
 		'gd-content-tools/gd-content-tools.php'                                 => '51',
-		'gd-crumbs-navigator/gd-crumbs-navigator.php'                           => '39',
+		'gd-forum-notices-for-bbpress/gd-forum-notices-for-bbpress.php'         => '82',
 		'gd-knowledge-base/gd-knowledge-base.php'                               => '46',
-		'gd-members-directory-for-bbpress/gd-members-directory-for-bbpress.php' => '79',
+		'gd-mail-queue/gd-mail-queue.php'                                       => '74',
 		'gd-power-search-for-bbpress/gd-power-search-for-bbpress.php'           => '72',
 		'gd-press-tools/gd-press-tools.php'                                     => '1',
-		'gd-products-center/gd-products-center.php'                             => '17',
 		'gd-quantum-theme-for-bbpress/gd-quantum-theme-for-bbpress.php'         => '69',
 		'gd-rating-system/gd-rating-system.php'                                 => '48',
 		'gd-security-toolbox/gd-security-toolbox.php'                           => '50',
 		'gd-seo-toolbox/gd-seo-toolbox.php'                                     => '49',
-		'gd-social-sharing/gd-social-sharing.php'                               => '52',
-		'gd-swift-navigator/gd-swift-navigator.php'                             => '38',
-		'gd-taxonomies-tools/gd-taxonomies-tools.php'                           => '4',
 		'gd-topic-polls/gd-topic-polls.php'                                     => '59',
-		'gd-topic-prefix/gd-topic-prefix.php'                                   => '56',
-		'gd-webfonts-toolbox/gd-webfonts-toolbox.php'                           => '37'
+		'gd-topic-prefix/gd-topic-prefix.php'                                   => '56'
 	);
 
 	private $base = 'https://www.dev4press.com/service/core/{endpoint}/';

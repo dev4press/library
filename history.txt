@@ -1,6 +1,41 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 3.9.3 - 2023.02.13 =
+* Updated: Abstract Table class now has a db() method
+* Updated: DBLite class prepare_in_list expanded with empty check
+* Fix: Abstract Table class with hardcoded DB calls wrapper
+
+= Version 3.9.2 - 2023.02.03 =
+* Fix: Potential conflict causing issue with the logging of queries
+
+= Version 3.9.1 - 2023.01.26 =
+* Updated: JavaScript replacing `substr` with `substring`
+
+= Version 3.9 - 2023.01.16 =
+* New: Features base classes
+* New: Completed Features base system and styling
+* New: Features panel with filtering and search
+* New: Instance methods for all abstract classes
+* New: Many new features related to the interface
+* New: Many methods added to BBP Quick class
+* New: $_GET shortcut methods for Sanitize class
+* New: System requirements: PHP 7.3 or newer
+* New: System requirements: Tested with PHP 8.1 and 8.2
+* Updated: Various improvements to the admin styling
+* Updated: Improvements to the Settings class
+* Updated: Improvements to the Table class
+* Updated: Improvements to the Widgets class
+* Updated: Various improvements to Core classes
+* Updated: Expanded BBPress static Core class
+* Updated: Additional icons to the Icons font
+* Updated: Built-in cacert.pem 20221011
+* Updated: Clipboard.js 2.0.11
+* Removed: All previously deprecated functions
+* Deprecated: Some additional functions and methods
+* Fix: Problem with using capabilities in Widget class
+* Fix: Problem with storing capabilities in Widget class
+
 = Version 3.8 - 2022.05.14 =
 * New: Base Panel object now builds the classes
 * New: Base Micromodal object to creating modal dialogs markup
