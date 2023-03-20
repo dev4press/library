@@ -664,25 +664,4 @@ class WPR {
 
 		return preg_match( "/200/", $headers[0] ) === 1;
 	}
-
-	/**
-	 * @param int[] $posts
-	 *
-	 * @deprecated since version 3.9 to be removed in 4.0
-	 * @global wpdb $wpdb
-	 */
-	public static function cache_posts_by_ids( array $posts ) {
-		_deprecated_function( __METHOD__, '3.9', '_prime_post_caches()' );
-
-		_prime_post_caches( $posts );
-	}
-
-	/**
-	 * @deprecated since version 3.9 to be removed in 4.0
-	 */
-	public static function all_user_roles() : array {
-		_deprecated_function( __METHOD__, '3.9', 'WPR::list_user_roles()' );
-
-		return WPR::list_user_roles();
-	}
 }

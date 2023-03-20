@@ -199,28 +199,4 @@ abstract class Table extends WP_List_Table {
 
 		return $value;
 	}
-
-	/**
-	 * @deprecated since version 3.9 to be removed in 4.0
-	 */
-	public function sanitize_field( $name, $value, $default = '' ) {
-		_deprecated_function( __FUNCTION__, '3.9' );
-
-		switch ( $name ) {
-			case 'orderby':
-				if ( in_array( $value, $this->_sanitize_orderby_fields ) ) {
-					return $value;
-				} else {
-					return $default;
-				}
-			case 'order':
-				$value = strtoupper( $value );
-
-				if ( in_array( $value, array( 'ASC', 'DESC' ) ) ) {
-					return $value;
-				} else {
-					return $default;
-				}
-		}
-	}
 }

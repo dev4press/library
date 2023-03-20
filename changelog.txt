@@ -2,8 +2,15 @@
 == Changelog ==
 
 = Version 4.0 - 2023.04.13 =
+* New: Expanded collection of UI icons
+* New: Replaced most of the plugin icons
+* New: IP class mostly rewritten and expanded
 * Updated: Namespace changes for some classes
+* Updated: IP class expanded Cloudflare IP range
 * Updated: Built-in cacert.pem 20230110
+* Removed: All previously deprecated methods
+* Fix: Few issues with the IP class range methods
+* Fix: Icons missing from the Icons class
 
 = Version 3.9.3 - 2023.02.13 =
 * Updated: Abstract Table class now has a db() method
@@ -11,7 +18,7 @@
 * Fix: Abstract Table class with hardcoded DB calls wrapper
 
 = Version 3.9.2 - 2023.02.03 =
-* Fixed: Potential conflict causing issue with the logging of queries
+* Fix: Potential conflict causing issue with the logging of queries
 
 = Version 3.9.1 - 2023.01.26 =
 * Updated: JavaScript replacing `substr` with `substring`

@@ -1,6 +1,6 @@
 <?php
 
-use Dev4Press\v40\Core\Helpers\Languages;
+use Dev4Press\v40\API\Languages;
 use function Dev4Press\v40\Functions\panel;
 
 $plugin = panel()->a()->settings()->i();

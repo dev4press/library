@@ -50,7 +50,7 @@ class Store {
 			'free'        => true,
 			'pro'         => true
 		),
-		"coresocial"                       => array(
+		/*"coresocial"                       => array(
 			"code"        => "coresocial",
 			"name"        => "CoreSocial",
 			"description" => "Add popular social networks share buttons to posts and pages, lists of social network profiles with customizable styling and full block editor support.",
@@ -58,7 +58,7 @@ class Store {
 			"color"       => "#e121c4",
 			'free'        => false,
 			'pro'         => true
-		),
+		),*/
 		"debugpress"                       => array(
 			"code"        => "debugpress",
 			"name"        => "DebugPress",
@@ -137,15 +137,6 @@ class Store {
 			"description" => "Expand bbPress powered forums with attachments upload, BBCodes support, signatures, widgets, quotes, toolbar menu, activity tracking, enhanced widgets, extra views...",
 			"punchline"   => "Enhancing WordPress forums powered by bbPress",
 			"color"       => "#224760",
-			'free'        => false,
-			'pro'         => true
-		),
-		"gd-clever-widgets"                => array(
-			"code"        => "gd-clever-widgets",
-			"name"        => "GD Clever Widgets",
-			"description" => "A collection of sidebars widgets for unit conversion, advanced navigation, QR Code, videos, posts and authors information, enhanced versions of default widgets and more.",
-			"punchline"   => "Powerful widgets to enhance your website",
-			"color"       => "#744D08",
 			'free'        => false,
 			'pro'         => true
 		),
@@ -275,15 +266,6 @@ class Store {
 			'free'        => false,
 			'pro'         => true
 		)
-		/*"coreseo"                          => array(
-			"code"        => "coreseo",
-			"name"        => "CoreSEO",
-			"description" => "Toolbox plugin with a number of search engine optimization related modules for Sitemaps, Robots.txt, Robots Meta and Knowledge Graph control, with more modules to be added.",
-			"punchline"   => "Search Engine Optimization for WordPress",
-			"color"       => "#C65C0F",
-			'free'        => false,
-			'pro'         => true
-		),*/
 	);
 
 	public function __construct() {
