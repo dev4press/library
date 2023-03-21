@@ -92,10 +92,11 @@ class Render {
 				$kb = isset( $obj['kb'] ) ? str_replace( '%url%', $obj['kb']['url'], $this->kb ) : '';
 
 				if ( $kb != '' ) {
-					$type = $obj['kb']['type'] ?? 'article';
-					$kb   = str_replace( '%type%', $type, $kb );
+					$type  = $obj['kb']['type'] ?? 'article';
+					$kb    = str_replace( '%type%', $type, $kb );
+					$label = $obj['kb']['label'] ?? 'KB';
 
-					$kb = '<a class="d4p-kb-group" href="' . esc_url( $kb ) . '" target="_blank" rel="noopener">' . esc_html( $obj['kb']['label'] ) . '</a>';
+					$kb = '<a class="d4p-kb-group" href="' . esc_url( $kb ) . '" target="_blank" rel="noopener">' . esc_html( $label ) . '</a>';
 				}
 
 				echo '<h3>' . esc_html( $obj['name'] ) . $kb . '</h3>';

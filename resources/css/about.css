@@ -171,7 +171,7 @@
   flex-wrap: wrap;
 }
 .d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins .d4p-dev4press-plugin {
-  flex: 1 1 calc(50% - 2em);
+  flex: 0 1 calc(50% - 2em);
   margin: 1em;
 }
 .d4p-wrap.d4p-panel-about .d4p-about-dev4press-plugins ._badge {

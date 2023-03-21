@@ -8,6 +8,9 @@
 * New: IP class mostly rewritten and expanded
 * Updated: Namespace changes for some classes
 * Updated: IP class expanded Cloudflare IP range
+* Updated: Show knowledge base link for panels is available
+* Updated: Few updates to the settings rendering
+* Updated: Various improvements to the styling
 * Updated: Recommendation API list of plugins
 * Updated: Built-in cacert.pem 20230110
 * Removed: All previously deprecated methods
