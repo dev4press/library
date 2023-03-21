@@ -50,21 +50,21 @@ class Store {
 			'free'        => true,
 			'pro'         => true
 		),
-		/*"coresocial"                       => array(
+		"coresocial"                       => array(
 			"code"        => "coresocial",
 			"name"        => "CoreSocial",
 			"description" => "Add popular social networks share buttons to posts and pages, lists of social network profiles with customizable styling and full block editor support.",
 			"punchline"   => "Share to social networks with ease",
-			"color"       => "#e121c4",
+			"color"       => "#0773B7",
 			'free'        => false,
 			'pro'         => true
-		),*/
+		),
 		"debugpress"                       => array(
 			"code"        => "debugpress",
 			"name"        => "DebugPress",
 			"description" => "DebugPress is an easy to use plugin implementing popup for debugging and profiling currently loaded WordPress powered website page with support for intercepting AJAX requests.",
 			"punchline"   => "Powerful and easy to use debugging plugin",
-			"color"       => "#2277bb",
+			"color"       => "#2277BB",
 			'free'        => true,
 			'pro'         => false
 		),
