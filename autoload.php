@@ -24,8 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-if ( ! function_exists( 'd4p_core_library_autoloader_39' ) ) {
-	function d4p_core_library_autoloader_39( $class ) {
+if ( ! function_exists( 'd4p_core_library_autoloader_40' ) ) {
+	function d4p_core_library_autoloader_40( $class ) {
 		$path = dirname( __FILE__ ) . '/';
 		$base = 'Dev4Press\\v40\\';
 
@@ -48,5 +48,5 @@ if ( ! function_exists( 'd4p_core_library_autoloader_39' ) ) {
 		}
 	}
 
-	spl_autoload_register( 'd4p_core_library_autoloader_39' );
+	spl_autoload_register( 'd4p_core_library_autoloader_40' );
 }
