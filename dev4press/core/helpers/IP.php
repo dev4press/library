@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v39\Core\Helpers\IP
-Version: v3.9
+Name:    Dev4Press\v40\Core\Helpers\IP
+Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v39\Core\Helpers;
+namespace Dev4Press\v40\Core\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -55,7 +55,8 @@ class IP {
 		'197.234.240.0/22',
 		'198.41.128.0/17',
 		'162.158.0.0/15',
-		'104.16.0.0/12',
+		'104.16.0.0/13',
+		'104.24.0.0/14',
 		'172.64.0.0/13',
 		'131.0.72.0/22'
 	);
@@ -70,14 +71,12 @@ class IP {
 		'2c0f:f248::/32'
 	);
 
-	public static function is_v6( $ip ) : bool {
-		if ( filter_var( $ip, FILTER_VALIDATE_IP ) ) {
-			if ( filter_var( $ip, FILTER_FLAG_IPV6 ) ) {
-				return true;
-			}
-		}
+	public static function is_v4( $ip ) : bool {
+		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 );
+	}
 
-		return false;
+	public static function is_v6( $ip ) : bool {
+		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 );
 	}
 
 	public static function is_in_range( $ip, $range ) : bool {
@@ -86,37 +85,16 @@ class IP {
 
 	public static function is_ipv4_in_range( $ip, $range ) : bool {
 		if ( strpos( $range, '/' ) !== false ) {
-			list( $range, $netmask ) = explode( '/', $range, 2 );
+			list( $subnet, $mask ) = explode( '/', $range, 2 );
 
-			if ( strpos( $netmask, '.' ) !== false ) {
-				$netmask     = str_replace( '*', '0', $netmask );
-				$netmask_dec = ip2long( $netmask );
-
-				return ( ( ip2long( $ip ) & $netmask_dec ) == ( ip2long( $range ) & $netmask_dec ) );
-			} else {
-				$x = explode( '.', $range );
-
-				while ( count( $x ) < 4 ) {
-					$x[] = '0';
-				}
-
-				list( $a, $b, $c, $d ) = $x;
-
-				$range = sprintf( "%u.%u.%u.%u",
-					empty( $a ) ? '0' : $a,
-					empty( $b ) ? '0' : $b,
-					empty( $c ) ? '0' : $c,
-					empty( $d ) ? '0' : $d
-				);
-
-				$range_dec = ip2long( $range );
-				$ip_dec    = ip2long( $ip );
-
-				$wildcard_dec = pow( 2, ( 32 - $netmask ) ) - 1;
-				$netmask_dec  = ~$wildcard_dec;
-
-				return ( ( $ip_dec & $netmask_dec ) == ( $range_dec & $netmask_dec ) );
+			if ( $mask <= 0 ) {
+				return false;
 			}
+
+			$ip_binary  = sprintf( "%032b", ip2long( $ip ) );
+			$net_binary = sprintf( "%032b", ip2long( $subnet ) );
+
+			return ( substr_compare( $ip_binary, $net_binary, 0, $mask ) === 0 );
 		} else {
 			if ( strpos( $range, '*' ) !== false ) {
 				$lower = str_replace( '*', '0', $range );
@@ -139,103 +117,45 @@ class IP {
 	}
 
 	public static function is_ipv6_in_range( $ip, $range ) : bool {
-		$pieces = explode( '/', $range, 2 );
+		list( $subnet, $mask ) = explode( '/', $range, 2 );
 
-		$left_piece  = $pieces[0];
-		$right_piece = $pieces[1];
+		$subnet = inet_pton( $subnet );
+		$ip     = inet_pton( $ip );
 
-		$ip_pieces     = explode( '::', $left_piece, 2 );
-		$main_ip_piece = $ip_pieces[0];
-		$last_ip_piece = $ip_pieces[1];
-
-		$main_ip_pieces = explode( ":", $main_ip_piece );
-		foreach ( $main_ip_pieces as $key => $val ) {
-			$main_ip_pieces[ $key ] = str_pad( $val, 4, '0', STR_PAD_LEFT );
+		$mask_binary = str_repeat( "f", $mask / 4 );
+		switch ( $mask % 4 ) {
+			case 0:
+				break;
+			case 1:
+				$mask_binary .= "8";
+				break;
+			case 2:
+				$mask_binary .= "c";
+				break;
+			case 3:
+				$mask_binary .= "e";
+				break;
 		}
+		$mask_binary = str_pad( $mask_binary, 32, '0' );
+		$mask_binary = pack( "H*", $mask_binary );
 
-		$first = $main_ip_pieces;
-		$last  = $main_ip_pieces;
-
-		$last_piece = '';
-		$size       = count( $main_ip_pieces );
-
-		if ( trim( $last_ip_piece ) != '' ) {
-			$last_piece = str_pad( $last_ip_piece, 4, '0', STR_PAD_LEFT );
-
-			for ( $i = $size; $i < 7; $i ++ ) {
-				$first[ $i ] = '0000';
-				$last[ $i ]  = 'ffff';
-			}
-
-			$main_ip_pieces[7] = $last_piece;
-		} else {
-			for ( $i = $size; $i < 8; $i ++ ) {
-				$first[ $i ] = '0000';
-				$last[ $i ]  = 'ffff';
-			}
-		}
-
-		$first = self::ip2long6( implode( ':', $first ) );
-		$last  = self::ip2long6( implode( ':', $last ) );
-
-		return ( $ip >= $first && $ip <= $last );
+		return ( $ip & $mask_binary ) == $subnet;
 	}
 
-	public static function full_ipv6( $ip ) : string {
-		$pieces      = explode( '/', $ip, 2 );
-		$left_piece  = $pieces[0];
-		$right_piece = null;
+	public static function full_ip( $ip ) : string {
+		if ( IP::is_v4( $ip ) ) {
+			return $ip;
+		} else if ( IP::is_v6( $ip ) ) {
+			$hex = bin2hex( inet_pton( $ip ) );
 
-		if ( count( $pieces ) > 1 ) {
-			$pieces[1];
-		}
-
-		$ip_pieces     = explode( "::", $left_piece, 2 );
-		$main_ip_piece = $ip_pieces[0];
-		$last_ip_piece = null;
-		if ( count( $ip_pieces ) > 1 ) {
-			$last_ip_piece = $ip_pieces[1];
-		}
-
-		$main_ip_pieces = explode( ':', $main_ip_piece );
-		foreach ( $main_ip_pieces as $key => $val ) {
-			$main_ip_pieces[ $key ] = str_pad( $val, 4, '0', STR_PAD_LEFT );
-		}
-
-		$last_piece = "";
-		$size       = count( $main_ip_pieces );
-		if ( trim( $last_ip_piece ) != '' ) {
-			$last_piece = str_pad( $last_ip_piece, 4, '0', STR_PAD_LEFT );
-
-			for ( $i = $size; $i < 7; $i ++ ) {
-				$main_ip_pieces[ $i ] = '0000';
+			if ( substr( $hex, 0, 24 ) == '00000000000000000000ffff' ) {
+				return long2ip( hexdec( substr( $hex, - 8 ) ) );
 			}
 
-			$main_ip_pieces[7] = $last_piece;
-		} else {
-			for ( $i = $size; $i < 8; $i ++ ) {
-				$main_ip_pieces[ $i ] = '0000';
-			}
+			return implode( ':', str_split( $hex, 4 ) );
 		}
 
-		$final_ip = implode( ':', $main_ip_pieces );
-
-		return self::ip2long6( $final_ip );
-	}
-
-	public static function ip2long6( $ip ) : string {
-		if ( substr_count( $ip, '::' ) ) {
-			$ip = str_replace( '::', str_repeat( ':0000', 8 - substr_count( $ip, ':' ) ) . ':', $ip );
-		}
-
-		$ip = explode( ':', $ip );
-
-		$r_ip = '';
-		foreach ( $ip as $v ) {
-			$r_ip .= str_pad( base_convert( $v, 16, 2 ), 16, 0, STR_PAD_LEFT );
-		}
-
-		return base_convert( $r_ip, 2, 10 );
+		return '';
 	}
 
 	public static function is_private( $ip = null ) : bool {
@@ -377,31 +297,6 @@ class IP {
 		}
 
 		return false;
-	}
-
-	public static function whois( $ip = '' ) : string {
-		$server = 'whois.lacnic.net';
-
-		if ( $ip == '' ) {
-			$ip = IP::visitor();
-		}
-
-		$fp = @fsockopen( $server, 43, $errno, $errstr, 20 );
-
-		if ( $fp === false ) {
-			return '';
-		} else {
-			fputs( $fp, $ip . "\r\n" );
-
-			$out = '';
-			while ( ! feof( $fp ) ) {
-				$out .= fgets( $fp );
-			}
-
-			fclose( $fp );
-
-			return $out;
-		}
 	}
 
 	public static function cleanup( $ip ) {

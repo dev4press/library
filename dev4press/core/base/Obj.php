@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Quick\BP
+Name:    Dev4Press\v40\Core\Base\Obj
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,18 +24,34 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core\Quick;
+namespace Dev4Press\v40\Core\Base;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class BP {
-	public static function is_active( $min_version = '7.0' ) : bool {
-		if ( WPR::is_plugin_active( 'buddypress/bp-loader.php' ) && function_exists( 'bp_get_version' ) ) {
-			return version_compare( bp_get_version(), $min_version, '>=' );
-		} else {
-			return false;
+class Obj {
+	function __construct( $args = array() ) {
+		if ( is_array( $args ) && ! empty( $args ) ) {
+			$this->from_array( $args );
+		}
+	}
+
+	public function __clone() {
+		foreach ( $this as $key => $val ) {
+			if ( is_object( $val ) || ( is_array( $val ) ) ) {
+				$this->{$key} = unserialize( serialize( $val ) );
+			}
+		}
+	}
+
+	public function to_array() : array {
+		return (array) $this;
+	}
+
+	public function from_array( $args ) {
+		foreach ( $args as $key => $value ) {
+			$this->$key = $value;
 		}
 	}
 }

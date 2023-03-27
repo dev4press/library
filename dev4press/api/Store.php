@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v39\API\Store
-Version: v3.9
+Name:    Dev4Press\v40\API\Store
+Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v39\API;
+namespace Dev4Press\v40\API;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -55,7 +55,7 @@ class Store {
 			"name"        => "CoreSocial",
 			"description" => "Add popular social networks share buttons to posts and pages, lists of social network profiles with customizable styling and full block editor support.",
 			"punchline"   => "Share to social networks with ease",
-			"color"       => "#e121c4",
+			"color"       => "#0773B7",
 			'free'        => false,
 			'pro'         => true
 		),
@@ -64,7 +64,7 @@ class Store {
 			"name"        => "DebugPress",
 			"description" => "DebugPress is an easy to use plugin implementing popup for debugging and profiling currently loaded WordPress powered website page with support for intercepting AJAX requests.",
 			"punchline"   => "Powerful and easy to use debugging plugin",
-			"color"       => "#2277bb",
+			"color"       => "#2277BB",
 			'free'        => true,
 			'pro'         => false
 		),
@@ -137,15 +137,6 @@ class Store {
 			"description" => "Expand bbPress powered forums with attachments upload, BBCodes support, signatures, widgets, quotes, toolbar menu, activity tracking, enhanced widgets, extra views...",
 			"punchline"   => "Enhancing WordPress forums powered by bbPress",
 			"color"       => "#224760",
-			'free'        => false,
-			'pro'         => true
-		),
-		"gd-clever-widgets"                => array(
-			"code"        => "gd-clever-widgets",
-			"name"        => "GD Clever Widgets",
-			"description" => "A collection of sidebars widgets for unit conversion, advanced navigation, QR Code, videos, posts and authors information, enhanced versions of default widgets and more.",
-			"punchline"   => "Powerful widgets to enhance your website",
-			"color"       => "#744D08",
 			'free'        => false,
 			'pro'         => true
 		),
@@ -275,15 +266,6 @@ class Store {
 			'free'        => false,
 			'pro'         => true
 		)
-		/*"coreseo"                          => array(
-			"code"        => "coreseo",
-			"name"        => "CoreSEO",
-			"description" => "Toolbox plugin with a number of search engine optimization related modules for Sitemaps, Robots.txt, Robots Meta and Knowledge Graph control, with more modules to be added.",
-			"punchline"   => "Search Engine Optimization for WordPress",
-			"color"       => "#C65C0F",
-			'free'        => false,
-			'pro'         => true
-		),*/
 	);
 
 	public function __construct() {

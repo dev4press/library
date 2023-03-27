@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v39\Core\Base
-Version: v3.9
+Name:    Dev4Press\v40\Core\Base\Store
+Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,20 +24,24 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v39\Core;
+namespace Dev4Press\v40\Core\Base;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Base {
-	function __construct( $args = array() ) {
-		if ( is_array( $args ) && ! empty( $args ) ) {
-			$this->from_array( $args );
-		}
+abstract class Store {
+	protected $_data = array();
+
+	public function __get( $name ) {
+		return $this->_data[ $name ] ?? '';
 	}
 
-	function __clone() {
+	public function __set( $name, $value ) {
+		$this->_data[ $name ] = $value;
+	}
+
+	public function __clone() {
 		foreach ( $this as $key => $val ) {
 			if ( is_object( $val ) || ( is_array( $val ) ) ) {
 				$this->{$key} = unserialize( serialize( $val ) );
@@ -45,13 +49,11 @@ class Base {
 		}
 	}
 
-	public function to_array() : array {
-		return (array) $this;
+	public function init_data( $data ) {
+		$this->_data = $data;
 	}
 
-	public function from_array( $args ) {
-		foreach ( $args as $key => $value ) {
-			$this->$key = $value;
-		}
+	public function to_array() : array {
+		return $this->_data;
 	}
 }

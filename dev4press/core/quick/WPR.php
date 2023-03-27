@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v39\Core\Quick\WP
-Version: v3.9
+Name:    Dev4Press\v40\Core\Quick\WP
+Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v39\Core\Quick;
+namespace Dev4Press\v40\Core\Quick;
 
-use Dev4Press\v39\Core\Helpers\Error;
+use Dev4Press\v40\Core\Helpers\Error;
 use WP_Error;
 use WP_Query;
 use WP_Term;
@@ -663,26 +663,5 @@ class WPR {
 		$headers = get_headers( $url );
 
 		return preg_match( "/200/", $headers[0] ) === 1;
-	}
-
-	/**
-	 * @param int[] $posts
-	 *
-	 * @deprecated since version 3.9 to be removed in 4.0
-	 * @global wpdb $wpdb
-	 */
-	public static function cache_posts_by_ids( array $posts ) {
-		_deprecated_function( __METHOD__, '3.9', '_prime_post_caches()' );
-
-		_prime_post_caches( $posts );
-	}
-
-	/**
-	 * @deprecated since version 3.9 to be removed in 4.0
-	 */
-	public static function all_user_roles() : array {
-		_deprecated_function( __METHOD__, '3.9', 'WPR::list_user_roles()' );
-
-		return WPR::list_user_roles();
 	}
 }

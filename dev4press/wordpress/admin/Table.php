@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v39\Core\Admin\Table
-Version: v3.9
+Name:    Dev4Press\v40\Core\Admin\Table
+Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v39\Core\Admin;
+namespace Dev4Press\v40\WordPress\Admin;
 
-use Dev4Press\v39\Core\Plugins\DBLite;
-use Dev4Press\v39\Core\Quick\Sanitize;
+use Dev4Press\v40\Core\Plugins\DBLite;
+use Dev4Press\v40\Core\Quick\Sanitize;
 use WP_List_Table;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -198,29 +198,5 @@ abstract class Table extends WP_List_Table {
 		}
 
 		return $value;
-	}
-
-	/**
-	 * @deprecated since version 3.9 to be removed in 4.0
-	 */
-	public function sanitize_field( $name, $value, $default = '' ) {
-		_deprecated_function( __FUNCTION__, '3.9' );
-
-		switch ( $name ) {
-			case 'orderby':
-				if ( in_array( $value, $this->_sanitize_orderby_fields ) ) {
-					return $value;
-				} else {
-					return $default;
-				}
-			case 'order':
-				$value = strtoupper( $value );
-
-				if ( in_array( $value, array( 'ASC', 'DESC' ) ) ) {
-					return $value;
-				} else {
-					return $default;
-				}
-		}
 	}
 }

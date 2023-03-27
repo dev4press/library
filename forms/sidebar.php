@@ -1,6 +1,6 @@
 <?php
 
-use function Dev4Press\v39\Functions\panel;
+use function Dev4Press\v40\Functions\panel;
 
 $_panel = panel()->object();
 
@@ -14,7 +14,24 @@ $_panel = panel()->object();
         <h3><?php echo esc_html( $_panel->title ); ?></h3>
 
         <div class="_info">
-			<?php echo esc_html( $_panel->info ); ?>
+			<?php
+
+			echo esc_html( $_panel->info );
+
+			if ( isset( $_panel->kb ) ) {
+				$url   = $_panel->kb['url'];
+				$label = $_panel->kb['label'] ?? __( "Knowledge Base", "d4plib" );
+
+				?>
+
+                <div class="_kb">
+                    <a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $label ); ?></a>
+                </div>
+
+				<?php
+			}
+
+			?>
         </div>
     </div>
 </div>

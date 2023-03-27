@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v39\Core\Plugins\DB
-Version: v3.9
+Name:    Dev4Press\v40\Core\Plugins\DB
+Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,9 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v39\Core\Plugins;
+namespace Dev4Press\v40\Core\Plugins;
 
-use Dev4Press\v39\Core\Quick\Sanitize;
+use Dev4Press\v40\Core\DateTime;
+use Dev4Press\v40\Core\Quick\Sanitize;
 use wpdb;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -57,7 +58,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @property int    rows_affected
  */
 abstract class DBLite {
-	protected $_queries_log = array();
+	protected $plugin_name = 'dev4press-library';
+	protected $plugin_instance = 'db';
+
+	protected static $_queries_log = array();
 
 	public function __construct() {
 	}
@@ -121,7 +125,9 @@ abstract class DBLite {
 
 		$sql = wp_parse_args( $sql, $defaults );
 
-		$_build = 'SELECT' . ( $calc_found_rows ? ' SQL_CALC_FOUND_ROWS' : '' ) . ' ' . join( ', ', $sql['select'] ) . ' FROM ' . join( ' ', $sql['from'] );
+		$_build = 'SELECT' . ( $calc_found_rows ? ' SQL_CALC_FOUND_ROWS' : '' );
+		$_build .= ' ' . join( ', ', $sql['select'] );
+		$_build .= ' FROM ' . join( ' ', $sql['from'] );
 
 		if ( ! empty( $sql['where'] ) ) {
 			$_build .= ' WHERE ' . join( ' AND ', $sql['where'] );
@@ -315,25 +321,6 @@ abstract class DBLite {
 		return defined( 'SAVEQUERIES' ) && SAVEQUERIES;
 	}
 
-	public function gmt_offset() {
-		$offset = get_option( 'gmt_offset' );
-
-		if ( empty( $offset ) ) {
-			$offset = wp_timezone_override_offset();
-		}
-
-		return $offset === false ? 0 : $offset;
-	}
-
-	public function get_offset_string() : string {
-		$offset = $this->gmt_offset();
-
-		$hours   = intval( $offset );
-		$minutes = absint( ( $offset - floor( $offset ) ) * 60 );
-
-		return sprintf( '%+03d:%02d', $hours, $minutes );
-	}
-
 	public function enable_save_queries() : bool {
 		if ( ! defined( 'SAVEQUERIES' ) ) {
 			define( 'SAVEQUERIES', true );
@@ -345,29 +332,25 @@ abstract class DBLite {
 	}
 
 	public function log_get_queries() : array {
-		return $this->_queries_log;
+		return self::$_queries_log;
 	}
 
 	public function log_get_elapsed_time() {
 		$time = 0;
 
-		foreach ( $this->_queries_log as $q ) {
-			$time += $q[1];
+		foreach ( self::$_queries_log as $q ) {
+			$time += $q['time'];
 		}
 
 		return $time;
 	}
 
 	public function log_get_last_query( $what = 'sql' ) {
-		if ( ! empty( $this->_queries_log ) ) {
-			$id  = count( $this->_queries_log ) - 1;
-			$log = $this->_queries_log[ $id ];
+		if ( ! empty( self::$_queries_log ) ) {
+			$id  = count( self::$_queries_log ) - 1;
+			$log = self::$_queries_log[ $id ];
 
-			if ( $what == 'sql' ) {
-				return $log[0];
-			}
-
-			return $log;
+			return $log[ $what ] ?? $log;
 		}
 
 		return false;
@@ -392,7 +375,7 @@ abstract class DBLite {
 	}
 
 	public function analyze_table( $name ) {
-		$this->get_results( "ANALYZE TABLE `" . $name . "`" );
+		return $this->get_results( "ANALYZE TABLE `" . $name . "`" );
 	}
 
 	public function alter_table_force( $name ) : array {
@@ -436,7 +419,18 @@ abstract class DBLite {
 			$id = count( $this->wpdb()->queries ) - 1;
 
 			if ( $id > - 1 && isset( $this->wpdb()->queries[ $id ] ) ) {
-				$this->_queries_log[] = $this->wpdb()->queries[ $id ];
+				$query = $this->wpdb()->queries[ $id ];
+
+				self::$_queries_log[] = array(
+					'sql'      => $query[0],
+					'time'     => $query[1],
+					'stack'    => $query[2],
+					'start'    => $query[3],
+					'data'     => $query[4],
+					'id'       => $id,
+					'plugin'   => $this->plugin_name,
+					'instance' => $this->plugin_instance
+				);
 			}
 		}
 	}
@@ -452,5 +446,27 @@ abstract class DBLite {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @deprecated Since 4.0, to be removed in 4.2
+	 *
+	 * @return float|int|mixed|null
+	 */
+	public function gmt_offset() {
+		_deprecated_function(__METHOD__, '4.0', '\Dev4Press\v40\Core\DateTime::instance()->offset()');
+
+		return DateTime::instance()->offset();
+	}
+
+	/**
+	 * @deprecated Since 4.0, to be removed in 4.2
+	 *
+	 * @return string
+	 */
+	public function get_offset_string() : string {
+		_deprecated_function(__METHOD__, '4.0', '\Dev4Press\v40\Core\DateTime::instance()->formatted_offset()');
+
+		return DateTime::instance()->formatted_offset();
 	}
 }

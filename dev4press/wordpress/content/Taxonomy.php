@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v39\WordPress\Content\Taxonomy
-Version: v3.9
+Name:    Dev4Press\v40\WordPress\Content\Taxonomy
+Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v39\WordPress\Content;
+namespace Dev4Press\v40\WordPress\Content;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

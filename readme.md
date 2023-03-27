@@ -1,8 +1,8 @@
 # Dev4Press Library
 
-* Version: v3.9.3
-* Build:   3903
-* Release: 2023.02.13.
+* Version: v4.0
+* Build:   4000
+* Release: 2023.03.28.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
@@ -15,7 +15,7 @@
 
 ## WordPress Requirements
 
-* WordPress: 5.3 or newer
+* WordPress: 5.5 or newer
 
 ## ClassicPress Requirements
 

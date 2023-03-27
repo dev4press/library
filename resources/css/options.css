@@ -49,7 +49,7 @@
 }
 @media screen and (max-width: 840px) {
   .d4p-settings-section .d4p-settings-table > tbody > tr > th,
-.d4p-settings-section .d4p-settings-table > tbody > tr > td {
+  .d4p-settings-section .d4p-settings-table > tbody > tr > td {
     width: 100%;
     padding: 1.5em;
     display: block;
@@ -173,8 +173,8 @@
 }
 @media screen and (max-width: 840px) {
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=time],
-.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=month],
-.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=month],
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
     width: 60%;
   }
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck {
@@ -197,8 +197,8 @@
 }
 @media screen and (max-width: 480px) {
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=time],
-.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=month],
-.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=month],
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
     width: 100%;
   }
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-css_size input[type=number] {
@@ -481,12 +481,12 @@ details.d4p-section-details > div .form-table code {
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox] + label:before {
   font-family: "dev4press";
   display: inline-block;
-  content: "\f1d3";
+  content: "\f1dd";
   font-size: 2em;
   line-height: 1;
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox]:checked + label:before {
-  content: "\f1d4";
+  content: "\f1de";
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation i {
   font-size: 2em;

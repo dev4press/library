@@ -1,9 +1,9 @@
 <?php
 
-namespace Dev4Press\v39\Core\Admin\Menu;
+namespace Dev4Press\v40\Core\Admin\Menu;
 
-use Dev4Press\v39\Core\Admin\Plugin as BasePlugin;
-use Dev4Press\v39\Core\Quick\Sanitize;
+use Dev4Press\v40\Core\Admin\Plugin as BasePlugin;
+use Dev4Press\v40\Core\Quick\Sanitize;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

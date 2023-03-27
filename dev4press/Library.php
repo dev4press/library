@@ -1,14 +1,14 @@
 <?php
 
 /*
-Name:    Dev4Press\v39\Library
-Version: v3.9
+Name:    Dev4Press\v40\Library
+Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
 
 == Copyright ==
-Copyright 2008 - 2022 Milan Petrovic (email: support@dev4press.com)
+Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v39;
+namespace Dev4Press\v40;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -34,11 +34,11 @@ class Library {
 	/**
 	 * @var string
 	 */
-	private $_version = '3.9.3';
+	private $_version = '4.0';
 	/**
 	 * @var string
 	 */
-	private $_build = '3903';
+	private $_build = '4000';
 	/**
 	 * @var string
 	 */
@@ -63,8 +63,8 @@ class Library {
 	public function __construct() {
 		$this->_php_version  = (string) phpversion();
 		$this->_php_code     = absint( substr( str_replace( '.', '', $this->_php_version ), 0, 2 ) );
-		$this->_library_path = wp_normalize_path( trailingslashit( dirname( __FILE__, 2 ) ) );
 		$this->_library_url  = str_replace( '/d4plib/dev4press/', '/d4plib/', plugins_url( '/', __FILE__ ) );
+		$this->_library_path = wp_normalize_path( trailingslashit( dirname( __FILE__, 2 ) ) );
 		$this->_cacert_path  = wp_normalize_path( $this->_library_path . 'resources/curl/cacert.pem' );
 	}
 
