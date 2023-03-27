@@ -1,12 +1,12 @@
 <?php
 
-use Dev4Press\Plugin\GDBBX\Basic\Features;
 use function Dev4Press\v40\Functions\panel;
 
 $_panel     = panel()->a()->panel_object();
 $_subpanel  = panel()->a()->subpanel;
 $_subpanels = panel()->subpanels();
-$_beta      = Features::instance()->is_beta( $_subpanel );
+$_features  = panel()->a()->plugin()->f();
+$_beta      = $_features->is_beta( $_subpanel );
 
 $_url_reset = panel()->a()->current_url();
 $_url_reset = add_query_arg( array(

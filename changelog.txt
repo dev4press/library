@@ -1,11 +1,13 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 4.0 - 2023.04.13 =
+= Version 4.0 - 2023.03.28 =
 * New: Expanded collection of UI icons
 * New: Replaced most of the plugin icons
 * New: Base abstract `Store` class for data storage
 * New: `IP` class mostly rewritten and expanded
+* New: Connection between admin and core plugin classes
+* New: Plugin `Core` with abstract method returning `Features` object
 * New: Migration guide file with the class name changes
 * Updated: Namespace changes for some classes
 * Updated: `IP` class expanded Cloudflare IP range
@@ -20,3 +22,6 @@
 * Fix: `DBLite` method `analyze_table` was not returning results
 * Fix: Few issues with the `IP` class range methods
 * Fix: Icons missing from the `Icons` class
+* Fix: Several minor styling issues
+* Fix: Referencing the namespaces that are not used
+* Fix: Features sidebar references a plugin

@@ -509,6 +509,9 @@ abstract class Plugin {
 	/** @return \Dev4Press\v40\Core\Plugins\Settings */
 	abstract public function settings();
 
+	/** @return \Dev4Press\v40\Core\Plugins\Core */
+	abstract public function plugin();
+
 	abstract public function settings_definitions();
 
 	public function features_definitions( $feature ) {

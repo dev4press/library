@@ -38,8 +38,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class Core {
 	public $is_debug = false;
+
 	public $widgets = false;
 	public $enqueue = false;
+	public $features = false;
+
 	public $cap = 'activate_plugins';
 	public $svg_icon = '';
 	public $plugin = '';
@@ -215,4 +218,7 @@ abstract class Core {
 
 	/** @return \Dev4Press\v40\Core\Plugins\Settings */
 	abstract public function s();
+
+	/** @return NULL|\Dev4Press\v40\Core\Features\Load */
+	abstract public function f();
 }

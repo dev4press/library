@@ -62,6 +62,10 @@ abstract class Admin {
 		return $this->f()->attribute( $name, $this->name );
 	}
 
+	public function get( $name, $default = null ) {
+		return $this->f()->s()->get( $this->name . '__' . $name, 'features', $default );
+	}
+
 	public function settings( array $settings = array() ) : array {
 		return $settings;
 	}
