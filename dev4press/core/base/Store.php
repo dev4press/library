@@ -41,6 +41,14 @@ abstract class Store {
 		$this->_data[ $name ] = $value;
 	}
 
+	public function __clone() {
+		foreach ( $this as $key => $val ) {
+			if ( is_object( $val ) || ( is_array( $val ) ) ) {
+				$this->{$key} = unserialize( serialize( $val ) );
+			}
+		}
+	}
+
 	public function init_data( $data ) {
 		$this->_data = $data;
 	}

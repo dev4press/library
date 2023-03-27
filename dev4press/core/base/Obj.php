@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Base
+Name:    Dev4Press\v40\Core\Base\Obj
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,20 +24,20 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core;
+namespace Dev4Press\v40\Core\Base;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Base {
+class Obj {
 	function __construct( $args = array() ) {
 		if ( is_array( $args ) && ! empty( $args ) ) {
 			$this->from_array( $args );
 		}
 	}
 
-	function __clone() {
+	public function __clone() {
 		foreach ( $this as $key => $val ) {
 			if ( is_object( $val ) || ( is_array( $val ) ) ) {
 				$this->{$key} = unserialize( serialize( $val ) );

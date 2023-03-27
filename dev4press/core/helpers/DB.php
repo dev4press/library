@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Helpers\Debug
+Name:    Dev4Press\v40\Core\Helpers\DB
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com

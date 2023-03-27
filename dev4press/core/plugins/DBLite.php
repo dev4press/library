@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v40\Core\Plugins;
 
+use Dev4Press\v40\Core\DateTime;
 use Dev4Press\v40\Core\Quick\Sanitize;
 use wpdb;
 
@@ -124,7 +125,9 @@ abstract class DBLite {
 
 		$sql = wp_parse_args( $sql, $defaults );
 
-		$_build = 'SELECT' . ( $calc_found_rows ? ' SQL_CALC_FOUND_ROWS' : '' ) . ' ' . join( ', ', $sql['select'] ) . ' FROM ' . join( ' ', $sql['from'] );
+		$_build = 'SELECT' . ( $calc_found_rows ? ' SQL_CALC_FOUND_ROWS' : '' );
+		$_build .= ' ' . join( ', ', $sql['select'] );
+		$_build .= ' FROM ' . join( ' ', $sql['from'] );
 
 		if ( ! empty( $sql['where'] ) ) {
 			$_build .= ' WHERE ' . join( ' AND ', $sql['where'] );
@@ -318,25 +321,6 @@ abstract class DBLite {
 		return defined( 'SAVEQUERIES' ) && SAVEQUERIES;
 	}
 
-	public function gmt_offset() {
-		$offset = get_option( 'gmt_offset' );
-
-		if ( empty( $offset ) ) {
-			$offset = wp_timezone_override_offset();
-		}
-
-		return $offset === false ? 0 : $offset;
-	}
-
-	public function get_offset_string() : string {
-		$offset = $this->gmt_offset();
-
-		$hours   = intval( $offset );
-		$minutes = absint( ( $offset - floor( $offset ) ) * 60 );
-
-		return sprintf( '%+03d:%02d', $hours, $minutes );
-	}
-
 	public function enable_save_queries() : bool {
 		if ( ! defined( 'SAVEQUERIES' ) ) {
 			define( 'SAVEQUERIES', true );
@@ -391,7 +375,7 @@ abstract class DBLite {
 	}
 
 	public function analyze_table( $name ) {
-		$this->get_results( "ANALYZE TABLE `" . $name . "`" );
+		return $this->get_results( "ANALYZE TABLE `" . $name . "`" );
 	}
 
 	public function alter_table_force( $name ) : array {
@@ -462,5 +446,27 @@ abstract class DBLite {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @deprecated Since 4.0, to be removed in 4.2
+	 *
+	 * @return float|int|mixed|null
+	 */
+	public function gmt_offset() {
+		_deprecated_function(__METHOD__, '4.0', '\Dev4Press\v40\Core\DateTime::instance()->offset()');
+
+		return DateTime::instance()->offset();
+	}
+
+	/**
+	 * @deprecated Since 4.0, to be removed in 4.2
+	 *
+	 * @return string
+	 */
+	public function get_offset_string() : string {
+		_deprecated_function(__METHOD__, '4.0', '\Dev4Press\v40\Core\DateTime::instance()->formatted_offset()');
+
+		return DateTime::instance()->formatted_offset();
 	}
 }

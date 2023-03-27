@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Plugins\Widget
+Name:    Dev4Press\v40\WordPress\Legacy\Widget
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com

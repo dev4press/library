@@ -4,15 +4,19 @@
 = Version 4.0 - 2023.04.13 =
 * New: Expanded collection of UI icons
 * New: Replaced most of the plugin icons
-* New: Base abstract Store class for data storage
-* New: IP class mostly rewritten and expanded
+* New: Base abstract `Store` class for data storage
+* New: `IP` class mostly rewritten and expanded
+* New: Migration guide file with the class name changes
 * Updated: Namespace changes for some classes
-* Updated: IP class expanded Cloudflare IP range
-* Updated: Show knowledge base link for panels is available
+* Updated: `IP` class expanded Cloudflare IP range
+* Updated: Show knowledge base link for panels if available
+* Updated: `DBLite` readability of the `build_query` method
 * Updated: Few updates to the settings rendering
 * Updated: Various improvements to the styling
 * Updated: Recommendation API list of plugins
 * Updated: Built-in cacert.pem 20230110
+* Deprecated: `DBLite` methods for time zone offset
 * Removed: All previously deprecated methods
-* Fix: Few issues with the IP class range methods
-* Fix: Icons missing from the Icons class
+* Fix: `DBLite` method `analyze_table` was not returning results
+* Fix: Few issues with the `IP` class range methods
+* Fix: Icons missing from the `Icons` class
