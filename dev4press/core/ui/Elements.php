@@ -27,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v40\Core\UI;
 
 use Dev4Press\v40\Core\Quick\Arr;
-use Dev4Press\v40\Core\UI\Walker\CheckboxRadio;
+use Dev4Press\v40\WordPress\Walker\CheckboxRadio;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

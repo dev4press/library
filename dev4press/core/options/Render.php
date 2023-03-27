@@ -29,7 +29,7 @@ namespace Dev4Press\v40\Core\Options;
 use Dev4Press\v40\Core\Quick\Arr;
 use Dev4Press\v40\Core\Quick\Sanitize;
 use Dev4Press\v40\Core\UI\Elements;
-use Dev4Press\v40\Core\UI\Walker\CheckboxRadio;
+use Dev4Press\v40\WordPress\Walker\CheckboxRadio;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

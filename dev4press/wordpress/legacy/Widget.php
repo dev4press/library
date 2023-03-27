@@ -188,7 +188,7 @@ abstract class Widget extends WP_Widget {
 		$_capabilities = array_unique( $_capabilities );
 		$_capabilities = array_filter( $_capabilities );
 
-		$instance['_capabilities'] = join( ', ', $_capabilities );
+		$instance['_capabilities'] = join( ", ", $_capabilities );
 
 		$instance['_roles'] = array();
 

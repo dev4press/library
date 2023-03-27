@@ -26,7 +26,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v40\Core\Features;
 
-use Dev4Press\Plugin\GDBBX\Basic\Posts;
 use Dev4Press\v40\Core\Scope;
 
 if ( ! defined( 'ABSPATH' ) ) {
