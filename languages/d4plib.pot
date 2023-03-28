@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 01/08/2023 10:02:02 AM\n"
+"POT-Creation-Date: 03/28/2023 01:10:27 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,11 +36,11 @@ msgstr ""
 msgid "%s is updated, and you need to review the update process."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:320
+#: dev4press/core/admin/Plugin.php:449
 msgid "Panel"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:321
+#: dev4press/core/admin/Plugin.php:450
 msgid "Information"
 msgstr ""
 
@@ -52,6 +52,7 @@ msgstr ""
 #: dev4press/core/admin/Plugin.php:110
 #: dev4press/core/admin/Plugin.php:225
 #: dev4press/core/admin/Plugin.php:240
+#: forms/sidebar.php:22
 msgid "Knowledge Base"
 msgstr ""
 
@@ -130,71 +131,71 @@ msgstr ""
 msgid "Loaded Template"
 msgstr ""
 
-#: dev4press/core/options/Render.php:505
+#: dev4press/core/options/Render.php:506
 msgid "Add New Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:534
-#: dev4press/core/options/Render.php:565
+#: dev4press/core/options/Render.php:535
+#: dev4press/core/options/Render.php:566
 msgid "No items to show"
 msgstr ""
 
-#: dev4press/core/options/Render.php:616
+#: dev4press/core/options/Render.php:617
 #: dev4press/core/ui/Enqueue.php:304
 msgid "Image not selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:639
+#: dev4press/core/options/Render.php:640
 msgid "Enabled"
 msgstr ""
 
-#: dev4press/core/options/Render.php:597
+#: dev4press/core/options/Render.php:598
 #: dev4press/core/ui/admin/PanelTools.php:56
 #: dev4press/core/ui/Enqueue.php:300
 msgid "Remove"
 msgstr ""
 
-#: dev4press/core/options/Render.php:598
+#: dev4press/core/options/Render.php:599
 #: dev4press/core/ui/Enqueue.php:301
 msgid "Preview"
 msgstr ""
 
-#: dev4press/core/options/Render.php:583
+#: dev4press/core/options/Render.php:584
 msgid "Add Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:587
+#: dev4press/core/options/Render.php:588
 msgid "No images selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:611
+#: dev4press/core/options/Render.php:612
 #: dev4press/core/ui/Enqueue.php:302
 msgid "Select Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:612
+#: dev4press/core/options/Render.php:613
 msgid "Show Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:613
+#: dev4press/core/options/Render.php:614
 msgid "Clear Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:837
+#: dev4press/core/options/Render.php:838
 msgid "Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:840
+#: dev4press/core/options/Render.php:841
 msgid "Unit"
 msgstr ""
 
-#: dev4press/core/options/Render.php:853
+#: dev4press/core/options/Render.php:854
 #: dev4press/core/ui/Elements.php:316
 #: dev4press/core/ui/Elements.php:416
 msgid "Check All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:854
+#: dev4press/core/options/Render.php:855
 #: dev4press/core/ui/Elements.php:317
 #: dev4press/core/ui/Elements.php:417
 msgid "Uncheck All"
@@ -212,17 +213,17 @@ msgstr ""
 msgid "Invalid Request"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:146
+#: dev4press/core/plugins/Core.php:149
 msgctxt "System requirement version"
 msgid "%s version %s (%s is not active on your website)"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:148
+#: dev4press/core/plugins/Core.php:151
 msgctxt "System requirement version"
 msgid "%s version %s (your system runs version %s)"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:153
+#: dev4press/core/plugins/Core.php:156
 msgctxt "System requirement notice"
 msgid "System requirements check for %s failed. This plugin requires %s. The plugin will now be disabled."
 msgstr ""
@@ -249,51 +250,6 @@ msgstr ""
 
 #: dev4press/core/plugins/InstallDB.php:82
 msgid "Table is missing."
-msgstr ""
-
-#: dev4press/core/plugins/Widget.php:98
-#: forms/content-features-index.php:6
-msgid "Global"
-msgstr ""
-
-#: dev4press/core/plugins/Widget.php:469
-msgid "Everyone"
-msgstr ""
-
-#: dev4press/core/plugins/Widget.php:470
-msgid "Logged in users"
-msgstr ""
-
-#: dev4press/core/plugins/Widget.php:471
-msgid "Not logged in visitors"
-msgstr ""
-
-#: dev4press/core/plugins/Widget.php:472
-msgid "Users with specified roles"
-msgstr ""
-
-#: dev4press/core/plugins/Widget.php:473
-msgid "Users with specified capabilities"
-msgstr ""
-
-#: dev4press/core/plugins/Widget.php:479
-msgid "Descending"
-msgstr ""
-
-#: dev4press/core/plugins/Widget.php:480
-msgid "Ascending"
-msgstr ""
-
-#: dev4press/core/plugins/Widget.php:102
-msgid "Extra"
-msgstr ""
-
-#: dev4press/core/plugins/Widget.php:106
-msgid "Advanced"
-msgstr ""
-
-#: dev4press/core/plugins/Widget.php:113
-msgid "Shortcode"
 msgstr ""
 
 #: dev4press/core/task/AJAX.php:91
@@ -827,6 +783,51 @@ msgstr ""
 #: dev4press/wordpress/content/Taxonomy.php:73
 msgctxt "Taxonomy label"
 msgid "The description is not prominent by default; however, some themes may show it."
+msgstr ""
+
+#: dev4press/wordpress/legacy/Widget.php:98
+#: forms/content-features-index.php:6
+msgid "Global"
+msgstr ""
+
+#: dev4press/wordpress/legacy/Widget.php:469
+msgid "Everyone"
+msgstr ""
+
+#: dev4press/wordpress/legacy/Widget.php:470
+msgid "Logged in users"
+msgstr ""
+
+#: dev4press/wordpress/legacy/Widget.php:471
+msgid "Not logged in visitors"
+msgstr ""
+
+#: dev4press/wordpress/legacy/Widget.php:472
+msgid "Users with specified roles"
+msgstr ""
+
+#: dev4press/wordpress/legacy/Widget.php:473
+msgid "Users with specified capabilities"
+msgstr ""
+
+#: dev4press/wordpress/legacy/Widget.php:479
+msgid "Descending"
+msgstr ""
+
+#: dev4press/wordpress/legacy/Widget.php:480
+msgid "Ascending"
+msgstr ""
+
+#: dev4press/wordpress/legacy/Widget.php:102
+msgid "Extra"
+msgstr ""
+
+#: dev4press/wordpress/legacy/Widget.php:106
+msgid "Advanced"
+msgstr ""
+
+#: dev4press/wordpress/legacy/Widget.php:113
+msgid "Shortcode"
 msgstr ""
 
 #: forms/content-about-info.php:15
