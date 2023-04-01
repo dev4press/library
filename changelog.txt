@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 4.0.1 - 2023.03.28 =
+* Updated: Few changes to the `plugin_locale` filter usage
+* Fix: issue with the `plugin_locale` filter missing domain
+
 = Version 4.0 - 2023.03.28 =
 * New: Expanded collection of UI icons
 * New: Replaced most of the plugin icons

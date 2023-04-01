@@ -85,7 +85,7 @@ class Enqueue {
 	}
 
 	public function locale() {
-		return apply_filters( 'plugin_locale', get_user_locale() );
+		return apply_filters( 'plugin_locale', determine_locale(), 'd4plib' );
 	}
 
 	public function locale_js_code( $script ) {
