@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\UI\Micromodal
+Name:    Dev4Press\v41\Core\UI\Micromodal
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core\UI;
+namespace Dev4Press\v41\Core\UI;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

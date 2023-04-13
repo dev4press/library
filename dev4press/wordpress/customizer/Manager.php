@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\WordPress\Customizer\Core
+Name:    Dev4Press\v41\WordPress\Customizer\Core
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\WordPress\Customizer;
+namespace Dev4Press\v41\WordPress\Customizer;
 
-use Dev4Press\v40\Library;
-use Dev4Press\v40\WordPress;
+use Dev4Press\v41\Library;
+use Dev4Press\v41\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

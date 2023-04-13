@@ -1,7 +1,7 @@
 <?php
 
-use Dev4Press\v40\Core\Quick\Sanitize;
-use function Dev4Press\v40\Functions\panel;
+use Dev4Press\v41\Core\Quick\Sanitize;
+use function Dev4Press\v41\Functions\panel;
 
 $_scope_labels = array(
 	'global' => __( "Global", "d4plib" ),

@@ -481,12 +481,12 @@ details.d4p-section-details > div .form-table code {
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox] + label:before {
   font-family: "dev4press";
   display: inline-block;
-  content: "\f1dd";
+  content: "\f1e5";
   font-size: 2em;
   line-height: 1;
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox]:checked + label:before {
-  content: "\f1de";
+  content: "\f1e6";
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation i {
   font-size: 2em;

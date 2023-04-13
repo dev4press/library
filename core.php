@@ -24,8 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-use Dev4Press\v40\Library;
-use Dev4Press\v40\WordPress;
+use Dev4Press\v41\Library;
+use Dev4Press\v41\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

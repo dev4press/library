@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Admin\Table
+Name:    Dev4Press\v41\Core\Admin\Table
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\WordPress\Admin;
+namespace Dev4Press\v41\WordPress\Admin;
 
-use Dev4Press\v40\Core\Plugins\DBLite;
-use Dev4Press\v40\Core\Quick\Sanitize;
+use Dev4Press\v41\Core\Plugins\DBLite;
+use Dev4Press\v41\Core\Quick\Sanitize;
 use WP_List_Table;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -172,7 +172,7 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function _get_field( $name, $default = '' ) {
-		$value = isset( $_GET[ $name ] ) && ! empty( $_GET[ $name ] ) ? $_GET[ $name ] : $default;
+		$value = ! empty( $_GET[ $name ] ) ? $_GET[ $name ] : $default;
 
 		switch ( $name ) {
 			case 'orderby':

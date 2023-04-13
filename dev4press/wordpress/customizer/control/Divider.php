@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\WordPress\Customizer\Control\Divider
+Name:    Dev4Press\v41\WordPress\Customizer\Control\Divider
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\WordPress\Customizer\Control;
+namespace Dev4Press\v41\WordPress\Customizer\Control;
 
-use Dev4Press\v40\WordPress\Customizer\Control;
+use Dev4Press\v41\WordPress\Customizer\Control;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

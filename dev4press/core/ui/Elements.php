@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\UI\Elements
+Name:    Dev4Press\v41\Core\UI\Elements
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core\UI;
+namespace Dev4Press\v41\Core\UI;
 
-use Dev4Press\v40\Core\Quick\Arr;
-use Dev4Press\v40\WordPress\Walker\CheckboxRadio;
+use Dev4Press\v41\Core\Quick\Arr;
+use Dev4Press\v41\WordPress\Walker\CheckboxRadio;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
