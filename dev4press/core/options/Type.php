@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Options\Type
+Name:    Dev4Press\v41\Core\Options\Type
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,59 +24,59 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core\Options;
+namespace Dev4Press\v41\Core\Options;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class Type {
-	const INFO = 'info';
-	const CUSTOM = 'custom';
-	const DATE = 'date';
-	const TIME = 'time';
-	const DATETIME = 'datetime';
-	const MONTH = 'month';
-	const IMAGE = 'image';
-	const IMAGES = 'images';
-	const BOOLEAN = 'bool';
-	const TEXT = 'text';
-	const TEXTAREA = 'textarea';
-	const SLUG = 'slug';
-	const SLUG_EXT = 'slug_ext';
-	const SLUG_SLASH = 'slug_slash';
-	const PASSWORD = 'password';
-	const FILE = 'file';
-	const TEXT_HTML = 'text_html';
-	const COLOR = 'color';
-	const RICH = 'rich';
-	const BLOCK = 'block';
-	const HTML = 'html';
-	const CODE = 'code';
-	const EMAIL = 'email';
-	const LINK = 'link';
-	const CHECKBOXES = 'checkboxes';
-	const CHECKBOXES_HIERARCHY = 'checkboxes_hierarchy';
-	const RADIOS = 'radios';
-	const RADIOS_HIERARCHY = 'radios_hierarchy';
-	const SELECT = 'select';
-	const SELECT_MULTI = 'select_multi';
-	const DROPDOWN_PAGES = 'dropdown_pages';
-	const DROPDOWN_CATEGORIES = 'dropdown_categories';
-	const GROUP = 'group';
-	const GROUP_MULTI = 'group_multi';
-	const NUMBER = 'number';
-	const INTEGER = 'integer';
-	const ABSINT = 'absint';
-	const RANGE_INTEGER = 'range_integer';
-	const RANGE_ABSINT = 'range_absint';
-	const CSS_SIZE = 'css_size';
-	const HIDDEN = 'hidden';
-	const LISTING = 'listing';
-	const X_BY_Y = 'x_by_y';
-	const EXPANDABLE_PAIRS = 'expandable_pairs';
-	const EXPANDABLE_TEXT = 'expandable_text';
-	const EXPANDABLE_RAW = 'expandable_raw';
+	public const INFO = 'info';
+	public const CUSTOM = 'custom';
+	public const DATE = 'date';
+	public const TIME = 'time';
+	public const DATETIME = 'datetime';
+	public const MONTH = 'month';
+	public const IMAGE = 'image';
+	public const IMAGES = 'images';
+	public const BOOLEAN = 'bool';
+	public const TEXT = 'text';
+	public const TEXTAREA = 'textarea';
+	public const SLUG = 'slug';
+	public const SLUG_EXT = 'slug_ext';
+	public const SLUG_SLASH = 'slug_slash';
+	public const PASSWORD = 'password';
+	public const FILE = 'file';
+	public const TEXT_HTML = 'text_html';
+	public const COLOR = 'color';
+	public const RICH = 'rich';
+	public const BLOCK = 'block';
+	public const HTML = 'html';
+	public const CODE = 'code';
+	public const EMAIL = 'email';
+	public const LINK = 'link';
+	public const CHECKBOXES = 'checkboxes';
+	public const CHECKBOXES_HIERARCHY = 'checkboxes_hierarchy';
+	public const RADIOS = 'radios';
+	public const RADIOS_HIERARCHY = 'radios_hierarchy';
+	public const SELECT = 'select';
+	public const SELECT_MULTI = 'select_multi';
+	public const DROPDOWN_PAGES = 'dropdown_pages';
+	public const DROPDOWN_CATEGORIES = 'dropdown_categories';
+	public const GROUP = 'group';
+	public const GROUP_MULTI = 'group_multi';
+	public const NUMBER = 'number';
+	public const INTEGER = 'integer';
+	public const ABSINT = 'absint';
+	public const RANGE_INTEGER = 'range_integer';
+	public const RANGE_ABSINT = 'range_absint';
+	public const CSS_SIZE = 'css_size';
+	public const HIDDEN = 'hidden';
+	public const LISTING = 'listing';
+	public const X_BY_Y = 'x_by_y';
+	public const EXPANDABLE_PAIRS = 'expandable_pairs';
+	public const EXPANDABLE_TEXT = 'expandable_text';
+	public const EXPANDABLE_RAW = 'expandable_raw';
 
 	public static $_values = array(
 		'info'                 => self::INFO,

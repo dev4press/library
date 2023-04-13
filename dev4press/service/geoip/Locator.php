@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Services\GEOIP\Locator
+Name:    Dev4Press\v41\Services\GEOIP\Locator
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Service\GEOIP;
+namespace Dev4Press\v41\Service\GEOIP;
 
-use Dev4Press\v40\Core\Helpers\IP;
+use Dev4Press\v41\Core\Helpers\IP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -72,7 +72,7 @@ abstract class Locator {
 				if ( $this->_expire > 0 ) {
 					$cache = get_site_transient( $key );
 
-					if ( $cache === false || is_null( $cache ) || empty( $cache ) ) {
+					if ( is_null( $cache ) || empty( $cache ) ) {
 						$_not_found[] = $ip;
 					} else {
 						$data               = json_decode( $cache );

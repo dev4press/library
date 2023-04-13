@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Services\GEOIP\Location
+Name:    Dev4Press\v41\Services\GEOIP\Location
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Service\GEOIP;
+namespace Dev4Press\v41\Service\GEOIP;
 
-use Dev4Press\v40\Library;
+use Dev4Press\v41\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -59,10 +59,10 @@ class Location {
 	public function location() {
 		$location = '';
 
-		if ( $this->status == 'active' && isset( $this->country_name ) && ! empty( $this->country_name ) ) {
+		if ( $this->status == 'active' && ! empty( $this->country_name ) ) {
 			$location .= $this->country_name;
 
-			if ( isset( $this->city ) && ! empty( $this->city ) ) {
+			if ( ! empty( $this->city ) ) {
 				$location .= ', ' . $this->city;
 			}
 		}

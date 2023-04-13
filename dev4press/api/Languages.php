@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\API\Languages
+Name:    Dev4Press\v41\API\Languages
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,14 +24,14 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\API;
+namespace Dev4Press\v41\API;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class Languages {
-	static private $_current_instance = null;
+	private static $_current_instance = null;
 
 	public $list = array(
 		'bg_BG' => array( 'native' => 'Български', 'english' => 'Bulgarian' ),

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Admin\Plugin
+Name:    Dev4Press\v41\Core\Admin\Plugin
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,11 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core\Admin;
+namespace Dev4Press\v41\Core\Admin;
 
-use Dev4Press\v40\Core\Quick\Sanitize;
-use Dev4Press\v40\Core\UI\Enqueue;
-use Dev4Press\v40\WordPress;
+use Dev4Press\v41\Core\Quick\Sanitize;
+use Dev4Press\v41\Core\UI\Enqueue;
+use Dev4Press\v41\WordPress;
 use WP_Screen;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -60,10 +60,10 @@ abstract class Plugin {
 
 	public $screen_id = '';
 
-	/** @var \Dev4Press\v40\Core\UI\Admin\Panel */
+	/** @var \Dev4Press\v41\Core\UI\Admin\Panel */
 	public $object = null;
 
-	/** @var \Dev4Press\v40\Core\UI\Enqueue */
+	/** @var \Dev4Press\v41\Core\UI\Enqueue */
 	public $enqueue = null;
 
 	public $enqueue_packed = true;
@@ -72,7 +72,7 @@ abstract class Plugin {
 	public $setup_items = array();
 	public $page_ids = array();
 
-	function __construct() {
+	public function __construct() {
 		$this->constructor();
 
 		add_filter( 'plugin_action_links', array( $this, 'plugin_actions' ), 10, 2 );
@@ -506,10 +506,10 @@ abstract class Plugin {
 
 	abstract public function run_postback();
 
-	/** @return \Dev4Press\v40\Core\Plugins\Settings */
+	/** @return \Dev4Press\v41\Core\Plugins\Settings */
 	abstract public function settings();
 
-	/** @return \Dev4Press\v40\Core\Plugins\Core */
+	/** @return \Dev4Press\v41\Core\Plugins\Core */
 	abstract public function plugin();
 
 	abstract public function settings_definitions();

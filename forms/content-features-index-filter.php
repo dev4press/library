@@ -1,6 +1,6 @@
 <?php
 
-use function Dev4Press\v40\Functions\panel;
+use function Dev4Press\v41\Functions\panel;
 
 $buttons = panel()->get_filter_buttons();
 

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Generator\Text\Generator
+Name:    Dev4Press\v41\Generator\Text\Generator
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -28,7 +28,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Generator\Text;
+namespace Dev4Press\v41\Generator\Text;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -340,5 +340,5 @@ abstract class Generator {
 		return join( ' ', $result );
 	}
 
-	abstract function words( $count = 1, $tags = false, $array = false );
+	public abstract function words( $count = 1, $tags = false, $array = false );
 }

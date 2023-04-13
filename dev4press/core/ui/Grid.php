@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\UI\Grid
+Name:    Dev4Press\v41\Core\UI\Grid
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core\UI;
+namespace Dev4Press\v41\Core\UI;
 
-use Dev4Press\v40\Core\Quick\Sanitize;
+use Dev4Press\v41\Core\Quick\Sanitize;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -108,14 +108,14 @@ abstract class Grid {
 
 	protected function parse_args() {
 		$this->filters['order']   = isset( $_GET['order'] ) && strtoupper( $_GET['order'] ) === 'ASC' ? 'ASC' : 'DESC';
-		$this->filters['orderby'] = isset( $_GET['orderby'] ) && ! empty( $_GET['orderby'] ) ? Sanitize::basic( $_GET['orderby'] ) : $this->default_orderby;
-		$this->filters['search']  = isset( $_GET['search'] ) && ! empty( $_GET['search'] ) ? Sanitize::basic( $_GET['search'] ) : '';
-		$this->filters['pg']      = isset( $_GET['pg'] ) && ! empty( $_GET['pg'] ) ? Sanitize::absint( $_GET['pg'] ) : 1;
+		$this->filters['orderby'] = ! empty( $_GET['orderby'] ) ? Sanitize::basic( $_GET['orderby'] ) : $this->default_orderby;
+		$this->filters['search']  = ! empty( $_GET['search'] ) ? Sanitize::basic( $_GET['search'] ) : '';
+		$this->filters['pg']      = ! empty( $_GET['pg'] ) ? Sanitize::absint( $_GET['pg'] ) : 1;
 
 		foreach ( $this->vars as $key => $method ) {
 			$real = $this->prefix . '-' . $key;
 
-			if ( isset( $_GET[ $real ] ) && ! empty( $_GET[ $real ] ) ) {
+			if ( ! empty( $_GET[ $real ] ) ) {
 				$this->filters[ $key ] = Sanitize::$method( $_GET[ $real ] );
 			}
 		}

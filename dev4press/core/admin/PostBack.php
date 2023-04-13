@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Admin\PostBack
+Name:    Dev4Press\v41\Core\Admin\PostBack
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core\Admin;
+namespace Dev4Press\v41\Core\Admin;
 
-use Dev4Press\v40\Core\Options\Process;
-use Dev4Press\v40\Core\Quick\Sanitize;
+use Dev4Press\v41\Core\Options\Process;
+use Dev4Press\v41\Core\Quick\Sanitize;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -47,7 +47,7 @@ abstract class PostBack {
 		}
 	}
 
-	/** @return \Dev4Press\v40\Core\Admin\Plugin|\Dev4Press\v40\Core\Admin\Menu\Plugin|\Dev4Press\v40\Core\Admin\Submenu\Plugin */
+	/** @return \Dev4Press\v41\Core\Admin\Plugin|\Dev4Press\v41\Core\Admin\Menu\Plugin|\Dev4Press\v41\Core\Admin\Submenu\Plugin */
 	public function a() {
 		return $this->admin;
 	}

@@ -1,7 +1,7 @@
 <?php
 
-use Dev4Press\v40\Core\Quick\WPR;
-use Dev4Press\v40\Core\UI\Elements;
+use Dev4Press\v41\Core\Quick\WPR;
+use Dev4Press\v41\Core\UI\Elements;
 
 ?>
 

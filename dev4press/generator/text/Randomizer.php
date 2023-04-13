@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev4Press\v40\Generator\Text;
+namespace Dev4Press\v41\Generator\Text;
 
 class Randomizer extends Generator {
 	protected $word_mean = 6.16;
@@ -37,7 +37,7 @@ class Randomizer extends Generator {
 		'z'
 	);
 
-	function words( $count = 1, $tags = false, $array = false ) {
+	public function words( $count = 1, $tags = false, $array = false ) {
 		$words = array();
 
 		for ( $i = 0; $i < $count; $i ++ ) {

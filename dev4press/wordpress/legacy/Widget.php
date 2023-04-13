@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\WordPress\Legacy\Widget
+Name:    Dev4Press\v41\WordPress\Legacy\Widget
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\WordPress\Legacy;
+namespace Dev4Press\v41\WordPress\Legacy;
 
-use Dev4Press\v40\Core\Quick\Sanitize;
-use Dev4Press\v40\Core\Quick\WPR;
+use Dev4Press\v41\Core\Quick\Sanitize;
+use Dev4Press\v41\Core\Quick\WPR;
 use WP_Widget;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -74,7 +74,7 @@ abstract class Widget extends WP_Widget {
 	protected $cache_time = 0;
 	protected $cache_key = '';
 
-	/** @var \Dev4Press\v40\Core\UI\Widgets */
+	/** @var \Dev4Press\v41\Core\UI\Widgets */
 	protected $widgets_render;
 
 	public function __construct( $id_base = false, $name = '', $widget_options = array(), $control_options = array() ) {
@@ -193,7 +193,7 @@ abstract class Widget extends WP_Widget {
 		$instance['_roles'] = array();
 
 		if ( isset( $new_instance['_roles'] ) ) {
-			$_roles      = array_map( '\Dev4Press\v40\Core\Quick\Sanitize::basic', $new_instance['_roles'] );
+			$_roles      = array_map( '\Dev4Press\v41\Core\Quick\Sanitize::basic', $new_instance['_roles'] );
 			$valid_roles = WPR::list_user_roles();
 
 			foreach ( $_roles as $role ) {
@@ -319,7 +319,7 @@ abstract class Widget extends WP_Widget {
 			$class[] = $this->widget_class;
 		}
 
-		if ( isset( $instance['_class'] ) && ! empty( $instance['_class'] ) ) {
+		if ( ! empty( $instance['_class'] ) ) {
 			$class[] = $instance['_class'];
 		}
 
@@ -331,13 +331,13 @@ abstract class Widget extends WP_Widget {
 
 		echo '<div class="' . join( ' ', $classes ) . '">' . D4P_EOL;
 
-		if ( isset( $instance['_before'] ) && ! empty( $instance['_before'] ) ) {
+		if ( ! empty( $instance['_before'] ) ) {
 			echo '<div class="d4p-widget-before">' . $instance['_before'] . '</div>';
 		}
 	}
 
 	protected function render_widget_footer( array $instance ) {
-		if ( isset( $instance['_after'] ) && ! empty( $instance['_after'] ) ) {
+		if ( ! empty( $instance['_after'] ) ) {
 			echo '<div class="d4p-widget-after">' . $instance['_after'] . '</div>';
 		}
 
@@ -425,7 +425,7 @@ abstract class Widget extends WP_Widget {
 		}
 
 		foreach ( $arrays as $key ) {
-			if ( isset( $instance[ $key ] ) && ! empty( $instance[ $key ] ) ) {
+			if ( ! empty( $instance[ $key ] ) ) {
 				$instance[ $key ] = join( ',', $instance[ $key ] );
 			} else {
 				$instance[ $key ] = array();

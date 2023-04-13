@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\Core\Features\Admin
+Name:    Dev4Press\v41\Core\Features\Admin
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\Core\Features;
+namespace Dev4Press\v41\Core\Features;
 
-use Dev4Press\v40\Core\Options\Element as EL;
+use Dev4Press\v41\Core\Options\Element as EL;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

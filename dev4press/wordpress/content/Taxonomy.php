@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v40\WordPress\Content\Taxonomy
+Name:    Dev4Press\v41\WordPress\Content\Taxonomy
 Version: v4.0
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v40\WordPress\Content;
+namespace Dev4Press\v41\WordPress\Content;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
