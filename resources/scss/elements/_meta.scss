@@ -1,12 +1,37 @@
-.d4plib-meta-box-wrapper {
+.d4plib-#{$library-code}-meta-box-wrapper {
     box-sizing: border-box;
-    margin: 1.5em 0;
 
     * {
         box-sizing: border-box;
     }
 
-    .d4p-ctrl-tabs-content {
+    .wp-tab-bar {
+        margin-bottom: 5px;
+
+        li {
+            padding: 5px 10px 8px;
+
+            button {
+                background: none;
+                padding: 0;
+                margin: 0;
+                border: 0;
+                cursor: pointer;
+            }
+
+            &.wp-tab-active {
+                button {
+                    color: var(--wp-admin-theme-color);
+                }
+            }
+
+            span.dashicons {
+                margin-right: 4px;
+            }
+        }
+    }
+
+    .wp-tab-panel {
         max-height: 360px;
         padding: 1.5em;
         overflow: auto;
@@ -24,7 +49,7 @@
         }
     }
 
-    .d4plib-meta-box-row {
+    .__row {
         display: flex;
         margin: 0 -1em 1.5em;
 
