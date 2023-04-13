@@ -28,15 +28,6 @@
   padding: 1.5em;
   overflow: auto;
 }
-.d4plib-v41-meta-box-wrapper .wp-tab-panel > p {
-  margin: 1em 0;
-}
-.d4plib-v41-meta-box-wrapper .wp-tab-panel > p:first-child {
-  margin-top: 0;
-}
-.d4plib-v41-meta-box-wrapper .wp-tab-panel > p:last-child {
-  margin-bottom: 0;
-}
 .d4plib-v41-meta-box-wrapper .__row {
   display: flex;
   margin: 0 -1em 1.5em;
@@ -66,17 +57,34 @@
     margin-bottom: 0;
   }
 }
+.d4plib-v41-meta-box-wrapper p,
 .d4plib-v41-meta-box-wrapper .__element {
-  margin-top: 1em;
+  margin: 1em 0;
 }
+.d4plib-v41-meta-box-wrapper p:first-child,
 .d4plib-v41-meta-box-wrapper .__element:first-child {
   margin-top: 0;
 }
+.d4plib-v41-meta-box-wrapper p:last-child,
+.d4plib-v41-meta-box-wrapper .__element:last-child {
+  margin-bottom: 0;
+}
+.d4plib-v41-meta-box-wrapper p label,
 .d4plib-v41-meta-box-wrapper .__element label {
-  display: block;
-  line-height: 2;
-  font-weight: 500;
   font-size: 1.1em;
+  font-weight: 500;
+}
+.d4plib-v41-meta-box-wrapper p select,
+.d4plib-v41-meta-box-wrapper p input,
+.d4plib-v41-meta-box-wrapper .__element select,
+.d4plib-v41-meta-box-wrapper .__element input {
+  display: block;
+  margin-top: 0.25em;
+}
+.d4plib-v41-meta-box-wrapper p em,
+.d4plib-v41-meta-box-wrapper .__element em {
+  display: block;
+  margin-top: 0.25em;
 }
 .d4plib-v41-meta-box-wrapper .__element .d4p-setting-checkboxes .d4p-check-uncheck {
   font-size: 0.9em;
