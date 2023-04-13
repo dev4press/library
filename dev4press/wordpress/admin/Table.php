@@ -64,7 +64,7 @@ abstract class Table extends WP_List_Table {
 				$value = 1;
 			}
 
-			$value = absint( $value );
+			$value = Sanitize::absint( $value );
 		}
 
 		return $value;
@@ -145,7 +145,7 @@ abstract class Table extends WP_List_Table {
 
 		if ( $do_limit ) {
 			$paged  = $this->get_request_arg( 'paged' );
-			$offset = absint( ( $paged - 1 ) * $per_page );
+			$offset = Sanitize::absint( ( $paged - 1 ) * $per_page );
 
 			$sql['limit'] = $offset . ', ' . $per_page;
 		}

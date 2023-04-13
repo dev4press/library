@@ -204,7 +204,7 @@ abstract class Widget extends WP_Widget {
 		}
 
 		if ( isset( $new_instance['_cached'] ) ) {
-			$instance['_cached'] = absint( $new_instance['_cached'] );
+			$instance['_cached'] = Sanitize::absint( $new_instance['_cached'] );
 		}
 
 		if ( current_user_can( 'unfiltered_html' ) ) {
@@ -346,7 +346,7 @@ abstract class Widget extends WP_Widget {
 
 	protected function prepare_cache( array $instance ) {
 		if ( $this->results_cacheable ) {
-			$this->cache_time = isset( $instance['_cached'] ) ? absint( $instance['_cached'] ) : 0;
+			$this->cache_time = isset( $instance['_cached'] ) ? Sanitize::absint( $instance['_cached'] ) : 0;
 
 			if ( $this->cache_time > 0 ) {
 				$copy = (array) $instance;
