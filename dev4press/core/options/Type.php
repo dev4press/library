@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\v41\Core\Options\Type
-Version: v4.0
+Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
