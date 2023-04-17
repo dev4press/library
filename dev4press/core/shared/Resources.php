@@ -296,6 +296,14 @@ class Resources {
 				'ext'  => 'js',
 				'min'  => false
 			),
+			'kjua'                   => array(
+				'lib'  => true,
+				'path' => '',
+				'file' => 'kjua.min',
+				'ver'  => '1.13.1',
+				'ext'  => 'js',
+				'min'  => false
+			),
 			'mark'                   => array(
 				'lib'  => true,
 				'path' => '',
