@@ -3329,6 +3329,7 @@ a > .d4p-icon {
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=datetime],
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number],
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=text],
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=url],
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=email],
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=password] {
   border-radius: var(--d4p-layout-main-border-radius);
