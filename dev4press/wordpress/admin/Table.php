@@ -29,6 +29,7 @@ namespace Dev4Press\v41\WordPress\Admin;
 use Dev4Press\v41\Core\Plugins\DBLite;
 use Dev4Press\v41\Core\Quick\Sanitize;
 use WP_List_Table;
+use function Dev4Press\v41\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -41,6 +42,7 @@ abstract class Table extends WP_List_Table {
 	public $_sanitize_orderby_fields = array();
 	public $_checkbox_field = '';
 	public $_table_class_name = '';
+	public $_self_nonce_key = '';
 
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );
@@ -52,8 +54,21 @@ abstract class Table extends WP_List_Table {
 		return array();
 	}
 
+	protected function _self( $args, $getback = false, $nonce = null ) : string {
+		$url = panel()->a()->current_url();
+		$url .= '&' . $args;
+
+		if ( $getback ) {
+			$url .= '&' . panel()->a()->v() . '=getback';
+			$url .= '&_wpnonce=' . ( $nonce ?? wp_create_nonce( $this->_self_nonce_key ) );
+			$url .= '&_wp_http_referer=' . wp_unslash( $_SERVER['REQUEST_URI'] );
+		}
+
+		return $url;
+	}
+
 	public function rows_per_page() : int {
-		return 0;
+		return 20;
 	}
 
 	public function get_request_arg( $name, $default = '' ) {
