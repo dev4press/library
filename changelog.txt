@@ -6,6 +6,7 @@
 * New: Rewritten JavaScript and CSS for the Meta boxes
 * New: Expanded collection of UI icons
 * New: JavaScript library for QRCodes: Kjua-SVG 1.13.1
+* Updated: Improvements to the `Table` base class
 * Updated: Various improvements to the PHP code
 * Updated: CSS pack no longer contains Balloon styling
 * Fix: issues with screen load panel initialization
