@@ -71,18 +71,18 @@ abstract class Grid {
 
 	public function display() {
 		?>
-        <div class="d4p-grid-table-wrapper <?php echo $this->grid_classes; ?>">
-            <form method="get">
+		<div class="d4p-grid-table-wrapper <?php echo $this->grid_classes; ?>">
+			<form method="get">
 				<?php $this->filter(); ?>
-                <table class="d4p-grid-table">
+				<table class="d4p-grid-table">
 					<?php $this->header(); ?>
-                    <tbody>
+					<tbody>
 					<?php $this->rows(); ?>
-                    </tbody>
-                </table>
+					</tbody>
+				</table>
 				<?php $this->pager(); ?>
-            </form>
-        </div>
+			</form>
+		</div>
 		<?php
 	}
 
@@ -239,8 +239,8 @@ abstract class Grid {
 
 	protected function header() {
 		?>
-        <thead>
-        <tr>
+		<thead>
+		<tr>
 			<?php
 
 			$current_url = remove_query_arg( 'pg', $this->current_url );
@@ -275,8 +275,8 @@ abstract class Grid {
 			}
 
 			?>
-        </tr>
-        </thead>
+		</tr>
+		</thead>
 		<?php
 	}
 
