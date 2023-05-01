@@ -248,6 +248,10 @@ a > .d4p-icon {
   content: "\f11e";
 }
 
+.d4p-icon.d4p-logo-dev4press-light:before {
+  content: "\f11e";
+}
+
 .d4p-icon.d4p-logo-jquery:before {
   content: "\f11f";
 }
