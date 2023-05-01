@@ -4,9 +4,15 @@
   max-width: 1080px;
   font-size: 16px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .d4p-wrap.d4p-panel-about {
-    margin-top: 4em;
+    margin: 4em 1em 2em 0.5em;
+  }
+  .d4p-wrap.d4p-panel-about .core-grid {
+    margin: 0;
+  }
+  .d4p-wrap.d4p-panel-about .core-grid .core-row {
+    margin-bottom: 2em;
   }
 }
 .d4p-wrap.d4p-panel-about .d4p-about-head-wrapper {
@@ -78,12 +84,29 @@
 .d4p-wrap.d4p-panel-about .nav-tab-wrapper .nav-tab.nav-tab-active {
   font-weight: 500;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .d4p-wrap.d4p-panel-about .nav-tab-wrapper {
     font-size: 0.9em;
   }
   .d4p-wrap.d4p-panel-about .nav-tab-wrapper .nav-tab {
     padding: 0.5em;
+  }
+}
+@media screen and (max-width: 599px) {
+  .d4p-wrap.d4p-panel-about .nav-tab-wrapper {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
+  .d4p-wrap.d4p-panel-about .nav-tab-wrapper .nav-tab {
+    padding: 0.5em 0.75em;
+    margin: 0;
+    text-align: center;
+    border-radius: var(--d4p-layout-main-border-radius);
+    flex-grow: 1;
+  }
+  .d4p-wrap.d4p-panel-about .nav-tab-wrapper:after {
+    display: none;
   }
 }
 .d4p-wrap.d4p-panel-about .d4p-about-inner {
@@ -287,18 +310,30 @@
   font-weight: 300;
 }
 .d4p-wrap.d4p-panel-about .d4p-info-list li {
+  line-height: 1.8;
   display: flex;
+  gap: 1em;
 }
 .d4p-wrap.d4p-panel-about .d4p-info-list li span {
-  flex-grow: 0;
-  flex-shrink: 0;
-  flex-basis: 200px;
+  flex: 0 0 160px;
 }
 .d4p-wrap.d4p-panel-about .d4p-info-list li strong {
-  flex-grow: 0;
-  flex-shrink: 1;
+  flex: 1 1;
   font-family: monospace;
   font-weight: normal;
+}
+@media screen and (max-width: 767px) {
+  .d4p-wrap.d4p-panel-about .d4p-info-list li {
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 1em;
+  }
+  .d4p-wrap.d4p-panel-about .d4p-info-list li span {
+    flex: 0 0 auto;
+  }
+  .d4p-wrap.d4p-panel-about .d4p-info-list li strong {
+    font-weight: bold;
+  }
 }
 .d4p-wrap.d4p-panel-about .d4p-addon-information {
   border: 1px solid #999;

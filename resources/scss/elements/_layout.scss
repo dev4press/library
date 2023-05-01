@@ -227,6 +227,18 @@
         }
     }
 
+    &.d4p-with-cards {
+        .d4p-content-wrapper {
+            .d4p-content {
+                padding: .5em 0 1.5em .5em;
+
+                @media screen and (max-width: 640px) {
+                    padding: 1em 0 1em;
+                }
+            }
+        }
+    }
+
     &.d4p-full-width {
         .d4p-content-wrapper {
             padding: 1.5em 0 0;

@@ -1,11 +1,13 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 4.1 - 2023.04.27 =
+= Version 4.1 - 2023.05.04 =
 * New: `Sanitize` includes wrapper for the URL
 * New: Rewritten JavaScript and CSS for the Meta boxes
 * New: Expanded collection of UI icons
 * New: JavaScript library for QRCodes: Kjua-SVG 1.13.1
+* New: Admin panel handling the cards content layout better
+* Updated: Improvements to About panel responsive styling
 * Updated: Improvements to the `Table` base class
 * Updated: Various improvements to the PHP code
 * Updated: CSS pack no longer contains Balloon styling

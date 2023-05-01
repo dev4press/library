@@ -73,7 +73,6 @@
                 max-width: 1200px;
                 display: flex;
                 flex-wrap: wrap;
-                margin: -1em;
 
                 .d4p-group {
                     &.d4p-dashboard-card {
@@ -94,6 +93,15 @@
                     .d4p-group {
                         &.d4p-dashboard-card {
                             max-width: calc(100% - 2em);
+                        }
+                    }
+                }
+
+                @media screen and (max-width: 640px) {
+                    .d4p-group {
+                        &.d4p-dashboard-card {
+                            margin: 1em 0;
+                            max-width: 100%;
                         }
                     }
                 }

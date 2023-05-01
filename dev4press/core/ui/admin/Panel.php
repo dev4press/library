@@ -18,6 +18,7 @@ abstract class Panel {
 	protected $sidebar = true;
 	protected $form = false;
 	protected $table = false;
+	protected $cards = false;
 	protected $subpanels = array();
 	protected $render_class = '\\Dev4Press\\v41\\Core\\UI\\Admin\\Render';
 	protected $wrapper_class = '';
@@ -99,6 +100,10 @@ abstract class Panel {
 		return $this->table;
 	}
 
+	public function has_cards() : bool {
+		return $this->cards;
+	}
+
 	public function validate_subpanel( $name ) {
 		if ( empty( $this->subpanels ) ) {
 			return '';
@@ -149,6 +154,10 @@ abstract class Panel {
 
 		if ( $this->table ) {
 			$_classes[] = 'd4p-with-table';
+		}
+
+		if ( $this->cards ) {
+			$_classes[] = 'd4p-with-cards';
 		}
 
 		if ( ! empty( $this->wrapper_class ) ) {
