@@ -33,7 +33,6 @@ abstract class Panel {
 		$this->render = $render::instance();
 
 		add_action( 'load-' . $this->a()->screen_id, array( $this, 'screen_options_show' ) );
-		add_filter( 'set-screen-option', array( $this, 'screen_options_save' ), 10, 3 );
 
 		add_action( $this->h( 'enqueue_scripts_early' ), array( $this, 'enqueue_scripts_early' ) );
 		add_action( $this->h( 'enqueue_scripts' ), array( $this, 'enqueue_scripts' ) );
@@ -127,10 +126,6 @@ abstract class Panel {
 	}
 
 	public function screen_options_show() {
-	}
-
-	public function screen_options_save( $status, $option, $value ) {
-		return $status;
 	}
 
 	public function wrapper_class() : array {

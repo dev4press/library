@@ -59,6 +59,7 @@ abstract class Plugin {
 	public $subpanel = '';
 
 	public $screen_id = '';
+	public $per_page_options = array();
 
 	/** @var \Dev4Press\v41\Core\UI\Admin\Panel */
 	public $object = null;
@@ -80,6 +81,8 @@ abstract class Plugin {
 
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 20 );
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), 20 );
+
+		add_filter( 'set-screen-option', array( $this, 'screen_options_save' ), 10, 3 );
 	}
 
 	/** @return static */
@@ -516,5 +519,13 @@ abstract class Plugin {
 
 	public function features_definitions( $feature ) {
 
+	}
+
+	public function screen_options_save( $status, $option, $value ) {
+		if ( in_array($option, $this->per_page_options) ) {
+			return absint( $value );
+		}
+
+		return $status;
 	}
 }
