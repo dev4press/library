@@ -852,7 +852,7 @@ class Render {
 	protected function part_check_uncheck_all() {
 		echo '<div class="d4p-check-uncheck">';
 
-		echo '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-box"></i> ' . esc_html__( "Check All", "d4plib" ) . '</a>';
+		echo '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-square"></i> ' . esc_html__( "Check All", "d4plib" ) . '</a>';
 		echo '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . esc_html__( "Uncheck All", "d4plib" ) . '</a>';
 
 		echo '</div>';
