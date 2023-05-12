@@ -745,6 +745,20 @@
   margin-bottom: 3.5em;
 }
 
+.d4p-status-inline-help {
+  display: inline-block;
+  border-radius: 50%;
+  background: var(--d4p-color-main-text);
+  color: #FFFFFF;
+  font-size: 10px;
+  width: 18px;
+  text-align: center;
+  height: 18px;
+  line-height: 16px;
+  vertical-align: text-bottom;
+  cursor: help;
+}
+
 .d4p-wrap.d4p-with-table ul.subsubsub {
   margin: 0;
 }

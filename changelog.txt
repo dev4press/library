@@ -1,6 +1,11 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 4.1.1 - 2023.05.15 =
+* New: added `exclamation` icon
+* New: few additional styling changes
+* Fix: wrong `question` icon used
+
 = Version 4.1 - 2023.05.04 =
 * New: `Sanitize` includes wrapper for the URL
 * New: Rewritten JavaScript and CSS for the Meta boxes
