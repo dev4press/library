@@ -5,6 +5,7 @@
 * New: added `exclamation` icon
 * New: few additional styling changes
 * Fix: wrong `question` icon used
+* Fix: issue with the `Table` referer use
 
 = Version 4.1 - 2023.05.04 =
 * New: `Sanitize` includes wrapper for the URL

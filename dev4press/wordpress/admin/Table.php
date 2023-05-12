@@ -61,7 +61,7 @@ abstract class Table extends WP_List_Table {
 		if ( $getback ) {
 			$url .= '&' . panel()->a()->v() . '=getback';
 			$url .= '&_wpnonce=' . ( $nonce ?? wp_create_nonce( $this->_self_nonce_key ) );
-			$url .= '&_wp_http_referer=' . wp_unslash( $_SERVER['REQUEST_URI'] );
+			$url .= '&_wp_http_referer=' . esc_url( wp_get_referer() );
 		}
 
 		return $url;
@@ -150,19 +150,19 @@ abstract class Table extends WP_List_Table {
 	protected function column_cb( $item ) : string {
 		$key = $this->_checkbox_field;
 
-		return sprintf( '<input type="checkbox" name="%1$s[]" value="%2$s" />', $this->_args['singular'], $item->$key );
+		return sprintf( '<input type="checkbox" name="%1$s[]" value="%2$s" />', $this->_args[ 'singular' ], $item->$key );
 	}
 
 	protected function query_items( array $sql, int $per_page, bool $do_order = true, bool $do_limit = true, string $index_field = '' ) {
 		if ( $do_order ) {
-			$sql['order'] = $this->get_request_arg( 'orderby' ) . " " . $this->get_request_arg( 'order' );
+			$sql[ 'order' ] = $this->get_request_arg( 'orderby' ) . " " . $this->get_request_arg( 'order' );
 		}
 
 		if ( $do_limit ) {
 			$paged  = $this->get_request_arg( 'paged' );
 			$offset = Sanitize::absint( ( $paged - 1 ) * $per_page );
 
-			$sql['limit'] = $offset . ', ' . $per_page;
+			$sql[ 'limit' ] = $offset . ', ' . $per_page;
 		}
 
 		$query = $this->db()->build_query( $sql );
