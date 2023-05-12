@@ -254,7 +254,7 @@ class Store {
 			"description" => "Implements polls system for bbPress powered forums, where users can add polls to topics, with a wide range of settings to control voting, poll closing, display of results and more.",
 			"punchline"   => "Enhance bbPress forums with topic polls",
 			"color"       => "#01665e",
-			'free'        => false,
+			'free'        => true,
 			'pro'         => true
 		),
 		"gd-topic-prefix"                  => array(
