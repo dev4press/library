@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press\v42\Service\Media\Pixabay\Video
-Version: v4.1
+Version: v4.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
