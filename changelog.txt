@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 4.2 - 2023.06.01 =
+* New: added few more UI icons
+* New: added new plugin reference and icon for it
+
 = Version 4.1.1 - 2023.05.15 =
 * New: added `exclamation` icon
 * New: few additional styling changes
