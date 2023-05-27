@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v41\Functions;
+namespace Dev4Press\v42\Functions;
 
-use Dev4Press\v41\Core\UI\Admin\Panel;
+use Dev4Press\v42\Core\UI\Admin\Panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

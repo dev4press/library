@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v41\Core\Plugins\Core
+Name:    Dev4Press\v42\Core\Plugins\Core
 Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,13 +24,13 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v41\Core\Plugins;
+namespace Dev4Press\v42\Core\Plugins;
 
-use Dev4Press\v41\API\Four;
-use Dev4Press\v41\Core\DateTime;
-use Dev4Press\v41\Core\Quick\BBP;
-use Dev4Press\v41\Library;
-use Dev4Press\v41\WordPress;
+use Dev4Press\v42\API\Four;
+use Dev4Press\v42\Core\DateTime;
+use Dev4Press\v42\Core\Quick\BBP;
+use Dev4Press\v42\Library;
+use Dev4Press\v42\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -216,9 +216,9 @@ abstract class Core {
 
 	abstract public function run();
 
-	/** @return \Dev4Press\v41\Core\Plugins\Settings */
+	/** @return \Dev4Press\v42\Core\Plugins\Settings */
 	abstract public function s();
 
-	/** @return NULL|\Dev4Press\v41\Core\Features\Load */
+	/** @return NULL|\Dev4Press\v42\Core\Features\Load */
 	abstract public function f();
 }

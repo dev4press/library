@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v41\Core\Shared\Enqueue
+Name:    Dev4Press\v42\Core\Shared\Enqueue
 Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v41\Core\Shared;
+namespace Dev4Press\v42\Core\Shared;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

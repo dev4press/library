@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v41\Core\Helpers\DB
+Name:    Dev4Press\v42\Core\Helpers\DB
 Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v41\Core\Helpers;
+namespace Dev4Press\v42\Core\Helpers;
 
-use Dev4Press\v41\Core\Plugins\DBLite;
+use Dev4Press\v42\Core\Plugins\DBLite;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

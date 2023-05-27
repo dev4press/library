@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v41\Core\Admin\Table
+Name:    Dev4Press\v42\Core\Admin\Table
 Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,12 +24,12 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v41\WordPress\Admin;
+namespace Dev4Press\v42\WordPress\Admin;
 
-use Dev4Press\v41\Core\Plugins\DBLite;
-use Dev4Press\v41\Core\Quick\Sanitize;
+use Dev4Press\v42\Core\Plugins\DBLite;
+use Dev4Press\v42\Core\Quick\Sanitize;
 use WP_List_Table;
-use function Dev4Press\v41\Functions\panel;
+use function Dev4Press\v42\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

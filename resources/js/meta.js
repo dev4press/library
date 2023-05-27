@@ -3,12 +3,12 @@
 ;(function ($, window, document, undefined) {
     window.wp = window.wp || {};
     window.wp.dev4press = window.wp.dev4press || {};
-    window.wp.dev4press.v41 = window.wp.dev4press.v41 || {};
+    window.wp.dev4press.v42 = window.wp.dev4press.v42 || {};
 
-    window.wp.dev4press.v41.metabox = {
-        library: 'v41',
+    window.wp.dev4press.v42.metabox = {
+        library: 'v42',
         init: function () {
-            const wrapper = ".d4plib-" + wp.dev4press.v41.metabox.library + "-meta-box-wrapper";
+            const wrapper = ".d4plib-" + wp.dev4press.v42.metabox.library + "-meta-box-wrapper";
 
             $(document).on("click", wrapper + " .d4p-check-uncheck a", function (e) {
                 e.preventDefault();
@@ -41,6 +41,6 @@
     };
 
     $(document).ready(function () {
-        wp.dev4press.v41.metabox.init();
+        wp.dev4press.v42.metabox.init();
     });
 })(jQuery, window, document);

@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v41\WordPress
+Name:    Dev4Press\v42\WordPress
 Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v41;
+namespace Dev4Press\v42;
 
-use Dev4Press\v41\Core\Quick\WPR;
+use Dev4Press\v42\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

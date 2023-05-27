@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v41\Core\Plugins\DB
+Name:    Dev4Press\v42\Core\Plugins\DB
 Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,10 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v41\Core\Plugins;
+namespace Dev4Press\v42\Core\Plugins;
 
-use Dev4Press\v41\Core\DateTime;
-use Dev4Press\v41\Core\Quick\Sanitize;
+use Dev4Press\v42\Core\DateTime;
+use Dev4Press\v42\Core\Quick\Sanitize;
 use wpdb;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -454,7 +454,7 @@ abstract class DBLite {
 	 *
 	 */
 	public function gmt_offset() {
-		_deprecated_function( __METHOD__, '4.0', '\Dev4Press\v41\Core\DateTime::instance()->offset()' );
+		_deprecated_function( __METHOD__, '4.0', '\Dev4Press\v42\Core\DateTime::instance()->offset()' );
 
 		return DateTime::instance()->offset();
 	}
@@ -465,7 +465,7 @@ abstract class DBLite {
 	 *
 	 */
 	public function get_offset_string() : string {
-		_deprecated_function( __METHOD__, '4.0', '\Dev4Press\v41\Core\DateTime::instance()->formatted_offset()' );
+		_deprecated_function( __METHOD__, '4.0', '\Dev4Press\v42\Core\DateTime::instance()->formatted_offset()' );
 
 		return DateTime::instance()->formatted_offset();
 	}

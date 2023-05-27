@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-use Dev4Press\v41\Core\Helpers\Debug;
+use Dev4Press\v42\Core\Helpers\Debug;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

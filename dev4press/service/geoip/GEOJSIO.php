@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v41\Services\GEOIP\GEOJSIO
+Name:    Dev4Press\v42\Services\GEOIP\GEOJSIO
 Version: v4.1
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v41\Service\GEOIP;
+namespace Dev4Press\v42\Service\GEOIP;
 
-use Dev4Press\v41\Core\Helpers\IP;
+use Dev4Press\v42\Core\Helpers\IP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

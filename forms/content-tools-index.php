@@ -1,7 +1,7 @@
 <?php
 
-use Dev4Press\v41\Core\Quick\Sanitize;
-use function Dev4Press\v41\Functions\panel;
+use Dev4Press\v42\Core\Quick\Sanitize;
+use function Dev4Press\v42\Functions\panel;
 
 ?>
 <div class="d4p-content">
