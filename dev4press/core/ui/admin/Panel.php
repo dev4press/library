@@ -114,7 +114,7 @@ abstract class Panel {
 
 		$valid = array_keys( $this->subpanels );
 
-		return $valid[0];
+		return $valid[ 0 ];
 	}
 
 	public function enqueue_scripts_early() {
@@ -243,12 +243,12 @@ abstract class Panel {
 		if ( $this->a()->auto_mod_interface_colors ) {
 			?>
 
-			<style>
+            <style>
                 .<?php echo 'd4p-plugin-'.esc_html( $this->a()->plugin ); ?> {
                     --d4p-color-layout-accent: <?php echo esc_html( $this->a()->settings()->i()->color() ); ?>;
                     --d4p-color-sidebar-icon-text: <?php echo esc_html( $this->a()->settings()->i()->color() ); ?>;
                 }
-			</style>
+            </style>
 
 			<?php
 		}

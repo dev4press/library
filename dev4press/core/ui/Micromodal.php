@@ -104,14 +104,14 @@ class Micromodal {
 
 	protected function _open() : string {
 		return '<div data-modal="{{modal-name}}" class="micromodal-dialog-wrapper {{modal-class}}-modal {{modal-class}}-modal-slide" id="{{modal-class}}-modal-{{modal-name}}" aria-hidden="true">
-    <div class="{{modal-class}}-modal__overlay" tabindex="-1"' . ( $this->settings['close-by-overlay'] ? ' data-micromodal-close' : '' ) . '>
+    <div class="{{modal-class}}-modal__overlay" tabindex="-1"' . ( $this->settings[ 'close-by-overlay' ] ? ' data-micromodal-close' : '' ) . '>
         <div class="{{modal-class}}-modal__container" role="dialog" aria-modal="true" aria-labelledby="{{modal-class}}-modal-{{modal-name}}-title">';
 	}
 
 	protected function _header() : string {
 		return '<header class="{{modal-class}}-modal__header">
                 <h2 class="{{modal-class}}-modal__title" id="{{modal-class}}-modal-{{modal-name}}-title">{{modal-title}}</h2>
-                ' . ( $this->settings['close-by-cross'] ? '<button type="button" class="{{modal-class}}-modal__close" aria-label="{{modal-close-label}}" data-micromodal-close></button>' : '' ) . '
+                ' . ( $this->settings[ 'close-by-cross' ] ? '<button type="button" class="{{modal-class}}-modal__close" aria-label="{{modal-close-label}}" data-micromodal-close></button>' : '' ) . '
             </header>';
 	}
 
@@ -123,8 +123,8 @@ class Micromodal {
 
 	protected function _footer() : string {
 		return '<footer class="{{modal-class}}-modal__footer">
-                ' . ( $this->settings['show-action-button'] ? '<button type="button" id="{{modal-class}}-modal-{{modal-name}}-submit" class="{{modal-class}}-modal__btn {{modal-class}}-modal__btn-primary">{{modal-button-primary}}</button>' : '' ) . '
-                ' . ( $this->settings['close-by-button'] ? '<button type="button" class="{{modal-class}}-modal__btn" data-micromodal-close>{{modal-button-close}}</button>' : '' ) . '
+                ' . ( $this->settings[ 'show-action-button' ] ? '<button type="button" id="{{modal-class}}-modal-{{modal-name}}-submit" class="{{modal-class}}-modal__btn {{modal-class}}-modal__btn-primary">{{modal-button-primary}}</button>' : '' ) . '
+                ' . ( $this->settings[ 'close-by-button' ] ? '<button type="button" class="{{modal-class}}-modal__btn" data-micromodal-close>{{modal-button-close}}</button>' : '' ) . '
             </footer>';
 	}
 

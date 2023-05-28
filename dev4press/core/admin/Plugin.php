@@ -408,8 +408,8 @@ abstract class Plugin {
 	public function get_post_type() {
 		$post_type = '';
 
-		if ( isset( $_GET['post_type'] ) ) {
-			$post_type = Sanitize::key( $_GET['post_type'] );
+		if ( isset( $_GET[ 'post_type' ] ) ) {
+			$post_type = Sanitize::key( $_GET[ 'post_type' ] );
 		} else {
 			global $post;
 
@@ -522,7 +522,7 @@ abstract class Plugin {
 	}
 
 	public function screen_options_save( $status, $option, $value ) {
-		if ( in_array($option, $this->per_page_options) ) {
+		if ( in_array( $option, $this->per_page_options ) ) {
 			return absint( $value );
 		}
 

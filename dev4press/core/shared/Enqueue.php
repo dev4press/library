@@ -60,8 +60,8 @@ class Enqueue {
 	public function __construct() {
 		$this->_url = Library::instance()->url();
 
-		$this->_libraries['js']  = Resources::instance()->shared_js();
-		$this->_libraries['css'] = Resources::instance()->shared_css();
+		$this->_libraries[ 'js' ]  = Resources::instance()->shared_js();
+		$this->_libraries[ 'css' ] = Resources::instance()->shared_css();
 
 		add_action( 'init', array( $this, 'start' ), 15 );
 	}
@@ -91,10 +91,10 @@ class Enqueue {
 	public function locale_js_code( $script ) {
 		$locale = $this->locale();
 
-		if ( ! empty( $locale ) && isset( $this->_libraries['js'][ $script ]['locales'] ) ) {
+		if ( ! empty( $locale ) && isset( $this->_libraries[ 'js' ][ $script ][ 'locales' ] ) ) {
 			$code = strtolower( substr( $locale, 0, 2 ) );
 
-			if ( in_array( $code, $this->_libraries['js'][ $script ]['locales'] ) ) {
+			if ( in_array( $code, $this->_libraries[ 'js' ][ $script ][ 'locales' ] ) ) {
 				return $code;
 			}
 		}
@@ -117,11 +117,11 @@ class Enqueue {
 	}
 
 	public function add_css( $name, $args = array() ) {
-		$this->_libraries['css'][ $name ] = $args;
+		$this->_libraries[ 'css' ][ $name ] = $args;
 	}
 
 	public function add_js( $name, $args = array() ) {
-		$this->_libraries['js'][ $name ] = $args;
+		$this->_libraries[ 'js' ][ $name ] = $args;
 	}
 
 	public function get_actual( $type, $name ) {
@@ -137,51 +137,51 @@ class Enqueue {
 	}
 
 	public function register_styles() {
-		foreach ( $this->_libraries['css'] as $name => $args ) {
-			$code = $args['lib'] ? $this->_enqueue_prefix . $name : $name;
-			$req  = $args['req'] ?? array();
-			$ver  = $args['ver'] ?? Library::instance()->version();
+		foreach ( $this->_libraries[ 'css' ] as $name => $args ) {
+			$code = $args[ 'lib' ] ? $this->_enqueue_prefix . $name : $name;
+			$req  = $args[ 'req' ] ?? array();
+			$ver  = $args[ 'ver' ] ?? Library::instance()->version();
 
-			if ( ! empty( $args['int'] ) ) {
-				foreach ( $args['int'] as $lib ) {
-					$req[] = $this->_actual['css'][ $lib ];
+			if ( ! empty( $args[ 'int' ] ) ) {
+				foreach ( $args[ 'int' ] as $lib ) {
+					$req[] = $this->_actual[ 'css' ][ $lib ];
 				}
 			}
 
 			wp_register_style( $code, $this->url( $args ), $req, $ver );
 
-			$this->_actual['css'][ $name ] = $code;
-			$this->_deps['css'][ $name ]   = $req;
+			$this->_actual[ 'css' ][ $name ] = $code;
+			$this->_deps[ 'css' ][ $name ]   = $req;
 		}
 	}
 
 	public function register_scripts() {
-		foreach ( $this->_libraries['js'] as $name => $args ) {
-			$code   = $args['lib'] ? $this->_enqueue_prefix . $name : $name;
-			$req    = $args['req'] ?? array();
-			$footer = $args['footer'] ?? true;
+		foreach ( $this->_libraries[ 'js' ] as $name => $args ) {
+			$code   = $args[ 'lib' ] ? $this->_enqueue_prefix . $name : $name;
+			$req    = $args[ 'req' ] ?? array();
+			$footer = $args[ 'footer' ] ?? true;
 
-			if ( ! empty( $args['int'] ) ) {
-				foreach ( $args['int'] as $lib ) {
-					$req[] = $this->_actual['js'][ $lib ];
+			if ( ! empty( $args[ 'int' ] ) ) {
+				foreach ( $args[ 'int' ] as $lib ) {
+					$req[] = $this->_actual[ 'js' ][ $lib ];
 				}
 			}
 
-			wp_register_script( $code, $this->url( $args ), $req, $args['ver'], $footer );
+			wp_register_script( $code, $this->url( $args ), $req, $args[ 'ver' ], $footer );
 
-			$this->_actual['js'][ $name ] = $code;
-			$this->_deps['js'][ $name ]   = $req;
+			$this->_actual[ 'js' ][ $name ] = $code;
+			$this->_deps[ 'js' ][ $name ]   = $req;
 
-			if ( isset( $args['locales'] ) ) {
+			if ( isset( $args[ 'locales' ] ) ) {
 				$_locale = $this->locale_js_code( $name );
 
 				if ( $_locale !== false ) {
 					$this->_locales[ $name ] = $_locale;
 					$loc_code                = $code . '-' . $_locale;
 
-					wp_register_script( $loc_code, $this->url( $args, $_locale ), array( $code ), $args['ver'], $footer );
+					wp_register_script( $loc_code, $this->url( $args, $_locale ), array( $code ), $args[ 'ver' ], $footer );
 
-					$this->_actual['js'][ $name ] = $loc_code;
+					$this->_actual[ 'js' ][ $name ] = $loc_code;
 				}
 			}
 		}
@@ -202,13 +202,13 @@ class Enqueue {
 	}
 
 	private function url( $obj, $locale = null ) : string {
-		$url = $obj['lib'] ? trailingslashit( $this->_url . 'resources/libraries/' . $obj['path'] ) : ( isset( $obj['url'] ) ? trailingslashit( $obj['url'] ) : trailingslashit( $this->_url . 'resources/' . $obj['path'] ) );
+		$url = $obj[ 'lib' ] ? trailingslashit( $this->_url . 'resources/libraries/' . $obj[ 'path' ] ) : ( isset( $obj[ 'url' ] ) ? trailingslashit( $obj[ 'url' ] ) : trailingslashit( $this->_url . 'resources/' . $obj[ 'path' ] ) );
 
 		if ( is_null( $locale ) ) {
-			$min = $obj['min'];
-			$url .= $obj['file'];
+			$min = $obj[ 'min' ];
+			$url .= $obj[ 'file' ];
 		} else {
-			$min = $obj['min_locale'];
+			$min = $obj[ 'min_locale' ];
 			$url .= 'l10n/' . $locale;
 		}
 
@@ -216,7 +216,7 @@ class Enqueue {
 			$url .= '.min';
 		}
 
-		$url .= '.' . $obj['ext'];
+		$url .= '.' . $obj[ 'ext' ];
 
 		return $url;
 	}

@@ -132,22 +132,22 @@ class Download {
 		header( "Content-Transfer-Encoding: binary" );
 		header( "Accept-Ranges: 0-$length" );
 
-		if ( isset( $_SERVER['HTTP_RANGE'] ) ) {
+		if ( isset( $_SERVER[ 'HTTP_RANGE' ] ) ) {
 			$c_end = $end;
 
-			list( , $range ) = explode( '=', $_SERVER['HTTP_RANGE'], 2 );
+			list( , $range ) = explode( '=', $_SERVER[ 'HTTP_RANGE' ], 2 );
 			if ( strpos( $range, ',' ) !== false ) {
 				header( "HTTP/1.1 416 Requested Range Not Satisfiable" );
 				header( "Content-Range: bytes $start-$end/$size" );
 				exit;
 			}
 
-			if ( $range[0] == '-' ) {
+			if ( $range[ 0 ] == '-' ) {
 				$c_start = $size - substr( $range, 1 );
 			} else {
 				$range   = explode( '-', $range );
-				$c_start = $range[0];
-				$c_end   = ( isset( $range[1] ) && is_numeric( $range[1] ) ) ? $range[1] : $size;
+				$c_start = $range[ 0 ];
+				$c_end   = ( isset( $range[ 1 ] ) && is_numeric( $range[ 1 ] ) ) ? $range[ 1 ] : $size;
 			}
 
 			$c_end = ( $c_end > $end ) ? $end : $c_end;

@@ -60,7 +60,7 @@ abstract class Grid {
 	protected $current_url;
 
 	public function __construct() {
-		$this->current_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+		$this->current_url = 'https://' . $_SERVER[ 'HTTP_HOST' ] . $_SERVER[ 'REQUEST_URI' ];
 		$this->parse_args();
 		$this->table_init();
 	}
@@ -71,18 +71,18 @@ abstract class Grid {
 
 	public function display() {
 		?>
-		<div class="d4p-grid-table-wrapper <?php echo $this->grid_classes; ?>">
-			<form method="get">
+        <div class="d4p-grid-table-wrapper <?php echo $this->grid_classes; ?>">
+            <form method="get">
 				<?php $this->filter(); ?>
-				<table class="d4p-grid-table">
+                <table class="d4p-grid-table">
 					<?php $this->header(); ?>
-					<tbody>
+                    <tbody>
 					<?php $this->rows(); ?>
-					</tbody>
-				</table>
+                    </tbody>
+                </table>
 				<?php $this->pager(); ?>
-			</form>
-		</div>
+            </form>
+        </div>
 		<?php
 	}
 
@@ -99,18 +99,18 @@ abstract class Grid {
 	}
 
 	protected function current_page() {
-		if ( empty( $this->filters['pg'] ) || ! is_numeric( $this->filters['pg'] ) || $this->filters['pg'] <= 0 ) {
+		if ( empty( $this->filters[ 'pg' ] ) || ! is_numeric( $this->filters[ 'pg' ] ) || $this->filters[ 'pg' ] <= 0 ) {
 			return 1;
 		}
 
-		return $this->filters['pg'];
+		return $this->filters[ 'pg' ];
 	}
 
 	protected function parse_args() {
-		$this->filters['order']   = isset( $_GET['order'] ) && strtoupper( $_GET['order'] ) === 'ASC' ? 'ASC' : 'DESC';
-		$this->filters['orderby'] = ! empty( $_GET['orderby'] ) ? Sanitize::basic( $_GET['orderby'] ) : $this->default_orderby;
-		$this->filters['search']  = ! empty( $_GET['search'] ) ? Sanitize::basic( $_GET['search'] ) : '';
-		$this->filters['pg']      = ! empty( $_GET['pg'] ) ? Sanitize::absint( $_GET['pg'] ) : 1;
+		$this->filters[ 'order' ]   = isset( $_GET[ 'order' ] ) && strtoupper( $_GET[ 'order' ] ) === 'ASC' ? 'ASC' : 'DESC';
+		$this->filters[ 'orderby' ] = ! empty( $_GET[ 'orderby' ] ) ? Sanitize::basic( $_GET[ 'orderby' ] ) : $this->default_orderby;
+		$this->filters[ 'search' ]  = ! empty( $_GET[ 'search' ] ) ? Sanitize::basic( $_GET[ 'search' ] ) : '';
+		$this->filters[ 'pg' ]      = ! empty( $_GET[ 'pg' ] ) ? Sanitize::absint( $_GET[ 'pg' ] ) : 1;
 
 		foreach ( $this->vars as $key => $method ) {
 			$real = $this->prefix . '-' . $key;
@@ -124,7 +124,7 @@ abstract class Grid {
 	protected function orderby_value() {
 		$columns = $this->sortable_columns;
 
-		return $columns[ $this->filters['orderby'] ] ?? $this->filters['orderby'];
+		return $columns[ $this->filters[ 'orderby' ] ] ?? $this->filters[ 'orderby' ];
 	}
 
 	protected function filter() {
@@ -133,7 +133,7 @@ abstract class Grid {
 		$this->filter_elements();
 
 		if ( $this->show_search ) {
-			echo '<input placeholder="' . __( "Search keywords...", "d4plib" ) . '" type="text" name="search" value="' . esc_attr( $this->filters['search'] ) . '" />';
+			echo '<input placeholder="' . __( "Search keywords...", "d4plib" ) . '" type="text" name="search" value="' . esc_attr( $this->filters[ 'search' ] ) . '" />';
 		}
 
 		echo '<input type="submit" value="' . __( "Filter", "d4plib" ) . '"/>';
@@ -141,9 +141,9 @@ abstract class Grid {
 	}
 
 	protected function pager() {
-		$current     = $this->pager['current_page'];
-		$total_pages = $this->pager['total_pages'];
-		$total_items = $this->pager['total_items'];
+		$current     = $this->pager[ 'current_page' ];
+		$total_pages = $this->pager[ 'total_pages' ];
+		$total_items = $this->pager[ 'total_items' ];
 		$current_url = $this->current_url;
 
 		$page_links = array();
@@ -167,24 +167,24 @@ abstract class Grid {
 			}
 
 			if ( $disable_first ) {
-				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['first'] . '</span>';
+				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables[ 'first' ] . '</span>';
 			} else {
 				$page_links[] = sprintf(
 					"<a class='first-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 					esc_url( remove_query_arg( 'pg', $current_url ) ),
 					__( "First page", "d4plib" ),
-					$this->sortables['first']
+					$this->sortables[ 'first' ]
 				);
 			}
 
 			if ( $disable_prev ) {
-				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['prev'] . '</span>';
+				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables[ 'prev' ] . '</span>';
 			} else {
 				$page_links[] = sprintf(
 					"<a class='prev-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 					esc_url( add_query_arg( 'pg', max( 1, $current - 1 ), $current_url ) ),
 					__( "Previous page", "d4plib" ),
-					$this->sortables['prev']
+					$this->sortables[ 'prev' ]
 				);
 			}
 
@@ -203,24 +203,24 @@ abstract class Grid {
 				) . $total_pages_after;
 
 			if ( $disable_next ) {
-				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['next'] . '</span>';
+				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables[ 'next' ] . '</span>';
 			} else {
 				$page_links[] = sprintf(
 					"<a class='next-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 					esc_url( add_query_arg( 'pg', min( $total_pages, $current + 1 ), $current_url ) ),
 					__( "Next page", "d4plib" ),
-					$this->sortables['next']
+					$this->sortables[ 'next' ]
 				);
 			}
 
 			if ( $disable_last ) {
-				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['last'] . '</span>';
+				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables[ 'last' ] . '</span>';
 			} else {
 				$page_links[] = sprintf(
 					"<a class='last-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 					esc_url( add_query_arg( 'pg', $total_pages, $current_url ) ),
 					__( "Last page", "d4plib" ),
-					$this->sortables['last']
+					$this->sortables[ 'last' ]
 				);
 			}
 		}
@@ -239,8 +239,8 @@ abstract class Grid {
 
 	protected function header() {
 		?>
-		<thead>
-		<tr>
+        <thead>
+        <tr>
 			<?php
 
 			$current_url = remove_query_arg( 'pg', $this->current_url );
@@ -252,11 +252,11 @@ abstract class Grid {
 				$class = array( 'grid-column', 'column-' . $column_key );
 
 				if ( isset( $sortable[ $column_key ] ) ) {
-					if ( $column_key === $this->filters['orderby'] ) {
+					if ( $column_key === $this->filters[ 'orderby' ] ) {
 						$class[] = 'sorted';
-						$class[] = strtolower( $this->filters['order'] );
+						$class[] = strtolower( $this->filters[ 'order' ] );
 
-						$order = $this->filters['order'] === 'ASC' ? 'DESC' : 'ASC';
+						$order = $this->filters[ 'order' ] === 'ASC' ? 'DESC' : 'ASC';
 					} else {
 						$class[] = 'sortable';
 						$class[] = 'desc';
@@ -264,7 +264,7 @@ abstract class Grid {
 						$order = 'DESC';
 					}
 
-					$icon = $order == 'DESC' ? $this->sortables['up'] : $this->sortables['down'];
+					$icon = $order == 'DESC' ? $this->sortables[ 'up' ] : $this->sortables[ 'down' ];
 					$url  = add_query_arg( 'orderby', $column_key, $current_url );
 					$url  = add_query_arg( 'order', strtolower( $order ), $url );
 
@@ -275,8 +275,8 @@ abstract class Grid {
 			}
 
 			?>
-		</tr>
-		</thead>
+        </tr>
+        </thead>
 		<?php
 	}
 
@@ -329,7 +329,7 @@ abstract class Grid {
 			'per_page'     => $this->items_per_page,
 			'total_items'  => $this->total,
 			'total_pages'  => ceil( $this->total / $this->items_per_page ),
-			'current_page' => $this->filters['pg']
+			'current_page' => $this->filters[ 'pg' ]
 		);
 	}
 }

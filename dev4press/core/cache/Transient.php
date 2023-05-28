@@ -51,7 +51,7 @@ abstract class Transient {
 	}
 
 	protected function expiration( $name ) {
-		return $this->elements[ $name ]['expiration'] ?? $this->expiration;
+		return $this->elements[ $name ][ 'expiration' ] ?? $this->expiration;
 	}
 
 	public function get( string $name, array $args = array(), bool $force_current = false ) {

@@ -34,18 +34,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Str {
-	public static function starts_with( string $haystack, string $needle ) : bool {
-		$length = strlen( $needle );
-
-		return ! ( $length === 0 ) && substr( $haystack, 0, $length ) === $needle;
-	}
-
-	public static function ends_with( string $haystack, string $needle ) : bool {
-		$length = strlen( $needle );
-
-		return ! ( $length === 0 ) && substr( $haystack, - $length ) === $needle;
-	}
-
 	public static function is_valid_datetime( string $date, string $format = 'Y-m-d H:i:s' ) : bool {
 		$d = DateTime::createFromFormat( $format, $date );
 
@@ -62,6 +50,60 @@ class Str {
 
 	public static function is_valid_md5( string $hash = '' ) : bool {
 		return strlen( $hash ) == 32 && ctype_xdigit( $hash );
+	}
+
+	public static function is_json( $input, $allow_scalar = true ) : bool {
+		if ( empty( trim( $input ) ) ) {
+			return false;
+		}
+
+		if ( $allow_scalar && is_numeric( $input ) ) {
+			return true;
+		}
+
+		if ( ! is_string( $input ) ) {
+			return false;
+		}
+
+		if ( strlen( $input ) < 2 ) {
+			return false;
+		}
+
+		if ( $allow_scalar ) {
+			if ( $input === 'null' || $input === 'true' || $input === 'false' || $input === 'NULL' || $input === 'TRUE' || $input === 'FALSE' ) {
+				return true;
+			}
+
+			if ( $input[ 0 ] === '"' && $input[ strlen( $input ) - 1 ] === '"' ) {
+				return true;
+			}
+		}
+
+		if ( '{' != $input[ 0 ] && '[' != $input[ 0 ] ) {
+			return false;
+		}
+
+		if ( '{' == $input[ 0 ] && '}' != $input[ strlen( $input ) - 1 ] ) {
+			return false;
+		}
+
+		if ( '[' == $input[ 0 ] && ']' != $input[ strlen( $input ) - 1 ] ) {
+			return false;
+		}
+
+		return null !== json_decode( $input );
+	}
+
+	public static function starts_with( string $haystack, string $needle ) : bool {
+		$length = strlen( $needle );
+
+		return ! ( $length === 0 ) && substr( $haystack, 0, $length ) === $needle;
+	}
+
+	public static function ends_with( string $haystack, string $needle ) : bool {
+		$length = strlen( $needle );
+
+		return ! ( $length === 0 ) && substr( $haystack, - $length ) === $needle;
 	}
 
 	public static function left( string $s1, string $s2 ) {
@@ -161,11 +203,11 @@ class Str {
 		$matches = array();
 
 		if ( preg_match_all( "/<img(.+?)>/", $search, $matches ) ) {
-			foreach ( $matches[1] as $image ) {
+			foreach ( $matches[ 1 ] as $image ) {
 				$match = array();
 
 				if ( preg_match( '/src=(["\'])(.*?)\1/', $image, $match ) ) {
-					$images[] = $match[2];
+					$images[] = $match[ 2 ];
 				}
 			}
 		}
@@ -175,7 +217,7 @@ class Str {
 		}
 
 		if ( $limit == 1 ) {
-			return count( $images ) > 0 ? $images[0] : '';
+			return count( $images ) > 0 ? $images[ 0 ] : '';
 		} else {
 			return $images;
 		}

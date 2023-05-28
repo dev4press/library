@@ -66,21 +66,21 @@ abstract class Settings {
 	public function __get( $name ) {
 		$get = explode( '_', $name, 2 );
 
-		return $this->get( $get[1], $get[0] );
+		return $this->get( $get[ 1 ], $get[ 0 ] );
 	}
 
 	public function init() {
-		$this->current['info'] = $this->_settings_get( 'info' );
+		$this->current[ 'info' ] = $this->_settings_get( 'info' );
 
 		do_action( $this->base . '_settings_init' );
 		do_action( $this->base . '_' . $this->scope . '_settings_init' );
 
-		$installed = is_array( $this->current['info'] ) && isset( $this->current['info']['build'] );
+		$installed = is_array( $this->current[ 'info' ] ) && isset( $this->current[ 'info' ][ 'build' ] );
 
 		if ( ! $installed ) {
 			$this->_install();
 		} else {
-			$update = $this->current['info']['build'] != $this->info->build;
+			$update = $this->current[ 'info' ][ 'build' ] != $this->info->build;
 
 			if ( $update ) {
 				$this->_update();
@@ -203,7 +203,7 @@ abstract class Settings {
 	}
 
 	public function mark_for_update() {
-		$this->current['info']['update'] = true;
+		$this->current[ 'info' ][ 'update' ] = true;
 
 		$this->save( 'info' );
 	}
@@ -251,9 +251,9 @@ abstract class Settings {
 	}
 
 	public function import_from_secure_json( $import ) : bool {
-		$name = $import['name'] ?? false;
-		$ctrl = $import['ctrl'] ?? false;
-		$raw  = $import['data'] ?? false;
+		$name = $import[ 'name' ] ?? false;
+		$ctrl = $import[ 'ctrl' ] ?? false;
+		$raw  = $import[ 'data' ] ?? false;
 
 		$data = gzuncompress( base64_decode( urldecode( $raw ) ) );
 
@@ -329,9 +329,9 @@ abstract class Settings {
 	protected function _install() {
 		$this->current = $this->_merge();
 
-		$this->current['info']            = $this->info->to_array();
-		$this->current['info']['install'] = true;
-		$this->current['info']['update']  = false;
+		$this->current[ 'info' ]              = $this->info->to_array();
+		$this->current[ 'info' ][ 'install' ] = true;
+		$this->current[ 'info' ][ 'update' ]  = false;
 
 		foreach ( $this->current as $key => $data ) {
 			$this->_settings_update( $key, $data );
@@ -341,14 +341,14 @@ abstract class Settings {
 	}
 
 	protected function _update() {
-		$old_build = $this->current['info']['build'];
+		$old_build = $this->current[ 'info' ][ 'build' ];
 
-		$this->current['info']             = $this->info->to_array();
-		$this->current['info']['install']  = false;
-		$this->current['info']['update']   = true;
-		$this->current['info']['previous'] = $old_build;
+		$this->current[ 'info' ]               = $this->info->to_array();
+		$this->current[ 'info' ][ 'install' ]  = false;
+		$this->current[ 'info' ][ 'update' ]   = true;
+		$this->current[ 'info' ][ 'previous' ] = $old_build;
 
-		$this->_settings_update( 'info', $this->current['info'] );
+		$this->_settings_update( 'info', $this->current[ 'info' ] );
 
 		$settings = $this->_merge();
 
@@ -449,7 +449,7 @@ abstract class Settings {
 		}
 
 		$data = array(
-			'info' => $this->current['info']
+			'info' => $this->current[ 'info' ]
 		);
 
 		foreach ( $list as $name ) {

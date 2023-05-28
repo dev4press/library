@@ -65,7 +65,7 @@ abstract class AJAX {
 	}
 
 	public function check_nonce() {
-		$ajax_nonce = isset( $_REQUEST['_ajax_nonce'] ) ? Sanitize::key( $_REQUEST['_ajax_nonce'] ) : '';
+		$ajax_nonce = isset( $_REQUEST[ '_ajax_nonce' ] ) ? Sanitize::key( $_REQUEST[ '_ajax_nonce' ] ) : '';
 		$nonce      = wp_verify_nonce( $ajax_nonce, $this->nonce );
 
 		if ( $nonce === false ) {
@@ -82,7 +82,7 @@ abstract class AJAX {
 		@ini_set( 'memory_limit', '256M' );
 		@set_time_limit( 0 );
 
-		$operation = isset( $_POST['operation'] ) ? Sanitize::key( $_POST['operation'] ) : '';
+		$operation = isset( $_POST[ 'operation' ] ) ? Sanitize::key( $_POST[ 'operation' ] ) : '';
 		$response  = array();
 
 		switch ( $operation ) {
@@ -93,7 +93,7 @@ abstract class AJAX {
 
 				$this->save();
 
-				$response['total'] = $this->data['total'];
+				$response[ 'total' ] = $this->data[ 'total' ];
 				break;
 			case 'break':
 				$this->do_break();
@@ -112,15 +112,15 @@ abstract class AJAX {
 			case 'run':
 				$this->do_run();
 
-				$this->message( sprintf( __( "Completed %s out of %s items.", "d4plib" ), $this->data['done'], $this->data['total'] ) );
+				$this->message( sprintf( __( "Completed %s out of %s items.", "d4plib" ), $this->data[ 'done' ], $this->data[ 'total' ] ) );
 
 				$this->save();
 
-				$response['done'] = $this->data['done'];
+				$response[ 'done' ] = $this->data[ 'done' ];
 				break;
 		}
 
-		$response['message'] = join( D4P_EOL, $this->messages );
+		$response[ 'message' ] = join( D4P_EOL, $this->messages );
 
 		WPR::json_die( $response );
 	}
@@ -135,8 +135,8 @@ abstract class AJAX {
 	}
 
 	protected function message( $msg ) {
-		$this->data['messages'][] = $msg;
-		$this->messages[]         = $msg;
+		$this->data[ 'messages' ][] = $msg;
+		$this->messages[]           = $msg;
 	}
 
 	protected function get() {

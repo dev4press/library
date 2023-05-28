@@ -239,8 +239,8 @@ class Elements {
 		}
 
 		foreach ( $values as $group ) {
-			$render .= '<optgroup label="' . $group['title'] . '">';
-			foreach ( $group['values'] as $value => $display ) {
+			$render .= '<optgroup label="' . $group[ 'title' ] . '">';
+			foreach ( $group[ 'values' ] as $value => $display ) {
 				$strict = $value === 0;
 
 				$sel    = in_array( $value, $selected, $strict ) ? ' selected="selected"' : '';

@@ -32,10 +32,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Request {
 	public static function is_post() : bool {
-		return $_SERVER['REQUEST_METHOD'] === 'POST';
+		return $_SERVER[ 'REQUEST_METHOD' ] === 'POST';
 	}
 
 	public static function is_get() : bool {
-		return $_SERVER['REQUEST_METHOD'] === 'GET';
+		return $_SERVER[ 'REQUEST_METHOD' ] === 'GET';
 	}
 }

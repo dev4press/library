@@ -126,23 +126,23 @@ abstract class DBLite {
 		$sql = wp_parse_args( $sql, $defaults );
 
 		$_build = 'SELECT' . ( $calc_found_rows ? ' SQL_CALC_FOUND_ROWS' : '' );
-		$_build .= ' ' . join( ', ', $sql['select'] );
-		$_build .= ' FROM ' . join( ' ', $sql['from'] );
+		$_build .= ' ' . join( ', ', $sql[ 'select' ] );
+		$_build .= ' FROM ' . join( ' ', $sql[ 'from' ] );
 
-		if ( ! empty( $sql['where'] ) ) {
-			$_build .= ' WHERE ' . join( ' AND ', $sql['where'] );
+		if ( ! empty( $sql[ 'where' ] ) ) {
+			$_build .= ' WHERE ' . join( ' AND ', $sql[ 'where' ] );
 		}
 
-		if ( ! empty( $sql['group'] ) ) {
-			$_build .= ' GROUP BY ' . $sql['group'];
+		if ( ! empty( $sql[ 'group' ] ) ) {
+			$_build .= ' GROUP BY ' . $sql[ 'group' ];
 		}
 
-		if ( ! empty( $sql['order'] ) ) {
-			$_build .= ' ORDER BY ' . $sql['order'];
+		if ( ! empty( $sql[ 'order' ] ) ) {
+			$_build .= ' ORDER BY ' . $sql[ 'order' ];
 		}
 
-		if ( ! empty( $sql['limit'] ) ) {
-			$_build .= ' LIMIT ' . $sql['limit'];
+		if ( ! empty( $sql[ 'limit' ] ) ) {
+			$_build .= ' LIMIT ' . $sql[ 'limit' ];
 		}
 
 		return $_build;
@@ -246,8 +246,8 @@ abstract class DBLite {
 		$args = func_get_args();
 		array_shift( $args );
 
-		if ( isset( $args[0] ) && is_array( $args[0] ) ) {
-			$args = $args[0];
+		if ( isset( $args[ 0 ] ) && is_array( $args[ 0 ] ) ) {
+			$args = $args[ 0 ];
 		}
 
 		return $this->wpdb()->prepare( $query, $args );
@@ -339,7 +339,7 @@ abstract class DBLite {
 		$time = 0;
 
 		foreach ( self::$_queries_log as $q ) {
-			$time += $q['time'];
+			$time += $q[ 'time' ];
 		}
 
 		return $time;
@@ -422,11 +422,11 @@ abstract class DBLite {
 				$query = $this->wpdb()->queries[ $id ];
 
 				self::$_queries_log[] = array(
-					'sql'      => $query[0],
-					'time'     => $query[1],
-					'stack'    => $query[2],
-					'start'    => $query[3],
-					'data'     => $query[4],
+					'sql'      => $query[ 0 ],
+					'time'     => $query[ 1 ],
+					'stack'    => $query[ 2 ],
+					'start'    => $query[ 3 ],
+					'data'     => $query[ 4 ],
 					'id'       => $id,
 					'plugin'   => $this->plugin_name,
 					'instance' => $this->plugin_instance

@@ -40,7 +40,7 @@ abstract class PostBack {
 	public function __construct( $admin ) {
 		$this->admin = $admin;
 
-		$this->page = isset( $_POST['option_page'] ) ? Sanitize::key( $_POST['option_page'] ) : false;
+		$this->page = isset( $_POST[ 'option_page' ] ) ? Sanitize::key( $_POST[ 'option_page' ] ) : false;
 
 		if ( $this->page !== false ) {
 			$this->process();
@@ -121,8 +121,8 @@ abstract class PostBack {
 
 		$message = 'import-failed';
 
-		if ( is_uploaded_file( $_FILES['import_file']['tmp_name'] ) ) {
-			$raw  = file_get_contents( $_FILES['import_file']['tmp_name'] );
+		if ( is_uploaded_file( $_FILES[ 'import_file' ][ 'tmp_name' ] ) ) {
+			$raw  = file_get_contents( $_FILES[ 'import_file' ][ 'tmp_name' ] );
 			$data = json_decode( $raw, true );
 
 			if ( is_array( $data ) && ! empty( $data ) ) {

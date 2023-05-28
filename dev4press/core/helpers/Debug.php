@@ -92,20 +92,20 @@ class Debug {
 			foreach ( $functions as $function ) {
 				$line = $priority . ' : ';
 
-				$callback = $function['function'];
+				$callback = $function[ 'function' ];
 
 				if ( is_string( $callback ) ) {
 					$line .= $callback;
 				} else if ( is_a( $callback, 'Closure' ) ) {
 					$closure = new ReflectionFunction( $callback );
 					$line    .= 'closure from ' . $closure->getFileName() . '::' . $closure->getStartLine();
-				} else if ( is_string( $callback[0] ) ) {
-					$line .= $callback[0] . '::' . $callback[1];
-				} else if ( is_object( $callback[0] ) ) {
-					$line .= get_class( $callback[0] ) . '->' . $callback[1];
+				} else if ( is_string( $callback[ 0 ] ) ) {
+					$line .= $callback[ 0 ] . '::' . $callback[ 1 ];
+				} else if ( is_object( $callback[ 0 ] ) ) {
+					$line .= get_class( $callback[ 0 ] ) . '->' . $callback[ 1 ];
 				}
 
-				if ( $function['accepted_args'] == 1 ) {
+				if ( $function[ 'accepted_args' ] == 1 ) {
 					$line .= " ({$function['accepted_args']})";
 				}
 

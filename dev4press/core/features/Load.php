@@ -76,8 +76,8 @@ abstract class Load {
 			if ( $this->allow_load( $feature, $early, $scope ) ) {
 				$this->_active[] = $feature;
 
-				if ( class_exists( $this->_list[ $feature ]['main'] ) ) {
-					$this->_list[ $feature ]['main']::instance();
+				if ( class_exists( $this->_list[ $feature ][ 'main' ] ) ) {
+					$this->_list[ $feature ][ 'main' ]::instance();
 				}
 			}
 		}
@@ -85,8 +85,8 @@ abstract class Load {
 
 	public function load_admin() {
 		foreach ( $this->list() as $feature ) {
-			if ( class_exists( $this->_list[ $feature ]['admin'] ) ) {
-				$this->_list[ $feature ]['admin']::instance();
+			if ( class_exists( $this->_list[ $feature ][ 'admin' ] ) ) {
+				$this->_list[ $feature ][ 'admin' ]::instance();
 			}
 		}
 	}
@@ -114,7 +114,7 @@ abstract class Load {
 				return $this->is_enabled( $feature );
 			}
 
-			$value = $this->_list[ $feature ]['attributes'][ $attr ] ?? $default;
+			$value = $this->_list[ $feature ][ 'attributes' ][ $attr ] ?? $default;
 
 			if ( $attr == 'scope' && ! in_array( $value, $this->_scopes ) ) {
 				$value = 'global';
@@ -186,9 +186,9 @@ abstract class Load {
 	public function panels( array $panels ) : array {
 		foreach ( $this->_list as $feature => $obj ) {
 			$panels[ $feature ] = array(
-				'title'     => $obj['label'],
-				'icon'      => $obj['icon'],
-				'info'      => $obj['description'],
+				'title'     => $obj[ 'label' ],
+				'icon'      => $obj[ 'icon' ],
+				'info'      => $obj[ 'description' ],
 				'scope'     => $this->get_scope( $feature ),
 				'settings'  => $this->has_settings( $feature ),
 				'panel'     => $this->has_menu( $feature ),
@@ -219,19 +219,19 @@ abstract class Load {
 
 		foreach ( array_keys( $this->_list ) as $feature ) {
 			if ( $this->is_enabled( $feature ) ) {
-				$features['active'] ++;
+				$features[ 'active' ] ++;
 			}
 
 			if ( $this->is_always_on( $feature ) ) {
-				$features['always'] ++;
+				$features[ 'always' ] ++;
 			}
 
 			if ( $this->is_hidden( $feature ) ) {
-				$features['hidden'] ++;
+				$features[ 'hidden' ] ++;
 			}
 
 			if ( $this->is_beta( $feature ) ) {
-				$features['beta'] ++;
+				$features[ 'beta' ] ++;
 			}
 		}
 

@@ -51,7 +51,7 @@ class BBP {
 		$dynamic_roles = bbp_get_dynamic_roles();
 
 		foreach ( $dynamic_roles as $role => $obj ) {
-			$roles[ $role ] = $translate ? bbp_translate_user_role( $obj['name'] ) : $obj['name'];
+			$roles[ $role ] = $translate ? bbp_translate_user_role( $obj[ 'name' ] ) : $obj[ 'name' ];
 		}
 
 		return $roles;
@@ -63,8 +63,8 @@ class BBP {
 		$dynamic_roles = bbp_get_dynamic_roles();
 
 		foreach ( $dynamic_roles as $role => $obj ) {
-			if ( isset( $obj['capabilities']['moderate'] ) && $obj['capabilities']['moderate'] ) {
-				$roles[ $role ] = $translate ? bbp_translate_user_role( $obj['name'] ) : $obj['name'];
+			if ( isset( $obj[ 'capabilities' ][ 'moderate' ] ) && $obj[ 'capabilities' ][ 'moderate' ] ) {
+				$roles[ $role ] = $translate ? bbp_translate_user_role( $obj[ 'name' ] ) : $obj[ 'name' ];
 			}
 		}
 

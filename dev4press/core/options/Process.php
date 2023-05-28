@@ -110,7 +110,7 @@ class Process {
 
 				foreach ( $post[ $key ] as $id => $data ) {
 					if ( $id > 0 ) {
-						$_val = trim( stripslashes( $data['value'] ) );
+						$_val = trim( stripslashes( $data[ 'value' ] ) );
 
 						if ( $_val != '' ) {
 							$value[] = $_val;
@@ -123,7 +123,7 @@ class Process {
 
 				foreach ( $post[ $key ] as $id => $data ) {
 					if ( $id > 0 ) {
-						$_val = Sanitize::basic( $data['value'] );
+						$_val = Sanitize::basic( $data[ 'value' ] );
 
 						if ( ! empty( $_val ) ) {
 							$value[] = $_val;
@@ -136,8 +136,8 @@ class Process {
 
 				foreach ( $post[ $key ] as $id => $data ) {
 					if ( $id > 0 ) {
-						$_key = Sanitize::basic( $data['key'] );
-						$_val = Sanitize::basic( $data['value'] );
+						$_key = Sanitize::basic( $data[ 'key' ] );
+						$_val = Sanitize::basic( $data[ 'value' ] );
 
 						if ( ! empty( $_key ) && ! empty( $_val ) ) {
 							$value[ $_key ] = $_val;
@@ -146,13 +146,13 @@ class Process {
 				}
 				break;
 			case 'range_integer':
-				$value = intval( $post[ $key ]['a'] ) . '=>' . intval( $post[ $key ]['b'] );
+				$value = intval( $post[ $key ][ 'a' ] ) . '=>' . intval( $post[ $key ][ 'b' ] );
 				break;
 			case 'range_absint':
-				$value = absint( $post[ $key ]['a'] ) . '=>' . absint( $post[ $key ]['b'] );
+				$value = absint( $post[ $key ][ 'a' ] ) . '=>' . absint( $post[ $key ][ 'b' ] );
 				break;
 			case 'x_by_y':
-				$value = Sanitize::basic( $post[ $key ]['x'] ) . 'x' . Sanitize::basic( $post[ $key ]['y'] );
+				$value = Sanitize::basic( $post[ $key ][ 'x' ] ) . 'x' . Sanitize::basic( $post[ $key ][ 'y' ] );
 				break;
 			case 'html':
 			case 'code':
@@ -161,7 +161,7 @@ class Process {
 				$value = Sanitize::html( $post[ $key ] );
 				break;
 			case 'bool':
-				$value = isset( $post[ $key ] ) ? $this->bool_values[0] : $this->bool_values[1];
+				$value = isset( $post[ $key ] ) ? $this->bool_values[ 0 ] : $this->bool_values[ 1 ];
 				break;
 			case 'number':
 				$value = floatval( $post[ $key ] );
@@ -207,8 +207,8 @@ class Process {
 			case 'css_size':
 				$sizes = Arr::get_css_size_units();
 
-				$value = Sanitize::basic( $post[ $key ]['val'] );
-				$unit  = strtolower( Sanitize::basic( $post[ $key ]['unit'] ) );
+				$value = Sanitize::basic( $post[ $key ][ 'val' ] );
+				$unit  = strtolower( Sanitize::basic( $post[ $key ][ 'unit' ] ) );
 
 				if ( ! isset( $sizes[ $unit ] ) ) {
 					$unit = 'px';

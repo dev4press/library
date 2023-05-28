@@ -146,10 +146,10 @@ abstract class Core {
 		$versions = array();
 
 		foreach ( $this->_system_requirements as $req ) {
-			if ( $req[1] == 0 ) {
-				$versions[] = sprintf( _x( "%s version %s (%s is not active on your website)", "System requirement version", "d4plib" ), $req[0], '<strong>' . $req[2] . '</strong>', '<strong style="color: #900;">' . $req[0] . '</strong>' );
+			if ( $req[ 1 ] == 0 ) {
+				$versions[] = sprintf( _x( "%s version %s (%s is not active on your website)", "System requirement version", "d4plib" ), $req[ 0 ], '<strong>' . $req[ 2 ] . '</strong>', '<strong style="color: #900;">' . $req[ 0 ] . '</strong>' );
 			} else {
-				$versions[] = sprintf( _x( "%s version %s (your system runs version %s)", "System requirement version", "d4plib" ), $req[0], '<strong>' . $req[2] . '</strong>', '<strong style="color: #900;">' . $req[1] . '</strong>' );
+				$versions[] = sprintf( _x( "%s version %s (your system runs version %s)", "System requirement version", "d4plib" ), $req[ 0 ], '<strong>' . $req[ 2 ] . '</strong>', '<strong style="color: #900;">' . $req[ 1 ] . '</strong>' );
 			}
 		}
 

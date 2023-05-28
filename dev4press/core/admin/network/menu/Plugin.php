@@ -88,17 +88,17 @@ abstract class Plugin extends BasePlugin {
 			$this->screen_id = $screen->id;
 
 			$parts = explode( '_page_', $this->screen_id, 2 );
-			if ( isset( $parts[1] ) ) {
-				$parts[1] = substr( $parts[1], 0, strlen( $parts[1] ) - 8 );
-				$panel    = substr( $parts[1], 0, strlen( $this->plugin ) ) == $this->plugin ? substr( $parts[1], strlen( $this->plugin ) + 1 ) : '';
+			if ( isset( $parts[ 1 ] ) ) {
+				$parts[ 1 ] = substr( $parts[ 1 ], 0, strlen( $parts[ 1 ] ) - 8 );
+				$panel      = substr( $parts[ 1 ], 0, strlen( $this->plugin ) ) == $this->plugin ? substr( $parts[ 1 ], strlen( $this->plugin ) + 1 ) : '';
 
 				if ( ! empty( $panel ) ) {
 					if ( isset( $this->menu_items[ $panel ] ) ) {
 						$this->page  = true;
 						$this->panel = $panel;
 
-						if ( ! empty( $_GET['subpanel'] ) ) {
-							$this->subpanel = Sanitize::slug( $_GET['subpanel'] );
+						if ( ! empty( $_GET[ 'subpanel' ] ) ) {
+							$this->subpanel = Sanitize::slug( $_GET[ 'subpanel' ] );
 						}
 
 						$this->screen_setup();
