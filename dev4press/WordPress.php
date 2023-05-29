@@ -132,7 +132,7 @@ class WordPress {
 		$this->_switches[ 'rest' ] = defined( 'REST_REQUEST' ) && REST_REQUEST;
 	}
 
-	public function context() {
+	public function context() : string {
 		if ( $this->_switches[ 'context' ] === false ) {
 			if ( $this->_switches[ 'cli' ] ) {
 				$this->_switches[ 'context' ] = 'CLI';

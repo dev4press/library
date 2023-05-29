@@ -253,13 +253,19 @@ abstract class DBLite {
 		return $this->wpdb()->prepare( $query, $args );
 	}
 
-	public function insert_meta_data( string $table, string $column, $id, $meta ) {
+	public function insert_meta_data( string $table, string $column, int $id, array $meta, bool $json_serialization = false ) {
 		foreach ( $meta as $key => $value ) {
+			if ( is_array( $value ) || is_object( $value ) ) {
+				$insert = $json_serialization ? json_encode( $value ) : maybe_serialize( $value );
+			} else {
+				$insert = $value;
+			}
+
 			$this->insert( $table, array(
 				$column      => $id,
 				'meta_key'   => $key,
-				'meta_value' => maybe_serialize( $value )
-			) );
+				'meta_value' => $insert
+			), array( '%d', '%s', '%s' ) );
 		}
 	}
 
