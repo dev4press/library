@@ -50,11 +50,11 @@ class LocalImage {
 		$this->data = wp_parse_args( $data, $defaults );
 		$this->path = $path;
 
-		if ( empty( $this->data['name'] ) ) {
-			$this->data['name'] = basename( $this->path );
+		if ( empty( $this->data[ 'name' ] ) ) {
+			$this->data[ 'name' ] = basename( $this->path );
 
-			if ( ( $pos = strpos( $this->data['name'], '?' ) ) > 0 ) {
-				$this->data['name'] = substr( $this->data['name'], 0, $pos );
+			if ( ( $pos = strpos( $this->data[ 'name' ], '?' ) ) > 0 ) {
+				$this->data[ 'name' ] = substr( $this->data[ 'name' ], 0, $pos );
 			}
 		}
 

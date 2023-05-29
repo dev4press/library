@@ -93,7 +93,7 @@ abstract class Locator {
 				}
 			} else {
 				if ( count( $_not_found ) == 1 ) {
-					$url = $this->url( $_not_found[0] );
+					$url = $this->url( $_not_found[ 0 ] );
 				} else {
 					$url = $this->url( $_not_found );
 				}
@@ -121,8 +121,8 @@ abstract class Locator {
 
 		$raw = wp_remote_get( $url, $_remote_args );
 
-		if ( ! is_wp_error( $raw ) && $raw['response']['code'] == '200' ) {
-			$raw = (array) json_decode( $raw['body'] );
+		if ( ! is_wp_error( $raw ) && $raw[ 'response' ][ 'code' ] == '200' ) {
+			$raw = (array) json_decode( $raw[ 'body' ] );
 
 			if ( ! is_object( $raw ) && ! is_array( $raw ) ) {
 

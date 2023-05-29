@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v42\Core;
 
+use Dev4Press\v42\WordPress;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -72,7 +74,7 @@ class Scope {
 		$this->multisite = is_multisite();
 		$this->blog_id   = get_current_blog_id();
 
-		if ( defined( 'WP_CLI' ) && defined( 'WP_CLI_VERSION' ) && defined( 'WP_CLI_START_MICROTIME' ) && WP_CLI ) {
+		if ( WordPress::instance()->is_cli() ) {
 			$this->scope = 'cli';
 		} else {
 			if ( is_admin() ) {

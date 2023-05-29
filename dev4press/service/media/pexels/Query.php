@@ -96,7 +96,7 @@ class Query {
 			);
 
 			foreach ( $response->photos as $img ) {
-				$out['results'][] = $this->_format_image( $img );
+				$out[ 'results' ][] = $this->_format_image( $img );
 			}
 
 			$this->_cache[ $key ] = (object) $out;
@@ -155,7 +155,7 @@ class Query {
 			);
 
 			foreach ( $response->videos as $img ) {
-				$out['results'][] = $this->_format_video( $img );
+				$out[ 'results' ][] = $this->_format_video( $img );
 			}
 
 			$this->_cache[ $key ] = (object) $out;

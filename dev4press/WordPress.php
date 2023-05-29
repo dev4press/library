@@ -34,6 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * @method bool is_admin()
+ * @method bool is_cli()
  * @method bool is_ajax()
  * @method bool is_cron()
  * @method bool is_rest()
@@ -58,21 +59,23 @@ class WordPress {
 			'wordpress'    => true,
 			'classicpress' => false,
 			'rest'         => false,
+			'context'      => false,
+			'cli'          => defined( 'WP_CLI' ) && defined( 'WP_CLI_VERSION' ) && defined( 'WP_CLI_START_MICROTIME' ) && WP_CLI,
 			'admin'        => defined( 'WP_ADMIN' ) && WP_ADMIN,
 			'ajax'         => defined( 'DOING_AJAX' ) && DOING_AJAX,
 			'cron'         => defined( 'DOING_CRON' ) && DOING_CRON,
 			'debug'        => defined( 'WP_DEBUG' ) && WP_DEBUG,
 			'script_debug' => defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG,
-			'async_upload' => defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action']
+			'async_upload' => defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST[ 'action' ] ) && 'upload-attachment' === $_REQUEST[ 'action' ]
 		);
 
 		if ( WPR::is_classicpress() ) {
-			$this->_switches['wordpress']    = false;
-			$this->_switches['classicpress'] = true;
-			$this->_versions['cp']           = function_exists( 'classicpress_version' ) ? classicpress_version() : '1.0';
+			$this->_switches[ 'wordpress' ]    = false;
+			$this->_switches[ 'classicpress' ] = true;
+			$this->_versions[ 'cp' ]           = function_exists( 'classicpress_version' ) ? classicpress_version() : '1.0';
 		}
 
-		$this->_versions['cms'] = $this->_versions['cp'] ?? $this->_versions['wp'];
+		$this->_versions[ 'cms' ] = $this->_versions[ 'cp' ] ?? $this->_versions[ 'wp' ];
 
 		add_action( 'rest_api_init', array( $this, 'rest_api' ) );
 	}
@@ -126,6 +129,24 @@ class WordPress {
 	}
 
 	public function rest_api() {
-		$this->_switches['rest'] = defined( 'REST_REQUEST' ) && REST_REQUEST;
+		$this->_switches[ 'rest' ] = defined( 'REST_REQUEST' ) && REST_REQUEST;
+	}
+
+	public function context() {
+		if ( $this->_switches[ 'context' ] === false ) {
+			if ( $this->_switches[ 'cli' ] ) {
+				$this->_switches[ 'context' ] = 'CLI';
+			} else if ( $this->_switches[ 'cron' ] ) {
+				$this->_switches[ 'context' ] = 'CRON';
+			} else if ( $this->_switches[ 'ajax' ] ) {
+				$this->_switches[ 'context' ] = 'AJAX';
+			} else if ( $this->_switches[ 'rest' ] ) {
+				$this->_switches[ 'context' ] = 'REST';
+			} else {
+				$this->_switches[ 'context' ] = '';
+			}
+		}
+
+		return $this->_switches[ 'context' ];
 	}
 }

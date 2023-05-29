@@ -83,7 +83,7 @@ class Languages {
 			if ( isset( $this->list[ $code ] ) ) {
 				$list[ $code ] = array_merge( $this->list[ $code ] + $obj );
 
-				if ( ! isset( $list[ $code ]['contributors'] ) ) {
+				if ( ! isset( $list[ $code ][ 'contributors' ] ) ) {
 					$list[ $code ] += array( 'contributors' => array() );
 				}
 			}

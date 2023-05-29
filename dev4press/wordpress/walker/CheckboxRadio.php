@@ -38,17 +38,17 @@ class CheckboxRadio extends Walker {
 
 		$css_classes = implode( ' ', $css_class );
 
-		$args['input'] = empty( $args['input'] ) ? 'checkbox' : $args['input'];
+		$args[ 'input' ] = empty( $args[ 'input' ] ) ? 'checkbox' : $args[ 'input' ];
 
-		$selected = in_array( $data_object->id, $args['selected'] ) ? ' checked="checked"' : '';
+		$selected = in_array( $data_object->id, $args[ 'selected' ] ) ? ' checked="checked"' : '';
 
 		$output .= $indent . sprintf(
 				'<li class="%s"><label><input type="%s" value="%s" name="%s%s"%s class="widefat" />%s</label>',
 				esc_attr( $css_classes ),
-				esc_attr( $args['input'] ),
+				esc_attr( $args[ 'input' ] ),
 				esc_attr( $data_object->id ),
-				esc_attr( $args['name'] ),
-				$args['input'] == 'checkbox' ? '[]' : '',
+				esc_attr( $args[ 'name' ] ),
+				$args[ 'input' ] == 'checkbox' ? '[]' : '',
 				$selected,
 				$data_object->title
 			);

@@ -50,7 +50,7 @@ class Store {
 			'free'        => true,
 			'pro'         => true
 		),
-		"coreactivity"                       => array(
+		"coreactivity"                     => array(
 			"code"        => "coreactivity",
 			"name"        => "CoreActivity",
 			"description" => "Monitor and log all kinds of activity happening in the WordPress website, with fine control over events to log, detailed log and events panels, and more.",
@@ -298,19 +298,19 @@ class Store {
 	}
 
 	public function name( $code ) : string {
-		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['name'] : '';
+		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ][ 'name' ] : '';
 	}
 
 	public function description( $code ) : string {
-		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['description'] : '';
+		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ][ 'description' ] : '';
 	}
 
 	public function punchline( $code ) : string {
-		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['punchline'] : '';
+		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ][ 'punchline' ] : '';
 	}
 
 	public function color( $code ) : string {
-		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['color'] : '';
+		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ][ 'color' ] : '';
 	}
 
 	public function url( $code ) : string {
@@ -318,10 +318,10 @@ class Store {
 	}
 
 	public function is_free( $code ) : bool {
-		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['free'] : false;
+		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ][ 'free' ] : false;
 	}
 
 	public function is_pro( $code ) : bool {
-		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['pro'] : false;
+		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ][ 'pro' ] : false;
 	}
 }

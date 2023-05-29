@@ -72,9 +72,9 @@ class Image {
 
 		preg_match( '/pixabay\.com\/photos\/(.+?)-\d+?\//', $this->url, $output );
 
-		if ( ! empty( $output ) && isset( $output[1] ) ) {
-			$this->slug = $output[1];
-			$this->name = str_replace( '-', ' ', $output[1] );
+		if ( ! empty( $output ) && isset( $output[ 1 ] ) ) {
+			$this->slug = $output[ 1 ];
+			$this->name = str_replace( '-', ' ', $output[ 1 ] );
 			$this->name = ucfirst( $this->name );
 		} else {
 			$this->name = ucwords( join( ' ', $this->tags ) );
@@ -126,11 +126,11 @@ class Image {
 		);
 
 		if ( isset( $response->{$name . 'Width'} ) ) {
-			$obj['width'] = $response->{$name . 'Width'};
+			$obj[ 'width' ] = $response->{$name . 'Width'};
 		}
 
 		if ( isset( $response->{$name . 'Height'} ) ) {
-			$obj['height'] = $response->{$name . 'Height'};
+			$obj[ 'height' ] = $response->{$name . 'Height'};
 		}
 
 		return (object) $obj;
