@@ -12,8 +12,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Plugin extends BasePlugin {
 	public $variant = 'menu';
 
-	public function main_url() : string {
-		return self_admin_url( 'admin.php?page=' . $this->plugin . '-dashboard' );
+	public function main_url( $network = null ) : string {
+		$path = 'admin.php?page=' . $this->plugin . '-dashboard';
+
+		if ( is_null( $network ) ) {
+			$network = $this->is_multisite && is_network_admin();
+		}
+
+		if ( $network ) {
+			return network_admin_url( $path );
+		} else {
+			return admin_url( $path );
+		}
 	}
 
 	public function current_url( $with_subpanel = true ) : string {
@@ -26,7 +36,7 @@ abstract class Plugin extends BasePlugin {
 		return self_admin_url( $page );
 	}
 
-	public function panel_url( $panel = 'dashboard', $subpanel = '', $args = '' ) : string {
+	public function panel_url( $panel = 'dashboard', $subpanel = '', $args = '', $network = null ) : string {
 		$url = 'admin.php?page=' . $this->plugin . '-' . $panel;
 
 		if ( ! empty( $subpanel ) && $subpanel != 'index' ) {
@@ -37,7 +47,15 @@ abstract class Plugin extends BasePlugin {
 			$url .= '&' . trim( $args, '&' );
 		}
 
-		return self_admin_url( $url );
+		if ( is_null( $network ) ) {
+			$network = $this->is_multisite && is_network_admin();
+		}
+
+		if ( $network ) {
+			return network_admin_url( $url );
+		} else {
+			return admin_url( $url );
+		}
 	}
 
 	public function admin_menu() {

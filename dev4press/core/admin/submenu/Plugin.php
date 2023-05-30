@@ -32,7 +32,7 @@ abstract class Plugin extends BasePlugin {
 		return $url;
 	}
 
-	public function panel_url( $panel = 'dashboard', $subpanel = '', $args = '' ) : string {
+	public function panel_url( $panel = 'dashboard', $subpanel = '', $args = '', $network = null ) : string {
 		$url = $this->main_url();
 
 		$url .= '&panel=' . $panel;

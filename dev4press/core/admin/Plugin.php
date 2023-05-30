@@ -42,6 +42,8 @@ abstract class Plugin {
 	public $has_widgets = false;
 	public $has_metabox = false;
 
+	public $is_multisite = false;
+
 	public $plugin = '';
 	public $plugin_prefix = '';
 	public $plugin_menu = '';
@@ -74,7 +76,15 @@ abstract class Plugin {
 	public $page_ids = array();
 
 	public function __construct() {
+		if ( is_multisite() ) {
+			$this->is_multisite = true;
+		}
+
 		$this->constructor();
+
+		if ( $this->is_multisite ) {
+			add_filter( 'network_admin_plugin_action_links', array( $this, 'plugin_actions' ), 10, 2 );
+		}
 
 		add_filter( 'plugin_action_links', array( $this, 'plugin_actions' ), 10, 2 );
 		add_filter( 'plugin_row_meta', array( $this, 'plugin_links' ), 10, 2 );
@@ -497,7 +507,7 @@ abstract class Plugin {
 
 	abstract public function current_url( $with_subpanel = true );
 
-	abstract public function panel_url( $panel = 'dashboard', $subpanel = '', $args = '' );
+	abstract public function panel_url( $panel = 'dashboard', $subpanel = '', $args = '', $network = null );
 
 	abstract public function admin_menu();
 

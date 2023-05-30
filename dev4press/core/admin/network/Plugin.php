@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev4Press\v42\Core\Admin\Network\Menu;
+namespace Dev4Press\v42\Core\Admin\Network;
 
 use Dev4Press\v42\Core\Admin\Menu\Plugin as BasePlugin;
 use Dev4Press\v42\Core\Quick\Sanitize;
@@ -13,39 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class Plugin extends BasePlugin {
 	public $is_multisite = false;
-
-	public function __construct() {
-		if ( is_multisite() ) {
-			$this->is_multisite = true;
-		}
-
-		$this->constructor();
-
-		if ( $this->is_multisite ) {
-			add_filter( 'network_admin_plugin_action_links', array( $this, 'plugin_actions' ), 10, 2 );
-		} else {
-			add_filter( 'plugin_action_links', array( $this, 'plugin_actions' ), 10, 2 );
-		}
-
-		add_filter( 'plugin_row_meta', array( $this, 'plugin_links' ), 10, 2 );
-
-		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 20 );
-		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), 20 );
-	}
-
-	public function main_url() : string {
-		return network_admin_url( 'admin.php?page=' . $this->plugin . '-dashboard' );
-	}
-
-	public function current_url( $with_subpanel = true ) : string {
-		$page = 'admin.php?page=' . $this->plugin . '-' . $this->panel;
-
-		if ( $with_subpanel && isset( $this->subpanel ) && $this->subpanel !== false && $this->subpanel != '' ) {
-			$page .= '&subpanel=' . $this->subpanel;
-		}
-
-		return network_admin_url( $page );
-	}
 
 	public function plugins_loaded() {
 		$this->is_debug = WordPress::instance()->is_script_debug();
