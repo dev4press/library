@@ -4,49 +4,54 @@ namespace Dev4Press\v42\Core\Admin\Network;
 
 use Dev4Press\v42\Core\Admin\Menu\Plugin as BasePlugin;
 use Dev4Press\v42\Core\Quick\Sanitize;
-use Dev4Press\v42\Core\UI\Enqueue;
-use Dev4Press\v42\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 abstract class Plugin extends BasePlugin {
-	public $is_multisite = false;
+	public $plugin_network = true;
 
-	public function plugins_loaded() {
-		$this->is_debug = WordPress::instance()->is_script_debug();
-
-		$this->enqueue = Enqueue::instance( $this );
-
-		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		add_action( 'admin_menu', array( $this, 'admin_menu_items' ), 1 );
+	public function plugins_preparation() {
+		$blog_menus = true;
 
 		if ( $this->is_multisite ) {
-			add_action( 'network_admin_menu', array( $this, 'admin_menu' ) );
-		} else {
-			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+			if ( is_network_admin() ) {
+				add_action( 'network_admin_menu', array( $this, 'admin_menu_items' ), 1 );
+				add_action( 'network_admin_menu', array( $this, 'admin_menu' ) );
+
+				$blog_menus = false;
+			} else {
+				if ( ! $this->plugin_blog ) {
+					$blog_menus = false;
+				}
+			}
 		}
 
-		add_action( 'current_screen', array( $this, 'current_screen' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		if ( $blog_menus ) {
+			parent::plugins_preparation();
+		}
 	}
 
 	public function global_admin_notices() {
-		if ( $this->settings()->is_install() ) {
-			if ( $this->is_multisite ) {
+		$blog_notices = true;
+
+		if ( $this->is_multisite ) {
+			if ( $this->settings()->is_install() ) {
 				add_action( 'network_admin_notices', array( $this, 'install_notice' ) );
-			} else {
-				add_action( 'admin_notices', array( $this, 'install_notice' ) );
+			}
+
+			if ( $this->settings()->is_update() ) {
+				add_action( 'network_admin_notices', array( $this, 'update_notice' ) );
+			}
+
+			if ( $this->plugin_settings == 'network-only' ) {
+				$blog_notices = false;
 			}
 		}
 
-		if ( $this->settings()->is_update() ) {
-			if ( $this->is_multisite ) {
-				add_action( 'network_admin_notices', array( $this, 'update_notice' ) );
-			} else {
-				add_action( 'admin_notices', array( $this, 'update_notice' ) );
-			}
+		if ( $blog_notices ) {
+			parent::global_admin_notices();
 		}
 	}
 

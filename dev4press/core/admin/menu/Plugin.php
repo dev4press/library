@@ -70,12 +70,22 @@ abstract class Plugin extends BasePlugin {
 			$this->svg_icon() );
 
 		foreach ( $this->menu_items as $item => $data ) {
-			$this->page_ids[] = add_submenu_page( $parent,
-				$this->plugin_title . ': ' . $data[ 'title' ],
-				$data[ 'title' ],
-				$data[ 'cap' ] ?? $this->menu_cap,
-				$this->plugin . '-' . $item,
-				array( $this, 'admin_panel' ) );
+			$scope = $data[ 'scope' ] ?? array();
+			$add   = true;
+
+			if ( ! empty( $scope ) && $this->is_multisite ) {
+				$current = is_network_admin() ? 'network' : 'blog';
+				$add     = in_array( $current, $scope );
+			}
+
+			if ( $add ) {
+				$this->page_ids[] = add_submenu_page( $parent,
+					$this->plugin_title . ': ' . $data[ 'title' ],
+					$data[ 'title' ],
+					$data[ 'cap' ] ?? $this->menu_cap,
+					$this->plugin . '-' . $item,
+					array( $this, 'admin_panel' ) );
+			}
 		}
 
 		$this->admin_load_hooks();

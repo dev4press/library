@@ -36,6 +36,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Plugin {
+	public $plugin = '';
+	public $plugin_prefix = '';
+	public $plugin_menu = '';
+	public $plugin_title = '';
+	public $plugin_blog = true;
+	public $plugin_network = false;
+	public $plugin_settings = '';
+
 	public $variant = 'core';
 
 	public $menu_cap = 'activate_plugins';
@@ -43,11 +51,6 @@ abstract class Plugin {
 	public $has_metabox = false;
 
 	public $is_multisite = false;
-
-	public $plugin = '';
-	public $plugin_prefix = '';
-	public $plugin_menu = '';
-	public $plugin_title = '';
 
 	public $url = '';
 	public $path = '';
@@ -90,6 +93,7 @@ abstract class Plugin {
 		add_filter( 'plugin_row_meta', array( $this, 'plugin_links' ), 10, 2 );
 
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 20 );
+		add_action( 'plugins_loaded', array( $this, 'plugins_preparation' ), 30 );
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), 20 );
 
 		add_filter( 'set-screen-option', array( $this, 'screen_options_save' ), 10, 3 );
@@ -110,6 +114,21 @@ abstract class Plugin {
 		return get_current_screen();
 	}
 
+	public function plugins_loaded() {
+		$this->is_debug = WordPress::instance()->is_script_debug();
+
+		$this->enqueue = Enqueue::instance( $this );
+
+		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_action( 'current_screen', array( $this, 'current_screen' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+	}
+
+	public function plugins_preparation() {
+		add_action( 'admin_menu', array( $this, 'admin_menu_items' ), 1 );
+		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+	}
+
 	public function plugin_actions( $links, $file ) {
 		if ( $file == $this->plugin_name() ) {
 			$settings_link = '<a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( "Settings", "d4plib" ) . '</a>';
@@ -126,20 +145,6 @@ abstract class Plugin {
 		}
 
 		return $links;
-	}
-
-	public function plugins_loaded() {
-		$this->is_debug = WordPress::instance()->is_script_debug();
-
-		$this->enqueue = Enqueue::instance( $this );
-
-		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		add_action( 'admin_menu', array( $this, 'admin_menu_items' ), 1 );
-
-		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-
-		add_action( 'current_screen', array( $this, 'current_screen' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}
 
 	public function admin_init() {
@@ -456,6 +461,18 @@ abstract class Plugin {
 		return true;
 	}
 
+	protected function screen_setup() {
+		$this->install_or_update();
+		$this->load_post_get_back();
+
+		$panel = $this->panel_object();
+		$class = $panel->class;
+
+		$this->object = $class::instance( $this );
+
+		$this->subpanel = $this->object->validate_subpanel( $this->subpanel );
+	}
+
 	protected function default_panel_object() : object {
 		return (object) array(
 			'default' => true,
@@ -471,18 +488,6 @@ abstract class Plugin {
 		} else if ( isset( $_GET[ $this->v() ] ) && Sanitize::key( $_GET[ $this->v() ] ) == 'getback' ) {
 			$this->run_getback();
 		}
-	}
-
-	protected function screen_setup() {
-		$this->install_or_update();
-		$this->load_post_get_back();
-
-		$panel = $this->panel_object();
-		$class = $panel->class;
-
-		$this->object = $class::instance( $this );
-
-		$this->subpanel = $this->object->validate_subpanel( $this->subpanel );
 	}
 
 	protected function register_scripts_and_styles() {
