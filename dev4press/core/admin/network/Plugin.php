@@ -56,7 +56,7 @@ abstract class Plugin extends BasePlugin {
 	}
 
 	public function current_screen( $screen ) {
-		if ( $this->is_multisite ) {
+		if ( $this->is_multisite && is_network_admin() ) {
 			$this->screen_id = $screen->id;
 
 			$parts = explode( '_page_', $this->screen_id, 2 );

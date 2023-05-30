@@ -38,7 +38,7 @@ class Library {
 	/**
 	 * @var string
 	 */
-	private $_build = '4120';
+	private $_build = '4130';
 	/**
 	 * @var string
 	 */

@@ -1,7 +1,7 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 4.2 - 2023.06.01 =
+= Version 4.2 - 2023.06.05 =
 * New: expanded the main `WordPress` class
 * New: complete the network based `Menu` class
 * New: added few more UI icons
