@@ -23,6 +23,9 @@ abstract class Panel {
 	protected $render_class = '\\Dev4Press\\v42\\Core\\UI\\Admin\\Render';
 	protected $wrapper_class = '';
 	protected $default_subpanel = 'index';
+	protected $form_multiform = true;
+	protected $form_autocomplete = "off";
+    protected $form_method = 'post';
 
 	public $storage = array();
 
@@ -227,9 +230,10 @@ abstract class Panel {
 	}
 
 	public function form_tag_open() : string {
-		$id = $this->a()->plugin_prefix . '-form-' . $this->a()->panel;
+		$id  = $this->a()->plugin_prefix . '-form-' . $this->a()->panel;
+		$enc = $this->form_multiform ? 'enctype="multipart/form-data"' : '';
 
-		return '<form method="post" action="" id="' . esc_attr( $id ) . '" enctype="multipart/form-data" autocomplete="off">';
+		return '<form method="' . esc_attr( $this->form_method ) . '" action="" id="' . esc_attr( $id ) . '" ' . $enc . ' autocomplete="' . esc_attr( $this->form_autocomplete ) . '">';
 	}
 
 	public function form_tag_close() : string {

@@ -8,6 +8,8 @@
 * New: added plugin reference and icon
 * Edit: improvements to the `DBLite` class
 * Edit: improvements to the `Scope` class
+* Edit: improvements to the `Panel` class
+* Edit: improvements to the `Table` class
 * Edit: improvements to the admin core objects
 * Edit: improved support for the network plugins
 
