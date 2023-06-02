@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v42\WordPress\Admin;
 
+use Dev4Press\v42\Core\Helpers\DB;
 use Dev4Press\v42\Core\Plugins\DBLite;
 use Dev4Press\v42\Core\Quick\Sanitize;
 use WP_List_Table;
@@ -213,5 +214,16 @@ abstract class Table extends WP_List_Table {
 		}
 
 		return $value;
+	}
+
+	protected function _get_search_where( array $fields, string $s ) : string {
+		$search = '%' . DB::instance()->wpdb()->esc_like( $s ) . '%';
+		$where  = array();
+
+		foreach ( $fields as $field ) {
+			$where[] = DB::instance()->prepare( '$field LIKE %s', $search );
+		}
+
+		return '(' . join( ' OR ', $where ) . ')';
 	}
 }
