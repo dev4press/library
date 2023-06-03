@@ -60,23 +60,6 @@ abstract class Table extends WP_List_Table {
 		return $this->_table_primary_column;
 	}
 
-	protected function get_views() : array {
-		return array();
-	}
-
-	protected function _self( $args, $getback = false, $nonce = null ) : string {
-		$url = panel()->a()->current_url();
-		$url .= '&' . $args;
-
-		if ( $getback ) {
-			$url .= '&' . panel()->a()->v() . '=getback';
-			$url .= '&_wpnonce=' . ( $nonce ?? wp_create_nonce( $this->_self_nonce_key ) );
-			$url .= '&_wp_http_referer=' . esc_url( remove_query_arg( '_wpnonce', wp_get_referer() ) );
-		}
-
-		return $url;
-	}
-
 	public function rows_per_page() : int {
 		return 20;
 	}
@@ -107,6 +90,23 @@ abstract class Table extends WP_List_Table {
 		echo '</tr>';
 	}
 
+	protected function _self( $args, $getback = false, $nonce = null ) : string {
+		$url = panel()->a()->current_url();
+		$url .= '&' . $args;
+
+		if ( $getback ) {
+			$url .= '&' . panel()->a()->v() . '=getback';
+			$url .= '&_wpnonce=' . ( $nonce ?? wp_create_nonce( $this->_self_nonce_key ) );
+			$url .= '&_wp_http_referer=' . esc_url( remove_query_arg( '_wpnonce', wp_get_referer() ) );
+		}
+
+		return $url;
+	}
+
+	protected function get_views() : array {
+		return array();
+	}
+
 	protected function extra_tablenav( $which ) {
 		if ( $which == 'top' ) {
 			$this->filter_block_top();
@@ -128,7 +128,12 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function prepare_column_headers() {
-		$this->_column_headers = array( $this->get_columns(), array(), $this->get_sortable_columns() );
+		$this->_column_headers = array(
+			$this->get_columns(),
+			get_hidden_columns( $this->screen ),
+			$this->get_sortable_columns(),
+			$this->get_primary_column_name()
+		);
 	}
 
 	protected function get_bulk_actions() : array {
@@ -230,7 +235,7 @@ abstract class Table extends WP_List_Table {
 		$where  = array();
 
 		foreach ( $fields as $field ) {
-			$where[] = DB::instance()->prepare( '$field LIKE %s', $search );
+			$where[] = DB::instance()->prepare( "$field LIKE %s", $search );
 		}
 
 		return '(' . join( ' OR ', $where ) . ')';
