@@ -2,6 +2,7 @@
 
 namespace Dev4Press\v42\Core\UI\Admin;
 
+use Dev4Press\v42\Core\Quick\KSES;
 use function Dev4Press\v42\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -93,7 +94,7 @@ abstract class PanelTools extends Panel {
 				echo '<div class="d4p-accessibility-button">';
 
 				if ( $method == 'get' ) {
-					echo '<a type="button" href="' . esc_url( $this->subpanels[ $_subpanel ][ 'button_url' ] ) . '" class="button-primary">' . $this->subpanels[ $_subpanel ][ 'button_label' ] . '</a>';
+					echo '<a type="button" href="' . esc_url( $this->subpanels[ $_subpanel ][ 'button_url' ] ) . '" class="button-primary">' . KSES::standard( $this->subpanels[ $_subpanel ][ 'button_label' ] ) . '</a>';
 				} else if ( $method == 'post' ) {
 					echo '<input type="submit" value="' . esc_attr( $this->subpanels[ $_subpanel ][ 'button_label' ] ) . '" class="button-primary" />';
 				}

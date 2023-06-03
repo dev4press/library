@@ -25,7 +25,7 @@ abstract class Panel {
 	protected $default_subpanel = 'index';
 	protected $form_multiform = true;
 	protected $form_autocomplete = "off";
-    protected $form_method = 'post';
+	protected $form_method = 'post';
 
 	public $storage = array();
 

@@ -46,9 +46,9 @@ class Link extends WP_Customize_Section {
 		?>
         <li id="accordion-section-<?php echo esc_attr( $this->type ); ?>"
                 class="d4p-link-section accordion-section control-section control-section-<?php echo esc_attr( $this->id ); ?> cannot-expand">
-            <h3 class="d4p-link-section-title" <?php echo ' style="color:' . $_text . ';border-left-color:' . $_back . ';border-right-color:' . $_back . ';"'; ?>>
+            <h3 class="d4p-link-section-title" <?php echo ' style="color:' . esc_attr( $_text ) . ';border-left-color:' . esc_attr( $_back ) . ';border-right-color:' . esc_attr( $_back ) . ';"'; ?>>
                 <a href="<?php echo esc_url( $this->url ); ?>" rel="noopener"
-                        target="_blank"<?php echo ' style="background-color:' . $_back . ';color:' . $_text . ';"'; ?>><?php echo esc_html( $this->title ); ?></a>
+                        target="_blank"<?php echo ' style="background-color:' . esc_attr( $_back ) . ';color:' . esc_attr( $_text ) . ';"'; ?>><?php echo esc_html( $this->title ); ?></a>
             </h3>
         </li>
 		<?php

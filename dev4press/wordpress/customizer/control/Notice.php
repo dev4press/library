@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v42\WordPress\Customizer\Control;
 
+use Dev4Press\v42\Core\Quick\KSES;
 use Dev4Press\v42\WordPress\Customizer\Control;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -36,32 +37,13 @@ class Notice extends Control {
 	public $type = 'd4p-ctrl-notice';
 
 	protected function render_content() {
-		$allowed_html = array(
-			'a'      => array(
-				'href'   => array(),
-				'title'  => array(),
-				'class'  => array(),
-				'target' => array(),
-			),
-			'br'     => array(),
-			'em'     => array(),
-			'strong' => array(),
-			'i'      => array(
-				'class' => array()
-			),
-			'span'   => array(
-				'class' => array(),
-			),
-			'code'   => array()
-		);
-
 		?>
         <div class="d4p-notice-ctrl">
 			<?php if ( ! empty( $this->label ) ) { ?>
                 <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 			<?php } ?>
 			<?php if ( ! empty( $this->description ) ) { ?>
-                <span class="customize-control-description"><?php echo wp_kses( $this->description, $allowed_html ); ?></span>
+                <span class="customize-control-description"><?php echo KSES::standard( $this->description ); ?></span>
 			<?php } ?>
         </div>
 		<?php

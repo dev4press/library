@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v42\Core\UI;
 
 use Dev4Press\v42\Core\Quick\Arr;
+use Dev4Press\v42\Core\Quick\KSES;
 use Dev4Press\v42\WordPress\Walker\CheckboxRadio;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -143,22 +144,7 @@ class Elements {
 		$render .= '</select>';
 
 		if ( $echo ) {
-			echo wp_kses( $render, array(
-				'select' => array(
-					'class'    => true,
-					'style'    => true,
-					'title'    => true,
-					'multiple' => true,
-					'readonly' => true,
-					'id'       => true,
-					'name'     => true,
-					'data-*'   => true
-				),
-				'option' => array(
-					'value'    => true,
-					'selected' => true
-				)
-			) );
+			echo KSES::select( $render );
 		}
 
 		return $render;
@@ -251,25 +237,7 @@ class Elements {
 		$render .= '</select>';
 
 		if ( $echo ) {
-			echo wp_kses( $render, array(
-				'select'   => array(
-					'class'    => true,
-					'style'    => true,
-					'title'    => true,
-					'multiple' => true,
-					'readonly' => true,
-					'id'       => true,
-					'name'     => true,
-					'data-*'   => true
-				),
-				'optgroup' => array(
-					'label' => true
-				),
-				'option'   => array(
-					'value'    => true,
-					'selected' => true
-				)
-			) );
+			echo KSES::select( $render );
 		}
 
 		return $render;
@@ -355,29 +323,7 @@ class Elements {
 		$render .= '</div>';
 
 		if ( $echo ) {
-			echo wp_kses( $render, array(
-				'a'     => array(
-					'class' => true,
-					'href'  => true
-				),
-				'div'   => array(
-					'class' => true
-				),
-				'label' => array(
-					'class' => true
-				),
-				'input' => array(
-					'class'    => true,
-					'style'    => true,
-					'checked'  => true,
-					'readonly' => true,
-					'id'       => true,
-					'name'     => true,
-					'data-*'   => true,
-					'type'     => true,
-					'value'    => true
-				)
-			) );
+			echo KSES::checkboxes( $render );
 		}
 
 		return $render;
@@ -437,35 +383,7 @@ class Elements {
 		$render .= '</div>';
 
 		if ( $echo ) {
-			echo wp_kses( $render, array(
-				'a'     => array(
-					'class' => true,
-					'href'  => true
-				),
-				'ul'    => array(
-					'class' => true
-				),
-				'li'    => array(
-					'class' => true
-				),
-				'div'   => array(
-					'class' => true
-				),
-				'label' => array(
-					'class' => true
-				),
-				'input' => array(
-					'class'    => true,
-					'style'    => true,
-					'checked'  => true,
-					'readonly' => true,
-					'id'       => true,
-					'name'     => true,
-					'data-*'   => true,
-					'type'     => true,
-					'value'    => true
-				)
-			) );
+			echo KSES::checkboxes( $render );
 		}
 
 		return $render;

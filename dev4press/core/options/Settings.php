@@ -48,6 +48,14 @@ abstract class Settings {
 		return $instance[ static::class ];
 	}
 
+	public function i( string $type, string $name, string $title, string $notice, string $input ) : Element {
+		return Element::i( $type, $name, $title, $notice, $input, $this->value( $name, $type ) );
+	}
+
+	public function info( string $title, string $notice ) : Element {
+		return Element::info( $title, $notice );
+	}
+
 	public function all() {
 		return $this->settings;
 	}
@@ -60,7 +68,7 @@ abstract class Settings {
 		}
 	}
 
-	public function settings( $panel ) {
+	public function settings( $panel ) : array {
 		$list = array();
 
 		if ( in_array( $panel, array( 'index', 'full' ) ) ) {
@@ -78,7 +86,7 @@ abstract class Settings {
 		return $list;
 	}
 
-	public function settings_from_panel( $obj ) {
+	public function settings_from_panel( $obj ) : array {
 		$list = array();
 
 		if ( isset( $obj[ 'settings' ] ) ) {

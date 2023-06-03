@@ -44,11 +44,20 @@ abstract class Table extends WP_List_Table {
 	public $_checkbox_field = '';
 	public $_table_class_name = '';
 	public $_self_nonce_key = '';
+	public $_table_primary_column = '';
 
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );
 
 		$this->process_request_args();
+
+		if ( ! empty( $this->_table_primary_column ) ) {
+			add_filter( 'list_table_primary_column', array( $this, 'change_primary_column' ) );
+		}
+	}
+
+	public function change_primary_column( $column ) {
+		return $this->_table_primary_column;
 	}
 
 	protected function get_views() : array {
@@ -93,7 +102,7 @@ abstract class Table extends WP_List_Table {
 	public function single_row( $item ) {
 		$classes = $this->get_row_classes( $item );
 
-		echo '<tr' . ( empty( $classes ) ? '' : ' class="' . join( ' ', $classes ) . '"' ) . '>';
+		echo '<tr' . ( empty( $classes ) ? '' : ' class="' . esc_attr( join( ' ', $classes ) ) . '"' ) . '>';
 		$this->single_row_columns( $item );
 		echo '</tr>';
 	}

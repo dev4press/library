@@ -2,16 +2,18 @@
 == Changelog ==
 
 = Version 4.2 - 2023.06.05 =
-* New: expanded the main `WordPress` class
 * New: complete the network based `Menu` class
-* New: added few more UI icons
-* New: added plugin reference and icon
+* New: added `KSES` class for processing HTML strings for display
+* New: added several more UI icons
+* New: added plugin reference and the icon
+* New: expanded the main `WordPress` class
 * Edit: improvements to the `DBLite` class
 * Edit: improvements to the `Scope` class
 * Edit: improvements to the `Panel` class
 * Edit: improvements to the `Table` class
 * Edit: improvements to the admin core objects
 * Edit: improved support for the network plugins
+* Edit: several more strings escaping for display
 
 = Version 4.1.1 - 2023.05.15 =
 * New: added `exclamation` icon

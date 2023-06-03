@@ -54,11 +54,11 @@ class Debug {
 			echo '<pre style="padding: 5px; font-size: 12px; background: #fff; border: 1px solid #000; color: #000;">';
 
 			if ( $title != '' ) {
-				echo '&gt;&gt;&gt;&gt;&nbsp;<strong>' . $title . '</strong>&nbsp;&lt;&lt;&lt;&lt;&lt;<br/><br/>';
+				echo '&gt;&gt;&gt;&gt;&nbsp;<strong>' . esc_html( $title ) . '</strong>&nbsp;&lt;&lt;&lt;&lt;&lt;<br/><br/>';
 			}
 		} else {
 			if ( $title != '' ) {
-				echo "<<<< " . $title . " >>>>\r\n\r\n";
+				echo "<<<< " . esc_html( $title ) . " >>>>\r\n\r\n";
 			}
 		}
 
@@ -124,21 +124,21 @@ class Debug {
 		global $wpdb;
 
 		echo D4P_EOL;
-		echo '<!-- ' . __( "SQL Queries", "d4plib" ) . '           : ';
+		echo '<!-- ' . esc_html__( "SQL Queries", "d4plib" ) . '           : ';
 		echo $wpdb->num_queries;
 		echo ' -->' . D4P_EOL;
-		echo '<!-- ' . __( "Total Page Time", "d4plib" ) . '       : ';
-		echo timer_stop( 0, 6 ) . ' ' . __( "seconds", "d4plib" );
+		echo '<!-- ' . esc_html__( "Total Page Time", "d4plib" ) . '       : ';
+		echo timer_stop( 0, 6 ) . ' ' . esc_html__( "seconds", "d4plib" );
 		echo ' -->' . D4P_EOL;
 
 		if ( function_exists( 'memory_get_peak_usage' ) ) {
-			echo '<!-- ' . __( "PHP Memory Peak", "d4plib" ) . '       : ';
+			echo '<!-- ' . esc_html__( "PHP Memory Peak", "d4plib" ) . '       : ';
 			echo round( memory_get_peak_usage() / 1024 / 1024, 2 ) . ' MB';
 			echo ' -->' . D4P_EOL;
 		}
 
 		if ( function_exists( 'memory_get_usage' ) ) {
-			echo '<!-- ' . __( "PHP Memory Final", "d4plib" ) . '      : ';
+			echo '<!-- ' . esc_html__( "PHP Memory Final", "d4plib" ) . '      : ';
 			echo round( memory_get_usage() / 1024 / 1024, 2 ) . ' MB';
 			echo ' -->' . D4P_EOL;
 		}
@@ -186,16 +186,16 @@ class Debug {
 		global $wp, $template;
 
 		echo D4P_EOL;
-		echo '<!-- ' . __( "Request", "d4plib" ) . '               : ';
-		echo empty( $wp->request ) ? __( "None", "d4plib" ) : esc_html( $wp->request );
+		echo '<!-- ' . esc_html__( "Request", "d4plib" ) . '               : ';
+		echo empty( $wp->request ) ? esc_html__( "None", "d4plib" ) : esc_html( $wp->request );
 		echo ' -->' . D4P_EOL;
-		echo '<!-- ' . __( "Matched Rewrite Rule", "d4plib" ) . '  : ';
-		echo empty( $wp->matched_rule ) ? __( "None", "d4plib" ) : esc_html( $wp->matched_rule );
+		echo '<!-- ' . esc_html__( "Matched Rewrite Rule", "d4plib" ) . '  : ';
+		echo empty( $wp->matched_rule ) ? esc_html__( "None", "d4plib" ) : esc_html( $wp->matched_rule );
 		echo ' -->' . D4P_EOL;
-		echo '<!-- ' . __( "Matched Rewrite Query", "d4plib" ) . ' : ';
-		echo empty( $wp->matched_query ) ? __( "None", "d4plib" ) : esc_html( $wp->matched_query );
+		echo '<!-- ' . esc_html__( "Matched Rewrite Query", "d4plib" ) . ' : ';
+		echo empty( $wp->matched_query ) ? esc_html__( "None", "d4plib" ) : esc_html( $wp->matched_query );
 		echo ' -->' . D4P_EOL;
-		echo '<!-- ' . __( "Loaded Template", "d4plib" ) . '       : ';
+		echo '<!-- ' . esc_html__( "Loaded Template", "d4plib" ) . '       : ';
 		echo basename( $template );
 		echo ' -->' . D4P_EOL;
 	}

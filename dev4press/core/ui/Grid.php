@@ -71,7 +71,7 @@ abstract class Grid {
 
 	public function display() {
 		?>
-        <div class="d4p-grid-table-wrapper <?php echo $this->grid_classes; ?>">
+        <div class="d4p-grid-table-wrapper <?php echo esc_attr( $this->grid_classes ); ?>">
             <form method="get">
 				<?php $this->filter(); ?>
                 <table class="d4p-grid-table">
@@ -133,10 +133,10 @@ abstract class Grid {
 		$this->filter_elements();
 
 		if ( $this->show_search ) {
-			echo '<input placeholder="' . __( "Search keywords...", "d4plib" ) . '" type="text" name="search" value="' . esc_attr( $this->filters[ 'search' ] ) . '" />';
+			echo '<input placeholder="' . esc_attr__( "Search keywords...", "d4plib" ) . '" type="text" name="search" value="' . esc_attr( $this->filters[ 'search' ] ) . '" />';
 		}
 
-		echo '<input type="submit" value="' . __( "Filter", "d4plib" ) . '"/>';
+		echo '<input type="submit" value="' . esc_attr__( "Filter", "d4plib" ) . '"/>';
 		echo '</div>';
 	}
 
@@ -190,7 +190,7 @@ abstract class Grid {
 
 			$html_current_page = sprintf(
 				"%s<input class='current-page' id='current-page-selector' type='number' step='1' min='1' max='%d' name='pg' value='%s' aria-describedby='table-paging' /><span class='tablenav-paging-text'>",
-				'<label for="current-page-selector" class="screen-reader-text">' . __( "Current Page", "d4plib" ) . '</label>',
+				'<label for="current-page-selector" class="screen-reader-text">' . esc_html__( "Current Page", "d4plib" ) . '</label>',
 				$total_pages,
 				$current
 			);
@@ -271,7 +271,7 @@ abstract class Grid {
 					$column_label = sprintf( '<a href="%s"><span>%s</span><span class="sorting-icon">%s</span></a>', esc_url( $url ), $column_label, $icon );
 				}
 
-				echo '<th scope="col" class="' . join( ' ', $class ) . '">' . $column_label . '</th>';
+				echo '<th scope="col" class="' . esc_attr( join( ' ', $class ) ) . '">' . $column_label . '</th>';
 			}
 
 			?>
