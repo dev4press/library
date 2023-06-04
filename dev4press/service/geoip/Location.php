@@ -71,18 +71,18 @@ class Location {
 	}
 
 	public function flag( $not_found = 'image' ) : string {
-		$_base = Library::instance()->url() . 'resources/css/flags/blank.gif';
+		$_base = Library::instance()->url() . 'resources/libraries/flags/img/flag_placeholder.png';
 
 		if ( $this->status == 'active' ) {
 			if ( $this->country_code != '' ) {
 				return '<img src="' . $_base . '" class="flag flag-' . strtolower( $this->country_code ) . '" title="' . $this->location() . '" alt="' . $this->location() . '" />';
 			}
 		} else if ( $this->status == 'private' ) {
-			return '<img src="' . $_base . '" class="flag flag-localhost" title="' . __( "Localhost or Private IP", "d4plib" ) . '" alt="' . __( "Localhost or Private IP", "d4plib" ) . '" />';
+			return '<img src="' . $_base . '" class="flag" title="' . __( "Localhost or Private IP", "d4plib" ) . '" alt="' . __( "Localhost or Private IP", "d4plib" ) . '" />';
 		}
 
 		if ( $not_found == 'image' ) {
-			return '<img src="' . $_base . '" class="flag flag-invalid" title="' . __( "IP can't be located.", "d4plib" ) . '" alt="' . __( "IP can't be geolocated.", "d4plib" ) . '" />';
+			return '<img src="' . $_base . '" class="flag" title="' . __( "IP can't be located.", "d4plib" ) . '" alt="' . __( "IP can't be located.", "d4plib" ) . '" />';
 		} else {
 			return '';
 		}

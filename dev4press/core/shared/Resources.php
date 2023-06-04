@@ -102,12 +102,6 @@ class Resources {
 				'ext'  => 'css',
 				'min'  => true
 			),
-			'flags'      => array(
-				'path' => 'css/',
-				'file' => 'flags',
-				'ext'  => 'css',
-				'min'  => true
-			),
 			'font'       => array(
 				'path' => 'css/',
 				'file' => 'font',
@@ -338,6 +332,14 @@ class Resources {
 				'path' => 'animated-popup/',
 				'file' => 'animated-popup.min',
 				'ver'  => '1.8',
+				'ext'  => 'css',
+				'min'  => false
+			),
+			'flags'                  => array(
+				'lib'  => true,
+				'path' => 'flags/css/',
+				'file' => 'flags.min',
+				'ver'  => '2015.10',
 				'ext'  => 'css',
 				'min'  => false
 			),

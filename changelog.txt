@@ -6,6 +6,7 @@
 * New: added `KSES` class for processing HTML strings for display
 * New: added several more UI icons
 * New: added plugin reference and the icon
+* New: updated and modernized flags library
 * New: expanded the main `WordPress` class
 * New: rewritten GEOIP handling objects
 * Edit: improvements to the `DBLite` class
@@ -15,6 +16,7 @@
 * Edit: improvements to the admin core objects
 * Edit: improved support for the network plugins
 * Edit: several more strings escaping for display
+* Removed: old flags collection CSS and images
 
 = Version 4.1.1 - 2023.05.15 =
 * New: added `exclamation` icon

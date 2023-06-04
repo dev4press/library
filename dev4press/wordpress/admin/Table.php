@@ -90,17 +90,8 @@ abstract class Table extends WP_List_Table {
 		echo '</tr>';
 	}
 
-	protected function _self( $args, $getback = false, $nonce = null ) : string {
-		$url = panel()->a()->current_url();
-		$url .= '&' . $args;
-
-		if ( $getback ) {
-			$url .= '&' . panel()->a()->v() . '=getback';
-			$url .= '&_wpnonce=' . ( $nonce ?? wp_create_nonce( $this->_self_nonce_key ) );
-			$url .= '&_wp_http_referer=' . esc_url( remove_query_arg( '_wpnonce', wp_get_referer() ) );
-		}
-
-		return $url;
+	protected function db() : ?DBLite {
+		return null;
 	}
 
 	protected function get_views() : array {
@@ -158,6 +149,38 @@ abstract class Table extends WP_List_Table {
 		return array();
 	}
 
+	public function get_period_dropdown( $column, $table ) : array {
+		global $wp_locale;
+
+		$sql    = "SELECT DISTINCT YEAR($column) AS year, MONTH($column) AS month FROM $table ORDER BY $column DESC";
+		$months = $this->db()->run( $sql );
+
+		$list = array(
+			''              => __( "All Logged" ),
+			'last-hour'     => __( "Last hour" ),
+			'last-half-day' => __( "Last 12 hours" ),
+			'last-day'      => __( "Last day" ),
+			'last-week'     => __( "Last 7 days" ),
+			'last-month'    => __( "Last 30 days" ),
+			'last-year'     => __( "Last 365 days" )
+		);
+
+		foreach ( $months as $row ) {
+			if ( $row->month > 0 && $row->year > 0 ) {
+				$month = zeroise( $row->month, 2 );
+				$year  = $row->year;
+
+				if ( ! isset( $list[ $year ] ) ) {
+					$list[ $year ] = $year;
+				}
+
+				$list[ $year . '-' . $month ] = sprintf( __( "%s %s", "gd-security-toolbox" ), $wp_locale->get_month( $month ), $year );
+			}
+		}
+
+		return $list;
+	}
+
 	protected function column_default( $item, $column_name ) : string {
 		return (string) $item->$column_name;
 	}
@@ -197,10 +220,6 @@ abstract class Table extends WP_List_Table {
 		) );
 	}
 
-	protected function db() : ?DBLite {
-		return null;
-	}
-
 	protected function _get_field( $name, $default = '' ) {
 		$value = ! empty( $_GET[ $name ] ) ? $_GET[ $name ] : $default;
 
@@ -230,6 +249,37 @@ abstract class Table extends WP_List_Table {
 		return $value;
 	}
 
+	protected function _get_period_where( string $period, string $column ) : string {
+		if ( substr( $period, 0, 5 ) == 'last-' ) {
+			$periods = array(
+				'hour'     => "1 HOUR",
+				'half-day' => "12 HOUR",
+				'day'      => "1 DAY",
+				'week'     => "7 DAY",
+				'month'    => "30 DAY",
+				'year'     => "365 DAY"
+			);
+
+			$key = substr( $period, 5 );
+
+			if ( isset( $periods[ $key ] ) ) {
+				$interval = $periods[ $key ];
+
+				return "$column > DATE_SUB(NOW(), INTERVAL $interval)";
+			}
+		} else if ( strlen( $period ) == 4 ) {
+			return $this->db()->prepare( "YEAR($column) = %d", $period );
+		} else {
+			$date = explode( '-', $period );
+
+			if ( count( $date ) == 2 ) {
+				return $this->db()->prepare( "YEAR($column) = %d AND MONTH($column) = %d", $date[ 0 ], $date[ 1 ] );
+			}
+		}
+
+		return '1=1';
+	}
+
 	protected function _get_search_where( array $fields, string $s ) : string {
 		$search = '%' . DB::instance()->wpdb()->esc_like( $s ) . '%';
 		$where  = array();
@@ -239,5 +289,18 @@ abstract class Table extends WP_List_Table {
 		}
 
 		return '(' . join( ' OR ', $where ) . ')';
+	}
+
+	protected function _self( $args, $getback = false, $nonce = null ) : string {
+		$url = panel()->a()->current_url();
+		$url .= '&' . $args;
+
+		if ( $getback ) {
+			$url .= '&' . panel()->a()->v() . '=getback';
+			$url .= '&_wpnonce=' . ( $nonce ?? wp_create_nonce( $this->_self_nonce_key ) );
+			$url .= '&_wp_http_referer=' . esc_url( remove_query_arg( '_wpnonce', wp_get_referer() ) );
+		}
+
+		return $url;
 	}
 }
