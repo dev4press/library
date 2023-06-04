@@ -56,7 +56,7 @@ class Location {
 		}
 	}
 
-	public function location() {
+	public function location() : string {
 		$location = '';
 
 		if ( $this->status == 'active' && ! empty( $this->country_name ) ) {
@@ -70,19 +70,25 @@ class Location {
 		return $location;
 	}
 
-	public function flag( $not_found = 'image' ) {
+	public function flag( $not_found = 'image' ) : string {
+		$_base = Library::instance()->url() . 'resources/css/flags/blank.gif';
+
 		if ( $this->status == 'active' ) {
 			if ( $this->country_code != '' ) {
-				return '<img src="' . Library::instance()->url() . 'resources/flags/blank.gif" class="flag flag-' . strtolower( $this->country_code ) . '" title="' . $this->location() . '" alt="' . $this->location() . '" />';
+				return '<img src="' . $_base . '" class="flag flag-' . strtolower( $this->country_code ) . '" title="' . $this->location() . '" alt="' . $this->location() . '" />';
 			}
 		} else if ( $this->status == 'private' ) {
-			return '<img src="' . Library::instance()->url() . 'resources/flags/blank.gif" class="flag flag-localhost" title="' . __( "Localhost or Private IP", "d4plib" ) . '" alt="' . __( "Localhost or Private IP", "d4plib" ) . '" />';
+			return '<img src="' . $_base . '" class="flag flag-localhost" title="' . __( "Localhost or Private IP", "d4plib" ) . '" alt="' . __( "Localhost or Private IP", "d4plib" ) . '" />';
 		}
 
 		if ( $not_found == 'image' ) {
-			return '<img src="' . Library::instance()->url() . 'resources/flags/blank.gif" class="flag flag-invalid" title="' . __( "IP can't be geolocated.", "d4plib" ) . '" alt="' . __( "IP can't be geolocated.", "d4plib" ) . '" />';
+			return '<img src="' . $_base . '" class="flag flag-invalid" title="' . __( "IP can't be located.", "d4plib" ) . '" alt="' . __( "IP can't be geolocated.", "d4plib" ) . '" />';
 		} else {
 			return '';
 		}
+	}
+
+	public function serialize() {
+		return json_encode( (array) $this );
 	}
 }

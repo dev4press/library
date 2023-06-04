@@ -26,51 +26,30 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v42\Service\GEOIP;
 
-use Dev4Press\v42\Core\Helpers\IP;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class GEOPlugin extends Locator {
+	private $_location_convert = array(
+		'ip'            => 'ip',
+		'countryCode'   => 'country_code',
+		'countryName'   => 'country_name',
+		'regionCode'    => 'region_code',
+		'regionName'    => 'region_name',
+		'city'          => 'city',
+		'latitude'      => 'latitude',
+		'longitude'     => 'longitude',
+		'continentCode' => 'continent_code'
+	);
+
 	protected $_url = 'http://www.geoplugin.net/json.gp?ip=';
 
-	/** @return GEOPlugin */
-	public static function instance( $ips = array() ) {
-		static $geoplugin_ips = array();
-
-		if ( empty( $ips ) ) {
-			$ips = array( IP::visitor() );
-		}
-
-		sort( $ips );
-
-		$key = join( '-', $ips );
-
-		if ( ! isset( $geoplugin_ips[ $key ] ) ) {
-			$geoplugin_ips[ $key ] = new GEOPlugin( $ips );
-		}
-
-		return $geoplugin_ips[ $key ];
-	}
-
-	protected function url( $ips ) {
+	protected function url( $ips ) : string {
 		return $this->_url . $ips;
 	}
 
-	protected function process( $raw ) {
-		$convert = array(
-			'ip'            => 'ip',
-			'countryCode'   => 'country_code',
-			'countryName'   => 'country_name',
-			'regionCode'    => 'region_code',
-			'regionName'    => 'region_name',
-			'city'          => 'city',
-			'latitude'      => 'latitude',
-			'longitude'     => 'longitude',
-			'continentCode' => 'continent_code'
-		);
-
+	protected function process( $raw ) : Location {
 		$code = array(
 			'status' => 'active'
 		);
@@ -78,9 +57,8 @@ class GEOPlugin extends Locator {
 		foreach ( $raw as $key => $value ) {
 			$ck = substr( $key, 10 );
 
-			if ( isset( $convert[ $ck ] ) ) {
-				$real          = $convert[ $ck ];
-				$code[ $real ] = $value;
+			if ( isset( $this->_location_convert[ $ck ] ) ) {
+				$code[ $this->_location_convert[ $ck ] ] = $value;
 			}
 		}
 

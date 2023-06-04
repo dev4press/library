@@ -35,35 +35,41 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Locator {
 	protected $_multi_ip_call = false;
 	protected $_url = '';
-
 	protected $_expire = 14;
-	protected $_user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0';
-
-	public $ips = '';
-
+	protected $_user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36';
 	/** @var Location[] */
 	protected $_data = array();
 
-	public function __construct( $ips ) {
-		$this->ips = (array) $ips;
+	public function __construct() {
 	}
 
-	public function expire( $expire ) {
+	/** @return static */
+	public static function instance() {
+		static $instance = array();
+
+		if ( ! isset( $instance[ static::class ] ) ) {
+			$instance[ static::class ] = new static();
+		}
+
+		return $instance[ static::class ];
+	}
+
+	public function expire( int $expire ) {
 		$this->_expire = $expire;
 
 		return $this;
 	}
 
-	public function ua( $user_agent ) {
+	public function ua( string $user_agent ) {
 		$this->_user_agent = $user_agent;
 
 		return $this;
 	}
 
-	public function run() {
+	public function bulk( array $ips ) {
 		$_not_found = array();
 
-		foreach ( $this->ips as $ip ) {
+		foreach ( $ips as $ip ) {
 			if ( IP::is_private( $ip ) ) {
 				$this->_data[ $ip ] = new Location( array( 'status' => 'private', 'ip' => $ip ) );
 			} else {
@@ -72,11 +78,10 @@ abstract class Locator {
 				if ( $this->_expire > 0 ) {
 					$cache = get_site_transient( $key );
 
-					if ( is_null( $cache ) || empty( $cache ) ) {
+					if ( empty( $cache ) ) {
 						$_not_found[] = $ip;
 					} else {
-						$data               = json_decode( $cache );
-						$this->_data[ $ip ] = new Location( $data );
+						$this->_data[ $ip ] = new Location( json_decode( $cache, true ) );
 					}
 				} else {
 					$_not_found[] = $ip;
@@ -103,13 +108,27 @@ abstract class Locator {
 
 			foreach ( $_not_found as $ip ) {
 				if ( ! isset( $this->_data[ $ip ] ) ) {
-					$this->_data[ $ip ] = false;
+					$this->_data[ $ip ] = null;
 				}
 			}
 		}
 	}
 
-	protected function _key( $ip ) {
+	public function locate( string $ip ) : ?Location {
+		if ( isset( $this->_data[ $ip ] ) ) {
+			return $this->_data[ $ip ];
+		}
+
+		$this->bulk( array( $ip ) );
+
+		return $this->_data[ $ip ];
+	}
+
+	public function current() {
+		return $this->locate( IP::visitor() );
+	}
+
+	protected function _key( $ip ) : string {
 		return 'd4p_geoip_' . $ip;
 	}
 
@@ -122,11 +141,9 @@ abstract class Locator {
 		$raw = wp_remote_get( $url, $_remote_args );
 
 		if ( ! is_wp_error( $raw ) && $raw[ 'response' ][ 'code' ] == '200' ) {
-			$raw = (array) json_decode( $raw[ 'body' ] );
+			$raw = json_decode( $raw[ 'body' ] );
 
-			if ( ! is_object( $raw ) && ! is_array( $raw ) ) {
-
-			} else {
+			if ( is_object( $raw ) || is_array( $raw ) ) {
 				if ( is_object( $raw ) ) {
 					$raw = array( $raw );
 				}
@@ -135,9 +152,7 @@ abstract class Locator {
 					$data = $this->process( $item );
 
 					if ( $this->_expire > 0 ) {
-						$key = $this->_key( $data->ip );
-
-						set_site_transient( $key, json_encode( $data ), $this->_expire * DAY_IN_SECONDS );
+						set_site_transient( $this->_key( $data->ip ), $data->serialize(), $this->_expire * DAY_IN_SECONDS );
 					}
 
 					$this->_data[ $data->ip ] = $data;
@@ -146,8 +161,7 @@ abstract class Locator {
 		}
 	}
 
-	abstract protected function url( $ips );
+	abstract protected function url( $ips ) : string;
 
-	/** @return Location */
-	abstract protected function process( $raw );
+	abstract protected function process( $raw ) : Location;
 }

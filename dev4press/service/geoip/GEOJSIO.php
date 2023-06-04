@@ -1,7 +1,7 @@
 <?php
 
 /*
-Name:    Dev4Press\v42\Services\GEOIP\GEOJSIO
+Name:    Dev4Press\v42\Services\GEOIP\Locator
 Version: v4.2
 Author:  Milan Petrovic
 Email:   support@dev4press.com
@@ -26,61 +26,36 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v42\Service\GEOIP;
 
-use Dev4Press\v42\Core\Helpers\IP;
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
 class GEOJSIO extends Locator {
+	private $_location_convert = array(
+		'ip'             => 'ip',
+		'continent_code' => 'continent_code',
+		'country_code'   => 'country_code',
+		'country'        => 'country_name',
+		'region'         => 'region_name',
+		'city'           => 'city',
+		'latitude'       => 'latitude',
+		'longitude'      => 'longitude',
+		'timezone'       => 'time_zone'
+	);
+
 	protected $_multi_ip_call = true;
 	protected $_url = 'https://get.geojs.io/v1/ip/geo.json?ip=';
 
-	public static function instance( $ips = array() ) {
-		static $geoplugin_ips = array();
-
-		if ( empty( $ips ) ) {
-			$ips = array( IP::visitor() );
-		}
-
-		sort( $ips );
-
-		$key = join( '-', $ips );
-
-		if ( ! isset( $geoplugin_ips[ $key ] ) ) {
-			$geoplugin_ips[ $key ] = new GEOJSIO( $ips );
-		}
-
-		return $geoplugin_ips[ $key ];
-	}
-
-	protected function url( $ips ) {
+	protected function url( $ips ) : string {
 		$ips = (array) $ips;
 
 		return $this->_url . join( ',', $ips );
 	}
 
-	protected function process( $raw ) {
-		$convert = array(
-			'ip'             => 'ip',
-			'continent_code' => 'continent_code',
-			'country_code'   => 'country_code',
-			'country'        => 'country_name',
-			'region'         => 'region_name',
-			'city'           => 'city',
-			'latitude'       => 'latitude',
-			'longitude'      => 'longitude',
-			'timezone'       => 'time_zone'
-		);
-
+	protected function process( $raw ) : Location {
 		$code = array(
 			'status' => 'active'
 		);
 
 		foreach ( $raw as $key => $value ) {
-			if ( isset( $convert[ $key ] ) ) {
-				$real          = $convert[ $key ];
-				$code[ $real ] = $value;
+			if ( isset( $this->_location_convert[ $key ] ) ) {
+				$code[ $this->_location_convert[ $key ] ] = $value;
 			}
 		}
 

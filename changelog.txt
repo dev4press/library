@@ -7,6 +7,7 @@
 * New: added several more UI icons
 * New: added plugin reference and the icon
 * New: expanded the main `WordPress` class
+* New: rewritten GEOIP handling objects
 * Edit: improvements to the `DBLite` class
 * Edit: improvements to the `Scope` class
 * Edit: improvements to the `Panel` class
