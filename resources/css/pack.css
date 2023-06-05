@@ -2465,6 +2465,7 @@ a > .d4p-icon {
   margin: 0;
   padding: 0;
   display: flex;
+  align-items: center;
 }
 .d4p-wrap .d4p-header .d4p-navigator ul li {
   list-style: none;
@@ -3148,6 +3149,38 @@ a > .d4p-icon {
 }
 .d4p-wrap.d4p-with-table .tablenav .tablenav-pages {
   margin-bottom: 0;
+}
+.d4p-wrap.d4p-with-table .tablenav.top {
+  display: flex;
+  column-gap: 1em;
+  row-gap: 2em;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.d4p-wrap.d4p-with-table .tablenav.top > div {
+  float: none;
+  padding: 0;
+  margin: 0;
+}
+.d4p-wrap.d4p-with-table .tablenav.top .actions {
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}
+.d4p-wrap.d4p-with-table .tablenav.top .actions * {
+  margin: 0;
+}
+.d4p-wrap.d4p-with-table .tablenav.top .actions:not(.bulkactions) {
+  flex-grow: 1;
+}
+.d4p-wrap.d4p-with-table .tablenav.top .clear {
+  display: none;
+}
+@media screen and (max-width: 782px) {
+  .d4p-wrap.d4p-with-table .tablenav.top .actions {
+    flex-grow: 1;
+    justify-content: center;
+  }
 }
 
 .d4p-grid-hide-bulkactions .actions.bulkactions {

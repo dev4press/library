@@ -66,6 +66,10 @@ abstract class Panel {
 		return $this->subpanels;
 	}
 
+    public function header_fill() : string {
+        return '';
+    }
+
 	public function object() : object {
 		$subpanel = $this->current_subpanel();
 

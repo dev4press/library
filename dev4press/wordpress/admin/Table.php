@@ -244,6 +244,10 @@ abstract class Table extends WP_List_Table {
 			case 's':
 				$value = Sanitize::basic( $value );
 				break;
+			case 'period':
+			case 'view':
+				$value = Sanitize::key( $value );
+				break;
 		}
 
 		return $value;
@@ -291,8 +295,12 @@ abstract class Table extends WP_List_Table {
 		return '(' . join( ' OR ', $where ) . ')';
 	}
 
+	protected function _url() : string {
+		return panel()->a()->current_url();
+	}
+
 	protected function _self( $args, $getback = false, $nonce = null ) : string {
-		$url = panel()->a()->current_url();
+		$url = $this->_url();
 		$url .= '&' . $args;
 
 		if ( $getback ) {
