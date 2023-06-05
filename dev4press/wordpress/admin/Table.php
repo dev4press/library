@@ -156,13 +156,13 @@ abstract class Table extends WP_List_Table {
 		$months = $this->db()->run( $sql );
 
 		$list = array(
-			''              => __( "All Logged" ),
-			'last-hour'     => __( "Last hour" ),
-			'last-half-day' => __( "Last 12 hours" ),
-			'last-day'      => __( "Last day" ),
-			'last-week'     => __( "Last 7 days" ),
-			'last-month'    => __( "Last 30 days" ),
-			'last-year'     => __( "Last 365 days" )
+			''              => __( "All Logged", "d4plib" ),
+			'last-hour'     => __( "Last hour", "d4plib" ),
+			'last-half-day' => __( "Last 12 hours", "d4plib" ),
+			'last-day'      => __( "Last day", "d4plib" ),
+			'last-week'     => __( "Last 7 days", "d4plib" ),
+			'last-month'    => __( "Last 30 days", "d4plib" ),
+			'last-year'     => __( "Last 365 days", "d4plib" )
 		);
 
 		foreach ( $months as $row ) {
@@ -174,7 +174,7 @@ abstract class Table extends WP_List_Table {
 					$list[ $year ] = $year;
 				}
 
-				$list[ $year . '-' . $month ] = sprintf( __( "%s %s", "gd-security-toolbox" ), $wp_locale->get_month( $month ), $year );
+				$list[ $year . '-' . $month ] = sprintf( __( "%s %s", "d4plib" ), $wp_locale->get_month( $month ), $year );
 			}
 		}
 
@@ -218,6 +218,26 @@ abstract class Table extends WP_List_Table {
 			'total_pages' => ceil( $total_rows / $per_page ),
 			'per_page'    => $per_page,
 		) );
+	}
+
+	protected function query_metas( string $table, string $index, string $column = null ) {
+		$column = $column ?? $index;
+
+		$ids = $this->db()->clean_ids_list( wp_list_pluck( $this->items, $index ) );
+		$ins = $this->db()->prepare_in_list( $ids, '%d' );
+
+		$sql = "SELECT * FROM $table WHERE $column IN ($ins)";
+		$raw = $this->db()->get_results( $sql );
+
+		foreach ( $raw as $row ) {
+			$id = Sanitize::absint( $row->$column );
+
+			if ( ! isset( $this->items[ $id ]->meta ) ) {
+				$this->items[ $id ]->meta = array();
+			}
+
+			$this->items[ $id ]->meta[ $row->meta_key ] = maybe_unserialize( $row->meta_value );
+		}
 	}
 
 	protected function _get_field( $name, $default = '' ) {

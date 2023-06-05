@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 04/29/2023 12:38:39 PM\n"
+"POT-Creation-Date: 06/05/2023 06:08:07 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,72 +20,72 @@ msgstr[1] ""
 msgid "Only administrators can use export features."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:239
+#: dev4press/core/admin/Plugin.php:257
 msgid "To get help with %s, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers)."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:248
+#: dev4press/core/admin/Plugin.php:266
 msgid "If you find a bug in %s, you can report it in the support forum."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:291
+#: dev4press/core/admin/Plugin.php:309
 msgid "%s is activated and it needs to finish installation."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:300
+#: dev4press/core/admin/Plugin.php:318
 msgid "%s is updated, and you need to review the update process."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:449
+#: dev4press/core/admin/Plugin.php:479
 msgid "Panel"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:450
+#: dev4press/core/admin/Plugin.php:480
 msgid "Information"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:101
-#: dev4press/core/ui/admin/PanelDashboard.php:32
+#: dev4press/core/admin/Plugin.php:133
+#: dev4press/core/ui/admin/PanelDashboard.php:33
 msgid "Settings"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:110
-#: dev4press/core/admin/Plugin.php:225
-#: dev4press/core/admin/Plugin.php:240
+#: dev4press/core/admin/Plugin.php:142
+#: dev4press/core/admin/Plugin.php:243
+#: dev4press/core/admin/Plugin.php:258
 #: forms/sidebar.php:22
 msgid "Knowledge Base"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:111
-#: dev4press/core/admin/Plugin.php:226
-#: dev4press/core/admin/Plugin.php:240
+#: dev4press/core/admin/Plugin.php:143
+#: dev4press/core/admin/Plugin.php:244
+#: dev4press/core/admin/Plugin.php:258
 msgid "Support Forum"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:224
+#: dev4press/core/admin/Plugin.php:242
 msgid "Home Page"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:238
-#: dev4press/core/admin/Plugin.php:239
+#: dev4press/core/admin/Plugin.php:256
+#: dev4press/core/admin/Plugin.php:257
 msgid "Help & Support"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:247
-#: dev4press/core/admin/Plugin.php:248
+#: dev4press/core/admin/Plugin.php:265
+#: dev4press/core/admin/Plugin.php:266
 msgid "Found a bug?"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:249
+#: dev4press/core/admin/Plugin.php:267
 msgid "Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:250
+#: dev4press/core/admin/Plugin.php:268
 msgid "Open new topic"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:292
-#: dev4press/core/admin/Plugin.php:301
+#: dev4press/core/admin/Plugin.php:310
+#: dev4press/core/admin/Plugin.php:319
 msgid "Click Here"
 msgstr ""
 
@@ -150,7 +150,7 @@ msgid "Enabled"
 msgstr ""
 
 #: dev4press/core/options/Render.php:598
-#: dev4press/core/ui/admin/PanelTools.php:56
+#: dev4press/core/ui/admin/PanelTools.php:57
 #: dev4press/core/ui/Enqueue.php:300
 msgid "Remove"
 msgstr ""
@@ -190,14 +190,14 @@ msgid "Unit"
 msgstr ""
 
 #: dev4press/core/options/Render.php:854
-#: dev4press/core/ui/Elements.php:316
-#: dev4press/core/ui/Elements.php:416
+#: dev4press/core/ui/Elements.php:284
+#: dev4press/core/ui/Elements.php:362
 msgid "Check All"
 msgstr ""
 
 #: dev4press/core/options/Render.php:855
-#: dev4press/core/ui/Elements.php:317
-#: dev4press/core/ui/Elements.php:417
+#: dev4press/core/ui/Elements.php:285
+#: dev4press/core/ui/Elements.php:363
 msgid "Uncheck All"
 msgstr ""
 
@@ -292,15 +292,15 @@ msgstr ""
 msgid "Dev4Press"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelDashboard.php:23
+#: dev4press/core/ui/admin/PanelDashboard.php:24
 msgid "Features"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelDashboard.php:41
+#: dev4press/core/ui/admin/PanelDashboard.php:42
 msgid "Tools"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelDashboard.php:51
+#: dev4press/core/ui/admin/PanelDashboard.php:52
 msgid "About"
 msgstr ""
 
@@ -354,59 +354,59 @@ msgstr ""
 msgid "All plugin settings are displayed on this page, and you can use live search to find the settings you need."
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:20
+#: dev4press/core/ui/admin/PanelTools.php:21
 msgid "Tools Index"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:24
+#: dev4press/core/ui/admin/PanelTools.php:25
 msgid "This panel links all the plugin tools, and you access each starting from the right."
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:27
+#: dev4press/core/ui/admin/PanelTools.php:28
 msgid "Recheck and Update"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:29
+#: dev4press/core/ui/admin/PanelTools.php:30
 msgid "Maintenance"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:33
+#: dev4press/core/ui/admin/PanelTools.php:34
 msgid "Run the update procedure and recheck plugin setup."
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:36
+#: dev4press/core/ui/admin/PanelTools.php:37
 msgid "Export Settings"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:39
+#: dev4press/core/ui/admin/PanelTools.php:40
 msgid "Export"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:41
+#: dev4press/core/ui/admin/PanelTools.php:42
 msgid "Export all plugin settings into file."
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:44
+#: dev4press/core/ui/admin/PanelTools.php:45
 msgid "Import Settings"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:47
+#: dev4press/core/ui/admin/PanelTools.php:48
 msgid "Import"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:48
+#: dev4press/core/ui/admin/PanelTools.php:49
 msgid "Import all plugin settings from export file."
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:51
+#: dev4press/core/ui/admin/PanelTools.php:52
 msgid "Reset / Remove"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:53
+#: dev4press/core/ui/admin/PanelTools.php:54
 msgid "Plugin Reset"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelTools.php:57
+#: dev4press/core/ui/admin/PanelTools.php:58
 msgid "Remove selected plugin settings and optionally disable plugin."
 msgstr ""
 
@@ -468,24 +468,12 @@ msgctxt "paging"
 msgid "%1$s of %2$s"
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:135
-msgid "Search keywords..."
-msgstr ""
-
-#: dev4press/core/ui/Grid.php:138
-msgid "Filter"
-msgstr ""
-
 #: dev4press/core/ui/Grid.php:174
 msgid "First page"
 msgstr ""
 
 #: dev4press/core/ui/Grid.php:185
 msgid "Previous page"
-msgstr ""
-
-#: dev4press/core/ui/Grid.php:192
-msgid "Current Page"
 msgstr ""
 
 #: dev4press/core/ui/Grid.php:210
@@ -496,14 +484,26 @@ msgstr ""
 msgid "Last page"
 msgstr ""
 
-#: dev4press/service/geoip/Location.php:78
-#: dev4press/service/geoip/Location.php:78
+#: dev4press/core/ui/Grid.php:135
+msgid "Search keywords..."
+msgstr ""
+
+#: dev4press/core/ui/Grid.php:138
+msgid "Filter"
+msgstr ""
+
+#: dev4press/core/ui/Grid.php:192
+msgid "Current Page"
+msgstr ""
+
+#: dev4press/service/geoip/Location.php:80
+#: dev4press/service/geoip/Location.php:80
 msgid "Localhost or Private IP"
 msgstr ""
 
-#: dev4press/service/geoip/Location.php:82
-#: dev4press/service/geoip/Location.php:82
-msgid "IP can't be geolocated."
+#: dev4press/service/geoip/Location.php:84
+#: dev4press/service/geoip/Location.php:84
+msgid "IP can't be located."
 msgstr ""
 
 #: dev4press/service/media/pixabay/Query.php:79
@@ -512,6 +512,38 @@ msgstr ""
 
 #: dev4press/service/media/pixabay/Query.php:158
 msgid "Specified video ID not found."
+msgstr ""
+
+#: dev4press/wordpress/admin/Table.php:158
+msgid "All Logged"
+msgstr ""
+
+#: dev4press/wordpress/admin/Table.php:159
+msgid "Last hour"
+msgstr ""
+
+#: dev4press/wordpress/admin/Table.php:160
+msgid "Last 12 hours"
+msgstr ""
+
+#: dev4press/wordpress/admin/Table.php:161
+msgid "Last day"
+msgstr ""
+
+#: dev4press/wordpress/admin/Table.php:162
+msgid "Last 7 days"
+msgstr ""
+
+#: dev4press/wordpress/admin/Table.php:163
+msgid "Last 30 days"
+msgstr ""
+
+#: dev4press/wordpress/admin/Table.php:164
+msgid "Last 365 days"
+msgstr ""
+
+#: dev4press/wordpress/admin/Table.php:176
+msgid "%s %s"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:41

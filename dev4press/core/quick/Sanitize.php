@@ -128,6 +128,10 @@ class Sanitize {
 	}
 
 	public static function ids_list( $ids, $map = 'absint' ) : array {
+		if ( empty( $ids ) ) {
+			return array();
+		}
+
 		$ids = (array) $ids;
 
 		$ids = array_map( $map, $ids );

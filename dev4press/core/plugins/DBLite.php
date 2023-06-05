@@ -280,11 +280,15 @@ abstract class DBLite {
 		return wp_list_pluck( $list, $field, $index_key );
 	}
 
-	public function index( $list, $field ) : array {
+	public function index( $list, $field, bool $is_integer = true ) : array {
 		$new = array();
 
 		foreach ( $list as $item ) {
 			$id = is_array( $item ) ? $item[ $field ] : $item->$field;
+
+			if ($is_integer) {
+				$id = Sanitize::absint( $id );
+			}
 
 			$new[ $id ] = $item;
 		}
