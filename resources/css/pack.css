@@ -3187,6 +3187,20 @@ a > .d4p-icon {
   display: none;
 }
 
+.d4p-grid-alternative-view-search {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  justify-content: flex-end;
+}
+.d4p-grid-alternative-view-search .subsubsub {
+  flex-grow: 1;
+}
+.d4p-grid-alternative-view-search > * {
+  float: none !important;
+  margin: 0 !important;
+}
+
 .d4p-wrap .d4p-setup-wrapper {
   display: flex;
 }

@@ -45,6 +45,7 @@ abstract class Table extends WP_List_Table {
 	public $_table_class_name = '';
 	public $_self_nonce_key = '';
 	public $_table_primary_column = '';
+	public $_views_separator = ' |';
 
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );
@@ -88,6 +89,25 @@ abstract class Table extends WP_List_Table {
 		echo '<tr' . ( empty( $classes ) ? '' : ' class="' . esc_attr( join( ' ', $classes ) ) . '"' ) . '>';
 		$this->single_row_columns( $item );
 		echo '</tr>';
+	}
+
+	public function views() {
+		$views = $this->get_views();
+
+		$views = apply_filters( "views_{$this->screen->id}", $views );
+
+		if ( empty( $views ) ) {
+			return;
+		}
+
+		$this->screen->render_screen_reader_content( 'heading_views' );
+
+		echo "<ul class='subsubsub'>\n";
+		foreach ( $views as $class => $view ) {
+			$views[ $class ] = "\t<li class='$class'>$view";
+		}
+		echo implode( $this->_views_separator . "</li>\n", $views ) . "</li>\n";
+		echo '</ul>';
 	}
 
 	protected function db() : ?DBLite {

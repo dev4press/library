@@ -62,3 +62,19 @@
 .d4p-grid-hide-bulkactions .actions.bulkactions {
     display: none;
 }
+
+.d4p-grid-alternative-view-search {
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    justify-content: flex-end;
+
+    .subsubsub {
+        flex-grow: 1;
+    }
+
+    > * {
+        float: none !important;
+        margin: 0 !important;
+    }
+}
