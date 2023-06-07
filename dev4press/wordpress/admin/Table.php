@@ -126,8 +126,8 @@ abstract class Table extends WP_List_Table {
 		}
 	}
 
-	protected function get_row_classes( $item ) : array {
-		return array();
+	protected function get_row_classes( $item, $classes = array() ) : array {
+		return $classes;
 	}
 
 	protected function filter_block_top() {
