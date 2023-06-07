@@ -41,6 +41,7 @@ abstract class Plugin {
 	public $plugin_menu = '';
 	public $plugin_title = '';
 	public $plugin_blog = true;
+	public $buy_me_a_coffee = false;
 	public $plugin_network = false;
 	public $plugin_settings = '';
 
@@ -131,7 +132,7 @@ abstract class Plugin {
 
 	public function plugin_actions( $links, $file ) {
 		if ( $file == $this->plugin_name() ) {
-			$settings_link = '<a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( "Settings", "d4plib" ) . '</a>';
+			$settings_link = '<a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( "Dashboard", "d4plib" ) . '</a>';
 			array_unshift( $links, $settings_link );
 		}
 
@@ -140,8 +141,13 @@ abstract class Plugin {
 
 	public function plugin_links( $links, $file ) {
 		if ( $file == $this->plugin_name() ) {
-			$links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/">' . esc_html__( "Knowledge Base", "d4plib" ) . '</a>';
-			$links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/">' . esc_html__( "Support Forum", "d4plib" ) . '</a>';
+			$links[] = '<a target="_blank" rel="noopener" href="' . esc_url( $this->settings()->i()->url() ) . '"><span class="dashicons dashicons-flag" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( "Home Page", "d4plib" ) . '</a>';
+			$links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/"><span class="dashicons dashicons-book-alt" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( "Knowledge Base", "d4plib" ) . '</a>';
+			$links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/"><span class="dashicons dashicons-sos" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( "Support Forum", "d4plib" ) . '</a>';
+
+			if ( $this->buy_me_a_coffee ) {
+				$links[] = '<a target="_blank" rel="noopener" href="https://www.buymeacoffee.com/millan"><span class="dashicons dashicons-coffee" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( "Buy Me A Coffee", "d4plib" ) . '</a>';
+			}
 		}
 
 		return $links;

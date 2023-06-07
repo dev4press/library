@@ -42,6 +42,7 @@ abstract class Information {
 	public $status = '';
 	public $edition = '';
 	public $released = '';
+	public $plugin_url = '';
 
 	public $is_bbpress_plugin = false;
 
@@ -109,7 +110,7 @@ abstract class Information {
 	}
 
 	public function url() : string {
-		return Store::instance()->url( $this->code );
+		return ! empty( $this->plugin_url ) ? $this->plugin_url : Store::instance()->url( $this->code );
 	}
 
 	public function system_requirements() : array {
