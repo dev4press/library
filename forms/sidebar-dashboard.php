@@ -19,12 +19,24 @@ use function Dev4Press\v42\Functions\panel;
 
 	<?php
 
+	if ( panel()->a()->buy_me_a_coffee ) {
+		?>
+
+        <div class="d4p-links-group buy-me-a-coffee">
+            <a href="https://www.buymeacoffee.com/millan" target="_blank" rel="noopener">
+                <img alt="BuyMeACoffee" src="<?php echo esc_url( panel()->a()->url . 'd4plib/resources/gfx/buy_me_a_coffee.png' ); ?>"/>
+            </a>
+        </div>
+
+		<?php
+	}
+
 	foreach ( panel()->sidebar_links as $group ) {
 		if ( ! empty( $group ) ) {
 			echo '<div class="d4p-links-group">';
 
 			foreach ( $group as $link ) {
-				echo '<a class="' . esc_attr( $link['class'] ) . '" href="' . esc_url( $link['url'] ) . '">' . panel()->r()->icon( $link['icon'] ) . '<span>' . $link['label'] . '</span></a>';
+				echo '<a class="' . esc_attr( $link[ 'class' ] ) . '" href="' . esc_url( $link[ 'url' ] ) . '">' . panel()->r()->icon( $link[ 'icon' ] ) . '<span>' . $link[ 'label' ] . '</span></a>';
 			}
 
 			echo '</div>';

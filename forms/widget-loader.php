@@ -1,4 +1,4 @@
-<?php $_tab = $instance['_tab']; ?>
+<?php $_tab = $instance[ '_tab' ]; ?>
 
 <div class="d4plib-widget <?php echo esc_attr( $this->widget_base ); ?>-wrapper">
     <div class="d4plib-widget-tabs" role="tablist">
@@ -12,8 +12,8 @@
 			$class    .= ' d4plib-tab-' . $tab;
 			$selected = 'false';
 
-			if ( isset( $obj['class'] ) ) {
-				$class .= ' ' . $obj['class'];
+			if ( isset( $obj[ 'class' ] ) ) {
+				$class .= ' ' . $obj[ 'class' ];
 			}
 
 			if ( $tab == $_tab ) {
@@ -21,7 +21,7 @@
 				$selected = 'true';
 			}
 
-			echo '<a tabindex="0" id="' . esc_attr( $tabkey ) . '-tab" aria-controls="' . esc_attr( $tabkey ) . '" aria-selected="' . esc_attr( $selected ) . '" role="tab" data-tabname="' . esc_attr( $tab ) . '" href="#' . esc_attr( $tabkey ) . '" class="' . esc_attr( $class ) . '">' . $obj['name'] . '</a>';
+			echo '<a tabindex="0" id="' . esc_attr( $tabkey ) . '-tab" aria-controls="' . esc_attr( $tabkey ) . '" aria-selected="' . esc_attr( $selected ) . '" role="tab" data-tabname="' . esc_attr( $tab ) . '" href="#' . esc_attr( $tabkey ) . '" class="' . esc_attr( $class ) . '">' . $obj[ 'name' ] . '</a>';
 		}
 
 		?>
@@ -36,8 +36,8 @@
 			$class    .= ' d4plib-content-for-' . $tab;
 			$selected = 'true';
 
-			if ( isset( $obj['class'] ) ) {
-				$class .= ' ' . $obj['class'];
+			if ( isset( $obj[ 'class' ] ) ) {
+				$class .= ' ' . $obj[ 'class' ];
 			}
 
 			if ( $tab == $_tab ) {
@@ -47,7 +47,7 @@
 
 			echo '<div id="' . esc_attr( $tabkey ) . '" aria-hidden="' . esc_attr( $selected ) . '" role="tabpanel" class="' . esc_attr( $class ) . '" aria-labelledby="' . esc_attr( $tabkey ) . '-tab">';
 
-			foreach ( $obj['include'] as $inc ) {
+			foreach ( $obj[ 'include' ] as $inc ) {
 				$template = $this->widgets_render->find( $inc . '.php' );
 
 				include( $template );

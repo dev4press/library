@@ -15,7 +15,7 @@ $_subpanels = panel()->subpanels();
             </div>
             <h3><?php echo esc_html( $_panel->title ); ?></h3>
             <div class="_info">
-				<?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
+				<?php echo esc_html( $_subpanels[ $_subpanel ][ 'info' ] ); ?>
             </div>
         </div>
         <div class="d4p-panel-buttons">

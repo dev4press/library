@@ -332,6 +332,8 @@
             }
 
             a {
+                text-decoration: none;
+
                 img {
                     border: none;
                     border-radius: 0;
@@ -427,5 +429,22 @@
                 font-size: 1.2em;
             }
         }
+    }
+}
+
+.github-repo-button {
+    background: #4078C0;
+    max-width: 320px;
+    border-radius: 15px;
+    padding: 13px;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    span {
+        font-size: 1.8em;
+        font-weight: 300;
+        letter-spacing: -1px;
     }
 }

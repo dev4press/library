@@ -31,32 +31,32 @@ $_scope_icons = array(
 			$_classes = array(
 				'd4p-feature-box',
 				'feature-' . $subpanel,
-				'scope-' . $obj['scope'],
+				'scope-' . $obj[ 'scope' ],
 				'_is-feature'
 			);
 
-			if ( $obj['active'] ) {
+			if ( $obj[ 'active' ] ) {
 				$_classes[] = '_is-active';
 				$_checked   = ' checked="checked"';
 			}
 
-			if ( $obj['always_on'] ) {
+			if ( $obj[ 'always_on' ] ) {
 				$_classes[] = '_is-always-on';
 			}
 
-			if ( $obj['hidden'] ) {
+			if ( $obj[ 'hidden' ] ) {
 				$_classes[] = '_is-hidden';
 			}
 
-			if ( $obj['beta'] ) {
+			if ( $obj[ 'beta' ] ) {
 				$_classes[] = '_is-beta';
 			}
 
-			if ( $obj['settings'] ) {
+			if ( $obj[ 'settings' ] ) {
 				$_classes[] = '_has-settings';
 			}
 
-			if ( $obj['panel'] ) {
+			if ( $obj[ 'panel' ] ) {
 				$_classes[] = '_has-panel';
 			}
 
@@ -66,43 +66,43 @@ $_scope_icons = array(
 
             <div data-feature="<?php echo esc_attr( $subpanel ); ?>" class="<?php echo Sanitize::html_classes( $_classes ); ?>">
                 <div class="_info">
-                    <div class="_icon"><i class="d4p-icon d4p-<?php echo esc_attr( $obj['icon'] ); ?>"></i></div>
-                    <h4 class="_title"><?php echo esc_html( $obj['title'] ); ?></h4>
-                    <p class="_description"><?php echo esc_html( $obj['info'] ); ?></p>
+                    <div class="_icon"><i class="d4p-icon d4p-<?php echo esc_attr( $obj[ 'icon' ] ); ?>"></i></div>
+                    <h4 class="_title"><?php echo esc_html( $obj[ 'title' ] ); ?></h4>
+                    <p class="_description"><?php echo esc_html( $obj[ 'info' ] ); ?></p>
                 </div>
                 <div class="_ctrl">
                     <div class="_activation">
-						<?php if ( ! $obj['always_on'] && ! $obj['hidden'] ) { ?>
+						<?php if ( ! $obj[ 'always_on' ] && ! $obj[ 'hidden' ] ) { ?>
                             <input<?php echo $_checked; ?> data-feature="<?php echo esc_attr( $subpanel ); ?>" id="d4p-feature-toggle-<?php echo esc_attr( $subpanel ); ?>" type="checkbox"/>
                             <label for="d4p-feature-toggle-<?php echo esc_attr( $subpanel ); ?>"><span class="d4p-accessibility-show-for-sr"><?php esc_html_e( "Active", "d4plib" ); ?></span></label>
 						<?php }
-						if ( $obj['hidden'] ) { ?>
+						if ( $obj[ 'hidden' ] ) { ?>
                             <span title="<?php esc_html_e( "This feature can't be enabled because of the missing prerequisites.", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-toggle-slash"></i></span>
 						<?php } ?>
                     </div>
                     <div class="_settings">
-						<?php if ( $obj['hidden'] ) { ?>
+						<?php if ( $obj[ 'hidden' ] ) { ?>
                             <span title="<?php esc_html_e( "This feature can't be enabled at this time.", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
 						<?php } else {
-							if ( $obj['settings'] ) { ?>
-                                <a title="<?php echo sprintf( __( "Settings for '%s'", "d4plib" ), $obj['title'] ); ?>" href="<?php echo esc_url( $url ); ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
+							if ( $obj[ 'settings' ] ) { ?>
+                                <a title="<?php echo sprintf( __( "Settings for '%s'", "d4plib" ), $obj[ 'title' ] ); ?>" href="<?php echo esc_url( $url ); ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
 							<?php } else { ?>
                                 <span title="<?php esc_html_e( "This feature has no settings", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
 							<?php }
 						} ?>
                     </div>
-					<?php if ( $obj['panel'] ) { ?>
+					<?php if ( $obj[ 'panel' ] ) { ?>
                         <div class="_scope">
                             <span title="<?php esc_html_e( "This feature adds a new panel", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-folder"></i></span>
                         </div>
 					<?php } ?>
-					<?php if ( $obj['beta'] ) { ?>
+					<?php if ( $obj[ 'beta' ] ) { ?>
                         <div class="_scope">
                             <span title="<?php esc_attr_e( "This is a Beta feature, and it can be unstable!", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-flask"></i></span>
                         </div>
 					<?php } ?>
                     <div class="_scope">
-                        <span title="<?php echo $_scope_labels[ $obj['scope'] ]; ?>"><i class="d4p-icon <?php echo $_scope_icons[ $obj['scope'] ]; ?>"></i></span>
+                        <span title="<?php echo $_scope_labels[ $obj[ 'scope' ] ]; ?>"><i class="d4p-icon <?php echo $_scope_icons[ $obj[ 'scope' ] ]; ?>"></i></span>
                     </div>
                 </div>
             </div>

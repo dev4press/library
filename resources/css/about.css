@@ -275,6 +275,9 @@
   width: 100%;
   height: auto;
 }
+.d4p-wrap.d4p-panel-about .d4p-whatsnew-section a {
+  text-decoration: none;
+}
 .d4p-wrap.d4p-panel-about .d4p-whatsnew-section a img {
   border: none;
   border-radius: 0;
@@ -349,4 +352,20 @@
   margin: 0 0 0.5em;
   font-weight: 600;
   font-size: 1.2em;
+}
+
+.github-repo-button {
+  background: #4078C0;
+  max-width: 320px;
+  border-radius: 15px;
+  padding: 13px;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.github-repo-button span {
+  font-size: 1.8em;
+  font-weight: 300;
+  letter-spacing: -1px;
 }

@@ -16,7 +16,7 @@ $counters   = panel()->get_filter_counters();
             </div>
             <h3><?php echo esc_html( $_panel->title ); ?></h3>
             <div class="_info">
-				<?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
+				<?php echo esc_html( $_subpanels[ $_subpanel ][ 'info' ] ); ?>
             </div>
         </div>
 
@@ -24,7 +24,7 @@ $counters   = panel()->get_filter_counters();
 			<?php
 
 			foreach ( $counters as $code => $counter ) {
-				echo '<div data-selector="' . $counter['selector'] . '">' . $counter['label'] . '<span>0</span></div>';
+				echo '<div data-selector="' . $counter[ 'selector' ] . '">' . $counter[ 'label' ] . '<span>0</span></div>';
 			}
 
 			?>

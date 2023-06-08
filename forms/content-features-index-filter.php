@@ -11,8 +11,8 @@ $buttons = panel()->get_filter_buttons();
 		<?php
 
 		foreach ( $buttons as $code => $button ) {
-			$class = ( $button['default'] ?? false ) ? 'is-selected' : '';
-			echo '<button class="' . $class . '" data-selector="' . $button['selector'] . '" data-filter="' . $code . '" type="button">' . $button['label'] . '</button>';
+			$class = ( $button[ 'default' ] ?? false ) ? 'is-selected' : '';
+			echo '<button class="' . $class . '" data-selector="' . $button[ 'selector' ] . '" data-filter="' . $code . '" type="button">' . $button[ 'label' ] . '</button>';
 		}
 
 		?>

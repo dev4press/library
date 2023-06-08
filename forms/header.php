@@ -54,7 +54,7 @@ $_classes   = panel()->wrapper_class();
                         </ul>
                     </li>
 				<?php } ?>
-	            <?php echo panel()->header_fill(); ?>
+				<?php echo panel()->header_fill(); ?>
             </ul>
         </div>
         <div class="d4p-plugin">

@@ -21,17 +21,17 @@ use function Dev4Press\v42\Functions\panel;
 
 			$url = panel()->a()->panel_url( 'tools', $subpanel );
 
-			if ( isset( $obj['break'] ) ) {
-				echo panel()->r()->settings_break( $obj['break'], $obj['break-icon'] );
+			if ( isset( $obj[ 'break' ] ) ) {
+				echo panel()->r()->settings_break( $obj[ 'break' ], $obj[ 'break-icon' ] );
 			}
 
 			?>
 
             <div class="<?php echo Sanitize::html_classes( $_classes ); ?>">
                 <div class="_info">
-                    <div class="_icon"><i class="d4p-icon d4p-<?php echo esc_attr( $obj['icon'] ); ?>"></i></div>
-                    <h4 class="_title"><?php echo esc_html( $obj['title'] ); ?></h4>
-                    <p class="_description"><?php echo esc_html( $obj['info'] ); ?></p>
+                    <div class="_icon"><i class="d4p-icon d4p-<?php echo esc_attr( $obj[ 'icon' ] ); ?>"></i></div>
+                    <h4 class="_title"><?php echo esc_html( $obj[ 'title' ] ); ?></h4>
+                    <p class="_description"><?php echo esc_html( $obj[ 'info' ] ); ?></p>
                 </div>
                 <div class="_ctrl">
                     <div class="_open">
