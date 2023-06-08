@@ -125,7 +125,7 @@
         }
 
         .d4p-about-inner {
-            margin: 1.5em 0 0;
+            margin: 0;
         }
 
         .d4p-about-minor {
@@ -331,10 +331,18 @@
                 height: auto;
             }
 
+            a {
+                img {
+                    border: none;
+                    border-radius: 0;
+                }
+            }
+
             h3 {
-                margin: .25em 0 1.25em;
+                margin: 0 0 1em;
                 font-size: 30px;
                 font-weight: 300;
+                line-height: 1.5;
             }
 
             p {

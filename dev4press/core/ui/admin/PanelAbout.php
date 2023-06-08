@@ -26,6 +26,10 @@ abstract class PanelAbout extends Panel {
 				'title' => __( "What&#8217;s New", "d4plib" ),
 				'icon'  => ''
 			),
+			'donate'    => array(
+				'title' => __( "Donations", "d4plib" ),
+				'icon'  => ''
+			),
 			'info'      => array(
 				'title' => __( "Info", "d4plib" ),
 				'icon'  => ''
@@ -47,6 +51,10 @@ abstract class PanelAbout extends Panel {
 				'icon'  => ''
 			)
 		);
+
+		if ( ! ( $this->a()->settings()->i()->edition === 'free' && ! empty( $this->a()->settings()->i()->github_url ) ) ) {
+			unset( $this->subpanels[ 'donate' ] );
+		}
 
 		if ( ! $this->history ) {
 			unset( $this->subpanels[ 'history' ] );

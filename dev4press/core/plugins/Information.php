@@ -42,7 +42,10 @@ abstract class Information {
 	public $status = '';
 	public $edition = '';
 	public $released = '';
+
 	public $plugin_url = '';
+	public $github_url = '';
+	public $wp_org_url = '';
 
 	public $is_bbpress_plugin = false;
 
