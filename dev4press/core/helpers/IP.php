@@ -207,6 +207,10 @@ class IP {
 	}
 
 	public static function server() : string {
+		if ( ! isset( $_SERVER[ 'SERVER_ADDR' ] ) ) {
+			return '';
+		}
+
 		$ip = IP::validate( $_SERVER[ 'SERVER_ADDR' ] );
 
 		if ( $ip == '::1' ) {

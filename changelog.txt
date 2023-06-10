@@ -20,6 +20,7 @@
 * Edit: improved support for the network plugins
 * Edit: several more strings escaping for display
 * Removed: old flags collection CSS and images
+* Fix: server IP warning when in CLI mode
 
 = Version 4.1.1 - 2023.05.15 =
 * New: added `exclamation` icon
