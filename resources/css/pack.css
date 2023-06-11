@@ -1193,52 +1193,56 @@ a > .d4p-icon {
   content: "\f1f8";
 }
 
-.d4p-icon.d4p-ui-user-secret:before {
+.d4p-icon.d4p-ui-user-group:before {
   content: "\f1f9";
 }
 
-.d4p-icon.d4p-ui-user-square:before {
+.d4p-icon.d4p-ui-user-secret:before {
   content: "\f1fa";
 }
 
-.d4p-icon.d4p-ui-user-tag:before {
+.d4p-icon.d4p-ui-user-square:before {
   content: "\f1fb";
 }
 
-.d4p-icon.d4p-ui-user:before {
+.d4p-icon.d4p-ui-user-tag:before {
   content: "\f1fc";
 }
 
-.d4p-icon.d4p-ui-users:before {
+.d4p-icon.d4p-ui-user:before {
   content: "\f1fd";
 }
 
-.d4p-icon.d4p-ui-video:before {
+.d4p-icon.d4p-ui-users:before {
   content: "\f1fe";
 }
 
-.d4p-icon.d4p-ui-vote-nay:before {
+.d4p-icon.d4p-ui-video:before {
   content: "\f1ff";
 }
 
-.d4p-icon.d4p-ui-vote-yea:before {
+.d4p-icon.d4p-ui-vote-nay:before {
   content: "\f200";
 }
 
-.d4p-icon.d4p-ui-warning-octagon:before {
+.d4p-icon.d4p-ui-vote-yea:before {
   content: "\f201";
 }
 
-.d4p-icon.d4p-ui-warning-triangle:before {
+.d4p-icon.d4p-ui-warning-octagon:before {
   content: "\f202";
 }
 
-.d4p-icon.d4p-ui-warning:before {
+.d4p-icon.d4p-ui-warning-triangle:before {
   content: "\f203";
 }
 
-.d4p-icon.d4p-ui-wrench:before {
+.d4p-icon.d4p-ui-warning:before {
   content: "\f204";
+}
+
+.d4p-icon.d4p-ui-wrench:before {
+  content: "\f205";
 }
 
 .d4p-icon.d4p-ui-arrow-right:before {
