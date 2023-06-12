@@ -110,6 +110,12 @@ class WordPress {
 		return $this->is_classicpress() ? 'ClassicPress' : 'WordPress';
 	}
 
+	public function uploads_directory() {
+		$uploads = wp_upload_dir();
+
+		return $uploads[ 'basedir' ];
+	}
+
 	public function major_version( $key = 'cms' ) : string {
 		$version = $this->version( $key );
 

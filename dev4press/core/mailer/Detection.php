@@ -59,11 +59,7 @@ class Detection {
 		$this->detection = array(
 			'name' => '',
 			'data' => '',
-			'call' => array(
-				'source' => '',
-				'file'   => '',
-				'line'   => 0
-			)
+			'call' => array()
 		);
 	}
 
@@ -83,19 +79,22 @@ class Detection {
 
 	protected function caller() {
 		$backtrace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
+		$file_path = '';
+		$file_line = '';
 
 		foreach ( $backtrace as $item ) {
 			if ( isset( $item[ 'file' ] ) && isset( $item[ 'line' ] ) && isset( $item[ 'function' ] ) ) {
 				if ( in_array( $item[ 'function' ], $this->aliases ) || $item[ 'function' ] == 'wp_mail' ) {
-					$this->detection[ 'call' ][ 'file' ] = $item[ 'file' ];
-					$this->detection[ 'call' ][ 'line' ] = $item[ 'line' ];
+					$file_path = $item[ 'file' ];
+					$file_line = $item[ 'line' ];
 					break;
 				}
 			}
 		}
 
-		if ( ! empty( $this->detection[ 'call' ][ 'file' ] ) ) {
-			$this->detection[ 'call' ][ 'source' ] = Source::instance()->origin( $this->detection[ 'call' ][ 'file' ] );
+		if ( ! empty( $file_path ) ) {
+			$this->detection[ 'call' ]           = Source::instance()->origin( $file_path );
+			$this->detection[ 'call' ][ 'line' ] = $file_line;
 		}
 	}
 
@@ -460,6 +459,10 @@ class Detection {
 				'label'  => _x( "Activity At Message", "gd-mail-queue" )
 			)
 		);
+	}
+	
+	public function get_data( string $code ) {
+		return $this->supported[ $code ] ?? array();
 	}
 
 	public function intercept_wp_mail( $atts ) {

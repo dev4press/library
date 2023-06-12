@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v42\Core\Helpers;
 
+use Dev4Press\v42\WordPress;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -37,15 +39,16 @@ class Source {
 	public function __construct() {
 		foreach (
 			array(
-				'plugin'           => WP_PLUGIN_DIR,
-				'mu-plugin'        => WPMU_PLUGIN_DIR,
-				'stylesheet'       => get_stylesheet_directory(),
-				'template'         => get_template_directory(),
-				'wp::content'      => WP_CONTENT_DIR,
-				'wp::includes'     => ABSPATH . 'wp-includes',
-				'wp::admin'        => ABSPATH . 'wp-admin',
-				'wp::core'         => ABSPATH,
-				'unknown::unknown' => null
+				'plugin'      => WP_PLUGIN_DIR,
+				'mu-plugin'   => WPMU_PLUGIN_DIR,
+				'stylesheet'  => get_stylesheet_directory(),
+				'template'    => get_template_directory(),
+				'uploads'     => WordPress::instance()->uploads_directory(),
+				'wp-content'  => WP_CONTENT_DIR,
+				'wp-includes' => ABSPATH . 'wp-includes',
+				'wp-admin'    => ABSPATH . 'wp-admin',
+				'wp-core'     => ABSPATH,
+				'unknown'     => null
 			) as $key => $path
 		) {
 			if ( is_null( $path ) ) {
@@ -66,14 +69,16 @@ class Source {
 		return $instance;
 	}
 
-	public function origin( string $file ) : string {
+	public function origin( string $file ) : array {
 		$file = wp_normalize_path( $file );
 
 		if ( isset( $this->origins[ $file ] ) ) {
 			return $this->origins[ $file ];
 		}
 
-		$scope = '';
+		$scope  = '';
+		$value  = '';
+		$plugin = '';
 
 		foreach ( $this->paths as $scope => $dir ) {
 			if ( $dir && ( strpos( $file, trailingslashit( $dir ) ) === 0 ) ) {
@@ -81,34 +86,43 @@ class Source {
 			}
 		}
 
-		$value = '';
-
 		switch ( $scope ) {
 			case 'plugin':
 			case 'mu-plugin':
 				$plugin = plugin_basename( $file );
 
-				if ( strpos( $plugin, '/' ) ) {
-					$plugin = explode( '/', $plugin );
-					$plugin = reset( $plugin );
+				if ( strpos( $plugin, '/' ) === false ) {
+					$value = explode( '/', $value );
+					$value = reset( $value );
 				} else {
-					$plugin = basename( $plugin );
+					$value = basename( $value );
 				}
 
-				$plugin = sanitize_file_name( $plugin );
-				$plugin = strtolower( $plugin );
-
-				$value = $plugin;
+				$value = sanitize_file_name( $value );
+				$value = strtolower( $value );
 				break;
 			case 'stylesheet':
-				$value = is_child_theme() ? 'child-theme' : 'theme';
+				$value = get_stylesheet();
 				break;
 			case 'template':
-				$value = 'theme';
+				$value = get_template();
 				break;
 		}
 
-		$this->origins[ $file ] = empty( $scope ) ? 'unknown::unknown' : ( empty( $value ) ? $scope : $scope . '::' . $value );
+		$result = array(
+			'scope' => empty( $scope ) ? 'unknown' : $scope,
+			'file'  => $file
+		);
+
+		if ( ! empty( $value ) ) {
+			$result[ 'value' ] = $value;
+		}
+
+		if ( ! empty( $plugin ) ) {
+			$result[ 'plugin' ] = $plugin;
+		}
+
+		$this->origins[ $file ] = $result;
 
 		return $this->origins[ $file ];
 	}
