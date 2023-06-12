@@ -61,10 +61,6 @@ abstract class Table extends WP_List_Table {
 		return $this->_table_primary_column;
 	}
 
-	public function rows_per_page() : int {
-		return 20;
-	}
-
 	public function get_request_arg( $name, $default = '' ) {
 		$value = $this->_request_args[ $name ] ?? $default;
 
@@ -153,6 +149,10 @@ abstract class Table extends WP_List_Table {
 
 	protected function process_request_args() {
 		$this->_request_args = array();
+	}
+
+	protected function rows_per_page() : int {
+		return 20;
 	}
 
 	protected function get_table_classes() : array {
