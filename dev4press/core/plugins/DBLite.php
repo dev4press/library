@@ -286,7 +286,7 @@ abstract class DBLite {
 		foreach ( $list as $item ) {
 			$id = is_array( $item ) ? $item[ $field ] : $item->$field;
 
-			if ($is_integer) {
+			if ( $is_integer ) {
 				$id = Sanitize::absint( $id );
 			}
 

@@ -1,11 +1,13 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 4.2 - 2023.06.12 =
+= Version 4.2 - 2023.06.15 =
 * New: complete the network based `Menu` class
 * New: added `KSES` class for processing HTML strings for display
-* New: added several more UI icons
+* New: added `Detection` class to detect email sender and source
+* New: added `Source` helper class to detect file source
 * New: added plugin reference and the icon
+* New: added several more UI icons
 * New: updated and modernized flags library
 * New: expanded the main `WordPress` class
 * New: rewritten GEOIP handling objects
