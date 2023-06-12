@@ -40,6 +40,7 @@ abstract class Settings {
 	public $settings = array();
 	public $legacy = array();
 	public $temp = array();
+	public $changed = array();
 
 	public $skip_update = array();
 
@@ -183,6 +184,12 @@ abstract class Settings {
 
 		if ( $old != $value ) {
 			do_action( $this->base . '_settings_value_changed', $name, $group, $old, $value );
+
+			if ( ! isset( $this->changed[ $group ] ) ) {
+				$this->changed[ $group ] = array();
+			}
+
+			$this->changed[ $group ][ $name ] = array( 'old' => $old, 'new' => $new );
 		}
 
 		if ( $save ) {
@@ -192,6 +199,8 @@ abstract class Settings {
 
 	public function save( $group ) {
 		$this->_settings_update( $group, $this->current[ $group ] );
+
+		do_action( $this->base . '_settings_saved_to_db', $this->changed[ $group ] ?? array() );
 	}
 
 	public function is_install() : bool {
