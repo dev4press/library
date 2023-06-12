@@ -76,9 +76,8 @@ class Source {
 			return $this->origins[ $file ];
 		}
 
-		$scope  = '';
-		$value  = '';
-		$plugin = '';
+		$scope = '';
+		$value = '';
 
 		foreach ( $this->paths as $scope => $dir ) {
 			if ( $dir && ( strpos( $file, trailingslashit( $dir ) ) === 0 ) ) {
@@ -91,15 +90,15 @@ class Source {
 			case 'mu-plugin':
 				$plugin = plugin_basename( $file );
 
-				if ( strpos( $plugin, '/' ) === false ) {
-					$value = explode( '/', $value );
-					$value = reset( $value );
+				if ( strpos( $plugin, '/' ) ) {
+					$plugin = explode( '/', $plugin );
+					$plugin = reset( $plugin );
 				} else {
-					$value = basename( $value );
+					$plugin = basename( $plugin );
 				}
 
-				$value = sanitize_file_name( $value );
-				$value = strtolower( $value );
+				$plugin = sanitize_file_name( $plugin );
+				$value  = strtolower( $plugin );
 				break;
 			case 'stylesheet':
 				$value = get_stylesheet();
@@ -110,16 +109,12 @@ class Source {
 		}
 
 		$result = array(
-			'scope' => empty( $scope ) ? 'unknown' : $scope,
-			'file'  => $file
+			'file'  => $file,
+			'scope' => empty( $scope ) ? 'unknown' : $scope
 		);
 
 		if ( ! empty( $value ) ) {
 			$result[ 'value' ] = $value;
-		}
-
-		if ( ! empty( $plugin ) ) {
-			$result[ 'plugin' ] = $plugin;
 		}
 
 		$this->origins[ $file ] = $result;

@@ -460,7 +460,7 @@ class Detection {
 			)
 		);
 	}
-	
+
 	public function get_data( string $code ) {
 		return $this->supported[ $code ] ?? array();
 	}
