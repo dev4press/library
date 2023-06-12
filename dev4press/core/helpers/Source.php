@@ -69,7 +69,7 @@ class Source {
 		return $instance;
 	}
 
-	public function origin( string $file ) : array {
+	public function origin( string $file, $strip_abspath = true ) : array {
 		$file = wp_normalize_path( $file );
 
 		if ( isset( $this->origins[ $file ] ) ) {
@@ -108,8 +108,18 @@ class Source {
 				break;
 		}
 
+		$input = $file;
+
+		if ( $strip_abspath ) {
+			$abspath = wp_normalize_path( ABSPATH );
+
+			if ( strpos( $file, $abspath ) === 0 ) {
+				$input = '/' . substr( $file, strlen( $abspath ) );
+			}
+		}
+
 		$result = array(
-			'file'  => $file,
+			'file'  => $input,
 			'scope' => empty( $scope ) ? 'unknown' : $scope
 		);
 

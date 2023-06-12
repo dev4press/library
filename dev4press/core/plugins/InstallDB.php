@@ -26,12 +26,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v42\Core\Plugins;
 
+use wpdb;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 abstract class InstallDB {
 	protected $prefix = '';
+	protected $plugin = '';
 	protected $tables = array();
 
 	public function __construct() {
@@ -99,25 +102,27 @@ abstract class InstallDB {
 		}
 	}
 
-	private function delta( $query ) {
+	private function delta( $query ) : array {
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+		do_action( 'd4p_install_db_delta', $this->plugin, $this->prefix, $query );
 
 		return dbDelta( $query );
 	}
 
-	protected function table( $obj ) {
+	protected function table( $obj ) : string {
 		return $this->prefix_wpdb( $obj[ 'scope' ] ) . $this->prefix_plugin() . $obj[ 'name' ];
 	}
 
-	protected function prefix_plugin() {
+	protected function prefix_plugin() : string {
 		return empty( $this->prefix ) ? '' : $this->prefix . '_';
 	}
 
-	protected function prefix_wpdb( $scope = 'blog' ) {
+	protected function prefix_wpdb( $scope = 'blog' ) : string {
 		return $scope == 'network' ? $this->wpdb()->base_prefix : $this->wpdb()->prefix;
 	}
 
-	protected function collate() {
+	protected function collate() : string {
 		$charset_collate = '';
 
 		if ( ! empty( $this->wpdb()->charset ) ) {
@@ -131,8 +136,7 @@ abstract class InstallDB {
 		return $charset_collate;
 	}
 
-	/** @return \wpdb */
-	protected function wpdb() {
+	protected function wpdb() : wpdb {
 		global $wpdb;
 
 		return $wpdb;
