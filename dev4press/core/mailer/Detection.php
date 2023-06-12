@@ -456,7 +456,7 @@ class Detection {
 			),
 			'buddypress-activity-at-message'                         => array(
 				'source' => 'BuddyPress',
-				'label'  => _x( "Activity At Message", "gd-mail-queue" )
+				'label'  => _x( "Activity At Message", "gd-mail-queue", "d4plib" )
 			)
 		);
 	}
