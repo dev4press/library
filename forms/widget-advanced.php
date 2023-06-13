@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v42\Core\Quick\KSES;
 use Dev4Press\v42\Core\Quick\WPR;
 use Dev4Press\v42\Core\UI\Elements;
 
@@ -70,7 +71,7 @@ use Dev4Press\v42\Core\UI\Elements;
             <input class="widefat" id="<?php echo $this->get_field_id( '_hook' ); ?>" name="<?php echo $this->get_field_name( '_hook' ); ?>" type="text" value="<?php echo esc_attr( $instance[ '_hook' ] ); ?>"/>
 
             <em>
-				<?php echo sprintf( __( "Using this value, widget will run filter for the final visibility check. This filter will be %s, replace the %s with your custom filter name defined here.", "d4plib" ), "<strong>'" . $this->visibility_hook_format() . "'</strong>", "<strong>'{filter_name}'</strong>" ); ?>
+				<?php echo KSES::strong( sprintf( __( "Using this value, widget will run filter for the final visibility check. This filter will be %s, replace the %s with your custom filter name defined here.", "d4plib" ), "<strong>'" . $this->visibility_hook_format() . "'</strong>", "<strong>'{filter_name}'</strong>" ) ); ?>
             </em>
         </td>
     </tr>

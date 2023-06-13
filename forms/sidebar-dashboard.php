@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v42\Core\Quick\KSES;
 use function Dev4Press\v42\Functions\panel;
 
 ?>
@@ -13,7 +14,7 @@ use function Dev4Press\v42\Functions\panel;
         </h3>
         <div class="_version-wrapper">
             <span class="_edition"><?php echo esc_html( ucfirst( panel()->a()->settings()->i()->edition ) ); ?></span>
-            <span class="_version"><?php printf( __( "Version: %s", "d4plib" ), '<strong>' . esc_html( panel()->a()->settings()->i()->version_full() ) . '</strong>' ); ?></span>
+            <span class="_version"><?php echo KSES::strong( sprintf( __( "Version: %s", "d4plib" ), '<strong>' . esc_html( panel()->a()->settings()->i()->version_full() ) . '</strong>' ) ); ?></span>
         </div>
     </div>
 

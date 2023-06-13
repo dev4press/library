@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v42\Core\Quick\KSES;
 use Dev4Press\v42\Core\Quick\Sanitize;
 use function Dev4Press\v42\Functions\panel;
 
@@ -85,7 +86,7 @@ $_scope_icons = array(
                             <span title="<?php esc_html_e( "This feature can't be enabled at this time.", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
 						<?php } else {
 							if ( $obj[ 'settings' ] ) { ?>
-                                <a title="<?php echo sprintf( __( "Settings for '%s'", "d4plib" ), $obj[ 'title' ] ); ?>" href="<?php echo esc_url( $url ); ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
+                                <a title="<?php echo KSES::standard( sprintf( __( "Settings for '%s'", "d4plib" ), $obj[ 'title' ] ) ); ?>" href="<?php echo esc_url( $url ); ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
 							<?php } else { ?>
                                 <span title="<?php esc_html_e( "This feature has no settings", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
 							<?php }
@@ -102,7 +103,7 @@ $_scope_icons = array(
                         </div>
 					<?php } ?>
                     <div class="_scope">
-                        <span title="<?php echo $_scope_labels[ $obj[ 'scope' ] ]; ?>"><i class="d4p-icon <?php echo $_scope_icons[ $obj[ 'scope' ] ]; ?>"></i></span>
+                        <span title="<?php echo esc_attr( $_scope_labels[ $obj[ 'scope' ] ] ); ?>"><i class="d4p-icon <?php echo esc_attr( $_scope_icons[ $obj[ 'scope' ] ] ); ?>"></i></span>
                     </div>
                 </div>
             </div>

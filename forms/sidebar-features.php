@@ -28,7 +28,7 @@ $_url_reset = add_query_arg( array(
 			echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ][ 'icon' ] ) . $_subpanels[ $_subpanel ][ 'title' ] . '</h4>';
 
 			if ( $_beta ) {
-				echo '<div class="_beta"><i class="d4p-icon d4p-ui-flask"></i> <span>' . __( "Beta Feature", "d4plib" ) . '</span></div>';
+				echo '<div class="_beta"><i class="d4p-icon d4p-ui-flask"></i> <span>' . esc_html__( "Beta Feature", "d4plib" ) . '</span></div>';
 			}
 
 			?>

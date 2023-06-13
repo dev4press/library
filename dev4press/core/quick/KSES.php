@@ -44,6 +44,7 @@ class KSES {
 				'title'  => array(),
 				'class'  => array(),
 				'target' => array(),
+				'data-*' => true
 			),
 			'em'     => array(
 				'class' => true,
@@ -59,6 +60,23 @@ class KSES {
 				'title'  => true,
 				'data-*' => true,
 				'aria-*' => true
+			),
+			'i'      => array(
+				'class'  => true,
+				'aria-*' => true
+			)
+		) );
+	}
+
+	public static function strong( string $render ) : string {
+		return wp_kses( $render, array(
+			'strong' => array(
+				'class' => true,
+				'style' => true
+			),
+			'span'   => array(
+				'class'  => true,
+				'style'  => true
 			),
 			'i'      => array(
 				'class'  => true,

@@ -121,9 +121,10 @@ class Str {
 	}
 
 	public static function slug_to_name( string $code, string $sep = '_' ) : string {
-		$exp = explode( $sep, $code );
+		$exp  = explode( $sep, $code );
+		$name = strtolower( join( ' ', $exp ) );
 
-		return ucwords( strtolower( join( ' ', $exp ) ) );
+		return ucwords( $name );
 	}
 
 	public static function to_ids( string $input, string $delimiter = ',', string $map = 'absint' ) : array {
