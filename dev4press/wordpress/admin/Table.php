@@ -106,6 +106,38 @@ abstract class Table extends WP_List_Table {
 		echo '</ul>';
 	}
 
+	public function get_period_dropdown( $column, $table ) : array {
+		global $wp_locale;
+
+		$sql    = "SELECT DISTINCT YEAR($column) AS year, MONTH($column) AS month FROM $table ORDER BY $column DESC";
+		$months = $this->db()->run( $sql );
+
+		$list = array(
+			''              => __( "All Logged", "d4plib" ),
+			'last-hour'     => __( "Last hour", "d4plib" ),
+			'last-half-day' => __( "Last 12 hours", "d4plib" ),
+			'last-day'      => __( "Last day", "d4plib" ),
+			'last-week'     => __( "Last 7 days", "d4plib" ),
+			'last-month'    => __( "Last 30 days", "d4plib" ),
+			'last-year'     => __( "Last 365 days", "d4plib" )
+		);
+
+		foreach ( $months as $row ) {
+			if ( $row->month > 0 && $row->year > 0 ) {
+				$month = zeroise( $row->month, 2 );
+				$year  = $row->year;
+
+				if ( ! isset( $list[ $year ] ) ) {
+					$list[ $year ] = $year;
+				}
+
+				$list[ $year . '-' . $month ] = sprintf( __( "%s %s", "d4plib" ), $wp_locale->get_month( $month ), $year );
+			}
+		}
+
+		return $list;
+	}
+
 	protected function db() : ?DBLite {
 		return null;
 	}
@@ -123,6 +155,12 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function get_row_classes( $item, $classes = array() ) : array {
+		if ( ! empty( $this->_checkbox_field ) ) {
+			$key = $this->_checkbox_field;
+
+			$classes[] = 'item-id-' . $item->$key;
+		}
+
 		return $classes;
 	}
 
@@ -169,38 +207,6 @@ abstract class Table extends WP_List_Table {
 		return array();
 	}
 
-	public function get_period_dropdown( $column, $table ) : array {
-		global $wp_locale;
-
-		$sql    = "SELECT DISTINCT YEAR($column) AS year, MONTH($column) AS month FROM $table ORDER BY $column DESC";
-		$months = $this->db()->run( $sql );
-
-		$list = array(
-			''              => __( "All Logged", "d4plib" ),
-			'last-hour'     => __( "Last hour", "d4plib" ),
-			'last-half-day' => __( "Last 12 hours", "d4plib" ),
-			'last-day'      => __( "Last day", "d4plib" ),
-			'last-week'     => __( "Last 7 days", "d4plib" ),
-			'last-month'    => __( "Last 30 days", "d4plib" ),
-			'last-year'     => __( "Last 365 days", "d4plib" )
-		);
-
-		foreach ( $months as $row ) {
-			if ( $row->month > 0 && $row->year > 0 ) {
-				$month = zeroise( $row->month, 2 );
-				$year  = $row->year;
-
-				if ( ! isset( $list[ $year ] ) ) {
-					$list[ $year ] = $year;
-				}
-
-				$list[ $year . '-' . $month ] = sprintf( __( "%s %s", "d4plib" ), $wp_locale->get_month( $month ), $year );
-			}
-		}
-
-		return $list;
-	}
-
 	protected function column_default( $item, $column_name ) : string {
 		return (string) $item->$column_name;
 	}
@@ -244,19 +250,22 @@ abstract class Table extends WP_List_Table {
 		$column = $column ?? $index;
 
 		$ids = $this->db()->clean_ids_list( wp_list_pluck( $this->items, $index ) );
-		$ins = $this->db()->prepare_in_list( $ids, '%d' );
 
-		$sql = "SELECT * FROM $table WHERE $column IN ($ins)";
-		$raw = $this->db()->get_results( $sql );
+		if ( ! empty( $ids ) ) {
+			$ins = $this->db()->prepare_in_list( $ids, '%d' );
 
-		foreach ( $raw as $row ) {
-			$id = Sanitize::absint( $row->$column );
+			$sql = "SELECT * FROM $table WHERE $column IN ($ins)";
+			$raw = $this->db()->get_results( $sql );
 
-			if ( ! isset( $this->items[ $id ]->meta ) ) {
-				$this->items[ $id ]->meta = array();
+			foreach ( $raw as $row ) {
+				$id = Sanitize::absint( $row->$column );
+
+				if ( ! isset( $this->items[ $id ]->meta ) ) {
+					$this->items[ $id ]->meta = array();
+				}
+
+				$this->items[ $id ]->meta[ $row->meta_key ] = maybe_unserialize( $row->meta_value );
 			}
-
-			$this->items[ $id ]->meta[ $row->meta_key ] = maybe_unserialize( $row->meta_value );
 		}
 	}
 
