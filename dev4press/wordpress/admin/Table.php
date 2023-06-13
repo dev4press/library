@@ -344,8 +344,12 @@ abstract class Table extends WP_List_Table {
 		return '(' . join( ' OR ', $where ) . ')';
 	}
 
+	protected function _admin() {
+		return panel()->a();
+	}
+
 	protected function _url() : string {
-		return panel()->a()->current_url();
+		return $this->_admin()->current_url();
 	}
 
 	protected function _self( $args, $getback = false, $nonce = null ) : string {
@@ -353,7 +357,7 @@ abstract class Table extends WP_List_Table {
 		$url .= '&' . $args;
 
 		if ( $getback ) {
-			$url .= '&' . panel()->a()->v() . '=getback';
+			$url .= '&' . $this->_admin()->v() . '=getback';
 			$url .= '&_wpnonce=' . ( $nonce ?? wp_create_nonce( $this->_self_nonce_key ) );
 			$url .= '&_wp_http_referer=' . esc_url( remove_query_arg( '_wpnonce', wp_get_referer() ) );
 		}
