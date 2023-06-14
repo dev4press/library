@@ -416,13 +416,33 @@ class Render {
 		echo '</div>';
 	}
 
-	protected function draw_checkboxes( $element, $value, $name_base, $id_base, $multiple = true ) {
+	protected function draw_checkboxes_group( $element, $value, $name_base, $id_base, $multiple = true ) {
 		switch ( $element->source ) {
 			case 'function':
 				$data = call_user_func( $element->data );
 				break;
 			default:
-			case '':
+				$data = $element->data;
+				break;
+		}
+
+		$readonly = isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ] ? ' readonly' : '';
+
+		Elements::instance()->checkboxes_grouped( $data, array(
+			'selected' => $value,
+			'readonly' => $readonly,
+			'name'     => $name_base,
+			'id'       => $id_base,
+			'class'    => 'widefat',
+			'multi'    => $multiple
+		) );
+	}
+
+	protected function draw_checkboxes( $element, $value, $name_base, $id_base, $multiple = true ) {
+		switch ( $element->source ) {
+			case 'function':
+				$data = call_user_func( $element->data );
+				break;
 			case 'array':
 				$data = $element->data;
 				break;

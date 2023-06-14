@@ -91,7 +91,7 @@ class Elements {
 
 		$render      = '';
 		$attributes  = array();
-		$selected    = is_null( $selected ) ? array_keys( $values ) : (array) $selected;
+		$selected    = is_null( $selected ) || $selected === true ? array_keys( $values ) : (array) $selected;
 		$associative = ! Arr::is_associative( $values );
 		$id          = $this->id_from_name( $name, $id );
 
@@ -182,7 +182,6 @@ class Elements {
 
 		$render     = '';
 		$attributes = array();
-		$selected   = (array) $selected;
 		$id         = $this->id_from_name( $name, $id );
 
 		if ( $class != '' ) {
@@ -228,8 +227,12 @@ class Elements {
 			$render .= '<optgroup label="' . $group[ 'title' ] . '">';
 			foreach ( $group[ 'values' ] as $value => $display ) {
 				$strict = $value === 0;
+				$sel    = '';
 
-				$sel    = in_array( $value, $selected, $strict ) ? ' selected="selected"' : '';
+				if ( is_null( $selected ) || $selected === true || ( is_array( $selected ) && in_array( $value, $selected, $strict ) ) ) {
+					$sel = ' selected="selected"';
+				}
+
 				$render .= '<option value="' . esc_attr( $value ) . '"' . $sel . '>' . esc_html( $display ) . '</option>';
 			}
 			$render .= '</optgroup>';
@@ -274,7 +277,6 @@ class Elements {
 		}
 
 		$render      = '<div class="' . $wrapper_class . '">';
-		$selected    = (array) $selected;
 		$associative = Arr::is_associative( $values );
 		$id          = $this->id_from_name( $name, $id );
 		$name        = $multi ? $name . '[]' : $name;
@@ -306,7 +308,7 @@ class Elements {
 				$attributes[] = 'name="' . esc_attr( $name ) . '"';
 			}
 
-			if ( in_array( $real_value, $selected ) ) {
+			if ( is_null( $selected ) || $selected === true || ( is_array( $selected ) && in_array( $real_value, $selected ) ) ) {
 				$attributes[] = 'checked="checked"';
 			}
 
@@ -317,6 +319,91 @@ class Elements {
 			$render .= sprintf( '<label><input %s />%s</label>',
 				join( ' ', $attributes ),
 				esc_html( $title ) );
+		}
+		$render .= '</div>';
+
+		$render .= '</div>';
+
+		if ( $echo ) {
+			echo KSES::checkboxes( $render );
+		}
+
+		return $render;
+	}
+
+	public function checkboxes_grouped( $values, $args = array() ) : string {
+		$defaults = array(
+			'selected' => '',
+			'name'     => '',
+			'id'       => '',
+			'class'    => '',
+			'multi'    => true,
+			'echo'     => true,
+			'readonly' => false
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+
+		/**
+		 * @var array  $selected
+		 * @var string $name
+		 * @var string $id
+		 * @var string $class
+		 * @var bool   $multi
+		 * @var bool   $echo
+		 * @var bool   $readonly
+		 */
+		extract( $args );
+
+		$wrapper_class = 'd4p-setting-checkboxes d4p-setting-checkboxes-grouped';
+
+		if ( $class != '' ) {
+			$wrapper_class .= ' ' . esc_attr( $class );
+		}
+
+		$render = '<div class="' . $wrapper_class . '">';
+		$id     = $this->id_from_name( $name, $id );
+		$name   = $multi ? $name . '[]' : $name;
+
+		if ( $multi ) {
+			$render .= '<div class="d4p-check-uncheck">';
+
+			$render .= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-square"></i> ' . esc_html__( "Check All", "d4plib" ) . '</a>';
+			$render .= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . esc_html__( "Uncheck All", "d4plib" ) . '</a>';
+
+			$render .= '</div>';
+		}
+
+		$render .= '<div class="d4p-content-wrapper">';
+		foreach ( $values as $group ) {
+			$render .= '<h4>' . $group[ 'title' ] . '</h4>>';
+			foreach ( $group[ 'values' ] as $key => $title ) {
+				$attributes = array(
+					'type="' . ( $multi ? 'checkbox' : 'radio' ) . '"',
+					'value="' . $key . '"',
+					'class="widefat"'
+				);
+
+				if ( $id != '' ) {
+					$attributes[] = 'id="' . esc_attr( $id . '-' . $key ) . '"';
+				}
+
+				if ( $name != '' ) {
+					$attributes[] = 'name="' . esc_attr( $name ) . '"';
+				}
+
+				if ( is_null( $selected ) || $selected === true || ( is_array( $selected ) && in_array( $key, $selected ) ) ) {
+					$attributes[] = 'checked="checked"';
+				}
+
+				if ( $readonly ) {
+					$attributes[] = 'readonly';
+				}
+
+				$render .= sprintf( '<label><input %s />%s</label>',
+					join( ' ', $attributes ),
+					esc_html( $title ) );
+			}
 		}
 		$render .= '</div>';
 

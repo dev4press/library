@@ -1,13 +1,15 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 4.2 - 2023.06.15 =
+= Version 4.2 - 2023.06.16 =
 * New: complete the network based `Menu` class
 * New: added `KSES` class for processing HTML strings for display
 * New: added `Detection` class to detect email sender and source
 * New: added `Source` helper class to detect file source
 * New: added plugin reference and the icon
 * New: added several more UI icons
+* New: added `Elements` method to render grouped checkboxes
+* New: added settings type for the grouped checkboxes
 * New: updated and modernized flags library
 * New: expanded the main `WordPress` class
 * New: rewritten GEOIP handling objects
@@ -19,10 +21,12 @@
 * Edit: improvements to the admin core objects
 * Edit: many tweaks and updates to the admin styling
 * Edit: improvements to the admin responsiveness
+* Edit: improvements to the `Elements` rendering
 * Edit: improved support for the network plugins
 * Edit: several more strings escaping for display
 * Removed: old flags collection CSS and images
 * Fix: server IP warning when in CLI mode
+* Fix: potential issue with the grouped select render method
 
 = Version 4.1.1 - 2023.05.15 =
 * New: added `exclamation` icon

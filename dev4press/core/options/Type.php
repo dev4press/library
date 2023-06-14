@@ -56,6 +56,7 @@ class Type {
 	public const EMAIL = 'email';
 	public const LINK = 'link';
 	public const CHECKBOXES = 'checkboxes';
+	public const CHECKBOXES_GROUP = 'checkboxes_group';
 	public const CHECKBOXES_HIERARCHY = 'checkboxes_hierarchy';
 	public const RADIOS = 'radios';
 	public const RADIOS_HIERARCHY = 'radios_hierarchy';
@@ -104,6 +105,7 @@ class Type {
 		'email'                => self::EMAIL,
 		'link'                 => self::LINK,
 		'checkboxes'           => self::CHECKBOXES,
+		'checkboxes_group'     => self::CHECKBOXES_GROUP,
 		'checkboxes_hierarchy' => self::CHECKBOXES_HIERARCHY,
 		'radios'               => self::RADIOS,
 		'radios_hierarchy'     => self::RADIOS_HIERARCHY,
