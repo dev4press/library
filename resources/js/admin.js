@@ -13,7 +13,7 @@
             wp.dev4press.admin.components.interface.run();
             wp.dev4press.admin.components.notices.run();
 
-            if (d4plib_admin_data.page.panel === 'settings') {
+            if (d4plib_admin_data.page.panel === 'settings' || d4plib_admin_data.page.panel === 'tools') {
                 wp.dev4press.admin.panels.settings.run();
             }
 

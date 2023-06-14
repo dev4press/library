@@ -290,7 +290,7 @@ class Elements {
 			$render .= '</div>';
 		}
 
-		$render .= '<div class="d4p-content-wrapper">';
+		$render .= '<div class="d4p-inside-wrapper">';
 		foreach ( $values as $key => $title ) {
 			$real_value = $associative ? $key : $title;
 
@@ -374,9 +374,9 @@ class Elements {
 			$render .= '</div>';
 		}
 
-		$render .= '<div class="d4p-content-wrapper">';
+		$render .= '<div class="d4p-inside-wrapper">';
 		foreach ( $values as $group ) {
-			$render .= '<h4>' . $group[ 'title' ] . '</h4>>';
+			$render .= '<div class="d4p-group-title">' . $group[ 'title' ] . '</div>';
 			foreach ( $group[ 'values' ] as $key => $title ) {
 				$attributes = array(
 					'type="' . ( $multi ? 'checkbox' : 'radio' ) . '"',
@@ -456,7 +456,7 @@ class Elements {
 		$walker = new CheckboxRadio();
 		$input  = $multi ? 'checkbox' : 'radio';
 
-		$render .= '<div class="d4p-content-wrapper">';
+		$render .= '<div class="d4p-inside-wrapper">';
 		$render .= '<ul class="d4p-wrapper-hierarchy">';
 		$render .= $walker->walk( $values, 0, array(
 			'input'    => $input,

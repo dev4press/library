@@ -191,10 +191,17 @@
             }
 
             &.d4p-setting-checkboxes,
+            &.d4p-setting-checkboxes_group,
             &.d4p-setting-radios {
                 label {
                     display: block;
                     margin: 0 0 4px;
+                }
+            }
+
+            &.d4p-setting-checkboxes_group {
+                .d4p-group-title {
+                    font-weight: bold;
                 }
             }
 
