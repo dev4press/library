@@ -262,7 +262,7 @@ abstract class DBLite {
 			}
 
 			$add = true;
-			if ( empty( $value ) && $skip_empty_values ) {
+			if ( $skip_empty_values && empty( $value ) && $value !== 0 ) {
 				$add = false;
 			}
 

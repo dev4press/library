@@ -22,9 +22,13 @@ if ( isset( $_GET[ 'message' ] ) && $_GET[ 'message' ] != '' ) {
 		case 'removed':
 			$_message = __( "Removal operation completed.", "d4plib" );
 			break;
+		case 'import-failed':
+			$_message = __( "Import operation failed.", "d4plib" );
+			$_color   = 'error';
+			break;
 		case 'nothing':
 			$_color   = 'error';
-			$_message = __( "Nothing done.", "d4plib" );
+			$_message = __( "Nothing's done.", "d4plib" );
 			break;
 		case 'nothing-removed':
 			$_color   = 'error';
@@ -32,10 +36,6 @@ if ( isset( $_GET[ 'message' ] ) && $_GET[ 'message' ] != '' ) {
 			break;
 		case 'invalid':
 			$_message = __( "Requested operation is invalid.", "d4plib" );
-			$_color   = 'error';
-			break;
-		case 'import-failed':
-			$_message = __( "Import operation failed.", "d4plib" );
 			$_color   = 'error';
 			break;
 	}
