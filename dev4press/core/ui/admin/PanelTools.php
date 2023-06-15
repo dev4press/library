@@ -61,6 +61,12 @@ abstract class PanelTools extends Panel {
 		);
 	}
 
+	public function screen_options_show() {
+		if ( $this->current_subpanel() == 'import' ) {
+			$this->form_multiform = true;
+		}
+	}
+
 	public function prepare() {
 		$_subpanel = $this->a()->subpanel;
 

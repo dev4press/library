@@ -19,6 +19,7 @@
 * Edit: improvements to the `Table` class
 * Edit: improvements to the `Table` default styling
 * Edit: improvements to the admin core objects
+* Edit: many small tweaks and settings changes for admin panels
 * Edit: many tweaks and updates to the admin styling
 * Edit: improvements to the admin responsiveness
 * Edit: improvements to the `Elements` rendering

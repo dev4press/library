@@ -23,7 +23,7 @@ abstract class Panel {
 	protected $render_class = '\\Dev4Press\\v42\\Core\\UI\\Admin\\Render';
 	protected $wrapper_class = '';
 	protected $default_subpanel = 'index';
-	protected $form_multiform = true;
+	protected $form_multiform = false;
 	protected $form_autocomplete = "off";
 	protected $form_method = 'post';
 
