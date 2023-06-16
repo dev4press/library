@@ -53,7 +53,7 @@ class Store {
 		"coreactivity"                     => array(
 			"code"        => "coreactivity",
 			"name"        => "CoreActivity",
-			"description" => "Monitor and log all kinds of activity happening in the WordPress website, with fine control over events to log, detailed log and events panels, and more.",
+			"description" => "Monitor and log all kinds of activity happening on the WordPress website, with fine control over events to log, detailed log and events panels, and more.",
 			"punchline"   => "Monitor and log WordPress activity",
 			"color"       => "#420656",
 			'free'        => true,
