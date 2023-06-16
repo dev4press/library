@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v42\Core\Plugins;
 
+use Dev4Press\v42\Core\DateTime;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -35,6 +37,7 @@ abstract class Settings {
 
 	public $info;
 	public $scope = 'blog';
+	public $has_db = false;
 
 	public $current = array();
 	public $settings = array();
@@ -189,7 +192,7 @@ abstract class Settings {
 				$this->changed[ $group ] = array();
 			}
 
-			$this->changed[ $group ][ $name ] = array( 'old' => $old, 'new' => $new );
+			$this->changed[ $group ][ $name ] = array( 'old' => $old, 'new' => $value );
 		}
 
 		if ( $save ) {
@@ -331,6 +334,14 @@ abstract class Settings {
 		return false;
 	}
 
+	public function get_installed_db_version() {
+		return $this->current[ 'core' ][ 'db_version' ] ?? 0;
+	}
+
+	public function updated_db_version( $version ) {
+		$this->set( 'db_version', $version, 'core', true );
+	}
+
 	protected function _name( $name ) : string {
 		return 'd4p_' . $this->scope . '_' . $this->info->code . '_' . $name;
 	}
@@ -338,21 +349,29 @@ abstract class Settings {
 	protected function _install() {
 		$this->current = $this->_merge();
 
-		$this->current[ 'info' ]              = $this->info->to_array();
+		$this->current[ 'info' ] = $this->info->to_array();
+
 		$this->current[ 'info' ][ 'install' ] = true;
 		$this->current[ 'info' ][ 'update' ]  = false;
+
+		if ( isset( $this->current[ 'core' ] ) ) {
+			$this->current[ 'core' ][ 'installed' ] = DateTime::instance()->mysql_date();
+		}
 
 		foreach ( $this->current as $key => $data ) {
 			$this->_settings_update( $key, $data );
 		}
 
-		$this->_db();
+		if ( $this->has_db ) {
+			$this->_db();
+		}
 	}
 
 	protected function _update() {
 		$old_build = $this->current[ 'info' ][ 'build' ];
 
-		$this->current[ 'info' ]               = $this->info->to_array();
+		$this->current[ 'info' ] = $this->info->to_array();
+
 		$this->current[ 'info' ][ 'install' ]  = false;
 		$this->current[ 'info' ][ 'update' ]   = true;
 		$this->current[ 'info' ][ 'previous' ] = $old_build;
@@ -381,17 +400,35 @@ abstract class Settings {
 
 				$this->current[ $key ] = $now;
 
+				if ( $key == 'core' ) {
+					$this->current[ 'core' ][ 'updated' ] = DateTime::instance()->mysql_date();
+				}
+
 				$this->_settings_update( $key, $now );
 			} else {
 				$this->_settings_delete( $key );
 			}
 		}
 
-		$this->_db();
+		if ( $this->has_db ) {
+			$this->_db();
+		}
+
 		$this->_migrate();
 	}
 
 	protected function _db() {
+		$installed_version = $this->get_installed_db_version();
+		$current_version   = $this->_install_db()->current_version();
+
+		if ( $current_version > $installed_version ) {
+			$this->_install_db()->install();
+
+			$this->updated_db_version( $current_version );
+		}
+	}
+
+	protected function _install_db() {
 	}
 
 	protected function _migrate() {

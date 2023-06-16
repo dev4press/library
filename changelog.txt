@@ -10,6 +10,7 @@
 * New: added several more UI icons
 * New: added `Elements` method to render grouped checkboxes
 * New: added settings type for the grouped checkboxes
+* New: Database install class `InstallDB` has the version property
 * New: updated and modernized flags library
 * New: expanded the main `WordPress` class
 * New: rewritten GEOIP handling objects
@@ -18,6 +19,7 @@
 * Edit: improvements to the `Panel` class
 * Edit: improvements to the `Table` class
 * Edit: improvements to the `Table` default styling
+* Edit: improvements to database installation process
 * Edit: improvements to the admin core objects
 * Edit: many small tweaks and settings changes for admin panels
 * Edit: many tweaks and updates to the admin styling

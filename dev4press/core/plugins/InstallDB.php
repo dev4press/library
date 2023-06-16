@@ -33,6 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class InstallDB {
+	protected $version = 0;
 	protected $prefix = '';
 	protected $plugin = '';
 	protected $tables = array();
@@ -100,6 +101,10 @@ abstract class InstallDB {
 		foreach ( $this->tables as $obj ) {
 			$this->wpdb()->query( "DROP TABLE IF EXISTS " . $this->table( $obj ) );
 		}
+	}
+
+	public function current_version() {
+		return $this->version;
 	}
 
 	private function delta( $query ) : array {
