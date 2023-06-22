@@ -68,6 +68,26 @@ class Store {
 			'free'        => false,
 			'pro'         => true
 		),
+		"coresecurity"              => array(
+			"code"        => "coresecurity",
+			"name"        => "CoreSecurity",
+			"description" => "A collection of many security related tools for .htaccess hardening with security events log, ReCaptcha, firewall, and tweaks collection, login and registration control and more.",
+			"punchline"   => "Proactive protection and security hardening",
+			"color"       => "#6F1A1A",
+			'free'        => true,
+			'pro'         => true,
+			'internal'    => true
+		),
+		"coreseo"                   => array(
+			"code"        => "coreseo",
+			"name"        => "CoreSEO",
+			"description" => "Toolbox plugin with a number of search engine optimization related modules for Sitemaps, Robots.txt, Robots Meta and Knowledge Graph control, with more modules to be added.",
+			"punchline"   => "Search Engine Optimization for WordPress",
+			"color"       => "#C65C0F",
+			'free'        => true,
+			'pro'         => true,
+			'internal'    => true
+		),
 		"debugpress"                       => array(
 			"code"        => "debugpress",
 			"name"        => "DebugPress",

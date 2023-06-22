@@ -19,6 +19,10 @@ $_plugins = Store::instance()->plugins();
 		$_free    = Store::instance()->is_free( $plugin[ 'code' ] );
 		$_edition = $_pro && $_free ? '_both' : '_single';
 
+		if ( isset( $plugin[ 'internal' ] ) && $plugin[ 'internal' ] ) {
+			continue;
+		}
+
 		?>
 
         <div class="d4p-dev4press-plugin">

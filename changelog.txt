@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 4.2.1 - 2023.06.22 =
+* Edit: few improvements to the plugins `Store` class
+
 = Version 4.2 - 2023.06.16 =
 * New: complete the network based `Menu` class
 * New: added `KSES` class for processing HTML strings for display
