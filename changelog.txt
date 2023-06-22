@@ -2,6 +2,7 @@
 == Changelog ==
 
 = Version 4.2.1 - 2023.06.22 =
+* New: settings elements can have toggleable additional information
 * Edit: few improvements to the plugins `Store` class
 
 = Version 4.2 - 2023.06.16 =

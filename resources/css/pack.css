@@ -1,7 +1,7 @@
 @font-face {
   font-family: "dev4press";
-  src: url("fonts/dev4press.eot?4.2.0");
-  src: url("fonts/dev4press.eot?4.2.0#iefix") format("embedded-opentype"), url("fonts/dev4press.woff2?4.2.0") format("woff2"), url("fonts/dev4press.woff?4.2.0") format("woff");
+  src: url("fonts/dev4press.eot?4.2.1");
+  src: url("fonts/dev4press.eot?4.2.1#iefix") format("embedded-opentype"), url("fonts/dev4press.woff2?4.2.1") format("woff2"), url("fonts/dev4press.woff?4.2.1") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: auto;
@@ -3529,6 +3529,47 @@ a > .d4p-icon {
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck a i {
   vertical-align: -2px;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper {
+  margin: 1em 0 0;
+  border: 1px solid #DDD;
+  border-radius: var(--d4p-layout-main-border-radius);
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper .d4p-more-title {
+  background: #E4E4E4;
+  padding: 0.5em;
+  font-weight: 500;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper .d4p-more-title i {
+  cursor: pointer;
+  font-size: 1.3em;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper .d4p-more-title button {
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper .d4p-more-content {
+  display: none;
+  padding: 1em;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper .d4p-more-content p {
+  margin: 0 0 1em;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper .d4p-more-content p:last-child {
+  margin: 0;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper .d4p-more-content ul {
+  list-style: disc outside;
+  margin: 0 0 0 1.5em;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper.__is-open i {
+  transform: rotate(90deg);
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper.__is-open .d4p-more-content {
+  display: block;
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-content-wrapper {
   border: 1px solid #DDD;

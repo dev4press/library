@@ -82,29 +82,29 @@ a {
 
 /* Rotate */
 .#{$font-prefix-ctrl}-rotate-90 {
-    transform: rotate(90deg)
+    transform: rotate(90deg);
 }
 
 .#{$font-prefix-ctrl}-rotate-45 {
-    transform: rotate(45deg)
+    transform: rotate(45deg);
 }
 
 .#{$font-prefix-ctrl}-rotate-270 {
-    transform: rotate(270deg)
+    transform: rotate(270deg);
 }
 
 /* Flip */
 .#{$font-prefix-ctrl}-flip-horizontal {
-    transform: scaleX(-1)
+    transform: scaleX(-1);
 }
 
 .#{$font-prefix-ctrl}-flip-vertical {
-    transform: scaleY(-1)
+    transform: scaleY(-1);
 }
 
 .#{$font-prefix-ctrl}-flip-both,
 .#{$font-prefix-ctrl}-flip-horizontal.#{$font-prefix-ctrl}-flip-vertical {
-    transform: scale(-1)
+    transform: scale(-1);
 }
 
 /* Spin */

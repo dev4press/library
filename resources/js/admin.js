@@ -158,11 +158,11 @@
 
                             if (in_title || in_description) {
                                 if (in_title) {
-                                    classes+= " search-result-title";
+                                    classes += " search-result-title";
                                 }
 
                                 if (in_description) {
-                                    classes+= " search-result-description";
+                                    classes += " search-result-description";
                                 }
 
                                 $(this).addClass(classes);
@@ -333,10 +333,27 @@
         },
         settings: {
             init: function() {
+                wp.dev4press.admin.settings.more_toggle.run();
                 wp.dev4press.admin.settings.color_picker.run();
                 wp.dev4press.admin.settings.expandables.run();
                 wp.dev4press.admin.settings.check_uncheck.run();
                 wp.dev4press.admin.settings.switch.run();
+            },
+            more_toggle: {
+                run: function() {
+                    $(document).on("click", ".d4p-more-wrapper .d4p-more-title i, .d4p-more-wrapper .d4p-more-title button", function(e) {
+                        e.preventDefault();
+
+                        var toggle = $(this).parent().parent(),
+                            open = toggle.hasClass("__is-open");
+
+                        if (open) {
+                            toggle.removeClass("__is-open");
+                        } else {
+                            toggle.addClass("__is-open");
+                        }
+                    });
+                }
             },
             color_picker: {
                 run: function() {

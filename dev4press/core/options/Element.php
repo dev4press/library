@@ -37,13 +37,16 @@ class Element {
 	public $notice;
 	public $input;
 	public $value;
+
 	public $source;
-
 	public $data;
-	public $args;
-	public $switch;
 
-	public function __construct( $type, $name, $title = '', $notice = '', $input = 'text', $value = '' ) {
+	public $args = array();
+	public $switch = array();
+	public $more = array();
+	public $more_method = 'list';
+
+	public function __construct( string $type, string $name, string $title = '', string $notice = '', string $input = 'text', $value = '' ) {
 		$this->type   = $type;
 		$this->name   = $name;
 		$this->title  = $title;
@@ -52,40 +55,47 @@ class Element {
 		$this->value  = $value;
 	}
 
-	public static function i( $type, $name, $title = '', $notice = '', $input = 'text', $value = '' ) : Element {
+	public static function i( string $type, string $name, string $title = '', string $notice = '', string $input = 'text', $value = '' ) : Element {
 		return new Element( $type, $name, $title, $notice, $input, $value );
 	}
 
-	public static function f( $name, $title = '', $notice = '', $input = '', $value = '' ) : Element {
+	public static function f( string $name, string $title = '', string $notice = '', string $input = '', $value = '' ) : Element {
 		return new Element( 'features', $name, $title, $notice, $input, $value );
 	}
 
-	public static function s( $name, $title = '', $notice = '', $input = '', $value = '' ) : Element {
+	public static function s( string $name, string $title = '', string $notice = '', string $input = '', $value = '' ) : Element {
 		return new Element( 'settings', $name, $title, $notice, $input, $value );
 	}
 
-	public static function l( $type, $name, $title = '', $notice = '', $input = 'text', $value = '', $source = '', $data = '', $args = array() ) : Element {
+	public static function l( string $type, string $name, string $title = '', string $notice = '', string $input = 'text', $value = '', string $source = '', $data = '', $args = array() ) : Element {
 		return Element::i( $type, $name, $title, $notice, $input, $value )->data( $source, $data )->args( $args );
 	}
 
-	public static function info( $title = '', $notice = '' ) : Element {
-		return Element::i( '', '', $title, $notice, Type::INFO );
+	public static function info( string $title = '', string $notice = '', array $more = array(), string $method = 'list' ) : Element {
+		return Element::i( '', '', $title, $notice, Type::INFO )->more( $more, $method );
 	}
 
-	public function data( $source = '', $data = '' ) : Element {
+	public function data( string $source = '', $data = '' ) : Element {
 		$this->source = $source;
 		$this->data   = $data;
 
 		return $this;
 	}
 
-	public function args( $args = array() ) : Element {
+	public function args( array $args = array() ) : Element {
 		$this->args = $args;
 
 		return $this;
 	}
 
-	public function switch( $args = array() ) : Element {
+	public function more( array $more = array(), string $method = 'list' ) : Element {
+		$this->more        = $more;
+		$this->more_method = $method;
+
+		return $this;
+	}
+
+	public function switch( array $args = array() ) : Element {
 		$default = array(
 			'type'  => 'option',
 			'role'  => '',

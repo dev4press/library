@@ -70,11 +70,11 @@ abstract class Admin {
 		return $settings;
 	}
 
-	public function el( $name, $title = '', $notice = '', $input = '' ) : EL {
+	public function el( string $name, string $title = '', string $notice = '', string $input = '' ) : EL {
 		return EL::f( $this->name . '__' . $name, $title, $notice, $input, $this->get( $name ) );
 	}
 
-	public function info( $title = '', $notice = '' ) : EL {
-		return EL::info( $title, $notice );
+	public function info( string $title = '', string $notice = '', array $more = array() ) : EL {
+		return EL::info( $title, $notice, $more );
 	}
 }
