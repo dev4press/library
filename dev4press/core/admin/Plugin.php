@@ -530,12 +530,13 @@ abstract class Plugin {
 
 	abstract public function run_postback();
 
-	/** @return \Dev4Press\v43\Core\Plugins\Settings */
-	abstract public function settings();
-
 	/** @return \Dev4Press\v43\Core\Plugins\Core */
 	abstract public function plugin();
 
+	/** @return \Dev4Press\v43\Core\Plugins\Settings */
+	abstract public function settings();
+
+	/** @return \Dev4Press\v43\Core\Options\Settings */
 	abstract public function settings_definitions();
 
 	public function features_definitions( $feature ) {

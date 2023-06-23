@@ -37,6 +37,7 @@ abstract class Load {
 	protected $_scope_enabled = true;
 
 	protected $_load;
+	protected $_load_blog;
 	protected $_list;
 	protected $_active = array();
 	protected $_scopes = array( 'global', 'admin', 'front' );
@@ -108,7 +109,8 @@ abstract class Load {
 			'is_hidden',
 			'has_settings',
 			'has_menu',
-			'has_meta_tab'
+			'has_meta_tab',
+			'allow_blog_override'
 		) ) ? false : '' );
 
 		if ( $this->is_valid( $feature ) ) {
@@ -191,6 +193,10 @@ abstract class Load {
 		return (bool) $this->attribute( 'has_meta_tab', $feature );
 	}
 
+	public function allow_blog_override( string $feature ) : bool {
+		return (bool) $this->attribute( 'allow_blog_override', $feature );
+	}
+
 	public function get_scope( string $feature ) : string {
 		return $this->attribute( 'scope', $feature );
 	}
@@ -252,5 +258,15 @@ abstract class Load {
 		return $features;
 	}
 
+	public function get_settings( string $feature ) {
+		if ( $this->is_network_enabled() && is_multisite() && $this->allow_blog_override( $feature ) ) {
+
+		}
+
+		return $this->s()->feature_get( $feature );
+	}
+
 	abstract public function s();
+
+	abstract public function b();
 }

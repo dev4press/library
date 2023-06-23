@@ -39,6 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @method bool is_cron()
  * @method bool is_rest()
  * @method bool is_debug()
+ * @method bool is_multisite()
  * @method bool is_script_debug()
  * @method bool is_async_upload()
  * @method bool is_wordpress()
@@ -60,6 +61,7 @@ class WordPress {
 			'classicpress' => false,
 			'rest'         => false,
 			'context'      => false,
+			'multisite'    => is_multisite(),
 			'cli'          => defined( 'WP_CLI' ) && defined( 'WP_CLI_VERSION' ) && defined( 'WP_CLI_START_MICROTIME' ) && WP_CLI,
 			'admin'        => defined( 'WP_ADMIN' ) && WP_ADMIN,
 			'ajax'         => defined( 'DOING_AJAX' ) && DOING_AJAX,

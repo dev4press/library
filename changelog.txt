@@ -3,6 +3,7 @@
 
 = Version 4.3 - 2023.06.22 =
 * New: settings elements can have toggleable additional information
+* Edit: improvements to the rendering of the settings controls
 * Edit: few improvements to the plugins `Store` class
 
 = Version 4.2 - 2023.06.16 =

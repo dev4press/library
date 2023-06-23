@@ -83,4 +83,10 @@ abstract class Plugin extends BasePlugin {
 			parent::current_screen( $screen );
 		}
 	}
+
+	/** @return \Dev4Press\v43\Core\Plugins\Settings */
+	abstract public function settings_blog();
+
+	/** @return \Dev4Press\v43\Core\Options\Settings */
+	abstract public function settings_blog_definitions();
 }
