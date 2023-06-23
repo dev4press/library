@@ -36,8 +36,13 @@ abstract class Plugin extends BasePlugin {
 		return self_admin_url( $page );
 	}
 
+	public function subpanel_url( $subpanel = '', $args = '', $network = null ) : string {
+		return $this->panel_url( '', $subpanel, $args, $network );
+	}
+
 	public function panel_url( $panel = 'dashboard', $subpanel = '', $args = '', $network = null ) : string {
-		$url = 'admin.php?page=' . $this->plugin . '-' . $panel;
+		$panel = empty( $panel ) ? $this->panel : $panel;
+		$url   = 'admin.php?page=' . $this->plugin . '-' . $panel;
 
 		if ( ! empty( $subpanel ) && $subpanel != 'index' ) {
 			$url .= '&subpanel=' . $subpanel;

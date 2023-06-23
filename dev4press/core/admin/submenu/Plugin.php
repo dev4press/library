@@ -32,8 +32,13 @@ abstract class Plugin extends BasePlugin {
 		return $url;
 	}
 
+	public function subpanel_url( $subpanel = '', $args = '', $network = null ) : string {
+		return $this->panel_url( '', $subpanel, $args, $network );
+	}
+
 	public function panel_url( $panel = 'dashboard', $subpanel = '', $args = '', $network = null ) : string {
-		$url = $this->main_url();
+		$panel = empty( $panel ) ? $this->panel : $panel;
+		$url   = $this->main_url();
 
 		$url .= '&panel=' . $panel;
 

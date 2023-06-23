@@ -3,11 +3,14 @@
 
 = Version 4.3 - 2023.07.12 =
 * New: settings elements can have toggleable additional information
+* New: some forms panel split into the elements files for re-usability
+* Edit: improvements to the `Panel` class URLs and forms loading
 * Edit: massive improvements to Features in relation to network mode plugins
 * Edit: improvements to the rendering of the settings controls
 * Edit: few improvements to the plugins `Store` class
 * Edit: class for `PostBack` can handle network and blog mode plugins
 * Edit: optimization of the font generating file sources
+* Fix: header navigation in multisite mode show items that don't belong
 
 = Version 4.2 - 2023.06.16 =
 * New: complete the network based `Menu` class

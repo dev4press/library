@@ -17,7 +17,7 @@ foreach ( panel()->subpanels() as $subpanel => $obj ) {
 		$_classes[] = $args[ 'class' ];
 	}
 
-	$url = panel()->a()->panel_url( 'settings', $subpanel );
+	$url = panel()->a()->subpanel_url( $subpanel );
 
 	if ( isset( $obj[ 'break' ] ) ) {
 		echo panel()->r()->settings_break( $obj[ 'break' ], $obj[ 'break-icon' ] );

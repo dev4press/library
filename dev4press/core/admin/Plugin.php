@@ -514,11 +514,13 @@ abstract class Plugin {
 	protected function extra_enqueue_scripts_final( $hook ) {
 	}
 
-	abstract public function main_url();
+	abstract public function main_url() : string;
 
-	abstract public function current_url( $with_subpanel = true );
+	abstract public function current_url( $with_subpanel = true ) : string;
 
-	abstract public function panel_url( $panel = 'dashboard', $subpanel = '', $args = '', $network = null );
+	abstract public function panel_url( $panel = 'dashboard', $subpanel = '', $args = '', $network = null ) : string;
+
+	abstract public function subpanel_url( $subpanel = '', $args = '', $network = null ) : string;
 
 	abstract public function admin_menu();
 
