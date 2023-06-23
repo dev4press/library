@@ -24,10 +24,20 @@ $_classes   = panel()->wrapper_class();
 
 							foreach ( $_panels as $panel => $obj ) {
 								if ( ! isset( $obj[ 'type' ] ) ) {
-									if ( $panel != $_panel ) {
-										echo '<li><a href="' . esc_url( panel()->a()->panel_url( $panel ) ) . '">' . panel()->r()->icon( $obj[ 'icon' ], 'fw' ) . $obj[ 'title' ] . '</a></li>';
-									} else {
-										echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj[ 'icon' ], 'fw' ) . $obj[ 'title' ] . '</li>';
+									$scope = $obj[ 'scope' ] ?? array();
+									$add   = true;
+
+									if ( ! empty( $scope ) && is_multisite() ) {
+										$current = is_network_admin() ? 'network' : 'blog';
+										$add     = in_array( $current, $scope );
+									}
+
+									if ( $add ) {
+										if ( $panel != $_panel ) {
+											echo '<li><a href="' . esc_url( panel()->a()->panel_url( $panel ) ) . '">' . panel()->r()->icon( $obj[ 'icon' ], 'fw' ) . $obj[ 'title' ] . '</a></li>';
+										} else {
+											echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj[ 'icon' ], 'fw' ) . $obj[ 'title' ] . '</li>';
+										}
 									}
 								}
 							}

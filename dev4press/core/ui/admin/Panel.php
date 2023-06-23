@@ -247,6 +247,21 @@ abstract class Panel {
 	public function include_accessibility_control() {
 	}
 
+	public function include_generic( $base, $name = '', $subname = '', $args = array() ) {
+		$name     = empty( $name ) ? $this->a()->panel : $name;
+		$subname  = empty( $subname ) ? ( empty( $this->a()->subpanel ) ? '' : $this->a()->subpanel ) : $subname;
+		$fallback = $content = $base . '-' . $name;
+
+		if ( ! empty( $subname ) ) {
+			$content .= '-' . $subname;
+		}
+
+		$fallback .= '.php';
+		$content  .= '.php';
+
+		$this->load( $content, $fallback, $base . '.php', $args );
+	}
+
 	protected function interface_colors() {
 		if ( $this->a()->auto_mod_interface_colors ) {
 			?>
@@ -262,22 +277,7 @@ abstract class Panel {
 		}
 	}
 
-	protected function include_generic( $base, $name = '', $subname = '' ) {
-		$name     = empty( $name ) ? $this->a()->panel : $name;
-		$subname  = empty( $subname ) ? ( empty( $this->a()->subpanel ) ? '' : $this->a()->subpanel ) : $subname;
-		$fallback = $content = $base . '-' . $name;
-
-		if ( ! empty( $subname ) ) {
-			$content .= '-' . $subname;
-		}
-
-		$fallback .= '.php';
-		$content  .= '.php';
-
-		$this->load( $content, $fallback, $base . '.php' );
-	}
-
-	protected function load( $name, $fallback = '', $default = '' ) {
+	protected function load( $name, $fallback = '', $default = '', $args = array() ) {
 		$list = array(
 			$this->forms_path_plugin() . $name,
 			$this->forms_path_library() . $name
