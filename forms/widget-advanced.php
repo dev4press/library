@@ -1,8 +1,8 @@
 <?php
 
-use Dev4Press\v42\Core\Quick\KSES;
-use Dev4Press\v42\Core\Quick\WPR;
-use Dev4Press\v42\Core\UI\Elements;
+use Dev4Press\v43\Core\Quick\KSES;
+use Dev4Press\v43\Core\Quick\WPR;
+use Dev4Press\v43\Core\UI\Elements;
 
 ?>
 

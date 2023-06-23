@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v42\Core\Options\Process
-Version: v4.2
+Name:    Dev4Press\v43\Core\Options\Process
+Version: v4.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,11 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v42\Core\Options;
+namespace Dev4Press\v43\Core\Options;
 
-use Dev4Press\v42\Core\Quick\Arr;
-use Dev4Press\v42\Core\Quick\Sanitize;
-use Dev4Press\v42\Core\Quick\Str;
+use Dev4Press\v43\Core\Quick\Arr;
+use Dev4Press\v43\Core\Quick\Sanitize;
+use Dev4Press\v43\Core\Quick\Str;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -201,7 +201,7 @@ class Process {
 					$value = array();
 				} else {
 					$value = (array) $post[ $key ];
-					$value = array_map( '\Dev4Press\v42\Core\Quick\Sanitize::basic', $value );
+					$value = array_map( '\Dev4Press\v43\Core\Quick\Sanitize::basic', $value );
 				}
 				break;
 			case 'css_size':

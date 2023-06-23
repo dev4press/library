@@ -2,7 +2,7 @@
 
 /*
 Name:    Dev4Press Core Autoloader
-Version: v4.2
+Version: v4.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -27,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 if ( ! function_exists( 'd4p_core_library_autoloader_42' ) ) {
 	function d4p_core_library_autoloader_42( $class ) {
 		$path = dirname( __FILE__ ) . '/';
-		$base = 'Dev4Press\\v42\\';
+		$base = 'Dev4Press\\v43\\';
 
 		if ( substr( $class, 0, strlen( $base ) ) == $base ) {
 			$clean = substr( $class, strlen( $base ) );

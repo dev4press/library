@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v42\Core\Quick\File
-Version: v4.2
+Name:    Dev4Press\v43\Core\Quick\File
+Version: v4.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v42\Core\Quick;
+namespace Dev4Press\v43\Core\Quick;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

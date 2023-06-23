@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v42\Core\Features\Load
-Version: v4.2
+Name:    Dev4Press\v43\Core\Features\Load
+Version: v4.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,19 +24,23 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v42\Core\Features;
+namespace Dev4Press\v43\Core\Features;
 
-use Dev4Press\v42\Core\Scope;
+use Dev4Press\v43\Core\Scope;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 abstract class Load {
+	protected $_network_enabled = false;
+	protected $_scope_enabled = true;
+
 	protected $_load;
 	protected $_list;
 	protected $_active = array();
 	protected $_scopes = array( 'global', 'admin', 'front' );
+	protected $_default_scope = 'global';
 
 	/** @return static */
 	public static function instance() {
@@ -117,7 +121,7 @@ abstract class Load {
 			$value = $this->_list[ $feature ][ 'attributes' ][ $attr ] ?? $default;
 
 			if ( $attr == 'scope' && ! in_array( $value, $this->_scopes ) ) {
-				$value = 'global';
+				$value = $this->_default_scope;
 			}
 
 			return $value;
@@ -137,6 +141,14 @@ abstract class Load {
 		}
 
 		return $on;
+	}
+
+	public function is_network_enabled() : bool {
+		return (bool) $this->_network_enabled;
+	}
+
+	public function is_scope_enabled() : bool {
+		return (bool) $this->_scope_enabled;
 	}
 
 	public function is_valid( string $feature ) : bool {
@@ -185,7 +197,7 @@ abstract class Load {
 
 	public function panels( array $panels ) : array {
 		foreach ( $this->_list as $feature => $obj ) {
-			$panels[ $feature ] = array(
+			$f = array(
 				'title'     => $obj[ 'label' ],
 				'icon'      => $obj[ 'icon' ],
 				'info'      => $obj[ 'description' ],
@@ -197,6 +209,8 @@ abstract class Load {
 				'active'    => $this->is_enabled( $feature ),
 				'always_on' => $this->is_always_on( $feature )
 			);
+
+			$panels[ $feature ] = $f;
 		}
 
 		return $panels;

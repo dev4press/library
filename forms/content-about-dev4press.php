@@ -1,6 +1,6 @@
 <?php
 
-use Dev4Press\v42\API\Store;
+use Dev4Press\v43\API\Store;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

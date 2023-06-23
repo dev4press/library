@@ -1,19 +1,13 @@
 <?php
 
-use Dev4Press\v42\Core\Quick\KSES;
-use Dev4Press\v42\Core\Quick\Sanitize;
-use function Dev4Press\v42\Functions\panel;
+use Dev4Press\v43\Core\Quick\KSES;
+use Dev4Press\v43\Core\Quick\Sanitize;
+use function Dev4Press\v43\Functions\panel;
 
-$_scope_labels = array(
-	'global' => __( "Global", "d4plib" ),
-	'front'  => __( "Frontend", "d4plib" ),
-	'admin'  => __( "Admin", "d4plib" )
-);
-
-$_scope_icons = array(
-	'global' => 'd4p-ui-globe',
-	'front'  => 'd4p-ui-desktop',
-	'admin'  => 'd4p-ui-dashboard'
+$_scopes = array(
+	'global' => array( 'label' => __( "Global", "d4plib" ), 'icon' => 'd4p-ui-globe' ),
+	'front'  => array( 'label' => __( "Frontend", "d4plib" ), 'icon' => 'd4p-ui-desktop' ),
+	'admin'  => array( 'label' => __( "Admin", "d4plib" ), 'icon' => 'd4p-ui-dashboard' )
 );
 
 ?>
@@ -102,9 +96,11 @@ $_scope_icons = array(
                             <span title="<?php esc_attr_e( "This is a Beta feature, and it can be unstable!", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-flask"></i></span>
                         </div>
 					<?php } ?>
-                    <div class="_scope">
-                        <span title="<?php echo esc_attr( $_scope_labels[ $obj[ 'scope' ] ] ); ?>"><i class="d4p-icon <?php echo esc_attr( $_scope_icons[ $obj[ 'scope' ] ] ); ?>"></i></span>
-                    </div>
+					<?php if ( panel()->a()->plugin()->f()->is_scope_enabled() ) { ?>
+                        <div class="_scope">
+                            <span title="<?php echo esc_attr( $_scopes[ $obj[ 'scope' ] ][ 'label' ] ); ?>"><i class="d4p-icon <?php echo esc_attr( $_scopes[ $obj[ 'scope' ] ][ 'icon' ] ); ?>"></i></span>
+                        </div>
+					<?php } ?>
                 </div>
             </div>
 

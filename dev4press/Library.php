@@ -1,8 +1,8 @@
 <?php
 
 /*
-Name:    Dev4Press\v42\Library
-Version: v4.2
+Name:    Dev4Press\v43\Library
+Version: v4.3
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace Dev4Press\v42;
+namespace Dev4Press\v43;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -34,11 +34,11 @@ class Library {
 	/**
 	 * @var string
 	 */
-	private $_version = '4.2.1';
+	private $_version = '4.3';
 	/**
 	 * @var string
 	 */
-	private $_build = '4201';
+	private $_build = '4300';
 	/**
 	 * @var string
 	 */
