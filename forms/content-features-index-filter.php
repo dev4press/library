@@ -2,7 +2,11 @@
 
 use function Dev4Press\v43\Functions\panel;
 
-$buttons = panel()->get_filter_buttons();
+if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
+	$buttons = panel()->get_filter_buttons_for_override();
+} else {
+	$buttons = panel()->get_filter_buttons();
+}
 
 ?>
 

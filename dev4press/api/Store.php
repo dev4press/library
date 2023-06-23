@@ -68,7 +68,7 @@ class Store {
 			'free'        => false,
 			'pro'         => true
 		),
-		"coresecurity"              => array(
+		"coresecurity"                     => array(
 			"code"        => "coresecurity",
 			"name"        => "CoreSecurity",
 			"description" => "A collection of many security related tools for .htaccess hardening with security events log, ReCaptcha, firewall, and tweaks collection, login and registration control and more.",
@@ -78,7 +78,7 @@ class Store {
 			'pro'         => true,
 			'internal'    => true
 		),
-		"coreseo"                   => array(
+		"coreseo"                          => array(
 			"code"        => "coreseo",
 			"name"        => "CoreSEO",
 			"description" => "Toolbox plugin with a number of search engine optimization related modules for Sitemaps, Robots.txt, Robots Meta and Knowledge Graph control, with more modules to be added.",

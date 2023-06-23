@@ -76,4 +76,30 @@ abstract class PanelFeatures extends Panel {
 			)
 		);
 	}
+
+	public function get_filter_counters_for_override() : array {
+		return array(
+			'all'      => array( 'label' => __( "All", "d4plib" ), 'selector' => '._is-feature' ),
+			'active'   => array( 'label' => __( "Override Active", "d4plib" ), 'selector' => '._is-feature._is-active' ),
+			'disabled' => array( 'label' => __( "Override Disabled", "d4plib" ), 'selector' => '._is-feature:not(._is-active)' )
+		);
+	}
+
+	public function get_filter_buttons_for_override() : array {
+		return array(
+			'all'      => array(
+				'label'    => __( "All", "d4plib" ),
+				'selector' => '._is-feature',
+				'default'  => true
+			),
+			'active'   => array(
+				'label'    => __( "Override Active", "d4plib" ),
+				'selector' => '._is-feature._is-active'
+			),
+			'disabled' => array(
+				'label'    => __( "Override Disabled", "d4plib" ),
+				'selector' => '._is-feature:not(._is-active)'
+			)
+		);
+	}
 }

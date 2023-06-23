@@ -5,7 +5,12 @@ use function Dev4Press\v43\Functions\panel;
 $_panel     = panel()->a()->panel_object();
 $_subpanel  = panel()->a()->subpanel;
 $_subpanels = panel()->subpanels();
-$counters   = panel()->get_filter_counters();
+
+if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
+	$counters = panel()->get_filter_counters_for_override();
+} else {
+	$counters = panel()->get_filter_counters();
+}
 
 ?>
 <div class="d4p-sidebar">

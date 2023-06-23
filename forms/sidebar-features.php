@@ -8,12 +8,21 @@ $_subpanels = panel()->subpanels();
 $_features  = panel()->a()->plugin()->f();
 $_beta      = $_features->is_beta( $_subpanel );
 
-$_url_reset = panel()->a()->current_url();
+$_url_base  = panel()->a()->current_url();
 $_url_reset = add_query_arg( array(
 	'single-action'   => 'reset',
 	panel()->a()->v() => 'getback',
-	'_wpnonce'        => wp_create_nonce( 'coreseo-feature-reset-' . $_subpanel )
-) );
+	'_wpnonce'        => wp_create_nonce( panel()->a()->plugin_prefix . '-feature-reset-' . $_subpanel )
+), $_url_base );
+$_url_copy  = '';
+
+if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
+	$_url_copy = add_query_arg( array(
+		'single-action'   => 'network-copy',
+		panel()->a()->v() => 'getback',
+		'_wpnonce'        => wp_create_nonce( panel()->a()->plugin_prefix . '-feature-network-copy-' . $_subpanel )
+	), $_url_base );
+}
 
 ?>
 <div class="d4p-sidebar">
@@ -42,6 +51,20 @@ $_url_reset = add_query_arg( array(
             <div class="d4p-feature-more-ctrl-options" style="display: none">
                 <p><?php esc_html_e( "If you want, you can reset all the settings for this Feature to default values.", "d4plib" ); ?></p>
                 <a class="button-primary" href="<?php echo esc_url( $_url_reset ); ?>"><?php esc_html_e( "Reset Feature Settings", "d4plib" ); ?></a>
+
+				<?php
+
+				if ( ! empty( $_url_copy ) ) {
+					?>
+
+                    <hr/>
+                    <p><?php esc_html_e( "You can also copy the settings from the main Network settings for this feature.", "d4plib" ); ?></p>
+                    <a class="button-primary" href="<?php echo esc_url( $_url_copy ); ?>"><?php esc_html_e( "Copy Network Settings", "d4plib" ); ?></a>
+
+					<?php
+				}
+
+				?>
             </div>
             <div class="d4p-panel-buttons">
                 <input type="submit" value="<?php esc_attr_e( "Save Settings", "d4plib" ); ?>" class="button-primary"/>

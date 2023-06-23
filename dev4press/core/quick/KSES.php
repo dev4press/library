@@ -75,8 +75,8 @@ class KSES {
 				'style' => true
 			),
 			'span'   => array(
-				'class'  => true,
-				'style'  => true
+				'class' => true,
+				'style' => true
 			),
 			'i'      => array(
 				'class'  => true,
