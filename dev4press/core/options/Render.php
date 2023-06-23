@@ -289,7 +289,7 @@ class Render {
 		if ( ! empty( $setting->more ) ) {
 			echo '<div class="d4p-more-wrapper">';
 			echo '<div class="d4p-more-title">';
-			echo '<i aria-hidden="true" class="d4p-icon d4p-ui-chevron-square-down d4p-icon-fw"></i> <button type="button">' . __( "Toggle Additional Information", "gd-security-toolbox" ) . '</button>';
+			echo '<i aria-hidden="true" class="d4p-icon d4p-ui-chevron-square-down d4p-icon-fw"></i> <button type="button">' . __( "Toggle Additional Information", "d4plib" ) . '</button>';
 			echo '</div>';
 			echo '<div class="d4p-more-content">';
 

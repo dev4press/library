@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v43\Core\Options;
 
+use Dev4Press\v43\Core\Options\Element as EL;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -82,6 +84,82 @@ abstract class Features {
 		}
 
 		return $this->core()->is_enabled( $this->feature );
+	}
+
+	protected function settings_hidden() : array {
+		return array(
+			$this->feature . '_activation' => array(
+				'name'     => __( "Feature Status", "d4plib" ),
+				'sections' => array(
+					array(
+						'label'    => '',
+						'name'     => '',
+						'class'    => '',
+						'settings' => array(
+							EL::info( __( "Hidden", "d4plib" ), __( "This feature can't be activated or configured at this time, because one or more of the feature prerequisites are missing.", "d4plib" ) )
+						)
+					)
+				)
+			)
+		);
+	}
+
+	protected function settings_always_on() : array {
+		return array(
+			$this->feature . '_activation' => array(
+				'name'     => __( "Feature Status", "d4plib" ),
+				'sections' => array(
+					array(
+						'label'    => '',
+						'name'     => '',
+						'class'    => '',
+						'settings' => array(
+							EL::info( __( "Active", "d4plib" ), __( "This feature is always active, and it can't be disabled. You can enable or disable individual settings included.", "d4plib" ) )
+						)
+					)
+				)
+			)
+		);
+	}
+
+	protected function settings_control() : array {
+		if ( $this->core()->network_mode() && ! is_network_admin() ) {
+			$network = $this->core()->is_enabled( $this->feature );
+			$badge   = '<div class="d4p-feature-status-badge ' . ( $network ? '__is-active' : '__is-inactive' ) . '"><i class="d4p-icon d4p-ui-' . ( $network ? 'check-square' : 'close-square' ) . ' d4p-icon-fw d4p-icon-lg"></i> ' . ( $network ? __( "Active", "d4plib" ) : __( "Inactive", "d4plib" ) );
+
+			return array(
+				$this->feature . '_activation' => array(
+					'name'     => __( "Feature Status", "d4plib" ),
+					'sections' => array(
+						array(
+							'label'    => '',
+							'name'     => '',
+							'class'    => '',
+							'settings' => array(
+								EL::i( 'load', $this->feature, __( "Override", "d4plib" ), __( "The activation depends on the Network settings for this feature. Here, you can override network settings for this feature for this blog only.", "d4plib" ), Type::BOOLEAN, $this->is_enabled() )->args( array( 'label' => __( "Feature network override is active", "d4plib" ) ) ),
+								EL::info( __( "Status", "d4plib" ), $badge )
+							)
+						)
+					)
+				)
+			);
+		} else {
+			return array(
+				$this->feature . '_activation' => array(
+					'name'     => __( "Feature Status", "d4plib" ),
+					'sections' => array(
+						array(
+							'label'    => '',
+							'name'     => '',
+							'class'    => '',
+							'settings' => array(
+								EL::i( 'load', $this->feature, __( "Active", "d4plib" ), __( "This feature will be loaded only if activated. If you don't need this feature, disable it.", "d4plib" ), Type::BOOLEAN, $this->is_enabled() )->args( array( 'label' => __( "Feature is active", "d4plib" ) ) )
+							)
+						)
+					)
+				)
+			);
+		}
 	}
 
 	abstract protected function init();

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 06/15/2023 12:51:11 PM\n"
+"POT-Creation-Date: 06/23/2023 05:31:19 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -491,76 +491,137 @@ msgctxt "Email Detection Type"
 msgid "Activity At Message"
 msgstr ""
 
-#: dev4press/core/options/Render.php:526
+#: dev4press/core/options/Features.php:91
+#: dev4press/core/options/Features.php:109
+#: dev4press/core/options/Features.php:131
+#: dev4press/core/options/Features.php:148
+msgid "Feature Status"
+msgstr ""
+
+#: dev4press/core/options/Features.php:98
+msgid "Hidden"
+msgstr ""
+
+#: dev4press/core/options/Features.php:98
+msgid "This feature can't be activated or configured at this time, because one or more of the feature prerequisites are missing."
+msgstr ""
+
+#: dev4press/core/options/Features.php:116
+#: dev4press/core/options/Features.php:127
+#: dev4press/core/options/Features.php:155
+#: dev4press/core/ui/admin/PanelFeatures.php:48
+#: dev4press/core/ui/admin/PanelFeatures.php:69
+#: forms/content-features-index.php:71
+msgid "Active"
+msgstr ""
+
+#: dev4press/core/options/Features.php:116
+msgid "This feature is always active, and it can't be disabled. You can enable or disable individual settings included."
+msgstr ""
+
+#: dev4press/core/options/Features.php:127
+msgid "Inactive"
+msgstr ""
+
+#: dev4press/core/options/Features.php:138
+msgid "Override"
+msgstr ""
+
+#: dev4press/core/options/Features.php:138
+msgid "The activation depends on the Network settings for this feature. Here, you can override network settings for this feature for this blog only."
+msgstr ""
+
+#: dev4press/core/options/Features.php:138
+msgid "Feature network override is active"
+msgstr ""
+
+#: dev4press/core/options/Features.php:139
+#: forms/content-about-info.php:26
+msgid "Status"
+msgstr ""
+
+#: dev4press/core/options/Features.php:155
+msgid "This feature will be loaded only if activated. If you don't need this feature, disable it."
+msgstr ""
+
+#: dev4press/core/options/Features.php:155
+msgid "Feature is active"
+msgstr ""
+
+#: dev4press/core/options/Render.php:291
+msgid "Toggle Additional Information"
+msgstr ""
+
+#: dev4press/core/options/Render.php:561
 msgid "Add New Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:555
-#: dev4press/core/options/Render.php:586
+#: dev4press/core/options/Render.php:590
+#: dev4press/core/options/Render.php:621
 msgid "No items to show"
 msgstr ""
 
-#: dev4press/core/options/Render.php:637
+#: dev4press/core/options/Render.php:672
 #: dev4press/core/ui/Enqueue.php:304
 msgid "Image not selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:660
+#: dev4press/core/options/Render.php:695
 msgid "Enabled"
 msgstr ""
 
-#: dev4press/core/options/Render.php:618
+#: dev4press/core/options/Render.php:653
 #: dev4press/core/ui/admin/PanelTools.php:57
 #: dev4press/core/ui/Enqueue.php:300
 msgid "Remove"
 msgstr ""
 
-#: dev4press/core/options/Render.php:619
+#: dev4press/core/options/Render.php:654
 #: dev4press/core/ui/Enqueue.php:301
 msgid "Preview"
 msgstr ""
 
-#: dev4press/core/options/Render.php:604
-msgid "Add Image"
-msgstr ""
-
-#: dev4press/core/options/Render.php:608
-msgid "No images selected."
-msgstr ""
-
-#: dev4press/core/options/Render.php:632
-#: dev4press/core/ui/Enqueue.php:302
-msgid "Select Image"
-msgstr ""
-
-#: dev4press/core/options/Render.php:633
-msgid "Show Image"
-msgstr ""
-
-#: dev4press/core/options/Render.php:634
-msgid "Clear Image"
-msgstr ""
-
-#: dev4press/core/options/Render.php:858
-msgid "Value"
-msgstr ""
-
-#: dev4press/core/options/Render.php:861
-msgid "Unit"
-msgstr ""
-
-#: dev4press/core/options/Render.php:874
+#: dev4press/core/options/Render.php:311
 #: dev4press/core/ui/Elements.php:286
 #: dev4press/core/ui/Elements.php:370
 #: dev4press/core/ui/Elements.php:449
 msgid "Check All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:875
+#: dev4press/core/options/Render.php:312
 #: dev4press/core/ui/Elements.php:287
 #: dev4press/core/ui/Elements.php:371
 #: dev4press/core/ui/Elements.php:450
 msgid "Uncheck All"
+msgstr ""
+
+#: dev4press/core/options/Render.php:639
+msgid "Add Image"
+msgstr ""
+
+#: dev4press/core/options/Render.php:643
+msgid "No images selected."
+msgstr ""
+
+#: dev4press/core/options/Render.php:667
+#: dev4press/core/ui/Enqueue.php:302
+msgid "Select Image"
+msgstr ""
+
+#: dev4press/core/options/Render.php:668
+msgid "Show Image"
+msgstr ""
+
+#: dev4press/core/options/Render.php:669
+msgid "Clear Image"
+msgstr ""
+
+#: dev4press/core/options/Render.php:893
+msgid "Value"
+msgstr ""
+
+#: dev4press/core/options/Render.php:896
+msgid "Unit"
 msgstr ""
 
 #: dev4press/core/plugins/AJAX.php:151
@@ -606,11 +667,11 @@ msgstr ""
 msgid "Nightly"
 msgstr ""
 
-#: dev4press/core/plugins/InstallDB.php:79
+#: dev4press/core/plugins/InstallDB.php:80
 msgid "Some columns are missing."
 msgstr ""
 
-#: dev4press/core/plugins/InstallDB.php:85
+#: dev4press/core/plugins/InstallDB.php:86
 msgid "Table is missing."
 msgstr ""
 
@@ -684,18 +745,14 @@ msgstr ""
 
 #: dev4press/core/ui/admin/PanelFeatures.php:46
 #: dev4press/core/ui/admin/PanelFeatures.php:56
+#: dev4press/core/ui/admin/PanelFeatures.php:81
+#: dev4press/core/ui/admin/PanelFeatures.php:90
 msgid "All"
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelFeatures.php:47
 #: dev4press/core/ui/admin/PanelFeatures.php:61
 msgid "Always On"
-msgstr ""
-
-#: dev4press/core/ui/admin/PanelFeatures.php:48
-#: dev4press/core/ui/admin/PanelFeatures.php:69
-#: forms/content-features-index.php:77
-msgid "Active"
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelFeatures.php:49
@@ -705,6 +762,16 @@ msgstr ""
 
 #: dev4press/core/ui/admin/PanelFeatures.php:65
 msgid "Always On + Active"
+msgstr ""
+
+#: dev4press/core/ui/admin/PanelFeatures.php:82
+#: dev4press/core/ui/admin/PanelFeatures.php:95
+msgid "Override Active"
+msgstr ""
+
+#: dev4press/core/ui/admin/PanelFeatures.php:83
+#: dev4press/core/ui/admin/PanelFeatures.php:99
+msgid "Override Disabled"
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelSettings.php:23
@@ -1262,10 +1329,6 @@ msgstr ""
 msgid "Build"
 msgstr ""
 
-#: forms/content-about-info.php:26
-msgid "Status"
-msgstr ""
-
 #: forms/content-about-info.php:29
 msgid "Edition"
 msgstr ""
@@ -1342,31 +1405,31 @@ msgstr ""
 msgid "OFF"
 msgstr ""
 
-#: forms/content-features-index-filter.php:20
+#: forms/content-features-index-filter.php:24
 msgid "Search features by keyword"
 msgstr ""
 
-#: forms/content-features-index-filter.php:20
+#: forms/content-features-index-filter.php:24
 msgid "Search..."
 msgstr ""
 
-#: forms/content-features-index.php:101
+#: forms/content-features-index.php:95
 msgid "This is a Beta feature, and it can be unstable!"
 msgstr ""
 
-#: forms/content-features-index.php:80
+#: forms/content-features-index.php:74
 msgid "This feature can't be enabled because of the missing prerequisites."
 msgstr ""
 
-#: forms/content-features-index.php:85
+#: forms/content-features-index.php:79
 msgid "This feature can't be enabled at this time."
 msgstr ""
 
-#: forms/content-features-index.php:90
+#: forms/content-features-index.php:84
 msgid "This feature has no settings"
 msgstr ""
 
-#: forms/content-features-index.php:96
+#: forms/content-features-index.php:90
 msgid "This feature adds a new panel"
 msgstr ""
 
@@ -1378,7 +1441,7 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: forms/content-features-index.php:88
+#: forms/content-features-index.php:82
 msgid "Settings for '%s'"
 msgstr ""
 
@@ -1496,48 +1559,56 @@ msgstr ""
 msgid "Version: %s"
 msgstr ""
 
-#: forms/sidebar-features-index.php:33
+#: forms/sidebar-features-index.php:38
 msgid "Bulk Control"
 msgstr ""
 
-#: forms/sidebar-features-index.php:35
+#: forms/sidebar-features-index.php:40
 msgid "You can enable or disable all the features at once."
 msgstr ""
 
-#: forms/sidebar-features-index.php:37
+#: forms/sidebar-features-index.php:42
 msgid "Enable All"
 msgstr ""
 
-#: forms/sidebar-features-index.php:38
+#: forms/sidebar-features-index.php:43
 msgid "Disable All"
 msgstr ""
 
-#: forms/sidebar-features.php:46
+#: forms/sidebar-features.php:69
 #: forms/sidebar-settings-full.php:33
 #: forms/sidebar-settings.php:26
 msgid "Save Settings"
 msgstr ""
 
-#: forms/sidebar-features.php:40
+#: forms/sidebar-features.php:49
 msgid "More Controls"
 msgstr ""
 
-#: forms/sidebar-features.php:42
+#: forms/sidebar-features.php:51
 msgid "If you want, you can reset all the settings for this Feature to default values."
 msgstr ""
 
-#: forms/sidebar-features.php:43
+#: forms/sidebar-features.php:52
 msgid "Reset Feature Settings"
 msgstr ""
 
-#: forms/sidebar-features.php:50
+#: forms/sidebar-features.php:60
+msgid "You can also copy the settings from the main Network settings for this feature."
+msgstr ""
+
+#: forms/sidebar-features.php:61
+msgid "Copy Network Settings"
+msgstr ""
+
+#: forms/sidebar-features.php:73
 #: forms/sidebar-settings-full.php:36
 #: forms/sidebar-settings.php:29
 #: forms/sidebar-tools.php:44
 msgid "Return to top"
 msgstr ""
 
-#: forms/sidebar-features.php:30
+#: forms/sidebar-features.php:39
 msgid "Beta Feature"
 msgstr ""
 
