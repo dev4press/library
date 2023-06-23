@@ -539,6 +539,9 @@ abstract class Plugin {
 	/** @return \Dev4Press\v43\Core\Options\Settings */
 	abstract public function settings_definitions();
 
+	/** @return \Dev4Press\v43\Core\Plugins\Settings */
+	abstract public function settings_blog();
+
 	public function features_definitions( $feature ) {
 
 	}
@@ -549,5 +552,13 @@ abstract class Plugin {
 		}
 
 		return $status;
+	}
+
+	public function is_save_destination_primary() : bool {
+		if ( $this->plugin_network && $this->is_multisite ) {
+			return is_network_admin();
+		}
+
+		return true;
 	}
 }

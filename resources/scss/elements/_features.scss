@@ -365,3 +365,21 @@
         padding: 0;
     }
 }
+
+.d4p-feature-status-badge {
+    border-radius: var(--d4p-layout-main-border-radius);
+    display: inline-block;
+    padding: 0.5em 1em;
+    color: #FFF;
+    font-size: 1.1em;
+    letter-spacing: 2px;
+    font-weight: 500;
+
+    &.__is-active {
+        background: var(--d4p-color-button-active-background);
+    }
+
+    &.__is-inactive {
+        background: var(--d4p-color-button-inactive-background);
+    }
+}

@@ -35,7 +35,8 @@ abstract class Features {
 	protected $feature;
 
 	public function __construct( $feature ) {
-		$this->feature              = $feature;
+		$this->feature = $feature;
+
 		$this->settings[ $feature ] = array();
 
 		$this->init();
@@ -63,7 +64,28 @@ abstract class Features {
 		return $list;
 	}
 
+	public function is_hidden() : bool {
+		return $this->core()->is_hidden( $this->feature );
+	}
+
+	public function is_always_on() : bool {
+		if ( $this->core()->network_mode() && ! is_network_admin() ) {
+			return false;
+		}
+
+		return $this->core()->is_always_on( $this->feature );
+	}
+
+	public function is_enabled() : bool {
+		if ( $this->core()->network_mode() && ! is_network_admin() ) {
+			return $this->core()->is_enabled_on_blog( $this->feature );
+		}
+
+		return $this->core()->is_enabled( $this->feature );
+	}
+
 	abstract protected function init();
 
+	/** @return \Dev4Press\v43\Core\Features\Load */
 	abstract public function core();
 }

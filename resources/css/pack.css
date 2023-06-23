@@ -1335,7 +1335,7 @@ a > .d4p-icon {
 .d4p-icon-lg {
   font-size: 1.33333333em;
   line-height: 0.75em;
-  vertical-align: -15%;
+  vertical-align: -25%;
 }
 
 .d4p-icon-2x {
@@ -2343,6 +2343,8 @@ a > .d4p-icon {
   --d4p-color-feature-active-text: #00A32A;
   --d4p-color-feature-beta-background: #FDE7FF;
   --d4p-color-feature-beta-text: #A30093;
+  --d4p-color-button-active-background: #00A32A;
+  --d4p-color-button-inactive-background: #A32A00;
 }
 
 .d4p-clearfix:before, .d4p-clearfix:after {
@@ -2434,6 +2436,8 @@ a > .d4p-icon {
   --d4p-color-feature-active-text: #00A32A;
   --d4p-color-feature-beta-background: #FDE7FF;
   --d4p-color-feature-beta-text: #A30093;
+  --d4p-color-button-active-background: #00A32A;
+  --d4p-color-button-inactive-background: #A32A00;
 }
 
 .d4p-wrap,
@@ -4063,4 +4067,20 @@ details.d4p-section-details > div .form-table code {
   flex: 1 0 calc(100% - 2em);
   margin: 1em;
   padding: 0;
+}
+
+.d4p-feature-status-badge {
+  border-radius: var(--d4p-layout-main-border-radius);
+  display: inline-block;
+  padding: 0.5em 1em;
+  color: #FFF;
+  font-size: 1.1em;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+.d4p-feature-status-badge.__is-active {
+  background: var(--d4p-color-button-active-background);
+}
+.d4p-feature-status-badge.__is-inactive {
+  background: var(--d4p-color-button-inactive-background);
 }

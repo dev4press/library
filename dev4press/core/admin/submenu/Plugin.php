@@ -80,4 +80,8 @@ abstract class Plugin extends BasePlugin {
 			$this->screen_setup();
 		}
 	}
+
+	public function settings_blog() {
+		return null;
+	}
 }

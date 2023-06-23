@@ -45,6 +45,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Admin {
 	public $name = '';
 
+	public function __construct() {
+	}
+
 	/** @return static */
 	public static function instance() {
 		static $instance = array();
@@ -63,7 +66,7 @@ abstract class Admin {
 	}
 
 	public function get( $name, $default = null ) {
-		return $this->f()->s()->get( $this->name . '__' . $name, 'features', $default );
+		return $this->f()->get_for_edit( $this->name, $name, $default );
 	}
 
 	public function settings( array $settings = array() ) : array {

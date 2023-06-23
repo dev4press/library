@@ -70,6 +70,10 @@ abstract class Load {
 		return false;
 	}
 
+	public function network_mode() : bool {
+		return $this->is_network_enabled() && is_multisite();
+	}
+
 	public function list() : array {
 		return array_keys( $this->_list );
 	}
@@ -161,6 +165,10 @@ abstract class Load {
 		return ! $this->is_hidden( $feature ) && ( ( isset( $this->_load[ $feature ] ) && $this->_load[ $feature ] === true ) || $this->is_always_on( $feature ) );
 	}
 
+	public function is_enabled_on_blog( string $feature ) : bool {
+		return ! $this->is_hidden( $feature ) && ( isset( $this->_load_blog[ $feature ] ) && $this->_load_blog[ $feature ] === true );
+	}
+
 	public function is_active( string $feature ) : bool {
 		return $this->is_always_on( $feature ) || in_array( $feature, $this->_active );
 	}
@@ -216,7 +224,19 @@ abstract class Load {
 				'always_on' => $this->is_always_on( $feature )
 			);
 
-			$panels[ $feature ] = $f;
+			$include = true;
+			if ( $this->network_mode() && ! is_network_admin() ) {
+				if ( $this->allow_blog_override( $feature ) ) {
+					$f[ 'always_on' ] = false;
+					$f[ 'active' ]    = $this->is_enabled_on_blog( $feature );
+				} else {
+					$include = false;
+				}
+			}
+
+			if ( $include ) {
+				$panels[ $feature ] = $f;
+			}
 		}
 
 		return $panels;
@@ -259,11 +279,23 @@ abstract class Load {
 	}
 
 	public function get_settings( string $feature ) {
-		if ( $this->is_network_enabled() && is_multisite() && $this->allow_blog_override( $feature ) ) {
-
+		if ( $this->network_mode() && $this->allow_blog_override( $feature ) ) {
+			if ( isset( $this->_load_blog[ $feature ] ) && $this->_load_blog[ $feature ] === true ) {
+				return $this->b()->feature_get( $feature );
+			}
 		}
 
 		return $this->s()->feature_get( $feature );
+	}
+
+	public function get_for_edit( string $feature, string $name, $default = null ) {
+		$real = $feature . '__' . $name;
+
+		if ( $this->network_mode() && ! is_network_admin() ) {
+			return $this->b()->get( $real, 'features', $default );
+		}
+
+		return $this->s()->get( $real, 'features', $default );
 	}
 
 	abstract public function s();

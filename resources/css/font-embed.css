@@ -24,7 +24,7 @@ h1 > .d4p-icon, h2 > .d4p-icon, h3 > .d4p-icon, h4 > .d4p-icon, h5 > .d4p-icon, 
 }
 
 a > .d4p-icon {
-  line-height: normal;
+  line-height: inherit;
   vertical-align: bottom;
 }
 
@@ -1335,7 +1335,7 @@ a > .d4p-icon {
 .d4p-icon-lg {
   font-size: 1.33333333em;
   line-height: 0.75em;
-  vertical-align: -15%;
+  vertical-align: -25%;
 }
 
 .d4p-icon-2x {

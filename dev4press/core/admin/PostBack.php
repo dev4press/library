@@ -139,18 +139,27 @@ abstract class PostBack {
 	}
 
 	protected function _process_save_data( $base ) {
-		$data   = Process::instance( $this->a()->n(), $this->a()->plugin_prefix )->prepare( $base )->process();
-		$filter = $this->a()->h( 'settings_save_settings_value' );
+		$data    = Process::instance( $this->a()->n(), $this->a()->plugin_prefix )->prepare( $base )->process();
+		$filter  = $this->a()->h( 'settings_save_settings_value' );
+		$primary = $this->a()->is_save_destination_primary();
 
 		foreach ( $data as $group => $values ) {
 			if ( ! empty( $group ) ) {
 				foreach ( $values as $name => $value ) {
 					$value = apply_filters( $filter, $value, $name, $group );
 
-					$this->a()->settings()->set( $name, $value, $group );
+					if ( $primary ) {
+						$this->a()->settings()->set( $name, $value, $group );
+					} else {
+						$this->a()->settings_blog()->set( $name, $value, $group );
+					}
 				}
 
-				$this->a()->settings()->save( $group );
+				if ( $primary ) {
+					$this->a()->settings()->save( $group );
+				} else {
+					$this->a()->settings_blog()->save( $group );
+				}
 			}
 		}
 	}

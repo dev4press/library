@@ -112,4 +112,8 @@ abstract class Plugin extends BasePlugin {
 
 		$this->global_admin_notices();
 	}
+
+	public function settings_blog() {
+		return null;
+	}
 }

@@ -219,6 +219,9 @@ abstract class Core {
 	/** @return \Dev4Press\v43\Core\Plugins\Settings */
 	abstract public function s();
 
+	/** @return \Dev4Press\v43\Core\Plugins\Settings */
+	abstract public function b();
+
 	/** @return NULL|\Dev4Press\v43\Core\Features\Load */
 	abstract public function f();
 }
