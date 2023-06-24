@@ -283,6 +283,10 @@ final class Enqueue {
 					'panel'    => $this->_admin->panel,
 					'subpanel' => $this->_admin->subpanel
 				),
+				'wp'      => array(
+					'is_multisite' => is_multisite(),
+					'is_network'   => is_multisite() && is_network_admin()
+				),
 				'content' => array(
 					'nonce' => wp_create_nonce( $this->_admin->plugin_prefix . '-admin-internal' )
 				)

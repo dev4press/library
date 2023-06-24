@@ -180,6 +180,7 @@
                             dataType: "json",
                             data: {
                                 feature: list,
+                                scope: d4plib_admin_data.wp.network ? 'network' : 'blog',
                                 status: active ? 'on' : 'off'
                             }
                         };
