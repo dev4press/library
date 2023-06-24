@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 namespace Dev4Press\v43\Core\Plugins;
 
 use Dev4Press\v43\Core\DateTime;
+use Dev4Press\v43\Core\Helpers\DB;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -74,6 +75,14 @@ abstract class Settings {
 	}
 
 	public function init() {
+		if ( $this->scope == 'network' ) {
+			if ( is_multisite() ) {
+				$this->force_load_sitemeta();
+			} else {
+				$this->force_load_options();
+			}
+		}
+
 		$this->current[ 'info' ] = $this->_settings_get( 'info' );
 
 		do_action( $this->base . '_settings_init' );
@@ -340,6 +349,45 @@ abstract class Settings {
 
 	public function updated_db_version( $version ) {
 		$this->set( 'db_version', $version, 'core', true );
+	}
+
+	protected function force_load_sitemeta() {
+		$core_options = array( $this->_name( 'info' ) );
+
+		foreach ( $this->_groups() as $group ) {
+			$core_options[] = $this->_name( $group );
+		}
+
+		$site_id = get_current_network_id();
+		$options = DB::instance()->prepare_in_list( $core_options );
+		$query   = DB::instance()->prepare( "SELECT `meta_key`, `meta_value` FROM " . DB::instance()->sitemeta . " WHERE `meta_key` IN ($options) AND `site_id` = %d", $site_id );
+		$options = DB::instance()->get_results( $query );
+
+		foreach ( $options as $option ) {
+			$key   = $option->meta_key;
+			$cache = "{$site_id}:$key";
+
+			$option->meta_value = maybe_unserialize( $option->meta_value );
+
+			wp_cache_set( $cache, $option->meta_value, 'site-options' );
+		}
+	}
+
+	protected function force_load_options() {
+		$core_options = array( $this->_name( 'info' ) );
+
+		foreach ( $this->_groups() as $group ) {
+			$core_options[] = $this->_name( $group );
+		}
+
+		$options = DB::instance()->prepare_in_list( $core_options );
+		$options = DB::instance()->get_results( "SELECT `option_name`, `option_value` FROM " . DB::instance()->options . " WHERE `option_name` IN ($options)" );
+
+		foreach ( $options as $option ) {
+			$option->option_value = maybe_unserialize( $option->option_value );
+
+			wp_cache_set( $options->option_name, $option->option_value, 'options' );
+		}
 	}
 
 	protected function _name( $name ) : string {

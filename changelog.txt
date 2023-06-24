@@ -4,6 +4,8 @@
 = Version 4.3 - 2023.07.12 =
 * New: settings elements can have toggleable additional information
 * New: some forms panel split into the elements files for re-usability
+* New: class `Settings` direct preload of the multisite network settings
+* New: added several more UI icons
 * Edit: improvements to the `Panel` class URLs and forms loading
 * Edit: massive improvements to Features in relation to network mode plugins
 * Edit: improvements to the rendering of the settings controls
