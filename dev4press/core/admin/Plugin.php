@@ -563,4 +563,14 @@ abstract class Plugin {
 
 		return true;
 	}
+
+	public function is_menu_item_network_only( $name ) : ?bool {
+		if ( ! $this->is_multisite ) {
+			return null;
+		}
+
+		$scope = $this->menu_items[ $name ][ 'scope' ] ?? array();
+
+		return empty( $scope ) || ! in_array( 'blog', $scope );
+	}
 }
