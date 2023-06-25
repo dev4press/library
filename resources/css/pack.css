@@ -2598,6 +2598,23 @@ a > .d4p-icon {
   line-height: inherit;
   vertical-align: bottom;
 }
+.d4p-wrap .d4p-header .d4p-navigator .d4p-header-special-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  font-size: 1.1em;
+  padding: 0.6em 0.9em;
+  border-radius: var(--d4p-layout-main-border-radius);
+  border: 1px solid var(--d4p-color-main-border);
+  background-color: var(--d4p-color-main-background);
+}
+.d4p-wrap .d4p-header .d4p-navigator .d4p-header-special-button span {
+  font-family: monospace;
+}
+.d4p-wrap .d4p-header .d4p-navigator .d4p-header-special-button i {
+  color: var(--d4p-color-layout-accent);
+  font-size: 1.5em;
+}
 @media screen and (max-width: 768px) {
   .d4p-wrap .d4p-header {
     margin-top: 64px;
