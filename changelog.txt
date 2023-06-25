@@ -5,11 +5,13 @@
 * New: settings elements can have toggleable additional information
 * New: some forms panel split into the elements files for re-usability
 * New: class `Settings` direct preload of the multisite network settings
+* New: class `HTAccess` expanded with the method to check .HTACCESS status
 * New: added several more UI icons
 * Edit: improvements to the `Panel` class URLs and forms loading
 * Edit: massive improvements to Features in relation to network mode plugins
 * Edit: improvements to the rendering of the settings controls
 * Edit: few improvements to the plugins `Store` class
+* Edit: class `HTAccess` improves the writing to the file
 * Edit: class for `PostBack` can handle network and blog mode plugins
 * Edit: optimization of the font generating file sources
 * Fix: header navigation in multisite mode show items that don't belong

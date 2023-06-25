@@ -50,7 +50,7 @@ class HTAccess {
 
 	public function load() {
 		if ( $this->file_exists() ) {
-			return explode( "\n", implode( '', file( $this->path ) ) );
+			return explode( PHP_EOL, implode( '', file( $this->path ) ) );
 		} else {
 			return array();
 		}
@@ -63,40 +63,48 @@ class HTAccess {
 	public function insert( $marker, $insertion = array(), $location = 'end', $cleanup = false ) : bool {
 		if ( ! $this->file_exists() || $this->is_writable() ) {
 			if ( ! $this->file_exists() ) {
-				$markerdata = '';
+				$marker_data = '';
 			} else {
-				$markerdata = $this->load();
+				$marker_data = $this->load();
 			}
 
-			if ( ! $f = @fopen( $this->path, 'w' ) ) {
+			if ( ! $f = fopen( $this->path, 'w' ) ) {
 				return false;
 			}
 
-			if ( $location == 'start' ) {
-				$this->write( $f, $marker, $insertion );
+			$result = true;
+			if ( flock( $f, LOCK_EX ) ) {
+				if ( $location == 'start' ) {
+					$this->write( $f, $marker, $insertion );
 
-				$insertion = array();
-			}
+					$insertion = array();
+				}
 
-			if ( $markerdata ) {
-				$state = true;
-				foreach ( $markerdata as $markerline ) {
-					if ( strpos( $markerline, '# ' . $this->begin . ' ' . $marker ) !== false ) {
-						$state = false;
-					}
+				if ( $marker_data ) {
+					$state = true;
+					foreach ( $marker_data as $marker_line ) {
+						if ( strpos( $marker_line, '# ' . $this->begin . ' ' . $marker ) !== false ) {
+							$state = false;
+						}
 
-					if ( $state ) {
-						fwrite( $f, "{$markerline}\n" );
-					}
+						if ( $state ) {
+							fwrite( $f, $marker_line . PHP_EOL );
+						}
 
-					if ( strpos( $markerline, '# ' . $this->end . ' ' . $marker ) !== false ) {
-						$state = true;
+						if ( strpos( $marker_line, '# ' . $this->end . ' ' . $marker ) !== false ) {
+							$state = true;
+						}
 					}
 				}
-			}
 
-			if ( $location == 'end' ) {
-				$this->write( $f, $marker, $insertion );
+				if ( $location == 'end' ) {
+					$this->write( $f, $marker, $insertion );
+				}
+
+				fflush( $f );
+				flock( $f, LOCK_UN );
+			} else {
+				$result = false;
 			}
 
 			fclose( $f );
@@ -105,7 +113,7 @@ class HTAccess {
 				$this->cleanup();
 			}
 
-			return true;
+			return $result;
 		} else {
 			return false;
 		}
@@ -113,74 +121,82 @@ class HTAccess {
 
 	public function write( $f, $marker, $insertion = array() ) {
 		if ( is_array( $insertion ) && ! empty( $insertion ) ) {
-			fwrite( $f, "\n# BEGIN {$marker}\n" );
+			fwrite( $f, PHP_EOL . "# BEGIN " . $marker . PHP_EOL );
 
-			foreach ( $insertion as $insertline ) {
-				fwrite( $f, "{$insertline}\n" );
+			foreach ( $insertion as $insert_line ) {
+				fwrite( $f, $insert_line . PHP_EOL );
 			}
 
-			fwrite( $f, "# END {$marker}\n" );
+			fwrite( $f, "# END " . $marker . PHP_EOL );
 		}
 	}
 
-	public function cleanup() {
+	public function cleanup() : bool {
 		if ( $this->file_exists() && $this->is_writable() ) {
-			$markerdata = $this->load();
+			$marker_data = $this->load();
 
-			if ( ! $f = @fopen( $this->path, 'w' ) ) {
+			if ( ! $f = fopen( $this->path, 'w' ) ) {
 				return false;
 			}
 
-			$moddeddata = array();
+			$result = true;
+			if ( flock( $f, LOCK_EX ) ) {
+				$modded_data = array();
 
-			$line_start = 0;
-			$line_end   = 0;
+				$line_start = 0;
+				$line_end   = 0;
 
-			for ( $i = 0; $i < count( $markerdata ); $i ++ ) {
-				if ( ! empty( $markerdata[ $i ] ) ) {
-					$line_start = $i;
-					break;
-				}
-			}
-
-			for ( $i = count( $markerdata ) - 1; $i > 0; $i -- ) {
-				if ( ! empty( $markerdata[ $i ] ) ) {
-					$line_end = $i;
-					break;
-				}
-			}
-
-			$blocked = false;
-			for ( $i = $line_start; $i < $line_end + 1; $i ++ ) {
-				$addline = true;
-				$endline = false;
-
-				$markerline = $markerdata[ $i ];
-
-				if ( $blocked ) {
-					if ( ! empty( $markerline ) ) {
-						$blocked = false;
-					} else {
-						$addline = false;
+				for ( $i = 0; $i < count( $marker_data ); $i ++ ) {
+					if ( ! empty( $marker_data[ $i ] ) ) {
+						$line_start = $i;
+						break;
 					}
 				}
 
-				if ( substr( $markerline, 0, 5 ) == '# END' ) {
-					$endline = true;
-					$blocked = true;
-				}
-
-				if ( $addline ) {
-					$moddeddata[] = $markerline;
-
-					if ( $endline ) {
-						$moddeddata[] = '';
+				for ( $i = count( $marker_data ) - 1; $i > 0; $i -- ) {
+					if ( ! empty( $marker_data[ $i ] ) ) {
+						$line_end = $i;
+						break;
 					}
 				}
-			}
 
-			foreach ( $moddeddata as $markerline ) {
-				fwrite( $f, "{$markerline}\n" );
+				$blocked = false;
+				for ( $i = $line_start; $i < $line_end + 1; $i ++ ) {
+					$add_line = true;
+					$end_line = false;
+
+					$marker_line = $marker_data[ $i ];
+
+					if ( $blocked ) {
+						if ( ! empty( $marker_line ) ) {
+							$blocked = false;
+						} else {
+							$add_line = false;
+						}
+					}
+
+					if ( substr( $marker_line, 0, 5 ) == '# END' ) {
+						$end_line = true;
+						$blocked  = true;
+					}
+
+					if ( $add_line ) {
+						$modded_data[] = $marker_line;
+
+						if ( $end_line ) {
+							$modded_data[] = '';
+						}
+					}
+				}
+
+				foreach ( $modded_data as $marker_line ) {
+					fwrite( $f, $marker_line . PHP_EOL );
+				}
+
+				fflush( $f );
+				flock( $f, LOCK_UN );
+			} else {
+				return false;
 			}
 
 			fclose( $f );
@@ -189,5 +205,35 @@ class HTAccess {
 		}
 
 		return false;
+	}
+
+	public function check() : array {
+		global $is_apache;
+
+		$mods = $is_apache && function_exists( 'apache_get_modules' ) ? apache_get_modules() : array();
+
+		$check = array(
+			'is_apache'          => $is_apache,
+			'file'               => '.htaccess',
+			'htaccess'           => $this->path,
+			'found'              => $is_apache && $this->file_exists(),
+			'writable'           => $is_apache && $this->is_writable(),
+			'automatic'          => false,
+			'apache_get_modules' => ! empty( $mods ),
+			'mod_rewrite'        => in_array( 'mod_rewrite', $mods ),
+			'mod_alias'          => in_array( 'mod_alias', $mods ),
+			'mod_setenvif'       => in_array( 'mod_setenvif', $mods ),
+			'mod_headers'        => in_array( 'mod_headers', $mods )
+		);
+
+		if ( $is_apache && ! $check[ 'found' ] ) {
+			$check[ 'writable' ] = is_writable( ABSPATH );
+		}
+
+		if ( $is_apache && $check[ 'writable' ] && $check[ 'apache' ] ) {
+			$check[ 'automatic' ] = true;
+		}
+
+		return $check;
 	}
 }
