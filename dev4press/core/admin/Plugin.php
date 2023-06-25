@@ -564,13 +564,21 @@ abstract class Plugin {
 		return true;
 	}
 
-	public function is_menu_item_network_only( $name ) : ?bool {
+	public function get_menu_item_network_url_flag( $name ) : ?bool {
 		if ( ! $this->is_multisite ) {
 			return null;
 		}
 
 		$scope = $this->menu_items[ $name ][ 'scope' ] ?? array();
 
-		return empty( $scope ) || ! in_array( 'blog', $scope );
+		if ( empty( $scope ) ) {
+			return null;
+		}
+
+		if ( in_array( 'network', $scope ) && ! in_array( 'blog', $scope ) ) {
+			return true;
+		}
+
+		return null;
 	}
 }
