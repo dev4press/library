@@ -2,6 +2,8 @@
 
 namespace Dev4Press\v43\Core\UI\Admin;
 
+use Dev4Press\v43\WordPress\Admin\Table;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -261,6 +263,10 @@ abstract class Panel {
 
 		$this->load( $content, $fallback, $base . '.php', $args );
 	}
+
+	public function get_table_object() {
+        return null;
+    }
 
 	protected function interface_colors() {
 		if ( $this->a()->auto_mod_interface_colors ) {

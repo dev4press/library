@@ -46,15 +46,19 @@ abstract class Table extends WP_List_Table {
 	public $_self_nonce_key = '';
 	public $_table_primary_column = '';
 	public $_views_separator = ' |';
+	public $_rows_per_page_key = '';
+	public $_rows_per_page_default = 25;
 
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );
 
-		$this->process_request_args();
-
 		if ( ! empty( $this->_table_primary_column ) ) {
 			add_filter( 'list_table_primary_column', array( $this, 'change_primary_column' ) );
 		}
+	}
+
+	public function prepare_table() {
+		$this->process_request_args();
 	}
 
 	public function change_primary_column( $column ) {
@@ -190,7 +194,13 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function rows_per_page() : int {
-		return 20;
+		$per_page = empty( $this->_rows_per_page_key ) ? 0 : get_user_option( $this->_rows_per_page_key );
+
+		if ( empty( $per_page ) || $per_page < 1 ) {
+			$per_page = $this->_rows_per_page_default;
+		}
+
+		return $per_page;
 	}
 
 	protected function get_table_classes() : array {
