@@ -47,6 +47,10 @@ abstract class GetBack {
 		return $this->admin;
 	}
 
+	public function p() {
+		return $this->page;
+	}
+
 	protected function check_nonce( $action, $nonce = '_wpnonce', $die = true ) {
 		check_ajax_referer( $action, $nonce, $die );
 	}
