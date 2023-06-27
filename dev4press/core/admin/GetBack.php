@@ -35,9 +35,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class GetBack {
 	protected $admin;
+	protected $page;
 
 	public function __construct( $admin ) {
 		$this->admin = $admin;
+
+		$this->page = isset( $_REQUEST[ 'page' ] ) ? Sanitize::key( $_REQUEST[ 'page' ] ) : false;
 
 		$this->process();
 	}
