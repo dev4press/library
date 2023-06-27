@@ -28,6 +28,7 @@ namespace Dev4Press\v43\Core\UI;
 
 use Dev4Press\v43\Core\Quick\Arr;
 use Dev4Press\v43\Core\Quick\KSES;
+use Dev4Press\v43\Core\Quick\Sanitize;
 use Dev4Press\v43\WordPress\Walker\CheckboxRadio;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -48,90 +49,15 @@ class Elements {
 		return $_instance;
 	}
 
-	private function id_from_name( $name, $id = '' ) : string {
-		if ( $id == '' ) {
-			$id = str_replace( ']', '', $name );
-			$id = str_replace( '[', '_', $id );
-		} else if ( $id == '_' ) {
-			$id = '';
-		}
-
-		return (string) $id;
-	}
-
 	public function select( $values, $args = array(), $attr = array() ) : string {
-		$defaults = array(
-			'selected' => '',
-			'name'     => '',
-			'id'       => '',
-			'class'    => '',
-			'style'    => '',
-			'empty'    => '',
-			'title'    => '',
-			'multi'    => false,
-			'echo'     => true,
-			'readonly' => false
-		);
-
-		$args = wp_parse_args( $args, $defaults );
-
-		/**
-		 * @var array  $selected
-		 * @var string $name
-		 * @var string $id
-		 * @var string $class
-		 * @var string $style
-		 * @var string $title
-		 * @var string $empty
-		 * @var bool   $multi
-		 * @var bool   $echo
-		 * @var bool   $readonly
-		 */
-		extract( $args );
-
-		$render      = '';
-		$attributes  = array();
-		$selected    = is_null( $selected ) || $selected === true ? array_keys( $values ) : (array) $selected;
+		$args        = $this->select_prepare_args( $args );
+		$attributes  = $this->select_prepare_attributes( $args, $attr );
+		$selected    = is_null( $args[ 'selected' ] ) || $args[ 'selected' ] === true ? array_keys( $values ) : (array) $args[ 'selected' ];
 		$associative = ! Arr::is_associative( $values );
-		$id          = $this->id_from_name( $name, $id );
 
-		if ( $class != '' ) {
-			$attributes[] = 'class="' . esc_attr( $class ) . '"';
-		}
-
-		if ( $style != '' ) {
-			$attributes[] = 'style="' . esc_attr( $style ) . '"';
-		}
-
-		if ( $title != '' ) {
-			$attributes[] = 'title="' . esc_attr( $title ) . '"';
-		}
-
-		if ( $multi ) {
-			$attributes[] = 'multiple';
-		}
-
-		if ( $readonly ) {
-			$attributes[] = 'readonly';
-		}
-
-		foreach ( $attr as $key => $value ) {
-			$attributes[] = $key . '="' . esc_attr( $value ) . '"';
-		}
-
-		$name = $multi ? $name . '[]' : $name;
-
-		if ( $id != '' ) {
-			$attributes[] = 'id="' . esc_attr( $id ) . '"';
-		}
-
-		if ( $name != '' ) {
-			$attributes[] = 'name="' . esc_attr( $name ) . '"';
-		}
-
-		$render .= '<select ' . join( ' ', $attributes ) . '>';
-		if ( ! empty( $empty ) ) {
-			$render .= '<option value="">' . esc_html( $empty ) . '</option>';
+		$render = '<select ' . join( ' ', $attributes ) . '>';
+		if ( ! empty( $args[ 'empty' ] ) ) {
+			$render .= '<option value="">' . esc_html( $args[ 'empty' ] ) . '</option>';
 		}
 
 		foreach ( $values as $value => $display ) {
@@ -143,7 +69,7 @@ class Elements {
 		}
 		$render .= '</select>';
 
-		if ( $echo ) {
+		if ( $args[ 'echo' ] ) {
 			echo KSES::select( $render );
 		}
 
@@ -151,76 +77,21 @@ class Elements {
 	}
 
 	public function select_grouped( $values, $args = array(), $attr = array() ) : string {
-		$defaults = array(
-			'selected' => '',
-			'name'     => '',
-			'id'       => '',
-			'title'    => '',
-			'empty'    => '',
-			'class'    => '',
-			'style'    => '',
-			'multi'    => false,
-			'echo'     => true,
-			'readonly' => false
-		);
-
-		$args = wp_parse_args( $args, $defaults );
-
-		/**
-		 * @var array  $selected
-		 * @var string $name
-		 * @var string $id
-		 * @var string $class
-		 * @var string $style
-		 * @var string $title
-		 * @var string $empty
-		 * @var bool   $multi
-		 * @var bool   $echo
-		 * @var bool   $readonly
-		 */
-		extract( $args );
-
-		$render     = '';
-		$attributes = array();
-		$id         = $this->id_from_name( $name, $id );
-
-		if ( $class != '' ) {
-			$attributes[] = 'class="' . esc_attr( $class ) . '"';
+		foreach ( $values as $group ) {
+			if ( ! isset( $group[ 'values' ] ) && ! isset( $group[ 'title' ] ) ) {
+				return $this->select( $values, $args, $attr );
+			} else {
+				break;
+			}
 		}
 
-		if ( $style != '' ) {
-			$attributes[] = 'style="' . esc_attr( $style ) . '"';
-		}
+		$args       = $this->select_prepare_args( $args );
+		$attributes = $this->select_prepare_attributes( $args, $attr );
+		$selected   = $args[ 'selected' ];
 
-		if ( $title != '' ) {
-			$attributes[] = 'title="' . esc_attr( $title ) . '"';
-		}
-
-		if ( $multi ) {
-			$attributes[] = 'multiple';
-		}
-
-		if ( $readonly ) {
-			$attributes[] = 'readonly';
-		}
-
-		foreach ( $attr as $key => $value ) {
-			$attributes[] = $key . '="' . esc_attr( $value ) . '"';
-		}
-
-		$name = $multi ? $name . '[]' : $name;
-
-		if ( $id != '' ) {
-			$attributes[] = 'id="' . esc_attr( $id ) . '"';
-		}
-
-		if ( $name != '' ) {
-			$attributes[] = 'name="' . esc_attr( $name ) . '"';
-		}
-
-		$render .= '<select ' . join( ' ', $attributes ) . '>';
-		if ( ! empty( $empty ) ) {
-			$render .= '<option value="">' . esc_html( $empty ) . '</option>';
+		$render = '<select ' . join( ' ', $attributes ) . '>';
+		if ( ! empty( $args[ 'empty' ] ) ) {
+			$render .= '<option value="">' . esc_html( $args[ 'empty' ] ) . '</option>';
 		}
 
 		foreach ( $values as $group ) {
@@ -239,7 +110,7 @@ class Elements {
 		}
 		$render .= '</select>';
 
-		if ( $echo ) {
+		if ( $args[ 'echo' ] ) {
 			echo KSES::select( $render );
 		}
 
@@ -247,84 +118,31 @@ class Elements {
 	}
 
 	public function checkboxes( $values, $args = array() ) : string {
-		$defaults = array(
-			'selected' => '',
-			'name'     => '',
-			'id'       => '',
-			'class'    => '',
-			'multi'    => true,
-			'echo'     => true,
-			'readonly' => false
-		);
-
-		$args = wp_parse_args( $args, $defaults );
-
-		/**
-		 * @var array  $selected
-		 * @var string $name
-		 * @var string $id
-		 * @var string $class
-		 * @var bool   $multi
-		 * @var bool   $echo
-		 * @var bool   $readonly
-		 */
-		extract( $args );
+		$args        = $this->checkboxes_prepare_args( $args );
+		$id          = $this->id_from_name( $args[ 'name' ], $args[ 'id' ] );
+		$name        = $args[ 'multi' ] ? $args[ 'name' ] . '[]' : $args[ 'name' ];
+		$selected    = $args[ 'selected' ];
+		$associative = Arr::is_associative( $values );
 
 		$wrapper_class = 'd4p-setting-checkboxes';
 
-		if ( $class != '' ) {
-			$wrapper_class .= ' ' . esc_attr( $class );
+		if ( $args[ 'class' ] != '' ) {
+			$wrapper_class .= ' ' . $args[ 'class' ];
 		}
 
-		$render      = '<div class="' . $wrapper_class . '">';
-		$associative = Arr::is_associative( $values );
-		$id          = $this->id_from_name( $name, $id );
-		$name        = $multi ? $name . '[]' : $name;
-
-		if ( $multi ) {
-			$render .= '<div class="d4p-check-uncheck">';
-
-			$render .= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-square"></i> ' . esc_html__( "Check All", "d4plib" ) . '</a>';
-			$render .= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . esc_html__( "Uncheck All", "d4plib" ) . '</a>';
-
-			$render .= '</div>';
-		}
-
+		$render = '<div class="' . Sanitize::html_classes( $wrapper_class ) . '">';
+		$render .= $this->checkboxes_render_check_uncheck( $args[ 'multi' ] );
 		$render .= '<div class="d4p-inside-wrapper">';
 		foreach ( $values as $key => $title ) {
 			$real_value = $associative ? $key : $title;
+			$attributes = $this->checkbox_prepare_attributes( $args, $selected, $name, $id, $real_value, $key );
 
-			$attributes = array(
-				'type="' . ( $multi ? 'checkbox' : 'radio' ) . '"',
-				'value="' . $real_value . '"',
-				'class="widefat"'
-			);
-
-			if ( $id != '' ) {
-				$attributes[] = 'id="' . esc_attr( $id . '-' . $key ) . '"';
-			}
-
-			if ( $name != '' ) {
-				$attributes[] = 'name="' . esc_attr( $name ) . '"';
-			}
-
-			if ( is_null( $selected ) || $selected === true || ( is_array( $selected ) && in_array( $real_value, $selected ) ) ) {
-				$attributes[] = 'checked="checked"';
-			}
-
-			if ( $readonly ) {
-				$attributes[] = 'readonly';
-			}
-
-			$render .= sprintf( '<label><input %s />%s</label>',
-				join( ' ', $attributes ),
-				esc_html( $title ) );
+			$render .= sprintf( '<label><input %s />%s</label>', join( ' ', $attributes ), esc_html( $title ) );
 		}
 		$render .= '</div>';
-
 		$render .= '</div>';
 
-		if ( $echo ) {
+		if ( $args[ 'echo' ] ) {
 			echo KSES::checkboxes( $render );
 		}
 
@@ -332,6 +150,84 @@ class Elements {
 	}
 
 	public function checkboxes_grouped( $values, $args = array() ) : string {
+		foreach ( $values as $group ) {
+			if ( ! isset( $group[ 'values' ] ) && ! isset( $group[ 'title' ] ) ) {
+				return $this->checkboxes( $values, $args );
+			} else {
+				break;
+			}
+		}
+
+		$args     = $this->checkboxes_prepare_args( $args );
+		$id       = $this->id_from_name( $args[ 'name' ], $args[ 'id' ] );
+		$name     = $args[ 'multi' ] ? $args[ 'name' ] . '[]' : $args[ 'name' ];
+		$selected = $args[ 'selected' ];
+
+		$wrapper_class = 'd4p-setting-checkboxes d4p-setting-checkboxes-grouped';
+
+		if ( $args[ 'class' ] != '' ) {
+			$wrapper_class .= ' ' . $args[ 'class' ];
+		}
+
+		$render = '<div class="' . Sanitize::html_classes( $wrapper_class ) . '">';
+		$render .= $this->checkboxes_render_check_uncheck( $args[ 'multi' ] );
+		$render .= '<div class="d4p-inside-wrapper">';
+		foreach ( $values as $group ) {
+			$render .= '<div class="d4p-group-title">' . $group[ 'title' ] . '</div>';
+			foreach ( $group[ 'values' ] as $key => $title ) {
+				$attributes = $this->checkbox_prepare_attributes( $args, $selected, $name, $id, $key, $key );
+
+				$render .= sprintf( '<label><input %s />%s</label>', join( ' ', $attributes ), esc_html( $title ) );
+			}
+		}
+		$render .= '</div>';
+		$render .= '</div>';
+
+		if ( $args[ 'echo' ] ) {
+			echo KSES::checkboxes( $render );
+		}
+
+		return $render;
+	}
+
+	public function checkboxes_with_hierarchy( $values, $args = array() ) : string {
+		$args = $this->checkboxes_prepare_args( $args );
+
+		$walker = new CheckboxRadio();
+
+		$render = '<div class="d4p-setting-checkboxes-hierarchy">';
+		$render .= $this->checkboxes_render_check_uncheck( $args[ 'multi' ] );
+		$render .= '<div class="d4p-inside-wrapper">';
+		$render .= '<ul class="d4p-wrapper-hierarchy">';
+		$render .= $walker->walk( $values, 0, array(
+			'input'    => $args[ 'multi' ] ? 'checkbox' : 'radio',
+			'id'       => $this->id_from_name( $args[ 'name' ], $args[ 'id' ] ),
+			'name'     => $args[ 'name' ],
+			'selected' => (array) $args[ 'selected' ]
+		) );
+		$render .= '</ul>';
+		$render .= '</div>';
+		$render .= '</div>';
+
+		if ( $args[ 'echo' ] ) {
+			echo KSES::checkboxes( $render );
+		}
+
+		return $render;
+	}
+
+	private function id_from_name( $name, $id = '' ) : string {
+		if ( $id == '' ) {
+			$id = str_replace( ']', '', $name );
+			$id = str_replace( '[', '_', $id );
+		} else if ( $id == '_' ) {
+			$id = '';
+		}
+
+		return (string) $id;
+	}
+
+	private function checkboxes_prepare_args( $args ) : array {
 		$defaults = array(
 			'selected' => '',
 			'name'     => '',
@@ -342,29 +238,11 @@ class Elements {
 			'readonly' => false
 		);
 
-		$args = wp_parse_args( $args, $defaults );
+		return wp_parse_args( $args, $defaults );
+	}
 
-		/**
-		 * @var array  $selected
-		 * @var string $name
-		 * @var string $id
-		 * @var string $class
-		 * @var bool   $multi
-		 * @var bool   $echo
-		 * @var bool   $readonly
-		 */
-		extract( $args );
-
-		$wrapper_class = 'd4p-setting-checkboxes d4p-setting-checkboxes-grouped';
-
-		if ( $class != '' ) {
-			$wrapper_class .= ' ' . esc_attr( $class );
-		}
-
-		$render = '<div class="' . $wrapper_class . '">';
-		$id     = $this->id_from_name( $name, $id );
-		$name   = $multi ? $name . '[]' : $name;
-
+	private function checkboxes_render_check_uncheck( $multi ) : string {
+		$render = '';
 		if ( $multi ) {
 			$render .= '<div class="d4p-check-uncheck">';
 
@@ -372,107 +250,94 @@ class Elements {
 			$render .= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . esc_html__( "Uncheck All", "d4plib" ) . '</a>';
 
 			$render .= '</div>';
-		}
-
-		$render .= '<div class="d4p-inside-wrapper">';
-		foreach ( $values as $group ) {
-			$render .= '<div class="d4p-group-title">' . $group[ 'title' ] . '</div>';
-			foreach ( $group[ 'values' ] as $key => $title ) {
-				$attributes = array(
-					'type="' . ( $multi ? 'checkbox' : 'radio' ) . '"',
-					'value="' . $key . '"',
-					'class="widefat"'
-				);
-
-				if ( $id != '' ) {
-					$attributes[] = 'id="' . esc_attr( $id . '-' . $key ) . '"';
-				}
-
-				if ( $name != '' ) {
-					$attributes[] = 'name="' . esc_attr( $name ) . '"';
-				}
-
-				if ( is_null( $selected ) || $selected === true || ( is_array( $selected ) && in_array( $key, $selected ) ) ) {
-					$attributes[] = 'checked="checked"';
-				}
-
-				if ( $readonly ) {
-					$attributes[] = 'readonly';
-				}
-
-				$render .= sprintf( '<label><input %s />%s</label>',
-					join( ' ', $attributes ),
-					esc_html( $title ) );
-			}
-		}
-		$render .= '</div>';
-
-		$render .= '</div>';
-
-		if ( $echo ) {
-			echo KSES::checkboxes( $render );
 		}
 
 		return $render;
 	}
 
-	public function checkboxes_with_hierarchy( $values, $args = array() ) : string {
+	private function select_prepare_args( $args ) : array {
 		$defaults = array(
 			'selected' => '',
 			'name'     => '',
 			'id'       => '',
+			'title'    => '',
+			'empty'    => '',
 			'class'    => '',
 			'style'    => '',
-			'multi'    => true,
-			'echo'     => true
+			'multi'    => false,
+			'echo'     => true,
+			'readonly' => false
 		);
 
-		$args = wp_parse_args( $args, $defaults );
+		return wp_parse_args( $args, $defaults );
+	}
 
-		/**
-		 * @var array  $selected
-		 * @var string $name
-		 * @var string $id
-		 * @var string $class
-		 * @var string $style
-		 * @var bool   $multi
-		 * @var bool   $echo
-		 */
-		extract( $args );
+	private function select_prepare_attributes( $args, $attr = array() ) : array {
+		$attributes = array();
 
-		$render   = '<div class="d4p-setting-checkboxes-hierarchy">';
-		$selected = (array) $selected;
-		$id       = $this->id_from_name( $name, $id );
+		$name = $args[ 'multi' ] ? $args[ 'name' ] . '[]' : $args[ 'name' ];
+		$id   = $this->id_from_name( $args[ 'name' ], $args[ 'id' ] );
 
-		if ( $multi ) {
-			$render .= '<div class="d4p-check-uncheck">';
-
-			$render .= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-square"></i> ' . esc_html__( "Check All", "d4plib" ) . '</a>';
-			$render .= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . esc_html__( "Uncheck All", "d4plib" ) . '</a>';
-
-			$render .= '</div>';
+		if ( ! empty( $args[ 'class' ] ) ) {
+			$attributes[] = 'class="' . esc_attr( $args[ 'class' ] ) . '"';
 		}
 
-		$walker = new CheckboxRadio();
-		$input  = $multi ? 'checkbox' : 'radio';
-
-		$render .= '<div class="d4p-inside-wrapper">';
-		$render .= '<ul class="d4p-wrapper-hierarchy">';
-		$render .= $walker->walk( $values, 0, array(
-			'input'    => $input,
-			'id'       => $id,
-			'name'     => $name,
-			'selected' => $selected
-		) );
-		$render .= '</ul>';
-		$render .= '</div>';
-
-		$render .= '</div>';
-
-		if ( $echo ) {
-			echo KSES::checkboxes( $render );
+		if ( ! empty( $args[ 'style' ] ) ) {
+			$attributes[] = 'style="' . esc_attr( $args[ 'style' ] ) . '"';
 		}
 
-		return $render;
+		if ( ! empty( $args[ 'title' ] ) ) {
+			$attributes[] = 'title="' . esc_attr( $args[ 'title' ] ) . '"';
+		}
+
+		if ( $args[ 'multi' ] ) {
+			$attributes[] = 'multiple';
+		}
+
+		if ( $args[ 'readonly' ] ) {
+			$attributes[] = 'readonly';
+		}
+
+		if ( ! empty( $name ) ) {
+			$attributes[] = 'name="' . esc_attr( $name ) . '"';
+		}
+
+		if ( $id != '' ) {
+			$attributes[] = 'id="' . esc_attr( $id ) . '"';
+		}
+
+		if ( ! empty( $attr ) ) {
+			foreach ( $attr as $key => $value ) {
+				$attributes[] = $key . '="' . esc_attr( $value ) . '"';
+			}
+		}
+
+		return $attributes;
+	}
+
+	private function checkbox_prepare_attributes( $args, $selected, $name, $id, $real_value, $key ) : array {
+		$attributes = array(
+			'type="' . ( $args[ 'multi' ] ? 'checkbox' : 'radio' ) . '"',
+			'value="' . $real_value . '"',
+			'class="widefat"'
+		);
+
+		if ( $id != '' ) {
+			$attributes[] = 'id="' . esc_attr( $id . '-' . $key ) . '"';
+		}
+
+		if ( $name != '' ) {
+			$attributes[] = 'name="' . esc_attr( $name ) . '"';
+		}
+
+		if ( is_null( $selected ) || $selected === true || ( is_array( $selected ) && in_array( $real_value, $selected ) ) ) {
+			$attributes[] = 'checked="checked"';
+		}
+
+		if ( $args[ 'readonly' ] ) {
+			$attributes[] = 'readonly';
+		}
+
+		return $attributes;
 	}
 }

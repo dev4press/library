@@ -31,18 +31,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Arr {
-	public static function is_associative( $array ) : bool {
-		return is_array( $array ) && ( 0 !== count( array_diff_key( $array, array_keys( array_keys( $array ) ) ) ) || count( $array ) == 0 );
+	public static function is_associative( $input ) : bool {
+		return is_array( $input ) && ( 0 !== count( array_diff_key( $input, array_keys( array_keys( $input ) ) ) ) || count( $input ) == 0 );
 	}
 
 	public static function to_html_attributes( $input ) : string {
 		$list = array();
 
-		foreach ( $input as $item => $value ) {
-			if ( is_bool( $value ) ) {
-				$list[] = $item;
-			} else {
-				$list[] = $item . '="' . esc_attr( $value ) . '"';
+		if ( is_array( $input ) ) {
+			foreach ( $input as $item => $value ) {
+				if ( is_bool( $value ) ) {
+					$list[] = $item;
+				} else {
+					$list[] = $item . '="' . esc_attr( $value ) . '"';
+				}
 			}
 		}
 
@@ -50,7 +52,7 @@ class Arr {
 	}
 
 	public static function remove_by_value( $input, $val, $preserve_keys = true ) : array {
-		if ( empty( $input ) || ! is_array( $input ) ) {
+		if ( ! is_array( $input ) || empty( $input ) ) {
 			return array();
 		}
 
