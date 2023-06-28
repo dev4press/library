@@ -312,4 +312,8 @@ class IP {
 			return false;
 		}
 	}
+
+	public static function random_ipv4() : string {
+		return mt_rand( 0, 255 ) . '.' . mt_rand( 0, 255 ) . '.' . mt_rand( 0, 255 ) . '.' . mt_rand( 0, 255 );
+	}
 }

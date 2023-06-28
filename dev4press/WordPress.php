@@ -161,7 +161,7 @@ class WordPress {
 
 	public function has_coreactivity() : bool {
 		if ( ! isset( $this->_cached[ 'has_coreactivity' ] ) ) {
-			$this->_cached[ 'has_coreactivity' ] = defined( 'COREACTIVITY_VERSION' ) && class_exists( '\Dev4Press\Plugin\CoreActivity\Basic\Plugin' );
+			$this->_cached[ 'has_coreactivity' ] = defined( 'COREACTIVITY_VERSION' ) && function_exists( 'coreactivity' ) && class_exists( '\Dev4Press\Plugin\CoreActivity\Basic\Plugin' );
 		}
 
 		return $this->_cached[ 'has_coreactivity' ];
