@@ -265,8 +265,8 @@ abstract class Panel {
 	}
 
 	public function get_table_object() {
-        return null;
-    }
+		return null;
+	}
 
 	protected function interface_colors() {
 		if ( $this->a()->auto_mod_interface_colors ) {

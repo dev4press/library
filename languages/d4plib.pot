@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 06/23/2023 05:31:19 PM\n"
+"POT-Creation-Date: 06/28/2023 09:28:32 AM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,7 +16,7 @@ msgid_plural "%s items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dev4press/core/admin/GetBack.php:113
+#: dev4press/core/admin/GetBack.php:120
 msgid "Only administrators can use export features."
 msgstr ""
 
@@ -562,7 +562,7 @@ msgid "No items to show"
 msgstr ""
 
 #: dev4press/core/options/Render.php:672
-#: dev4press/core/ui/Enqueue.php:304
+#: dev4press/core/ui/Enqueue.php:308
 msgid "Image not selected."
 msgstr ""
 
@@ -572,26 +572,22 @@ msgstr ""
 
 #: dev4press/core/options/Render.php:653
 #: dev4press/core/ui/admin/PanelTools.php:57
-#: dev4press/core/ui/Enqueue.php:300
+#: dev4press/core/ui/Enqueue.php:304
 msgid "Remove"
 msgstr ""
 
 #: dev4press/core/options/Render.php:654
-#: dev4press/core/ui/Enqueue.php:301
+#: dev4press/core/ui/Enqueue.php:305
 msgid "Preview"
 msgstr ""
 
 #: dev4press/core/options/Render.php:311
-#: dev4press/core/ui/Elements.php:286
-#: dev4press/core/ui/Elements.php:370
-#: dev4press/core/ui/Elements.php:449
+#: dev4press/core/ui/Elements.php:248
 msgid "Check All"
 msgstr ""
 
 #: dev4press/core/options/Render.php:312
-#: dev4press/core/ui/Elements.php:287
-#: dev4press/core/ui/Elements.php:371
-#: dev4press/core/ui/Elements.php:450
+#: dev4press/core/ui/Elements.php:249
 msgid "Uncheck All"
 msgstr ""
 
@@ -604,7 +600,7 @@ msgid "No images selected."
 msgstr ""
 
 #: dev4press/core/options/Render.php:667
-#: dev4press/core/ui/Enqueue.php:302
+#: dev4press/core/ui/Enqueue.php:306
 msgid "Select Image"
 msgstr ""
 
@@ -723,15 +719,15 @@ msgstr ""
 msgid "Features"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelDashboard.php:33
+#: dev4press/core/ui/admin/PanelDashboard.php:34
 msgid "Settings"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelDashboard.php:42
+#: dev4press/core/ui/admin/PanelDashboard.php:44
 msgid "Tools"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelDashboard.php:52
+#: dev4press/core/ui/admin/PanelDashboard.php:55
 msgid "About"
 msgstr ""
 
@@ -847,52 +843,52 @@ msgstr ""
 msgid "Remove selected plugin settings and optionally disable plugin."
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:303
+#: dev4press/core/ui/Enqueue.php:307
 msgid "Use Selected Image"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:305
-#: dev4press/core/ui/Enqueue.php:341
+#: dev4press/core/ui/Enqueue.php:309
+#: dev4press/core/ui/Enqueue.php:345
 msgid "Are you sure you want to do this?"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:330
+#: dev4press/core/ui/Enqueue.php:334
 msgid "OK"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:331
+#: dev4press/core/ui/Enqueue.php:335
 msgid "Cancel"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:332
+#: dev4press/core/ui/Enqueue.php:336
 msgid "Delete"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:333
+#: dev4press/core/ui/Enqueue.php:337
 msgid "Disable"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:334
+#: dev4press/core/ui/Enqueue.php:338
 msgid "Empty"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:335
+#: dev4press/core/ui/Enqueue.php:339
 msgid "Send"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:336
+#: dev4press/core/ui/Enqueue.php:340
 msgid "Start"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:337
+#: dev4press/core/ui/Enqueue.php:341
 msgid "Stop"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:338
+#: dev4press/core/ui/Enqueue.php:342
 msgid "Wait"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:342
+#: dev4press/core/ui/Enqueue.php:346
 msgid "Please Wait..."
 msgstr ""
 
@@ -951,35 +947,35 @@ msgstr ""
 msgid "Specified video ID not found."
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:115
+#: dev4press/wordpress/admin/Table.php:119
 msgid "All Logged"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:116
+#: dev4press/wordpress/admin/Table.php:120
 msgid "Last hour"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:117
+#: dev4press/wordpress/admin/Table.php:121
 msgid "Last 12 hours"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:118
+#: dev4press/wordpress/admin/Table.php:122
 msgid "Last day"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:119
+#: dev4press/wordpress/admin/Table.php:123
 msgid "Last 7 days"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:120
+#: dev4press/wordpress/admin/Table.php:124
 msgid "Last 30 days"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:121
+#: dev4press/wordpress/admin/Table.php:125
 msgid "Last 365 days"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:133
+#: dev4press/wordpress/admin/Table.php:137
 msgid "%s %s"
 msgstr ""
 
@@ -1445,11 +1441,6 @@ msgstr ""
 msgid "Settings for '%s'"
 msgstr ""
 
-#: forms/content-settings-index.php:37
-#: forms/content-tools-index.php:37
-msgid "Open"
-msgstr ""
-
 #: forms/content-tools-export.php:7
 #: forms/content-tools-import.php:7
 msgid "Important Information"
@@ -1473,6 +1464,11 @@ msgstr ""
 
 #: forms/content-tools-import.php:18
 msgid "Select file you want to import from"
+msgstr ""
+
+#: forms/content-tools-index.php:37
+#: forms/element-subpanels-blocks.php:35
+msgid "Open"
 msgstr ""
 
 #: forms/content-tools-updater.php:2
