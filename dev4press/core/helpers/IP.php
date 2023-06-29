@@ -180,6 +180,14 @@ class IP {
 		return false;
 	}
 
+	public static function is_private_regex( $ip = null ) : bool {
+		if ( preg_match( '/^((127\.)|(192\.168\.)|(10\.)|(172\.1[6-9]\.)|(172\.2[0-9]\.)|(172\.3[0-1]\.)|(::1)|(fe80::))/', $ip ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public static function is_cloudflare( $ip = null ) : bool {
 		if ( is_null( $ip ) ) {
 			if ( isset( $_SERVER[ 'HTTP_CF_CONNECTING_IP' ] ) ) {
