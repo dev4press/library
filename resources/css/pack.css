@@ -2588,6 +2588,9 @@ a > .d4p-icon {
   background: var(--d4p-color-layout-accent);
   color: #FFF;
 }
+.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul .d4p-features-mark {
+  float: right;
+}
 .d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul .d4p-nav-current {
   background: var(--d4p-color-main-text);
   display: block;

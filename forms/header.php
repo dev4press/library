@@ -8,6 +8,11 @@ $_panel     = panel()->a()->panel;
 $_subpanels = panel()->subpanels();
 $_subpanel  = panel()->current_subpanel();
 $_classes   = panel()->wrapper_class();
+$_features  = false;
+
+if ( panel()->a()->plugin()->f() ) {
+	$_features = $_panel == 'features';
+}
 
 ?>
 <div class="<?php echo Sanitize::html_classes( $_classes ); ?>">
@@ -53,10 +58,24 @@ $_classes   = panel()->wrapper_class();
 							<?php
 
 							foreach ( $_subpanels as $subpanel => $obj ) {
+								$_feature_status = '';
+
+								if ( $_features && $subpanel != 'index' && isset( $obj[ 'active' ] ) ) {
+									$icon = 'd4p-ui-times';
+
+									if ( $obj[ 'hidden' ] ) {
+										$icon = 'd4p-ui-eye-slash';
+									} else if ( $obj[ 'active' ] || $obj[ 'always_on' ] ) {
+										$icon = 'd4p-ui-check';
+									}
+
+									$_feature_status = '<i class="d4p-features-mark d4p-icon ' . $icon . '"></i>';
+								}
+
 								if ( $subpanel != $_subpanel ) {
-									echo '<li><a href="' . esc_url( panel()->a()->panel_url( $_panel, $subpanel ) ) . '">' . panel()->r()->icon( $obj[ 'icon' ], 'fw' ) . esc_html( $obj[ 'title' ] ) . '</a></li>';
+									echo '<li><a href="' . esc_url( panel()->a()->panel_url( $_panel, $subpanel ) ) . '">' . panel()->r()->icon( $obj[ 'icon' ], 'fw' ) . esc_html( $obj[ 'title' ] ) . $_feature_status . '</a></li>';
 								} else {
-									echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj[ 'icon' ], 'fw' ) . esc_html( $obj[ 'title' ] ) . '</li>';
+									echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj[ 'icon' ], 'fw' ) . esc_html( $obj[ 'title' ] ) . $_feature_status . '</li>';
 								}
 							}
 

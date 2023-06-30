@@ -28,6 +28,7 @@ abstract class Panel {
 	protected $form_multiform = false;
 	protected $form_autocomplete = "off";
 	protected $form_method = 'post';
+	protected $table_object = null;
 
 	public $storage = array();
 
