@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 namespace Dev4Press\v43\Service\GEOIP;
 
+use Dev4Press\v43\Core\Helpers\Data;
 use Dev4Press\v43\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -62,8 +63,16 @@ class Location {
 		if ( $this->status == 'active' && ! empty( $this->country_name ) ) {
 			$location .= $this->country_name;
 
+			if ( ! empty( $this->region_name ) ) {
+				$location .= ', ' . $this->region_name;
+			}
+
 			if ( ! empty( $this->city ) ) {
 				$location .= ', ' . $this->city;
+			}
+
+			if ( ! empty( $this->continent_code ) ) {
+				$location .= ' (' . $this->continent() . ')';
 			}
 		}
 
@@ -90,5 +99,15 @@ class Location {
 
 	public function serialize() {
 		return json_encode( (array) $this );
+	}
+
+	public function continent() {
+		if ( empty( $this->continent_code ) ) {
+			return '';
+		}
+
+		$list = Data::list_of_continents();
+
+		return $list[ $this->continent_code ] ?? $this->continent_code;
 	}
 }

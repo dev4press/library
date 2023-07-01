@@ -7,8 +7,10 @@
 * New: class `Settings` direct preload of the multisite network settings
 * New: class `HTAccess` expanded with the method to check .HTACCESS status
 * New: many smaller new methods and functions added through the library
+* New: helper `Data` class to hold some common data and lists
 * New: added several more UI icons
 * Edit: improvements to the `Panel` class URLs and forms loading
+* Edit: improvements to the Geolocation process and classes
 * Edit: massive improvements to Features in relation to network mode plugins
 * Edit: many styling improvements to the various parts of the interface
 * Edit: improvements to the rendering of the settings controls
