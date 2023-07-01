@@ -156,6 +156,10 @@ abstract class AJAX {
 		$this->raise_error( 'request_unauthorized', $request, __( "Unauthorized Request.", "d4plib" ), 401 );
 	}
 
+	protected function return_error_html( string $message = '', int $code = 400 ) {
+		$this->respond( $message, false, $code );
+	}
+
 	protected function return_error( string $message = '', int $code = 400, array $args = array() ) {
 		$result = array(
 			'status'  => 'error',
