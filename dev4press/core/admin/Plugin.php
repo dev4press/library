@@ -532,6 +532,9 @@ abstract class Plugin {
 
 	abstract public function run_postback();
 
+	/** @return \Dev4Press\v43\Core\Plugins\Wizard */
+	abstract public function wizard();
+
 	/** @return \Dev4Press\v43\Core\Plugins\Core */
 	abstract public function plugin();
 

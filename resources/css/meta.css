@@ -75,9 +75,9 @@
   font-weight: 500;
 }
 .d4plib-v43-meta-box-wrapper p select,
-.d4plib-v43-meta-box-wrapper p input,
+.d4plib-v43-meta-box-wrapper p input:not([type=checkbox]):not([type=radio]),
 .d4plib-v43-meta-box-wrapper .__element select,
-.d4plib-v43-meta-box-wrapper .__element input {
+.d4plib-v43-meta-box-wrapper .__element input:not([type=checkbox]):not([type=radio]) {
   display: block;
   margin-top: 0.25em;
 }

@@ -97,7 +97,7 @@
         }
 
         select,
-        input {
+        input:not([type=checkbox]):not([type=radio]) {
             display: block;
             margin-top: .25em;
         }
