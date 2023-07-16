@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 06/28/2023 09:28:32 AM\n"
+"POT-Creation-Date: 07/16/2023 06:52:38 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,6 +91,34 @@ msgstr ""
 #: dev4press/core/admin/Plugin.php:316
 #: dev4press/core/admin/Plugin.php:325
 msgid "Click Here"
+msgstr ""
+
+#: dev4press/core/helpers/Data.php:35
+msgid "Africa"
+msgstr ""
+
+#: dev4press/core/helpers/Data.php:36
+msgid "Asia"
+msgstr ""
+
+#: dev4press/core/helpers/Data.php:37
+msgid "Europe"
+msgstr ""
+
+#: dev4press/core/helpers/Data.php:38
+msgid "North America"
+msgstr ""
+
+#: dev4press/core/helpers/Data.php:39
+msgid "South America"
+msgstr ""
+
+#: dev4press/core/helpers/Data.php:40
+msgid "Oceania"
+msgstr ""
+
+#: dev4press/core/helpers/Data.php:41
+msgid "Antarctica"
 msgstr ""
 
 #: dev4press/core/helpers/Debug.php:126
@@ -628,7 +656,7 @@ msgstr ""
 msgid "Unauthorized Request."
 msgstr ""
 
-#: dev4press/core/plugins/AJAX.php:161
+#: dev4press/core/plugins/AJAX.php:165
 msgid "Invalid Request"
 msgstr ""
 
@@ -669,6 +697,14 @@ msgstr ""
 
 #: dev4press/core/plugins/InstallDB.php:86
 msgid "Table is missing."
+msgstr ""
+
+#: dev4press/core/plugins/Wizard.php:153
+msgid "Yes"
+msgstr ""
+
+#: dev4press/core/plugins/Wizard.php:157
+msgid "No"
 msgstr ""
 
 #: dev4press/core/task/AJAX.php:91
@@ -929,13 +965,13 @@ msgstr ""
 msgid "Current Page"
 msgstr ""
 
-#: dev4press/service/geoip/Location.php:80
-#: dev4press/service/geoip/Location.php:80
+#: dev4press/service/geoip/Location.php:89
+#: dev4press/service/geoip/Location.php:89
 msgid "Localhost or Private IP"
 msgstr ""
 
-#: dev4press/service/geoip/Location.php:84
-#: dev4press/service/geoip/Location.php:84
+#: dev4press/service/geoip/Location.php:93
+#: dev4press/service/geoip/Location.php:93
 msgid "IP can't be located."
 msgstr ""
 
@@ -1477,6 +1513,26 @@ msgstr ""
 
 #: forms/content-tools-updater.php:4
 msgid "Nothing to do here."
+msgstr ""
+
+#: forms/content-wizard-finish.php:7
+msgid "This wizard has reach the end. But, there are a lot more features, a lot more settings available to explore. This was just the starting point, to configure few basic things, before you try exploring the plugin and testing the features you want to use."
+msgstr ""
+
+#: forms/content-wizard-finish.php:13
+msgid "Do you want to hide this Setup Wizard?"
+msgstr ""
+
+#: forms/content-wizard-finish.php:15
+msgid "Setup Wizard can be hidden, if you don't plan to use it for now. To enable or disable at any time the Wizard you can use option in the Advanced panel on the Settings page."
+msgstr ""
+
+#: forms/content-wizard.php:4
+msgid "Finish"
+msgstr ""
+
+#: forms/content-wizard.php:4
+msgid "Save and Continue"
 msgstr ""
 
 #: forms/content.php:1

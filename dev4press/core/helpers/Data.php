@@ -33,13 +33,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Data {
 	public static function list_of_continents() : array {
 		return $list = array(
-			'AF' => __( 'Africa', 'd4plib' ),
-			'AS' => __( 'Asia', 'd4plib' ),
-			'EU' => __( 'Europe', 'd4plib' ),
-			'NA' => __( 'North America', 'd4plib' ),
-			'SA' => __( 'South America', 'd4plib' ),
-			'OC' => __( 'Oceania', 'd4plib' ),
-			'AN' => __( 'Antarctica', 'd4plib' )
+			'AF' => __( "Africa", "d4plib" ),
+			'AS' => __( "Asia", "d4plib" ),
+			'EU' => __( "Europe", "d4plib" ),
+			'NA' => __( "North America", "d4plib" ),
+			'SA' => __( "South America", "d4plib" ),
+			'OC' => __( "Oceania", "d4plib" ),
+			'AN' => __( "Antarctica", "d4plib" )
 		);
 	}
 }

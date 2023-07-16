@@ -151,11 +151,11 @@ abstract class Wizard {
 
         <span>
             <input type="radio" name="<?php echo esc_attr( $_name ); ?>" value="yes" id="<?php echo esc_attr( $_id ); ?>-yes"<?php echo $value == 'yes' ? ' checked' : ''; ?>/>
-            <label for="<?php echo esc_attr( $_id ); ?>-yes"><?php esc_html_e( "Yes", "gd-knowledge-base" ); ?></label>
+            <label for="<?php echo esc_attr( $_id ); ?>-yes"><?php esc_html_e( "Yes", "d4plib" ); ?></label>
         </span>
         <span>
             <input type="radio" name="<?php echo esc_attr( $_name ); ?>" value="no" id="<?php echo esc_attr( $_id ); ?>-no"<?php echo $value == 'no' ? ' checked' : ''; ?>/>
-            <label for="<?php echo esc_attr( $_id ); ?>-no"><?php esc_html_e( "No", "gd-knowledge-base" ); ?></label>
+            <label for="<?php echo esc_attr( $_id ); ?>-no"><?php esc_html_e( "No", "d4plib" ); ?></label>
         </span>
 
 		<?php

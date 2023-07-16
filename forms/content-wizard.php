@@ -2,7 +2,7 @@
 
 use function Dev4Press\v43\Functions\panel;
 
-$label = panel()->a()->wizard()->is_last_panel() ? __( "Finish", "gd-knowledge-base" ) : __( "Save and Continue", "gd-knowledge-base" );
+$label = panel()->a()->wizard()->is_last_panel() ? __( "Finish", "d4plib" ) : __( "Save and Continue", "d4plib" );
 
 ?>
 
