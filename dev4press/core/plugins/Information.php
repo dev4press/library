@@ -56,8 +56,8 @@ abstract class Information {
 	public $mysql = '5.0';
 
 	public $cms = array(
-		'wordpress'    => '5.5',
-		'classicpress' => '1.2'
+		'wordpress'    => '5.7',
+		'classicpress' => '1.5'
 	);
 
 	public $plugins = array(

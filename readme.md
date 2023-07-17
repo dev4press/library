@@ -2,7 +2,7 @@
 
 * Version: v4.3
 * Build:   4300
-* Release: 2023.06.22.
+* Release: 2023.08.01.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
@@ -15,11 +15,11 @@
 
 ## WordPress Requirements
 
-* WordPress: 5.5 or newer
+* WordPress: 5.7 or newer
 
 ## ClassicPress Requirements
 
-* ClassicPress: 1.2 or newer
+* ClassicPress: 1.5 or newer
 
 ## Optional
 
