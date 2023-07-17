@@ -662,9 +662,10 @@
   line-height: 1.5;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge .d4p-icon {
-  font-size: 82%;
+  font-size: 90%;
   margin-right: 5px;
-  vertical-align: baseline;
+  vertical-align: top;
+  margin-top: 6px;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-right {
   float: right;
@@ -784,6 +785,9 @@
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card:not(.d4p-dashboard-card-no-footer) .d4p-group-header + .d4p-group-inner {
   margin-bottom: 3.5em;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-card-double .d4p-group-footer {
+  position: relative;
 }
 
 .d4p-status-inline-help {
