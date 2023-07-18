@@ -38,4 +38,16 @@ class Request {
 	public static function is_get() : bool {
 		return $_SERVER[ 'REQUEST_METHOD' ] === 'GET';
 	}
+
+	public static function has_key( $key, $scope = 'REQUEST' ) : bool {
+		switch ( $scope ) {
+			default:
+			case 'REQUEST':
+				return isset( $_REQUEST[ $key ] );
+			case 'POST':
+				return isset( $_POST[ $key ] );
+			case 'GET':
+				return isset( $_GET[ $key ] );
+		}
+	}
 }
