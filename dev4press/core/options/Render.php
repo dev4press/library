@@ -269,6 +269,7 @@ class Render {
 
 				$this->_render_description( $setting );
 				$this->_render_more( $setting );
+				$this->_render_buttons( $setting );
 
 				do_action( 'd4p_settings_group_bottom', $setting, $group );
 
@@ -282,6 +283,22 @@ class Render {
 	protected function _render_description( Element $setting ) {
 		if ( ! empty( $setting->notice ) && $setting->input != 'info' ) {
 			echo '<div class="d4p-description">' . $setting->notice . '</div>';
+		}
+	}
+
+	protected function _render_buttons( Element $setting ) {
+		if ( ! empty( $setting->buttons ) ) {
+			echo '<div class="d4p-buttons-wrapper">';
+
+			foreach ( $setting->buttons as $button ) {
+				if ( $button[ 'type' ] == 'a' ) {
+					echo '<a href="' . esc_url( $button[ 'link' ] ) . '" class="' . Sanitize::html_classes( $button[ 'class' ] ?? '' ) . '">' . esc_html( $button[ 'title' ] ) . '</a>';
+				} else {
+					echo '<button name="' . esc_attr( $button[ 'name' ] ?? '' ) . '" id="' . esc_attr( $button[ 'id' ] ?? '' ) . '" type="button" class="' . Sanitize::html_classes( $button[ 'class' ] ?? '' ) . '">' . esc_html( $button[ 'title' ] ) . '</button>';
+				}
+			}
+
+			echo '</div>';
 		}
 	}
 

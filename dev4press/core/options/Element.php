@@ -44,6 +44,7 @@ class Element {
 	public $args = array();
 	public $switch = array();
 	public $more = array();
+	public $buttons = array();
 	public $more_method = 'list';
 
 	public function __construct( string $type, string $name, string $title = '', string $notice = '', string $input = 'text', $value = '' ) {
@@ -91,6 +92,12 @@ class Element {
 	public function more( array $more = array(), string $method = 'list' ) : Element {
 		$this->more        = $more;
 		$this->more_method = $method;
+
+		return $this;
+	}
+
+	public function buttons( array $buttons = array() ) : Element {
+		$this->buttons = $buttons;
 
 		return $this;
 	}

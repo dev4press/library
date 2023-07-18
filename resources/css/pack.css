@@ -3582,6 +3582,12 @@ a > .d4p-icon {
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck a i {
   vertical-align: -2px;
 }
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-buttons-wrapper {
+  margin: 1em 0 0;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-buttons-wrapper > * {
+  margin-right: 0.5em;
+}
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper {
   margin: 1em 0 0;
   border: 1px solid #DDD;
