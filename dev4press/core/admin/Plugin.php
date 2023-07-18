@@ -514,6 +514,21 @@ abstract class Plugin {
 	protected function extra_enqueue_scripts_final( $hook ) {
 	}
 
+	public function action_url( $action, $nonce, $args = '', $panel = '', $subpanel = '', $network = null ) : string {
+		$base = empty( $panel ) ? $this->current_url() : $this->panel_url( $panel, $subpanel, $network );
+		$base = add_query_arg( array(
+			$this->v() => 'getback',
+			'single-action'   => $action,
+			'_wpnonce' => wp_create_nonce( $nonce )
+		), $base );
+
+		if ( ! empty( $args ) ) {
+			$base .= '&' . trim( $args, '&' );
+		}
+
+		return $base;
+	}
+
 	abstract public function main_url() : string;
 
 	abstract public function current_url( $with_subpanel = true ) : string;
