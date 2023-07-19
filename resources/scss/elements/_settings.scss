@@ -276,11 +276,20 @@
                 }
 
                 .exp-text-element {
-                    a {
-                        margin-left: 10px;
-                        text-align: center;
-                        height: 30px;
-                        line-height: 28px;
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: nowrap;
+                    column-gap: 1em;
+
+                    button {
+                        line-height: 2;
+                        padding: .3em 1em;
+
+                        i {
+                            vertical-align: top;
+                            font-size: 1.4em;
+                            margin-top: 0.25em;
+                        }
                     }
                 }
             }

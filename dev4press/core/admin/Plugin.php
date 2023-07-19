@@ -517,9 +517,9 @@ abstract class Plugin {
 	public function action_url( $action, $nonce, $args = '', $panel = '', $subpanel = '', $network = null ) : string {
 		$base = empty( $panel ) ? $this->current_url() : $this->panel_url( $panel, $subpanel, $network );
 		$base = add_query_arg( array(
-			$this->v() => 'getback',
-			'single-action'   => $action,
-			'_wpnonce' => wp_create_nonce( $nonce )
+			$this->v()      => 'getback',
+			'single-action' => $action,
+			'_wpnonce'      => wp_create_nonce( $nonce )
 		), $base );
 
 		if ( ! empty( $args ) ) {

@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Data {
 	public static function list_of_continents() : array {
-		return $list = array(
+		return array(
 			'AF' => __( "Africa", "d4plib" ),
 			'AS' => __( "Asia", "d4plib" ),
 			'EU' => __( "Europe", "d4plib" ),

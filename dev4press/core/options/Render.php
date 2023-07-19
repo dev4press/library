@@ -347,22 +347,11 @@ class Render {
 	protected function _text_element( $name, $id, $i, $value, $element, $hide = false ) {
 		echo '<li class="exp-text-element exp-text-element-' . esc_attr( $i ) . '" style="display: ' . ( $hide ? 'none' : 'list-item' ) . '">';
 
-		$button       = isset( $element->args[ 'label_button_remove' ] ) && $element->args[ 'label_button_remove' ] != '';
-		$button_width = isset( $element->args[ 'width_button_remove' ] ) ? intval( $element->args[ 'width_button_remove' ] ) : 100;
-		$type         = isset( $element->args[ 'type' ] ) && ! empty( $element->args[ 'type' ] ) ? $element->args[ 'type' ] : 'text';
+		$button = isset( $element->args[ 'label_button_remove' ] ) ? esc_html( $element->args[ 'label_button_remove' ] ) : '<i class="d4p-icon d4p-ui-clear d4p-icon-fw"></i>';
+		$type   = isset( $element->args[ 'type' ] ) && ! empty( $element->args[ 'type' ] ) ? $element->args[ 'type' ] : 'text';
 
-		$style_input  = '';
-		$style_button = '';
-		if ( $button ) {
-			$style_input  = ' style="width: calc(100% - ' . absint( $button_width + 10 ) . 'px);"';
-			$style_button = ' style="width: ' . absint( $button_width ) . 'px;"';
-		}
-
-		echo '<input aria-labelledby="' . esc_attr( $id ) . '__label" type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value ) . '" class="widefat"' . $style_input . ' />';
-
-		if ( $button ) {
-			echo '<a role="button" class="button-secondary" href="#"' . $style_button . '>' . esc_html( $element->args[ 'label_button_remove' ] ) . '</a>';
-		}
+		echo '<input aria-labelledby="' . esc_attr( $id ) . '__label" type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value ) . '" class="widefat" />';
+		echo '<button aria-label="' . esc_html( $element->args[ 'label_remove_aria' ] ?? __( "Remove" ) ) . '" role="button" class="button-secondary" type="button">' . $button . '</button>';
 
 		echo '</li>';
 	}

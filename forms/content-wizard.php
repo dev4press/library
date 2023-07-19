@@ -10,10 +10,10 @@ $label = panel()->a()->wizard()->is_last_panel() ? __( "Finish", "d4plib" ) : __
     <div class="d4p-setup-wizard">
         <div class="d4p-wizard-logo" style="color: <?php echo esc_attr( panel()->a()->settings()->i()->color() ); ?>;">
             <div class="d4p-wizard-badge">
-	            <?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin ); ?>
+				<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin ); ?>
             </div>
             <div class="d4p-wizard-title">
-	            <?php echo panel()->a()->title(); ?>
+				<?php echo panel()->a()->title(); ?>
             </div>
         </div>
 
@@ -40,10 +40,10 @@ $label = panel()->a()->wizard()->is_last_panel() ? __( "Finish", "d4plib" ) : __
 				<?php panel()->a()->wizard()->render_hidden_elements(); ?>
 
                 <div class="d4p-wizard-panel-inner">
-	                <?php panel()->include_generic( 'content', 'wizard', panel()->a()->wizard()->current_panel() ); ?>
+					<?php panel()->include_generic( 'content', 'wizard', panel()->a()->wizard()->current_panel() ); ?>
 
                     <div class="d4p-wizard-panel-footer">
-						<input type="submit" class="button-primary" value="<?php echo $label; ?>"/>
+                        <input type="submit" class="button-primary" value="<?php echo $label; ?>"/>
                     </div>
                 </div>
             </form>
