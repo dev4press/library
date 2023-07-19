@@ -345,7 +345,7 @@ class Render {
 	}
 
 	protected function _text_element( $name, $id, $i, $value, $element, $hide = false ) {
-		echo '<li class="exp-text-element exp-text-element-' . esc_attr( $i ) . '" style="display: ' . ( $hide ? 'none' : 'list-item' ) . '">';
+		echo '<li class="exp-text-element exp-text-element-' . esc_attr( $i ) . '" ' . ( $hide ? 'style="display: none"' : '' ) . '>';
 
 		$button = isset( $element->args[ 'label_button_remove' ] ) ? esc_html( $element->args[ 'label_button_remove' ] ) : '<i class="d4p-icon d4p-ui-clear d4p-icon-fw"></i>';
 		$type   = isset( $element->args[ 'type' ] ) && ! empty( $element->args[ 'type' ] ) ? $element->args[ 'type' ] : 'text';
