@@ -351,7 +351,7 @@ class Render {
 		$type   = isset( $element->args[ 'type' ] ) && ! empty( $element->args[ 'type' ] ) ? $element->args[ 'type' ] : 'text';
 
 		echo '<input aria-labelledby="' . esc_attr( $id ) . '__label" type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value ) . '" class="widefat" />';
-		echo '<button aria-label="' . esc_html( $element->args[ 'label_remove_aria' ] ?? __( "Remove" ) ) . '" role="button" class="button-secondary" type="button">' . $button . '</button>';
+		echo '<button aria-label="' . esc_html( $element->args[ 'label_remove_aria' ] ?? __( "Remove", "d4plib" ) ) . '" role="button" class="button-secondary" type="button">' . $button . '</button>';
 
 		echo '</li>';
 	}

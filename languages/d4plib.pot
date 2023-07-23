@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 07/17/2023 05:07:13 PM\n"
+"POT-Creation-Date: 07/23/2023 05:30:23 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -576,75 +576,76 @@ msgstr ""
 msgid "Feature is active"
 msgstr ""
 
-#: dev4press/core/options/Render.php:291
+#: dev4press/core/options/Render.php:308
 msgid "Toggle Additional Information"
 msgstr ""
 
-#: dev4press/core/options/Render.php:561
-msgid "Add New Value"
-msgstr ""
-
-#: dev4press/core/options/Render.php:590
-#: dev4press/core/options/Render.php:621
-msgid "No items to show"
-msgstr ""
-
-#: dev4press/core/options/Render.php:672
-#: dev4press/core/ui/Enqueue.php:308
-msgid "Image not selected."
-msgstr ""
-
-#: dev4press/core/options/Render.php:695
-msgid "Enabled"
-msgstr ""
-
-#: dev4press/core/options/Render.php:653
+#: dev4press/core/options/Render.php:353
+#: dev4press/core/options/Render.php:659
 #: dev4press/core/ui/admin/PanelTools.php:57
 #: dev4press/core/ui/Enqueue.php:304
 msgid "Remove"
 msgstr ""
 
-#: dev4press/core/options/Render.php:654
+#: dev4press/core/options/Render.php:567
+msgid "Add New Value"
+msgstr ""
+
+#: dev4press/core/options/Render.php:596
+#: dev4press/core/options/Render.php:627
+msgid "No items to show"
+msgstr ""
+
+#: dev4press/core/options/Render.php:678
+#: dev4press/core/ui/Enqueue.php:308
+msgid "Image not selected."
+msgstr ""
+
+#: dev4press/core/options/Render.php:701
+msgid "Enabled"
+msgstr ""
+
+#: dev4press/core/options/Render.php:660
 #: dev4press/core/ui/Enqueue.php:305
 msgid "Preview"
 msgstr ""
 
-#: dev4press/core/options/Render.php:311
+#: dev4press/core/options/Render.php:328
 #: dev4press/core/ui/Elements.php:248
 msgid "Check All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:312
+#: dev4press/core/options/Render.php:329
 #: dev4press/core/ui/Elements.php:249
 msgid "Uncheck All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:639
+#: dev4press/core/options/Render.php:645
 msgid "Add Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:643
+#: dev4press/core/options/Render.php:649
 msgid "No images selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:667
+#: dev4press/core/options/Render.php:673
 #: dev4press/core/ui/Enqueue.php:306
 msgid "Select Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:668
+#: dev4press/core/options/Render.php:674
 msgid "Show Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:669
+#: dev4press/core/options/Render.php:675
 msgid "Clear Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:893
+#: dev4press/core/options/Render.php:899
 msgid "Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:896
+#: dev4press/core/options/Render.php:902
 msgid "Unit"
 msgstr ""
 
@@ -699,11 +700,11 @@ msgstr ""
 msgid "Table is missing."
 msgstr ""
 
-#: dev4press/core/plugins/Wizard.php:153
+#: dev4press/core/plugins/Wizard.php:154
 msgid "Yes"
 msgstr ""
 
-#: dev4press/core/plugins/Wizard.php:157
+#: dev4press/core/plugins/Wizard.php:158
 msgid "No"
 msgstr ""
 
