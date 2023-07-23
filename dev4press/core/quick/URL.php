@@ -31,7 +31,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class URL {
-	public static function domain_name( $url ) {
+	public static function domain_name( string $url = '' ) {
+		if ( empty( $url ) ) {
+			return '';
+		}
+
 		return parse_url( $url, PHP_URL_HOST );
 	}
 
@@ -67,7 +71,7 @@ class URL {
 		return $url_request;
 	}
 
-	public static function current_url( $use_wp = true ) : string {
+	public static function current_url( bool $use_wp = true ) : string {
 		if ( $use_wp ) {
 			return home_url( URL::current_url_request() );
 		} else {
@@ -79,7 +83,7 @@ class URL {
 		}
 	}
 
-	public static function add_campaign_tracking( $url, $campaign = '', $medium = '', $content = '', $term = '', $source = null ) : string {
+	public static function add_campaign_tracking( string $url, string $campaign = '', string $medium = '', string $content = '', string $term = '', $source = null ) : string {
 		if ( ! empty( $campaign ) ) {
 			$url = add_query_arg( 'utm_campaign', $campaign, $url );
 		}

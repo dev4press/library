@@ -182,6 +182,12 @@ abstract class DBLite {
 		return $_value;
 	}
 
+	public function get_number_int( string $query, int $default = 0 ) : int {
+		$_value = $this->get_var( $query );
+
+		return is_null( $_value ) ? $default : Sanitize::absint( $_value );
+	}
+
 	public function get_row( string $query, string $output = OBJECT, $y = 0 ) {
 		$_value = $this->wpdb()->get_row( $query, $output, $y );
 
