@@ -110,25 +110,6 @@
 
     .__element {
         .d4p-setting-checkboxes {
-            .d4p-check-uncheck {
-                font-size: .9em;
-                padding: 0 0 5px;
-                margin: 0 0 5px;
-                border-bottom: 1px dotted #CCC;
-
-                a {
-                    text-decoration: none;
-
-                    &.d4p-check-all {
-                        margin-right: 10px;
-                    }
-
-                    i {
-                        vertical-align: -2px;
-                    }
-                }
-            }
-
             .d4p-content-wrapper {
                 display: flex;
                 flex-wrap: wrap;

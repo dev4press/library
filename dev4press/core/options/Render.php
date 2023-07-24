@@ -471,7 +471,6 @@ class Render {
 			'selected' => $value,
 			'name'     => $name_base,
 			'id'       => $id_base,
-			'class'    => 'widefat',
 			'multi'    => $multiple,
 			'readonly' => isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ],
 			'columns'  => $element->args[ 'columns' ] ?? 1
@@ -492,7 +491,6 @@ class Render {
 			'selected' => $value,
 			'name'     => $name_base,
 			'id'       => $id_base,
-			'class'    => 'widefat',
 			'multi'    => $multiple,
 			'readonly' => isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ],
 			'columns'  => $element->args[ 'columns' ] ?? 1
