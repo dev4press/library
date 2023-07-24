@@ -467,15 +467,14 @@ class Render {
 				break;
 		}
 
-		$readonly = isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ] ? ' readonly' : '';
-
 		Elements::instance()->checkboxes_grouped( $data, array(
 			'selected' => $value,
-			'readonly' => $readonly,
 			'name'     => $name_base,
 			'id'       => $id_base,
 			'class'    => 'widefat',
-			'multi'    => $multiple
+			'multi'    => $multiple,
+			'readonly' => isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ],
+			'columns'  => $element->args[ 'columns' ] ?? 1
 		) );
 	}
 
@@ -484,25 +483,20 @@ class Render {
 			case 'function':
 				$data = call_user_func( $element->data );
 				break;
-			case 'array':
+			default:
 				$data = $element->data;
 				break;
 		}
 
-		$value       = is_null( $value ) || $value === true ? array_keys( $data ) : (array) $value;
-		$associative = Arr::is_associative( $data );
-
-		if ( $multiple ) {
-			$this->_render_check_uncheck_all();
-		}
-
-		foreach ( $data as $key => $title ) {
-			$real_value = $associative ? $key : $title;
-			$sel        = in_array( $real_value, $value ) ? ' checked="checked"' : '';
-
-			echo sprintf( '<label><input type="%s" value="%s" name="%s%s"%s class="widefat" />%s</label>',
-				$multiple ? 'checkbox' : 'radio', esc_attr( $real_value ), esc_attr( $name_base ), $multiple == 1 ? '[]' : '', $sel, $title );
-		}
+		Elements::instance()->checkboxes( $data, array(
+			'selected' => $value,
+			'name'     => $name_base,
+			'id'       => $id_base,
+			'class'    => 'widefat',
+			'multi'    => $multiple,
+			'readonly' => isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ],
+			'columns'  => $element->args[ 'columns' ] ?? 1
+		) );
 	}
 
 	protected function draw_group_multi( Element $element, $value, $name_base, $id_base, $multiple = true ) {

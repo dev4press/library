@@ -233,12 +233,32 @@ class Elements {
 			'name'     => '',
 			'id'       => '',
 			'class'    => '',
+			'columns'  => 1,
 			'multi'    => true,
 			'echo'     => true,
 			'readonly' => false
 		);
 
-		return wp_parse_args( $args, $defaults );
+		$args = wp_parse_args( $args, $defaults );
+
+		if ( $args[ 'columns' ] > 1 ) {
+			switch ( $args[ 'columns' ] ) {
+				case 2:
+					$args['class'] .= ' d4p-columns-two';
+					break;
+				case 3:
+					$args['class'] .= ' d4p-columns-three';
+					break;
+				case 4:
+					$args['class'] .= ' d4p-columns-four';
+					break;
+				case 5:
+					$args['class'] .= ' d4p-columns-five';
+					break;
+			}
+		}
+
+		return $args;
 	}
 
 	private function checkboxes_render_check_uncheck( $multi ) : string {
