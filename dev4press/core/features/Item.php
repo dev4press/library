@@ -75,4 +75,8 @@ abstract class Item {
 	public function get( $name, $default = '' ) {
 		return $this->settings[ $name ] ?? $default;
 	}
+
+	public function has( $name ) : bool {
+		return isset( $this->settings[ $name ] );
+	}
 }
