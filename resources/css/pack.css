@@ -3942,7 +3942,7 @@ details.d4p-section-details > div .form-table code {
   }
 }
 .d4p-features-wrapper .d4p-feature-box ._info {
-  padding: 2em;
+  padding: 2em 1.5em;
   text-align: center;
   flex: 1 1 100%;
 }
