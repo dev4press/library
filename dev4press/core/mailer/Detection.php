@@ -267,6 +267,21 @@ class Detection {
 				'source' => 'WordPress',
 				'label'  => _x( "Network Admin Email Notification", "Email Detection Type", "d4plib" )
 			),
+			'coreactivity-instant-notification'                      => array(
+				'filter' => 'coreactivity_instant_notification_email',
+				'source' => 'coreActivity',
+				'label'  => _x( "Instant Notification", "Email Detection Type", "d4plib" )
+			),
+			'coreactivity-daily-digest'                              => array(
+				'filter' => 'coreactivity_daily_digest_email',
+				'source' => 'coreActivity',
+				'label'  => _x( "Daily Digest", "Email Detection Type", "d4plib" )
+			),
+			'coreactivity-weekly-digest'                             => array(
+				'filter' => 'coreactivity_weekly_digest_email',
+				'source' => 'coreActivity',
+				'label'  => _x( "Weekly Digest", "Email Detection Type", "d4plib" )
+			),
 			'gdpol-digest-notify-moderators'                         => array(
 				'action' => 'gdpol_daily_digest_notify_moderators_pre_notify',
 				'source' => 'GD Topic Polls',
