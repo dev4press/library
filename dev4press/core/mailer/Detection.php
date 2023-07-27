@@ -77,6 +77,44 @@ class Detection {
 		return $atts;
 	}
 
+	public function get_data( string $code ) {
+		return $this->supported[ $code ] ?? array();
+	}
+
+	public function get_supported_types() : array {
+		return $this->supported;
+	}
+
+	public function intercept_wp_mail( $atts ) {
+		if ( is_string( $atts[ 'headers' ] ) && ! empty( $atts[ 'headers' ] ) ) {
+			if ( strpos( $atts[ 'headers' ], 'X-WPCF7-Content-Type' ) !== false ) {
+				$this->detection[ 'name' ] = 'cf7-email';
+			}
+		}
+
+		return $atts;
+	}
+
+	public function intercept_buddypress( &$email, $email_type ) {
+		$this->detection[ 'name' ] = 'buddypress-' . $email_type;
+	}
+
+	public function intercept_wp_members( $return ) {
+		$this->detection[ 'name' ] = 'wpmembers-' . ( ! empty( $return[ 'tag' ] ) ? $return[ 'tag' ] : 'custom' );
+
+		return $return;
+	}
+
+	public function intercept_filter( $return ) {
+		$this->identify( current_filter(), 'filter' );
+
+		return $return;
+	}
+
+	public function intercept_action() {
+		$this->identify( current_action(), 'action' );
+	}
+
 	protected function caller() {
 		$backtrace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		$file_path = '';
@@ -474,39 +512,5 @@ class Detection {
 				'label'  => _x( "Activity At Message", "Email Detection Type", "d4plib" )
 			)
 		);
-	}
-
-	public function get_data( string $code ) {
-		return $this->supported[ $code ] ?? array();
-	}
-
-	public function intercept_wp_mail( $atts ) {
-		if ( is_string( $atts[ 'headers' ] ) && ! empty( $atts[ 'headers' ] ) ) {
-			if ( strpos( $atts[ 'headers' ], 'X-WPCF7-Content-Type' ) !== false ) {
-				$this->detection[ 'name' ] = 'cf7-email';
-			}
-		}
-
-		return $atts;
-	}
-
-	public function intercept_buddypress( &$email, $email_type ) {
-		$this->detection[ 'name' ] = 'buddypress-' . $email_type;
-	}
-
-	public function intercept_wp_members( $return ) {
-		$this->detection[ 'name' ] = 'wpmembers-' . ( ! empty( $return[ 'tag' ] ) ? $return[ 'tag' ] : 'custom' );
-
-		return $return;
-	}
-
-	public function intercept_filter( $return ) {
-		$this->identify( current_filter(), 'filter' );
-
-		return $return;
-	}
-
-	public function intercept_action() {
-		$this->identify( current_action(), 'action' );
 	}
 }
