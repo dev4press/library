@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 07/23/2023 05:30:23 PM\n"
+"POT-Creation-Date: 08/01/2023 04:19:53 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -163,358 +163,373 @@ msgstr ""
 msgid "Loaded Template"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:132
+#: dev4press/core/mailer/Detection.php:170
 msgctxt "Email Detection Type"
 msgid "Comment Notify Moderator"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:137
+#: dev4press/core/mailer/Detection.php:175
 msgctxt "Email Detection Type"
 msgid "Comment Notify Post Author"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:142
+#: dev4press/core/mailer/Detection.php:180
 msgctxt "Email Detection Type"
 msgid "Email Change Confirmation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:147
+#: dev4press/core/mailer/Detection.php:185
 msgctxt "Email Detection Type"
 msgid "Email Change Notification"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:152
+#: dev4press/core/mailer/Detection.php:190
 msgctxt "Email Detection Type"
 msgid "Password Change Notification"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:157
+#: dev4press/core/mailer/Detection.php:195
 msgctxt "Email Detection Type"
 msgid "Retrieve Password Notification"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:162
+#: dev4press/core/mailer/Detection.php:200
 msgctxt "Email Detection Type"
 msgid "Privacy Personal Data Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:167
+#: dev4press/core/mailer/Detection.php:205
 msgctxt "Email Detection Type"
 msgid "Privacy Request Confirmation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:172
+#: dev4press/core/mailer/Detection.php:210
 msgctxt "Email Detection Type"
 msgid "Privacy Erasure Fulfillment"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:177
+#: dev4press/core/mailer/Detection.php:215
 msgctxt "Email Detection Type"
 msgid "Send User Request"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:182
+#: dev4press/core/mailer/Detection.php:220
 msgctxt "Email Detection Type"
 msgid "Site Admin Email Change"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:187
+#: dev4press/core/mailer/Detection.php:225
 msgctxt "Email Detection Type"
 msgid "Site Admin Email Change Attempt"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:192
+#: dev4press/core/mailer/Detection.php:230
 msgctxt "Email Detection Type"
 msgid "Plugin or Theme Update Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:197
+#: dev4press/core/mailer/Detection.php:235
 msgctxt "Email Detection Type"
 msgid "Core Update Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:202
+#: dev4press/core/mailer/Detection.php:240
 msgctxt "Email Detection Type"
 msgid "Auto Update Debug Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:207
+#: dev4press/core/mailer/Detection.php:245
 msgctxt "Email Detection Type"
 msgid "New User Notification Admin"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:212
+#: dev4press/core/mailer/Detection.php:250
 msgctxt "Email Detection Type"
 msgid "New User Notification"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:217
+#: dev4press/core/mailer/Detection.php:255
 msgctxt "Email Detection Type"
 msgid "Password Change Notification Admin"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:222
+#: dev4press/core/mailer/Detection.php:260
 msgctxt "Email Detection Type"
 msgid "Recovery Mode Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:227
+#: dev4press/core/mailer/Detection.php:265
 msgctxt "Email Detection Type"
 msgid "Signup Blog Confirmation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:232
+#: dev4press/core/mailer/Detection.php:270
 msgctxt "Email Detection Type"
 msgid "Signup User Confirmation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:237
+#: dev4press/core/mailer/Detection.php:275
 msgctxt "Email Detection Type"
 msgid "Site Deleted Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:242
+#: dev4press/core/mailer/Detection.php:280
 msgctxt "Email Detection Type"
 msgid "Welcome Blog"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:247
+#: dev4press/core/mailer/Detection.php:285
 msgctxt "Email Detection Type"
 msgid "Welcome User"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:252
+#: dev4press/core/mailer/Detection.php:290
 msgctxt "Email Detection Type"
 msgid "New Blog Site Admin"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:257
+#: dev4press/core/mailer/Detection.php:295
 msgctxt "Email Detection Type"
 msgid "New User Site Admin"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:262
+#: dev4press/core/mailer/Detection.php:300
 msgctxt "Email Detection Type"
 msgid "Network Admin Email Confirmation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:267
+#: dev4press/core/mailer/Detection.php:305
 msgctxt "Email Detection Type"
 msgid "Network Admin Email Notification"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:272
+#: dev4press/core/mailer/Detection.php:310
+msgctxt "Email Detection Type"
+msgid "Instant Notification"
+msgstr ""
+
+#: dev4press/core/mailer/Detection.php:315
+msgctxt "Email Detection Type"
+msgid "Daily Digest"
+msgstr ""
+
+#: dev4press/core/mailer/Detection.php:320
+msgctxt "Email Detection Type"
+msgid "Weekly Digest"
+msgstr ""
+
+#: dev4press/core/mailer/Detection.php:325
 msgctxt "Email Detection Type"
 msgid "Digest Notify Moderators"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:277
+#: dev4press/core/mailer/Detection.php:330
 msgctxt "Email Detection Type"
 msgid "Digest Notify Author"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:282
+#: dev4press/core/mailer/Detection.php:335
 msgctxt "Email Detection Type"
 msgid "Instant Notify"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:287
+#: dev4press/core/mailer/Detection.php:340
 msgctxt "Email Detection Type"
 msgid "New Reply In Topic"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:292
+#: dev4press/core/mailer/Detection.php:345
 msgctxt "Email Detection Type"
 msgid "New Topic In Forum"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:297
+#: dev4press/core/mailer/Detection.php:350
 msgctxt "Email Detection Type"
 msgid "Topic Auto Close"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:302
+#: dev4press/core/mailer/Detection.php:355
 msgctxt "Email Detection Type"
 msgid "Topic Manual Close"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:307
+#: dev4press/core/mailer/Detection.php:360
 msgctxt "Email Detection Type"
 msgid "Topic Edit"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:312
+#: dev4press/core/mailer/Detection.php:365
 msgctxt "Email Detection Type"
 msgid "Reply Edit"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:317
+#: dev4press/core/mailer/Detection.php:370
 msgctxt "Email Detection Type"
 msgid "New Topic Moderators"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:322
+#: dev4press/core/mailer/Detection.php:375
 msgctxt "Email Detection Type"
 msgid "New Reply Moderators"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:326
+#: dev4press/core/mailer/Detection.php:379
 msgctxt "Email Detection Type"
 msgid "Custom"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:330
+#: dev4press/core/mailer/Detection.php:383
 msgctxt "Email Detection Type"
 msgid "New User Registration"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:334
+#: dev4press/core/mailer/Detection.php:387
 msgctxt "Email Detection Type"
 msgid "New User Registration Moderated"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:338
+#: dev4press/core/mailer/Detection.php:391
 msgctxt "Email Detection Type"
 msgid "Registration Approved"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:342
+#: dev4press/core/mailer/Detection.php:395
 msgctxt "Email Detection Type"
 msgid "Password Reset"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:346
+#: dev4press/core/mailer/Detection.php:399
 msgctxt "Email Detection Type"
 msgid "Retrieve Username"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:351
+#: dev4press/core/mailer/Detection.php:404
 msgctxt "Email Detection Type"
 msgid "Admin Notification for User Registration"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:356
+#: dev4press/core/mailer/Detection.php:409
 msgctxt "Email Detection Type"
 msgid "New Topic Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:361
+#: dev4press/core/mailer/Detection.php:414
 msgctxt "Email Detection Type"
 msgid "New Post Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:366
+#: dev4press/core/mailer/Detection.php:419
 msgctxt "Email Detection Type"
 msgid "Auto Update Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:370
+#: dev4press/core/mailer/Detection.php:423
 msgctxt "Email Detection Type"
 msgid "Contact Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:374
+#: dev4press/core/mailer/Detection.php:427
 msgctxt "Email Detection Type"
 msgid "Core User Registration With Blog"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:378
+#: dev4press/core/mailer/Detection.php:431
 msgctxt "Email Detection Type"
 msgid "Core User Registration"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:382
-#: dev4press/core/mailer/Detection.php:386
+#: dev4press/core/mailer/Detection.php:435
+#: dev4press/core/mailer/Detection.php:439
 msgctxt "Email Detection Type"
 msgid "Core User Activation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:390
+#: dev4press/core/mailer/Detection.php:443
 msgctxt "Email Detection Type"
 msgid "Members Membership Request"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:394
+#: dev4press/core/mailer/Detection.php:447
 msgctxt "Email Detection Type"
 msgid "Members Membership Request Rejected"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:398
+#: dev4press/core/mailer/Detection.php:451
 msgctxt "Email Detection Type"
 msgid "Friends Request"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:402
+#: dev4press/core/mailer/Detection.php:455
 msgctxt "Email Detection Type"
 msgid "Friends Request Accepted"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:406
+#: dev4press/core/mailer/Detection.php:459
 msgctxt "Email Detection Type"
 msgid "Activity Comment"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:410
+#: dev4press/core/mailer/Detection.php:463
 msgctxt "Email Detection Type"
 msgid "Activity Comment Author"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:414
+#: dev4press/core/mailer/Detection.php:467
 msgctxt "Email Detection Type"
 msgid "Messages Unread"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:418
+#: dev4press/core/mailer/Detection.php:471
 msgctxt "Email Detection Type"
 msgid "Settings Verify Email Change"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:422
+#: dev4press/core/mailer/Detection.php:475
 msgctxt "Email Detection Type"
 msgid "Groups Details Updated"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:426
+#: dev4press/core/mailer/Detection.php:479
 msgctxt "Email Detection Type"
 msgid "Groups Membership Request"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:430
+#: dev4press/core/mailer/Detection.php:483
 msgctxt "Email Detection Type"
 msgid "Groups Membership Request Accepted"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:434
+#: dev4press/core/mailer/Detection.php:487
 msgctxt "Email Detection Type"
 msgid "Groups Membership Request Rejected"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:438
+#: dev4press/core/mailer/Detection.php:491
 msgctxt "Email Detection Type"
 msgid "Groups Membership Request Accepted by Admin"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:442
+#: dev4press/core/mailer/Detection.php:495
 msgctxt "Email Detection Type"
 msgid "Groups Membership Request Rejected by Admin"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:446
+#: dev4press/core/mailer/Detection.php:499
 msgctxt "Email Detection Type"
 msgid "Groups Member Promoted"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:450
+#: dev4press/core/mailer/Detection.php:503
 msgctxt "Email Detection Type"
 msgid "Groups Invitation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:454
+#: dev4press/core/mailer/Detection.php:507
 msgctxt "Email Detection Type"
 msgid "Groups At Message"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:458
+#: dev4press/core/mailer/Detection.php:511
 msgctxt "Email Detection Type"
 msgid "Activity At Message"
 msgstr ""
@@ -581,71 +596,71 @@ msgid "Toggle Additional Information"
 msgstr ""
 
 #: dev4press/core/options/Render.php:353
-#: dev4press/core/options/Render.php:659
+#: dev4press/core/options/Render.php:651
 #: dev4press/core/ui/admin/PanelTools.php:57
 #: dev4press/core/ui/Enqueue.php:304
 msgid "Remove"
 msgstr ""
 
-#: dev4press/core/options/Render.php:567
+#: dev4press/core/options/Render.php:559
 msgid "Add New Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:596
-#: dev4press/core/options/Render.php:627
+#: dev4press/core/options/Render.php:588
+#: dev4press/core/options/Render.php:619
 msgid "No items to show"
 msgstr ""
 
-#: dev4press/core/options/Render.php:678
+#: dev4press/core/options/Render.php:670
 #: dev4press/core/ui/Enqueue.php:308
 msgid "Image not selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:701
+#: dev4press/core/options/Render.php:693
 msgid "Enabled"
 msgstr ""
 
-#: dev4press/core/options/Render.php:660
+#: dev4press/core/options/Render.php:652
 #: dev4press/core/ui/Enqueue.php:305
 msgid "Preview"
 msgstr ""
 
 #: dev4press/core/options/Render.php:328
-#: dev4press/core/ui/Elements.php:248
+#: dev4press/core/ui/Elements.php:268
 msgid "Check All"
 msgstr ""
 
 #: dev4press/core/options/Render.php:329
-#: dev4press/core/ui/Elements.php:249
+#: dev4press/core/ui/Elements.php:269
 msgid "Uncheck All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:645
+#: dev4press/core/options/Render.php:637
 msgid "Add Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:649
+#: dev4press/core/options/Render.php:641
 msgid "No images selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:673
+#: dev4press/core/options/Render.php:665
 #: dev4press/core/ui/Enqueue.php:306
 msgid "Select Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:674
+#: dev4press/core/options/Render.php:666
 msgid "Show Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:675
+#: dev4press/core/options/Render.php:667
 msgid "Clear Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:899
+#: dev4press/core/options/Render.php:891
 msgid "Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:902
+#: dev4press/core/options/Render.php:894
 msgid "Unit"
 msgstr ""
 
@@ -1345,7 +1360,7 @@ msgid "%s is a free plugin, and if you find it useful or want to support its fut
 msgstr ""
 
 #: forms/content-about-donate.php:16
-msgid "%s has a GitHub repository where you can contribute, or submit feature requests and suggestions."
+msgid "%s has a GitHub repository where you can contribute to development, or submit feature requests and suggestions."
 msgstr ""
 
 #: forms/content-about-info.php:15
