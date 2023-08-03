@@ -645,6 +645,17 @@
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-with-bullets li {
   list-style: inherit;
 }
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-inner {
+  display: flex;
+  gap: 0.5em;
+  flex-direction: column;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-inner > div {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer {
   position: absolute;
   border-top: 1px solid #EEE;
@@ -655,20 +666,14 @@
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge {
   border-radius: var(--d4p-layout-badge-border-radius);
-  margin-left: 5px;
   color: #FFF;
-  display: inline-block;
-  padding: 0 6px 2px;
+  padding: 1px 10px 3px 8px;
   line-height: 1.5;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge .d4p-icon {
   font-size: 90%;
-  margin-right: 5px;
   vertical-align: top;
-  margin-top: 6px;
-}
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-right {
-  float: right;
+  margin: 6px 6px 0 0;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-green, .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-ok {
   background: #090;
@@ -681,6 +686,10 @@
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-blue, .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-upgrade {
   background: #0A63A5;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-orange, .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge.d4p-badge-notice {
+  background: #FC0;
+  color: #900;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header {
   border-bottom: 1px solid #EEE;
@@ -743,7 +752,7 @@
   padding: 0;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-status-message {
-  font-weight: bold;
+  font-weight: 500;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row {
   display: flex;
