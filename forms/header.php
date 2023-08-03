@@ -60,6 +60,10 @@ if ( panel()->a()->plugin()->f() ) {
 							foreach ( $_subpanels as $subpanel => $obj ) {
 								$_feature_status = '';
 
+								if ( isset( $obj[ 'skip' ] ) && in_array( 'menu', $obj[ 'skip' ] ) ) {
+									continue;
+								}
+
 								if ( $_features && $subpanel != 'index' && isset( $obj[ 'active' ] ) ) {
 									$icon = 'd4p-ui-times';
 
@@ -72,8 +76,10 @@ if ( panel()->a()->plugin()->f() ) {
 									$_feature_status = '<i class="d4p-features-mark d4p-icon ' . $icon . '"></i>';
 								}
 
+								$_url = $obj[ 'url' ] ?? panel()->a()->panel_url( $_panel, $subpanel );
+
 								if ( $subpanel != $_subpanel ) {
-									echo '<li><a href="' . esc_url( panel()->a()->panel_url( $_panel, $subpanel ) ) . '">' . panel()->r()->icon( $obj[ 'icon' ], 'fw' ) . esc_html( $obj[ 'title' ] ) . $_feature_status . '</a></li>';
+									echo '<li><a href="' . esc_url( $_url ) . '">' . panel()->r()->icon( $obj[ 'icon' ], 'fw' ) . esc_html( $obj[ 'title' ] ) . $_feature_status . '</a></li>';
 								} else {
 									echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj[ 'icon' ], 'fw' ) . esc_html( $obj[ 'title' ] ) . $_feature_status . '</li>';
 								}
