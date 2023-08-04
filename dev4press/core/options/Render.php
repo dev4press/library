@@ -102,6 +102,14 @@ class Render {
 				echo '<h3>' . esc_html( $obj[ 'name' ] ) . $kb . '</h3>';
 				echo '<div class="d4p-group-inner">';
 
+				if ( isset( $obj[ 'notice' ] ) ) {
+					$type = $obj[ 'notice' ][ 'type' ] ?? 'info';
+
+					echo '<div class="d4p-group-notice d4p-notice-' . esc_attr( $type ) . '">';
+					echo $obj[ 'notice' ][ 'content' ];
+					echo '</div>';
+				}
+
 				if ( isset( $obj[ 'settings' ] ) ) {
 					$obj[ 'sections' ] = array(
 						array(
@@ -292,7 +300,7 @@ class Render {
 
 			foreach ( $setting->buttons as $button ) {
 				if ( $button[ 'type' ] == 'a' ) {
-					echo '<a href="' . esc_url( $button[ 'link' ] ) . '" class="' . Sanitize::html_classes( $button[ 'class' ] ?? '' ) . '">' . esc_html( $button[ 'title' ] ) . '</a>';
+					echo '<a rel="' . esc_url( $button[ 'rel' ] ?? '' ) . '" target="' . esc_url( $button[ 'target' ] ?? '' ) . '" href="' . esc_url( $button[ 'link' ] ) . '" class="' . Sanitize::html_classes( $button[ 'class' ] ?? '' ) . '">' . esc_html( $button[ 'title' ] ) . '</a>';
 				} else {
 					echo '<button name="' . esc_attr( $button[ 'name' ] ?? '' ) . '" id="' . esc_attr( $button[ 'id' ] ?? '' ) . '" type="button" class="' . Sanitize::html_classes( $button[ 'class' ] ?? '' ) . '">' . esc_html( $button[ 'title' ] ) . '</button>';
 				}

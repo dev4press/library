@@ -2929,6 +2929,18 @@ a > .d4p-icon {
 .d4p-group .d4p-group-inner ul.d4p-with-bullets li {
   list-style: inherit;
 }
+.d4p-group .d4p-group-inner .d4p-group-notice {
+  padding: 1em;
+  font-size: 1.1em;
+  font-weight: 500;
+  border-bottom: 1px solid #DDD;
+  background-color: #E9F5FF;
+  color: #003252;
+}
+.d4p-group .d4p-group-inner .d4p-group-notice.d4p-notice-warning {
+  background-color: #FFE5E5;
+  color: #4B0000;
+}
 .d4p-group:not(.d4p-group-with-settings) .d4p-group-inner {
   padding: 1.5em;
 }
