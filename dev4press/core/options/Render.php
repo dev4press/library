@@ -296,17 +296,7 @@ class Render {
 
 	protected function _render_buttons( Element $setting ) {
 		if ( ! empty( $setting->buttons ) ) {
-			echo '<div class="d4p-buttons-wrapper">';
-
-			foreach ( $setting->buttons as $button ) {
-				if ( $button[ 'type' ] == 'a' ) {
-					echo '<a rel="' . esc_url( $button[ 'rel' ] ?? '' ) . '" target="' . esc_url( $button[ 'target' ] ?? '' ) . '" href="' . esc_url( $button[ 'link' ] ) . '" class="' . Sanitize::html_classes( $button[ 'class' ] ?? '' ) . '">' . esc_html( $button[ 'title' ] ) . '</a>';
-				} else {
-					echo '<button name="' . esc_attr( $button[ 'name' ] ?? '' ) . '" id="' . esc_attr( $button[ 'id' ] ?? '' ) . '" type="button" class="' . Sanitize::html_classes( $button[ 'class' ] ?? '' ) . '">' . esc_html( $button[ 'title' ] ) . '</button>';
-				}
-			}
-
-			echo '</div>';
+			Elements::instance()->buttons( $setting->buttons );
 		}
 	}
 

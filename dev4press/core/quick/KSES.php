@@ -85,6 +85,28 @@ class KSES {
 		) );
 	}
 
+	public static function buttons( string $render ) : string {
+		return wp_kses( $render, array(
+			'div'    => array(
+				'class' => true
+			),
+			'a'      => array(
+				'class'  => true,
+				'href'   => true,
+				'rel'    => true,
+				'id'     => true,
+				'name'   => true,
+				'target' => true
+			),
+			'button' => array(
+				'name'  => true,
+				'id'    => true,
+				'type'  => true,
+				'class' => true
+			)
+		) );
+	}
+
 	public static function select( string $render ) : string {
 		return wp_kses( $render, array(
 			'select'   => array(

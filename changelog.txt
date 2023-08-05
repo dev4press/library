@@ -2,18 +2,20 @@
 == Changelog ==
 
 = Version 4.3 - 2023.08.01 =
-* New: settings elements can have toggleable additional information
 * New: some forms panel split into the elements files for re-usability
+* New: settings elements can have toggleable additional information
+* New: settings elements can have buttons
 * New: class `Wizard` for setting up Setup Wizard panels
 * New: class `Help` for setting up admin side context help
 * New: class `Settings` direct preload of the multisite network settings
 * New: class `HTAccess` expanded with the method to check .HTACCESS status
-* New: many smaller new methods and functions added through the library
 * New: helper `Data` class to hold some common data and lists
+* New: many smaller new methods and functions added through the library
 * New: added several more UI icons
 * Edit: improvements to the `Panel` class URLs and forms loading
 * Edit: improvements to the Geolocation process and classes
 * Edit: massive improvements to Features in relation to network mode plugins
+* Edit: many updates to the plugin settings panel rendering
 * Edit: many styling improvements to the various parts of the interface
 * Edit: improvements to the rendering of the settings controls
 * Edit: few improvements to the plugins `Store` class

@@ -376,6 +376,25 @@
             }
         }
 
+        .d4p-panel-links {
+            background: var(--d4p-color-main-background);
+            border: 1px solid var(--d4p-color-main-border);
+            border-radius: var(--d4p-layout-main-border-radius);
+            margin: 0 0 2em;
+            padding: 1.5em;
+            text-align: center;
+
+            p {
+                margin: 0 0 1.5em;
+            }
+
+            .d4p-buttons-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: .5em;
+            }
+        }
+
         .d4p-panel-mark {
             margin: 2em 0 0;
 

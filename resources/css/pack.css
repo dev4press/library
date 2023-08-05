@@ -2784,6 +2784,22 @@ a > .d4p-icon {
   padding: 2px 8px 4px;
   border-radius: var(--d4p-layout-badge-border-radius);
 }
+.d4p-wrap .d4p-sidebar .d4p-panel-links {
+  background: var(--d4p-color-main-background);
+  border: 1px solid var(--d4p-color-main-border);
+  border-radius: var(--d4p-layout-main-border-radius);
+  margin: 0 0 2em;
+  padding: 1.5em;
+  text-align: center;
+}
+.d4p-wrap .d4p-sidebar .d4p-panel-links p {
+  margin: 0 0 1.5em;
+}
+.d4p-wrap .d4p-sidebar .d4p-panel-links .d4p-buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
 .d4p-wrap .d4p-sidebar .d4p-panel-mark {
   margin: 2em 0 0;
 }

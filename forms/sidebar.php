@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v43\Core\UI\Elements;
 use function Dev4Press\v43\Functions\panel;
 
 $_panel = panel()->object();
@@ -34,4 +35,13 @@ $_panel = panel()->object();
 			?>
         </div>
     </div>
+
+	<?php if ( isset( $_panel->links ) ) { ?>
+
+        <div class="d4p-panel-links">
+            <p><?php echo $_panel->links[ 'info' ]; ?></p>
+			<?php Elements::instance()->buttons( $_panel->links[ 'buttons' ] ); ?>
+        </div>
+
+	<?php } ?>
 </div>

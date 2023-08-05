@@ -49,6 +49,26 @@ class Elements {
 		return $_instance;
 	}
 
+	public function buttons( $buttons, bool $echo = true ) : string {
+		$render = '<div class="d4p-buttons-wrapper">';
+
+		foreach ( $buttons as $button ) {
+			if ( $button[ 'type' ] == 'a' ) {
+				$render .= '<a rel="' . esc_url( $button[ 'rel' ] ?? '' ) . '" target="' . esc_url( $button[ 'target' ] ?? '' ) . '" href="' . esc_url( $button[ 'link' ] ) . '" class="' . Sanitize::html_classes( $button[ 'class' ] ?? '' ) . '">' . esc_html( $button[ 'title' ] ) . '</a>';
+			} else {
+				$render .= '<button name="' . esc_attr( $button[ 'name' ] ?? '' ) . '" id="' . esc_attr( $button[ 'id' ] ?? '' ) . '" type="button" class="' . Sanitize::html_classes( $button[ 'class' ] ?? '' ) . '">' . esc_html( $button[ 'title' ] ) . '</button>';
+			}
+		}
+
+		$render .= '</div>';
+
+		if ( $echo ) {
+			echo KSES::buttons( $render );
+		}
+
+		return $render;
+	}
+
 	public function select( $values, $args = array(), $attr = array() ) : string {
 		$args        = $this->select_prepare_args( $args );
 		$attributes  = $this->select_prepare_attributes( $args, $attr );
@@ -244,16 +264,16 @@ class Elements {
 		if ( $args[ 'columns' ] > 1 ) {
 			switch ( $args[ 'columns' ] ) {
 				case 2:
-					$args['class'] .= ' d4p-columns-two';
+					$args[ 'class' ] .= ' d4p-columns-two';
 					break;
 				case 3:
-					$args['class'] .= ' d4p-columns-three';
+					$args[ 'class' ] .= ' d4p-columns-three';
 					break;
 				case 4:
-					$args['class'] .= ' d4p-columns-four';
+					$args[ 'class' ] .= ' d4p-columns-four';
 					break;
 				case 5:
-					$args['class'] .= ' d4p-columns-five';
+					$args[ 'class' ] .= ' d4p-columns-five';
 					break;
 			}
 		}
