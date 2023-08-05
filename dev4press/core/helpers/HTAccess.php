@@ -56,16 +56,26 @@ class HTAccess {
 		}
 	}
 
-	public function remove( $marker ) : bool {
-		return $this->insert( $marker );
+	public function remove( $marker, $cleanup = false, $backup = false ) : bool {
+		return $this->insert( $marker, array(), 'end', $cleanup, $backup );
 	}
 
-	public function insert( $marker, $insertion = array(), $location = 'end', $cleanup = false ) : bool {
+	public function insert( $marker, $insertion = array(), $location = 'end', $cleanup = false, $backup = false ) : bool {
 		if ( ! $this->file_exists() || $this->is_writable() ) {
 			if ( ! $this->file_exists() ) {
 				$marker_data = '';
 			} else {
 				$marker_data = $this->load();
+			}
+
+			if ( $backup ) {
+				$backup_path = $this->path . '.backup';
+
+				if ( file_exists( $backup_path ) ) {
+					unlink( $backup_path );
+				}
+
+				copy( $this->path, $backup_path );
 			}
 
 			if ( ! $f = fopen( $this->path, 'w' ) ) {
@@ -82,6 +92,7 @@ class HTAccess {
 
 				if ( $marker_data ) {
 					$state = true;
+
 					foreach ( $marker_data as $marker_line ) {
 						if ( strpos( $marker_line, '# ' . $this->begin . ' ' . $marker ) !== false ) {
 							$state = false;
