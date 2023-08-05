@@ -212,7 +212,7 @@ abstract class Settings {
 	public function save( $group ) {
 		$this->_settings_update( $group, $this->current[ $group ] );
 
-		do_action( $this->base . '_settings_saved_to_db', $this->changed[ $group ] ?? array() );
+		do_action( $this->base . '_settings_saved_to_db_' . $group, $this->changed[ $group ] ?? array() );
 	}
 
 	public function is_install() : bool {
