@@ -685,3 +685,16 @@ details.d4p-section-details > div .form-table code {
 .d4p-setting-checkboxes.d4p-columns-five .d4p-inside-wrapper {
   column-count: 5;
 }
+@media screen and (max-width: 768px) {
+  .d4p-setting-checkboxes label {
+    font-size: 16px;
+  }
+  .d4p-setting-checkboxes.d4p-columns-three .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-four .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-five .d4p-inside-wrapper {
+    column-count: 2;
+  }
+}
+@media screen and (max-width: 479px) {
+  .d4p-setting-checkboxes.d4p-columns-two .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-three .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-four .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-five .d4p-inside-wrapper {
+    column-count: 1;
+  }
+}

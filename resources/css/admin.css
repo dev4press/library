@@ -505,8 +505,10 @@
 }
 .d4p-group .d4p-group-inner .d4p-group-notice {
   padding: 1em;
+  margin: 0;
   font-size: 1.1em;
   font-weight: 500;
+  border: none;
   border-bottom: 1px solid #DDD;
   background-color: #E9F5FF;
   color: #003252;
