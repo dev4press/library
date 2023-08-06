@@ -110,10 +110,14 @@ abstract class Table extends WP_List_Table {
 		echo '</ul>';
 	}
 
+	protected function get_period_dropdown_sql( $column, $table ) : string {
+		return "SELECT DISTINCT YEAR($column) AS year, MONTH($column) AS month FROM $table ORDER BY $column DESC";
+	}
+
 	public function get_period_dropdown( $column, $table ) : array {
 		global $wp_locale;
 
-		$sql    = "SELECT DISTINCT YEAR($column) AS year, MONTH($column) AS month FROM $table ORDER BY $column DESC";
+		$sql    = $this->get_period_dropdown_sql( $column, $table );
 		$months = $this->db()->run( $sql );
 
 		$list = array(
