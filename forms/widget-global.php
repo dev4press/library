@@ -1,3 +1,10 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+?>
 <h4><?php esc_html_e( "Basic", "d4plib" ); ?></h4>
 <table>
     <tbody>

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Admin\Table
 Version: v4.3
 Author:  Milan Petrovic
@@ -73,7 +73,7 @@ abstract class Table extends WP_List_Table {
 				$value = 1;
 			}
 
-			$value = Sanitize::absint( $value );
+			$value = absint( $value );
 		}
 
 		return $value;
@@ -238,7 +238,7 @@ abstract class Table extends WP_List_Table {
 
 		if ( $do_limit ) {
 			$paged  = $this->get_request_arg( 'paged' );
-			$offset = Sanitize::absint( ( $paged - 1 ) * $per_page );
+			$offset = absint( ( $paged - 1 ) * $per_page );
 
 			$sql[ 'limit' ] = $offset . ', ' . $per_page;
 		}
@@ -272,7 +272,7 @@ abstract class Table extends WP_List_Table {
 			$raw = $this->db()->get_results( $sql );
 
 			foreach ( $raw as $row ) {
-				$id = Sanitize::absint( $row->$column );
+				$id = absint( $row->$column );
 
 				if ( ! isset( $this->items[ $id ]->meta ) ) {
 					$this->items[ $id ]->meta = array();
@@ -302,14 +302,14 @@ abstract class Table extends WP_List_Table {
 				}
 				break;
 			case 'paged':
-				$value = Sanitize::absint( $value );
+				$value = absint( $value );
 				break;
 			case 's':
 				$value = Sanitize::basic( $value );
 				break;
 			case 'period':
 			case 'view':
-				$value = Sanitize::key( $value );
+				$value = sanitize_key( $value );
 				break;
 		}
 

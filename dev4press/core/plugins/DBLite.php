@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Plugins\DB
 Version: v4.3
 Author:  Milan Petrovic
@@ -185,7 +185,7 @@ abstract class DBLite {
 	public function get_number_int( string $query, int $default = 0 ) : int {
 		$_value = $this->get_var( $query );
 
-		return is_null( $_value ) ? $default : Sanitize::absint( $_value );
+		return is_null( $_value ) ? $default : absint( $_value );
 	}
 
 	public function get_row( string $query, string $output = OBJECT, $y = 0 ) {
@@ -293,7 +293,7 @@ abstract class DBLite {
 			$id = is_array( $item ) ? $item[ $field ] : $item->$field;
 
 			if ( $is_integer ) {
-				$id = Sanitize::absint( $id );
+				$id = absint( $id );
 			}
 
 			$new[ $id ] = $item;

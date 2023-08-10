@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Options\Type
 Version: v4.3
 Author:  Milan Petrovic

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\WordPress\Content\Taxonomy
 Version: v4.3
 Author:  Milan Petrovic

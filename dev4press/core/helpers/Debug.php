@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Helpers\Debug
 Version: v4.3
 Author:  Milan Petrovic
@@ -38,7 +38,7 @@ class Debug {
 			$print = '';
 
 			if ( $title != '' ) {
-				$print .= '<<<< ' . $title . "\r\n";
+				$print .= '### ' . $title . "\r\n";
 			}
 
 			$print .= print_r( $log, true );
@@ -48,17 +48,17 @@ class Debug {
 	}
 
 	public static function print_r( $obj, $pre = true, $title = '', $before = '', $after = '' ) {
-		echo $before . D4P_EOL;
+		echo $before . PHP_EOL;
 
 		if ( $pre ) {
 			echo '<pre style="padding: 5px; font-size: 12px; background: #fff; border: 1px solid #000; color: #000;">';
 
 			if ( $title != '' ) {
-				echo '&gt;&gt;&gt;&gt;&nbsp;<strong>' . esc_html( $title ) . '</strong>&nbsp;&lt;&lt;&lt;&lt;&lt;<br/><br/>';
+				echo '###&nbsp;<strong>' . esc_html( $title ) . '</strong>&nbsp;###<br/><br/>';
 			}
 		} else {
 			if ( $title != '' ) {
-				echo "<<<< " . esc_html( $title ) . " >>>>\r\n\r\n";
+				echo "### " . esc_html( $title ) . " ###\r\n\r\n";
 			}
 		}
 
@@ -68,7 +68,7 @@ class Debug {
 			echo '</pre>';
 		}
 
-		echo $after . D4P_EOL;
+		echo $after . PHP_EOL;
 	}
 
 	public static function print_hooks( $filter = false, $destination = 'print' ) {
@@ -123,39 +123,39 @@ class Debug {
 	public static function print_page_summary() {
 		global $wpdb;
 
-		echo D4P_EOL;
+		echo PHP_EOL;
 		echo '<!-- ' . esc_html__( "SQL Queries", "d4plib" ) . '           : ';
 		echo $wpdb->num_queries;
-		echo ' -->' . D4P_EOL;
+		echo ' -->' . PHP_EOL;
 		echo '<!-- ' . esc_html__( "Total Page Time", "d4plib" ) . '       : ';
 		echo timer_stop( 0, 6 ) . ' ' . esc_html__( "seconds", "d4plib" );
-		echo ' -->' . D4P_EOL;
+		echo ' -->' . PHP_EOL;
 
 		if ( function_exists( 'memory_get_peak_usage' ) ) {
 			echo '<!-- ' . esc_html__( "PHP Memory Peak", "d4plib" ) . '       : ';
 			echo round( memory_get_peak_usage() / 1024 / 1024, 2 ) . ' MB';
-			echo ' -->' . D4P_EOL;
+			echo ' -->' . PHP_EOL;
 		}
 
 		if ( function_exists( 'memory_get_usage' ) ) {
 			echo '<!-- ' . esc_html__( "PHP Memory Final", "d4plib" ) . '      : ';
 			echo round( memory_get_usage() / 1024 / 1024, 2 ) . ' MB';
-			echo ' -->' . D4P_EOL;
+			echo ' -->' . PHP_EOL;
 		}
 
-		echo D4P_EOL;
+		echo PHP_EOL;
 	}
 
 	public static function print_query_conditions() {
 		global $wp_query;
 
-		echo D4P_EOL;
+		echo PHP_EOL;
 
 		$true = $false = '';
 
 		foreach ( $wp_query as $key => $value ) {
 			if ( substr( $key, 0, 3 ) == 'is_' ) {
-				$line = '<!-- ' . $key . ': ' . ( $value ? 'true' : 'false' ) . ' -->' . D4P_EOL;
+				$line = '<!-- ' . $key . ': ' . ( $value ? 'true' : 'false' ) . ' -->' . PHP_EOL;
 
 				if ( $value ) {
 					$true .= $line;
@@ -168,7 +168,7 @@ class Debug {
 		foreach ( array( 'is_front_page' ) as $key ) {
 			$value = $wp_query->$key();
 
-			$line = '<!-- ' . $key . ': ' . ( $value ? 'true' : 'false' ) . ' -->' . D4P_EOL;
+			$line = '<!-- ' . $key . ': ' . ( $value ? 'true' : 'false' ) . ' -->' . PHP_EOL;
 
 			if ( $value ) {
 				$true .= $line;
@@ -177,26 +177,26 @@ class Debug {
 			}
 		}
 
-		echo $true . D4P_EOL . $false;
+		echo $true . PHP_EOL . $false;
 
-		echo D4P_EOL;
+		echo PHP_EOL;
 	}
 
 	public static function print_page_request() {
 		global $wp, $template;
 
-		echo D4P_EOL;
+		echo PHP_EOL;
 		echo '<!-- ' . esc_html__( "Request", "d4plib" ) . '               : ';
 		echo empty( $wp->request ) ? esc_html__( "None", "d4plib" ) : esc_html( $wp->request );
-		echo ' -->' . D4P_EOL;
+		echo ' -->' . PHP_EOL;
 		echo '<!-- ' . esc_html__( "Matched Rewrite Rule", "d4plib" ) . '  : ';
 		echo empty( $wp->matched_rule ) ? esc_html__( "None", "d4plib" ) : esc_html( $wp->matched_rule );
-		echo ' -->' . D4P_EOL;
+		echo ' -->' . PHP_EOL;
 		echo '<!-- ' . esc_html__( "Matched Rewrite Query", "d4plib" ) . ' : ';
 		echo empty( $wp->matched_query ) ? esc_html__( "None", "d4plib" ) : esc_html( $wp->matched_query );
-		echo ' -->' . D4P_EOL;
+		echo ' -->' . PHP_EOL;
 		echo '<!-- ' . esc_html__( "Loaded Template", "d4plib" ) . '       : ';
 		echo basename( $template );
-		echo ' -->' . D4P_EOL;
+		echo ' -->' . PHP_EOL;
 	}
 }

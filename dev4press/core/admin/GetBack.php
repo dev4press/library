@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Admin\GetBack
 Version: v4.3
 Author:  Milan Petrovic
@@ -40,7 +40,7 @@ abstract class GetBack {
 	public function __construct( $admin ) {
 		$this->admin = $admin;
 
-		$this->page = isset( $_REQUEST[ 'page' ] ) ? Sanitize::key( $_REQUEST[ 'page' ] ) : false;
+		$this->page = isset( $_REQUEST[ 'page' ] ) ? sanitize_key( $_REQUEST[ 'page' ] ) : false;
 
 		$this->process();
 	}
@@ -124,7 +124,7 @@ abstract class GetBack {
 		$data = $this->a()->settings()->export_to_secure_json();
 
 		if ( $data !== false ) {
-			$export_date = date( 'Y-m-d-H-m-s' );
+			$export_date = gmdate( 'Y-m-d-H-m-s' );
 			$export_name = $this->a()->plugin . '-settings-' . $export_date . '.json';
 
 			header( 'Content-type: application/force-download' );
@@ -162,7 +162,7 @@ abstract class GetBack {
 	}
 
 	protected function _get( $key = 'action', $default = '' ) : string {
-		return $this->_is( $key ) ? Sanitize::key( $_GET[ $key ] ) : $default;
+		return $this->_is( $key ) ? sanitize_key( $_GET[ $key ] ) : $default;
 	}
 
 	protected function _is( $key = 'action' ) : bool {

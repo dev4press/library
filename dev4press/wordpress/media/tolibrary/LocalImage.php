@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\WordPress\Media\LocalImageToMediaLibrary
 Version: v4.3
 Author:  Milan Petrovic

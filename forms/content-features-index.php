@@ -4,6 +4,10 @@ use Dev4Press\v43\Core\Quick\KSES;
 use Dev4Press\v43\Core\Quick\Sanitize;
 use function Dev4Press\v43\Functions\panel;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $_scopes = array(
 	'global' => array( 'label' => __( "Global", "d4plib" ), 'icon' => 'd4p-ui-globe' ),
 	'front'  => array( 'label' => __( "Frontend", "d4plib" ), 'icon' => 'd4p-ui-desktop' ),

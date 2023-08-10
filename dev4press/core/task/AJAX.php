@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Task\AJAX
 Version: v4.3
 Author:  Milan Petrovic
@@ -65,7 +65,7 @@ abstract class AJAX {
 	}
 
 	public function check_nonce() {
-		$ajax_nonce = isset( $_REQUEST[ '_ajax_nonce' ] ) ? Sanitize::key( $_REQUEST[ '_ajax_nonce' ] ) : '';
+		$ajax_nonce = isset( $_REQUEST[ '_ajax_nonce' ] ) ? sanitize_key( $_REQUEST[ '_ajax_nonce' ] ) : '';
 		$nonce      = wp_verify_nonce( $ajax_nonce, $this->nonce );
 
 		if ( $nonce === false ) {
@@ -79,10 +79,7 @@ abstract class AJAX {
 
 		$this->timer = microtime( true );
 
-		@ini_set( 'memory_limit', '256M' );
-		@set_time_limit( 0 );
-
-		$operation = isset( $_POST[ 'operation' ] ) ? Sanitize::key( $_POST[ 'operation' ] ) : '';
+		$operation = isset( $_POST[ 'operation' ] ) ? sanitize_key( $_POST[ 'operation' ] ) : '';
 		$response  = array();
 
 		switch ( $operation ) {
@@ -120,7 +117,7 @@ abstract class AJAX {
 				break;
 		}
 
-		$response[ 'message' ] = join( D4P_EOL, $this->messages );
+		$response[ 'message' ] = join( PHP_EOL, $this->messages );
 
 		WPR::json_die( $response );
 	}

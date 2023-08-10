@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\WordPress\Legacy\Widget
 Version: v4.3
 Author:  Milan Petrovic
@@ -176,9 +176,9 @@ abstract class Widget extends WP_Widget {
 		$instance[ 'title' ] = Sanitize::basic( $new_instance[ 'title' ] );
 
 		$instance[ '_class' ] = Sanitize::basic( $new_instance[ '_class' ] );
-		$instance[ '_tab' ]   = Sanitize::key( $new_instance[ '_tab' ] );
-		$instance[ '_hook' ]  = Sanitize::key( $new_instance[ '_hook' ] );
-		$instance[ '_devid' ] = Sanitize::key( $new_instance[ '_devid' ] );
+		$instance[ '_tab' ]   = sanitize_key( $new_instance[ '_tab' ] );
+		$instance[ '_hook' ]  = sanitize_key( $new_instance[ '_hook' ] );
+		$instance[ '_devid' ] = sanitize_key( $new_instance[ '_devid' ] );
 
 		$instance[ '_users' ] = $this->get_valid_list_value( '_users', $new_instance[ '_users' ], array_keys( $this->get_list_user_visibility() ) );
 
@@ -204,7 +204,7 @@ abstract class Widget extends WP_Widget {
 		}
 
 		if ( isset( $new_instance[ '_cached' ] ) ) {
-			$instance[ '_cached' ] = Sanitize::absint( $new_instance[ '_cached' ] );
+			$instance[ '_cached' ] = absint( $new_instance[ '_cached' ] );
 		}
 
 		if ( current_user_can( 'unfiltered_html' ) ) {
@@ -329,7 +329,7 @@ abstract class Widget extends WP_Widget {
 	protected function render_widget_header( array $instance ) {
 		$classes = $this->render_header_classes( $instance );
 
-		echo '<div class="' . join( ' ', $classes ) . '">' . D4P_EOL;
+		echo '<div class="' . join( ' ', $classes ) . '">' . PHP_EOL;
 
 		if ( ! empty( $instance[ '_before' ] ) ) {
 			echo '<div class="d4p-widget-before">' . $instance[ '_before' ] . '</div>';
@@ -346,7 +346,7 @@ abstract class Widget extends WP_Widget {
 
 	protected function prepare_cache( array $instance ) {
 		if ( $this->results_cacheable ) {
-			$this->cache_time = isset( $instance[ '_cached' ] ) ? Sanitize::absint( $instance[ '_cached' ] ) : 0;
+			$this->cache_time = isset( $instance[ '_cached' ] ) ? absint( $instance[ '_cached' ] ) : 0;
 
 			if ( $this->cache_time > 0 ) {
 				$copy = (array) $instance;
@@ -451,7 +451,7 @@ abstract class Widget extends WP_Widget {
 		$atts    = $this->prepare_shortcode( $atts );
 		$classes = $this->render_header_classes( $atts, true );
 
-		$render = '<div class="' . join( ' ', $classes ) . '">' . D4P_EOL;
+		$render = '<div class="' . join( ' ', $classes ) . '">' . PHP_EOL;
 
 		ob_start();
 

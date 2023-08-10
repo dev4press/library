@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\UI\Grid
 Version: v4.3
 Author:  Milan Petrovic
@@ -110,7 +110,7 @@ abstract class Grid {
 		$this->filters[ 'order' ]   = isset( $_GET[ 'order' ] ) && strtoupper( $_GET[ 'order' ] ) === 'ASC' ? 'ASC' : 'DESC';
 		$this->filters[ 'orderby' ] = ! empty( $_GET[ 'orderby' ] ) ? Sanitize::basic( $_GET[ 'orderby' ] ) : $this->default_orderby;
 		$this->filters[ 'search' ]  = ! empty( $_GET[ 'search' ] ) ? Sanitize::basic( $_GET[ 'search' ] ) : '';
-		$this->filters[ 'pg' ]      = ! empty( $_GET[ 'pg' ] ) ? Sanitize::absint( $_GET[ 'pg' ] ) : 1;
+		$this->filters[ 'pg' ]      = ! empty( $_GET[ 'pg' ] ) ? absint( $_GET[ 'pg' ] ) : 1;
 
 		foreach ( $this->vars as $key => $method ) {
 			$real = $this->prefix . '-' . $key;

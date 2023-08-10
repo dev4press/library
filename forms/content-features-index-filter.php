@@ -2,6 +2,10 @@
 
 use function Dev4Press\v43\Functions\panel;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
 	$buttons = panel()->get_filter_buttons_for_override();
 } else {

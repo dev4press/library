@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Admin\PostBack
 Version: v4.3
 Author:  Milan Petrovic
@@ -40,7 +40,7 @@ abstract class PostBack {
 	public function __construct( $admin ) {
 		$this->admin = $admin;
 
-		$this->page = isset( $_POST[ 'option_page' ] ) ? Sanitize::key( $_POST[ 'option_page' ] ) : false;
+		$this->page = isset( $_POST[ 'option_page' ] ) ? sanitize_key( $_POST[ 'option_page' ] ) : false;
 
 		if ( $this->page !== false ) {
 			$this->process();

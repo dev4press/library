@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Quick\URL
 Version: v4.3
 Author:  Milan Petrovic
@@ -75,11 +75,12 @@ class URL {
 		if ( $use_wp ) {
 			return home_url( URL::current_url_request() );
 		} else {
-			$s        = empty( $_SERVER[ 'HTTPS' ] ) ? '' : ( $_SERVER[ 'HTTPS' ] == 'on' ? 's' : '' );
+			$s        = is_ssl() ? 's' : '';
 			$protocol = Str::left( strtolower( $_SERVER[ 'SERVER_PROTOCOL' ] ), '/' ) . $s;
-			$port     = $_SERVER[ 'SERVER_PORT' ] == '80' || $_SERVER[ 'SERVER_PORT' ] == '443' ? '' : ':' . $_SERVER[ 'SERVER_PORT' ];
+			$port     = isset( $_SERVER[ 'SERVER_PORT' ] ) ? absint( $_SERVER[ 'SERVER_PORT' ] ) : 80;
+			$port     = $port === 80 || $port === 443 ? '' : ':' . $port;
 
-			return $protocol . '://' . $_SERVER[ 'SERVER_NAME' ] . $port . $_SERVER[ 'REQUEST_URI' ];
+			return $protocol . '://' . sanitize_url( $_SERVER[ 'SERVER_NAME' ] ) . $port . sanitize_url( $_SERVER[ 'REQUEST_URI' ] );
 		}
 	}
 

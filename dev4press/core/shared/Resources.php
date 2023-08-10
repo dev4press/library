@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Shared\Enqueue
 Version: v4.3
 Author:  Milan Petrovic
@@ -273,14 +273,6 @@ class Resources {
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' )
-			),
-			'clipboard'              => array(
-				'lib'  => true,
-				'path' => '',
-				'file' => 'clipboard.min',
-				'ver'  => '2.0.8',
-				'ext'  => 'js',
-				'min'  => false
 			),
 			'cookies'                => array(
 				'lib'  => true,

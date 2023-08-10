@@ -2,6 +2,10 @@
 
 use function Dev4Press\v43\Functions\panel;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $label = panel()->a()->wizard()->is_last_panel() ? __( "Finish", "d4plib" ) : __( "Save and Continue", "d4plib" );
 
 ?>

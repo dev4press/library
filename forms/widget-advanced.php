@@ -4,6 +4,10 @@ use Dev4Press\v43\Core\Quick\KSES;
 use Dev4Press\v43\Core\Quick\WPR;
 use Dev4Press\v43\Core\UI\Elements;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 
 <h4><?php esc_html_e( "Widget Visibility", "d4plib" ); ?></h4>

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Helpers\Download
 Version: v4.3
 Author:  Milan Petrovic
@@ -76,7 +76,6 @@ class Download {
 			return false;
 		}
 
-		@set_time_limit( 0 );
 		while ( ! feof( $handle ) ) {
 			$buffer = fread( $handle, $part_size );
 			echo $buffer;
@@ -174,7 +173,6 @@ class Download {
 				$buffer = $end - $p + 1;
 			}
 
-			set_time_limit( 0 );
 			echo fread( $fp, $buffer );
 			flush();
 		}

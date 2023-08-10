@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Plugins\InstallDB
 Version: v4.3
 Author:  Milan Petrovic
@@ -59,7 +59,7 @@ abstract class InstallDB {
 		foreach ( $this->tables as $obj ) {
 			$table = $this->table( $obj );
 
-			$query .= "CREATE TABLE " . $table . " (" . $obj[ 'data' ] . ") " . $collate . ";" . D4P_EOL;
+			$query .= "CREATE TABLE " . $table . " (" . $obj[ 'data' ] . ") " . $collate . ";" . PHP_EOL;
 		}
 
 		return $this->delta( $query );
@@ -72,8 +72,8 @@ abstract class InstallDB {
 			$table = $this->table( $obj );
 			$count = $obj[ 'columns' ];
 
-			if ( $this->wpdb()->get_var( "SHOW TABLES LIKE '$table'" ) == $table ) {
-				$columns = $this->wpdb()->get_results( "SHOW COLUMNS FROM $table" );
+			if ( $this->wpdb()->get_var( $this->wpdb()->prepare( "SHOW TABLES LIKE %s", $table ) ) == $table ) {
+				$columns = $this->wpdb()->get_results( "SHOW COLUMNS FROM " . $table );
 
 				if ( $count != count( $columns ) ) {
 					$result[ $table ] = array(

@@ -9,6 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $_dismiss_url = panel()->a()->current_url( false ) . '&' . panel()->a()->v() . '=getback&action=';
 $_utm_medium  = 'plugin-' . panel()->a()->plugin;
 

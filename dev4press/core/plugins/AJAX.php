@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Plugins\AJAX
 Version: v4.3
 Author:  Milan Petrovic
@@ -90,8 +90,8 @@ abstract class AJAX {
 			$this->raise_malformed_error( $request );
 		}
 
-		$request[ 'action' ] = Sanitize::key( $request[ 'action' ] );
-		$request[ 'nonce' ]  = Sanitize::key( $request[ 'nonce' ] );
+		$request[ 'action' ] = sanitize_key( $request[ 'action' ] );
+		$request[ 'nonce' ]  = sanitize_key( $request[ 'nonce' ] );
 
 		return $request;
 	}

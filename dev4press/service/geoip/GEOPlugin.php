@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Services\GEOIP\GEOPlugin
 Version: v4.3
 Author:  Milan Petrovic

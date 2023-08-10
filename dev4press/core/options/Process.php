@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Options\Process
 Version: v4.3
 Author:  Milan Petrovic
@@ -220,7 +220,7 @@ class Process {
 				$value = Sanitize::slug( $post[ $key ] );
 				break;
 			case 'slug_ext':
-				$value = Sanitize::key( $post[ $key ] );
+				$value = sanitize_key( $post[ $key ] );
 				break;
 			case 'slug_slash':
 				$value = $this->slug_slashes( $post[ $key ] );

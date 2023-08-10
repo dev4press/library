@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Base Library Functions: Bridge
 Version: v4.3
 Author:  Milan Petrovic

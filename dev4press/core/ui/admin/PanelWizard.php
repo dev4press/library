@@ -20,6 +20,6 @@ abstract class PanelWizard extends Panel {
 	}
 
 	public function enqueue_scripts() {
-		$this->a()->e()->css('wizard')->js('wizard');
+		$this->a()->e()->css( 'wizard' )->js( 'wizard' );
 	}
 }

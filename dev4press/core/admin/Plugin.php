@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Admin\Plugin
 Version: v4.3
 Author:  Milan Petrovic
@@ -430,7 +430,7 @@ abstract class Plugin {
 		$post_type = '';
 
 		if ( isset( $_GET[ 'post_type' ] ) ) {
-			$post_type = Sanitize::key( $_GET[ 'post_type' ] );
+			$post_type = sanitize_key( $_GET[ 'post_type' ] );
 		} else {
 			global $post;
 
@@ -489,9 +489,9 @@ abstract class Plugin {
 	}
 
 	protected function load_post_get_back() {
-		if ( isset( $_POST[ $this->v() ] ) && Sanitize::key( $_POST[ $this->v() ] ) == 'postback' ) {
+		if ( isset( $_POST[ $this->v() ] ) && sanitize_key( $_POST[ $this->v() ] ) === 'postback' ) {
 			$this->run_postback();
-		} else if ( isset( $_GET[ $this->v() ] ) && Sanitize::key( $_GET[ $this->v() ] ) == 'getback' ) {
+		} else if ( isset( $_GET[ $this->v() ] ) && sanitize_key( $_GET[ $this->v() ] ) === 'getback' ) {
 			$this->run_getback();
 		}
 	}

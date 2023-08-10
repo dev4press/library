@@ -4,6 +4,10 @@ use Dev4Press\v43\Library;
 use Dev4Press\v43\WordPress;
 use function Dev4Press\v43\Functions\panel;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 <div class="d4p-info-block">
     <h3>

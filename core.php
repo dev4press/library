@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press Core Loader
 Version: v4.3
 Author:  Milan Petrovic
@@ -31,12 +31,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! defined( 'D4P_EOL' ) ) {
-	define( 'D4P_EOL', "\r\n" );
-}
-
-if ( ! defined( 'D4P_TAB' ) ) {
-	define( 'D4P_TAB', "\t" );
+if ( ! defined( 'DEV4PRESS_TAB' ) ) {
+	define( 'DEV4PRESS_TAB', "\t" );
 }
 
 $_library_path = dirname( __FILE__ ) . '/';
@@ -44,7 +40,6 @@ $_library_path = dirname( __FILE__ ) . '/';
 include( $_library_path . 'autoload.php' );
 
 include( $_library_path . 'functions/Bridge.php' );
-include( $_library_path . 'functions/Debug.php' );
 
 WordPress::instance();
 Library::instance();

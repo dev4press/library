@@ -22,6 +22,8 @@
 * Edit: class `HTAccess` improves the writing to the file
 * Edit: class for `PostBack` can handle network and blog mode plugins
 * Edit: optimization of the font generating file sources
+* Removed: clipboard JS file since it is already in WordPress core
+* Removed: standalone print and debug functions as no longer used
 * Fix: header navigation in multisite mode show items that don't belong
 
 = Version 4.2 - 2023.06.16 =

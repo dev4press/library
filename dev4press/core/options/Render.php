@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Options\Render
 Version: v4.3
 Author:  Milan Petrovic
@@ -725,7 +725,7 @@ class Render {
 	}
 
 	protected function draw_listing( Element $element, $value, $name_base, $id_base ) {
-		$this->draw_html( $element, join( D4P_EOL, $value ), $name_base, $id_base );
+		$this->draw_html( $element, join( PHP_EOL, $value ), $name_base, $id_base );
 	}
 
 	protected function draw_code( Element $element, $value, $name_base, $id_base ) {

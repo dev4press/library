@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\Core\Quick\Sanitize
 Version: v4.3
 Author:  Milan Petrovic
@@ -121,7 +121,7 @@ class Sanitize {
 		$output = array();
 
 		foreach ( $input as $key => $value ) {
-			$output[ $key ] = Sanitize::key( $value );
+			$output[ $key ] = sanitize_key( $value );
 		}
 
 		return $output;
@@ -192,6 +192,6 @@ class Sanitize {
 	}
 
 	public static function _get_absint( $name, $default ) {
-		return ! empty( $_GET[ $name ] ) ? Sanitize::absint( $_GET[ $name ] ) : $default;
+		return ! empty( $_GET[ $name ] ) ? absint( $_GET[ $name ] ) : $default;
 	}
 }

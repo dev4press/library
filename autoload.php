@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press Core Autoloader
 Version: v4.3
 Author:  Milan Petrovic
@@ -24,8 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
-if ( ! function_exists( 'd4p_core_library_autoloader_43' ) ) {
-	function d4p_core_library_autoloader_43( $class ) {
+if ( ! function_exists( 'dev4press_core_library_autoloader_43' ) ) {
+	function dev4press_core_library_autoloader_43( $class ) {
 		$path = dirname( __FILE__ ) . '/';
 		$base = 'Dev4Press\\v43\\';
 
@@ -48,5 +48,5 @@ if ( ! function_exists( 'd4p_core_library_autoloader_43' ) ) {
 		}
 	}
 
-	spl_autoload_register( 'd4p_core_library_autoloader_43' );
+	spl_autoload_register( 'dev4press_core_library_autoloader_43' );
 }

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\WordPress\Customizer\Control\Divider
 Version: v4.3
 Author:  Milan Petrovic

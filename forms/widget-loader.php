@@ -1,4 +1,12 @@
-<?php $_tab = $instance[ '_tab' ]; ?>
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$_tab = $instance[ '_tab' ];
+
+?>
 
 <div class="d4plib-widget <?php echo esc_attr( $this->widget_base ); ?>-wrapper">
     <div class="d4plib-widget-tabs" role="tablist">

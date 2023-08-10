@@ -2,6 +2,10 @@
 
 use function Dev4Press\v43\Functions\panel;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $_panel     = panel()->a()->panel_object();
 $_subpanel  = panel()->a()->subpanel;
 $_subpanels = panel()->subpanels();

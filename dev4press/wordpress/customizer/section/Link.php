@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
 Name:    Dev4Press\v43\WordPress\Customizer\Section\Link
 Version: v4.3
 Author:  Milan Petrovic

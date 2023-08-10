@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $shortcode_notice = $this->get_shortcode_notice();
 
 ?>

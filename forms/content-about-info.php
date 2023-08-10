@@ -3,6 +3,10 @@
 use Dev4Press\v43\API\Languages;
 use function Dev4Press\v43\Functions\panel;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $plugin = panel()->a()->settings()->i();
 $sysreq = $plugin->system_requirements();
 

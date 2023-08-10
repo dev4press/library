@@ -3,6 +3,10 @@
 use Dev4Press\v43\Core\Quick\Sanitize;
 use function Dev4Press\v43\Functions\panel;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $_message = '';
 $_color   = 'success';
 
