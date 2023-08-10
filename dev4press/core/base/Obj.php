@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press\v43\Core\Base\Obj
 Version: v4.3

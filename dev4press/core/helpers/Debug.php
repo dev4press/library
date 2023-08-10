@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press\v43\Core\Helpers\Debug
 Version: v4.3

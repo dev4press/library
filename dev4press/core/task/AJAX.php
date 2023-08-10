@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press\v43\Core\Task\AJAX
 Version: v4.3

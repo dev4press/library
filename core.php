@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press Core Loader
 Version: v4.3

@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press\v43\API\Store
 Version: v4.3

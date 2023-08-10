@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press\v43\Core\Options\Render
 Version: v4.3

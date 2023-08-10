@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press\v43\Services\GEOIP\Location
 Version: v4.3

@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press\v43\WordPress\Customizer\Control
 Version: v4.3

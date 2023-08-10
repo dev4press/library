@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press Core Autoloader
 Version: v4.3
@@ -43,7 +42,7 @@ if ( ! function_exists( 'dev4press_core_library_autoloader_43' ) ) {
 			$path .= 'dev4press/' . $class_namespace . '/' . $class_name . '.php';
 
 			if ( file_exists( $path ) ) {
-				include( $path );
+				include $path ;
 			}
 		}
 	}

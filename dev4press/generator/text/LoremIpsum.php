@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press\v43\Generator\Text\LoremIpsum
 Version: v4.3

@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press\v43\Service\Media\Pixabay\Video
 Version: v4.3

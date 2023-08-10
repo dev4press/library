@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press\v43\Service\Media\Pixabay\Query
 Version: v4.3

@@ -1,5 +1,4 @@
 <?php
-
 /**
 Name:    Dev4Press\v43\WordPress\Customizer\Control\Slider
 Version: v4.3
