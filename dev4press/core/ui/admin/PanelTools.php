@@ -79,17 +79,6 @@ abstract class PanelTools extends Panel {
 		}
 	}
 
-	public function settings_fields() {
-		$group  = $this->a()->plugin . '-tools';
-		$action = $this->a()->v();
-
-		echo "<input type='hidden' name='option_page' value='" . esc_attr( $group ) . "' />";
-		echo "<input type='hidden' name='" . esc_attr( $action ) . "' value='postback' />";
-		echo "<input type='hidden' name='" . panel()->a()->n() . "[subpanel]' value='" . esc_attr( $this->a()->subpanel ) . "' />";
-
-		wp_nonce_field( $group . '-options' );
-	}
-
 	public function include_accessibility_control() {
 		$_subpanel = $this->a()->subpanel;
 

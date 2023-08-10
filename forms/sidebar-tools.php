@@ -11,7 +11,7 @@ $_subpanel  = panel()->a()->subpanel;
 $_subpanels = panel()->subpanels();
 
 if ( $_subpanels[ $_subpanel ][ 'method' ] == 'post' ) {
-	panel()->settings_fields();
+	panel()->settings_fields( '', true );
 }
 
 $_button_id = $_subpanels[ $_subpanel ][ 'button_id' ] ?? panel()->a()->plugin_prefix . '-tools-' . $_subpanel;
@@ -36,18 +36,18 @@ $_button_id = $_subpanels[ $_subpanel ][ 'button_id' ] ?? panel()->a()->plugin_p
             </div>
         </div>
 		<?php if ( $_subpanel != 'index' && $_subpanels[ $_subpanel ][ 'method' ] != '' ) { ?>
-            <div class="d4p-panel-buttons">
-				<?php if ( $_subpanels[ $_subpanel ][ 'method' ] == 'get' ) { ?>
-                    <a id="<?php echo esc_attr( $_button_id ); ?>" type="button" href="<?php echo esc_url( $_subpanels[ $_subpanel ][ 'button_url' ] ); ?>" class="button-primary"><?php echo esc_html( $_subpanels[ $_subpanel ][ 'button_label' ] ); ?></a>
-				<?php } else if ( $_subpanels[ $_subpanel ][ 'method' ] == 'ajax' ) { ?>
-                    <input id="<?php echo esc_attr( $_button_id ); ?>" type="button" value="<?php echo esc_attr( $_subpanels[ $_subpanel ][ 'button_label' ] ); ?>" class="button-primary"/>
-				<?php } else { ?>
-                    <input id="<?php echo esc_attr( $_button_id ); ?>" type="submit" value="<?php echo esc_attr( $_subpanels[ $_subpanel ][ 'button_label' ] ); ?>" class="button-primary"/>
-				<?php } ?>
-            </div>
-            <div class="d4p-return-to-top">
-                <a href="#wpwrap"><?php esc_html_e( "Return to top", "d4plib" ); ?></a>
-            </div>
-		<?php } ?>
+        <button class="d4p-panel-buttons">
+			<?php if ( $_subpanels[ $_subpanel ][ 'method' ] == 'get' ) { ?>
+                <a id="<?php echo esc_attr( $_button_id ); ?>" type="button" href="<?php echo esc_url( $_subpanels[ $_subpanel ][ 'button_url' ] ); ?>" class="button-primary"><?php echo esc_html( $_subpanels[ $_subpanel ][ 'button_label' ] ); ?></a>
+			<?php } else if ( $_subpanels[ $_subpanel ][ 'method' ] == 'ajax' ) { ?>
+                <button id="<?php echo esc_attr( $_button_id ); ?>" type="button" class="button-primary"><?php echo esc_html( $_subpanels[ $_subpanel ][ 'button_label' ] ); ?></button>
+			<?php } else { ?>
+                <button id="<?php echo esc_attr( $_button_id ); ?>" type="submit" class="button-primary"><?php echo esc_html( $_subpanels[ $_subpanel ][ 'button_label' ] ); ?></button>
+			<?php } ?>
     </div>
+    <div class="d4p-return-to-top">
+        <a href="#wpwrap"><?php esc_html_e( "Return to top", "d4plib" ); ?></a>
+    </div>
+	<?php } ?>
+</div>
 </div>

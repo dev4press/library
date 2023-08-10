@@ -33,17 +33,6 @@ abstract class PanelSettings extends Panel {
 		);
 	}
 
-	public function settings_fields() {
-		$group  = $this->a()->plugin . '-settings';
-		$action = $this->a()->v();
-
-		echo "<input type='hidden' name='option_page' value='" . esc_attr( $group ) . "' />";
-		echo "<input type='hidden' name='action' value='update' />";
-		echo "<input type='hidden' name='" . esc_attr( $action ) . "' value='postback' />";
-
-		wp_nonce_field( $group . '-options' );
-	}
-
 	public function enqueue_scripts_early() {
 		$this->a()->enqueue->js( 'mark' )->js( 'confirmsubmit' );
 	}

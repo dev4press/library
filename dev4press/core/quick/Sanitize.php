@@ -55,22 +55,20 @@ class Sanitize {
 		return absint( $value );
 	}
 
-	public static function key( $key ) : string {
-		$key = strtolower( $key );
-
-		return preg_replace( '/[^a-z0-9._\-]/', '', $key );
-	}
-
-	public static function slug( $text ) : string {
-		return trim( sanitize_title_with_dashes( stripslashes( $text ) ), "-_ \t\n\r\0\x0B" );
-	}
-
 	public static function email( $email ) : string {
 		return sanitize_email( $email );
 	}
 
 	public static function url( $url ) : string {
 		return sanitize_url( $url );
+	}
+
+	public static function key( $key ) : string {
+		return sanitize_key( $key );
+	}
+
+	public static function slug( $text ) : string {
+		return trim( sanitize_title_with_dashes( stripslashes( $text ) ), "-_ \t\n\r\0\x0B" );
 	}
 
 	public static function basic( string $text, bool $strip_shortcodes = true ) : string {

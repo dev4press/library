@@ -243,6 +243,24 @@ abstract class Panel {
 		return '<form method="' . esc_attr( $this->form_method ) . '" action="" id="' . esc_attr( $id ) . '" ' . $enc . ' autocomplete="' . esc_attr( $this->form_autocomplete ) . '">';
 	}
 
+	public function settings_fields( $action = 'update', $subpanel = false ) {
+		$group   = $this->a()->plugin . '-' . $this->a()->panel;
+		$handler = $this->a()->v();
+
+		echo "<input type='hidden' name='option_page' value='" . esc_attr( $group ) . "' />";
+		echo "<input type='hidden' name='" . esc_attr( $handler ) . "' value='postback' />";
+
+		if ( ! empty( $action ) ) {
+			echo "<input type='hidden' name='action' value='" . esc_attr( $action ) . "' />";
+		}
+
+		if ( $subpanel ) {
+			echo "<input type='hidden' name='" . $this->a()->n() . "[subpanel]' value='" . esc_attr( $this->a()->subpanel ) . "' />";
+		}
+
+		wp_nonce_field( $group . '-options' );
+	}
+
 	public function form_tag_close() : string {
 		return '</form>';
 	}
