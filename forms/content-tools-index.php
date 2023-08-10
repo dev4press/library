@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$_classes = array(
 				'd4p-feature-box',
 				'tool-' . $subpanel,
-				'_is-tool'
+				'_is-tool',
 			);
 
 			$url = panel()->a()->panel_url( 'tools', $subpanel );
@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 </div>
                 <div class="_ctrl">
                     <div class="_open">
-                        <a class="button-primary" href="<?php echo esc_url( $url ); ?>"><?php esc_html_e( "Open", "d4plib" ); ?></a>
+                        <a class="button-primary" href="<?php echo esc_url( $url ); ?>"><?php esc_html_e( 'Open', 'd4plib' ); ?></a>
                     </div>
                 </div>
             </div>

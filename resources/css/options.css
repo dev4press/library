@@ -50,13 +50,13 @@
 @media screen and (max-width: 840px) {
   .d4p-settings-section .d4p-settings-table > tbody > tr > th,
   .d4p-settings-section .d4p-settings-table > tbody > tr > td {
-    width: 100%;
-    padding: 1.5em;
-    display: block;
+	width: 100%;
+	padding: 1.5em;
+	display: block;
   }
   .d4p-settings-section .d4p-settings-table > tbody > tr > th {
-    border-bottom: 0;
-    padding-bottom: 0;
+	border-bottom: 0;
+	padding-bottom: 0;
   }
 }
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper label {
@@ -222,34 +222,34 @@
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=time],
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=month],
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
-    width: 60%;
+	width: 60%;
   }
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-check-uncheck {
-    font-size: 1.1em;
+	font-size: 1.1em;
   }
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-css_size input[type=number] {
-    width: 50%;
+	width: 50%;
   }
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-css_size select {
-    display: inline;
+	display: inline;
   }
 }
 @media screen and (max-width: 768px) {
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-color .wp-picker-input-wrap input[type=button] {
-    line-height: 2.8em;
+	line-height: 2.8em;
   }
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-color .wp-color-result {
-    line-height: 2.8em;
+	line-height: 2.8em;
   }
 }
 @media screen and (max-width: 480px) {
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=time],
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=month],
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=number] {
-    width: 100%;
+	width: 100%;
   }
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-css_size input[type=number] {
-    width: 50%;
+	width: 50%;
   }
 }
 .d4p-settings-section .d4p-settings-table .d4p-settings-item-error th {
@@ -454,12 +454,12 @@ details.d4p-section-details > div .form-table code {
 }
 @media screen and (max-width: 640px) {
   .d4p-features-wrapper .d4p-feature-box {
-    flex-basis: calc(50% - 2em);
+	flex-basis: calc(50% - 2em);
   }
 }
 @media screen and (max-width: 440px) {
   .d4p-features-wrapper .d4p-feature-box {
-    flex-basis: calc(100% - 2em);
+	flex-basis: calc(100% - 2em);
   }
 }
 .d4p-features-wrapper .d4p-feature-box ._info {
@@ -687,14 +687,14 @@ details.d4p-section-details > div .form-table code {
 }
 @media screen and (max-width: 768px) {
   .d4p-setting-checkboxes label {
-    font-size: 16px;
+	font-size: 16px;
   }
   .d4p-setting-checkboxes.d4p-columns-three .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-four .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-five .d4p-inside-wrapper {
-    column-count: 2;
+	column-count: 2;
   }
 }
 @media screen and (max-width: 479px) {
   .d4p-setting-checkboxes.d4p-columns-two .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-three .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-four .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-five .d4p-inside-wrapper {
-    column-count: 1;
+	column-count: 1;
   }
 }

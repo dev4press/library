@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Plugins\Settings
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Plugins\Settings
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Plugins;
 
@@ -200,7 +200,10 @@ abstract class Settings {
 				$this->changed[ $group ] = array();
 			}
 
-			$this->changed[ $group ][ $name ] = array( 'old' => $old, 'new' => $value );
+			$this->changed[ $group ][ $name ] = array(
+				'old' => $old,
+				'new' => $value,
+			);
 		}
 
 		if ( $save ) {
@@ -312,7 +315,7 @@ abstract class Settings {
 		$export = array(
 			'name' => $name,
 			'ctrl' => strtolower( wp_generate_password( 8, false ) ) . md5( $encoded . $name . $size ) . strtolower( wp_generate_password( 24, false ) ),
-			'data' => urlencode( base64_encode( gzcompress( $encoded, 9 ) ) )
+			'data' => urlencode( base64_encode( gzcompress( $encoded, 9 ) ) ),
 		);
 
 		return json_encode( $export, JSON_PRETTY_PRINT );
@@ -482,7 +485,7 @@ abstract class Settings {
 
 		$site_id = get_current_network_id();
 		$options = DB::instance()->prepare_in_list( $core_options );
-		$query   = DB::instance()->prepare( "SELECT `meta_key`, `meta_value` FROM " . DB::instance()->sitemeta . " WHERE `meta_key` IN ($options) AND `site_id` = %d", $site_id );
+		$query   = DB::instance()->prepare( 'SELECT `meta_key`, `meta_value` FROM ' . DB::instance()->sitemeta . " WHERE `meta_key` IN ($options) AND `site_id` = %d", $site_id );
 		$options = DB::instance()->get_results( $query );
 
 		foreach ( $options as $option ) {
@@ -503,7 +506,7 @@ abstract class Settings {
 		}
 
 		$options = DB::instance()->prepare_in_list( $core_options );
-		$options = DB::instance()->get_results( "SELECT `option_name`, `option_value` FROM " . DB::instance()->options . " WHERE `option_name` IN ($options)" );
+		$options = DB::instance()->get_results( 'SELECT `option_name`, `option_value` FROM ' . DB::instance()->options . " WHERE `option_name` IN ($options)" );
 
 		foreach ( $options as $option ) {
 			$option->option_value = maybe_unserialize( $option->option_value );
@@ -542,7 +545,7 @@ abstract class Settings {
 		}
 
 		$data = array(
-			'info' => $this->current[ 'info' ]
+			'info' => $this->current[ 'info' ],
 		);
 
 		foreach ( $list as $name ) {

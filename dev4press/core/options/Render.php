@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Options\Render
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Options\Render
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Options;
 
@@ -115,8 +115,8 @@ class Render {
 							'label'    => '',
 							'name'     => '',
 							'class'    => '',
-							'settings' => $obj[ 'settings' ]
-						)
+							'settings' => $obj[ 'settings' ],
+						),
 					);
 					unset( $obj[ 'settings' ] );
 				}
@@ -185,10 +185,14 @@ class Render {
 	protected function render_option( Element $setting, $group ) {
 		$name_base     = $this->base . '[' . $setting->type . '][' . $setting->name . ']';
 		$id_base       = $this->get_id( $name_base );
-		$call_function = apply_filters( $this->prefix . '_render_option_call_back_for_' . $setting->input, array(
-			$this,
-			'draw_' . $setting->input
-		), $this );
+		$call_function = apply_filters(
+			$this->prefix . '_render_option_call_back_for_' . $setting->input,
+			array(
+				$this,
+				'draw_' . $setting->input,
+			),
+			$this
+		);
 
 		$name = ! empty( $setting->name ) ? $setting->name : 'element-' . $setting->input;
 
@@ -303,7 +307,7 @@ class Render {
 		if ( ! empty( $setting->more ) ) {
 			echo '<div class="d4p-more-wrapper">';
 			echo '<div class="d4p-more-title">';
-			echo '<i aria-hidden="true" class="d4p-icon d4p-ui-chevron-square-down d4p-icon-fw"></i> <button type="button">' . __( "Toggle Additional Information", "d4plib" ) . '</button>';
+			echo '<i aria-hidden="true" class="d4p-icon d4p-ui-chevron-square-down d4p-icon-fw"></i> <button type="button">' . __( 'Toggle Additional Information', 'd4plib' ) . '</button>';
 			echo '</div>';
 			echo '<div class="d4p-more-content">';
 
@@ -323,8 +327,8 @@ class Render {
 	protected function _render_check_uncheck_all() {
 		echo '<div class="d4p-check-uncheck">';
 
-		echo '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-square"></i> ' . esc_html__( "Check All", "d4plib" ) . '</a>';
-		echo '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . esc_html__( "Uncheck All", "d4plib" ) . '</a>';
+		echo '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-square"></i> ' . esc_html__( 'Check All', 'd4plib' ) . '</a>';
+		echo '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . esc_html__( 'Uncheck All', 'd4plib' ) . '</a>';
 
 		echo '</div>';
 	}
@@ -348,7 +352,7 @@ class Render {
 		$type   = isset( $element->args[ 'type' ] ) && ! empty( $element->args[ 'type' ] ) ? $element->args[ 'type' ] : 'text';
 
 		echo '<input aria-labelledby="' . esc_attr( $id ) . '__label" type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value ) . '" class="widefat" />';
-		echo '<button aria-label="' . esc_html( $element->args[ 'label_remove_aria' ] ?? __( "Remove", "d4plib" ) ) . '" role="button" class="button-secondary" type="button">' . $button . '</button>';
+		echo '<button aria-label="' . esc_html( $element->args[ 'label_remove_aria' ] ?? __( 'Remove', 'd4plib' ) ) . '" role="button" class="button-secondary" type="button">' . $button . '</button>';
 
 		echo '</li>';
 	}
@@ -361,8 +365,18 @@ class Render {
 		$type      = $flatpickr ? 'text' : $type;
 		$class     = 'widefat' . ( $flatpickr ? ' ' . esc_attr( $class ) : '' );
 
-		echo sprintf( '<input aria-labelledby="%s__label" type="%s" name="%s" id="%s" value="%s" class="%s"%s%s%s />',
-			$id_base, $type, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ), $class, $readonly, $min, $max );
+		echo sprintf(
+			'<input aria-labelledby="%s__label" type="%s" name="%s" id="%s" value="%s" class="%s"%s%s%s />',
+			$id_base,
+			$type,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $value ),
+			$class,
+			$readonly,
+			$min,
+			$max
+		);
 	}
 
 	protected function draw_date( Element $element, $value, $name_base, $id_base ) {
@@ -387,15 +401,31 @@ class Render {
 		$type        = isset( $element->args[ 'type' ] ) && ! empty( $element->args[ 'type' ] ) ? $element->args[ 'type' ] : $type;
 		$pattern     = isset( $element->args[ 'pattern' ] ) && ! empty( $element->args[ 'pattern' ] ) ? ' pattern="' . esc_attr( $element->args[ 'pattern' ] ) . '"' : '';
 
-		echo sprintf( '<input aria-labelledby="%s__label"%s%s%s type="%s" name="%s" id="%s" value="%s" class="%s" />',
-			$id_base, $readonly, $placeholder, $pattern, $type, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ), esc_attr( $class ) );
+		echo sprintf(
+			'<input aria-labelledby="%s__label"%s%s%s type="%s" name="%s" id="%s" value="%s" class="%s" />',
+			$id_base,
+			$readonly,
+			$placeholder,
+			$pattern,
+			$type,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $value ),
+			esc_attr( $class )
+		);
 	}
 
 	protected function draw_html( Element $element, $value, $name_base, $id_base ) {
 		$readonly = isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ] ? ' readonly' : '';
 
-		echo sprintf( '<textarea aria-labelledby="%s__label"%s name="%s" id="%s" class="widefat">%s</textarea>',
-			$id_base, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_textarea( $value ) );
+		echo sprintf(
+			'<textarea aria-labelledby="%s__label"%s name="%s" id="%s" class="widefat">%s</textarea>',
+			$id_base,
+			$readonly,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_textarea( $value )
+		);
 	}
 
 	protected function draw_number( Element $element, $value, $name_base, $id_base ) {
@@ -405,8 +435,17 @@ class Render {
 		$max  = isset( $element->args[ 'max' ] ) ? ' max="' . esc_attr( floatval( $element->args[ 'max' ] ) ) . '"' : '';
 		$step = isset( $element->args[ 'step' ] ) ? ' step="' . esc_attr( floatval( $element->args[ 'step' ] ) ) . '"' : '';
 
-		echo sprintf( '<input aria-labelledby="%s__label"%s type="number" name="%s" id="%s" value="%s" class="widefat"%s%s%s />',
-			$id_base, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ), $min, $max, $step );
+		echo sprintf(
+			'<input aria-labelledby="%s__label"%s type="number" name="%s" id="%s" value="%s" class="widefat"%s%s%s />',
+			$id_base,
+			$readonly,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $value ),
+			$min,
+			$max,
+			$step
+		);
 
 		if ( isset( $element->args[ 'label_unit' ] ) ) {
 			echo '<span class="d4p-field-unit">' . esc_html( $element->args[ 'label_unit' ] ) . '</span>';
@@ -444,12 +483,16 @@ class Render {
 
 		echo '<div class="d4p-content-wrapper">';
 		echo '<ul class="d4p-wrapper-hierarchy">';
-		echo $walker->walk( $data, 0, array(
-			'input'    => $input,
-			'id'       => $id_base,
-			'name'     => $name_base,
-			'selected' => $value
-		) );
+		echo $walker->walk(
+			$data,
+			0,
+			array(
+				'input'    => $input,
+				'id'       => $id_base,
+				'name'     => $name_base,
+				'selected' => $value,
+			)
+		);
 		echo '</ul>';
 		echo '</div>';
 	}
@@ -464,14 +507,17 @@ class Render {
 				break;
 		}
 
-		Elements::instance()->checkboxes_grouped( $data, array(
-			'selected' => $value,
-			'name'     => $name_base,
-			'id'       => $id_base,
-			'multi'    => $multiple,
-			'readonly' => isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ],
-			'columns'  => $element->args[ 'columns' ] ?? 1
-		) );
+		Elements::instance()->checkboxes_grouped(
+			$data,
+			array(
+				'selected' => $value,
+				'name'     => $name_base,
+				'id'       => $id_base,
+				'multi'    => $multiple,
+				'readonly' => isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ],
+				'columns'  => $element->args[ 'columns' ] ?? 1,
+			)
+		);
 	}
 
 	protected function draw_checkboxes( Element $element, $value, $name_base, $id_base, $multiple = true ) {
@@ -484,14 +530,17 @@ class Render {
 				break;
 		}
 
-		Elements::instance()->checkboxes( $data, array(
-			'selected' => $value,
-			'name'     => $name_base,
-			'id'       => $id_base,
-			'multi'    => $multiple,
-			'readonly' => isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ],
-			'columns'  => $element->args[ 'columns' ] ?? 1
-		) );
+		Elements::instance()->checkboxes(
+			$data,
+			array(
+				'selected' => $value,
+				'name'     => $name_base,
+				'id'       => $id_base,
+				'multi'    => $multiple,
+				'readonly' => isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ],
+				'columns'  => $element->args[ 'columns' ] ?? 1,
+			)
+		);
 	}
 
 	protected function draw_group_multi( Element $element, $value, $name_base, $id_base, $multiple = true ) {
@@ -506,14 +555,17 @@ class Render {
 
 		$readonly = isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ] ? ' readonly' : '';
 
-		Elements::instance()->select_grouped( $data, array(
-			'selected' => $value,
-			'readonly' => $readonly,
-			'name'     => $name_base,
-			'id'       => $id_base,
-			'class'    => 'widefat',
-			'multi'    => $multiple
-		) );
+		Elements::instance()->select_grouped(
+			$data,
+			array(
+				'selected' => $value,
+				'readonly' => $readonly,
+				'name'     => $name_base,
+				'id'       => $id_base,
+				'class'    => 'widefat',
+				'multi'    => $multiple,
+			)
+		);
 	}
 
 	protected function draw_select_multi( Element $element, $value, $name_base, $id_base, $multiple = true ) {
@@ -528,14 +580,18 @@ class Render {
 
 		$readonly = isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ] ? ' readonly' : '';
 
-		Elements::instance()->select( $data, array(
-			'selected' => $value,
-			'readonly' => $readonly,
-			'name'     => $name_base,
-			'id'       => $id_base,
-			'class'    => 'widefat',
-			'multi'    => $multiple
-		), array( 'aria-labelledby' => $id_base . '__label' ) );
+		Elements::instance()->select(
+			$data,
+			array(
+				'selected' => $value,
+				'readonly' => $readonly,
+				'name'     => $name_base,
+				'id'       => $id_base,
+				'class'    => 'widefat',
+				'multi'    => $multiple,
+			),
+			array( 'aria-labelledby' => $id_base . '__label' )
+		);
 	}
 
 	protected function draw_expandable_text( Element $element, $value, $name_base, $id_base = '' ) {
@@ -554,7 +610,7 @@ class Render {
 
 		echo '</ol>';
 
-		$label = $element->args[ 'label_button_add' ] ?? __( "Add New Value", "d4plib" );
+		$label = $element->args[ 'label_button_add' ] ?? __( 'Add New Value', 'd4plib' );
 
 		echo '<a role="button" class="button-primary" href="#">' . esc_html( $label ) . '</a>';
 		echo '<input type="hidden" value="' . esc_attr( $i ) . '" class="d4p-next-id" />';
@@ -568,27 +624,33 @@ class Render {
 		$depth        = $element->args[ 'depth' ] ?? 0;
 		$hide_empty   = $element->args[ 'hide_empty' ] ?? false;
 
-		$list = wp_dropdown_categories( array(
-			'echo'              => false,
-			'show_option_none'  => $label_none,
-			'option_none_value' => 0,
-			'hide_empty'        => $hide_empty,
-			'hierarchical'      => $hierarchical,
-			'child_of'          => $child,
-			'depth'             => $depth,
-			'name'              => $name_base,
-			'class'             => 'widefat',
-			'id'                => $id_base,
-			'taxonomy'          => $taxonomy
-		) );
+		$list = wp_dropdown_categories(
+			array(
+				'echo'              => false,
+				'show_option_none'  => $label_none,
+				'option_none_value' => 0,
+				'hide_empty'        => $hide_empty,
+				'hierarchical'      => $hierarchical,
+				'child_of'          => $child,
+				'depth'             => $depth,
+				'name'              => $name_base,
+				'class'             => 'widefat',
+				'id'                => $id_base,
+				'taxonomy'          => $taxonomy,
+			)
+		);
 
 		if ( empty( $list ) ) {
-			Elements::instance()->select( array( '0' => __( "No items to show", "d4plib" ) ), array(
-				'selected' => 0,
-				'name'     => $name_base,
-				'id'       => $id_base,
-				'class'    => 'widefat'
-			), array( 'aria-labelledby' => $id_base . '__label' ) );
+			Elements::instance()->select(
+				array( '0' => __( 'No items to show', 'd4plib' ) ),
+				array(
+					'selected' => 0,
+					'name'     => $name_base,
+					'id'       => $id_base,
+					'class'    => 'widefat',
+				),
+				array( 'aria-labelledby' => $id_base . '__label' )
+			);
 		} else {
 			echo $list;
 		}
@@ -600,26 +662,32 @@ class Render {
 		$child      = $element->args[ 'child_of' ] ?? 0;
 		$depth      = $element->args[ 'depth' ] ?? 0;
 
-		$list = wp_dropdown_pages( array(
-			'echo'              => false,
-			'child_of'          => $child,
-			'depth'             => $depth,
-			'show_option_none'  => $label_none,
-			'option_none_value' => 0,
-			'selected'          => $value,
-			'name'              => $name_base,
-			'class'             => 'widefat',
-			'id'                => $id_base,
-			'post_type'         => $post_type
-		) );
+		$list = wp_dropdown_pages(
+			array(
+				'echo'              => false,
+				'child_of'          => $child,
+				'depth'             => $depth,
+				'show_option_none'  => $label_none,
+				'option_none_value' => 0,
+				'selected'          => $value,
+				'name'              => $name_base,
+				'class'             => 'widefat',
+				'id'                => $id_base,
+				'post_type'         => $post_type,
+			)
+		);
 
 		if ( empty( $list ) ) {
-			Elements::instance()->select( array( '0' => __( "No items to show", "d4plib" ) ), array(
-				'selected' => 0,
-				'name'     => $name_base,
-				'id'       => $id_base,
-				'class'    => 'widefat'
-			), array( 'aria-labelledby' => $id_base . '__label' ) );
+			Elements::instance()->select(
+				array( '0' => __( 'No items to show', 'd4plib' ) ),
+				array(
+					'selected' => 0,
+					'name'     => $name_base,
+					'id'       => $id_base,
+					'class'    => 'widefat',
+				),
+				array( 'aria-labelledby' => $id_base . '__label' )
+			);
 		} else {
 			echo $list;
 		}
@@ -632,11 +700,11 @@ class Render {
 	protected function draw_images( Element $element, $value, $name_base, $id_base = '' ) {
 		$value = (array) $value;
 
-		echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-images-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> ' . esc_html__( "Add Image", "d4plib" ) . '</a>';
+		echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-images-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> ' . esc_html__( 'Add Image', 'd4plib' ) . '</a>';
 
 		echo '<div class="d4plib-selected-image" data-name="' . esc_html( $name_base ) . '">';
 
-		echo '<div style="display: ' . ( empty( $value ) ? "block" : "none" ) . '" class="d4plib-images-none"><span class="d4plib-image-name">' . esc_html__( "No images selected.", "d4plib" ) . '</span></div>';
+		echo '<div style="display: ' . ( empty( $value ) ? 'block' : 'none' ) . '" class="d4plib-images-none"><span class="d4plib-image-name">' . esc_html__( 'No images selected.', 'd4plib' ) . '</span></div>';
 
 		foreach ( $value as $id ) {
 			$image = get_post( $id );
@@ -646,26 +714,30 @@ class Render {
 
 			echo "<div class='d4plib-images-image'>";
 			echo "<input type='hidden' value='" . esc_attr( $id ) . "' name='" . esc_attr( $name_base ) . "[]' />";
-			echo "<a class='button d4plib-button-action d4plib-images-remove' aria-label='" . esc_attr__( "Remove", "d4plib" ) . "'><i aria-hidden='true' class='d4p-icon d4p-ui-cancel'></i></a>";
-			echo "<a class='button d4plib-button-action d4plib-images-preview' aria-label='" . esc_attr__( "Preview", "d4plib" ) . "'><i aria-hidden='true' class='d4p-icon d4p-ui-search'></i></a>";
-			echo "<span class='d4plib-image-name'>" . esc_html( $title ) . "</span>";
+			echo "<a class='button d4plib-button-action d4plib-images-remove' aria-label='" . esc_attr__( 'Remove', 'd4plib' ) . "'><i aria-hidden='true' class='d4p-icon d4p-ui-cancel'></i></a>";
+			echo "<a class='button d4plib-button-action d4plib-images-preview' aria-label='" . esc_attr__( 'Preview', 'd4plib' ) . "'><i aria-hidden='true' class='d4p-icon d4p-ui-search'></i></a>";
+			echo "<span class='d4plib-image-name'>" . esc_html( $title ) . '</span>';
 			echo "<img src='" . esc_url( $url ) . "' alt='' />";
-			echo "</div>";
+			echo '</div>';
 		}
 
 		echo '</div>';
 	}
 
 	protected function draw_image( Element $element, $value, $name_base, $id_base = '' ) {
-		echo sprintf( '<input class="d4plib-image" type="hidden" name="%s" id="%s" value="%s" />',
-			$name_base, $id_base, esc_attr( $value ) );
+		echo sprintf(
+			'<input class="d4plib-image" type="hidden" name="%s" id="%s" value="%s" />',
+			$name_base,
+			$id_base,
+			esc_attr( $value )
+		);
 
-		echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-image-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> ' . esc_html__( "Select Image", "d4plib" ) . '</a>';
-		echo '<a role="button" style="display: ' . ( $value > 0 ? "inline-block" : "none" ) . '" href="#" class="button d4plib-button-inner d4plib-image-preview"><i aria-hidden="true" class="d4p-icon d4p-ui-search"></i> ' . esc_html__( "Show Image", "d4plib" ) . '</a>';
-		echo '<a role="button" style="display: ' . ( $value > 0 ? "inline-block" : "none" ) . '" href="#" class="button d4plib-button-inner d4plib-image-remove"><i aria-hidden="true" class="d4p-icon d4p-ui-cancel"></i> ' . esc_html__( "Clear Image", "d4plib" ) . '</a>';
+		echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-image-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> ' . esc_html__( 'Select Image', 'd4plib' ) . '</a>';
+		echo '<a role="button" style="display: ' . ( $value > 0 ? 'inline-block' : 'none' ) . '" href="#" class="button d4plib-button-inner d4plib-image-preview"><i aria-hidden="true" class="d4p-icon d4p-ui-search"></i> ' . esc_html__( 'Show Image', 'd4plib' ) . '</a>';
+		echo '<a role="button" style="display: ' . ( $value > 0 ? 'inline-block' : 'none' ) . '" href="#" class="button d4plib-button-inner d4plib-image-remove"><i aria-hidden="true" class="d4p-icon d4p-ui-cancel"></i> ' . esc_html__( 'Clear Image', 'd4plib' ) . '</a>';
 
 		echo '<div class="d4plib-selected-image">';
-		$title = __( "Image not selected.", "d4plib" );
+		$title = __( 'Image not selected.', 'd4plib' );
 		$url   = '';
 
 		if ( $value > 0 ) {
@@ -681,18 +753,31 @@ class Render {
 	}
 
 	protected function draw_hidden( Element $element, $value, $name_base, $id_base = '' ) {
-		echo sprintf( '<input type="hidden" name="%s" id="%s" value="%s" />',
-			esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ) );
+		echo sprintf(
+			'<input type="hidden" name="%s" id="%s" value="%s" />',
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $value )
+		);
 	}
 
 	protected function draw_bool( Element $element, $value, $name_base, $id_base = '' ) {
 		$selected = $value == 1 || $value === true ? ' checked="checked"' : '';
 		$readonly = isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ] ? ' readonly="readonly" disabled="disabled"' : '';
-		$label    = isset( $element->args[ 'label' ] ) && $element->args[ 'label' ] != '' ? $element->args[ 'label' ] : __( "Enabled", "d4plib" );
+		$label    = isset( $element->args[ 'label' ] ) && $element->args[ 'label' ] != '' ? $element->args[ 'label' ] : __( 'Enabled', 'd4plib' );
 		$value    = isset( $element->args[ 'value' ] ) && $element->args[ 'value' ] != '' ? $element->args[ 'value' ] : 'on';
 
-		echo sprintf( '<label for="%s"><input%s type="checkbox" name="%s" id="%s"%s class="widefat" value="%s" /><span class="d4p-accessibility-show-for-sr">%s: </span>%s</label>',
-			esc_attr( $id_base ), $readonly, esc_attr( $name_base ), esc_attr( $id_base ), $selected, esc_attr( $value ), esc_html( $element->title ), esc_html( $label ) );
+		echo sprintf(
+			'<label for="%s"><input%s type="checkbox" name="%s" id="%s"%s class="widefat" value="%s" /><span class="d4p-accessibility-show-for-sr">%s: </span>%s</label>',
+			esc_attr( $id_base ),
+			$readonly,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			$selected,
+			esc_attr( $value ),
+			esc_html( $element->title ),
+			esc_html( $label )
+		);
 	}
 
 	protected function draw_range_absint( Element $element, $value, $name_base, $id_base ) {
@@ -704,11 +789,25 @@ class Render {
 
 		$pairs = explode( '=>', $value );
 
-		echo sprintf( '<label for="%s_a"><span class="d4p-accessibility-show-for-sr">%s - A: </span></label><input%s type="number" name="%s[a]" id="%s_a" value="%s" class="widefat" />',
-			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[ 0 ] ) );
+		echo sprintf(
+			'<label for="%s_a"><span class="d4p-accessibility-show-for-sr">%s - A: </span></label><input%s type="number" name="%s[a]" id="%s_a" value="%s" class="widefat" />',
+			$id_base,
+			$element->title,
+			$readonly,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $pairs[ 0 ] )
+		);
 		echo ' => ';
-		echo sprintf( '<label for="%s_b"><span class="d4p-accessibility-show-for-sr">%s - B: </span></label><input%s type="number" name="%s[b]" id="%s_b" value="%s" class="widefat" />',
-			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[ 1 ] ) );
+		echo sprintf(
+			'<label for="%s_b"><span class="d4p-accessibility-show-for-sr">%s - B: </span></label><input%s type="number" name="%s[b]" id="%s_b" value="%s" class="widefat" />',
+			$id_base,
+			$element->title,
+			$readonly,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $pairs[ 1 ] )
+		);
 	}
 
 	protected function draw_x_by_y( Element $element, $value, $name_base, $id_base ) {
@@ -716,11 +815,25 @@ class Render {
 
 		$pairs = explode( 'x', $value );
 
-		echo sprintf( '<label for="%s_x"><span class="d4p-accessibility-show-for-sr">%s - X: </span></label><input%s type="number" name="%s[x]" id="%s_x" value="%s" class="widefat" />',
-			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[ 0 ] ) );
+		echo sprintf(
+			'<label for="%s_x"><span class="d4p-accessibility-show-for-sr">%s - X: </span></label><input%s type="number" name="%s[x]" id="%s_x" value="%s" class="widefat" />',
+			$id_base,
+			$element->title,
+			$readonly,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $pairs[ 0 ] )
+		);
 		echo ' x ';
-		echo sprintf( '<label for="%s_y"><span class="d4p-accessibility-show-for-sr">%s - Y: </span></label><input%s type="number" name="%s[y]" id="%s_y" value="%s" class="widefat" />',
-			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[ 1 ] ) );
+		echo sprintf(
+			'<label for="%s_y"><span class="d4p-accessibility-show-for-sr">%s - Y: </span></label><input%s type="number" name="%s[y]" id="%s_y" value="%s" class="widefat" />',
+			$id_base,
+			$element->title,
+			$readonly,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $pairs[ 1 ] )
+		);
 	}
 
 	protected function draw_listing( Element $element, $value, $name_base, $id_base ) {
@@ -797,22 +910,43 @@ class Render {
 		$readonly     = isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ] ? ' readonly' : '';
 		$autocomplete = isset( $element->args[ 'autocomplete' ] ) ? Sanitize::slug( $element->args[ 'autocomplete' ] ) : 'off';
 
-		echo sprintf( '<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="password" name="%s" id="%s" value="%s" class="widefat" autocomplete="' . $autocomplete . '" />',
-			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ) );
+		echo sprintf(
+			'<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="password" name="%s" id="%s" value="%s" class="widefat" autocomplete="' . $autocomplete . '" />',
+			$id_base,
+			$element->title,
+			$readonly,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $value )
+		);
 	}
 
 	protected function draw_file( Element $element, $value, $name_base, $id_base ) {
 		$readonly = isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ] ? ' readonly' : '';
 
-		echo sprintf( '<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="file" name="%s" id="%s" value="%s" class="widefat" />',
-			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ) );
+		echo sprintf(
+			'<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="file" name="%s" id="%s" value="%s" class="widefat" />',
+			$id_base,
+			$element->title,
+			$readonly,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $value )
+		);
 	}
 
 	protected function draw_color( Element $element, $value, $name_base, $id_base ) {
 		$readonly = isset( $element->args[ 'readonly' ] ) && $element->args[ 'readonly' ] ? ' readonly' : '';
 
-		echo sprintf( '<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="text" name="%s" id="%s" value="%s" class="widefat d4p-color-picker" />',
-			$id_base, $element->title, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $value ) );
+		echo sprintf(
+			'<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="text" name="%s" id="%s" value="%s" class="widefat d4p-color-picker" />',
+			$id_base,
+			$element->title,
+			$readonly,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $value )
+		);
 	}
 
 	protected function draw_absint( Element $element, $value, $name_base, $id_base ) {
@@ -836,17 +970,30 @@ class Render {
 	}
 
 	protected function draw_expandable_pairs( Element $element, $value, $name_base, $id_base = '' ) {
-		$this->_pair_element( $name_base . '[0]', $id_base . '_0', 0, array(
-			'key'   => '',
-			'value' => ''
-		), $element, true );
+		$this->_pair_element(
+			$name_base . '[0]',
+			$id_base . '_0',
+			0,
+			array(
+				'key'   => '',
+				'value' => '',
+			),
+			$element,
+			true
+		);
 
 		$i = 1;
 		foreach ( $value as $key => $val ) {
-			$this->_pair_element( $name_base . '[' . $i . ']', $id_base . '_' . $i, $i, array(
-				'key'   => $key,
-				'value' => $val
-			), $element );
+			$this->_pair_element(
+				$name_base . '[' . $i . ']',
+				$id_base . '_' . $i,
+				$i,
+				array(
+					'key'   => $key,
+					'value' => $val,
+				),
+				$element
+			);
 			$i ++;
 		}
 
@@ -886,16 +1033,25 @@ class Render {
 			}
 		}
 
-		echo sprintf( '<label for="%s_val"><span class="d4p-accessibility-show-for-sr">' . esc_html__( "Value", "d4plib" ) . ': </span></label><input%s type="number" name="%s[val]" id="%s_val" value="%s" class="widefat" step="0.01" />',
-			$id_base, $readonly, esc_attr( $name_base ), esc_attr( $id_base ), esc_attr( $pairs[ 0 ] ) );
+		echo sprintf(
+			'<label for="%s_val"><span class="d4p-accessibility-show-for-sr">' . esc_html__( 'Value', 'd4plib' ) . ': </span></label><input%s type="number" name="%s[val]" id="%s_val" value="%s" class="widefat" step="0.01" />',
+			$id_base,
+			$readonly,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $pairs[ 0 ] )
+		);
 
-		echo sprintf( '<label for="%s_unit"><span class="d4p-accessibility-show-for-sr">' . esc_html__( "Unit", "d4plib" ) . ': </span></label>', $id_base );
+		echo sprintf( '<label for="%s_unit"><span class="d4p-accessibility-show-for-sr">' . esc_html__( 'Unit', 'd4plib' ) . ': </span></label>', $id_base );
 
-		Elements::instance()->select( $allowed_sizes, array(
-			'selected' => $pairs[ 1 ],
-			'name'     => $name_base . '[unit]',
-			'id'       => $id_base . '_unit',
-			'class'    => 'widefat'
-		) );
+		Elements::instance()->select(
+			$allowed_sizes,
+			array(
+				'selected' => $pairs[ 1 ],
+				'name'     => $name_base . '[unit]',
+				'id'       => $id_base . '_unit',
+				'class'    => 'widefat',
+			)
+		);
 	}
 }

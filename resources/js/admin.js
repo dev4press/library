@@ -1,7 +1,6 @@
-/*jslint regexp: true, nomen: true, undef: true, sloppy: true, eqeq: true, vars: true, white: true, plusplus: true, maxerr: 50, indent: 4 */
+;/*jslint regexp: true, nomen: true, undef: true, sloppy: true, eqeq: true, vars: true, white: true, plusplus: true, maxerr: 50, indent: 4 */
 /*global d4plib_admin_data*/
-
-;(function($, window, document, undefined) {
+(function($, window, document, undefined) {
     window.wp = window.wp || {};
     window.wp.dev4press = window.wp.dev4press || {};
 
@@ -22,116 +21,148 @@
                 wp.dev4press.admin.panels.features.run();
             }
 
-            $(window).on("load resize orientationchange", function() {
-                wp.dev4press.admin.components.scroller.resize();
-            });
+            $(window).on(
+                "load resize orientationchange",
+                function() {
+                    wp.dev4press.admin.components.scroller.resize();
+                }
+            );
         },
         panels: {
             features: {
                 run: function() {
-                    $(document).on("click", ".d4p-features-filter-buttons button", function(e) {
-                        e.preventDefault();
+                    $(document).on(
+                        "click",
+                        ".d4p-features-filter-buttons button",
+                        function(e) {
+                            e.preventDefault();
 
-                        var button = $(this),
-                            buttons = $(".d4p-features-filter-buttons button");
+                            var button = $(this),
+                                buttons = $(".d4p-features-filter-buttons button");
 
-                        buttons.removeClass("is-selected");
-                        button.addClass("is-selected");
+                            buttons.removeClass("is-selected");
+                            button.addClass("is-selected");
 
-                        wp.dev4press.admin.panels.features.filter();
-                    });
-
-                    $(document).on("change", ".d4p-feature-box ._activation input", function() {
-                        var active = $(this).is(":checked"),
-                            feature = $(this).closest(".d4p-feature-box"),
-                            name = $(this).data("feature");
-
-                        if (active) {
-                            feature.addClass("_is-active");
-                        } else {
-                            feature.removeClass("_is-active");
+                            wp.dev4press.admin.panels.features.filter();
                         }
+                    );
 
-                        wp.dev4press.admin.panels.features.ajax([name], active);
-                        wp.dev4press.admin.panels.features.filter();
-                        wp.dev4press.admin.panels.features.counters();
-                    });
-
-                    $(document).on("click", ".d4p-features-bulk-ctrl-options button", function(e) {
-                        e.preventDefault();
-
-                        var action = $(this).data("action"),
-                            list = [];
-
-                        $(".d4p-feature-box ._activation input").each(function() {
+                    $(document).on(
+                        "change",
+                        ".d4p-feature-box ._activation input",
+                        function() {
                             var active = $(this).is(":checked"),
                                 feature = $(this).closest(".d4p-feature-box"),
                                 name = $(this).data("feature");
 
-                            if (action === "enable") {
-                                if (!active) {
-                                    $(this).prop("checked", true);
-                                    feature.addClass("_is-active");
-                                    list.push(name);
-                                }
+                            if (active) {
+                                feature.addClass("_is-active");
                             } else {
-                                if (active) {
-                                    $(this).prop("checked", false);
-                                    feature.removeClass("_is-active");
-                                    list.push(name);
-                                }
+                                feature.removeClass("_is-active");
                             }
-                        });
 
-                        $(".d4p-features-bulk-ctrl").trigger("click");
-
-                        wp.dev4press.admin.panels.features.ajax(list, action === "enable");
-                        wp.dev4press.admin.panels.features.filter();
-                        wp.dev4press.admin.panels.features.counters();
-                    });
-
-                    $(document).on("click", ".d4p-features-bulk-ctrl", function(e) {
-                        e.preventDefault();
-
-                        if ($(this).hasClass("button-secondary")) {
-                            $(this).removeClass("button-secondary").addClass("button-primary");
-                            $(this).next().hide();
-                        } else {
-                            $(this).removeClass("button-primary").addClass("button-secondary");
-                            $(this).next().show();
+                            wp.dev4press.admin.panels.features.ajax([name], active);
+                            wp.dev4press.admin.panels.features.filter();
+                            wp.dev4press.admin.panels.features.counters();
                         }
-                    });
+                    );
 
-                    $(document).on("click", ".d4p-feature-more-ctrl", function(e) {
-                        e.preventDefault();
+                    $(document).on(
+                        "click",
+                        ".d4p-features-bulk-ctrl-options button",
+                        function(e) {
+                            e.preventDefault();
 
-                        if ($(this).hasClass("_is-open")) {
-                            $(this).removeClass("_is-open");
-                            $(this).next().hide();
-                            $(this).next().next().show();
-                        } else {
-                            $(this).addClass("_is-open");
-                            $(this).next().show();
-                            $(this).next().next().hide();
+                            var action = $(this).data("action"),
+                                list = [];
+
+                            $(".d4p-feature-box ._activation input").each(
+                                function() {
+                                    var active = $(this).is(":checked"),
+                                        feature = $(this).closest(".d4p-feature-box"),
+                                        name = $(this).data("feature");
+
+                                    if (action === "enable") {
+                                        if (!active) {
+                                            $(this).prop("checked", true);
+                                            feature.addClass("_is-active");
+                                            list.push(name);
+                                        }
+                                    } else {
+                                        if (active) {
+                                            $(this).prop("checked", false);
+                                            feature.removeClass("_is-active");
+                                            list.push(name);
+                                        }
+                                    }
+                                }
+                            );
+
+                            $(".d4p-features-bulk-ctrl").trigger("click");
+
+                            wp.dev4press.admin.panels.features.ajax(list, action === "enable");
+                            wp.dev4press.admin.panels.features.filter();
+                            wp.dev4press.admin.panels.features.counters();
                         }
-                    });
+                    );
 
-                    $(".d4p-features-filter-search input").on("keyup", function(e) {
-                        var search = $(this).val(), block = $(this).parent();
+                    $(document).on(
+                        "click",
+                        ".d4p-features-bulk-ctrl",
+                        function(e) {
+                            e.preventDefault();
 
-                        if (search.length > 0) {
-                            block.addClass("is-active");
-                        } else {
-                            block.removeClass("is-active");
+                            if ($(this).hasClass("button-secondary")) {
+                                $(this).removeClass("button-secondary").addClass("button-primary");
+                                $(this).next().hide();
+                            } else {
+                                $(this).removeClass("button-primary").addClass("button-secondary");
+                                $(this).next().show();
+                            }
                         }
+                    );
 
-                        wp.dev4press.admin.panels.features.filter();
-                    });
+                    $(document).on(
+                        "click",
+                        ".d4p-feature-more-ctrl",
+                        function(e) {
+                            e.preventDefault();
 
-                    $(document).on("click", ".d4p-features-filter-search i", function(e) {
-                        $(".d4p-features-filter-search input").val("").trigger("keyup");
-                        $(".d4p-features-filter-search").removeClass("is-active");
-                    });
+                            if ($(this).hasClass("_is-open")) {
+                                $(this).removeClass("_is-open");
+                                $(this).next().hide();
+                                $(this).next().next().show();
+                            } else {
+                                $(this).addClass("_is-open");
+                                $(this).next().show();
+                                $(this).next().next().hide();
+                            }
+                        }
+                    );
+
+                    $(".d4p-features-filter-search input").on(
+                        "keyup",
+                        function(e) {
+                            var search = $(this).val(), block = $(this).parent();
+
+                            if (search.length > 0) {
+                                block.addClass("is-active");
+                            } else {
+                                block.removeClass("is-active");
+                            }
+
+                            wp.dev4press.admin.panels.features.filter();
+                        }
+                    );
+
+                    $(document).on(
+                        "click",
+                        ".d4p-features-filter-search i",
+                        function(e) {
+                            $(".d4p-features-filter-search input").val("").trigger("keyup");
+                            $(".d4p-features-filter-search").removeClass("is-active");
+                        }
+                    );
 
                     wp.dev4press.admin.panels.features.counters();
                 },
@@ -149,27 +180,29 @@
                     wrapper.find(selector).removeClass("hide-feature");
 
                     if (search.length > 1) {
-                        $("._is-feature:not(.hide-feature)", wrapper).each(function() {
-                            var title = $(this).find("._title").html().toLowerCase(),
-                                description = $(this).find("._description").html().toLowerCase(),
-                                in_title = title.includes(search),
-                                in_description = description.includes(search),
-                                classes = "search-result";
+                        $("._is-feature:not(.hide-feature)", wrapper).each(
+                            function() {
+                                var title = $(this).find("._title").html().toLowerCase(),
+                                    description = $(this).find("._description").html().toLowerCase(),
+                                    in_title = title.includes(search),
+                                    in_description = description.includes(search),
+                                    classes = "search-result";
 
-                            if (in_title || in_description) {
-                                if (in_title) {
-                                    classes += " search-result-title";
+                                if (in_title || in_description) {
+                                    if (in_title) {
+                                        classes += " search-result-title";
+                                    }
+
+                                    if (in_description) {
+                                        classes += " search-result-description";
+                                    }
+
+                                    $(this).addClass(classes);
+                                } else {
+                                    $(this).addClass("hide-feature");
                                 }
-
-                                if (in_description) {
-                                    classes += " search-result-description";
-                                }
-
-                                $(this).addClass(classes);
-                            } else {
-                                $(this).addClass("hide-feature");
                             }
-                        });
+                        );
                     }
                 },
                 ajax: function(list, active) {
@@ -191,12 +224,14 @@
                     var wrapper = $(".d4p-features-wrapper"),
                         counters = $(".d4p-panel-features-counts div");
 
-                    counters.each(function() {
-                        var sel = $(this).data("selector"),
-                            cnt = wrapper.find(sel).length;
+                    counters.each(
+                        function() {
+                            var sel = $(this).data("selector"),
+                                cnt = wrapper.find(sel).length;
 
-                        $(this).find("span").html(cnt);
-                    });
+                            $(this).find("span").html(cnt);
+                        }
+                    );
                 }
             },
             settings: {
@@ -210,68 +245,92 @@
                     }
                 },
                 mark: function() {
-                    $(document).on("click", ".d4p-panel-mark button", function() {
-                        $("#d4p-settings-mark").val("").trigger("input");
-                    });
+                    $(document).on(
+                        "click",
+                        ".d4p-panel-mark button",
+                        function() {
+                            $("#d4p-settings-mark").val("").trigger("input");
+                        }
+                    );
 
                     var $groups = $(".d4p-group"),
                         $titles = $(".d4p-group > h3"),
                         $sections = $(".d4p-settings-section > h4"),
                         $content = $(".d4p-settings-table > tbody > tr");
 
-                    $("#d4p-settings-mark").on("input", function() {
-                        var term = $(this).val();
+                    $("#d4p-settings-mark").on(
+                        "input",
+                        function() {
+                            var term = $(this).val();
 
-                        $groups.show();
-                        $titles.unmark();
-                        $sections.show().unmark();
-                        $content.show().unmark();
+                            $groups.show();
+                            $titles.unmark();
+                            $sections.show().unmark();
+                            $content.show().unmark();
 
-                        if (term) {
-                            $content.mark(term, {
-                                done: function() {
-                                    $content.not(":has(mark)").hide();
-                                }
-                            });
-
-                            $sections.mark(term, {
-                                done: function() {
-                                    $sections.each(function(idx, el) {
-                                        if ($(el).find("mark").length > 0) {
-                                            $(el).parent().find(".d4p-settings-table > tbody > tr").show();
-                                        } else {
-                                            $(el).hide();
+                            if (term) {
+                                $content.mark(
+                                    term,
+                                    {
+                                        done: function() {
+                                            $content.not(":has(mark)").hide();
                                         }
-                                    });
-                                }
-                            });
-
-                            $titles.mark(term, {
-                                done: function() {
-                                    $titles.each(function(idx, el) {
-                                        if ($(el).find("mark").length > 0) {
-                                            $(el).parent().find(".d4p-settings-table > tbody > tr").show();
-                                        }
-                                    });
-                                }
-                            });
-
-                            $titles.each(function(idx, el) {
-                                var $group = $(el).parent(), height = 0,
-                                    $elements = $(".d4p-settings-section", $group);
-
-                                $elements.each(function(i, e) {
-                                    if ($(e).height() > 0) {
-                                        height += $(e).height();
                                     }
-                                });
+                                );
 
-                                if (height === 0) {
-                                    $group.hide();
-                                }
-                            });
+                                $sections.mark(
+                                    term,
+                                    {
+                                        done: function() {
+                                            $sections.each(
+                                                function(idx, el) {
+                                                    if ($(el).find("mark").length > 0) {
+                                                        $(el).parent().find(".d4p-settings-table > tbody > tr").show();
+                                                    } else {
+                                                        $(el).hide();
+                                                    }
+                                                }
+                                            );
+                                        }
+                                    }
+                                );
+
+                                $titles.mark(
+                                    term,
+                                    {
+                                        done: function() {
+                                            $titles.each(
+                                                function(idx, el) {
+                                                    if ($(el).find("mark").length > 0) {
+                                                        $(el).parent().find(".d4p-settings-table > tbody > tr").show();
+                                                    }
+                                                }
+                                            );
+                                        }
+                                    }
+                                );
+
+                                $titles.each(
+                                    function(idx, el) {
+                                        var $group = $(el).parent(), height = 0,
+                                            $elements = $(".d4p-settings-section", $group);
+
+                                        $elements.each(
+                                            function(i, e) {
+                                                if ($(e).height() > 0) {
+                                                    height += $(e).height();
+                                                }
+                                            }
+                                        );
+
+                                        if (height === 0) {
+                                            $group.hide();
+                                        }
+                                    }
+                                );
+                            }
                         }
-                    });
+                    );
                 }
             }
         },
@@ -284,17 +343,23 @@
                     if ($sidebar.length > 0) {
                         var offset = $sidebar.offset();
 
-                        $window.scroll(function() {
-                            if ($window.scrollTop() > offset.top && $sidebar.hasClass("d4p-scroll-active")) {
-                                $sidebar.stop().animate({
-                                    marginTop: $window.scrollTop() - offset.top + wp.dev4press.admin.scroll_offset
-                                });
-                            } else {
-                                $sidebar.stop().animate({
-                                    marginTop: 0
-                                });
+                        $window.scroll(
+                            function() {
+                                if ($window.scrollTop() > offset.top && $sidebar.hasClass("d4p-scroll-active")) {
+                                    $sidebar.stop().animate(
+                                        {
+                                            marginTop: $window.scrollTop() - offset.top + wp.dev4press.admin.scroll_offset
+                                        }
+                                    );
+                                } else {
+                                    $sidebar.stop().animate(
+                                        {
+                                            marginTop: 0
+                                        }
+                                    );
+                                }
                             }
-                        });
+                        );
                     }
                 },
                 resize: function() {
@@ -313,16 +378,23 @@
             },
             interface: {
                 run: function() {
-                    $(document).on("click", ".d4p-nav-button > a", function(e) {
-                        e.preventDefault();
+                    $(document).on(
+                        "click",
+                        ".d4p-nav-button > a",
+                        function(e) {
+                            e.preventDefault();
 
-                        $(this).next().slideToggle("fast");
-                    });
+                            $(this).next().slideToggle("fast");
+                        }
+                    );
 
                     if ($(".d4p-wrap .d4p-message .notice").length > 0) {
-                        setTimeout(function() {
-                            $(".d4p-wrap .d4p-message .notice").slideUp("slow");
-                        }, 10000);
+                        setTimeout(
+                            function() {
+                                $(".d4p-wrap .d4p-message .notice").slideUp("slow");
+                            },
+                            10000
+                        );
                     }
                 }
             },
@@ -342,18 +414,22 @@
             },
             more_toggle: {
                 run: function() {
-                    $(document).on("click", ".d4p-more-wrapper .d4p-more-title i, .d4p-more-wrapper .d4p-more-title button", function(e) {
-                        e.preventDefault();
+                    $(document).on(
+                        "click",
+                        ".d4p-more-wrapper .d4p-more-title i, .d4p-more-wrapper .d4p-more-title button",
+                        function(e) {
+                            e.preventDefault();
 
-                        var toggle = $(this).parent().parent(),
-                            open = toggle.hasClass("__is-open");
+                            var toggle = $(this).parent().parent(),
+                                open = toggle.hasClass("__is-open");
 
-                        if (open) {
-                            toggle.removeClass("__is-open");
-                        } else {
-                            toggle.addClass("__is-open");
+                            if (open) {
+                                toggle.removeClass("__is-open");
+                            } else {
+                                toggle.addClass("__is-open");
+                            }
                         }
-                    });
+                    );
                 }
             },
             color_picker: {
@@ -367,65 +443,98 @@
             },
             check_uncheck: {
                 run: function() {
-                    $(document).on("click", ".d4p-check-uncheck a", function(e) {
-                        e.preventDefault();
+                    $(document).on(
+                        "click",
+                        ".d4p-check-uncheck a",
+                        function(e) {
+                            e.preventDefault();
 
-                        var checkall = $(this).attr("href").substring(1) === "checkall";
+                            var checkall = $(this).attr("href").substring(1) === "checkall";
 
-                        $(this).parent().parent().find("input[type=checkbox]").prop("checked", checkall);
-                    });
+                            $(this).parent().parent().find("input[type=checkbox]").prop("checked", checkall);
+                        }
+                    );
                 }
             },
             expandables: {
                 run: function() {
-                    $(document).on("click", ".d4p-setting-expandable_pairs .button-secondary", function(e) {
-                        e.preventDefault();
+                    $(document).on(
+                        "click",
+                        ".d4p-setting-expandable_pairs .button-secondary",
+                        function(e) {
+                            e.preventDefault();
 
-                        var li = $(this).parent();
+                            var li = $(this).parent();
 
-                        li.fadeOut(200, function() {
-                            li.remove();
-                        });
-                    });
+                            li.fadeOut(
+                                200,
+                                function() {
+                                    li.remove();
+                                }
+                            );
+                        }
+                    );
 
-                    $(document).on("click", ".d4p-setting-expandable_text .button-secondary", function(e) {
-                        wp.dev4press.admin.settings.expandables.remove(this, e);
-                        wp.dev4press.admin.settings.expandables.remove(this, e);
-                    });
+                    $(document).on(
+                        "click",
+                        ".d4p-setting-expandable_text .button-secondary",
+                        function(e) {
+                            wp.dev4press.admin.settings.expandables.remove(this, e);
+                            wp.dev4press.admin.settings.expandables.remove(this, e);
+                        }
+                    );
 
-                    $(document).on("click", ".d4p-setting-expandable_raw .button-secondary", function(e) {
-                        wp.dev4press.admin.settings.expandables.remove(this, e);
-                    });
+                    $(document).on(
+                        "click",
+                        ".d4p-setting-expandable_raw .button-secondary",
+                        function(e) {
+                            wp.dev4press.admin.settings.expandables.remove(this, e);
+                        }
+                    );
 
-                    $(document).on("click", ".d4p-setting-expandable_pairs a.button-primary", function(e) {
-                        e.preventDefault();
+                    $(document).on(
+                        "click",
+                        ".d4p-setting-expandable_pairs a.button-primary",
+                        function(e) {
+                            e.preventDefault();
 
-                        var list = $(this).closest(".d4p-setting-expandable_pairs"),
-                            next = $(".d4p-next-id", list),
-                            next_id = next.val(),
-                            el = $(".pair-element-0", list).clone();
+                            var list = $(this).closest(".d4p-setting-expandable_pairs"),
+                                next = $(".d4p-next-id", list),
+                                next_id = next.val(),
+                                el = $(".pair-element-0", list).clone();
 
-                        $("input", el).each(function() {
-                            var id = $(this).attr("id").replace("_0_", "_" + next_id + "_"),
-                                name = $(this).attr("name").replace("[0]", "[" + next_id + "]");
+                            $("input", el).each(
+                                function() {
+                                    var id = $(this).attr("id").replace("_0_", "_" + next_id + "_"),
+                                        name = $(this).attr("name").replace("[0]", "[" + next_id + "]");
 
-                            $(this).attr("id", id).attr("name", name);
-                        });
+                                    $(this).attr("id", id).attr("name", name);
+                                }
+                            );
 
-                        el.attr("class", "pair-element-" + next_id).fadeIn();
-                        $(this).before(el);
+                            el.attr("class", "pair-element-" + next_id).fadeIn();
+                            $(this).before(el);
 
-                        next_id++;
-                        next.val(next_id);
-                    });
+                            next_id++;
+                            next.val(next_id);
+                        }
+                    );
 
-                    $(document).on("click", ".d4p-setting-expandable_text a.button-primary", function(e) {
-                        wp.dev4press.admin.settings.expandables.add(this, e, ".d4p-setting-expandable_text");
-                    });
+                    $(document).on(
+                        "click",
+                        ".d4p-setting-expandable_text a.button-primary",
+                        function(e) {
+                            wp.dev4press.admin.settings.expandables.add(this, e, ".d4p-setting-expandable_text");
+                        }
+                    );
 
-                    $(document).on("click", ".d4p-setting-expandable_raw a.button-primary", function(e) {
-                        wp.dev4press.admin.settings.expandables.add(this, e, ".d4p-setting-expandable_raw");
-                    });
+                    $(document).on(
+                        "click",
+                        ".d4p-setting-expandable_raw a.button-primary",
+                        function(e) {
+                            wp.dev4press.admin.settings.expandables.add(this, e, ".d4p-setting-expandable_raw");
+                        }
+                    );
                 },
                 add: function(ths, e, cls) {
                     e.preventDefault();
@@ -435,12 +544,14 @@
                         next_id = next.val(),
                         el = $(".exp-text-element-0", list).clone();
 
-                    $("input", el).each(function() {
-                        var id = $(this).attr("id").replace("_0_", "_" + next_id + "_"),
-                            name = $(this).attr("name").replace("[0]", "[" + next_id + "]");
+                    $("input", el).each(
+                        function() {
+                            var id = $(this).attr("id").replace("_0_", "_" + next_id + "_"),
+                                name = $(this).attr("name").replace("[0]", "[" + next_id + "]");
 
-                        $(this).attr("id", id).attr("name", name);
-                    });
+                            $(this).attr("id", id).attr("name", name);
+                        }
+                    );
 
                     el.attr("class", "exp-text-element exp-text-element-" + next_id).fadeIn();
                     $("ol", list).append(el);
@@ -453,32 +564,37 @@
 
                     var li = $(ths).parent();
 
-                    li.fadeOut(200, function() {
-                        li.remove();
-                    });
+                    li.fadeOut(
+                        200,
+                        function() {
+                            li.remove();
+                        }
+                    );
                 }
             },
             switch: {
                 run: function() {
-                    $(".d4p-switch-control-option select").change(function() {
-                        var any, active, value = $(this).val(),
-                            option = $(this).closest("tr").data("switch"),
-                            type = $(this).closest("tr").data("switch-type");
+                    $(".d4p-switch-control-option select").change(
+                        function() {
+                            var any, active, value = $(this).val(),
+                                option = $(this).closest("tr").data("switch"),
+                                type = $(this).closest("tr").data("switch-type");
 
-                        if (type === 'option') {
-                            any = ".d4p-switch-value-" + option;
-                            active = ".d4p-switch-option-value-" + value;
+                            if (type === 'option') {
+                                any = ".d4p-switch-value-" + option;
+                                active = ".d4p-switch-option-value-" + value;
 
-                            $(any).addClass("d4p-switch-option-is-hidden");
-                            $(any + active).removeClass("d4p-switch-option-is-hidden");
-                        } else if (type === 'section') {
-                            any = ".d4p-switch-section-" + option;
-                            active = ".d4p-switch-section-value-" + value;
+                                $(any).addClass("d4p-switch-option-is-hidden");
+                                $(any + active).removeClass("d4p-switch-option-is-hidden");
+                            } else if (type === 'section') {
+                                any = ".d4p-switch-section-" + option;
+                                active = ".d4p-switch-section-value-" + value;
 
-                            $(any).addClass("d4p-switch-section-is-hidden");
-                            $(any + active).removeClass("d4p-switch-section-is-hidden");
+                                $(any).addClass("d4p-switch-section-is-hidden");
+                                $(any + active).removeClass("d4p-switch-section-is-hidden");
+                            }
                         }
-                    });
+                    );
                 }
             }
         }
@@ -533,21 +649,23 @@
             };
         },
         icons: function(id, icon_html) {
-            $(id).next().find(".ui-dialog-buttonset button").each(function() {
-                if ($(this).find("span.ui-button-text").length === 0) {
-                    $(this).html("<span class='ui-button-text'>" + $(this).html() + "</span>");
-                }
-
-                if (typeof icon_html === "undefined") {
-                    var icon = $(this).data("icon");
-
-                    if (icon !== "") {
-                        $(this).find("span.ui-button-text").prepend(d4plib_admin_data.ui.icons[icon]);
+            $(id).next().find(".ui-dialog-buttonset button").each(
+                function() {
+                    if ($(this).find("span.ui-button-text").length === 0) {
+                        $(this).html("<span class='ui-button-text'>" + $(this).html() + "</span>");
                     }
-                } else {
-                    $(this).find("span.ui-button-text").prepend(icon_html);
+
+                    if (typeof icon_html === "undefined") {
+                        var icon = $(this).data("icon");
+
+                        if (icon !== "") {
+                            $(this).find("span.ui-button-text").prepend(d4plib_admin_data.ui.icons[icon]);
+                        }
+                    } else {
+                        $(this).find("span.ui-button-text").prepend(icon_html);
+                    }
                 }
-            });
+            );
         }
     };
 
@@ -568,13 +686,17 @@
             this.handler = handler;
             this.nonce = nonce;
 
-            $(document).on("click", this.button, function() {
-                if (wp.dev4press.ajaxtask.progres.active) {
-                    wp.dev4press.ajaxtask.stop();
-                } else {
-                    wp.dev4press.ajaxtask.start();
+            $(document).on(
+                "click",
+                this.button,
+                function() {
+                    if (wp.dev4press.ajaxtask.progres.active) {
+                        wp.dev4press.ajaxtask.stop();
+                    } else {
+                        wp.dev4press.ajaxtask.start();
+                    }
                 }
-            });
+            );
         },
         start: function() {
             this.progres.active = true;
@@ -642,7 +764,9 @@
         }
     };
 
-    $(document).ready(function() {
-        wp.dev4press.admin.init();
-    });
+    $(document).ready(
+        function() {
+            wp.dev4press.admin.init();
+        }
+    );
 })(jQuery, window, document);

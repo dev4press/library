@@ -72,7 +72,8 @@ abstract class Plugin extends BasePlugin {
 			$this->menu_cap,
 			$parent,
 			array( $this, 'admin_panel' ),
-			$this->svg_icon() );
+			$this->svg_icon()
+		);
 
 		foreach ( $this->menu_items as $item => $data ) {
 			$scope = $data[ 'scope' ] ?? array();
@@ -84,12 +85,14 @@ abstract class Plugin extends BasePlugin {
 			}
 
 			if ( $add ) {
-				$this->page_ids[] = add_submenu_page( $parent,
+				$this->page_ids[] = add_submenu_page(
+					$parent,
 					$this->plugin_title . ': ' . $data[ 'title' ],
 					$data[ 'title' ],
 					$data[ 'cap' ] ?? $this->menu_cap,
 					$this->plugin . '-' . $item,
-					array( $this, 'admin_panel' ) );
+					array( $this, 'admin_panel' )
+				);
 			}
 		}
 

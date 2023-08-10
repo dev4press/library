@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Plugins\Wizard
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Plugins\Wizard
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Plugins;
 
@@ -150,13 +150,13 @@ abstract class Wizard {
 		?>
 
         <span>
-            <input type="radio" name="<?php echo esc_attr( $_name ); ?>" value="yes" id="<?php echo esc_attr( $_id ); ?>-yes"<?php echo $value == 'yes' ? ' checked' : ''; ?>/>
-            <label for="<?php echo esc_attr( $_id ); ?>-yes"><?php esc_html_e( "Yes", "d4plib" ); ?></label>
-        </span>
+			<input type="radio" name="<?php echo esc_attr( $_name ); ?>" value="yes" id="<?php echo esc_attr( $_id ); ?>-yes"<?php echo $value == 'yes' ? ' checked' : ''; ?>/>
+			<label for="<?php echo esc_attr( $_id ); ?>-yes"><?php esc_html_e( 'Yes', 'd4plib' ); ?></label>
+		</span>
         <span>
-            <input type="radio" name="<?php echo esc_attr( $_name ); ?>" value="no" id="<?php echo esc_attr( $_id ); ?>-no"<?php echo $value == 'no' ? ' checked' : ''; ?>/>
-            <label for="<?php echo esc_attr( $_id ); ?>-no"><?php esc_html_e( "No", "d4plib" ); ?></label>
-        </span>
+			<input type="radio" name="<?php echo esc_attr( $_name ); ?>" value="no" id="<?php echo esc_attr( $_id ); ?>-no"<?php echo $value == 'no' ? ' checked' : ''; ?>/>
+			<label for="<?php echo esc_attr( $_id ); ?>-no"><?php esc_html_e( 'No', 'd4plib' ); ?></label>
+		</span>
 
 		<?php
 	}

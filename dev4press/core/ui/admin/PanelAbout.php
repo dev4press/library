@@ -23,33 +23,33 @@ abstract class PanelAbout extends Panel {
 	protected function init_default_subpanels() {
 		$this->subpanels = array(
 			'whatsnew'  => array(
-				'title' => __( "What&#8217;s New", "d4plib" ),
-				'icon'  => ''
+				'title' => __( 'What&#8217;s New', 'd4plib' ),
+				'icon'  => '',
 			),
 			'donate'    => array(
-				'title' => __( "Donations", "d4plib" ),
-				'icon'  => ''
+				'title' => __( 'Donations', 'd4plib' ),
+				'icon'  => '',
 			),
 			'info'      => array(
-				'title' => __( "Info", "d4plib" ),
-				'icon'  => ''
+				'title' => __( 'Info', 'd4plib' ),
+				'icon'  => '',
 			),
 			'changelog' => array(
-				'title' => __( "Changelog", "d4plib" ),
-				'icon'  => ''
+				'title' => __( 'Changelog', 'd4plib' ),
+				'icon'  => '',
 			),
 			'history'   => array(
-				'title' => __( "History", "d4plib" ),
-				'icon'  => ''
+				'title' => __( 'History', 'd4plib' ),
+				'icon'  => '',
 			),
 			'system'    => array(
-				'title' => __( "System", "d4plib" ),
-				'icon'  => ''
+				'title' => __( 'System', 'd4plib' ),
+				'icon'  => '',
 			),
 			'dev4press' => array(
-				'title' => __( "Dev4Press", "d4plib" ),
-				'icon'  => ''
-			)
+				'title' => __( 'Dev4Press', 'd4plib' ),
+				'icon'  => '',
+			),
 		);
 
 		if ( ! ( $this->a()->settings()->i()->edition === 'free' && ! empty( $this->a()->settings()->i()->github_url ) ) ) {

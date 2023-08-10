@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Service\Media\Pexels\Query
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Service\Media\Pexels\Query
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Service\Media\Pexels;
 
@@ -68,7 +68,7 @@ class Query {
 		$defaults = array(
 			'query'    => '',
 			'page'     => 1,
-			'per_page' => 15
+			'per_page' => 15,
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -91,7 +91,7 @@ class Query {
 				'page'     => $response->page,
 				'per_page' => $response->per_page,
 				'total'    => $response->total_results,
-				'results'  => array()
+				'results'  => array(),
 			);
 
 			foreach ( $response->photos as $img ) {
@@ -127,7 +127,7 @@ class Query {
 			'min_width'    => '',
 			'max_width'    => '',
 			'min_duration' => '',
-			'max_duration' => ''
+			'max_duration' => '',
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -150,7 +150,7 @@ class Query {
 				'page'     => $response->page,
 				'per_page' => $response->per_page,
 				'total'    => $response->total_results,
-				'results'  => array()
+				'results'  => array(),
 			);
 
 			foreach ( $response->videos as $img ) {
@@ -167,8 +167,8 @@ class Query {
 		$args = array(
 			'timeout' => 15,
 			'headers' => array(
-				'Authorization' => $this->_api_key
-			)
+				'Authorization' => $this->_api_key,
+			),
 		);
 
 		return wp_remote_get( $url, $args );

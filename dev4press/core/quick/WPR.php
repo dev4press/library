@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Quick\WP
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Quick\WP
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Quick;
 
@@ -41,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WPR {
 	public static function is_plugin_active( $plugin ) : bool {
-		return in_array( $plugin, (array) get_option( 'active_plugins', array() ), true ) || WPR::is_plugin_active_for_network( $plugin );
+		return in_array( $plugin, (array) get_option( 'active_plugins', array() ), true ) || self::is_plugin_active_for_network( $plugin );
 	}
 
 	public static function is_plugin_active_for_network( $plugin ) : bool {
@@ -79,10 +79,13 @@ class WPR {
 	}
 
 	public static function is_login_page_action( $action = '' ) : bool {
-		$login_page = isset( $GLOBALS[ 'pagenow' ] ) && in_array( $GLOBALS[ 'pagenow' ], array(
-				'wp-login.php',
-				'wp-register.php'
-			) );
+		$login_page = isset( $GLOBALS[ 'pagenow' ] ) && in_array(
+				$GLOBALS[ 'pagenow' ],
+				array(
+					'wp-login.php',
+					'wp-register.php',
+				)
+			);
 
 		if ( $login_page ) {
 			if ( $action != '' ) {
@@ -118,7 +121,7 @@ class WPR {
 	}
 
 	public static function is_oembed_link( $url ) : bool {
-		require_once( ABSPATH . WPINC . '/class-oembed.php' );
+		require_once ABSPATH . WPINC . '/class-oembed.php';
 
 		$oembed = _wp_oembed_get_object();
 		$result = $oembed->get_html( $url );
@@ -157,11 +160,11 @@ class WPR {
 	}
 
 	public static function is_current_user_admin() : bool {
-		return WPR::is_current_user_roles( 'administrator' );
+		return self::is_current_user_roles( 'administrator' );
 	}
 
 	public static function is_current_user_roles( $roles = array() ) : bool {
-		$current = WPR::current_user_roles();
+		$current = self::current_user_roles();
 		$roles   = (array) $roles;
 
 		if ( is_array( $current ) && ! empty( $roles ) ) {
@@ -244,7 +247,7 @@ class WPR {
 		$content = $post->post_excerpt == '' ? $post->post_content : $post->post_excerpt;
 
 		$content = strip_shortcodes( $content );
-		$content = str_replace( array( "\r", "\n", "  " ), ' ', $content );
+		$content = str_replace( array( "\r", "\n", '  ' ), ' ', $content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
 		$content = strip_tags( $content );
 
@@ -299,9 +302,9 @@ class WPR {
 					array(
 						'value'   => $file,
 						'compare' => 'LIKE',
-						'key'     => '_wp_attachment_metadata'
-					)
-				)
+						'key'     => '_wp_attachment_metadata',
+					),
+				),
 			);
 
 			$query = new WP_Query( $query_args );
@@ -337,97 +340,97 @@ class WPR {
 				'rel'      => true,
 				'style'    => true,
 				'download' => true,
-				'target'   => true
+				'target'   => true,
 			),
 			'abbr'       => array(),
 			'blockquote' => array(
 				'class' => true,
 				'style' => true,
-				'cite'  => true
+				'cite'  => true,
 			),
 			'div'        => array(
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'span'       => array(
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'code'       => array(
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'p'          => array(
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'pre'        => array(
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'em'         => array(
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'i'          => array(
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'b'          => array(
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'strong'     => array(
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'del'        => array(
 				'datetime' => true,
 				'class'    => true,
-				'style'    => true
+				'style'    => true,
 			),
 			'h1'         => array(
 				'align' => true,
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'h2'         => array(
 				'align' => true,
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'h3'         => array(
 				'align' => true,
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'h4'         => array(
 				'align' => true,
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'h5'         => array(
 				'align' => true,
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'h6'         => array(
 				'align' => true,
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'ul'         => array(
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'ol'         => array(
 				'class' => true,
 				'style' => true,
-				'start' => true
+				'start' => true,
 			),
 			'li'         => array(
 				'class' => true,
-				'style' => true
+				'style' => true,
 			),
 			'img'        => array(
 				'class'  => true,
@@ -436,51 +439,51 @@ class WPR {
 				'border' => true,
 				'alt'    => true,
 				'height' => true,
-				'width'  => true
+				'width'  => true,
 			),
 			'table'      => array(
 				'align'   => true,
 				'bgcolor' => true,
 				'border'  => true,
 				'class'   => true,
-				'style'   => true
+				'style'   => true,
 			),
 			'tbody'      => array(
 				'align'  => true,
 				'valign' => true,
 				'class'  => true,
-				'style'  => true
+				'style'  => true,
 			),
 			'td'         => array(
 				'align'  => true,
 				'valign' => true,
 				'class'  => true,
-				'style'  => true
+				'style'  => true,
 			),
 			'tfoot'      => array(
 				'align'  => true,
 				'valign' => true,
 				'class'  => true,
-				'style'  => true
+				'style'  => true,
 			),
 			'th'         => array(
 				'align'  => true,
 				'valign' => true,
 				'class'  => true,
-				'style'  => true
+				'style'  => true,
 			),
 			'thead'      => array(
 				'align'  => true,
 				'valign' => true,
 				'class'  => true,
-				'style'  => true
+				'style'  => true,
 			),
 			'tr'         => array(
 				'align'  => true,
 				'valign' => true,
 				'class'  => true,
-				'style'  => true
-			)
+				'style'  => true,
+			),
 		);
 	}
 
@@ -661,7 +664,7 @@ class WPR {
 		$url     = 'https://www.gravatar.com/avatar/' . $hash . '?d=404';
 		$headers = get_headers( $url );
 
-		return preg_match( "/200/", $headers[ 0 ] ) === 1;
+		return preg_match( '/200/', $headers[ 0 ] ) === 1;
 	}
 
 	public static function get_user_display_name( $user_id = 0 ) : string {

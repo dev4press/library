@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         </h3>
         <div class="_version-wrapper">
             <span class="_edition"><?php echo esc_html( ucfirst( panel()->a()->settings()->i()->edition ) ); ?></span>
-            <span class="_version"><?php echo KSES::strong( sprintf( __( "Version: %s", "d4plib" ), '<strong>' . esc_html( panel()->a()->settings()->i()->version_full() ) . '</strong>' ) ); ?></span>
+            <span class="_version"><?php echo KSES::strong( sprintf( __( 'Version: %s', 'd4plib' ), '<strong>' . esc_html( panel()->a()->settings()->i()->version_full() ) . '</strong>' ) ); ?></span>
         </div>
     </div>
 

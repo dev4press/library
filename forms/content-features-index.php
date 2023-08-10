@@ -9,14 +9,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $_scopes = array(
-	'global' => array( 'label' => __( "Global", "d4plib" ), 'icon' => 'd4p-ui-globe' ),
-	'front'  => array( 'label' => __( "Frontend", "d4plib" ), 'icon' => 'd4p-ui-desktop' ),
-	'admin'  => array( 'label' => __( "Admin", "d4plib" ), 'icon' => 'd4p-ui-dashboard' )
+	'global' => array(
+		'label' => __( 'Global', 'd4plib' ),
+		'icon'  => 'd4p-ui-globe',
+	),
+	'front'  => array(
+		'label' => __( 'Frontend', 'd4plib' ),
+		'icon'  => 'd4p-ui-desktop',
+	),
+	'admin'  => array(
+		'label' => __( 'Admin', 'd4plib' ),
+		'icon'  => 'd4p-ui-dashboard',
+	),
 );
 
 ?>
 <div class="d4p-content">
-	<?php include( "content-features-index-filter.php" ); ?>
+	<?php require 'content-features-index-filter.php'; ?>
 
     <div class="d4p-features-wrapper">
 		<?php
@@ -31,7 +40,7 @@ $_scopes = array(
 				'd4p-feature-box',
 				'feature-' . $subpanel,
 				'scope-' . $obj[ 'scope' ],
-				'_is-feature'
+				'_is-feature',
 			);
 
 			if ( $obj[ 'active' ] ) {
@@ -73,31 +82,37 @@ $_scopes = array(
                     <div class="_activation">
 						<?php if ( ! $obj[ 'always_on' ] && ! $obj[ 'hidden' ] ) { ?>
                             <input<?php echo $_checked; ?> data-feature="<?php echo esc_attr( $subpanel ); ?>" id="d4p-feature-toggle-<?php echo esc_attr( $subpanel ); ?>" type="checkbox"/>
-                            <label for="d4p-feature-toggle-<?php echo esc_attr( $subpanel ); ?>"><span class="d4p-accessibility-show-for-sr"><?php esc_html_e( "Active", "d4plib" ); ?></span></label>
-						<?php }
-						if ( $obj[ 'hidden' ] ) { ?>
-                            <span title="<?php esc_html_e( "This feature can't be enabled because of the missing prerequisites.", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-toggle-slash"></i></span>
+                            <label for="d4p-feature-toggle-<?php echo esc_attr( $subpanel ); ?>"><span class="d4p-accessibility-show-for-sr"><?php esc_html_e( 'Active', 'd4plib' ); ?></span></label>
+							<?php
+						}
+						if ( $obj[ 'hidden' ] ) {
+							?>
+                            <span title="<?php esc_html_e( "This feature can't be enabled because of the missing prerequisites.", 'd4plib' ); ?>"><i class="d4p-icon d4p-ui-toggle-slash"></i></span>
 						<?php } ?>
                     </div>
                     <div class="_settings">
 						<?php if ( $obj[ 'hidden' ] ) { ?>
-                            <span title="<?php esc_html_e( "This feature can't be enabled at this time.", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
-						<?php } else {
-							if ( $obj[ 'settings' ] ) { ?>
-                                <a title="<?php echo KSES::standard( sprintf( __( "Settings for '%s'", "d4plib" ), $obj[ 'title' ] ) ); ?>" href="<?php echo esc_url( $url ); ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
+                            <span title="<?php esc_html_e( "This feature can't be enabled at this time.", 'd4plib' ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
+							<?php
+						} else {
+							if ( $obj[ 'settings' ] ) {
+								?>
+                                <a title="<?php echo KSES::standard( sprintf( __( "Settings for '%s'", 'd4plib' ), $obj[ 'title' ] ) ); ?>" href="<?php echo esc_url( $url ); ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
 							<?php } else { ?>
-                                <span title="<?php esc_html_e( "This feature has no settings", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
-							<?php }
-						} ?>
+                                <span title="<?php esc_html_e( 'This feature has no settings', 'd4plib' ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
+								<?php
+							}
+						}
+						?>
                     </div>
 					<?php if ( $obj[ 'panel' ] ) { ?>
                         <div class="_scope">
-                            <span title="<?php esc_html_e( "This feature adds a new panel", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-folder"></i></span>
+                            <span title="<?php esc_html_e( 'This feature adds a new panel', 'd4plib' ); ?>"><i class="d4p-icon d4p-ui-folder"></i></span>
                         </div>
 					<?php } ?>
 					<?php if ( $obj[ 'beta' ] ) { ?>
                         <div class="_scope">
-                            <span title="<?php esc_attr_e( "This is a Beta feature, and it can be unstable!", "d4plib" ); ?>"><i class="d4p-icon d4p-ui-flask"></i></span>
+                            <span title="<?php esc_attr_e( 'This is a Beta feature, and it can be unstable!', 'd4plib' ); ?>"><i class="d4p-icon d4p-ui-flask"></i></span>
                         </div>
 					<?php } ?>
 					<?php if ( panel()->a()->plugin()->f()->is_scope_enabled() ) { ?>

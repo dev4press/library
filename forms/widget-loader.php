@@ -58,7 +58,7 @@ $_tab = $instance[ '_tab' ];
 			foreach ( $obj[ 'include' ] as $inc ) {
 				$template = $this->widgets_render->find( $inc . '.php' );
 
-				include( $template );
+				include $template;
 			}
 
 			echo '</div>';

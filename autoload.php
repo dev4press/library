@@ -21,7 +21,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ */
 
 if ( ! function_exists( 'dev4press_core_library_autoloader_43' ) ) {
 	function dev4press_core_library_autoloader_43( $class ) {
@@ -42,7 +42,7 @@ if ( ! function_exists( 'dev4press_core_library_autoloader_43' ) ) {
 			$path .= 'dev4press/' . $class_namespace . '/' . $class_name . '.php';
 
 			if ( file_exists( $path ) ) {
-				include $path ;
+				include $path;
 			}
 		}
 	}

@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Quick\Sanitize
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Quick\Sanitize
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Quick;
 
@@ -43,11 +43,11 @@ class Sanitize {
 	}
 
 	public static function time( $value, $format = 'H:i:s', $return_on_error = '' ) : string {
-		return Sanitize::date( $value, $format, $return_on_error );
+		return self::date( $value, $format, $return_on_error );
 	}
 
 	public static function month( $value, $format = 'Y-m', $return_on_error = '' ) : string {
-		return Sanitize::date( $value, $format, $return_on_error );
+		return self::date( $value, $format, $return_on_error );
 	}
 
 	public static function absint( $value ) : int {
@@ -108,7 +108,7 @@ class Sanitize {
 		$output = array();
 
 		foreach ( $input as $key => $value ) {
-			$output[ $key ] = Sanitize::basic( $value, $strip_shortcodes );
+			$output[ $key ] = self::basic( $value, $strip_shortcodes );
 		}
 
 		return $output;
@@ -140,36 +140,40 @@ class Sanitize {
 	public static function file_path( $filename ) : string {
 		$filename_raw = $filename;
 
-		$special_chars = apply_filters( __NAMESPACE__ . '\sanitize\file_path_chars', array(
-			"?",
-			"[",
-			"]",
-			"/",
-			"\\",
-			"=",
-			"<",
-			">",
-			":",
-			";",
-			",",
-			"'",
-			"\"",
-			"&",
-			"$",
-			"#",
-			"*",
-			"(",
-			")",
-			"|",
-			"~",
-			"`",
-			"!",
-			"{",
-			"}",
-			"%",
-			"+",
-			chr( 0 )
-		), $filename_raw );
+		$special_chars = apply_filters(
+			__NAMESPACE__ . '\sanitize\file_path_chars',
+			array(
+				'?',
+				'[',
+				']',
+				'/',
+				'\\',
+				'=',
+				'<',
+				'>',
+				':',
+				';',
+				',',
+				"'",
+				'"',
+				'&',
+				'$',
+				'#',
+				'*',
+				'(',
+				')',
+				'|',
+				'~',
+				'`',
+				'!',
+				'{',
+				'}',
+				'%',
+				'+',
+				chr( 0 ),
+			),
+			$filename_raw
+		);
 
 		$filename = preg_replace( "#\x{00a0}#siu", ' ', $filename );
 		$filename = str_replace( $special_chars, '', $filename );
@@ -181,11 +185,11 @@ class Sanitize {
 	}
 
 	public static function _get_slug( $name, $default ) {
-		return ! empty( $_GET[ $name ] ) ? Sanitize::slug( $_GET[ $name ] ) : $default;
+		return ! empty( $_GET[ $name ] ) ? self::slug( $_GET[ $name ] ) : $default;
 	}
 
 	public static function _get_basic( $name, $default ) {
-		return ! empty( $_GET[ $name ] ) ? Sanitize::basic( $_GET[ $name ] ) : $default;
+		return ! empty( $_GET[ $name ] ) ? self::basic( $_GET[ $name ] ) : $default;
 	}
 
 	public static function _get_absint( $name, $default ) {

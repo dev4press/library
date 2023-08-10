@@ -40,12 +40,12 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
         </div>
 
         <div class="d4p-panel-control">
-            <button type="button" class="button-primary d4p-features-bulk-ctrl"><?php esc_html_e( "Bulk Control", "d4plib" ); ?></button>
+            <button type="button" class="button-primary d4p-features-bulk-ctrl"><?php esc_html_e( 'Bulk Control', 'd4plib' ); ?></button>
             <div class="d4p-features-bulk-ctrl-options" style="display: none">
-                <p><?php esc_html_e( "You can enable or disable all the features at once.", "d4plib" ); ?></p>
+                <p><?php esc_html_e( 'You can enable or disable all the features at once.', 'd4plib' ); ?></p>
                 <div>
-                    <button class="button-primary" type="button" data-action="enable"><?php esc_html_e( "Enable All", "d4plib" ); ?></button>
-                    <button class="button-secondary" type="button" data-action="disable"><?php esc_html_e( "Disable All", "d4plib" ); ?></button>
+                    <button class="button-primary" type="button" data-action="enable"><?php esc_html_e( 'Enable All', 'd4plib' ); ?></button>
+                    <button class="button-secondary" type="button" data-action="disable"><?php esc_html_e( 'Disable All', 'd4plib' ); ?></button>
                 </div>
             </div>
         </div>

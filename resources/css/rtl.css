@@ -45,8 +45,8 @@
 }
 @media screen and (max-width: 768px) {
   .d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button {
-    margin-right: 0;
-    margin-left: 2%;
+	margin-right: 0;
+	margin-left: 2%;
   }
 }
 

@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\API\Four
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\API\Four
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\API;
 
@@ -48,7 +48,7 @@ class Four {
 		'gd-security-toolbox/gd-security-toolbox.php'                   => '50',
 		'gd-seo-toolbox/gd-seo-toolbox.php'                             => '49',
 		'gd-topic-polls/gd-topic-polls.php'                             => '59',
-		'gd-topic-prefix/gd-topic-prefix.php'                           => '56'
+		'gd-topic-prefix/gd-topic-prefix.php'                           => '56',
 	);
 
 	private $base = 'https://www.dev4press.com/service/core/{endpoint}/';
@@ -65,7 +65,7 @@ class Four {
 		'source'    => 'ad',
 		'plugins'   => array(),
 		'ip'        => '',
-		'url'       => ''
+		'url'       => '',
 	);
 
 	public $ad = null;
@@ -91,7 +91,7 @@ class Four {
 
 		add_filter( 'http_request_args', array( $this, 'request_headers' ), 2000, 2 );
 
-		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		$plugins = get_plugins();
 
 		foreach ( array_keys( $plugins ) as $plugin ) {
@@ -238,7 +238,7 @@ class Four {
 			'timeout'    => 15,
 			'body'       => json_encode( $data ),
 			'method'     => 'POST',
-			'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo( 'url' )
+			'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo( 'url' ),
 		);
 
 		return wp_remote_post( $url, $options );

@@ -14,7 +14,7 @@ foreach ( panel()->subpanels() as $subpanel => $obj ) {
 
 	$_classes = array(
 		'd4p-feature-box',
-		'settings-' . $subpanel
+		'settings-' . $subpanel,
 	);
 
 	if ( ! empty( $args[ 'class' ] ) ) {
@@ -37,7 +37,7 @@ foreach ( panel()->subpanels() as $subpanel => $obj ) {
         </div>
         <div class="_ctrl">
             <div class="_open">
-                <a class="button-primary" href="<?php echo esc_url( $url ); ?>"><?php esc_html_e( "Open", "d4plib" ); ?></a>
+                <a class="button-primary" href="<?php echo esc_url( $url ); ?>"><?php esc_html_e( 'Open', 'd4plib' ); ?></a>
             </div>
         </div>
     </div>

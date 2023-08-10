@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\UI\Enqueue
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\UI\Enqueue
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\UI;
 
@@ -45,11 +45,11 @@ final class Enqueue {
 
 	private $_loaded = array(
 		'js'  => array(),
-		'css' => array()
+		'css' => array(),
 	);
 	private $_libraries = array(
 		'js'  => array(),
-		'css' => array()
+		'css' => array(),
 	);
 
 	/**
@@ -130,7 +130,7 @@ final class Enqueue {
 			'dialog'       => $default,
 			'color_picker' => $default,
 			'media'        => $default,
-			'sortable'     => $default
+			'sortable'     => $default,
 		);
 		$includes = ! is_array( $includes ) ? array() : $includes;
 		$includes = shortcode_atts( $defaults, $includes );
@@ -272,53 +272,62 @@ final class Enqueue {
 	}
 
 	private function localize_admin() {
-		wp_localize_script( $this->prefix() . 'admin', 'd4plib_admin_data',
+		wp_localize_script(
+			$this->prefix() . 'admin',
+			'd4plib_admin_data',
 			array(
 				'plugin'  => array(
 					'name'   => $this->_admin->plugin,
-					'prefix' => $this->_admin->plugin_prefix
+					'prefix' => $this->_admin->plugin_prefix,
 				),
 				'page'    => array(
 					'panel'    => $this->_admin->panel,
-					'subpanel' => $this->_admin->subpanel
+					'subpanel' => $this->_admin->subpanel,
 				),
 				'wp'      => array(
 					'is_multisite' => is_multisite(),
-					'is_network'   => is_multisite() && is_network_admin()
+					'is_network'   => is_multisite() && is_network_admin(),
 				),
 				'content' => array(
-					'nonce' => wp_create_nonce( $this->_admin->plugin_prefix . '-admin-internal' )
-				)
-			) + $this->localize_shared_args() );
+					'nonce' => wp_create_nonce( $this->_admin->plugin_prefix . '-admin-internal' ),
+				),
+			) + $this->localize_shared_args()
+		);
 	}
 
 	private function localize_meta() {
-		wp_localize_script( $this->prefix() . 'meta', 'd4plib_meta_data',
+		wp_localize_script(
+			$this->prefix() . 'meta',
+			'd4plib_meta_data',
 			$this->localize_shared_args()
 		);
 	}
 
 	private function localize_media() {
-		wp_localize_script( $this->prefix() . 'media', 'd4plib_media_data', array(
-			'strings' => array(
-				'image_remove'       => __( "Remove", "d4plib" ),
-				'image_preview'      => __( "Preview", "d4plib" ),
-				'image_title'        => __( "Select Image", "d4plib" ),
-				'image_button'       => __( "Use Selected Image", "d4plib" ),
-				'image_not_selected' => __( "Image not selected.", "d4plib" ),
-				'are_you_sure'       => __( "Are you sure you want to do this?", "d4plib" )
-			),
-			'icons'   => array(
-				'remove'  => "<i aria-hidden='true' class='d4p-icon d4p-ui-ban d4p-icon-fw'></i>",
-				'preview' => "<i aria-hidden='true' class='d4p-icon d4p-ui-search d4p-icon-fw'></i>"
+		wp_localize_script(
+			$this->prefix() . 'media',
+			'd4plib_media_data',
+			array(
+				'strings' => array(
+					'image_remove'       => __( 'Remove', 'd4plib' ),
+					'image_preview'      => __( 'Preview', 'd4plib' ),
+					'image_title'        => __( 'Select Image', 'd4plib' ),
+					'image_button'       => __( 'Use Selected Image', 'd4plib' ),
+					'image_not_selected' => __( 'Image not selected.', 'd4plib' ),
+					'are_you_sure'       => __( 'Are you sure you want to do this?', 'd4plib' ),
+				),
+				'icons'   => array(
+					'remove'  => "<i aria-hidden='true' class='d4p-icon d4p-ui-ban d4p-icon-fw'></i>",
+					'preview' => "<i aria-hidden='true' class='d4p-icon d4p-ui-search d4p-icon-fw'></i>",
+				),
 			)
-		) );
+		);
 	}
 
 	private function localize_shared_args() : array {
 		return array(
 			'lib' => array(
-				'flatpickr' => $this->locale_js_code( 'flatpickr' )
+				'flatpickr' => $this->locale_js_code( 'flatpickr' ),
 			),
 			'ui'  => array(
 				'icons'    => array(
@@ -331,21 +340,21 @@ final class Enqueue {
 					'empty'   => '<i class="d4p-icon d4p-ui-eraser d4p-icon-fw" aria-hidden="true"></i> ',
 				),
 				'buttons'  => array(
-					'ok'      => __( "OK", "d4plib" ),
-					'cancel'  => __( "Cancel", "d4plib" ),
-					'delete'  => __( "Delete", "d4plib" ),
-					'disable' => __( "Disable", "d4plib" ),
-					'empty'   => __( "Empty", "d4plib" ),
-					'send'    => __( "Send", "d4plib" ),
-					'start'   => __( "Start", "d4plib" ),
-					'stop'    => __( "Stop", "d4plib" ),
-					'wait'    => __( "Wait", "d4plib" )
+					'ok'      => __( 'OK', 'd4plib' ),
+					'cancel'  => __( 'Cancel', 'd4plib' ),
+					'delete'  => __( 'Delete', 'd4plib' ),
+					'disable' => __( 'Disable', 'd4plib' ),
+					'empty'   => __( 'Empty', 'd4plib' ),
+					'send'    => __( 'Send', 'd4plib' ),
+					'start'   => __( 'Start', 'd4plib' ),
+					'stop'    => __( 'Stop', 'd4plib' ),
+					'wait'    => __( 'Wait', 'd4plib' ),
 				),
 				'messages' => array(
-					'areyousure' => __( "Are you sure you want to do this?", "d4plib" ),
-					'pleasewait' => __( "Please Wait...", "d4plib" )
-				)
-			)
+					'areyousure' => __( 'Are you sure you want to do this?', 'd4plib' ),
+					'pleasewait' => __( 'Please Wait...', 'd4plib' ),
+				),
+			),
 		);
 	}
 }

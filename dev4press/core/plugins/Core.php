@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Plugins\Core
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Plugins\Core
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Plugins;
 
@@ -120,7 +120,7 @@ abstract class Core {
 	}
 
 	public function deactivate() {
-		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		deactivate_plugins( $this->plugin_name() );
 	}
 
@@ -146,14 +146,14 @@ abstract class Core {
 
 		foreach ( $this->_system_requirements as $req ) {
 			if ( $req[ 1 ] == 0 ) {
-				$versions[] = sprintf( _x( "%s version %s (%s is not active on your website)", "System requirement version", "d4plib" ), $req[ 0 ], '<strong>' . $req[ 2 ] . '</strong>', '<strong style="color: #900;">' . $req[ 0 ] . '</strong>' );
+				$versions[] = sprintf( _x( '%1$s version %2$s (%3$s is not active on your website)', 'System requirement version', 'd4plib' ), $req[ 0 ], '<strong>' . $req[ 2 ] . '</strong>', '<strong style="color: #900;">' . $req[ 0 ] . '</strong>' );
 			} else {
-				$versions[] = sprintf( _x( "%s version %s (your system runs version %s)", "System requirement version", "d4plib" ), $req[ 0 ], '<strong>' . $req[ 2 ] . '</strong>', '<strong style="color: #900;">' . $req[ 1 ] . '</strong>' );
+				$versions[] = sprintf( _x( '%1$s version %2$s (your system runs version %3$s)', 'System requirement version', 'd4plib' ), $req[ 0 ], '<strong>' . $req[ 2 ] . '</strong>', '<strong style="color: #900;">' . $req[ 1 ] . '</strong>' );
 			}
 		}
 
 		$render = '<div class="notice notice-error"><p>';
-		$render .= sprintf( _x( "System requirements check for %s failed. This plugin requires %s. The plugin will now be disabled.", "System requirement notice", "d4plib" ), '<strong>' . $plugin . '</strong>', join( ', ', $versions ) );
+		$render .= sprintf( _x( 'System requirements check for %1$s failed. This plugin requires %2$s. The plugin will now be disabled.', 'System requirement notice', 'd4plib' ), '<strong>' . $plugin . '</strong>', join( ', ', $versions ) );
 		$render .= '</p></div>';
 
 		echo $render;

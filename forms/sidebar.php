@@ -25,7 +25,7 @@ $_panel = panel()->object();
 
 			if ( isset( $_panel->kb ) ) {
 				$url   = $_panel->kb[ 'url' ];
-				$label = $_panel->kb[ 'label' ] ?? __( "Knowledge Base", "d4plib" );
+				$label = $_panel->kb[ 'label' ] ?? __( 'Knowledge Base', 'd4plib' );
 
 				?>
 

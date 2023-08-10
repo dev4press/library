@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Shared\Enqueue
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Shared\Enqueue
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Shared;
 
@@ -36,152 +36,152 @@ class Resources {
 				'path' => 'js/',
 				'file' => 'meta',
 				'ext'  => 'js',
-				'min'  => true
+				'min'  => true,
 			),
 			'media'         => array(
 				'path' => 'js/',
 				'file' => 'media',
 				'ext'  => 'js',
-				'min'  => true
+				'min'  => true,
 			),
 			'ctrl'          => array(
 				'path' => 'js/',
 				'file' => 'ctrl',
 				'ext'  => 'js',
-				'min'  => true
+				'min'  => true,
 			),
 			'helpers'       => array(
 				'path' => 'js/',
 				'file' => 'helpers',
 				'ext'  => 'js',
-				'min'  => true
+				'min'  => true,
 			),
 			'customizer'    => array(
 				'path' => 'js/',
 				'file' => 'customizer',
 				'ext'  => 'js',
-				'min'  => true
+				'min'  => true,
 			),
 			'widgets'       => array(
 				'path' => 'js/',
 				'file' => 'widgets',
 				'ext'  => 'js',
-				'min'  => true
+				'min'  => true,
 			),
 			'wizard'        => array(
 				'path' => 'js/',
 				'file' => 'wizard',
 				'ext'  => 'js',
-				'min'  => true
+				'min'  => true,
 			),
 			'confirmsubmit' => array(
 				'path' => 'js/',
 				'file' => 'confirmsubmit',
 				'ext'  => 'js',
-				'min'  => true
+				'min'  => true,
 			),
 			'admin'         => array(
 				'path' => 'js/',
 				'file' => 'admin',
 				'ext'  => 'js',
 				'min'  => true,
-				'int'  => array( 'confirmsubmit' )
-			)
+				'int'  => array( 'confirmsubmit' ),
+			),
 		),
 		'css' => array(
 			'pack'       => array(
 				'path' => 'css/',
 				'file' => 'pack',
 				'ext'  => 'css',
-				'min'  => true
+				'min'  => true,
 			),
 			'about'      => array(
 				'path' => 'css/',
 				'file' => 'about',
 				'ext'  => 'css',
-				'min'  => true
+				'min'  => true,
 			),
 			'font'       => array(
 				'path' => 'css/',
 				'file' => 'font',
 				'ext'  => 'css',
-				'min'  => true
+				'min'  => true,
 			),
 			'font-embed' => array(
 				'path' => 'css/',
 				'file' => 'font-embed',
 				'ext'  => 'css',
-				'min'  => true
+				'min'  => true,
 			),
 			'grid'       => array(
 				'path' => 'css/',
 				'file' => 'grid',
 				'ext'  => 'css',
-				'min'  => true
+				'min'  => true,
 			),
 			'ctrl'       => array(
 				'path' => 'css/',
 				'file' => 'ctrl',
 				'ext'  => 'css',
-				'min'  => true
+				'min'  => true,
 			),
 			'meta'       => array(
 				'path' => 'css/',
 				'file' => 'meta',
 				'ext'  => 'css',
-				'min'  => true
+				'min'  => true,
 			),
 			'options'    => array(
 				'path' => 'css/',
 				'file' => 'options',
 				'ext'  => 'css',
-				'min'  => true
+				'min'  => true,
 			),
 			'shared'     => array(
 				'path' => 'css/',
 				'file' => 'shared',
 				'ext'  => 'css',
-				'min'  => true
+				'min'  => true,
 			),
 			'widgets'    => array(
 				'path' => 'css/',
 				'file' => 'widgets',
 				'ext'  => 'css',
-				'min'  => true
+				'min'  => true,
 			),
 			'customizer' => array(
 				'path' => 'css/',
 				'file' => 'customizer',
 				'ext'  => 'css',
-				'min'  => true
+				'min'  => true,
 			),
 			'admin'      => array(
 				'path' => 'css/',
 				'file' => 'admin',
 				'ext'  => 'css',
 				'min'  => true,
-				'int'  => array( 'shared' )
+				'int'  => array( 'shared' ),
 			),
 			'wizard'     => array(
 				'path' => 'css/',
 				'file' => 'wizard',
 				'ext'  => 'css',
 				'min'  => true,
-				'int'  => array( 'admin' )
+				'int'  => array( 'admin' ),
 			),
 			'rtl'        => array(
 				'path' => 'css/',
 				'file' => 'rtl',
 				'ext'  => 'css',
-				'min'  => true
+				'min'  => true,
 			),
 			'balloon'    => array(
 				'path' => 'css/',
 				'file' => 'balloon',
 				'ext'  => 'css',
-				'min'  => true
-			)
-		)
+				'min'  => true,
+			),
+		),
 	);
 
 	private $_shared = array(
@@ -192,7 +192,7 @@ class Resources {
 				'file' => 'animated-popup.min',
 				'ver'  => '1.8',
 				'ext'  => 'js',
-				'min'  => false
+				'min'  => false,
 			),
 			'micromodal'             => array(
 				'lib'  => true,
@@ -200,7 +200,7 @@ class Resources {
 				'file' => 'micromodal.min',
 				'ver'  => '0.4.10',
 				'ext'  => 'js',
-				'min'  => false
+				'min'  => false,
 			),
 			'flatpickr'              => array(
 				'lib'        => true,
@@ -225,8 +225,8 @@ class Resources {
 					'ru',
 					'sl',
 					'sr',
-					'sv'
-				)
+					'sv',
+				),
 			),
 			'flatpickr-confirm-date' => array(
 				'lib'  => true,
@@ -235,7 +235,7 @@ class Resources {
 				'ver'  => '4.6.11',
 				'ext'  => 'js',
 				'min'  => true,
-				'int'  => array( 'flatpickr' )
+				'int'  => array( 'flatpickr' ),
 			),
 			'flatpickr-month-select' => array(
 				'lib'  => true,
@@ -244,7 +244,7 @@ class Resources {
 				'ver'  => '4.6.11',
 				'ext'  => 'js',
 				'min'  => true,
-				'int'  => array( 'flatpickr' )
+				'int'  => array( 'flatpickr' ),
 			),
 			'flatpickr-week-select'  => array(
 				'lib'  => true,
@@ -253,7 +253,7 @@ class Resources {
 				'ver'  => '4.6.11',
 				'ext'  => 'js',
 				'min'  => true,
-				'int'  => array( 'flatpickr' )
+				'int'  => array( 'flatpickr' ),
 			),
 			'flatpickr-minmax-time'  => array(
 				'lib'  => true,
@@ -262,7 +262,7 @@ class Resources {
 				'ver'  => '4.6.11',
 				'ext'  => 'js',
 				'min'  => true,
-				'int'  => array( 'flatpickr' )
+				'int'  => array( 'flatpickr' ),
 			),
 			'flatpickr-range'        => array(
 				'lib'  => true,
@@ -271,7 +271,7 @@ class Resources {
 				'ver'  => '4.6.11',
 				'ext'  => 'js',
 				'min'  => true,
-				'int'  => array( 'flatpickr' )
+				'int'  => array( 'flatpickr' ),
 			),
 			'cookies'                => array(
 				'lib'  => true,
@@ -279,7 +279,7 @@ class Resources {
 				'file' => 'cookies.min',
 				'ver'  => '3.0.1',
 				'ext'  => 'js',
-				'min'  => false
+				'min'  => false,
 			),
 			'kjua'                   => array(
 				'lib'  => true,
@@ -287,7 +287,7 @@ class Resources {
 				'file' => 'kjua.min',
 				'ver'  => '1.13.1',
 				'ext'  => 'js',
-				'min'  => false
+				'min'  => false,
 			),
 			'mark'                   => array(
 				'lib'  => true,
@@ -296,7 +296,7 @@ class Resources {
 				'ver'  => '9.0.0',
 				'ext'  => 'js',
 				'min'  => false,
-				'req'  => array( 'jquery' )
+				'req'  => array( 'jquery' ),
 			),
 			'fitvids'                => array(
 				'lib'  => true,
@@ -305,7 +305,7 @@ class Resources {
 				'ver'  => '1.2.0',
 				'ext'  => 'js',
 				'min'  => false,
-				'req'  => array( 'jquery' )
+				'req'  => array( 'jquery' ),
 			),
 			'select'                 => array(
 				'lib'  => true,
@@ -314,8 +314,8 @@ class Resources {
 				'ver'  => '2.2.6',
 				'ext'  => 'js',
 				'min'  => false,
-				'req'  => array( 'jquery' )
-			)
+				'req'  => array( 'jquery' ),
+			),
 		),
 		'css' => array(
 			'animated-popup'         => array(
@@ -324,7 +324,7 @@ class Resources {
 				'file' => 'animated-popup.min',
 				'ver'  => '1.8',
 				'ext'  => 'css',
-				'min'  => false
+				'min'  => false,
 			),
 			'flags'                  => array(
 				'lib'  => true,
@@ -332,7 +332,7 @@ class Resources {
 				'file' => 'flags.min',
 				'ver'  => '2015.10',
 				'ext'  => 'css',
-				'min'  => false
+				'min'  => false,
 			),
 			'flatpickr'              => array(
 				'lib'  => true,
@@ -340,7 +340,7 @@ class Resources {
 				'file' => 'flatpickr.min',
 				'ver'  => '4.6.11',
 				'ext'  => 'css',
-				'min'  => false
+				'min'  => false,
 			),
 			'flatpickr-confirm-date' => array(
 				'lib'  => true,
@@ -349,7 +349,7 @@ class Resources {
 				'ver'  => '4.6.11',
 				'ext'  => 'css',
 				'min'  => true,
-				'int'  => array( 'flatpickr' )
+				'int'  => array( 'flatpickr' ),
 			),
 			'flatpickr-month-select' => array(
 				'lib'  => true,
@@ -358,16 +358,16 @@ class Resources {
 				'ver'  => '4.6.11',
 				'ext'  => 'css',
 				'min'  => true,
-				'int'  => array( 'flatpickr' )
+				'int'  => array( 'flatpickr' ),
 			),
 			'grid-table'             => array(
 				'lib'  => false,
 				'path' => 'css/',
 				'file' => 'table',
 				'ext'  => 'css',
-				'min'  => true
-			)
-		)
+				'min'  => true,
+			),
+		),
 	);
 
 	public function __construct() {

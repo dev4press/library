@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Helpers\Debug
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Helpers\Debug
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Helpers;
 
@@ -57,7 +57,7 @@ class Debug {
 			}
 		} else {
 			if ( $title != '' ) {
-				echo "### " . esc_html( $title ) . " ###\r\n\r\n";
+				echo '### ' . esc_html( $title ) . " ###\r\n\r\n";
 			}
 		}
 
@@ -123,21 +123,21 @@ class Debug {
 		global $wpdb;
 
 		echo PHP_EOL;
-		echo '<!-- ' . esc_html__( "SQL Queries", "d4plib" ) . '           : ';
+		echo '<!-- ' . esc_html__( 'SQL Queries', 'd4plib' ) . '           : ';
 		echo $wpdb->num_queries;
 		echo ' -->' . PHP_EOL;
-		echo '<!-- ' . esc_html__( "Total Page Time", "d4plib" ) . '       : ';
-		echo timer_stop( 0, 6 ) . ' ' . esc_html__( "seconds", "d4plib" );
+		echo '<!-- ' . esc_html__( 'Total Page Time', 'd4plib' ) . '       : ';
+		echo timer_stop( 0, 6 ) . ' ' . esc_html__( 'seconds', 'd4plib' );
 		echo ' -->' . PHP_EOL;
 
 		if ( function_exists( 'memory_get_peak_usage' ) ) {
-			echo '<!-- ' . esc_html__( "PHP Memory Peak", "d4plib" ) . '       : ';
+			echo '<!-- ' . esc_html__( 'PHP Memory Peak', 'd4plib' ) . '       : ';
 			echo round( memory_get_peak_usage() / 1024 / 1024, 2 ) . ' MB';
 			echo ' -->' . PHP_EOL;
 		}
 
 		if ( function_exists( 'memory_get_usage' ) ) {
-			echo '<!-- ' . esc_html__( "PHP Memory Final", "d4plib" ) . '      : ';
+			echo '<!-- ' . esc_html__( 'PHP Memory Final', 'd4plib' ) . '      : ';
 			echo round( memory_get_usage() / 1024 / 1024, 2 ) . ' MB';
 			echo ' -->' . PHP_EOL;
 		}
@@ -185,16 +185,16 @@ class Debug {
 		global $wp, $template;
 
 		echo PHP_EOL;
-		echo '<!-- ' . esc_html__( "Request", "d4plib" ) . '               : ';
-		echo empty( $wp->request ) ? esc_html__( "None", "d4plib" ) : esc_html( $wp->request );
+		echo '<!-- ' . esc_html__( 'Request', 'd4plib' ) . '               : ';
+		echo empty( $wp->request ) ? esc_html__( 'None', 'd4plib' ) : esc_html( $wp->request );
 		echo ' -->' . PHP_EOL;
-		echo '<!-- ' . esc_html__( "Matched Rewrite Rule", "d4plib" ) . '  : ';
-		echo empty( $wp->matched_rule ) ? esc_html__( "None", "d4plib" ) : esc_html( $wp->matched_rule );
+		echo '<!-- ' . esc_html__( 'Matched Rewrite Rule', 'd4plib' ) . '  : ';
+		echo empty( $wp->matched_rule ) ? esc_html__( 'None', 'd4plib' ) : esc_html( $wp->matched_rule );
 		echo ' -->' . PHP_EOL;
-		echo '<!-- ' . esc_html__( "Matched Rewrite Query", "d4plib" ) . ' : ';
-		echo empty( $wp->matched_query ) ? esc_html__( "None", "d4plib" ) : esc_html( $wp->matched_query );
+		echo '<!-- ' . esc_html__( 'Matched Rewrite Query', 'd4plib' ) . ' : ';
+		echo empty( $wp->matched_query ) ? esc_html__( 'None', 'd4plib' ) : esc_html( $wp->matched_query );
 		echo ' -->' . PHP_EOL;
-		echo '<!-- ' . esc_html__( "Loaded Template", "d4plib" ) . '       : ';
+		echo '<!-- ' . esc_html__( 'Loaded Template', 'd4plib' ) . '       : ';
 		echo basename( $template );
 		echo ' -->' . PHP_EOL;
 	}

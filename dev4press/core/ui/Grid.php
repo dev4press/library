@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\UI\Grid
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\UI\Grid
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\UI;
 
@@ -46,7 +46,7 @@ abstract class Grid {
 		'first' => '«',
 		'prev'  => '‹',
 		'next'  => '›',
-		'last'  => '»'
+		'last'  => '»',
 	);
 	protected $vars = array();
 	protected $filters = array();
@@ -94,7 +94,7 @@ abstract class Grid {
 	}
 
 	protected function no_items() {
-		_e( "No items found.", "d4plib" );
+		_e( 'No items found.', 'd4plib' );
 	}
 
 	protected function current_page() {
@@ -132,10 +132,10 @@ abstract class Grid {
 		$this->filter_elements();
 
 		if ( $this->show_search ) {
-			echo '<input placeholder="' . esc_attr__( "Search keywords...", "d4plib" ) . '" type="text" name="search" value="' . esc_attr( $this->filters[ 'search' ] ) . '" />';
+			echo '<input placeholder="' . esc_attr__( 'Search keywords...', 'd4plib' ) . '" type="text" name="search" value="' . esc_attr( $this->filters[ 'search' ] ) . '" />';
 		}
 
-		echo '<input type="submit" value="' . esc_attr__( "Filter", "d4plib" ) . '"/>';
+		echo '<input type="submit" value="' . esc_attr__( 'Filter', 'd4plib' ) . '"/>';
 		echo '</div>';
 	}
 
@@ -171,7 +171,7 @@ abstract class Grid {
 				$page_links[] = sprintf(
 					"<a class='first-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 					esc_url( remove_query_arg( 'pg', $current_url ) ),
-					__( "First page", "d4plib" ),
+					__( 'First page', 'd4plib' ),
 					$this->sortables[ 'first' ]
 				);
 			}
@@ -182,21 +182,21 @@ abstract class Grid {
 				$page_links[] = sprintf(
 					"<a class='prev-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 					esc_url( add_query_arg( 'pg', max( 1, $current - 1 ), $current_url ) ),
-					__( "Previous page", "d4plib" ),
+					__( 'Previous page', 'd4plib' ),
 					$this->sortables[ 'prev' ]
 				);
 			}
 
 			$html_current_page = sprintf(
 				"%s<input class='current-page' id='current-page-selector' type='number' step='1' min='1' max='%d' name='pg' value='%s' aria-describedby='table-paging' /><span class='tablenav-paging-text'>",
-				'<label for="current-page-selector" class="screen-reader-text">' . esc_html__( "Current Page", "d4plib" ) . '</label>',
+				'<label for="current-page-selector" class="screen-reader-text">' . esc_html__( 'Current Page', 'd4plib' ) . '</label>',
 				$total_pages,
 				$current
 			);
 
 			$html_total_pages = sprintf( "<span class='total-pages'>%s</span>", number_format_i18n( $total_pages ) );
 			$page_links[]     = $total_pages_before . sprintf(
-					_x( '%1$s of %2$s', 'paging', "d4plib" ),
+					_x( '%1$s of %2$s', 'paging', 'd4plib' ),
 					$html_current_page,
 					$html_total_pages
 				) . $total_pages_after;
@@ -207,7 +207,7 @@ abstract class Grid {
 				$page_links[] = sprintf(
 					"<a class='next-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 					esc_url( add_query_arg( 'pg', min( $total_pages, $current + 1 ), $current_url ) ),
-					__( "Next page", "d4plib" ),
+					__( 'Next page', 'd4plib' ),
 					$this->sortables[ 'next' ]
 				);
 			}
@@ -218,14 +218,14 @@ abstract class Grid {
 				$page_links[] = sprintf(
 					"<a class='last-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 					esc_url( add_query_arg( 'pg', $total_pages, $current_url ) ),
-					__( "Last page", "d4plib" ),
+					__( 'Last page', 'd4plib' ),
 					$this->sortables[ 'last' ]
 				);
 			}
 		}
 
 		$output = '<span class="displaying-num">' . sprintf(
-				_n( "%s item", "%s items", $total_items, "d4plib" ),
+				_n( '%s item', '%s items', $total_items, 'd4plib' ),
 				number_format_i18n( $total_items )
 			) . '</span>';
 
@@ -328,7 +328,7 @@ abstract class Grid {
 			'per_page'     => $this->items_per_page,
 			'total_items'  => $this->total,
 			'total_pages'  => ceil( $this->total / $this->items_per_page ),
-			'current_page' => $this->filters[ 'pg' ]
+			'current_page' => $this->filters[ 'pg' ],
 		);
 	}
 }

@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$label = panel()->a()->wizard()->is_last_panel() ? __( "Finish", "d4plib" ) : __( "Save and Continue", "d4plib" );
+$label = panel()->a()->wizard()->is_last_panel() ? __( 'Finish', 'd4plib' ) : __( 'Save and Continue', 'd4plib' );
 
 ?>
 
@@ -21,7 +21,8 @@ $label = panel()->a()->wizard()->is_last_panel() ? __( "Finish", "d4plib" ) : __
             </div>
         </div>
 
-        <div class="d4p-wizard-panels"><?php
+        <div class="d4p-wizard-panels">
+			<?php
 
 			$step_width = 100 / count( panel()->a()->wizard()->panels );
 			$past_class = 'd4p-wizard-step-done';
@@ -37,7 +38,8 @@ $label = panel()->a()->wizard()->is_last_panel() ? __( "Finish", "d4plib" ) : __
 				}
 			}
 
-			?></div>
+			?>
+        </div>
 
         <div class="d4p-wizard-panel">
             <form method="post" action="<?php echo panel()->a()->wizard()->get_form_action(); ?>">

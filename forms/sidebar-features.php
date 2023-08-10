@@ -13,19 +13,25 @@ $_features  = panel()->a()->plugin()->f();
 $_beta      = $_features->is_beta( $_subpanel );
 
 $_url_base  = panel()->a()->current_url();
-$_url_reset = add_query_arg( array(
-	'single-action'   => 'reset',
-	panel()->a()->v() => 'getback',
-	'_wpnonce'        => wp_create_nonce( panel()->a()->plugin_prefix . '-feature-reset-' . $_subpanel )
-), $_url_base );
+$_url_reset = add_query_arg(
+	array(
+		'single-action'   => 'reset',
+		panel()->a()->v() => 'getback',
+		'_wpnonce'        => wp_create_nonce( panel()->a()->plugin_prefix . '-feature-reset-' . $_subpanel ),
+	),
+	$_url_base
+);
 $_url_copy  = '';
 
 if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
-	$_url_copy = add_query_arg( array(
-		'single-action'   => 'network-copy',
-		panel()->a()->v() => 'getback',
-		'_wpnonce'        => wp_create_nonce( panel()->a()->plugin_prefix . '-feature-network-copy-' . $_subpanel )
-	), $_url_base );
+	$_url_copy = add_query_arg(
+		array(
+			'single-action'   => 'network-copy',
+			panel()->a()->v() => 'getback',
+			'_wpnonce'        => wp_create_nonce( panel()->a()->plugin_prefix . '-feature-network-copy-' . $_subpanel ),
+		),
+		$_url_base
+	);
 }
 
 ?>
@@ -41,7 +47,7 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
 			echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ][ 'icon' ] ) . $_subpanels[ $_subpanel ][ 'title' ] . '</h4>';
 
 			if ( $_beta ) {
-				echo '<div class="_beta"><i class="d4p-icon d4p-ui-flask"></i> <span>' . esc_html__( "Beta Feature", "d4plib" ) . '</span></div>';
+				echo '<div class="_beta"><i class="d4p-icon d4p-ui-flask"></i> <span>' . esc_html__( 'Beta Feature', 'd4plib' ) . '</span></div>';
 			}
 
 			?>
@@ -51,10 +57,10 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
         </div>
 
         <div class="d4p-panel-control">
-            <button type="button" class="button-secondary d4p-feature-more-ctrl"><?php esc_html_e( "More Controls", "d4plib" ); ?></button>
+            <button type="button" class="button-secondary d4p-feature-more-ctrl"><?php esc_html_e( 'More Controls', 'd4plib' ); ?></button>
             <div class="d4p-feature-more-ctrl-options" style="display: none">
-                <p><?php esc_html_e( "If you want, you can reset all the settings for this Feature to default values.", "d4plib" ); ?></p>
-                <a class="button-primary" href="<?php echo esc_url( $_url_reset ); ?>"><?php esc_html_e( "Reset Feature Settings", "d4plib" ); ?></a>
+                <p><?php esc_html_e( 'If you want, you can reset all the settings for this Feature to default values.', 'd4plib' ); ?></p>
+                <a class="button-primary" href="<?php echo esc_url( $_url_reset ); ?>"><?php esc_html_e( 'Reset Feature Settings', 'd4plib' ); ?></a>
 
 				<?php
 
@@ -62,8 +68,8 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
 					?>
 
                     <hr/>
-                    <p><?php esc_html_e( "You can also copy the settings from the main Network settings for this feature.", "d4plib" ); ?></p>
-                    <a class="button-primary" href="<?php echo esc_url( $_url_copy ); ?>"><?php esc_html_e( "Copy Network Settings", "d4plib" ); ?></a>
+                    <p><?php esc_html_e( 'You can also copy the settings from the main Network settings for this feature.', 'd4plib' ); ?></p>
+                    <a class="button-primary" href="<?php echo esc_url( $_url_copy ); ?>"><?php esc_html_e( 'Copy Network Settings', 'd4plib' ); ?></a>
 
 					<?php
 				}
@@ -71,11 +77,11 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
 				?>
             </div>
             <div class="d4p-panel-buttons">
-                <input type="submit" value="<?php esc_attr_e( "Save Settings", "d4plib" ); ?>" class="button-primary"/>
+                <input type="submit" value="<?php esc_attr_e( 'Save Settings', 'd4plib' ); ?>" class="button-primary"/>
             </div>
         </div>
         <div class="d4p-return-to-top">
-            <a href="#wpwrap"><?php esc_html_e( "Return to top", "d4plib" ); ?></a>
+            <a href="#wpwrap"><?php esc_html_e( 'Return to top', 'd4plib' ); ?></a>
         </div>
     </div>
 </div>

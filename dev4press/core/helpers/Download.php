@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Helpers\Download
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Helpers\Download
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Helpers;
 
@@ -55,15 +55,15 @@ class Download {
 	}
 
 	public static function file_simple( $file_path, $file_name = null, $gdr_readfile = true ) {
-		Download::instance( $file_path, $file_name )->simple( ! $gdr_readfile );
+		self::instance( $file_path, $file_name )->simple( ! $gdr_readfile );
 	}
 
 	public static function file_resume( $file_path, $file_name = null ) {
-		Download::instance( $file_path, $file_name )->resume();
+		self::instance( $file_path, $file_name )->resume();
 	}
 
 	public static function file_read( $file_path, $part_size_mb = 2, $return_size = true ) {
-		return Download::instance( $file_path )->read_file( $part_size_mb, $return_size );
+		return self::instance( $file_path )->read_file( $part_size_mb, $return_size );
 	}
 
 	public function read_file( $part_size_mb = 2, $return_size = true ) {
@@ -95,15 +95,15 @@ class Download {
 	}
 
 	public function simple( $system = false ) {
-		header( "Pragma: public" );
-		header( "Expires: 0" );
-		header( "Cache-Control: must-revalidate, post-check=0, pre-check=0" );
-		header( "Content-Type: application/force-download" );
-		header( "Content-Type: application/octet-stream" );
-		header( "Content-Type: application/download" );
-		header( "Content-Disposition: attachment; filename=" . $this->_file_name . ";" );
-		header( "Content-Transfer-Encoding: binary" );
-		header( "Content-Length: " . filesize( $this->_file_path ) );
+		header( 'Pragma: public' );
+		header( 'Expires: 0' );
+		header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );
+		header( 'Content-Type: application/force-download' );
+		header( 'Content-Type: application/octet-stream' );
+		header( 'Content-Type: application/download' );
+		header( 'Content-Disposition: attachment; filename=' . $this->_file_name . ';' );
+		header( 'Content-Transfer-Encoding: binary' );
+		header( 'Content-Length: ' . filesize( $this->_file_path ) );
 
 		if ( $system ) {
 			readfile( $this->_file_path );
@@ -120,14 +120,14 @@ class Download {
 		$start  = 0;
 		$end    = $size - 1;
 
-		header( "Pragma: public" );
-		header( "Expires: 0" );
-		header( "Cache-Control: must-revalidate, post-check=0, pre-check=0" );
-		header( "Content-Type: application/force-download" );
-		header( "Content-Type: application/octet-stream" );
-		header( "Content-Type: application/download" );
-		header( "Content-Disposition: attachment; filename=" . $this->_file_name . ";" );
-		header( "Content-Transfer-Encoding: binary" );
+		header( 'Pragma: public' );
+		header( 'Expires: 0' );
+		header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );
+		header( 'Content-Type: application/force-download' );
+		header( 'Content-Type: application/octet-stream' );
+		header( 'Content-Type: application/download' );
+		header( 'Content-Disposition: attachment; filename=' . $this->_file_name . ';' );
+		header( 'Content-Transfer-Encoding: binary' );
 		header( "Accept-Ranges: 0-$length" );
 
 		if ( isset( $_SERVER[ 'HTTP_RANGE' ] ) ) {
@@ -135,7 +135,7 @@ class Download {
 
 			list( , $range ) = explode( '=', $_SERVER[ 'HTTP_RANGE' ], 2 );
 			if ( strpos( $range, ',' ) !== false ) {
-				header( "HTTP/1.1 416 Requested Range Not Satisfiable" );
+				header( 'HTTP/1.1 416 Requested Range Not Satisfiable' );
 				header( "Content-Range: bytes $start-$end/$size" );
 				exit;
 			}
@@ -150,7 +150,7 @@ class Download {
 
 			$c_end = ( $c_end > $end ) ? $end : $c_end;
 			if ( $c_start > $c_end || $c_start > $size - 1 || $c_end >= $size ) {
-				header( "HTTP/1.1 416 Requested Range Not Satisfiable" );
+				header( 'HTTP/1.1 416 Requested Range Not Satisfiable' );
 				header( "Content-Range: bytes $start-$end/$size" );
 				exit;
 			}
@@ -164,7 +164,7 @@ class Download {
 			header( "Content-Range: bytes $start-$end/$size;" );
 		}
 
-		header( "Content-Length: " . $length );
+		header( 'Content-Length: ' . $length );
 
 		$buffer = 1024 * 8;
 		while ( ! feof( $fp ) && ( $p = ftell( $fp ) ) <= $end ) {

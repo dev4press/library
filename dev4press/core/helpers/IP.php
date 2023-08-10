@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Helpers\IP
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Helpers\IP
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Helpers;
 
@@ -34,12 +34,12 @@ class IP {
 		'10.0.0.0/8',
 		'127.0.0.0/8',
 		'172.16.0.0/12',
-		'192.168.0.0/16'
+		'192.168.0.0/16',
 	);
 
 	protected static $private_ipv6 = array(
 		'::1/128',
-		'fd00::/8'
+		'fd00::/8',
 	);
 
 	protected static $cloudflare_ipv4 = array(
@@ -57,7 +57,7 @@ class IP {
 		'104.16.0.0/13',
 		'104.24.0.0/14',
 		'172.64.0.0/13',
-		'131.0.72.0/22'
+		'131.0.72.0/22',
 	);
 
 	protected static $cloudflare_ipv6 = array(
@@ -67,7 +67,7 @@ class IP {
 		'2405:b500::/32',
 		'2405:8100::/32',
 		'2a06:98c0::/29',
-		'2c0f:f248::/32'
+		'2c0f:f248::/32',
 	);
 
 	public static function is_v4( $ip ) : bool {
@@ -79,7 +79,7 @@ class IP {
 	}
 
 	public static function is_in_range( $ip, $range ) : bool {
-		return IP::is_v6( $ip ) ? IP::is_ipv6_in_range( $ip, $range ) : IP::is_ipv4_in_range( $ip, $range );
+		return self::is_v6( $ip ) ? self::is_ipv6_in_range( $ip, $range ) : self::is_ipv4_in_range( $ip, $range );
 	}
 
 	public static function is_ipv4_in_range( $ip, $range ) : bool {
@@ -90,8 +90,8 @@ class IP {
 				return false;
 			}
 
-			$ip_binary  = sprintf( "%032b", ip2long( $ip ) );
-			$net_binary = sprintf( "%032b", ip2long( $subnet ) );
+			$ip_binary  = sprintf( '%032b', ip2long( $ip ) );
+			$net_binary = sprintf( '%032b', ip2long( $subnet ) );
 
 			return ( substr_compare( $ip_binary, $net_binary, 0, $mask ) === 0 );
 		} else {
@@ -104,9 +104,9 @@ class IP {
 			if ( strpos( $range, '-' ) !== false ) {
 				list( $lower, $upper ) = explode( '-', $range, 2 );
 
-				$lower_dec = (float) sprintf( "%u", ip2long( $lower ) );
-				$upper_dec = (float) sprintf( "%u", ip2long( $upper ) );
-				$ip_dec    = (float) sprintf( "%u", ip2long( $ip ) );
+				$lower_dec = (float) sprintf( '%u', ip2long( $lower ) );
+				$upper_dec = (float) sprintf( '%u', ip2long( $upper ) );
+				$ip_dec    = (float) sprintf( '%u', ip2long( $ip ) );
 
 				return ( ( $ip_dec >= $lower_dec ) && ( $ip_dec <= $upper_dec ) );
 			}
@@ -121,30 +121,30 @@ class IP {
 		$subnet = inet_pton( $subnet );
 		$ip     = inet_pton( $ip );
 
-		$mask_binary = str_repeat( "f", $mask / 4 );
+		$mask_binary = str_repeat( 'f', $mask / 4 );
 		switch ( $mask % 4 ) {
 			case 0:
 				break;
 			case 1:
-				$mask_binary .= "8";
+				$mask_binary .= '8';
 				break;
 			case 2:
-				$mask_binary .= "c";
+				$mask_binary .= 'c';
 				break;
 			case 3:
-				$mask_binary .= "e";
+				$mask_binary .= 'e';
 				break;
 		}
 		$mask_binary = str_pad( $mask_binary, 32, '0' );
-		$mask_binary = pack( "H*", $mask_binary );
+		$mask_binary = pack( 'H*', $mask_binary );
 
 		return ( $ip & $mask_binary ) == $subnet;
 	}
 
 	public static function full_ip( $ip ) : string {
-		if ( IP::is_v4( $ip ) ) {
+		if ( self::is_v4( $ip ) ) {
 			return $ip;
-		} else if ( IP::is_v6( $ip ) ) {
+		} else if ( self::is_v6( $ip ) ) {
 			$hex = bin2hex( inet_pton( $ip ) );
 
 			if ( substr( $hex, 0, 24 ) == '00000000000000000000ffff' ) {
@@ -159,18 +159,18 @@ class IP {
 
 	public static function is_private( $ip = null ) : bool {
 		if ( is_null( $ip ) ) {
-			$ip = IP::visitor();
+			$ip = self::visitor();
 		}
 
 		if ( strpos( $ip, ':' ) === false ) {
-			foreach ( IP::$private_ipv4 as $cf ) {
-				if ( IP::is_ipv4_in_range( $ip, $cf ) ) {
+			foreach ( self::$private_ipv4 as $cf ) {
+				if ( self::is_ipv4_in_range( $ip, $cf ) ) {
 					return true;
 				}
 			}
 		} else {
-			foreach ( IP::$private_ipv6 as $cf ) {
-				if ( IP::is_ipv6_in_range( $ip, $cf ) ) {
+			foreach ( self::$private_ipv6 as $cf ) {
+				if ( self::is_ipv6_in_range( $ip, $cf ) ) {
 					return true;
 				}
 			}
@@ -197,14 +197,14 @@ class IP {
 		}
 
 		if ( strpos( $ip, ':' ) === false ) {
-			foreach ( IP::$cloudflare_ipv4 as $cf ) {
-				if ( IP::is_ipv4_in_range( $ip, $cf ) ) {
+			foreach ( self::$cloudflare_ipv4 as $cf ) {
+				if ( self::is_ipv4_in_range( $ip, $cf ) ) {
 					return true;
 				}
 			}
 		} else {
-			foreach ( IP::$cloudflare_ipv6 as $cf ) {
-				if ( IP::is_ipv6_in_range( $ip, $cf ) ) {
+			foreach ( self::$cloudflare_ipv6 as $cf ) {
+				if ( self::is_ipv6_in_range( $ip, $cf ) ) {
 					return true;
 				}
 			}
@@ -218,7 +218,7 @@ class IP {
 			return '';
 		}
 
-		$ip = IP::validate( $_SERVER[ 'SERVER_ADDR' ] );
+		$ip = self::validate( $_SERVER[ 'SERVER_ADDR' ] );
 
 		if ( $ip == '::1' ) {
 			$ip = '127.0.0.1';
@@ -238,7 +238,7 @@ class IP {
 			'HTTP_FORWARDED_FOR',
 			'HTTP_FORWARDED',
 			'REMOTE_ADDR',
-			'SERVER_ADDR'
+			'SERVER_ADDR',
 		);
 
 		$ips = array();
@@ -253,8 +253,8 @@ class IP {
 	}
 
 	public static function visitor( $no_local_or_protected = false ) {
-		if ( IP::is_cloudflare() ) {
-			return IP::validate( $_SERVER[ 'HTTP_CF_CONNECTING_IP' ], true );
+		if ( self::is_cloudflare() ) {
+			return self::validate( $_SERVER[ 'HTTP_CF_CONNECTING_IP' ], true );
 		}
 
 		$keys = array(
@@ -265,7 +265,7 @@ class IP {
 			'HTTP_X_CLUSTER_CLIENT_IP',
 			'HTTP_FORWARDED_FOR',
 			'HTTP_FORWARDED',
-			'REMOTE_ADDR'
+			'REMOTE_ADDR',
 		);
 
 		$ip = '';
@@ -278,12 +278,12 @@ class IP {
 		}
 
 		if ( $no_local_or_protected ) {
-			$ip = IP::validate( $ip, true );
+			$ip = self::validate( $ip, true );
 		} else {
 			if ( $ip == '::1' ) {
 				$ip = '127.0.0.1';
 			} else if ( $ip != '' ) {
-				$ip = IP::cleanup( $ip );
+				$ip = self::cleanup( $ip );
 			}
 		}
 

@@ -11,7 +11,7 @@ class Randomizer extends Generator {
 		'e',
 		'i',
 		'o',
-		'u'
+		'u',
 	);
 
 	private $consonants = array(
@@ -34,7 +34,7 @@ class Randomizer extends Generator {
 		'w',
 		'x',
 		'y',
-		'z'
+		'z',
 	);
 
 	public function words( $count = 1, $tags = false, $array = false ) {

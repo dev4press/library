@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Admin\Table
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Admin\Table
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\WordPress\Admin;
 
@@ -120,13 +120,13 @@ abstract class Table extends WP_List_Table {
 		$months = $this->db()->run( $sql );
 
 		$list = array(
-			''              => __( "All Logged", "d4plib" ),
-			'last-hour'     => __( "Last hour", "d4plib" ),
-			'last-half-day' => __( "Last 12 hours", "d4plib" ),
-			'last-day'      => __( "Last day", "d4plib" ),
-			'last-week'     => __( "Last 7 days", "d4plib" ),
-			'last-month'    => __( "Last 30 days", "d4plib" ),
-			'last-year'     => __( "Last 365 days", "d4plib" )
+			''              => __( 'All Logged', 'd4plib' ),
+			'last-hour'     => __( 'Last hour', 'd4plib' ),
+			'last-half-day' => __( 'Last 12 hours', 'd4plib' ),
+			'last-day'      => __( 'Last day', 'd4plib' ),
+			'last-week'     => __( 'Last 7 days', 'd4plib' ),
+			'last-month'    => __( 'Last 30 days', 'd4plib' ),
+			'last-year'     => __( 'Last 365 days', 'd4plib' ),
 		);
 
 		foreach ( $months as $row ) {
@@ -138,7 +138,7 @@ abstract class Table extends WP_List_Table {
 					$list[ $year ] = $year;
 				}
 
-				$list[ $year . '-' . $month ] = sprintf( __( "%s %s", "d4plib" ), $wp_locale->get_month( $month ), $year );
+				$list[ $year . '-' . $month ] = sprintf( __( '%1$s %2$s', 'd4plib' ), $wp_locale->get_month( $month ), $year );
 			}
 		}
 
@@ -184,7 +184,7 @@ abstract class Table extends WP_List_Table {
 			$this->get_columns(),
 			get_hidden_columns( $this->screen ),
 			$this->get_sortable_columns(),
-			$this->get_primary_column_name()
+			$this->get_primary_column_name(),
 		);
 	}
 
@@ -232,7 +232,7 @@ abstract class Table extends WP_List_Table {
 
 	protected function query_items( array $sql, int $per_page, bool $do_order = true, bool $do_limit = true, string $index_field = '' ) {
 		if ( $do_order ) {
-			$sql[ 'order' ] = $this->get_request_arg( 'orderby' ) . " " . $this->get_request_arg( 'order' );
+			$sql[ 'order' ] = $this->get_request_arg( 'orderby' ) . ' ' . $this->get_request_arg( 'order' );
 		}
 
 		if ( $do_limit ) {
@@ -252,11 +252,13 @@ abstract class Table extends WP_List_Table {
 
 		$total_rows = $this->db()->get_found_rows();
 
-		$this->set_pagination_args( array(
-			'total_items' => $total_rows,
-			'total_pages' => ceil( $total_rows / $per_page ),
-			'per_page'    => $per_page,
-		) );
+		$this->set_pagination_args(
+			array(
+				'total_items' => $total_rows,
+				'total_pages' => ceil( $total_rows / $per_page ),
+				'per_page'    => $per_page,
+			)
+		);
 	}
 
 	protected function query_metas( string $table, string $index, string $column = null ) {
@@ -318,12 +320,12 @@ abstract class Table extends WP_List_Table {
 	protected function _get_period_where( string $period, string $column ) : string {
 		if ( substr( $period, 0, 5 ) == 'last-' ) {
 			$periods = array(
-				'hour'     => "1 HOUR",
-				'half-day' => "12 HOUR",
-				'day'      => "1 DAY",
-				'week'     => "7 DAY",
-				'month'    => "30 DAY",
-				'year'     => "365 DAY"
+				'hour'     => '1 HOUR',
+				'half-day' => '12 HOUR',
+				'day'      => '1 DAY',
+				'week'     => '7 DAY',
+				'month'    => '30 DAY',
+				'year'     => '365 DAY',
 			);
 
 			$key = substr( $period, 5 );

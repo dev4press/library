@@ -21,7 +21,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ */
 
 use Dev4Press\v43\Library;
 use Dev4Press\v43\WordPress;
@@ -36,9 +36,9 @@ if ( ! defined( 'DEV4PRESS_TAB' ) ) {
 
 $_library_path = dirname( __FILE__ ) . '/';
 
-include( $_library_path . 'autoload.php' );
+require $_library_path . 'autoload.php';
 
-include( $_library_path . 'functions/Bridge.php' );
+require $_library_path . 'functions/Bridge.php';
 
 WordPress::instance();
 Library::instance();

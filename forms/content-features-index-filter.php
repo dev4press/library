@@ -26,6 +26,6 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
 		?>
     </div>
     <div class="d4p-features-filter-search">
-        <input aria-label="<?php esc_html_e( "Search features by keyword", "d4plib" ); ?>" placeholder="<?php esc_html_e( "Search...", "d4plib" ); ?>" type="text"/><i class="d4p-icon d4p-ui-clear"></i>
+        <input aria-label="<?php esc_html_e( 'Search features by keyword', 'd4plib' ); ?>" placeholder="<?php esc_html_e( 'Search...', 'd4plib' ); ?>" type="text"/><i class="d4p-icon d4p-ui-clear"></i>
     </div>
 </div>

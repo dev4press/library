@@ -11,7 +11,7 @@ abstract class PanelDashboard extends Panel {
 	public $sidebar_links = array(
 		'plugin' => array(),
 		'basic'  => array(),
-		'about'  => array()
+		'about'  => array(),
 	);
 
 	public function __construct( $admin ) {
@@ -22,8 +22,8 @@ abstract class PanelDashboard extends Panel {
 				'icon'  => $this->a()->menu_items[ 'features' ][ 'icon' ],
 				'class' => 'button-primary',
 				'url'   => $this->a()->panel_url( 'features', '', '', $this->a()->get_menu_item_network_url_flag( 'features' ) ),
-				'label' => __( "Features", "d4plib" ),
-				'scope' => $this->a()->menu_items[ 'features' ][ 'scope' ] ?? array()
+				'label' => __( 'Features', 'd4plib' ),
+				'scope' => $this->a()->menu_items[ 'features' ][ 'scope' ] ?? array(),
 			);
 		}
 
@@ -32,8 +32,8 @@ abstract class PanelDashboard extends Panel {
 				'icon'  => $this->a()->menu_items[ 'settings' ][ 'icon' ],
 				'class' => 'button-secondary',
 				'url'   => $this->a()->panel_url( 'settings', '', '', $this->a()->get_menu_item_network_url_flag( 'settings' ) ),
-				'label' => __( "Settings", "d4plib" ),
-				'scope' => $this->a()->menu_items[ 'settings' ][ 'scope' ] ?? array()
+				'label' => __( 'Settings', 'd4plib' ),
+				'scope' => $this->a()->menu_items[ 'settings' ][ 'scope' ] ?? array(),
 			);
 		}
 
@@ -42,8 +42,8 @@ abstract class PanelDashboard extends Panel {
 				'icon'  => $this->a()->menu_items[ 'tools' ][ 'icon' ],
 				'class' => 'button-secondary',
 				'url'   => $this->a()->panel_url( 'tools', '', '', $this->a()->get_menu_item_network_url_flag( 'tools' ) ),
-				'label' => __( "Tools", "d4plib" ),
-				'scope' => $this->a()->menu_items[ 'tools' ][ 'scope' ] ?? array()
+				'label' => __( 'Tools', 'd4plib' ),
+				'scope' => $this->a()->menu_items[ 'tools' ][ 'scope' ] ?? array(),
 			);
 		}
 
@@ -53,9 +53,9 @@ abstract class PanelDashboard extends Panel {
 					'icon'  => $this->a()->menu_items[ 'about' ][ 'icon' ],
 					'class' => 'button-secondary',
 					'url'   => $this->a()->panel_url( 'about', '', '', $this->a()->get_menu_item_network_url_flag( 'about' ) ),
-					'label' => __( "About", "d4plib" ),
-					'scope' => $this->a()->menu_items[ 'about' ][ 'scope' ] ?? array()
-				)
+					'label' => __( 'About', 'd4plib' ),
+					'scope' => $this->a()->menu_items[ 'about' ][ 'scope' ] ?? array(),
+				),
 			);
 		}
 	}

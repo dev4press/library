@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Admin\Plugin
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Admin\Plugin
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Admin;
 
@@ -131,7 +131,7 @@ abstract class Plugin {
 
 	public function plugin_actions( $links, $file ) {
 		if ( $file == $this->plugin_name() ) {
-			$settings_link = '<a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( "Dashboard", "d4plib" ) . '</a>';
+			$settings_link = '<a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( 'Dashboard', 'd4plib' ) . '</a>';
 			array_unshift( $links, $settings_link );
 		}
 
@@ -140,12 +140,12 @@ abstract class Plugin {
 
 	public function plugin_links( $links, $file ) {
 		if ( $file == $this->plugin_name() ) {
-			$links[] = '<a target="_blank" rel="noopener" href="' . esc_url( $this->settings()->i()->url() ) . '"><span class="dashicons dashicons-flag" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( "Home Page", "d4plib" ) . '</a>';
-			$links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/"><span class="dashicons dashicons-book-alt" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( "Knowledge Base", "d4plib" ) . '</a>';
-			$links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/"><span class="dashicons dashicons-sos" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( "Support Forum", "d4plib" ) . '</a>';
+			$links[] = '<a target="_blank" rel="noopener" href="' . esc_url( $this->settings()->i()->url() ) . '"><span class="dashicons dashicons-flag" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( 'Home Page', 'd4plib' ) . '</a>';
+			$links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/"><span class="dashicons dashicons-book-alt" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a>';
+			$links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/"><span class="dashicons dashicons-sos" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( 'Support Forum', 'd4plib' ) . '</a>';
 
 			if ( $this->buy_me_a_coffee ) {
-				$links[] = '<a target="_blank" rel="noopener" href="https://www.buymeacoffee.com/millan"><span class="dashicons dashicons-coffee" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( "Buy Me A Coffee", "d4plib" ) . '</a>';
+				$links[] = '<a target="_blank" rel="noopener" href="https://www.buymeacoffee.com/millan"><span class="dashicons dashicons-coffee" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( 'Buy Me A Coffee', 'd4plib' ) . '</a>';
 			}
 		}
 
@@ -244,11 +244,15 @@ abstract class Plugin {
 	}
 
 	public function help_tab_sidebar() {
-		$links = apply_filters( $this->plugin_prefix . '_admin_help_sidebar_links', array(
-			'home'  => '<a target="_blank" rel="noopener" href="https://plugins.dev4press.com/' . esc_attr( $this->plugin ) . '/">' . esc_html__( "Home Page", "d4plib" ) . '</a>',
-			'kb'    => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/">' . esc_html__( "Knowledge Base", "d4plib" ) . '</a>',
-			'forum' => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/">' . esc_html__( "Support Forum", "d4plib" ) . '</a>'
-		), $this );
+		$links = apply_filters(
+			$this->plugin_prefix . '_admin_help_sidebar_links',
+			array(
+				'home'  => '<a target="_blank" rel="noopener" href="https://plugins.dev4press.com/' . esc_attr( $this->plugin ) . '/">' . esc_html__( 'Home Page', 'd4plib' ) . '</a>',
+				'kb'    => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/">' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a>',
+				'forum' => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/">' . esc_html__( 'Support Forum', 'd4plib' ) . '</a>',
+			),
+			$this
+		);
 
 		$this->screen()->set_help_sidebar( '<p><strong>' . $this->title() . '</strong></p><p>' . join( '<br/>', $links ) . '</p>' );
 	}
@@ -259,19 +263,19 @@ abstract class Plugin {
 		$this->screen()->add_help_tab(
 			array(
 				'id'      => 'd4p-plugin-help-info',
-				'title'   => esc_html__( "Help & Support", "d4plib" ),
-				'content' => '<h2>' . esc_html__( "Help & Support", "d4plib" ) . '</h2><p>' . esc_html( sprintf( __( "To get help with %s, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers).", "d4plib" ), $this->title() ) ) .
-				             '</p><p><a href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/" class="button-primary" target="_blank" rel="noopener">' . esc_html__( "Knowledge Base", "d4plib" ) . '</a> <a href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/" class="button-secondary" target="_blank">' . esc_html__( "Support Forum", "d4plib" ) . '</a></p>'
+				'title'   => esc_html__( 'Help & Support', 'd4plib' ),
+				'content' => '<h2>' . esc_html__( 'Help & Support', 'd4plib' ) . '</h2><p>' . esc_html( sprintf( __( 'To get help with %s, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers).', 'd4plib' ), $this->title() ) ) .
+				             '</p><p><a href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/" class="button-primary" target="_blank" rel="noopener">' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a> <a href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/" class="button-secondary" target="_blank">' . esc_html__( 'Support Forum', 'd4plib' ) . '</a></p>',
 			)
 		);
 
 		$this->screen()->add_help_tab(
 			array(
 				'id'      => 'd4p-plugin-help-bugs',
-				'title'   => esc_html__( "Found a bug?", "d4plib" ),
-				'content' => '<h2>' . esc_html__( "Found a bug?", "d4plib" ) . '</h2><p>' . esc_html( sprintf( __( "If you find a bug in %s, you can report it in the support forum.", "d4plib" ), $this->title() ) ) .
-				             '</p><p>' . esc_html__( "Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger.", "d4plib" ) .
-				             '</p><p><a href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/" class="button-primary" target="_blank" rel="noopener">' . esc_html__( "Open new topic", "d4plib" ) . '</a></p>'
+				'title'   => esc_html__( 'Found a bug?', 'd4plib' ),
+				'content' => '<h2>' . esc_html__( 'Found a bug?', 'd4plib' ) . '</h2><p>' . esc_html( sprintf( __( 'If you find a bug in %s, you can report it in the support forum.', 'd4plib' ), $this->title() ) ) .
+				             '</p><p>' . esc_html__( 'Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger.', 'd4plib' ) .
+				             '</p><p><a href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/" class="button-primary" target="_blank" rel="noopener">' . esc_html__( 'Open new topic', 'd4plib' ) . '</a></p>',
 			)
 		);
 
@@ -312,8 +316,8 @@ abstract class Plugin {
 	public function install_notice() {
 		if ( current_user_can( 'install_plugins' ) && $this->page === false ) {
 			echo '<div class="notice notice-info is-dismissible"><p>';
-			echo esc_html( sprintf( __( "%s is activated and it needs to finish installation.", "d4plib" ), $this->title() ) );
-			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( "Click Here", "d4plib" ) . '</a>.';
+			echo esc_html( sprintf( __( '%s is activated and it needs to finish installation.', 'd4plib' ), $this->title() ) );
+			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( 'Click Here', 'd4plib' ) . '</a>.';
 			echo '</p></div>';
 		}
 	}
@@ -321,8 +325,8 @@ abstract class Plugin {
 	public function update_notice() {
 		if ( current_user_can( 'install_plugins' ) && $this->page === false ) {
 			echo '<div class="notice notice-info is-dismissible"><p>';
-			echo esc_html( sprintf( __( "%s is updated, and you need to review the update process.", "d4plib" ), $this->title() ) );
-			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( "Click Here", "d4plib" ) . '</a>.';
+			echo esc_html( sprintf( __( '%s is updated, and you need to review the update process.', 'd4plib' ), $this->title() ) );
+			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( 'Click Here', 'd4plib' ) . '</a>.';
 			echo '</p></div>';
 		}
 	}
@@ -482,8 +486,8 @@ abstract class Plugin {
 		return (object) array(
 			'default' => true,
 			'icon'    => 'ui-cog',
-			'title'   => __( "Panel", "d4plib" ),
-			'info'    => __( "Information", "d4plib" )
+			'title'   => __( 'Panel', 'd4plib' ),
+			'info'    => __( 'Information', 'd4plib' ),
 		);
 	}
 
@@ -515,11 +519,14 @@ abstract class Plugin {
 
 	public function action_url( $action, $nonce, $args = '', $panel = '', $subpanel = '', $network = null ) : string {
 		$base = empty( $panel ) ? $this->current_url() : $this->panel_url( $panel, $subpanel, $network );
-		$base = add_query_arg( array(
-			$this->v()      => 'getback',
-			'single-action' => $action,
-			'_wpnonce'      => wp_create_nonce( $nonce )
-		), $base );
+		$base = add_query_arg(
+			array(
+				$this->v()      => 'getback',
+				'single-action' => $action,
+				'_wpnonce'      => wp_create_nonce( $nonce ),
+			),
+			$base
+		);
 
 		if ( ! empty( $args ) ) {
 			$base .= '&' . trim( $args, '&' );

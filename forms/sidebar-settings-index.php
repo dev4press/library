@@ -23,7 +23,7 @@ $_subpanels = panel()->subpanels();
             </div>
         </div>
         <div class="d4p-panel-buttons">
-            <a style="text-align: center" href="<?php echo esc_url( panel()->a()->panel_url( 'settings', 'full' ) ); ?>" class="button-secondary"><?php esc_html_e( "Show All Settings", "d4plib" ); ?></a>
+            <a style="text-align: center" href="<?php echo esc_url( panel()->a()->panel_url( 'settings', 'full' ) ); ?>" class="button-secondary"><?php esc_html_e( 'Show All Settings', 'd4plib' ); ?></a>
         </div>
     </div>
 </div>

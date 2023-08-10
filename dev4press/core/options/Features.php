@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Options\Features
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Options\Features
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Options;
 
@@ -88,75 +88,75 @@ abstract class Features {
 	protected function settings_hidden() : array {
 		return array(
 			$this->feature . '_activation' => array(
-				'name'     => __( "Feature Status", "d4plib" ),
+				'name'     => __( 'Feature Status', 'd4plib' ),
 				'sections' => array(
 					array(
 						'label'    => '',
 						'name'     => '',
 						'class'    => '',
 						'settings' => array(
-							EL::info( __( "Hidden", "d4plib" ), __( "This feature can't be activated or configured at this time, because one or more of the feature prerequisites are missing.", "d4plib" ) )
-						)
-					)
-				)
-			)
+							EL::info( __( 'Hidden', 'd4plib' ), __( "This feature can't be activated or configured at this time, because one or more of the feature prerequisites are missing.", 'd4plib' ) ),
+						),
+					),
+				),
+			),
 		);
 	}
 
 	protected function settings_always_on() : array {
 		return array(
 			$this->feature . '_activation' => array(
-				'name'     => __( "Feature Status", "d4plib" ),
+				'name'     => __( 'Feature Status', 'd4plib' ),
 				'sections' => array(
 					array(
 						'label'    => '',
 						'name'     => '',
 						'class'    => '',
 						'settings' => array(
-							EL::info( __( "Active", "d4plib" ), __( "This feature is always active, and it can't be disabled. You can enable or disable individual settings included.", "d4plib" ) )
-						)
-					)
-				)
-			)
+							EL::info( __( 'Active', 'd4plib' ), __( "This feature is always active, and it can't be disabled. You can enable or disable individual settings included.", 'd4plib' ) ),
+						),
+					),
+				),
+			),
 		);
 	}
 
 	protected function settings_control() : array {
 		if ( $this->core()->network_mode() && ! is_network_admin() ) {
 			$network = $this->core()->is_enabled( $this->feature );
-			$badge   = '<div class="d4p-feature-status-badge ' . ( $network ? '__is-active' : '__is-inactive' ) . '"><i class="d4p-icon d4p-ui-' . ( $network ? 'check-square' : 'close-square' ) . ' d4p-icon-fw d4p-icon-lg"></i> ' . ( $network ? __( "Active", "d4plib" ) : __( "Inactive", "d4plib" ) );
+			$badge   = '<div class="d4p-feature-status-badge ' . ( $network ? '__is-active' : '__is-inactive' ) . '"><i class="d4p-icon d4p-ui-' . ( $network ? 'check-square' : 'close-square' ) . ' d4p-icon-fw d4p-icon-lg"></i> ' . ( $network ? __( 'Active', 'd4plib' ) : __( 'Inactive', 'd4plib' ) );
 
 			return array(
 				$this->feature . '_activation' => array(
-					'name'     => __( "Feature Status", "d4plib" ),
+					'name'     => __( 'Feature Status', 'd4plib' ),
 					'sections' => array(
 						array(
 							'label'    => '',
 							'name'     => '',
 							'class'    => '',
 							'settings' => array(
-								EL::i( 'load', $this->feature, __( "Override", "d4plib" ), __( "The activation depends on the Network settings for this feature. Here, you can override network settings for this feature for this blog only.", "d4plib" ), Type::BOOLEAN, $this->is_enabled() )->args( array( 'label' => __( "Feature network override is active", "d4plib" ) ) ),
-								EL::info( __( "Status", "d4plib" ), $badge )
-							)
-						)
-					)
-				)
+								EL::i( 'load', $this->feature, __( 'Override', 'd4plib' ), __( 'The activation depends on the Network settings for this feature. Here, you can override network settings for this feature for this blog only.', 'd4plib' ), Type::BOOLEAN, $this->is_enabled() )->args( array( 'label' => __( 'Feature network override is active', 'd4plib' ) ) ),
+								EL::info( __( 'Status', 'd4plib' ), $badge ),
+							),
+						),
+					),
+				),
 			);
 		} else {
 			return array(
 				$this->feature . '_activation' => array(
-					'name'     => __( "Feature Status", "d4plib" ),
+					'name'     => __( 'Feature Status', 'd4plib' ),
 					'sections' => array(
 						array(
 							'label'    => '',
 							'name'     => '',
 							'class'    => '',
 							'settings' => array(
-								EL::i( 'load', $this->feature, __( "Active", "d4plib" ), __( "This feature will be loaded only if activated. If you don't need this feature, disable it.", "d4plib" ), Type::BOOLEAN, $this->is_enabled() )->args( array( 'label' => __( "Feature is active", "d4plib" ) ) )
-							)
-						)
-					)
-				)
+								EL::i( 'load', $this->feature, __( 'Active', 'd4plib' ), __( "This feature will be loaded only if activated. If you don't need this feature, disable it.", 'd4plib' ), Type::BOOLEAN, $this->is_enabled() )->args( array( 'label' => __( 'Feature is active', 'd4plib' ) ) ),
+							),
+						),
+					),
+				),
 			);
 		}
 	}

@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Plugins\AJAX
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Plugins\AJAX
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Plugins;
 
@@ -54,14 +54,16 @@ abstract class AJAX {
 			$message = 'Unspecified Problem.';
 		}
 
-		do_action( $this->prefix . '_ajax_live_handler_error',
+		do_action(
+			$this->prefix . '_ajax_live_handler_error',
 			$error,
 			$message,
 			$code,
 			array(
 				'request' => $request,
-				'data'    => $data
-			) );
+				'data'    => $data,
+			)
+		);
 
 		$this->return_error( $message, $code );
 	}
@@ -148,11 +150,11 @@ abstract class AJAX {
 	}
 
 	protected function raise_malformed_error( $request ) {
-		$this->raise_error( 'request_malformed', $request, __( "Malformed Request.", "d4plib" ) );
+		$this->raise_error( 'request_malformed', $request, __( 'Malformed Request.', 'd4plib' ) );
 	}
 
 	protected function raise_unauthorized_error( $request ) {
-		$this->raise_error( 'request_unauthorized', $request, __( "Unauthorized Request.", "d4plib" ), 401 );
+		$this->raise_error( 'request_unauthorized', $request, __( 'Unauthorized Request.', 'd4plib' ), 401 );
 	}
 
 	protected function return_error_html( string $message = '', int $code = 400 ) {
@@ -162,7 +164,7 @@ abstract class AJAX {
 	protected function return_error( string $message = '', int $code = 400, array $args = array() ) {
 		$result = array(
 			'status'  => 'error',
-			'message' => empty( $message ) ? __( "Invalid Request", "d4plib" ) : $message
+			'message' => empty( $message ) ? __( 'Invalid Request', 'd4plib' ) : $message,
 		);
 
 		if ( ! empty( $args ) ) {

@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Plugins\DB
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Plugins\DB
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Plugins;
 
@@ -119,7 +119,7 @@ abstract class DBLite {
 			'where'  => array(),
 			'group'  => '',
 			'order'  => '',
-			'limit'  => ''
+			'limit'  => '',
 		);
 
 		$sql = wp_parse_args( $sql, $defaults );
@@ -242,7 +242,7 @@ abstract class DBLite {
 			return false;
 		}
 
-		$sql = "DELETE FROM `$table` WHERE $field IN (" . $this->prepare_in_list( $ids, '%d' ) . ")";
+		$sql = "DELETE FROM `$table` WHERE $field IN (" . $this->prepare_in_list( $ids, '%d' ) . ')';
 
 		return $this->query( $sql );
 	}
@@ -272,11 +272,15 @@ abstract class DBLite {
 			}
 
 			if ( $add ) {
-				$this->insert( $table, array(
-					$column      => $id,
-					'meta_key'   => $key,
-					'meta_value' => $insert
-				), array( '%d', '%s', '%s' ) );
+				$this->insert(
+					$table,
+					array(
+						$column      => $id,
+						'meta_key'   => $key,
+						'meta_value' => $insert,
+					),
+					array( '%d', '%s', '%s' )
+				);
 			}
 		}
 	}
@@ -387,7 +391,7 @@ abstract class DBLite {
 	}
 
 	public function check_table( $name ) : string {
-		$row = $this->get_row( "CHECK TABLE `" . $name . "`" );
+		$row = $this->get_row( 'CHECK TABLE `' . $name . '`' );
 
 		if ( ! is_null( $row ) ) {
 			return (string) $row->Msg_text;
@@ -397,14 +401,14 @@ abstract class DBLite {
 	}
 
 	public function analyze_table( $name ) {
-		return $this->get_results( "ANALYZE TABLE `" . $name . "`" );
+		return $this->get_results( 'ANALYZE TABLE `' . $name . '`' );
 	}
 
 	public function alter_table_force( $name ) : array {
-		$this->get_results( "ALTER TABLE `" . $name . "` FORCE" );
+		$this->get_results( 'ALTER TABLE `' . $name . '` FORCE' );
 
 		return array(
-			'status' => 'OK'
+			'status' => 'OK',
 		);
 	}
 
@@ -451,7 +455,7 @@ abstract class DBLite {
 					'data'     => $query[ 4 ],
 					'id'       => $id,
 					'plugin'   => $this->plugin_name,
-					'instance' => $this->plugin_instance
+					'instance' => $this->plugin_instance,
 				);
 			}
 		}
@@ -473,7 +477,6 @@ abstract class DBLite {
 	/**
 	 * @return float|int|mixed|null
 	 * @deprecated Since 4.0, to be removed in 4.2
-	 *
 	 */
 	public function gmt_offset() {
 		_deprecated_function( __METHOD__, '4.0', '\Dev4Press\v43\Core\DateTime::instance()->offset()' );
@@ -484,7 +487,6 @@ abstract class DBLite {
 	/**
 	 * @return string
 	 * @deprecated Since 4.0, to be removed in 4.2
-	 *
 	 */
 	public function get_offset_string() : string {
 		_deprecated_function( __METHOD__, '4.0', '\Dev4Press\v43\Core\DateTime::instance()->formatted_offset()' );

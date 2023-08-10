@@ -1,6 +1,5 @@
-/*jslint regexp: true, nomen: true, undef: true, sloppy: true, eqeq: true, vars: true, white: true, plusplus: true, maxerr: 50, indent: 4 */
-
-;(function($, window, document, undefined) {
+;/*jslint regexp: true, nomen: true, undef: true, sloppy: true, eqeq: true, vars: true, white: true, plusplus: true, maxerr: 50, indent: 4 */
+(function($, window, document, undefined) {
     var ConfirmSubmit = function(elem, options) {
         this.elem = elem;
         this.$elem = $(elem);
@@ -18,18 +17,23 @@
 
             var $this = this;
 
-            this.$elem.submit(function() {
-                $this.save();
-            });
-
-            $(window).on('beforeunload', function(e) {
-                if ($this.$elem.data("form-state-original") !== $this.$elem.serialize()) {
-                    e.preventDefault();
-                    e.returnValue = '';
-
-                    return false;
+            this.$elem.submit(
+                function() {
+                    $this.save();
                 }
-            });
+            );
+
+            $(window).on(
+                'beforeunload',
+                function(e) {
+                    if ($this.$elem.data("form-state-original") !== $this.$elem.serialize()) {
+                        e.preventDefault();
+                        e.returnValue = '';
+
+                        return false;
+                    }
+                }
+            );
         },
         save: function() {
             this.$elem.data("form-state-original", this.$elem.serialize());
@@ -39,8 +43,10 @@
     ConfirmSubmit.defaults = ConfirmSubmit.prototype.defaults;
 
     $.fn.confirmsubmit = function(options) {
-        return this.each(function() {
-            new ConfirmSubmit(this, options).init();
-        });
+        return this.each(
+            function() {
+                new ConfirmSubmit(this, options).init();
+            }
+        );
     };
 })(jQuery, window, document);

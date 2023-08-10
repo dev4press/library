@@ -20,10 +20,10 @@ abstract class PanelFeatures extends Panel {
 	protected function init_default_subpanels() {
 		$this->subpanels = array(
 			'index' => array(
-				'title' => __( "Features Index", "d4plib" ),
+				'title' => __( 'Features Index', 'd4plib' ),
 				'icon'  => 'ui-cabinet',
-				'info'  => __( "Main control panel for all the plugin individual features.", "d4plib" )
-			)
+				'info'  => __( 'Main control panel for all the plugin individual features.', 'd4plib' ),
+			),
 		);
 	}
 
@@ -33,62 +33,83 @@ abstract class PanelFeatures extends Panel {
 
 	public function get_filter_counters() : array {
 		return array(
-			'all'       => array( 'label' => __( "All", "d4plib" ), 'selector' => '._is-feature' ),
-			'always-on' => array( 'label' => __( "Always On", "d4plib" ), 'selector' => '._is-feature._is-always-on' ),
-			'active'    => array( 'label' => __( "Active", "d4plib" ), 'selector' => '._is-feature._is-active' ),
-			'disabled'  => array( 'label' => __( "Disabled", "d4plib" ), 'selector' => '._is-feature:not(._is-active)' )
+			'all'       => array(
+				'label'    => __( 'All', 'd4plib' ),
+				'selector' => '._is-feature',
+			),
+			'always-on' => array(
+				'label'    => __( 'Always On', 'd4plib' ),
+				'selector' => '._is-feature._is-always-on',
+			),
+			'active'    => array(
+				'label'    => __( 'Active', 'd4plib' ),
+				'selector' => '._is-feature._is-active',
+			),
+			'disabled'  => array(
+				'label'    => __( 'Disabled', 'd4plib' ),
+				'selector' => '._is-feature:not(._is-active)',
+			),
 		);
 	}
 
 	public function get_filter_buttons() : array {
 		return array(
 			'all'              => array(
-				'label'    => __( "All", "d4plib" ),
+				'label'    => __( 'All', 'd4plib' ),
 				'selector' => '._is-feature',
-				'default'  => true
+				'default'  => true,
 			),
 			'always-on'        => array(
-				'label'    => __( "Always On", "d4plib" ),
-				'selector' => '._is-feature._is-always-on'
+				'label'    => __( 'Always On', 'd4plib' ),
+				'selector' => '._is-feature._is-always-on',
 			),
 			'always-on-active' => array(
-				'label'    => __( "Always On + Active", "d4plib" ),
-				'selector' => '._is-feature._is-active'
+				'label'    => __( 'Always On + Active', 'd4plib' ),
+				'selector' => '._is-feature._is-active',
 			),
 			'active'           => array(
-				'label'    => __( "Active", "d4plib" ),
-				'selector' => '._is-feature._is-active:not(._is-always-on)'
+				'label'    => __( 'Active', 'd4plib' ),
+				'selector' => '._is-feature._is-active:not(._is-always-on)',
 			),
 			'disabled'         => array(
-				'label'    => __( "Disabled", "d4plib" ),
-				'selector' => '._is-feature:not(._is-active)'
-			)
+				'label'    => __( 'Disabled', 'd4plib' ),
+				'selector' => '._is-feature:not(._is-active)',
+			),
 		);
 	}
 
 	public function get_filter_counters_for_override() : array {
 		return array(
-			'all'      => array( 'label' => __( "All", "d4plib" ), 'selector' => '._is-feature' ),
-			'active'   => array( 'label' => __( "Override Active", "d4plib" ), 'selector' => '._is-feature._is-active' ),
-			'disabled' => array( 'label' => __( "Override Disabled", "d4plib" ), 'selector' => '._is-feature:not(._is-active)' )
+			'all'      => array(
+				'label'    => __( 'All', 'd4plib' ),
+				'selector' => '._is-feature',
+			),
+			'active'   => array(
+				'label'    => __( 'Override Active', 'd4plib' ),
+				'selector' => '._is-feature._is-active',
+			),
+			'disabled' => array(
+				'label'    => __( 'Override Disabled', 'd4plib' ),
+				'selector' => '._is-feature:not(._is-active)',
+			),
 		);
 	}
 
 	public function get_filter_buttons_for_override() : array {
 		return array(
 			'all'      => array(
-				'label'    => __( "All", "d4plib" ),
+				'label'    => __( 'All', 'd4plib' ),
 				'selector' => '._is-feature',
-				'default'  => true
+				'default'  => true,
 			),
 			'active'   => array(
-				'label'    => __( "Override Active", "d4plib" ),
-				'selector' => '._is-feature._is-active'
+				'label'    => __( 'Override Active', 'd4plib' ),
+				'selector' => '._is-feature._is-active',
 			),
 			'disabled' => array(
-				'label'    => __( "Override Disabled", "d4plib" ),
-				'selector' => '._is-feature:not(._is-active)'
-			)
+				'label'    => __( 'Override Disabled', 'd4plib' ),
+				'selector' => '._is-feature:not(._is-active)',
+			),
 		);
 	}
 }

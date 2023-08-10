@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\UI\Elements
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\UI\Elements
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\UI;
 
@@ -218,12 +218,16 @@ class Elements {
 		$render .= $this->checkboxes_render_check_uncheck( $args[ 'multi' ] );
 		$render .= '<div class="d4p-inside-wrapper">';
 		$render .= '<ul class="d4p-wrapper-hierarchy">';
-		$render .= $walker->walk( $values, 0, array(
-			'input'    => $args[ 'multi' ] ? 'checkbox' : 'radio',
-			'id'       => $this->id_from_name( $args[ 'name' ], $args[ 'id' ] ),
-			'name'     => $args[ 'name' ],
-			'selected' => (array) $args[ 'selected' ]
-		) );
+		$render .= $walker->walk(
+			$values,
+			0,
+			array(
+				'input'    => $args[ 'multi' ] ? 'checkbox' : 'radio',
+				'id'       => $this->id_from_name( $args[ 'name' ], $args[ 'id' ] ),
+				'name'     => $args[ 'name' ],
+				'selected' => (array) $args[ 'selected' ],
+			)
+		);
 		$render .= '</ul>';
 		$render .= '</div>';
 		$render .= '</div>';
@@ -255,7 +259,7 @@ class Elements {
 			'columns'  => 1,
 			'multi'    => true,
 			'echo'     => true,
-			'readonly' => false
+			'readonly' => false,
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -285,8 +289,8 @@ class Elements {
 		if ( $multi ) {
 			$render .= '<div class="d4p-check-uncheck">';
 
-			$render .= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-square"></i> ' . esc_html__( "Check All", "d4plib" ) . '</a>';
-			$render .= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . esc_html__( "Uncheck All", "d4plib" ) . '</a>';
+			$render .= '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-square"></i> ' . esc_html__( 'Check All', 'd4plib' ) . '</a>';
+			$render .= '<a href="#uncheckall" class="d4p-uncheck-all"><i class="d4p-icon d4p-ui-box"></i> ' . esc_html__( 'Uncheck All', 'd4plib' ) . '</a>';
 
 			$render .= '</div>';
 		}
@@ -305,7 +309,7 @@ class Elements {
 			'style'    => '',
 			'multi'    => false,
 			'echo'     => true,
-			'readonly' => false
+			'readonly' => false,
 		);
 
 		return wp_parse_args( $args, $defaults );
@@ -358,7 +362,7 @@ class Elements {
 		$attributes = array(
 			'type="' . ( $args[ 'multi' ] ? 'checkbox' : 'radio' ) . '"',
 			'value="' . $real_value . '"',
-			'class="widefat"'
+			'class="widefat"',
 		);
 
 		if ( $id != '' ) {

@@ -11,7 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 class CheckboxRadio extends Walker {
 	public $tree_type = 'settings';
 
-	public $db_fields = array( 'parent' => 'parent', 'id' => 'id' );
+	public $db_fields = array(
+		'parent' => 'parent',
+		'id'     => 'id',
+	);
 
 	public function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat( "\t", $depth );
@@ -33,7 +36,7 @@ class CheckboxRadio extends Walker {
 		$css_class = array(
 			'option-item',
 			'option-item-parent-' . $data_object->parent,
-			'option-item' . $data_object->id
+			'option-item' . $data_object->id,
 		);
 
 		$css_classes = implode( ' ', $css_class );

@@ -13,7 +13,7 @@ $_subpanel  = panel()->current_subpanel();
 $_classes   = panel()->wrapper_class();
 
 $_plugin_title = sprintf(
-	__( "Welcome to %s%s %s", "d4plib" ),
+	__( 'Welcome to %1$s%2$s %3$s', 'd4plib' ),
 	panel()->a()->title(),
 	panel()->a()->settings()->i()->is_pro() ? ' Pro' : '',
 	panel()->a()->settings()->i()->version
@@ -31,7 +31,7 @@ $_plugin_title = sprintf(
         <div class="d4p-about-badge">
             <div class="d4p-about-badge-inner" style="background-color: <?php echo esc_attr( panel()->a()->settings()->i()->color() ); ?>;">
 				<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin ); ?>
-				<?php printf( __( "Version %s", "d4plib" ), panel()->a()->settings()->i()->version ); ?>
+				<?php printf( __( 'Version %s', 'd4plib' ), panel()->a()->settings()->i()->version ); ?>
             </div>
         </div>
     </div>

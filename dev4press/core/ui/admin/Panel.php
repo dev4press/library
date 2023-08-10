@@ -26,7 +26,7 @@ abstract class Panel {
 	protected $wrapper_class = '';
 	protected $default_subpanel = 'index';
 	protected $form_multiform = false;
-	protected $form_autocomplete = "off";
+	protected $form_autocomplete = 'off';
 	protected $form_method = 'post';
 	protected $table_object = null;
 
@@ -142,7 +142,7 @@ abstract class Panel {
 		$_classes = array(
 			'd4p-wrap',
 			'd4p-plugin-' . $this->a()->plugin,
-			'd4p-panel-' . $this->a()->panel
+			'd4p-panel-' . $this->a()->panel,
 		);
 
 		$_subpanel = $this->current_subpanel();
@@ -292,7 +292,7 @@ abstract class Panel {
 			?>
 
             <style>
-                .<?php echo 'd4p-plugin-'.esc_html( $this->a()->plugin ); ?> {
+                .<?php echo 'd4p-plugin-' . esc_html( $this->a()->plugin ); ?> {
                     --d4p-color-layout-accent: <?php echo esc_html( $this->a()->settings()->i()->color() ); ?>;
                     --d4p-color-sidebar-icon-text: <?php echo esc_html( $this->a()->settings()->i()->color() ); ?>;
                 }
@@ -305,7 +305,7 @@ abstract class Panel {
 	protected function load( $name, $fallback = '', $default = '', $args = array() ) {
 		$list = array(
 			$this->forms_path_plugin() . $name,
-			$this->forms_path_library() . $name
+			$this->forms_path_library() . $name,
 		);
 
 		if ( ! empty( $fallback ) ) {
@@ -320,7 +320,7 @@ abstract class Panel {
 
 		foreach ( $list as $path ) {
 			if ( file_exists( $path ) ) {
-				include( $path );
+				include $path;
 				break;
 			}
 		}

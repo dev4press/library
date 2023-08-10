@@ -47,14 +47,14 @@
 }
 @media screen and (max-width: 768px) {
   .d4plib-v43-meta-box-wrapper .__row {
-    flex-direction: column;
+	flex-direction: column;
   }
   .d4plib-v43-meta-box-wrapper .__row.__col-three .__column, .d4plib-v43-meta-box-wrapper .__row.__col-two .__column {
-    flex-basis: 100%;
-    margin-bottom: 1.5em;
+	flex-basis: 100%;
+	margin-bottom: 1.5em;
   }
   .d4plib-v43-meta-box-wrapper .__row.__col-three .__column:last-child, .d4plib-v43-meta-box-wrapper .__row.__col-two .__column:last-child {
-    margin-bottom: 0;
+	margin-bottom: 0;
   }
 }
 .d4plib-v43-meta-box-wrapper p,
@@ -96,10 +96,10 @@
 }
 @media screen and (max-width: 599px) {
   .d4plib-v43-meta-box-wrapper .__element .d4p-setting-checkboxes .d4p-content-wrapper {
-    flex-direction: column;
+	flex-direction: column;
   }
   .d4plib-v43-meta-box-wrapper .__element .d4p-setting-checkboxes .d4p-content-wrapper label {
-    flex-basis: 100%;
+	flex-basis: 100%;
   }
 }
 .d4plib-v43-meta-box-wrapper .__element .d4p-setting-checkbox label {
@@ -155,14 +155,14 @@
 }
 @media screen and (max-width: 768px) {
   .d4p-setting-checkboxes label {
-    font-size: 16px;
+	font-size: 16px;
   }
   .d4p-setting-checkboxes.d4p-columns-three .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-four .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-five .d4p-inside-wrapper {
-    column-count: 2;
+	column-count: 2;
   }
 }
 @media screen and (max-width: 479px) {
   .d4p-setting-checkboxes.d4p-columns-two .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-three .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-four .d4p-inside-wrapper, .d4p-setting-checkboxes.d4p-columns-five .d4p-inside-wrapper {
-    column-count: 1;
+	column-count: 1;
   }
 }

@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Service\Media\Pixabay\Query
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Service\Media\Pixabay\Query
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Service\Media\Pixabay;
 
@@ -53,7 +53,7 @@ class Query {
 
 	public function image( $id, $args = array() ) {
 		$defaults = array(
-			'lang' => 'en'
+			'lang' => 'en',
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -76,7 +76,7 @@ class Query {
 			return $this->_format_image( $response->hits[ 0 ] );
 		}
 
-		return new WP_Error( 'not_found', __( "Specified image ID not found.", "d4plib" ) );
+		return new WP_Error( 'not_found', __( 'Specified image ID not found.', 'd4plib' ) );
 	}
 
 	public function images( $args = array() ) {
@@ -93,7 +93,7 @@ class Query {
 			'editors_choice' => '',
 			'order'          => '',
 			'page'           => '',
-			'per_page'       => ''
+			'per_page'       => '',
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -117,7 +117,7 @@ class Query {
 
 			$out = array(
 				'total'   => $response->totalHits,
-				'results' => array()
+				'results' => array(),
 			);
 
 			foreach ( $response->hits as $img ) {
@@ -132,7 +132,7 @@ class Query {
 
 	public function video( $id, $args = array() ) {
 		$defaults = array(
-			'lang' => 'en'
+			'lang' => 'en',
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -155,7 +155,7 @@ class Query {
 			return $this->_format_video( $response->hits[ 0 ] );
 		}
 
-		return new WP_Error( 'not_found', __( "Specified video ID not found.", "d4plib" ) );
+		return new WP_Error( 'not_found', __( 'Specified video ID not found.', 'd4plib' ) );
 	}
 
 	public function videos( $args = array() ) {
@@ -170,7 +170,7 @@ class Query {
 			'editors_choice' => '',
 			'order'          => '',
 			'page'           => '',
-			'per_page'       => ''
+			'per_page'       => '',
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -194,7 +194,7 @@ class Query {
 
 			$out = array(
 				'total'   => $response->totalHits,
-				'results' => array()
+				'results' => array(),
 			);
 
 			foreach ( $response->hits as $img ) {

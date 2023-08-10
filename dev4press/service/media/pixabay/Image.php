@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Service\Media\Pixabay\Image
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Service\Media\Pixabay\Image
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Service\Media\Pixabay;
 
@@ -66,7 +66,7 @@ class Image {
 		$this->user = (object) array(
 			'id'    => $response->user_id,
 			'name'  => $response->user,
-			'image' => (object) array( 'url' => $response->userImageURL )
+			'image' => (object) array( 'url' => $response->userImageURL ),
 		);
 
 		preg_match( '/pixabay\.com\/photos\/(.+?)-\d+?\//', $this->url, $output );
@@ -89,7 +89,7 @@ class Image {
 			'large'    => $this->_process_image( 'largeImage', $response ),
 			'fullhd'   => $this->_process_image( 'fullHD', $response ),
 			'original' => $this->_process_image( 'image', $response ),
-			'vector'   => $this->_process_image( 'vector', $response )
+			'vector'   => $this->_process_image( 'vector', $response ),
 		);
 
 		$this->extension = pathinfo( $this->images->large->url, PATHINFO_EXTENSION );
@@ -121,7 +121,7 @@ class Image {
 		}
 
 		$obj = array(
-			'url' => $response->{$name . 'URL'}
+			'url' => $response->{$name . 'URL'},
 		);
 
 		if ( isset( $response->{$name . 'Width'} ) ) {

@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Plugins\Information
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Plugins\Information
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Plugins;
 
@@ -56,12 +56,12 @@ abstract class Information {
 
 	public $cms = array(
 		'wordpress'    => '5.7',
-		'classicpress' => '1.5'
+		'classicpress' => '1.5',
 	);
 
 	public $plugins = array(
 		'bbpress'    => false,
-		'buddypress' => false
+		'buddypress' => false,
 	);
 
 	public $install = false;
@@ -118,7 +118,7 @@ abstract class Information {
 	public function system_requirements() : array {
 		$list = array(
 			'PHP'   => $this->php,
-			'MySQL' => $this->mysql
+			'MySQL' => $this->mysql,
 		);
 
 		if ( WPR::is_classicpress() ) {
@@ -156,16 +156,16 @@ abstract class Information {
 		if ( $this->status != 'stable' ) {
 			switch ( $this->status ) {
 				case 'beta':
-					$version .= $sep . __( "Beta", "d4plib" );
+					$version .= $sep . __( 'Beta', 'd4plib' );
 					break;
 				case 'alpha':
-					$version .= $sep . __( "Alpha", "d4plib" );
+					$version .= $sep . __( 'Alpha', 'd4plib' );
 					break;
 				case 'rc':
-					$version .= $sep . __( "RC", "d4plib" );
+					$version .= $sep . __( 'RC', 'd4plib' );
 					break;
 				case 'nightly':
-					$version .= $sep . __( "Nightly", "d4plib" );
+					$version .= $sep . __( 'Nightly', 'd4plib' );
 					break;
 			}
 		}

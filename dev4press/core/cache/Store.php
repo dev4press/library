@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Cache\Store
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Cache\Store
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Cache;
 
@@ -180,15 +180,15 @@ class Store {
 	}
 
 	public function stats() {
-		echo "<p>";
-		echo "<strong>Cache Hits:</strong> " . esc_html( $this->cache_hits ) . "<br />";
-		echo "<strong>Cache Misses:</strong> " . esc_html( $this->cache_misses ) . "<br />";
-		echo "</p>";
-		echo "<ul>";
+		echo '<p>';
+		echo '<strong>Cache Hits:</strong> ' . esc_html( $this->cache_hits ) . '<br />';
+		echo '<strong>Cache Misses:</strong> ' . esc_html( $this->cache_misses ) . '<br />';
+		echo '</p>';
+		echo '<ul>';
 		foreach ( $this->cache as $group => $cache ) {
 			echo "<li><strong>Group:</strong> $group - ( " . number_format( strlen( serialize( $cache ) ) / KB_IN_BYTES, 2 ) . 'k )</li>';
 		}
-		echo "</ul>";
+		echo '</ul>';
 	}
 
 	public function switch_to_blog( $blog_id ) {

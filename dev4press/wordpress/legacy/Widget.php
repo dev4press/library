@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\WordPress\Legacy\Widget
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\WordPress\Legacy\Widget
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\WordPress\Legacy;
 
@@ -66,7 +66,7 @@ abstract class Widget extends WP_Widget {
 		'_devid'        => '',
 		'_class'        => '',
 		'_before'       => '',
-		'_after'        => ''
+		'_after'        => '',
 	);
 
 	protected $cache_active = false;
@@ -80,7 +80,7 @@ abstract class Widget extends WP_Widget {
 		$defaults = array(
 			'customize_selective_refresh' => $this->selective_refresh,
 			'classname'                   => 'widget-' . $this->widget_base,
-			'description'                 => $this->widget_description
+			'description'                 => $this->widget_description,
 		);
 
 		$widget_options  = wp_parse_args( $widget_options, $defaults );
@@ -95,23 +95,23 @@ abstract class Widget extends WP_Widget {
 
 		$tabs = array(
 			'global'   => array(
-				'name'    => __( "Global", "d4plib" ),
-				'include' => array( 'widget-global' )
+				'name'    => __( 'Global', 'd4plib' ),
+				'include' => array( 'widget-global' ),
 			),
 			'extra'    => array(
-				'name'    => '<span title="' . esc_attr__( "Extra", "d4plib" ) . '" class="dashicons dashicons-flag"></span>',
-				'include' => array( 'widget-extra' )
+				'name'    => '<span title="' . esc_attr__( 'Extra', 'd4plib' ) . '" class="dashicons dashicons-flag"></span>',
+				'include' => array( 'widget-extra' ),
 			),
 			'advanced' => array(
-				'name'    => '<span title="' . esc_attr__( "Advanced", "d4plib" ) . '" class="dashicons dashicons-visibility"></span>',
-				'include' => array( 'widget-advanced' )
-			)
+				'name'    => '<span title="' . esc_attr__( 'Advanced', 'd4plib' ) . '" class="dashicons dashicons-visibility"></span>',
+				'include' => array( 'widget-advanced' ),
+			),
 		);
 
 		if ( $this->shortcode_mirror ) {
 			$tabs[ 'shortcode' ] = array(
-				'name'    => '<span title="' . esc_attr__( "Shortcode", "d4plib" ) . '" class="dashicons dashicons-shortcode"></span>',
-				'include' => array( 'widget-shortcode' )
+				'name'    => '<span title="' . esc_attr__( 'Shortcode', 'd4plib' ) . '" class="dashicons dashicons-shortcode"></span>',
+				'include' => array( 'widget-shortcode' ),
 			);
 		}
 
@@ -125,7 +125,7 @@ abstract class Widget extends WP_Widget {
 			        array_slice( $tabs, 1, null, true );
 		}
 
-		include( $this->widgets_render->find( 'widget-loader.php' ) );
+		include $this->widgets_render->find( 'widget-loader.php' );
 	}
 
 	public function update( $new_instance, $old_instance ) : array {
@@ -187,7 +187,7 @@ abstract class Widget extends WP_Widget {
 		$_capabilities = array_unique( $_capabilities );
 		$_capabilities = array_filter( $_capabilities );
 
-		$instance[ '_capabilities' ] = join( ", ", $_capabilities );
+		$instance[ '_capabilities' ] = join( ', ', $_capabilities );
 
 		$instance[ '_roles' ] = array();
 
@@ -466,18 +466,18 @@ abstract class Widget extends WP_Widget {
 
 	public function get_list_user_visibility() : array {
 		return array(
-			'all'      => __( "Everyone", "d4plib" ),
-			'users'    => __( "Logged in users", "d4plib" ),
-			'visitors' => __( "Not logged in visitors", "d4plib" ),
-			'roles'    => __( "Users with specified roles", "d4plib" ),
-			'caps'     => __( "Users with specified capabilities", "d4plib" )
+			'all'      => __( 'Everyone', 'd4plib' ),
+			'users'    => __( 'Logged in users', 'd4plib' ),
+			'visitors' => __( 'Not logged in visitors', 'd4plib' ),
+			'roles'    => __( 'Users with specified roles', 'd4plib' ),
+			'caps'     => __( 'Users with specified capabilities', 'd4plib' ),
 		);
 	}
 
 	public function get_list_order() : array {
 		return array(
-			'DESC' => __( "Descending", "d4plib" ),
-			'ASC'  => __( "Ascending", "d4plib" )
+			'DESC' => __( 'Descending', 'd4plib' ),
+			'ASC'  => __( 'Ascending', 'd4plib' ),
 		);
 	}
 

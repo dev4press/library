@@ -28,10 +28,10 @@ $_subpanels = panel()->subpanels();
             </div>
         </div>
         <div class="d4p-panel-buttons">
-            <input type="submit" value="<?php esc_attr_e( "Save Settings", "d4plib" ); ?>" class="button-primary"/>
+            <input type="submit" value="<?php esc_attr_e( 'Save Settings', 'd4plib' ); ?>" class="button-primary"/>
         </div>
         <div class="d4p-return-to-top">
-            <a href="#wpwrap"><?php esc_html_e( "Return to top", "d4plib" ); ?></a>
+            <a href="#wpwrap"><?php esc_html_e( 'Return to top', 'd4plib' ); ?></a>
         </div>
     </div>
 </div>

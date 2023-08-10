@@ -80,56 +80,56 @@
 }
 @media (max-width: 767px) {
   .d4p-grid-table-wrapper table.d4p-grid-table {
-    border: none;
+	border: none;
   }
   .d4p-grid-table-wrapper table.d4p-grid-table thead {
-    display: none;
+	display: none;
   }
   .d4p-grid-table-wrapper table.d4p-grid-table tbody tr {
-    border: 1px solid var(--d4p-grid-table-border);
-    margin-bottom: 1em;
-    display: block;
+	border: 1px solid var(--d4p-grid-table-border);
+	margin-bottom: 1em;
+	display: block;
   }
   .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td {
-    border-right: none;
+	border-right: none;
   }
   .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td:last-child {
-    border-bottom: none;
+	border-bottom: none;
   }
   .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td:before {
-    display: block;
-    border-bottom: 1px solid #F0F0F0;
-    content: attr(data-label);
-    text-transform: uppercase;
-    font-size: 90%;
+	display: block;
+	border-bottom: 1px solid #F0F0F0;
+	content: attr(data-label);
+	text-transform: uppercase;
+	font-size: 90%;
   }
   .d4p-grid-table-wrapper table.d4p-grid-table tbody tr:last-child {
-    margin-bottom: 0;
+	margin-bottom: 0;
   }
 }
 @media (max-width: 429px) {
   .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td {
-    display: block;
+	display: block;
   }
 }
 @media (max-width: 767px) and (min-width: 430px) {
   .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td {
-    padding: 0;
-    display: flex;
+	padding: 0;
+	display: flex;
   }
   .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td:before {
-    flex: 1 0 25%;
-    padding: 0.5em;
-    content: attr(data-label);
-    text-transform: uppercase;
-    font-size: 90%;
-    background: #F0F0F0;
-    word-break: break-all;
-    border-right: 1px solid var(--d4p-grid-table-border);
+	flex: 1 0 25%;
+	padding: 0.5em;
+	content: attr(data-label);
+	text-transform: uppercase;
+	font-size: 90%;
+	background: #F0F0F0;
+	word-break: break-all;
+	border-right: 1px solid var(--d4p-grid-table-border);
   }
   .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td .cell-wrapper {
-    flex: 0 1 75%;
-    padding: 0.5em;
+	flex: 0 1 75%;
+	padding: 0.5em;
   }
 }
 .d4p-grid-table-wrapper div.d4p-grid-filter {
@@ -148,7 +148,7 @@
 }
 @media (max-width: 767px) {
   .d4p-grid-table-wrapper div.d4p-grid-pager .displaying-num {
-    display: block;
+	display: block;
   }
 }
 .d4p-grid-table-wrapper div.d4p-grid-pager .pagination-links .nav-button {

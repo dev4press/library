@@ -30,11 +30,19 @@ $_plugins = Store::instance()->plugins();
                 <div class="_icon" style="background-color: <?php echo esc_attr( $plugin[ 'color' ] ); ?>;">
                     <a href="<?php echo esc_url( $_url ); ?>" target="_blank" rel="noopener"><i class="d4p-icon d4p-plugin-<?php echo esc_attr( $plugin[ 'code' ] ); ?>"></i></a>
                 </div>
-                <div class="_edition <?php echo esc_attr( $_edition ); ?>"><?php if ( $_pro ) {
+                <div class="_edition <?php echo esc_attr( $_edition ); ?>">
+					<?php
+					if ( $_pro ) {
 						echo '<span class="_pro">Pro</span>';
-					} ?><?php if ( $_free ) {
+					}
+					?>
+
+					<?php
+					if ( $_free ) {
 						echo '<span class="_free">Free</span>';
-					} ?></div>
+					}
+					?>
+                </div>
             </div>
             <div class="_info">
                 <h5>

@@ -1,27 +1,27 @@
 <?php
 /**
-Name:    Dev4Press\v43\Core\Task\AJAX
-Version: v4.3
-Author:  Milan Petrovic
-Email:   support@dev4press.com
-Website: https://www.dev4press.com/
-
-== Copyright ==
-Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>
-*/
+ * Name:    Dev4Press\v43\Core\Task\AJAX
+ * Version: v4.3
+ * Author:  Milan Petrovic
+ * Email:   support@dev4press.com
+ * Website: https://www.dev4press.com/
+ *
+ * == Copyright ==
+ * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 namespace Dev4Press\v43\Core\Task;
 
@@ -85,7 +85,7 @@ abstract class AJAX {
 			case 'start':
 				$this->do_start();
 
-				$this->message( __( "Process is starting.", "d4plib" ) );
+				$this->message( __( 'Process is starting.', 'd4plib' ) );
 
 				$this->save();
 
@@ -94,21 +94,21 @@ abstract class AJAX {
 			case 'break':
 				$this->do_break();
 
-				$this->message( __( "Process has been interrupted by user.", "d4plib" ) );
+				$this->message( __( 'Process has been interrupted by user.', 'd4plib' ) );
 
 				$this->delete();
 				break;
 			case 'stop':
 				$this->do_stop();
 
-				$this->message( __( "Process has completed.", "d4plib" ) );
+				$this->message( __( 'Process has completed.', 'd4plib' ) );
 
 				$this->delete();
 				break;
 			case 'run':
 				$this->do_run();
 
-				$this->message( sprintf( __( "Completed %s out of %s items.", "d4plib" ), $this->data[ 'done' ], $this->data[ 'total' ] ) );
+				$this->message( sprintf( __( 'Completed %1$s out of %2$s items.', 'd4plib' ), $this->data[ 'done' ], $this->data[ 'total' ] ) );
 
 				$this->save();
 
@@ -126,7 +126,7 @@ abstract class AJAX {
 			'data'     => array(),
 			'messages' => array(),
 			'total'    => 0,
-			'done'     => 0
+			'done'     => 0,
 		);
 	}
 
