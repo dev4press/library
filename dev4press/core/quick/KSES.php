@@ -40,8 +40,20 @@ class KSES {
 		return wp_kses(
 			$render,
 			array(
-				'br'     => array(),
 				'code'   => array(),
+				'br'     => array(),
+				'p'      => array(
+					'class' => true,
+					'style' => true,
+				),
+				'li'     => array(
+					'class' => true,
+					'style' => true,
+				),
+				'ul'     => array(
+					'class' => true,
+					'style' => true,
+				),
 				'a'      => array(
 					'href'   => array(),
 					'title'  => array(),

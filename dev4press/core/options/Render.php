@@ -28,6 +28,7 @@
 namespace Dev4Press\v43\Core\Options;
 
 use Dev4Press\v43\Core\Quick\Arr;
+use Dev4Press\v43\Core\Quick\KSES;
 use Dev4Press\v43\Core\Quick\Sanitize;
 use Dev4Press\v43\Core\UI\Elements;
 use Dev4Press\v43\WordPress\Walker\CheckboxRadio;
@@ -92,7 +93,7 @@ class Render {
 				echo '<div class="' . Sanitize::html_classes( $classes ) . '" id="d4p-group-' . esc_attr( $group ) . '">';
 				$kb = isset( $obj['kb'] ) ? str_replace( '%url%', $obj['kb']['url'], $this->kb ) : '';
 
-				if ( $kb != '' ) {
+				if ( ! empty( $kb ) ) {
 					$type  = $obj['kb']['type'] ?? 'article';
 					$kb    = str_replace( '%type%', $type, $kb );
 					$label = $obj['kb']['label'] ?? 'KB';
@@ -107,7 +108,7 @@ class Render {
 					$type = $obj['notice']['type'] ?? 'info';
 
 					echo '<div class="d4p-group-notice d4p-notice-' . esc_attr( $type ) . '">';
-					echo $obj['notice']['content'];
+					echo KSES::standard( $obj['notice']['content'] );
 					echo '</div>';
 				}
 
@@ -249,11 +250,11 @@ class Render {
 			}
 
 			if ( $setting->input == 'custom' ) {
-				echo '<tr' . $data . ' valign="top" class="d4p-settings-option-custom ' . $wrapper_class . '">';
+				echo '<tr' . $data . ' valign="top" class="d4p-settings-option-custom ' . Sanitize::html_classes( $wrapper_class ) . '">';
 				echo '<td colspan="2">';
 
 				echo '<div class="' . Sanitize::html_classes( $class ) . '">';
-				echo $setting->notice;
+				echo KSES::standard( $setting->notice );
 				echo '</div>';
 
 				echo '</td>';
@@ -295,7 +296,7 @@ class Render {
 
 	protected function _render_description( Element $setting ) {
 		if ( ! empty( $setting->notice ) && $setting->input != 'info' ) {
-			echo '<div class="d4p-description">' . $setting->notice . '</div>';
+			echo '<div class="d4p-description">' . KSES::standard( $setting->notice ) . '</div>';
 		}
 	}
 
@@ -314,11 +315,11 @@ class Render {
 			echo '<div class="d4p-more-content">';
 
 			if ( $setting->more_method == 'list' ) {
-				echo '<ul><li>' . join( '</li><li>', $setting->more ) . '</li></ul>';
+				echo KSES::standard( '<ul><li>' . join( '</li><li>', $setting->more ) . '</li></ul>' );
 			} else if ( $setting->more_method == 'paragraphs' ) {
-				echo '<p>' . join( '</p><p>', $setting->more ) . '</p>';
+				echo KSES::standard( '<p>' . join( '</p><p>', $setting->more ) . '</p>' );
 			} else {
-				echo join( '', $setting->more );
+				echo KSES::standard( join( '', $setting->more ) );
 			}
 
 			echo '</div>';
@@ -337,13 +338,13 @@ class Render {
 
 	protected function _pair_element( $name, $id, $i, $value, $element, $hide = false ) {
 		echo '<div class="pair-element-' . esc_attr( $i ) . '" style="display: ' . ( $hide ? 'none' : 'block' ) . '">';
-		echo '<label for="' . esc_attr( $id ) . '_key">' . $element->args['label_key'] . ':</label>';
+		echo '<label for="' . esc_attr( $id ) . '_key">' . KSES::strong( $element->args['label_key'] ) . ':</label>';
 		echo '<input type="text" name="' . esc_attr( $name ) . '[key]" id="' . esc_attr( $id ) . '_key" value="' . esc_attr( $value['key'] ) . '" class="widefat" />';
 
 		echo '<label for="' . esc_attr( $id ) . '_value">' . $element->args['label_value'] . ':</label>';
 		echo '<input type="text" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value['value'] ) . '" class="widefat" />';
 
-		echo '<a role="button" class="button-secondary" href="#">' . esc_html( $element->args['label_button_remove'] ) . '</a>';
+		echo '<a role="button" class="button-secondary" href="#">' . KSES::strong( $element->args['label_button_remove'] ) . '</a>';
 		echo '</div>';
 	}
 
@@ -361,23 +362,23 @@ class Render {
 
 	protected function _datetime_element( Element $element, $value, $name_base, $id_base, $type = 'text', $class = '' ) {
 		$readonly  = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
-		$min       = isset( $element->args['min'] ) ? ' min="' . esc_attr( $element->args['min'] ) . '"' : '';
-		$max       = isset( $element->args['max'] ) ? ' max="' . esc_attr( $element->args['max'] ) . '"' : '';
+		$min       = isset( $element->args['min'] ) ? ' min="' . $element->args['min'] . '"' : '';
+		$max       = isset( $element->args['max'] ) ? ' max="' . $element->args['max'] . '"' : '';
 		$flatpickr = isset( $element->args['flatpickr'] ) && $element->args['flatpickr'];
 		$type      = $flatpickr ? 'text' : $type;
-		$class     = 'widefat' . ( $flatpickr ? ' ' . esc_attr( $class ) : '' );
+		$class     = 'widefat' . ( $flatpickr ? ' ' . $class : '' );
 
 		echo sprintf(
 			'<input aria-labelledby="%s__label" type="%s" name="%s" id="%s" value="%s" class="%s"%s%s%s />',
-			$id_base,
-			$type,
+			esc_attr( $id_base ),
+			esc_attr( $type ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $value ),
-			$class,
+			esc_attr( $class ),
 			$readonly,
-			$min,
-			$max
+			esc_attr( $min ),
+			esc_attr( $max )
 		);
 	}
 
@@ -399,22 +400,38 @@ class Render {
 
 	protected function draw_text( Element $element, $value, $name_base, $id_base, $type = 'text', $class = 'widefat' ) {
 		$readonly    = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
-		$placeholder = isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? ' placeholder="' . esc_attr( $element->args['placeholder'] ) . '"' : '';
+		$placeholder = isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? $element->args['placeholder'] : '';
 		$type        = isset( $element->args['type'] ) && ! empty( $element->args['type'] ) ? $element->args['type'] : $type;
-		$pattern     = isset( $element->args['pattern'] ) && ! empty( $element->args['pattern'] ) ? ' pattern="' . esc_attr( $element->args['pattern'] ) . '"' : '';
 
-		echo sprintf(
-			'<input aria-labelledby="%s__label"%s%s%s type="%s" name="%s" id="%s" value="%s" class="%s" />',
-			$id_base,
-			$readonly,
-			$placeholder,
-			$pattern,
-			$type,
-			esc_attr( $name_base ),
-			esc_attr( $id_base ),
-			esc_attr( $value ),
-			esc_attr( $class )
-		);
+		if ( isset( $element->args['pattern'] ) ) {
+			$pattern = $element->args['pattern'];
+
+			echo sprintf(
+				'<input aria-labelledby="%s__label"%s placeholder="%s" pattern="%s" type="%s" name="%s" id="%s" value="%s" class="%s" />',
+				esc_attr( $id_base ),
+				$readonly,
+				esc_attr( $placeholder ),
+				esc_attr( $pattern ),
+				esc_attr( $type ),
+				esc_attr( $name_base ),
+				esc_attr( $id_base ),
+				esc_attr( $value ),
+				esc_attr( $class )
+			);
+		} else {
+			echo sprintf(
+				'<input aria-labelledby="%s__label"%s placeholder="%s" type="%s" name="%s" id="%s" value="%s" class="%s" />',
+				esc_attr( $id_base ),
+				$readonly,
+				esc_attr( $placeholder ),
+				esc_attr( $type ),
+				esc_attr( $name_base ),
+				esc_attr( $id_base ),
+				esc_attr( $value ),
+				esc_attr( $class )
+			);
+		}
+
 	}
 
 	protected function draw_html( Element $element, $value, $name_base, $id_base ) {
@@ -422,7 +439,7 @@ class Render {
 
 		echo sprintf(
 			'<textarea aria-labelledby="%s__label"%s name="%s" id="%s" class="widefat">%s</textarea>',
-			$id_base,
+			esc_attr( $id_base ),
 			$readonly,
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
@@ -433,20 +450,20 @@ class Render {
 	protected function draw_number( Element $element, $value, $name_base, $id_base ) {
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
-		$min  = isset( $element->args['min'] ) ? ' min="' . esc_attr( floatval( $element->args['min'] ) ) . '"' : '';
-		$max  = isset( $element->args['max'] ) ? ' max="' . esc_attr( floatval( $element->args['max'] ) ) . '"' : '';
-		$step = isset( $element->args['step'] ) ? ' step="' . esc_attr( floatval( $element->args['step'] ) ) . '"' : '';
+		$min  = isset( $element->args['min'] ) ? ' min="' . floatval( $element->args['min'] ) . '"' : '';
+		$max  = isset( $element->args['max'] ) ? ' max="' . floatval( $element->args['max'] ) . '"' : '';
+		$step = isset( $element->args['step'] ) ? ' step="' . floatval( $element->args['step'] ) . '"' : '';
 
 		echo sprintf(
 			'<input aria-labelledby="%s__label"%s type="number" name="%s" id="%s" value="%s" class="widefat"%s%s%s />',
-			$id_base,
+			esc_attr( $id_base ),
 			$readonly,
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $value ),
-			$min,
-			$max,
-			$step
+			esc_attr( $min ),
+			esc_attr( $max ),
+			esc_attr( $step )
 		);
 
 		if ( isset( $element->args['label_unit'] ) ) {
@@ -696,7 +713,7 @@ class Render {
 	}
 
 	protected function draw_info( Element $element, $value, $name_base, $id_base = '' ) {
-		echo $element->notice;
+		echo KSES::standard( $element->notice );
 	}
 
 	protected function draw_images( Element $element, $value, $name_base, $id_base = '' ) {
@@ -765,7 +782,7 @@ class Render {
 
 	protected function draw_bool( Element $element, $value, $name_base, $id_base = '' ) {
 		$selected = $value == 1 || $value === true ? ' checked="checked"' : '';
-		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly="readonly" disabled="disabled"' : '';
+		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly disabled ' : '';
 		$label    = isset( $element->args['label'] ) && $element->args['label'] != '' ? $element->args['label'] : __( 'Enabled', 'd4plib' );
 		$value    = isset( $element->args['value'] ) && $element->args['value'] != '' ? $element->args['value'] : 'on';
 
@@ -793,8 +810,8 @@ class Render {
 
 		echo sprintf(
 			'<label for="%s_a"><span class="d4p-accessibility-show-for-sr">%s - A: </span></label><input%s type="number" name="%s[a]" id="%s_a" value="%s" class="widefat" />',
-			$id_base,
-			$element->title,
+			esc_attr( $id_base ),
+			esc_attr( $element->title ),
 			$readonly,
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
@@ -803,8 +820,8 @@ class Render {
 		echo ' => ';
 		echo sprintf(
 			'<label for="%s_b"><span class="d4p-accessibility-show-for-sr">%s - B: </span></label><input%s type="number" name="%s[b]" id="%s_b" value="%s" class="widefat" />',
-			$id_base,
-			$element->title,
+			esc_attr( $id_base ),
+			esc_attr( $element->title ),
 			$readonly,
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
@@ -819,8 +836,8 @@ class Render {
 
 		echo sprintf(
 			'<label for="%s_x"><span class="d4p-accessibility-show-for-sr">%s - X: </span></label><input%s type="number" name="%s[x]" id="%s_x" value="%s" class="widefat" />',
-			$id_base,
-			$element->title,
+			esc_attr( $id_base ),
+			esc_attr( $element->title ),
 			$readonly,
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
@@ -829,8 +846,8 @@ class Render {
 		echo ' x ';
 		echo sprintf(
 			'<label for="%s_y"><span class="d4p-accessibility-show-for-sr">%s - Y: </span></label><input%s type="number" name="%s[y]" id="%s_y" value="%s" class="widefat" />',
-			$id_base,
-			$element->title,
+			esc_attr( $id_base ),
+			esc_attr( $element->title ),
 			$readonly,
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
@@ -847,21 +864,17 @@ class Render {
 
 		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 
-		$this->draw_html( $element, $value, $name_base, $id_base );
+		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
-		echo '<script type="text/javascript">
-(function($){
-    $(function(){
-        var editorSettings = wp.codeEditor.defaultSettings ? _.clone(wp.codeEditor.defaultSettings) : {};
-
-        editorSettings.codemirror = _.extend({}, editorSettings.codemirror, 
-            { indentWithTabs: false, indentUnit: 2, tabSize: 2, mode: \'' . esc_html( $mode ) . '\' }
-        );
-
-        var editor = wp.codeEditor.initialize($(\'#' . esc_html( $id_base ) . '\'), editorSettings);                        
-    });
-})(jQuery);
-</script>';
+		echo sprintf(
+			'<textarea aria-labelledby="%s__label"%s name="%s" id="%s" class="widefat d4p-code-editor-element" data-mode="%s">%s</textarea>',
+			esc_attr( $id_base ),
+			$readonly,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $mode ),
+			esc_textarea( $value )
+		);
 	}
 
 	protected function draw_textarea( Element $element, $value, $name_base, $id_base ) {
@@ -928,8 +941,8 @@ class Render {
 
 		echo sprintf(
 			'<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="file" name="%s" id="%s" value="%s" class="widefat" />',
-			$id_base,
-			$element->title,
+			esc_attr( $id_base ),
+			esc_attr( $element->title ),
 			$readonly,
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
@@ -942,8 +955,8 @@ class Render {
 
 		echo sprintf(
 			'<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="text" name="%s" id="%s" value="%s" class="widefat d4p-color-picker" />',
-			$id_base,
-			$element->title,
+			esc_attr( $id_base ),
+			esc_attr( $element->title ),
 			$readonly,
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
@@ -1037,7 +1050,7 @@ class Render {
 
 		echo sprintf(
 			'<label for="%s_val"><span class="d4p-accessibility-show-for-sr">' . esc_html__( 'Value', 'd4plib' ) . ': </span></label><input%s type="number" name="%s[val]" id="%s_val" value="%s" class="widefat" step="0.01" />',
-			$id_base,
+			esc_attr( $id_base ),
 			$readonly,
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),

@@ -163,7 +163,7 @@ abstract class GetBack {
 	}
 
 	protected function _get( $key = 'action', $default = '' ) : string {
-		return $this->_is( $key ) ? sanitize_key( $_GET[ $key ] ) : $default;
+		return isset( $_GET[ $key ] ) ? sanitize_key( $_GET[ $key ] ) : $default;
 	}
 
 	protected function _is( $key = 'action' ) : bool {

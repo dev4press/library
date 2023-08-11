@@ -158,17 +158,18 @@ class HTAccess {
 			if ( flock( $f, LOCK_EX ) ) {
 				$modded_data = array();
 
-				$line_start = 0;
-				$line_end   = 0;
+				$line_start  = 0;
+				$line_end    = 0;
+				$marker_size = count( $marker_data );
 
-				for ( $i = 0; $i < count( $marker_data ); $i ++ ) {
+				for ( $i = 0; $i < $marker_size; $i ++ ) {
 					if ( ! empty( $marker_data[ $i ] ) ) {
 						$line_start = $i;
 						break;
 					}
 				}
 
-				for ( $i = count( $marker_data ) - 1; $i > 0; $i -- ) {
+				for ( $i = $marker_size - 1; $i > 0; $i -- ) {
 					if ( ! empty( $marker_data[ $i ] ) ) {
 						$line_end = $i;
 						break;

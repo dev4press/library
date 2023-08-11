@@ -122,7 +122,7 @@ abstract class PostBack {
 
 		$message = 'import-failed';
 
-		if ( is_uploaded_file( $_FILES['import_file']['tmp_name'] ) ) {
+		if ( isset($_FILES['import_file']['tmp_name']) && is_uploaded_file( $_FILES['import_file']['tmp_name'] ) ) {
 			$raw  = file_get_contents( $_FILES['import_file']['tmp_name'] );
 			$data = json_decode( $raw, true );
 

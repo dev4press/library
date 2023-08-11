@@ -411,6 +411,7 @@
                 wp.dev4press.admin.settings.expandables.run();
                 wp.dev4press.admin.settings.check_uncheck.run();
                 wp.dev4press.admin.settings.switch.run();
+                wp.dev4press.admin.settings.code_editor.run();
             },
             more_toggle: {
                 run: function() {
@@ -595,6 +596,23 @@
                             }
                         }
                     );
+                }
+            },
+            code_editor: {
+                run: function() {
+                    $("textarea.d4p-code-editor-element").each(function() {
+                        var editorSettings = wp.codeEditor.defaultSettings ? _.clone(wp.codeEditor.defaultSettings) : {};
+
+                        editorSettings.codemirror = _.extend({}, editorSettings.codemirror,
+                            {
+                                indentWithTabs: false,
+                                indentUnit: 2,
+                                tabSize: 2,
+                                mode: $(this).data("mode")
+                            });
+
+                        wp.codeEditor.initialize($(this), editorSettings);
+                    });
                 }
             }
         }

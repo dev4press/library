@@ -192,10 +192,14 @@ class IP {
 	public static function is_cloudflare( $ip = null ) : bool {
 		if ( is_null( $ip ) ) {
 			if ( isset( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
-				$ip = $_SERVER['HTTP_X_REAL_IP'] ?? $_SERVER['REMOTE_ADDR'];
+				$ip = $_SERVER['HTTP_X_REAL_IP'] ?? ( $_SERVER['REMOTE_ADDR'] ?? '' );
 			} else {
 				return false;
 			}
+		}
+
+		if ( empty( $ip ) ) {
+			return false;
 		}
 
 		if ( strpos( $ip, ':' ) === false ) {
@@ -256,7 +260,11 @@ class IP {
 
 	public static function visitor( $no_local_or_protected = false ) {
 		if ( self::is_cloudflare() ) {
-			return self::validate( $_SERVER['HTTP_CF_CONNECTING_IP'], true );
+			if ( isset( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
+				return self::validate( $_SERVER['HTTP_CF_CONNECTING_IP'], true );
+			}
+
+			return '';
 		}
 
 		$keys = array(
