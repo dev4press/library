@@ -23,10 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 
 		if ( isset( $obj['break'] ) ) {
-			echo panel()->r()->settings_break( $obj['break'], $obj['break-icon'] );
+			echo panel()->r()->settings_break( $obj['break'], $obj['break-icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
-		echo panel()->r()->settings_group_break( $obj['title'], $obj['icon'] );
+		echo panel()->r()->settings_group_break( $obj['title'], $obj['icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$groups = $options->get( $subpanel );
 

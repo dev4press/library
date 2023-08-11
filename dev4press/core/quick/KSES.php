@@ -69,6 +69,10 @@ class KSES {
 					'class' => true,
 					'style' => true,
 				),
+				'div' => array(
+					'class' => true,
+					'style' => true,
+				),
 				'span'   => array(
 					'class'  => true,
 					'style'  => true,

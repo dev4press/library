@@ -90,7 +90,7 @@ class Render {
 					$classes[] = $args['class'];
 				}
 
-				echo '<div class="' . Sanitize::html_classes( $classes ) . '" id="d4p-group-' . esc_attr( $group ) . '">';
+				echo '<div class="' . Sanitize::html_classes( $classes ) . '" id="d4p-group-' . esc_attr( $group ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				$kb = isset( $obj['kb'] ) ? str_replace( '%url%', $obj['kb']['url'], $this->kb ) : '';
 
 				if ( ! empty( $kb ) ) {
@@ -101,14 +101,14 @@ class Render {
 					$kb = '<a class="d4p-kb-group" href="' . esc_url( $kb ) . '" target="_blank" rel="noopener">' . esc_html( $label ) . '</a>';
 				}
 
-				echo '<h3>' . esc_html( $obj['name'] ) . $kb . '</h3>';
+				echo '<h3>' . esc_html( $obj['name'] ) . $kb . '</h3>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo '<div class="d4p-group-inner">';
 
 				if ( isset( $obj['notice'] ) ) {
 					$type = $obj['notice']['type'] ?? 'info';
 
 					echo '<div class="d4p-group-notice d4p-notice-' . esc_attr( $type ) . '">';
-					echo KSES::standard( $obj['notice']['content'] );
+					echo KSES::standard( $obj['notice']['content'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo '</div>';
 				}
 
@@ -166,7 +166,7 @@ class Render {
 			}
 		}
 
-		echo '<div class="' . Sanitize::html_classes( $class ) . '">';
+		echo '<div class="' . Sanitize::html_classes( $class ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		if ( ! empty( $section['label'] ) ) {
 			echo '<h4><span>' . esc_html( $section['label'] ) . '</span></h4>';
@@ -250,11 +250,11 @@ class Render {
 			}
 
 			if ( $setting->input == 'custom' ) {
-				echo '<tr' . $data . ' valign="top" class="d4p-settings-option-custom ' . Sanitize::html_classes( $wrapper_class ) . '">';
+				echo '<tr' . $data . ' valign="top" class="d4p-settings-option-custom ' . Sanitize::html_classes( $wrapper_class ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo '<td colspan="2">';
 
-				echo '<div class="' . Sanitize::html_classes( $class ) . '">';
-				echo KSES::standard( $setting->notice );
+				echo '<div class="' . Sanitize::html_classes( $class ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo KSES::standard( $setting->notice ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo '</div>';
 
 				echo '</td>';
@@ -262,7 +262,7 @@ class Render {
 			} else {
 				$wrapper_class = 'd4p-settings-option-' . ( $setting->input == 'info' ? 'info' : 'item' ) . ' ' . $wrapper_class;
 
-				echo '<tr' . $data . ' class="' . Sanitize::html_classes( $wrapper_class ) . '">';
+				echo '<tr' . $data . ' class="' . Sanitize::html_classes( $wrapper_class ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 				if ( isset( $setting->args['readonly'] ) && $setting->args['readonly'] ) {
 					$class .= 'd4p-setting-disabled';
@@ -275,7 +275,7 @@ class Render {
 					echo '<span id="' . esc_attr( $id_base ) . '__label">' . esc_html( $setting->title ) . '</span>';
 				}
 				echo '</th><td>';
-				echo '<div class="' . Sanitize::html_classes( $class ) . '">';
+				echo '<div class="' . Sanitize::html_classes( $class ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 				do_action( 'd4p_settings_group_top', $setting, $group );
 
@@ -296,7 +296,7 @@ class Render {
 
 	protected function _render_description( Element $setting ) {
 		if ( ! empty( $setting->notice ) && $setting->input != 'info' ) {
-			echo '<div class="d4p-description">' . KSES::standard( $setting->notice ) . '</div>';
+			echo '<div class="d4p-description">' . KSES::standard( $setting->notice ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
@@ -310,16 +310,16 @@ class Render {
 		if ( ! empty( $setting->more ) ) {
 			echo '<div class="d4p-more-wrapper">';
 			echo '<div class="d4p-more-title">';
-			echo '<i aria-hidden="true" class="d4p-icon d4p-ui-chevron-square-down d4p-icon-fw"></i> <button type="button">' . __( 'Toggle Additional Information', 'd4plib' ) . '</button>';
+			echo '<i aria-hidden="true" class="d4p-icon d4p-ui-chevron-square-down d4p-icon-fw"></i> <button type="button">' . esc_html__( 'Toggle Additional Information', 'd4plib' ) . '</button>';
 			echo '</div>';
 			echo '<div class="d4p-more-content">';
 
 			if ( $setting->more_method == 'list' ) {
-				echo KSES::standard( '<ul><li>' . join( '</li><li>', $setting->more ) . '</li></ul>' );
+				echo KSES::standard( '<ul><li>' . join( '</li><li>', $setting->more ) . '</li></ul>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} else if ( $setting->more_method == 'paragraphs' ) {
-				echo KSES::standard( '<p>' . join( '</p><p>', $setting->more ) . '</p>' );
+				echo KSES::standard( '<p>' . join( '</p><p>', $setting->more ) . '</p>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} else {
-				echo KSES::standard( join( '', $setting->more ) );
+				echo KSES::standard( join( '', $setting->more ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			echo '</div>';
@@ -338,13 +338,13 @@ class Render {
 
 	protected function _pair_element( $name, $id, $i, $value, $element, $hide = false ) {
 		echo '<div class="pair-element-' . esc_attr( $i ) . '" style="display: ' . ( $hide ? 'none' : 'block' ) . '">';
-		echo '<label for="' . esc_attr( $id ) . '_key">' . KSES::strong( $element->args['label_key'] ) . ':</label>';
+		echo '<label for="' . esc_attr( $id ) . '_key">' . KSES::strong( $element->args['label_key'] ) . ':</label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<input type="text" name="' . esc_attr( $name ) . '[key]" id="' . esc_attr( $id ) . '_key" value="' . esc_attr( $value['key'] ) . '" class="widefat" />';
 
-		echo '<label for="' . esc_attr( $id ) . '_value">' . $element->args['label_value'] . ':</label>';
+		echo '<label for="' . esc_attr( $id ) . '_value">' . KSES::strong( $element->args['label_value'] ) . ':</label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<input type="text" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value['value'] ) . '" class="widefat" />';
 
-		echo '<a role="button" class="button-secondary" href="#">' . KSES::strong( $element->args['label_button_remove'] ) . '</a>';
+		echo '<a role="button" class="button-secondary" href="#">' . KSES::strong( $element->args['label_button_remove'] ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</div>';
 	}
 
@@ -355,7 +355,7 @@ class Render {
 		$type   = isset( $element->args['type'] ) && ! empty( $element->args['type'] ) ? $element->args['type'] : 'text';
 
 		echo '<input aria-labelledby="' . esc_attr( $id ) . '__label" type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value ) . '" class="widefat" />';
-		echo '<button aria-label="' . esc_html( $element->args['label_remove_aria'] ?? __( 'Remove', 'd4plib' ) ) . '" role="button" class="button-secondary" type="button">' . $button . '</button>';
+		echo '<button aria-label="' . esc_html( $element->args['label_remove_aria'] ?? esc_html__( 'Remove', 'd4plib' ) ) . '" role="button" class="button-secondary" type="button">' . $button . '</button>';  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		echo '</li>';
 	}
@@ -376,7 +376,7 @@ class Render {
 			esc_attr( $id_base ),
 			esc_attr( $value ),
 			esc_attr( $class ),
-			$readonly,
+			esc_attr( $readonly ),
 			esc_attr( $min ),
 			esc_attr( $max )
 		);
@@ -409,7 +409,7 @@ class Render {
 			echo sprintf(
 				'<input aria-labelledby="%s__label"%s placeholder="%s" pattern="%s" type="%s" name="%s" id="%s" value="%s" class="%s" />',
 				esc_attr( $id_base ),
-				$readonly,
+				esc_attr( $readonly ),
 				esc_attr( $placeholder ),
 				esc_attr( $pattern ),
 				esc_attr( $type ),
@@ -422,7 +422,7 @@ class Render {
 			echo sprintf(
 				'<input aria-labelledby="%s__label"%s placeholder="%s" type="%s" name="%s" id="%s" value="%s" class="%s" />',
 				esc_attr( $id_base ),
-				$readonly,
+				esc_attr( $readonly ),
 				esc_attr( $placeholder ),
 				esc_attr( $type ),
 				esc_attr( $name_base ),
@@ -440,7 +440,7 @@ class Render {
 		echo sprintf(
 			'<textarea aria-labelledby="%s__label"%s name="%s" id="%s" class="widefat">%s</textarea>',
 			esc_attr( $id_base ),
-			$readonly,
+			esc_attr( $readonly ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_textarea( $value )
@@ -457,7 +457,7 @@ class Render {
 		echo sprintf(
 			'<input aria-labelledby="%s__label"%s type="number" name="%s" id="%s" value="%s" class="widefat"%s%s%s />',
 			esc_attr( $id_base ),
-			$readonly,
+			esc_attr( $readonly ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $value ),
@@ -502,14 +502,15 @@ class Render {
 
 		echo '<div class="d4p-content-wrapper">';
 		echo '<ul class="d4p-wrapper-hierarchy">';
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $walker->walk(
 			$data,
 			0,
 			array(
-				'input'    => $input,
-				'id'       => $id_base,
-				'name'     => $name_base,
-				'selected' => $value,
+				'input'    => $input, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'id'       => $id_base, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'name'     => $name_base, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'selected' => $value, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			)
 		);
 		echo '</ul>';
@@ -578,7 +579,7 @@ class Render {
 			$data,
 			array(
 				'selected' => $value,
-				'readonly' => $readonly,
+				'readonly' => esc_attr( $readonly ),
 				'name'     => $name_base,
 				'id'       => $id_base,
 				'class'    => 'widefat',
@@ -603,7 +604,7 @@ class Render {
 			$data,
 			array(
 				'selected' => $value,
-				'readonly' => $readonly,
+				'readonly' => esc_attr( $readonly ),
 				'name'     => $name_base,
 				'id'       => $id_base,
 				'class'    => 'widefat',
@@ -671,7 +672,7 @@ class Render {
 				array( 'aria-labelledby' => $id_base . '__label' )
 			);
 		} else {
-			echo $list;
+			echo $list; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
@@ -681,18 +682,19 @@ class Render {
 		$child      = $element->args['child_of'] ?? 0;
 		$depth      = $element->args['depth'] ?? 0;
 
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		$list = wp_dropdown_pages(
 			array(
 				'echo'              => false,
-				'child_of'          => $child,
-				'depth'             => $depth,
-				'show_option_none'  => $label_none,
+				'child_of'          => $child, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'depth'             => $depth, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'show_option_none'  => $label_none, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'option_none_value' => 0,
-				'selected'          => $value,
-				'name'              => $name_base,
+				'selected'          => $value, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'name'              => $name_base, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'class'             => 'widefat',
-				'id'                => $id_base,
-				'post_type'         => $post_type,
+				'id'                => $id_base, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'post_type'         => $post_type, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			)
 		);
 
@@ -708,12 +710,12 @@ class Render {
 				array( 'aria-labelledby' => $id_base . '__label' )
 			);
 		} else {
-			echo $list;
+			echo $list; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
 	protected function draw_info( Element $element, $value, $name_base, $id_base = '' ) {
-		echo KSES::standard( $element->notice );
+		echo KSES::standard( $element->notice ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	protected function draw_images( Element $element, $value, $name_base, $id_base = '' ) {
@@ -746,8 +748,8 @@ class Render {
 	protected function draw_image( Element $element, $value, $name_base, $id_base = '' ) {
 		echo sprintf(
 			'<input class="d4plib-image" type="hidden" name="%s" id="%s" value="%s" />',
-			$name_base,
-			$id_base,
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
 			esc_attr( $value )
 		);
 
@@ -789,10 +791,10 @@ class Render {
 		echo sprintf(
 			'<label for="%s"><input%s type="checkbox" name="%s" id="%s"%s class="widefat" value="%s" /><span class="d4p-accessibility-show-for-sr">%s: </span>%s</label>',
 			esc_attr( $id_base ),
-			$readonly,
+			esc_attr( $readonly ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
-			$selected,
+			$selected, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			esc_attr( $value ),
 			esc_html( $element->title ),
 			esc_html( $label )
@@ -812,7 +814,7 @@ class Render {
 			'<label for="%s_a"><span class="d4p-accessibility-show-for-sr">%s - A: </span></label><input%s type="number" name="%s[a]" id="%s_a" value="%s" class="widefat" />',
 			esc_attr( $id_base ),
 			esc_attr( $element->title ),
-			$readonly,
+			esc_attr( $readonly ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $pairs[0] )
@@ -822,7 +824,7 @@ class Render {
 			'<label for="%s_b"><span class="d4p-accessibility-show-for-sr">%s - B: </span></label><input%s type="number" name="%s[b]" id="%s_b" value="%s" class="widefat" />',
 			esc_attr( $id_base ),
 			esc_attr( $element->title ),
-			$readonly,
+			esc_attr( $readonly ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $pairs[1] )
@@ -838,7 +840,7 @@ class Render {
 			'<label for="%s_x"><span class="d4p-accessibility-show-for-sr">%s - X: </span></label><input%s type="number" name="%s[x]" id="%s_x" value="%s" class="widefat" />',
 			esc_attr( $id_base ),
 			esc_attr( $element->title ),
-			$readonly,
+			esc_attr( $readonly ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $pairs[0] )
@@ -848,7 +850,7 @@ class Render {
 			'<label for="%s_y"><span class="d4p-accessibility-show-for-sr">%s - Y: </span></label><input%s type="number" name="%s[y]" id="%s_y" value="%s" class="widefat" />',
 			esc_attr( $id_base ),
 			esc_attr( $element->title ),
-			$readonly,
+			esc_attr( $readonly ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $pairs[1] )
@@ -869,7 +871,7 @@ class Render {
 		echo sprintf(
 			'<textarea aria-labelledby="%s__label"%s name="%s" id="%s" class="widefat d4p-code-editor-element" data-mode="%s">%s</textarea>',
 			esc_attr( $id_base ),
-			$readonly,
+			esc_attr( $readonly ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $mode ),
@@ -926,13 +928,14 @@ class Render {
 		$autocomplete = isset( $element->args['autocomplete'] ) ? Sanitize::slug( $element->args['autocomplete'] ) : 'off';
 
 		echo sprintf(
-			'<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="password" name="%s" id="%s" value="%s" class="widefat" autocomplete="' . $autocomplete . '" />',
-			$id_base,
-			$element->title,
-			$readonly,
+			'<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="password" name="%s" id="%s" value="%s" class="widefat" autocomplete="%s" />',
+			esc_attr( $id_base ),
+			esc_attr( $element->title ),
+			esc_attr( $readonly ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
-			esc_attr( $value )
+			esc_attr( $value ),
+			esc_attr( $autocomplete )
 		);
 	}
 
@@ -943,7 +946,7 @@ class Render {
 			'<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="file" name="%s" id="%s" value="%s" class="widefat" />',
 			esc_attr( $id_base ),
 			esc_attr( $element->title ),
-			$readonly,
+			esc_attr( $readonly ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $value )
@@ -957,7 +960,7 @@ class Render {
 			'<label for="%s"><span class="d4p-accessibility-show-for-sr">%s: </span></label><input%s type="text" name="%s" id="%s" value="%s" class="widefat d4p-color-picker" />',
 			esc_attr( $id_base ),
 			esc_attr( $element->title ),
-			$readonly,
+			esc_attr( $readonly ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $value )
@@ -1051,13 +1054,13 @@ class Render {
 		echo sprintf(
 			'<label for="%s_val"><span class="d4p-accessibility-show-for-sr">' . esc_html__( 'Value', 'd4plib' ) . ': </span></label><input%s type="number" name="%s[val]" id="%s_val" value="%s" class="widefat" step="0.01" />',
 			esc_attr( $id_base ),
-			$readonly,
+			esc_attr( $readonly ),
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $pairs[0] )
 		);
 
-		echo sprintf( '<label for="%s_unit"><span class="d4p-accessibility-show-for-sr">' . esc_html__( 'Unit', 'd4plib' ) . ': </span></label>', $id_base );
+		echo sprintf( '<label for="%s_unit"><span class="d4p-accessibility-show-for-sr">' . esc_html__( 'Unit', 'd4plib' ) . ': </span></label>', esc_attr( $id_base ) );
 
 		Elements::instance()->select(
 			$allowed_sizes,

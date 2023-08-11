@@ -35,7 +35,7 @@ class Render {
 			$modifiers = (array) $modifiers;
 
 			foreach ( $modifiers as $key ) {
-				$class .= ' ' . 'd4p-icon' . '-' . $key;
+				$class .= ' d4p-icon-' . $key;
 			}
 		}
 

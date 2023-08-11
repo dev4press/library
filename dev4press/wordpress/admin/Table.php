@@ -107,7 +107,7 @@ abstract class Table extends WP_List_Table {
 		foreach ( $views as $class => $view ) {
 			$views[ $class ] = "\t<li class='$class'>$view";
 		}
-		echo implode( $this->_views_separator . "</li>\n", $views ) . "</li>\n";
+		echo implode( $this->_views_separator . "</li>\n", $views ) . "</li>\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</ul>';
 	}
 
@@ -287,7 +287,7 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function _get_field( $name, $default = '' ) {
-		$value = ! empty( $_GET[ $name ] ) ? $_GET[ $name ] : $default;
+		$value = ! empty( $_GET[ $name ] ) ? Sanitize::slug( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		switch ( $name ) {
 			case 'orderby':

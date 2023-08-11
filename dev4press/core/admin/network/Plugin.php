@@ -95,7 +95,7 @@ abstract class Plugin extends BasePlugin {
 						$this->panel = $panel;
 
 						if ( ! empty( $_GET['subpanel'] ) ) {
-							$this->subpanel = Sanitize::slug( $_GET['subpanel'] );
+							$this->subpanel = Sanitize::slug( $_GET['subpanel'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 						}
 
 						$this->screen_setup();

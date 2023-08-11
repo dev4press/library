@@ -58,7 +58,7 @@ class Divider extends Control {
 		if ( ! empty( $this->description ) ) :
 			?>
             <span id="_customize-description-<?php echo esc_attr( $this->id ); ?>"
-                    class="description customize-control-description"><?php echo KSES::post( $this->description ); ?></span>
+                    class="description customize-control-description"><?php echo KSES::post( $this->description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 		<?php
 		endif;
 	}

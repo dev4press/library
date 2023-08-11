@@ -20,18 +20,18 @@ $_plugin_title = sprintf(
 );
 
 ?>
-<div class="<?php echo Sanitize::html_classes( $_classes ); ?>">
+<div class="<?php echo Sanitize::html_classes( $_classes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
     <div class="d4p-about-head-wrapper">
         <div class="d4p-about-information">
             <h1><?php echo esc_html( $_plugin_title ); ?></h1>
             <p class="d4p-about-text">
-				<?php echo panel()->a()->settings()->i()->description(); ?>
+				<?php echo esc_html( panel()->a()->settings()->i()->description() ); ?>
             </p>
         </div>
         <div class="d4p-about-badge">
             <div class="d4p-about-badge-inner" style="background-color: <?php echo esc_attr( panel()->a()->settings()->i()->color() ); ?>;">
-				<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin ); ?>
-				<?php printf( __( 'Version %s', 'd4plib' ), panel()->a()->settings()->i()->version ); ?>
+				<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php printf( esc_html__( 'Version %s', 'd4plib' ), panel()->a()->settings()->i()->version ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
         </div>
     </div>

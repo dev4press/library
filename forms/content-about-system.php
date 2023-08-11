@@ -16,10 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div>
         <ul class="d4p-info-list">
             <li>
-                <span><?php esc_html_e( 'PHP Version', 'd4plib' ); ?>:</span><strong><?php echo Library::instance()->php_version(); ?></strong>
+                <span><?php esc_html_e( 'PHP Version', 'd4plib' ); ?>:</span><strong><?php echo esc_html( Library::instance()->php_version() ); ?></strong>
             </li>
             <li>
-                <span><?php echo sprintf( __( '%s Version', 'd4plib' ), WordPress::instance()->cms_title() ); ?>:</span><strong><?php echo WordPress::instance()->version(); ?></strong>
+                <span><?php echo sprintf( esc_html__( '%s Version', 'd4plib' ), esc_html( WordPress::instance()->cms_title() ) ); ?>:</span><strong><?php echo esc_html( WordPress::instance()->version() ); ?></strong>
             </li>
         </ul>
         <hr/>
@@ -58,19 +58,19 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div>
         <ul class="d4p-info-list">
             <li>
-                <span><?php esc_html_e( 'Version', 'd4plib' ); ?>:</span><strong><?php echo Library::instance()->version(); ?></strong>
+                <span><?php esc_html_e( 'Version', 'd4plib' ); ?>:</span><strong><?php echo esc_html( Library::instance()->version() ); ?></strong>
             </li>
             <li>
-                <span><?php esc_html_e( 'Build', 'd4plib' ); ?>:</span><strong><?php echo Library::instance()->build(); ?></strong>
+                <span><?php esc_html_e( 'Build', 'd4plib' ); ?>:</span><strong><?php echo esc_html( Library::instance()->build() ); ?></strong>
             </li>
         </ul>
         <hr/>
         <ul class="d4p-info-list">
             <li>
-                <span><?php esc_html_e( 'Path', 'd4plib' ); ?>:</span><strong><?php echo Library::instance()->path(); ?></strong>
+                <span><?php esc_html_e( 'Path', 'd4plib' ); ?>:</span><strong><?php echo esc_html( Library::instance()->path() ); ?></strong>
             </li>
             <li>
-                <span><?php esc_html_e( 'URL', 'd4plib' ); ?>:</span><strong><?php echo Library::instance()->url(); ?></strong>
+                <span><?php esc_html_e( 'URL', 'd4plib' ); ?>:</span><strong><?php echo esc_html( Library::instance()->url() ); ?></strong>
             </li>
         </ul>
     </div>

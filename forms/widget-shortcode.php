@@ -20,7 +20,7 @@ $shortcode_notice = $this->get_shortcode_notice();
     <tr>
         <td class="cell-singular">
             <div class="cell-shortcode">
-                [<?php echo esc_html( $this->shortcode_name ); ?> <?php echo $this->the_shortcode( $instance ); ?>]
+                [<?php echo esc_html( $this->shortcode_name ); ?> <?php echo esc_html( $this->the_shortcode( $instance ) ); ?>]
             </div>
         </td>
     </tr>
@@ -28,7 +28,7 @@ $shortcode_notice = $this->get_shortcode_notice();
         <tr>
             <td class="cell-singular">
                 <h5><?php esc_html_e( 'Notice', 'd4plib' ); ?>:</h5>
-				<?php echo $shortcode_notice; ?>
+				<?php echo esc_html( $shortcode_notice ); ?>
             </td>
         </tr>
 	<?php } ?>

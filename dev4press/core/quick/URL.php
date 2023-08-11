@@ -41,17 +41,17 @@ class URL {
 	}
 
 	public static function current_request_path() {
-		$uri = $_SERVER['REQUEST_URI'];
+		$uri = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 
 		return parse_url( $uri, PHP_URL_PATH );
 	}
 
 	public static function current_url_request() : string {
-		$path_info = $_SERVER['PATH_INFO'] ?? '';
+		$path_info = $_SERVER['PATH_INFO'] ?? ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 		list( $path_info ) = explode( '?', $path_info );
 		$path_info = str_replace( '%', '%25', $path_info );
 
-		$request         = explode( '?', $_SERVER['REQUEST_URI'] );
+		$request         = explode( '?', $_SERVER['REQUEST_URI'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$req_uri         = $request[0];
 		$req_query       = $request[1] ?? false;
 		$home_path       = parse_url( home_url(), PHP_URL_PATH );
@@ -77,11 +77,11 @@ class URL {
 			return home_url( self::current_url_request() );
 		} else {
 			$s        = is_ssl() ? 's' : '';
-			$protocol = Str::left( strtolower( $_SERVER['SERVER_PROTOCOL'] ), '/' ) . $s;
+			$protocol = Str::left( strtolower( $_SERVER['SERVER_PROTOCOL'] ), '/' ) . $s; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 			$port     = isset( $_SERVER['SERVER_PORT'] ) ? absint( $_SERVER['SERVER_PORT'] ) : 80;
 			$port     = $port === 80 || $port === 443 ? '' : ':' . $port;
 
-			return $protocol . '://' . sanitize_url( $_SERVER['SERVER_NAME'] ) . $port . sanitize_url( $_SERVER['REQUEST_URI'] );
+			return $protocol . '://' . esc_url_raw( $_SERVER['SERVER_NAME'] ) . $port . esc_url_raw( $_SERVER['REQUEST_URI'] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 		}
 	}
 

@@ -91,7 +91,7 @@ class WPR {
 
 		if ( $login_page ) {
 			if ( $action != '' ) {
-				$real_action = isset( $_REQUEST['action'] ) ? sanitize_text_field( $_REQUEST['action'] ) : 'login';
+				$real_action = isset( $_REQUEST['action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['action'] ) ) : 'login';
 
 				return $real_action == $action;
 			}
@@ -232,7 +232,9 @@ class WPR {
 	}
 
 	public static function redirect_self() {
-		wp_redirect( $_SERVER['REQUEST_URI'] );
+		$url = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/';
+
+		wp_redirect( $url );
 	}
 
 	public static function redirect_referer() {

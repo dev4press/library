@@ -11,14 +11,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="d4p-sidebar">
     <div class="d4p-dashboard-badge" style="background-color: <?php echo esc_attr( panel()->a()->settings()->i()->color() ); ?>;">
         <div class="_icon">
-			<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin, '9x' ); ?>
+			<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin, '9x' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         </div>
         <h3>
 			<?php echo esc_html( panel()->a()->title() ); ?>
         </h3>
         <div class="_version-wrapper">
             <span class="_edition"><?php echo esc_html( ucfirst( panel()->a()->settings()->i()->edition ) ); ?></span>
-            <span class="_version"><?php echo KSES::strong( sprintf( __( 'Version: %s', 'd4plib' ), '<strong>' . esc_html( panel()->a()->settings()->i()->version_full() ) . '</strong>' ) ); ?></span>
+            <span class="_version"><?php echo KSES::strong( sprintf( __( 'Version: %s', 'd4plib' ), '<strong>' . esc_html( panel()->a()->settings()->i()->version_full() ) . '</strong>' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
         </div>
     </div>
 
@@ -40,8 +40,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( ! empty( $group ) ) {
 			echo '<div class="d4p-links-group">';
 
-			foreach ( $group as $link ) {
-				echo '<a class="' . esc_attr( $link['class'] ) . '" href="' . esc_url( $link['url'] ) . '">' . panel()->r()->icon( $link['icon'] ) . '<span>' . $link['label'] . '</span></a>';
+			foreach ( $group as $_link ) {
+				echo '<a class="' . esc_attr( $_link['class'] ) . '" href="' . esc_url( $_link['url'] ) . '">' . panel()->r()->icon( $_link['icon'] ) . '<span>' . $_link['label'] . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			echo '</div>';

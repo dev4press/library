@@ -79,7 +79,7 @@ abstract class AJAX {
 	protected function request_for_form( string $form_key = '' ) : array {
 		$form_key = empty( $form_key ) ? $this->form : $form_key;
 
-		if ( $_SERVER['REQUEST_METHOD'] != 'POST' ) {
+		if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] !== 'POST' ) {
 			$this->raise_error( 'request_invalid_method', null, 'Invalid Request method.', 405 );
 		}
 
@@ -87,7 +87,7 @@ abstract class AJAX {
 			$this->raise_malformed_error( null );
 		}
 
-		$request = (array) $_REQUEST[ $form_key ];
+		$request = (array) $_REQUEST[ $form_key ];  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		if ( empty( $request ) || ! isset( $request['action'], $request['nonce'] ) ) {
 			$this->raise_malformed_error( $request );
@@ -188,7 +188,7 @@ abstract class AJAX {
 
 			die( json_encode( $response ) );
 		} else {
-			die( $response );
+			die( $response ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 }

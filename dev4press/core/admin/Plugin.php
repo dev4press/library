@@ -494,9 +494,9 @@ abstract class Plugin {
 	}
 
 	protected function load_post_get_back() {
-		if ( isset( $_POST[ $this->v() ] ) && sanitize_key( $_POST[ $this->v() ] ) === 'postback' ) {
+		if ( isset( $_POST[ $this->v() ] ) && sanitize_key( $_POST[ $this->v() ] ) === 'postback' ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$this->run_postback();
-		} else if ( isset( $_GET[ $this->v() ] ) && sanitize_key( $_GET[ $this->v() ] ) === 'getback' ) {
+		} else if ( isset( $_GET[ $this->v() ] ) && sanitize_key( $_GET[ $this->v() ] ) === 'getback' ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$this->run_getback();
 		}
 	}

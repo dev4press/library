@@ -44,7 +44,7 @@ class Notice extends Control {
                 <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 			<?php } ?>
 			<?php if ( ! empty( $this->description ) ) { ?>
-                <span class="customize-control-description"><?php echo KSES::standard( $this->description ); ?></span>
+                <span class="customize-control-description"><?php echo KSES::standard( $this->description );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  ?></span>
 			<?php } ?>
         </div>
 		<?php

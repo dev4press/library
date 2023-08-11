@@ -79,7 +79,7 @@ class Download {
 
 		while ( ! feof( $handle ) ) {
 			$buffer = fread( $handle, $part_size );
-			echo $buffer;
+			echo $buffer; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			flush();
 
 			if ( $return_size ) {
@@ -176,7 +176,7 @@ class Download {
 				$buffer = $end - $p + 1;
 			}
 
-			echo fread( $fp, $buffer );
+			echo fread( $fp, $buffer ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			flush();
 		}
 

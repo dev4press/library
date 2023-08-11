@@ -131,7 +131,7 @@ abstract class GetBack {
 			header( 'Content-type: application/force-download' );
 			header( 'Content-Disposition: attachment; filename="' . $export_name . '"' );
 
-			die( $data );
+			die( $data ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			wp_redirect( $this->a()->current_url( false ) );
 			exit;

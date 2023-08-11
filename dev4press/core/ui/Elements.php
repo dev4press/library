@@ -64,7 +64,7 @@ class Elements {
 		$render .= '</div>';
 
 		if ( $echo ) {
-			echo KSES::buttons( $render );
+			echo KSES::buttons( $render ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		return $render;
@@ -91,7 +91,7 @@ class Elements {
 		$render .= '</select>';
 
 		if ( $args['echo'] ) {
-			echo KSES::select( $render );
+			echo KSES::select( $render );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		return $render;
@@ -132,7 +132,7 @@ class Elements {
 		$render .= '</select>';
 
 		if ( $args['echo'] ) {
-			echo KSES::select( $render );
+			echo KSES::select( $render );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		return $render;
@@ -164,7 +164,7 @@ class Elements {
 		$render .= '</div>';
 
 		if ( $args['echo'] ) {
-			echo KSES::checkboxes( $render );
+			echo KSES::checkboxes( $render );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		return $render;
@@ -205,7 +205,7 @@ class Elements {
 		$render .= '</div>';
 
 		if ( $args['echo'] ) {
-			echo KSES::checkboxes( $render );
+			echo KSES::checkboxes( $render );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		return $render;
@@ -235,7 +235,7 @@ class Elements {
 		$render .= '</div>';
 
 		if ( $args['echo'] ) {
-			echo KSES::checkboxes( $render );
+			echo KSES::checkboxes( $render ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		return $render;

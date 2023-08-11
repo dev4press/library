@@ -98,13 +98,13 @@ abstract class Plugin extends BasePlugin {
 
 		if ( $this->page ) {
 			if ( ! empty( $_GET['panel'] ) ) {
-				$this->panel = Sanitize::slug( $_GET['panel'] );
+				$this->panel = Sanitize::slug( $_GET['panel'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			} else {
 				$this->panel = 'dashboard';
 			}
 
 			if ( ! empty( $_GET['subpanel'] ) ) {
-				$this->subpanel = Sanitize::slug( $_GET['subpanel'] );
+				$this->subpanel = Sanitize::slug( $_GET['subpanel'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			}
 
 			$this->screen_setup();

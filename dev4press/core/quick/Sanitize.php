@@ -61,7 +61,7 @@ class Sanitize {
 	}
 
 	public static function url( $url ) : string {
-		return sanitize_url( $url );
+		return esc_url_raw( $url );
 	}
 
 	public static function key( $key ) : string {
@@ -187,11 +187,11 @@ class Sanitize {
 	}
 
 	public static function _get_slug( $name, $default ) {
-		return ! empty( $_GET[ $name ] ) ? self::slug( $_GET[ $name ] ) : $default;
+		return ! empty( $_GET[ $name ] ) ? self::slug( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	}
 
 	public static function _get_basic( $name, $default ) {
-		return ! empty( $_GET[ $name ] ) ? self::basic( $_GET[ $name ] ) : $default;
+		return ! empty( $_GET[ $name ] ) ? self::basic( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	}
 
 	public static function _get_absint( $name, $default ) {

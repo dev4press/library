@@ -180,7 +180,7 @@ abstract class Panel {
 
 		echo '<div class="d4p-inside-wrapper">';
 		if ( $this->has_form() ) {
-			echo $this->form_tag_open();
+			$this->form_tag_open();
 		}
 
 		echo '<div class="d4p-content-wrapper">';
@@ -192,7 +192,7 @@ abstract class Panel {
 		echo '</div>';
 
 		if ( $this->has_form() ) {
-			echo $this->form_tag_close();
+			$this->form_tag_close();
 		}
 		echo '</div>';
 
@@ -236,11 +236,11 @@ abstract class Panel {
 		$this->include_generic( 'content', $name, $subname );
 	}
 
-	public function form_tag_open() : string {
+	public function form_tag_open() {
 		$id  = $this->a()->plugin_prefix . '-form-' . $this->a()->panel;
 		$enc = $this->form_multiform ? 'enctype="multipart/form-data"' : '';
 
-		return '<form method="' . esc_attr( $this->form_method ) . '" action="" id="' . esc_attr( $id ) . '" ' . $enc . ' autocomplete="' . esc_attr( $this->form_autocomplete ) . '">';
+		echo '<form method="' . esc_attr( $this->form_method ) . '" action="" id="' . esc_attr( $id ) . '" ' . $enc . ' autocomplete="' . esc_attr( $this->form_autocomplete ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	public function settings_fields( $action = 'update', $subpanel = false ) {
@@ -255,14 +255,14 @@ abstract class Panel {
 		}
 
 		if ( $subpanel ) {
-			echo "<input type='hidden' name='" . $this->a()->n() . "[subpanel]' value='" . esc_attr( $this->a()->subpanel ) . "' />";
+			echo "<input type='hidden' name='" . esc_attr( $this->a()->n() ) . "[subpanel]' value='" . esc_attr( $this->a()->subpanel ) . "' />";
 		}
 
 		wp_nonce_field( $group . '-options' );
 	}
 
-	public function form_tag_close() : string {
-		return '</form>';
+	public function form_tag_close() {
+		echo '</form>';
 	}
 
 	public function include_accessibility_control() {

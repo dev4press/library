@@ -28,6 +28,7 @@
 namespace Dev4Press\v43\Core\UI;
 
 use Dev4Press\v43\Core\Quick\Sanitize;
+use Dev4Press\v43\Core\Quick\URL;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -61,7 +62,7 @@ abstract class Grid {
 	protected $current_url;
 
 	public function __construct() {
-		$this->current_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+		$this->current_url = URL::current_url();
 		$this->parse_args();
 		$this->table_init();
 	}
@@ -96,7 +97,7 @@ abstract class Grid {
 	}
 
 	protected function no_items() {
-		_e( 'No items found.', 'd4plib' );
+		esc_html_e( 'No items found.', 'd4plib' );
 	}
 
 	protected function current_page() {
@@ -108,16 +109,16 @@ abstract class Grid {
 	}
 
 	protected function parse_args() {
-		$this->filters['order']   = isset( $_GET['order'] ) && strtoupper( $_GET['order'] ) === 'ASC' ? 'ASC' : 'DESC';
-		$this->filters['orderby'] = ! empty( $_GET['orderby'] ) ? Sanitize::basic( $_GET['orderby'] ) : $this->default_orderby;
-		$this->filters['search']  = ! empty( $_GET['search'] ) ? Sanitize::basic( $_GET['search'] ) : '';
+		$this->filters['order']   = isset( $_GET['order'] ) && strtoupper( $_GET['order'] ) === 'ASC' ? 'ASC' : 'DESC'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$this->filters['orderby'] = ! empty( $_GET['orderby'] ) ? Sanitize::basic( $_GET['orderby'] ) : $this->default_orderby; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$this->filters['search']  = ! empty( $_GET['search'] ) ? Sanitize::basic( $_GET['search'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$this->filters['pg']      = ! empty( $_GET['pg'] ) ? absint( $_GET['pg'] ) : 1;
 
 		foreach ( $this->vars as $key => $method ) {
 			$real = $this->prefix . '-' . $key;
 
 			if ( ! empty( $_GET[ $real ] ) ) {
-				$this->filters[ $key ] = Sanitize::$method( $_GET[ $real ] );
+				$this->filters[ $key ] = Sanitize::$method( $_GET[ $real ] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			}
 		}
 	}
@@ -168,32 +169,32 @@ abstract class Grid {
 			}
 
 			if ( $disable_first ) {
-				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['first'] . '</span>';
+				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . esc_html($this->sortables['first']) . '</span>';
 			} else {
 				$page_links[] = sprintf(
 					"<a class='first-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 					esc_url( remove_query_arg( 'pg', $current_url ) ),
-					__( 'First page', 'd4plib' ),
-					$this->sortables['first']
+					esc_html__( 'First page', 'd4plib' ),
+					esc_html($this->sortables['first'])
 				);
 			}
 
 			if ( $disable_prev ) {
-				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . $this->sortables['prev'] . '</span>';
+				$page_links[] = '<span class="tablenav-pages-navspan nav-button disabled" aria-hidden="true">' . esc_html($this->sortables['prev']) . '</span>';
 			} else {
 				$page_links[] = sprintf(
 					"<a class='prev-page nav-button' href='%s'><span class='screen-reader-text'>%s</span><span aria-hidden='true'>%s</span></a>",
 					esc_url( add_query_arg( 'pg', max( 1, $current - 1 ), $current_url ) ),
-					__( 'Previous page', 'd4plib' ),
-					$this->sortables['prev']
+					esc_html__( 'Previous page', 'd4plib' ),
+					esc_html($this->sortables['prev'])
 				);
 			}
 
 			$html_current_page = sprintf(
 				"%s<input class='current-page' id='current-page-selector' type='number' step='1' min='1' max='%d' name='pg' value='%s' aria-describedby='table-paging' /><span class='tablenav-paging-text'>",
 				'<label for="current-page-selector" class="screen-reader-text">' . esc_html__( 'Current Page', 'd4plib' ) . '</label>',
-				$total_pages,
-				$current
+				esc_html($total_pages),
+				esc_html($current)
 			);
 
 			$html_total_pages = sprintf( "<span class='total-pages'>%s</span>", number_format_i18n( $total_pages ) );
@@ -235,7 +236,7 @@ abstract class Grid {
 			$output .= "\n<span class='pagination-links'>" . implode( "\n", $page_links ) . '</span>';
 		}
 
-		echo "<div class='d4p-grid-pager'>$output</div>";
+		echo "<div class='d4p-grid-pager'>$output</div>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	protected function header() {
@@ -272,7 +273,7 @@ abstract class Grid {
 					$column_label = sprintf( '<a href="%s"><span>%s</span><span class="sorting-icon">%s</span></a>', esc_url( $url ), $column_label, $icon );
 				}
 
-				echo '<th scope="col" class="' . esc_attr( join( ' ', $class ) ) . '">' . $column_label . '</th>';
+				echo '<th scope="col" class="' . esc_attr( join( ' ', $class ) ) . '">' . $column_label . '</th>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			?>
@@ -294,12 +295,12 @@ abstract class Grid {
 	}
 
 	protected function row( $item ) {
-		echo '<tr class="' . $this->row_class( $item ) . '">';
+		echo '<tr class="' . Sanitize::html_classes( $this->row_class( $item ) ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$columns = $this->table_columns;
 
 		foreach ( $columns as $column_name => $column_label ) {
-			echo '<td data-label="' . esc_attr( $column_label ) . '" class="column-' . $column_name . '">';
+			echo '<td data-label="' . esc_attr( $column_label ) . '" class="column-' . esc_attr( $column_name ) . '">';
 			echo '<div class="cell-wrapper">';
 			if ( method_exists( $this, 'column_' . $column_name ) ) {
 				call_user_func( array( $this, 'column_' . $column_name ), $item );

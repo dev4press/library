@@ -39,12 +39,12 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
     <div class="d4p-panel-scroller d4p-scroll-active">
         <div class="d4p-panel-title">
             <div class="_icon">
-				<?php echo panel()->r()->icon( $_panel->icon ); ?>
+				<?php echo panel()->r()->icon( $_panel->icon ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
             <h3><?php echo esc_html( $_panel->title ); ?></h3>
 			<?php
 
-			echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . $_subpanels[ $_subpanel ]['title'] . '</h4>';
+			echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . $_subpanels[ $_subpanel ]['title'] . '</h4>'; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 			if ( $_beta ) {
 				echo '<div class="_beta"><i class="d4p-icon d4p-ui-flask"></i> <span>' . esc_html__( 'Beta Feature', 'd4plib' ) . '</span></div>';

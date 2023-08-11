@@ -33,11 +33,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Request {
 	public static function is_post() : bool {
-		return $_SERVER['REQUEST_METHOD'] === 'POST';
+		return isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST';
 	}
 
 	public static function is_get() : bool {
-		return $_SERVER['REQUEST_METHOD'] === 'GET';
+		return isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'GET';
 	}
 
 	public static function has_key( $key, $scope = 'REQUEST' ) : bool {
@@ -46,7 +46,7 @@ class Request {
 			case 'REQUEST':
 				return isset( $_REQUEST[ $key ] );
 			case 'POST':
-				return isset( $_POST[ $key ] );
+				return isset( $_POST[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			case 'GET':
 				return isset( $_GET[ $key ] );
 		}

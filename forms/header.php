@@ -19,14 +19,14 @@ if ( panel()->a()->plugin()->f() ) {
 }
 
 ?>
-<div class="<?php echo Sanitize::html_classes( $_classes ); ?>">
+<div class="<?php echo Sanitize::html_classes( $_classes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
 	<?php panel()->include_notices(); ?>
 
     <div class="d4p-header">
         <div class="d4p-navigator">
             <ul>
                 <li class="d4p-nav-button">
-                    <a href="#"><?php echo panel()->r()->icon( $_panels[ $_panel ]['icon'] ); ?><?php echo $_panels[ $_panel ]['title']; ?></a>
+                    <a href="#"><?php echo panel()->r()->icon( $_panels[ $_panel ]['icon'] );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo $_panels[ $_panel ]['title'];  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
 					<?php if ( $_panel != 'install' && $_panel != 'update' ) { ?>
                         <ul>
 							<?php
@@ -43,9 +43,9 @@ if ( panel()->a()->plugin()->f() ) {
 
 									if ( $add ) {
 										if ( $panel != $_panel ) {
-											echo '<li><a href="' . esc_url( panel()->a()->panel_url( $panel ) ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>';
+											echo '<li><a href="' . esc_url( panel()->a()->panel_url( $panel ) ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 										} else {
-											echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</li>';
+											echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 										}
 									}
 								}
@@ -57,7 +57,7 @@ if ( panel()->a()->plugin()->f() ) {
                 </li>
 				<?php if ( ! empty( $_subpanels ) ) { ?>
                     <li class="d4p-nav-button">
-                        <a href="#"><?php echo panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ); ?><?php echo esc_html( $_subpanels[ $_subpanel ]['title'] ); ?></a>
+                        <a href="#"><?php echo panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html( $_subpanels[ $_subpanel ]['title'] ); ?></a>
                         <ul>
 							<?php
 
@@ -83,9 +83,9 @@ if ( panel()->a()->plugin()->f() ) {
 								$_url = $obj['url'] ?? panel()->a()->panel_url( $_panel, $subpanel );
 
 								if ( $subpanel != $_subpanel ) {
-									echo '<li><a href="' . esc_url( $_url ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . esc_html( $obj['title'] ) . $_feature_status . '</a></li>';
+									echo '<li><a href="' . esc_url( $_url ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . esc_html( $obj['title'] ) . $_feature_status . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								} else {
-									echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . esc_html( $obj['title'] ) . $_feature_status . '</li>';
+									echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . esc_html( $obj['title'] ) . $_feature_status . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								}
 							}
 
@@ -93,11 +93,11 @@ if ( panel()->a()->plugin()->f() ) {
                         </ul>
                     </li>
 				<?php } ?>
-				<?php echo panel()->header_fill(); ?>
+				<?php echo panel()->header_fill(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </ul>
         </div>
         <div class="d4p-plugin">
-			<?php echo panel()->a()->title(); ?>
+			<?php echo panel()->a()->title(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         </div>
     </div>
 	<?php panel()->include_messages(); ?>

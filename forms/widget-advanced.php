@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <tbody>
     <tr>
         <td class="cell-singular">
-            <label for="<?php echo $this->get_field_id( '_users' ); ?>"><?php esc_html_e( 'Show widget to', 'd4plib' ); ?>:</label>
+            <label for="<?php echo esc_attr( $this->get_field_id( '_users' ) ); ?>"><?php esc_html_e( 'Show widget to', 'd4plib' ); ?>:</label>
 			<?php
 			Elements::instance()->select(
 				$this->get_list_user_visibility(),
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <tbody>
         <tr>
             <td class="cell-singular">
-                <label for="<?php echo $this->get_field_id( '_roles' ); ?>"><?php esc_html_e( 'Roles', 'd4plib' ); ?>:</label>
+                <label for="<?php echo esc_attr( $this->get_field_id( '_roles' ) ); ?>"><?php esc_html_e( 'Roles', 'd4plib' ); ?>:</label>
 				<?php
 				Elements::instance()->checkboxes(
 					WPR::list_user_roles(),
@@ -65,8 +65,8 @@ if ( ! defined( 'ABSPATH' ) ) {
         <tbody>
         <tr>
             <td class="cell-singular">
-                <label for="<?php echo $this->get_field_id( '_capabilities' ); ?>"><?php esc_html_e( 'Capabilities', 'd4plib' ); ?>:</label>
-                <input class="widefat" id="<?php echo $this->get_field_id( '_capabilities' ); ?>" name="<?php echo $this->get_field_name( '_capabilities' ); ?>" type="text" value="<?php echo esc_attr( $instance['_capabilities'] ); ?>"/>
+                <label for="<?php echo esc_attr( $this->get_field_id( '_capabilities' ) ); ?>"><?php esc_html_e( 'Capabilities', 'd4plib' ); ?>:</label>
+                <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( '_capabilities' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( '_capabilities' ) ); ?>" type="text" value="<?php echo esc_attr( $instance['_capabilities'] ); ?>"/>
 
                 <em>
 					<?php esc_html_e( 'One or more capabilities, separated by comma.', 'd4plib' ); ?>
@@ -82,11 +82,11 @@ if ( ! defined( 'ABSPATH' ) ) {
     <tbody>
     <tr>
         <td class="cell-singular">
-            <label for="<?php echo $this->get_field_id( '_hook' ); ?>"><?php esc_html_e( 'Custom filter name', 'd4plib' ); ?>:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id( '_hook' ); ?>" name="<?php echo $this->get_field_name( '_hook' ); ?>" type="text" value="<?php echo esc_attr( $instance['_hook'] ); ?>"/>
+            <label for="<?php echo esc_attr( $this->get_field_id( '_hook' ) ); ?>"><?php esc_html_e( 'Custom filter name', 'd4plib' ); ?>:</label>
+            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( '_hook' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( '_hook' ) ); ?>" type="text" value="<?php echo esc_attr( $instance['_hook'] ); ?>"/>
 
             <em>
-				<?php echo KSES::strong( sprintf( __( 'Using this value, widget will run filter for the final visibility check. This filter will be %1$s, replace the %2$s with your custom filter name defined here.', 'd4plib' ), "<strong>'" . $this->visibility_hook_format() . "'</strong>", "<strong>'{filter_name}'</strong>" ) ); ?>
+				<?php echo KSES::strong( sprintf( __( 'Using this value, widget will run filter for the final visibility check. This filter will be %1$s, replace the %2$s with your custom filter name defined here.', 'd4plib' ), "<strong>'" . $this->visibility_hook_format() . "'</strong>", "<strong>'{filter_name}'</strong>" ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </em>
         </td>
     </tr>

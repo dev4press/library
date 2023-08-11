@@ -154,7 +154,7 @@ abstract class Widget extends WP_Widget {
 					set_transient( $this->cache_key, $render, $this->cache_time * 3600 );
 				}
 
-				echo $render;
+				echo $render; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} else {
 				$this->widget_output( $args, $instance );
 			}
@@ -238,17 +238,17 @@ abstract class Widget extends WP_Widget {
 	protected function widget_output( array $args, array $instance ) {
 		extract( $args, EXTR_SKIP );
 
-		echo $before_widget;
+		echo $before_widget; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$title = $this->title( $instance );
 
 		if ( ! empty( $title ) || $this->allow_empty_title ) {
-			echo $before_title . $title . $after_title;
+			echo $before_title . $title . $after_title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		$this->render_widget( $instance );
 
-		echo $after_widget;
+		echo $after_widget; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	protected function render_widget( array $instance ) {
@@ -330,16 +330,16 @@ abstract class Widget extends WP_Widget {
 	protected function render_widget_header( array $instance ) {
 		$classes = $this->render_header_classes( $instance );
 
-		echo '<div class="' . join( ' ', $classes ) . '">' . PHP_EOL;
+		echo '<div class="' . Sanitize::html_classes( $classes ) . '">' . PHP_EOL; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		if ( ! empty( $instance['_before'] ) ) {
-			echo '<div class="d4p-widget-before">' . $instance['_before'] . '</div>';
+			echo '<div class="d4p-widget-before">' . $instance['_before'] . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
 	protected function render_widget_footer( array $instance ) {
 		if ( ! empty( $instance['_after'] ) ) {
-			echo '<div class="d4p-widget-after">' . $instance['_after'] . '</div>';
+			echo '<div class="d4p-widget-after">' . $instance['_after'] . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		echo '</div>';

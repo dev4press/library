@@ -27,6 +27,8 @@
 
 namespace Dev4Press\v43\Core\Plugins;
 
+use Dev4Press\v43\Core\Quick\Sanitize;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -103,29 +105,31 @@ abstract class Wizard {
 	}
 
 	public function panel_postback() {
-		$post = $_POST[ $this->a()->plugin_prefix ]['wizard'];
+		$post = $_POST[ $this->a()->plugin_prefix ]['wizard'] ?? array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$goto = $this->a()->panel_url();
 
-		$this->setup_panel( $post['_page'] );
+		if ( ! empty( $post ) ) {
+			$this->setup_panel( Sanitize::slug( $post['_page'] ) );
 
-		if ( wp_verify_nonce( $post['_nonce'], $this->get_form_nonce_key( $this->current_panel() ) ) ) {
-			$data = isset( $post[ $this->current_panel() ] ) ? (array) $post[ $this->current_panel() ] : array();
+			if ( wp_verify_nonce( $post['_nonce'], $this->get_form_nonce_key( $this->current_panel() ) ) ) {
+				$data = isset( $post[ $this->current_panel() ] ) ? (array) $post[ $this->current_panel() ] : array();
 
-			switch ( $this->current_panel() ) {
-				case 'intro':
-				case 'editors':
-				case 'features':
-				case 'integrations':
-				case 'finish':
-					$this->postback_default( $this->current_panel(), $data );
-					break;
+				switch ( $this->current_panel() ) {
+					case 'intro':
+					case 'editors':
+					case 'features':
+					case 'integrations':
+					case 'finish':
+						$this->postback_default( $this->current_panel(), $data );
+						break;
+				}
+
+				if ( $this->current_panel() != 'finish' ) {
+					$goto = $this->a()->panel_url( 'wizard', $this->next_panel() );
+				}
+			} else {
+				$goto = $this->a()->panel_url( 'wizard', $this->current_panel() );
 			}
-
-			if ( $this->current_panel() != 'finish' ) {
-				$goto = $this->a()->panel_url( 'wizard', $this->next_panel() );
-			}
-		} else {
-			$goto = $this->a()->panel_url( 'wizard', $this->current_panel() );
 		}
 
 		wp_redirect( $goto );
@@ -137,10 +141,10 @@ abstract class Wizard {
 
 		?>
 
-        <input type="hidden" name="<?php echo $_name; ?>[_nonce]" value="<?php echo $this->get_form_nonce(); ?>"/>
-        <input type="hidden" name="<?php echo $_name; ?>[_page]" value="<?php echo $this->current_panel(); ?>"/>
-        <input type="hidden" name="<?php echo $this->a()->plugin_prefix; ?>_handler" value="postback"/>
-        <input type="hidden" name="option_page" value="<?php echo $this->a()->plugin; ?>-wizard"/>
+        <input type="hidden" name="<?php echo esc_attr( $_name ); ?>[_nonce]" value="<?php echo esc_attr( $this->get_form_nonce() ); ?>"/>
+        <input type="hidden" name="<?php echo esc_attr( $_name ); ?>[_page]" value="<?php echo esc_attr( $this->current_panel() ); ?>"/>
+        <input type="hidden" name="<?php echo esc_attr( $this->a()->plugin_prefix ); ?>_handler" value="postback"/>
+        <input type="hidden" name="option_page" value="<?php echo esc_attr( $this->a()->plugin ); ?>-wizard"/>
 
 		<?php
 	}

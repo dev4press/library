@@ -30,6 +30,7 @@ namespace Dev4Press\v43\Core\Plugins;
 use Dev4Press\v43\API\Four;
 use Dev4Press\v43\Core\DateTime;
 use Dev4Press\v43\Core\Quick\BBP;
+use Dev4Press\v43\Core\Quick\KSES;
 use Dev4Press\v43\Library;
 use Dev4Press\v43\WordPress;
 
@@ -158,7 +159,7 @@ abstract class Core {
 		$render .= sprintf( _x( 'System requirements check for %1$s failed. This plugin requires %2$s. The plugin will now be disabled.', 'System requirement notice', 'd4plib' ), '<strong>' . $plugin . '</strong>', join( ', ', $versions ) );
 		$render .= '</p></div>';
 
-		echo $render;
+		echo KSES::standard( $render ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$this->deactivate();
 	}

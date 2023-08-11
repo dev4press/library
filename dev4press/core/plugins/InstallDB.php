@@ -75,8 +75,8 @@ abstract class InstallDB {
 
 			$query = $this->wpdb()->prepare( 'SHOW TABLES LIKE %s', $table );
 
-			if ( $this->wpdb()->get_var( $query ) == $table ) {
-				$columns = $this->wpdb()->get_results( 'SHOW COLUMNS FROM ' . $table );
+			if ( $this->wpdb()->get_var( $query ) == $table ) { // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+				$columns = $this->wpdb()->get_results( 'SHOW COLUMNS FROM ' . $table ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 				if ( $count != count( $columns ) ) {
 					$result[ $table ] = array(
@@ -99,13 +99,13 @@ abstract class InstallDB {
 
 	public function truncate() {
 		foreach ( $this->tables as $obj ) {
-			$this->wpdb()->query( 'TRUNCATE TABLE ' . $this->table( $obj ) );
+			$this->wpdb()->query( 'TRUNCATE TABLE ' . $this->table( $obj ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		}
 	}
 
 	public function drop() {
 		foreach ( $this->tables as $obj ) {
-			$this->wpdb()->query( 'DROP TABLE IF EXISTS ' . $this->table( $obj ) );
+			$this->wpdb()->query( 'DROP TABLE IF EXISTS ' . $this->table( $obj ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		}
 	}
 

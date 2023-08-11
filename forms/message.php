@@ -11,7 +11,7 @@ $_message = '';
 $_color   = 'success';
 
 if ( isset( $_GET['message'] ) && $_GET['message'] != '' ) {
-	$msg_code = Sanitize::slug( $_GET['message'] );
+	$msg_code = Sanitize::slug( $_GET['message'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 	switch ( $msg_code ) {
 		case 'saved':

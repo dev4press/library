@@ -20,7 +20,7 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
 
 		foreach ( $buttons as $code => $button ) {
 			$class = ( $button['default'] ?? false ) ? 'is-selected' : '';
-			echo '<button class="' . $class . '" data-selector="' . $button['selector'] . '" data-filter="' . $code . '" type="button">' . $button['label'] . '</button>';
+			echo '<button class="' . esc_attr( $class ) . '" data-selector="' . esc_attr( $button['selector'] ) . '" data-filter="' . esc_attr( $code ) . '" type="button">' . esc_html( $button['label'] ) . '</button>';
 		}
 
 		?>

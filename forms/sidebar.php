@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v43\Core\Quick\KSES;
 use Dev4Press\v43\Core\UI\Elements;
 use function Dev4Press\v43\Functions\panel;
 
@@ -14,7 +15,7 @@ $_panel = panel()->object();
 <div class="d4p-sidebar">
     <div class="d4p-panel-title">
         <div class="_icon">
-			<?php echo panel()->r()->icon( $_panel->icon ); ?>
+			<?php echo panel()->r()->icon( $_panel->icon ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         </div>
         <h3><?php echo esc_html( $_panel->title ); ?></h3>
 
@@ -43,7 +44,7 @@ $_panel = panel()->object();
 	<?php if ( isset( $_panel->links ) ) { ?>
 
         <div class="d4p-panel-links">
-            <p><?php echo $_panel->links['info']; ?></p>
+            <p><?php echo KSES::standard( $_panel->links['info'] ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 			<?php Elements::instance()->buttons( $_panel->links['buttons'] ); ?>
         </div>
 

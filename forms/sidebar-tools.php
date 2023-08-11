@@ -21,13 +21,13 @@ $_button_id = $_subpanels[ $_subpanel ]['button_id'] ?? panel()->a()->plugin_pre
     <div class="d4p-panel-scroller d4p-scroll-active">
         <div class="d4p-panel-title">
             <div class="_icon">
-				<?php echo panel()->r()->icon( $_panel->icon ); ?>
+				<?php echo panel()->r()->icon( $_panel->icon ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
             <h3><?php echo esc_html( $_panel->title ); ?></h3>
 			<?php
 
 			if ( $_subpanel != 'index' ) {
-				echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . esc_html( $_subpanels[ $_subpanel ]['title'] ) . '</h4>';
+				echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . esc_html( $_subpanels[ $_subpanel ]['title'] ) . '</h4>'; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			?>
