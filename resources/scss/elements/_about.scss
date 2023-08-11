@@ -267,10 +267,11 @@
                     font-size: 13px;
                     font-weight: bold;
                     line-height: 22px;
+                    display: flex;
 
                     > span {
-                        display: inline-block;
-                        width: 50%;
+                        display: block;
+                        flex-grow: 1;
                     }
 
                     ._free {
