@@ -174,6 +174,14 @@ abstract class DBLite {
 		return $_build;
 	}
 
+	public function run( string $query, string $output = OBJECT ) {
+		$_value = $this->get_results( $query, $output );
+
+		$this->_copy_logged_query();
+
+		return $_value;
+	}
+
 	public function run_and_index( string $query, string $field, string $output = OBJECT ) : array {
 		$raw = $this->get_results( $query, $output );
 
