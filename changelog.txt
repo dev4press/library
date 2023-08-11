@@ -1,7 +1,7 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 4.3 - 2023.08.01 =
+= Version 4.3 - 2023.08.11 =
 * New: some forms panel split into the elements files for re-usability
 * New: settings elements can have toggleable additional information
 * New: settings elements can have buttons
@@ -13,7 +13,9 @@
 * New: many smaller new methods and functions added through the library
 * New: added several more UI icons
 * Edit: improvements to the `Panel` class URLs and forms loading
+* Edit: improvements to the `DBLite` class by using magic `__call` method
 * Edit: improvements to the Geolocation process and classes
+* Edit: improvements to the coding standards and formatting
 * Edit: massive improvements to Features in relation to network mode plugins
 * Edit: many updates to the plugin settings panel rendering
 * Edit: many styling improvements to the various parts of the interface
@@ -24,6 +26,7 @@
 * Edit: optimization of the font generating file sources
 * Removed: clipboard JS file since it is already in WordPress core
 * Removed: standalone print and debug functions as no longer used
+* Removed: all previously deprecated methods
 * Fix: header navigation in multisite mode show items that don't belong
 
 = Version 4.2 - 2023.06.16 =
