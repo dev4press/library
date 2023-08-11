@@ -48,31 +48,31 @@ trait Taxonomy {
 			'menu_name'     => $plural,
 		);
 
-		$labels[ 'all_items' ]                  = sprintf( _x( 'All %s', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'edit_item' ]                  = sprintf( _x( 'Edit %s', 'Taxonomy label', 'd4plib' ), $singular );
-		$labels[ 'view_item' ]                  = sprintf( _x( 'View %s', 'Taxonomy label', 'd4plib' ), $singular );
-		$labels[ 'update_item' ]                = sprintf( _x( 'Update %s', 'Taxonomy label', 'd4plib' ), $singular );
-		$labels[ 'add_new_item' ]               = sprintf( _x( 'Add New %s', 'Taxonomy label', 'd4plib' ), $singular );
-		$labels[ 'new_item_name' ]              = sprintf( _x( 'New %s Name', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'parent_item' ]                = sprintf( _x( 'Parent %s', 'Taxonomy label', 'd4plib' ), $singular );
-		$labels[ 'parent_item_colon' ]          = sprintf( _x( 'Parent %s:', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'search_items' ]               = sprintf( _x( 'Search %s', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'popular_items' ]              = sprintf( _x( 'Popular %s', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'separate_items_with_commas' ] = sprintf( _x( 'Separate %s with commas', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'add_or_remove_items' ]        = sprintf( _x( 'Add or remove %s', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'choose_from_most_used' ]      = sprintf( _x( 'Choose from the most used %s', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'not_found' ]                  = sprintf( _x( 'No %s found', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'no_terms' ]                   = sprintf( _x( 'No %s', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'items_list_navigation' ]      = sprintf( _x( '%s list navigation', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'items_list' ]                 = sprintf( _x( '%s list', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'most_used' ]                  = _x( 'Most Used', 'Taxonomy label', 'd4plib' );
-		$labels[ 'back_to_items' ]              = sprintf( _x( '&larr; Back to %s', 'Taxonomy label', 'd4plib' ), $plural );
-		$labels[ 'item_link' ]                  = sprintf( _x( '%s Link', 'Taxonomy label', 'd4plib' ), $singular );
-		$labels[ 'item_link_description' ]      = sprintf( _x( 'A link to a %s', 'Taxonomy label', 'd4plib' ), $singular );
-		$labels[ 'name_field_description' ]     = _x( 'The name is how it appears on your site.', 'Taxonomy label', 'd4plib' );
-		$labels[ 'slug_field_description' ]     = _x( 'The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.', 'Taxonomy label', 'd4plib' );
-		$labels[ 'parent_field_description' ]   = _x( 'Assign a parent term to create a hierarchy. The term Jazz, for example, would be the parent of Bebop and Big Band.', 'Taxonomy label', 'd4plib' );
-		$labels[ 'desc_field_description' ]     = _x( 'The description is not prominent by default; however, some themes may show it.', 'Taxonomy label', 'd4plib' );
+		$labels['all_items']                  = sprintf( _x( 'All %s', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['edit_item']                  = sprintf( _x( 'Edit %s', 'Taxonomy label', 'd4plib' ), $singular );
+		$labels['view_item']                  = sprintf( _x( 'View %s', 'Taxonomy label', 'd4plib' ), $singular );
+		$labels['update_item']                = sprintf( _x( 'Update %s', 'Taxonomy label', 'd4plib' ), $singular );
+		$labels['add_new_item']               = sprintf( _x( 'Add New %s', 'Taxonomy label', 'd4plib' ), $singular );
+		$labels['new_item_name']              = sprintf( _x( 'New %s Name', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['parent_item']                = sprintf( _x( 'Parent %s', 'Taxonomy label', 'd4plib' ), $singular );
+		$labels['parent_item_colon']          = sprintf( _x( 'Parent %s:', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['search_items']               = sprintf( _x( 'Search %s', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['popular_items']              = sprintf( _x( 'Popular %s', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['separate_items_with_commas'] = sprintf( _x( 'Separate %s with commas', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['add_or_remove_items']        = sprintf( _x( 'Add or remove %s', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['choose_from_most_used']      = sprintf( _x( 'Choose from the most used %s', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['not_found']                  = sprintf( _x( 'No %s found', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['no_terms']                   = sprintf( _x( 'No %s', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['items_list_navigation']      = sprintf( _x( '%s list navigation', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['items_list']                 = sprintf( _x( '%s list', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['most_used']                  = _x( 'Most Used', 'Taxonomy label', 'd4plib' );
+		$labels['back_to_items']              = sprintf( _x( '&larr; Back to %s', 'Taxonomy label', 'd4plib' ), $plural );
+		$labels['item_link']                  = sprintf( _x( '%s Link', 'Taxonomy label', 'd4plib' ), $singular );
+		$labels['item_link_description']      = sprintf( _x( 'A link to a %s', 'Taxonomy label', 'd4plib' ), $singular );
+		$labels['name_field_description']     = _x( 'The name is how it appears on your site.', 'Taxonomy label', 'd4plib' );
+		$labels['slug_field_description']     = _x( 'The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.', 'Taxonomy label', 'd4plib' );
+		$labels['parent_field_description']   = _x( 'Assign a parent term to create a hierarchy. The term Jazz, for example, would be the parent of Bebop and Big Band.', 'Taxonomy label', 'd4plib' );
+		$labels['desc_field_description']     = _x( 'The description is not prominent by default; however, some themes may show it.', 'Taxonomy label', 'd4plib' );
 
 		return $labels;
 	}

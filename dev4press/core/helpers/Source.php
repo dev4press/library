@@ -125,7 +125,7 @@ class Source {
 		);
 
 		if ( ! empty( $value ) ) {
-			$result[ 'value' ] = $value;
+			$result['value'] = $value;
 		}
 
 		$this->origins[ $file ] = $result;

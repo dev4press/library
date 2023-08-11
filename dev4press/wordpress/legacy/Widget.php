@@ -111,14 +111,14 @@ abstract class Widget extends WP_Widget {
 		);
 
 		if ( $this->shortcode_mirror ) {
-			$tabs[ 'shortcode' ] = array(
+			$tabs['shortcode'] = array(
 				'name'    => '<span title="' . esc_attr__( 'Shortcode', 'd4plib' ) . '" class="dashicons dashicons-shortcode"></span>',
 				'include' => array( 'widget-shortcode' ),
 			);
 		}
 
 		if ( $this->results_cacheable ) {
-			$tabs[ 'global' ][ 'include' ][] = 'widget-cache';
+			$tabs['global']['include'][] = 'widget-cache';
 		}
 
 		if ( ! empty( $the_tabs ) ) {
@@ -174,46 +174,46 @@ abstract class Widget extends WP_Widget {
 	protected function shared_update( array $new_instance, array $old_instance ) : array {
 		$instance = $old_instance;
 
-		$instance[ 'title' ] = Sanitize::basic( $new_instance[ 'title' ] );
+		$instance['title'] = Sanitize::basic( $new_instance['title'] );
 
-		$instance[ '_class' ] = Sanitize::basic( $new_instance[ '_class' ] );
-		$instance[ '_tab' ]   = sanitize_key( $new_instance[ '_tab' ] );
-		$instance[ '_hook' ]  = sanitize_key( $new_instance[ '_hook' ] );
-		$instance[ '_devid' ] = sanitize_key( $new_instance[ '_devid' ] );
+		$instance['_class'] = Sanitize::basic( $new_instance['_class'] );
+		$instance['_tab']   = sanitize_key( $new_instance['_tab'] );
+		$instance['_hook']  = sanitize_key( $new_instance['_hook'] );
+		$instance['_devid'] = sanitize_key( $new_instance['_devid'] );
 
-		$instance[ '_users' ] = $this->get_valid_list_value( '_users', $new_instance[ '_users' ], array_keys( $this->get_list_user_visibility() ) );
+		$instance['_users'] = $this->get_valid_list_value( '_users', $new_instance['_users'], array_keys( $this->get_list_user_visibility() ) );
 
-		$_capabilities = Sanitize::basic( $new_instance[ '_capabilities' ] );
+		$_capabilities = Sanitize::basic( $new_instance['_capabilities'] );
 		$_capabilities = explode( ',', $_capabilities );
 		$_capabilities = array_map( 'trim', $_capabilities );
 		$_capabilities = array_unique( $_capabilities );
 		$_capabilities = array_filter( $_capabilities );
 
-		$instance[ '_capabilities' ] = join( ', ', $_capabilities );
+		$instance['_capabilities'] = join( ', ', $_capabilities );
 
-		$instance[ '_roles' ] = array();
+		$instance['_roles'] = array();
 
-		if ( isset( $new_instance[ '_roles' ] ) ) {
-			$_roles      = array_map( '\Dev4Press\v43\Core\Quick\Sanitize::basic', $new_instance[ '_roles' ] );
+		if ( isset( $new_instance['_roles'] ) ) {
+			$_roles      = array_map( '\Dev4Press\v43\Core\Quick\Sanitize::basic', $new_instance['_roles'] );
 			$valid_roles = WPR::list_user_roles();
 
 			foreach ( $_roles as $role ) {
 				if ( isset( $valid_roles[ $role ] ) ) {
-					$instance[ '_roles' ][] = $role;
+					$instance['_roles'][] = $role;
 				}
 			}
 		}
 
-		if ( isset( $new_instance[ '_cached' ] ) ) {
-			$instance[ '_cached' ] = absint( $new_instance[ '_cached' ] );
+		if ( isset( $new_instance['_cached'] ) ) {
+			$instance['_cached'] = absint( $new_instance['_cached'] );
 		}
 
 		if ( current_user_can( 'unfiltered_html' ) ) {
-			$instance[ '_before' ] = $new_instance[ '_before' ];
-			$instance[ '_after' ]  = $new_instance[ '_after' ];
+			$instance['_before'] = $new_instance['_before'];
+			$instance['_after']  = $new_instance['_after'];
 		} else {
-			$instance[ '_before' ] = Sanitize::html( $new_instance[ '_before' ] );
-			$instance[ '_after' ]  = Sanitize::html( $new_instance[ '_after' ] );
+			$instance['_before'] = Sanitize::html( $new_instance['_before'] );
+			$instance['_after']  = Sanitize::html( $new_instance['_after'] );
 		}
 
 		return $instance;
@@ -265,9 +265,9 @@ abstract class Widget extends WP_Widget {
 		$visible = $this->is_visible( $instance );
 
 		if ( $visible ) {
-			$users = $instance[ '_users' ] ?? 'all';
-			$roles = $instance[ '_roles' ] ?? array();
-			$caps  = $instance[ '_capabilities' ] ?? '';
+			$users = $instance['_users'] ?? 'all';
+			$roles = $instance['_roles'] ?? array();
+			$caps  = $instance['_capabilities'] ?? '';
 
 			$logged = is_user_logged_in();
 
@@ -296,8 +296,8 @@ abstract class Widget extends WP_Widget {
 			}
 		}
 
-		if ( isset( $instance[ '_hook' ] ) && $instance[ '_hook' ] != '' ) {
-			$visible = apply_filters( $this->widget_base . '_visible_' . $instance[ '_hook' ], $visible, $this );
+		if ( isset( $instance['_hook'] ) && $instance['_hook'] != '' ) {
+			$visible = apply_filters( $this->widget_base . '_visible_' . $instance['_hook'], $visible, $this );
 		}
 
 		return $visible;
@@ -320,8 +320,8 @@ abstract class Widget extends WP_Widget {
 			$class[] = $this->widget_class;
 		}
 
-		if ( ! empty( $instance[ '_class' ] ) ) {
-			$class[] = $instance[ '_class' ];
+		if ( ! empty( $instance['_class'] ) ) {
+			$class[] = $instance['_class'];
 		}
 
 		return $class;
@@ -332,14 +332,14 @@ abstract class Widget extends WP_Widget {
 
 		echo '<div class="' . join( ' ', $classes ) . '">' . PHP_EOL;
 
-		if ( ! empty( $instance[ '_before' ] ) ) {
-			echo '<div class="d4p-widget-before">' . $instance[ '_before' ] . '</div>';
+		if ( ! empty( $instance['_before'] ) ) {
+			echo '<div class="d4p-widget-before">' . $instance['_before'] . '</div>';
 		}
 	}
 
 	protected function render_widget_footer( array $instance ) {
-		if ( ! empty( $instance[ '_after' ] ) ) {
-			echo '<div class="d4p-widget-after">' . $instance[ '_after' ] . '</div>';
+		if ( ! empty( $instance['_after'] ) ) {
+			echo '<div class="d4p-widget-after">' . $instance['_after'] . '</div>';
 		}
 
 		echo '</div>';
@@ -347,11 +347,11 @@ abstract class Widget extends WP_Widget {
 
 	protected function prepare_cache( array $instance ) {
 		if ( $this->results_cacheable ) {
-			$this->cache_time = isset( $instance[ '_cached' ] ) ? absint( $instance[ '_cached' ] ) : 0;
+			$this->cache_time = isset( $instance['_cached'] ) ? absint( $instance['_cached'] ) : 0;
 
 			if ( $this->cache_time > 0 ) {
 				$copy = (array) $instance;
-				unset( $copy[ '_cached' ] );
+				unset( $copy['_cached'] );
 
 				$this->cache_key = $this->cache_prefix . '_' . md5( $this->widget_base . '_' . serialize( $copy ) );
 			}
@@ -385,7 +385,7 @@ abstract class Widget extends WP_Widget {
 	}
 
 	public function title( array $instance ) : string {
-		return $instance[ 'title' ] ?? '';
+		return $instance['title'] ?? '';
 	}
 
 	public function is_visible( array $instance ) : bool {
@@ -413,8 +413,8 @@ abstract class Widget extends WP_Widget {
 	public function the_shortcode( array $instance ) : string {
 		$defaults = $this->defaults;
 
-		if ( isset( $defaults[ 'title' ] ) ) {
-			unset( $defaults[ 'title' ] );
+		if ( isset( $defaults['title'] ) ) {
+			unset( $defaults['title'] );
 		}
 
 		$arrays = array();

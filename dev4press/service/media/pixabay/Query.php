@@ -60,8 +60,8 @@ class Query {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		$args[ 'id' ]  = $id;
-		$args[ 'key' ] = $this->_api_key;
+		$args['id']  = $id;
+		$args['key'] = $this->_api_key;
 
 		$url = add_query_arg( $args, $this->_api_url );
 
@@ -74,8 +74,8 @@ class Query {
 		$body     = wp_remote_retrieve_body( $raw );
 		$response = json_decode( $body );
 
-		if ( isset( $response->hits[ 0 ] ) ) {
-			return $this->_format_image( $response->hits[ 0 ] );
+		if ( isset( $response->hits[0] ) ) {
+			return $this->_format_image( $response->hits[0] );
 		}
 
 		return new WP_Error( 'not_found', __( 'Specified image ID not found.', 'd4plib' ) );
@@ -100,7 +100,7 @@ class Query {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		$args[ 'key' ] = $this->_api_key;
+		$args['key'] = $this->_api_key;
 
 		$key = md5( 'images' . json_encode( $args ) );
 
@@ -123,7 +123,7 @@ class Query {
 			);
 
 			foreach ( $response->hits as $img ) {
-				$out[ 'results' ][] = $this->_format_image( $img );
+				$out['results'][] = $this->_format_image( $img );
 			}
 
 			$this->_cache[ $key ] = (object) $out;
@@ -139,8 +139,8 @@ class Query {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		$args[ 'id' ]  = $id;
-		$args[ 'key' ] = $this->_api_key;
+		$args['id']  = $id;
+		$args['key'] = $this->_api_key;
 
 		$url = add_query_arg( $args, $this->_api_url . 'videos/' );
 
@@ -153,8 +153,8 @@ class Query {
 		$body     = wp_remote_retrieve_body( $raw );
 		$response = json_decode( $body );
 
-		if ( isset( $response->hits[ 0 ] ) ) {
-			return $this->_format_video( $response->hits[ 0 ] );
+		if ( isset( $response->hits[0] ) ) {
+			return $this->_format_video( $response->hits[0] );
 		}
 
 		return new WP_Error( 'not_found', __( 'Specified video ID not found.', 'd4plib' ) );
@@ -177,7 +177,7 @@ class Query {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		$args[ 'key' ] = $this->_api_key;
+		$args['key'] = $this->_api_key;
 
 		$key = md5( 'videos' . json_encode( $args ) );
 
@@ -200,7 +200,7 @@ class Query {
 			);
 
 			foreach ( $response->hits as $img ) {
-				$out[ 'results' ][] = $this->_format_video( $img );
+				$out['results'][] = $this->_format_video( $img );
 			}
 
 			$this->_cache[ $key ] = (object) $out;

@@ -37,7 +37,7 @@ class Misc {
 			return 'OK';
 		}
 
-		$errors = array_flip( get_defined_constants( true )[ 'pcre' ] );
+		$errors = array_flip( get_defined_constants( true )['pcre'] );
 
 		if ( isset( $errors[ $error_code ] ) ) {
 			return $errors[ $error_code ];
@@ -77,14 +77,14 @@ class Misc {
 			return $default;
 		}
 
-		if ( $color[ 0 ] == '#' ) {
+		if ( $color[0] == '#' ) {
 			$color = substr( $color, 1 );
 		}
 
 		if ( strlen( $color ) == 6 ) {
-			$hex = array( $color[ 0 ] . $color[ 1 ], $color[ 2 ] . $color[ 3 ], $color[ 4 ] . $color[ 5 ] );
+			$hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
 		} else if ( strlen( $color ) == 3 ) {
-			$hex = array( $color[ 0 ] . $color[ 0 ], $color[ 1 ] . $color[ 1 ], $color[ 2 ] . $color[ 2 ] );
+			$hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
 		} else {
 			return $default;
 		}

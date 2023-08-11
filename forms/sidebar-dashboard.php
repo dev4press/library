@@ -41,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			echo '<div class="d4p-links-group">';
 
 			foreach ( $group as $link ) {
-				echo '<a class="' . esc_attr( $link[ 'class' ] ) . '" href="' . esc_url( $link[ 'url' ] ) . '">' . panel()->r()->icon( $link[ 'icon' ] ) . '<span>' . $link[ 'label' ] . '</span></a>';
+				echo '<a class="' . esc_attr( $link['class'] ) . '" href="' . esc_url( $link['url'] ) . '">' . panel()->r()->icon( $link['icon'] ) . '<span>' . $link['label'] . '</span></a>';
 			}
 
 			echo '</div>';

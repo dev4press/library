@@ -24,8 +24,8 @@ $_panel = panel()->object();
 			echo esc_html( $_panel->info );
 
 			if ( isset( $_panel->kb ) ) {
-				$url   = $_panel->kb[ 'url' ];
-				$label = $_panel->kb[ 'label' ] ?? __( 'Knowledge Base', 'd4plib' );
+				$url   = $_panel->kb['url'];
+				$label = $_panel->kb['label'] ?? __( 'Knowledge Base', 'd4plib' );
 
 				?>
 
@@ -43,8 +43,8 @@ $_panel = panel()->object();
 	<?php if ( isset( $_panel->links ) ) { ?>
 
         <div class="d4p-panel-links">
-            <p><?php echo $_panel->links[ 'info' ]; ?></p>
-			<?php Elements::instance()->buttons( $_panel->links[ 'buttons' ] ); ?>
+            <p><?php echo $_panel->links['info']; ?></p>
+			<?php Elements::instance()->buttons( $_panel->links['buttons'] ); ?>
         </div>
 
 	<?php } ?>

@@ -387,18 +387,18 @@ class Resources {
 	}
 
 	public function shared_js() : array {
-		return $this->_shared[ 'js' ];
+		return $this->_shared['js'];
 	}
 
 	public function shared_css() : array {
-		return $this->_shared[ 'css' ];
+		return $this->_shared['css'];
 	}
 
 	public function ui_js() : array {
-		return $this->_ui[ 'js' ];
+		return $this->_ui['js'];
 	}
 
 	public function ui_css() : array {
-		return $this->_ui[ 'css' ];
+		return $this->_ui['css'];
 	}
 }

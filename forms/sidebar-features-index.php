@@ -25,7 +25,7 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
             </div>
             <h3><?php echo esc_html( $_panel->title ); ?></h3>
             <div class="_info">
-				<?php echo esc_html( $_subpanels[ $_subpanel ][ 'info' ] ); ?>
+				<?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
             </div>
         </div>
 
@@ -33,7 +33,7 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
 			<?php
 
 			foreach ( $counters as $code => $counter ) {
-				echo '<div data-selector="' . $counter[ 'selector' ] . '">' . $counter[ 'label' ] . '<span>0</span></div>';
+				echo '<div data-selector="' . $counter['selector'] . '">' . $counter['label'] . '<span>0</span></div>';
 			}
 
 			?>

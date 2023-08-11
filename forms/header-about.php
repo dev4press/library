@@ -44,7 +44,7 @@ $_plugin_title = sprintf(
 		}
 
 		foreach ( $_subpanels as $_tab => $obj ) {
-			echo '<a href="' . esc_url( panel()->a()->panel_url( 'about', $_tab ) ) . '" class="nav-tab' . ( $_tab == $_subpanel ? ' nav-tab-active' : '' ) . '">' . esc_html( $obj[ 'title' ] ) . '</a>';
+			echo '<a href="' . esc_url( panel()->a()->panel_url( 'about', $_tab ) ) . '" class="nav-tab' . ( $_tab == $_subpanel ? ' nav-tab-active' : '' ) . '">' . esc_html( $obj['title'] ) . '</a>';
 		}
 
 		?>

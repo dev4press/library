@@ -79,7 +79,9 @@ class HTAccess {
 				copy( $this->path, $backup_path );
 			}
 
-			if ( ! $f = fopen( $this->path, 'w' ) ) {
+			$f = fopen( $this->path, 'w' );
+
+			if ( $f === false ) {
 				return false;
 			}
 
@@ -147,11 +149,12 @@ class HTAccess {
 		if ( $this->file_exists() && $this->is_writable() ) {
 			$marker_data = $this->load();
 
-			if ( ! $f = fopen( $this->path, 'w' ) ) {
+			$f = fopen( $this->path, 'w' );
+
+			if ( $f === false ) {
 				return false;
 			}
 
-			$result = true;
 			if ( flock( $f, LOCK_EX ) ) {
 				$modded_data = array();
 
@@ -238,12 +241,12 @@ class HTAccess {
 			'mod_headers'        => in_array( 'mod_headers', $mods ),
 		);
 
-		if ( $is_apache && ! $check[ 'found' ] ) {
-			$check[ 'writable' ] = is_writable( ABSPATH );
+		if ( $is_apache && ! $check['found'] ) {
+			$check['writable'] = is_writable( ABSPATH );
 		}
 
-		if ( $is_apache && $check[ 'writable' ] && $check[ 'apache' ] ) {
-			$check[ 'automatic' ] = true;
+		if ( $is_apache && $check['writable'] && $check['apache'] ) {
+			$check['automatic'] = true;
 		}
 
 		return $check;

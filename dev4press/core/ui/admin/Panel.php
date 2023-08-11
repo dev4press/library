@@ -124,7 +124,7 @@ abstract class Panel {
 
 		$valid = array_keys( $this->subpanels );
 
-		return $valid[ 0 ];
+		return $valid[0];
 	}
 
 	public function enqueue_scripts_early() {
@@ -271,7 +271,8 @@ abstract class Panel {
 	public function include_generic( $base, $name = '', $subname = '', $args = array() ) {
 		$name     = empty( $name ) ? $this->a()->panel : $name;
 		$subname  = empty( $subname ) ? ( empty( $this->a()->subpanel ) ? '' : $this->a()->subpanel ) : $subname;
-		$fallback = $content = $base . '-' . $name;
+		$fallback = $base . '-' . $name;
+		$content  = $base . '-' . $name;
 
 		if ( ! empty( $subname ) ) {
 			$content .= '-' . $subname;

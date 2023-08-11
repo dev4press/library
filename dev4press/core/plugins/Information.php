@@ -74,7 +74,7 @@ abstract class Information {
 
 	public function __construct() {
 		if ( $this->is_bbpress_plugin ) {
-			$this->plugins[ 'bbpress' ] = '2.6.2';
+			$this->plugins['bbpress'] = '2.6.2';
 		}
 	}
 
@@ -124,17 +124,17 @@ abstract class Information {
 		);
 
 		if ( WPR::is_classicpress() ) {
-			$list[ 'ClassicPress' ] = $this->cms[ 'classicpress' ];
+			$list['ClassicPress'] = $this->cms['classicpress'];
 		} else {
-			$list[ 'WordPress' ] = $this->cms[ 'wordpress' ];
+			$list['WordPress'] = $this->cms['wordpress'];
 		}
 
-		if ( isset( $this->plugins[ 'bbpress' ] ) && $this->plugins[ 'bbpress' ] !== false ) {
-			$list[ 'bbPress' ] = $this->plugins[ 'bbpress' ];
+		if ( isset( $this->plugins['bbpress'] ) && $this->plugins['bbpress'] !== false ) {
+			$list['bbPress'] = $this->plugins['bbpress'];
 		}
 
-		if ( isset( $this->plugins[ 'buddypress' ] ) && $this->plugins[ 'buddypress' ] !== false ) {
-			$list[ 'BuddyPress' ] = $this->plugins[ 'buddypress' ];
+		if ( isset( $this->plugins['buddypress'] ) && $this->plugins['buddypress'] !== false ) {
+			$list['BuddyPress'] = $this->plugins['buddypress'];
 		}
 
 		return $list;

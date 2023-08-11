@@ -69,20 +69,20 @@ class WPR {
 	}
 
 	public static function is_login_page() : bool {
-		return isset( $GLOBALS[ 'pagenow' ] ) && $GLOBALS[ 'pagenow' ] === 'wp-login.php';
+		return isset( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] === 'wp-login.php';
 	}
 
 	public static function is_signup_page() : bool {
-		return isset( $GLOBALS[ 'pagenow' ] ) && $GLOBALS[ 'pagenow' ] === 'wp-signup.php';
+		return isset( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] === 'wp-signup.php';
 	}
 
 	public static function is_activate_page() : bool {
-		return isset( $GLOBALS[ 'pagenow' ] ) && $GLOBALS[ 'pagenow' ] == 'wp-activate.php';
+		return isset( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] == 'wp-activate.php';
 	}
 
 	public static function is_login_page_action( $action = '' ) : bool {
-		$login_page = isset( $GLOBALS[ 'pagenow' ] ) && in_array(
-				$GLOBALS[ 'pagenow' ],
+		$login_page = isset( $GLOBALS['pagenow'] ) && in_array(
+				$GLOBALS['pagenow'],
 				array(
 					'wp-login.php',
 					'wp-register.php',
@@ -91,7 +91,7 @@ class WPR {
 
 		if ( $login_page ) {
 			if ( $action != '' ) {
-				$real_action = isset( $_REQUEST[ 'action' ] ) ? sanitize_text_field( $_REQUEST[ 'action' ] ) : 'login';
+				$real_action = isset( $_REQUEST['action'] ) ? sanitize_text_field( $_REQUEST['action'] ) : 'login';
 
 				return $real_action == $action;
 			}
@@ -232,7 +232,7 @@ class WPR {
 	}
 
 	public static function redirect_self() {
-		wp_redirect( $_SERVER[ 'REQUEST_URI' ] );
+		wp_redirect( $_SERVER['REQUEST_URI'] );
 	}
 
 	public static function redirect_referer() {
@@ -280,7 +280,7 @@ class WPR {
 		if ( has_post_thumbnail( $post_id ) ) {
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), $size );
 
-			return $image[ 0 ];
+			return $image[0];
 		} else {
 			return '';
 		}
@@ -294,7 +294,7 @@ class WPR {
 		$attachment_id = 0;
 		$dir           = wp_upload_dir();
 
-		if ( false !== strpos( $url, $dir[ 'baseurl' ] . '/' ) ) {
+		if ( false !== strpos( $url, $dir['baseurl'] . '/' ) ) {
 			$file       = basename( $url );
 			$query_args = array(
 				'post_type'   => 'attachment',
@@ -315,8 +315,8 @@ class WPR {
 				foreach ( $query->posts as $post_id ) {
 					$meta = wp_get_attachment_metadata( $post_id );
 
-					$original_file       = basename( $meta[ 'file' ] );
-					$cropped_image_files = wp_list_pluck( $meta[ 'sizes' ], 'file' );
+					$original_file       = basename( $meta['file'] );
+					$cropped_image_files = wp_list_pluck( $meta['sizes'], 'file' );
 
 					if ( $original_file === $file || in_array( $file, $cropped_image_files ) ) {
 						$attachment_id = $post_id;
@@ -515,7 +515,7 @@ class WPR {
 		$roles = array();
 
 		foreach ( wp_roles()->roles as $role => $details ) {
-			$roles[ $role ] = translate_user_role( $details[ 'name' ] );
+			$roles[ $role ] = translate_user_role( $details['name'] );
 		}
 
 		return $roles;
@@ -666,7 +666,7 @@ class WPR {
 		$url     = 'https://www.gravatar.com/avatar/' . $hash . '?d=404';
 		$headers = get_headers( $url );
 
-		return preg_match( '/200/', $headers[ 0 ] ) === 1;
+		return preg_match( '/200/', $headers[0] ) === 1;
 	}
 
 	public static function get_user_display_name( $user_id = 0 ) : string {

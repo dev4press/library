@@ -103,12 +103,12 @@ abstract class Wizard {
 	}
 
 	public function panel_postback() {
-		$post = $_POST[ $this->a()->plugin_prefix ][ 'wizard' ];
+		$post = $_POST[ $this->a()->plugin_prefix ]['wizard'];
 		$goto = $this->a()->panel_url();
 
-		$this->setup_panel( $post[ '_page' ] );
+		$this->setup_panel( $post['_page'] );
 
-		if ( wp_verify_nonce( $post[ '_nonce' ], $this->get_form_nonce_key( $this->current_panel() ) ) ) {
+		if ( wp_verify_nonce( $post['_nonce'], $this->get_form_nonce_key( $this->current_panel() ) ) ) {
 			$data = isset( $post[ $this->current_panel() ] ) ? (array) $post[ $this->current_panel() ] : array();
 
 			switch ( $this->current_panel() ) {
@@ -172,9 +172,9 @@ abstract class Wizard {
 			$value = in_array( $value, array( 'yes', 'no' ) ) ? $value : 'no';
 
 			foreach ( $settings as $s ) {
-				$group = $s[ 0 ];
-				$keys  = (array) $s[ 1 ];
-				$set   = $s[ 2 ][ $value ];
+				$group = $s[0];
+				$keys  = (array) $s[1];
+				$set   = $s[2][ $value ];
 
 				if ( ! in_array( $group, $groups ) ) {
 					$groups[] = $group;

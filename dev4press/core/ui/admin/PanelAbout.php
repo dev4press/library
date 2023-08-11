@@ -53,17 +53,17 @@ abstract class PanelAbout extends Panel {
 		);
 
 		if ( ! ( $this->a()->settings()->i()->edition === 'free' && ! empty( $this->a()->settings()->i()->github_url ) ) ) {
-			unset( $this->subpanels[ 'donate' ] );
+			unset( $this->subpanels['donate'] );
 		}
 
 		if ( ! $this->history ) {
-			unset( $this->subpanels[ 'history' ] );
+			unset( $this->subpanels['history'] );
 		}
 
 		$translations = $this->a()->settings()->i()->translations;
 
 		if ( empty( $translations ) ) {
-			unset( $this->subpanels[ 'translations' ] );
+			unset( $this->subpanels['translations'] );
 		}
 	}
 

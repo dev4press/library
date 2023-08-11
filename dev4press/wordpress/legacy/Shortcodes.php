@@ -78,24 +78,24 @@ abstract class Shortcodes {
 	}
 
 	protected function _args( $code ) : array {
-		return $this->shortcodes[ $code ][ 'args' ] ?? array();
+		return $this->shortcodes[ $code ]['args'] ?? array();
 	}
 
 	protected function _atts( $code, $atts = array() ) : array {
 		$real_code = $this->_real_code( $code );
 
-		if ( isset( $atts[ 0 ] ) ) {
-			$atts[ $real_code ] = substr( $atts[ 0 ], 1 );
-			unset( $atts[ 0 ] );
+		if ( isset( $atts[0] ) ) {
+			$atts[ $real_code ] = substr( $atts[0], 1 );
+			unset( $atts[0] );
 		}
 
-		$default               = $this->shortcodes[ $code ][ 'atts' ];
+		$default               = $this->shortcodes[ $code ]['atts'];
 		$default[ $real_code ] = '';
 
 		$atts = shortcode_atts( $default, $atts );
-		$bool = $this->shortcodes[ $code ][ 'bool' ] ?? array();
-		$list = $this->shortcodes[ $code ][ 'list' ] ?? array();
-		$int  = $this->shortcodes[ $code ][ 'int' ] ?? array();
+		$bool = $this->shortcodes[ $code ]['bool'] ?? array();
+		$list = $this->shortcodes[ $code ]['list'] ?? array();
+		$int  = $this->shortcodes[ $code ]['int'] ?? array();
 
 		foreach ( $bool as $key ) {
 			if ( ! is_bool( $atts[ $key ] ) ) {

@@ -79,7 +79,7 @@ abstract class AJAX {
 	protected function request_for_form( string $form_key = '' ) : array {
 		$form_key = empty( $form_key ) ? $this->form : $form_key;
 
-		if ( $_SERVER[ 'REQUEST_METHOD' ] != 'POST' ) {
+		if ( $_SERVER['REQUEST_METHOD'] != 'POST' ) {
 			$this->raise_error( 'request_invalid_method', null, 'Invalid Request method.', 405 );
 		}
 
@@ -89,24 +89,24 @@ abstract class AJAX {
 
 		$request = (array) $_REQUEST[ $form_key ];
 
-		if ( empty( $request ) || ! isset( $request[ 'action' ], $request[ 'nonce' ] ) ) {
+		if ( empty( $request ) || ! isset( $request['action'], $request['nonce'] ) ) {
 			$this->raise_malformed_error( $request );
 		}
 
-		$request[ 'action' ] = sanitize_key( $request[ 'action' ] );
-		$request[ 'nonce' ]  = sanitize_key( $request[ 'nonce' ] );
+		$request['action'] = sanitize_key( $request['action'] );
+		$request['nonce']  = sanitize_key( $request['nonce'] );
 
 		return $request;
 	}
 
 	protected function validate_form_request( array $request ) : array {
-		if ( isset( $request[ 'action' ] ) && isset( $request[ 'nonce' ] ) ) {
-			$action = $request[ 'action' ];
+		if ( isset( $request['action'] ) && isset( $request['nonce'] ) ) {
+			$action = $request['action'];
 
 			if ( isset( $this->validation[ $action ] ) ) {
-				$key = $this->validation[ $action ][ 'key' ];
-				$can = $this->validation[ $action ][ 'can' ] ?? '';
-				$non = $this->validation[ $action ][ 'nonce' ] ?? false;
+				$key = $this->validation[ $action ]['key'];
+				$can = $this->validation[ $action ]['can'] ?? '';
+				$non = $this->validation[ $action ]['nonce'] ?? false;
 
 				if ( ! empty( $can ) && ! current_user_can( $can ) ) {
 					$this->raise_unauthorized_error( $request );
@@ -118,15 +118,15 @@ abstract class AJAX {
 							$request[ $key ] = Sanitize::basic( $request[ $key ] );
 							$nonce           = $this->prefix . '-' . $action . '-' . $request[ $key ];
 
-							if ( ! wp_verify_nonce( $request[ 'nonce' ], $nonce ) ) {
+							if ( ! wp_verify_nonce( $request['nonce'], $nonce ) ) {
 								$valid = false;
 							}
 						}
 					}
 
 					if ( $valid ) {
-						if ( isset( $this->validation[ $action ][ 'required' ] ) ) {
-							foreach ( $this->validation[ $action ][ 'required' ] as $req ) {
+						if ( isset( $this->validation[ $action ]['required'] ) ) {
+							foreach ( $this->validation[ $action ]['required'] as $req ) {
 								if ( ! isset( $request[ $req ] ) ) {
 									$valid = false;
 									break;

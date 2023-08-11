@@ -54,10 +54,10 @@ class Elements {
 		$render = '<div class="d4p-buttons-wrapper">';
 
 		foreach ( $buttons as $button ) {
-			if ( $button[ 'type' ] == 'a' ) {
-				$render .= '<a rel="' . esc_url( $button[ 'rel' ] ?? '' ) . '" target="' . esc_url( $button[ 'target' ] ?? '' ) . '" href="' . esc_url( $button[ 'link' ] ) . '" class="' . Sanitize::html_classes( $button[ 'class' ] ?? '' ) . '">' . esc_html( $button[ 'title' ] ) . '</a>';
+			if ( $button['type'] == 'a' ) {
+				$render .= '<a rel="' . esc_url( $button['rel'] ?? '' ) . '" target="' . esc_url( $button['target'] ?? '' ) . '" href="' . esc_url( $button['link'] ) . '" class="' . Sanitize::html_classes( $button['class'] ?? '' ) . '">' . esc_html( $button['title'] ) . '</a>';
 			} else {
-				$render .= '<button name="' . esc_attr( $button[ 'name' ] ?? '' ) . '" id="' . esc_attr( $button[ 'id' ] ?? '' ) . '" type="button" class="' . Sanitize::html_classes( $button[ 'class' ] ?? '' ) . '">' . esc_html( $button[ 'title' ] ) . '</button>';
+				$render .= '<button name="' . esc_attr( $button['name'] ?? '' ) . '" id="' . esc_attr( $button['id'] ?? '' ) . '" type="button" class="' . Sanitize::html_classes( $button['class'] ?? '' ) . '">' . esc_html( $button['title'] ) . '</button>';
 			}
 		}
 
@@ -73,12 +73,12 @@ class Elements {
 	public function select( $values, $args = array(), $attr = array() ) : string {
 		$args        = $this->select_prepare_args( $args );
 		$attributes  = $this->select_prepare_attributes( $args, $attr );
-		$selected    = is_null( $args[ 'selected' ] ) || $args[ 'selected' ] === true ? array_keys( $values ) : (array) $args[ 'selected' ];
+		$selected    = is_null( $args['selected'] ) || $args['selected'] === true ? array_keys( $values ) : (array) $args['selected'];
 		$associative = ! Arr::is_associative( $values );
 
 		$render = '<select ' . join( ' ', $attributes ) . '>';
-		if ( ! empty( $args[ 'empty' ] ) ) {
-			$render .= '<option value="">' . esc_html( $args[ 'empty' ] ) . '</option>';
+		if ( ! empty( $args['empty'] ) ) {
+			$render .= '<option value="">' . esc_html( $args['empty'] ) . '</option>';
 		}
 
 		foreach ( $values as $value => $display ) {
@@ -90,7 +90,7 @@ class Elements {
 		}
 		$render .= '</select>';
 
-		if ( $args[ 'echo' ] ) {
+		if ( $args['echo'] ) {
 			echo KSES::select( $render );
 		}
 
@@ -99,7 +99,7 @@ class Elements {
 
 	public function select_grouped( $values, $args = array(), $attr = array() ) : string {
 		foreach ( $values as $group ) {
-			if ( ! isset( $group[ 'values' ] ) && ! isset( $group[ 'title' ] ) ) {
+			if ( ! isset( $group['values'] ) && ! isset( $group['title'] ) ) {
 				return $this->select( $values, $args, $attr );
 			} else {
 				break;
@@ -108,16 +108,16 @@ class Elements {
 
 		$args       = $this->select_prepare_args( $args );
 		$attributes = $this->select_prepare_attributes( $args, $attr );
-		$selected   = $args[ 'selected' ];
+		$selected   = $args['selected'];
 
 		$render = '<select ' . join( ' ', $attributes ) . '>';
-		if ( ! empty( $args[ 'empty' ] ) ) {
-			$render .= '<option value="">' . esc_html( $args[ 'empty' ] ) . '</option>';
+		if ( ! empty( $args['empty'] ) ) {
+			$render .= '<option value="">' . esc_html( $args['empty'] ) . '</option>';
 		}
 
 		foreach ( $values as $group ) {
-			$render .= '<optgroup label="' . $group[ 'title' ] . '">';
-			foreach ( $group[ 'values' ] as $value => $display ) {
+			$render .= '<optgroup label="' . $group['title'] . '">';
+			foreach ( $group['values'] as $value => $display ) {
 				$strict = $value === 0;
 				$sel    = '';
 
@@ -131,7 +131,7 @@ class Elements {
 		}
 		$render .= '</select>';
 
-		if ( $args[ 'echo' ] ) {
+		if ( $args['echo'] ) {
 			echo KSES::select( $render );
 		}
 
@@ -140,19 +140,19 @@ class Elements {
 
 	public function checkboxes( $values, $args = array() ) : string {
 		$args        = $this->checkboxes_prepare_args( $args );
-		$id          = $this->id_from_name( $args[ 'name' ], $args[ 'id' ] );
-		$name        = $args[ 'multi' ] ? $args[ 'name' ] . '[]' : $args[ 'name' ];
-		$selected    = $args[ 'selected' ];
+		$id          = $this->id_from_name( $args['name'], $args['id'] );
+		$name        = $args['multi'] ? $args['name'] . '[]' : $args['name'];
+		$selected    = $args['selected'];
 		$associative = Arr::is_associative( $values );
 
 		$wrapper_class = 'd4p-setting-checkboxes';
 
-		if ( $args[ 'class' ] != '' ) {
-			$wrapper_class .= ' ' . $args[ 'class' ];
+		if ( $args['class'] != '' ) {
+			$wrapper_class .= ' ' . $args['class'];
 		}
 
 		$render = '<div class="' . Sanitize::html_classes( $wrapper_class ) . '">';
-		$render .= $this->checkboxes_render_check_uncheck( $args[ 'multi' ] );
+		$render .= $this->checkboxes_render_check_uncheck( $args['multi'] );
 		$render .= '<div class="d4p-inside-wrapper">';
 		foreach ( $values as $key => $title ) {
 			$real_value = $associative ? $key : $title;
@@ -163,7 +163,7 @@ class Elements {
 		$render .= '</div>';
 		$render .= '</div>';
 
-		if ( $args[ 'echo' ] ) {
+		if ( $args['echo'] ) {
 			echo KSES::checkboxes( $render );
 		}
 
@@ -172,7 +172,7 @@ class Elements {
 
 	public function checkboxes_grouped( $values, $args = array() ) : string {
 		foreach ( $values as $group ) {
-			if ( ! isset( $group[ 'values' ] ) && ! isset( $group[ 'title' ] ) ) {
+			if ( ! isset( $group['values'] ) && ! isset( $group['title'] ) ) {
 				return $this->checkboxes( $values, $args );
 			} else {
 				break;
@@ -180,22 +180,22 @@ class Elements {
 		}
 
 		$args     = $this->checkboxes_prepare_args( $args );
-		$id       = $this->id_from_name( $args[ 'name' ], $args[ 'id' ] );
-		$name     = $args[ 'multi' ] ? $args[ 'name' ] . '[]' : $args[ 'name' ];
-		$selected = $args[ 'selected' ];
+		$id       = $this->id_from_name( $args['name'], $args['id'] );
+		$name     = $args['multi'] ? $args['name'] . '[]' : $args['name'];
+		$selected = $args['selected'];
 
 		$wrapper_class = 'd4p-setting-checkboxes d4p-setting-checkboxes-grouped';
 
-		if ( $args[ 'class' ] != '' ) {
-			$wrapper_class .= ' ' . $args[ 'class' ];
+		if ( $args['class'] != '' ) {
+			$wrapper_class .= ' ' . $args['class'];
 		}
 
 		$render = '<div class="' . Sanitize::html_classes( $wrapper_class ) . '">';
-		$render .= $this->checkboxes_render_check_uncheck( $args[ 'multi' ] );
+		$render .= $this->checkboxes_render_check_uncheck( $args['multi'] );
 		$render .= '<div class="d4p-inside-wrapper">';
 		foreach ( $values as $group ) {
-			$render .= '<div class="d4p-group-title">' . $group[ 'title' ] . '</div>';
-			foreach ( $group[ 'values' ] as $key => $title ) {
+			$render .= '<div class="d4p-group-title">' . $group['title'] . '</div>';
+			foreach ( $group['values'] as $key => $title ) {
 				$attributes = $this->checkbox_prepare_attributes( $args, $selected, $name, $id, $key, $key );
 
 				$render .= sprintf( '<label><input %s />%s</label>', join( ' ', $attributes ), esc_html( $title ) );
@@ -204,7 +204,7 @@ class Elements {
 		$render .= '</div>';
 		$render .= '</div>';
 
-		if ( $args[ 'echo' ] ) {
+		if ( $args['echo'] ) {
 			echo KSES::checkboxes( $render );
 		}
 
@@ -217,24 +217,24 @@ class Elements {
 		$walker = new CheckboxRadio();
 
 		$render = '<div class="d4p-setting-checkboxes-hierarchy">';
-		$render .= $this->checkboxes_render_check_uncheck( $args[ 'multi' ] );
+		$render .= $this->checkboxes_render_check_uncheck( $args['multi'] );
 		$render .= '<div class="d4p-inside-wrapper">';
 		$render .= '<ul class="d4p-wrapper-hierarchy">';
 		$render .= $walker->walk(
 			$values,
 			0,
 			array(
-				'input'    => $args[ 'multi' ] ? 'checkbox' : 'radio',
-				'id'       => $this->id_from_name( $args[ 'name' ], $args[ 'id' ] ),
-				'name'     => $args[ 'name' ],
-				'selected' => (array) $args[ 'selected' ],
+				'input'    => $args['multi'] ? 'checkbox' : 'radio',
+				'id'       => $this->id_from_name( $args['name'], $args['id'] ),
+				'name'     => $args['name'],
+				'selected' => (array) $args['selected'],
 			)
 		);
 		$render .= '</ul>';
 		$render .= '</div>';
 		$render .= '</div>';
 
-		if ( $args[ 'echo' ] ) {
+		if ( $args['echo'] ) {
 			echo KSES::checkboxes( $render );
 		}
 
@@ -266,19 +266,19 @@ class Elements {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		if ( $args[ 'columns' ] > 1 ) {
-			switch ( $args[ 'columns' ] ) {
+		if ( $args['columns'] > 1 ) {
+			switch ( $args['columns'] ) {
 				case 2:
-					$args[ 'class' ] .= ' d4p-columns-two';
+					$args['class'] .= ' d4p-columns-two';
 					break;
 				case 3:
-					$args[ 'class' ] .= ' d4p-columns-three';
+					$args['class'] .= ' d4p-columns-three';
 					break;
 				case 4:
-					$args[ 'class' ] .= ' d4p-columns-four';
+					$args['class'] .= ' d4p-columns-four';
 					break;
 				case 5:
-					$args[ 'class' ] .= ' d4p-columns-five';
+					$args['class'] .= ' d4p-columns-five';
 					break;
 			}
 		}
@@ -320,26 +320,26 @@ class Elements {
 	private function select_prepare_attributes( $args, $attr = array() ) : array {
 		$attributes = array();
 
-		$name = $args[ 'multi' ] ? $args[ 'name' ] . '[]' : $args[ 'name' ];
-		$id   = $this->id_from_name( $args[ 'name' ], $args[ 'id' ] );
+		$name = $args['multi'] ? $args['name'] . '[]' : $args['name'];
+		$id   = $this->id_from_name( $args['name'], $args['id'] );
 
-		if ( ! empty( $args[ 'class' ] ) ) {
-			$attributes[] = 'class="' . esc_attr( $args[ 'class' ] ) . '"';
+		if ( ! empty( $args['class'] ) ) {
+			$attributes[] = 'class="' . esc_attr( $args['class'] ) . '"';
 		}
 
-		if ( ! empty( $args[ 'style' ] ) ) {
-			$attributes[] = 'style="' . esc_attr( $args[ 'style' ] ) . '"';
+		if ( ! empty( $args['style'] ) ) {
+			$attributes[] = 'style="' . esc_attr( $args['style'] ) . '"';
 		}
 
-		if ( ! empty( $args[ 'title' ] ) ) {
-			$attributes[] = 'title="' . esc_attr( $args[ 'title' ] ) . '"';
+		if ( ! empty( $args['title'] ) ) {
+			$attributes[] = 'title="' . esc_attr( $args['title'] ) . '"';
 		}
 
-		if ( $args[ 'multi' ] ) {
+		if ( $args['multi'] ) {
 			$attributes[] = 'multiple';
 		}
 
-		if ( $args[ 'readonly' ] ) {
+		if ( $args['readonly'] ) {
 			$attributes[] = 'readonly';
 		}
 
@@ -362,7 +362,7 @@ class Elements {
 
 	private function checkbox_prepare_attributes( $args, $selected, $name, $id, $real_value, $key ) : array {
 		$attributes = array(
-			'type="' . ( $args[ 'multi' ] ? 'checkbox' : 'radio' ) . '"',
+			'type="' . ( $args['multi'] ? 'checkbox' : 'radio' ) . '"',
 			'value="' . $real_value . '"',
 			'class="widefat"',
 		);
@@ -379,7 +379,7 @@ class Elements {
 			$attributes[] = 'checked="checked"';
 		}
 
-		if ( $args[ 'readonly' ] ) {
+		if ( $args['readonly'] ) {
 			$attributes[] = 'readonly';
 		}
 

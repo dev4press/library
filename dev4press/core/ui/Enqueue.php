@@ -58,8 +58,8 @@ final class Enqueue {
 	 * @param $admin \Dev4Press\v43\Core\Admin\Plugin|\Dev4Press\v43\Core\Admin\Menu\Plugin|\Dev4Press\v43\Core\Admin\Submenu\Plugin
 	 */
 	public function __construct( $admin ) {
-		$this->_libraries[ 'js' ]  = Resources::instance()->ui_js() + Resources::instance()->shared_js();
-		$this->_libraries[ 'css' ] = Resources::instance()->ui_css() + Resources::instance()->shared_css();
+		$this->_libraries['js']  = Resources::instance()->ui_js() + Resources::instance()->shared_js();
+		$this->_libraries['css'] = Resources::instance()->ui_css() + Resources::instance()->shared_css();
 
 		$this->_url     = $admin->url;
 		$this->_admin   = $admin;
@@ -140,21 +140,21 @@ final class Enqueue {
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'jquery-form' );
 
-		if ( $includes[ 'dialog' ] === true ) {
+		if ( $includes['dialog'] === true ) {
 			wp_enqueue_script( 'wpdialogs' );
 			wp_enqueue_style( 'wp-jquery-ui-dialog' );
 		}
 
-		if ( $includes[ 'color_picker' ] === true ) {
+		if ( $includes['color_picker'] === true ) {
 			wp_enqueue_script( 'wp-color-picker' );
 			wp_enqueue_style( 'wp-color-picker' );
 		}
 
-		if ( $includes[ 'sortable' ] === true ) {
+		if ( $includes['sortable'] === true ) {
 			wp_enqueue_script( 'jquery-ui-sortable' );
 		}
 
-		if ( $includes[ 'media' ] === true ) {
+		if ( $includes['media'] === true ) {
 			wp_enqueue_media();
 		}
 
@@ -172,10 +172,10 @@ final class Enqueue {
 	public function locale_js_code( $script ) {
 		$locale = $this->locale();
 
-		if ( ! empty( $locale ) && isset( $this->_libraries[ 'js' ][ $script ][ 'locales' ] ) ) {
+		if ( ! empty( $locale ) && isset( $this->_libraries['js'][ $script ]['locales'] ) ) {
 			$code = strtolower( substr( $locale, 0, 2 ) );
 
-			if ( in_array( $code, $this->_libraries[ 'js' ][ $script ][ 'locales' ] ) ) {
+			if ( in_array( $code, $this->_libraries['js'][ $script ]['locales'] ) ) {
 				return $code;
 			}
 		}
@@ -187,10 +187,10 @@ final class Enqueue {
 		if ( isset( $this->_libraries[ $type ][ $name ] ) ) {
 			if ( ! $this->is_added( $type, $name ) ) {
 				$obj = $this->_libraries[ $type ][ $name ];
-				$req = $obj[ 'req' ] ?? array();
+				$req = $obj['req'] ?? array();
 
-				if ( ! empty( $obj[ 'int' ] ) ) {
-					foreach ( $obj[ 'int' ] as $lib ) {
+				if ( ! empty( $obj['int'] ) ) {
+					foreach ( $obj['int'] as $lib ) {
 						$req[] = $this->prefix() . $lib;
 
 						if ( ! $this->is_added( $type, $lib ) ) {
@@ -200,14 +200,14 @@ final class Enqueue {
 				}
 
 				$handle = $this->prefix() . $name;
-				$ver    = $obj[ 'ver' ] ?? $this->_version;
-				$footer = $obj[ 'footer' ] ?? true;
+				$ver    = $obj['ver'] ?? $this->_version;
+				$footer = $obj['footer'] ?? true;
 
 				$this->enqueue( $type, $handle, $this->url( $obj ), $req, $ver, $footer );
 
 				$this->_loaded[ $type ][] = $name;
 
-				if ( isset( $obj[ 'locales' ] ) ) {
+				if ( isset( $obj['locales'] ) ) {
 					$_locale = $this->locale_js_code( $name );
 
 					if ( $_locale !== false ) {
@@ -231,20 +231,20 @@ final class Enqueue {
 	}
 
 	private function url( $obj, $locale = null ) : string {
-		$plugin = isset( $obj[ 'src' ] ) && $obj[ 'src' ] == 'plugin';
-		$path   = $plugin ? trailingslashit( $obj[ 'path' ] ) : trailingslashit( 'resources/' . $obj[ 'path' ] );
+		$plugin = isset( $obj['src'] ) && $obj['src'] == 'plugin';
+		$path   = $plugin ? trailingslashit( $obj['path'] ) : trailingslashit( 'resources/' . $obj['path'] );
 		$base   = $this->_url;
 
 		if ( ! $plugin ) {
-			$dir  = isset( $obj[ 'lib' ] ) && $obj[ 'lib' ] === true ? 'resources/libraries/' : 'resources/';
-			$path = trailingslashit( $dir . $obj[ 'path' ] );
+			$dir  = isset( $obj['lib'] ) && $obj['lib'] === true ? 'resources/libraries/' : 'resources/';
+			$path = trailingslashit( $dir . $obj['path'] );
 		}
 
 		if ( is_null( $locale ) ) {
-			$min  = $obj[ 'min' ];
-			$path .= $obj[ 'file' ];
+			$min  = $obj['min'];
+			$path .= $obj['file'];
 		} else {
-			$min  = $obj[ 'min_locale' ];
+			$min  = $obj['min_locale'];
 			$path .= 'l10n/' . $locale;
 		}
 
@@ -252,7 +252,7 @@ final class Enqueue {
 			$path .= '.min';
 		}
 
-		$path .= '.' . $obj[ 'ext' ];
+		$path .= '.' . $obj['ext'];
 
 		if ( ! $plugin ) {
 			$base .= $this->_library . '/';

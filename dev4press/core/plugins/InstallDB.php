@@ -60,7 +60,7 @@ abstract class InstallDB {
 		foreach ( $this->tables as $obj ) {
 			$table = $this->table( $obj );
 
-			$query .= 'CREATE TABLE ' . $table . ' (' . $obj[ 'data' ] . ') ' . $collate . ';' . PHP_EOL;
+			$query .= 'CREATE TABLE ' . $table . ' (' . $obj['data'] . ') ' . $collate . ';' . PHP_EOL;
 		}
 
 		return $this->delta( $query );
@@ -71,9 +71,11 @@ abstract class InstallDB {
 
 		foreach ( $this->tables as $obj ) {
 			$table = $this->table( $obj );
-			$count = $obj[ 'columns' ];
+			$count = $obj['columns'];
 
-			if ( $this->wpdb()->get_var( $this->wpdb()->prepare( 'SHOW TABLES LIKE %s', $table ) ) == $table ) {
+			$query = $this->wpdb()->prepare( 'SHOW TABLES LIKE %s', $table );
+
+			if ( $this->wpdb()->get_var( $query ) == $table ) {
 				$columns = $this->wpdb()->get_results( 'SHOW COLUMNS FROM ' . $table );
 
 				if ( $count != count( $columns ) ) {
@@ -120,7 +122,7 @@ abstract class InstallDB {
 	}
 
 	protected function table( $obj ) : string {
-		return $this->prefix_wpdb( $obj[ 'scope' ] ) . $this->prefix_plugin() . $obj[ 'name' ];
+		return $this->prefix_wpdb( $obj['scope'] ) . $this->prefix_plugin() . $obj['name'];
 	}
 
 	protected function prefix_plugin() : string {

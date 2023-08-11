@@ -431,11 +431,11 @@ class Icons {
 
 			$attr = shortcode_atts( $defaults, $attr );
 
-			if ( ! empty( $attr[ 'class' ] ) ) {
-				$classes[] = $attr[ 'class' ];
+			if ( ! empty( $attr['class'] ) ) {
+				$classes[] = $attr['class'];
 			}
 
-			$attr[ 'class' ] = join( ' ', $classes );
+			$attr['class'] = join( ' ', $classes );
 
 			foreach ( $attr as $key => $value ) {
 				if ( ! empty( $value ) && is_string( $value ) ) {

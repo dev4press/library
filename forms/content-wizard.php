@@ -31,7 +31,7 @@ $label = panel()->a()->wizard()->is_last_panel() ? __( 'Finish', 'd4plib' ) : __
 					$past_class = 'd4p-wizard-step-current';
 				}
 
-				echo '<div style="width: ' . $step_width . '%" class="d4p-wizard-step d4p-wizard-step-' . $w . ' ' . $past_class . '">' . $obj[ 'label' ] . '</div>';
+				echo '<div style="width: ' . $step_width . '%" class="d4p-wizard-step d4p-wizard-step-' . $w . ' ' . $past_class . '">' . $obj['label'] . '</div>';
 
 				if ( $w == panel()->a()->wizard()->current_panel() ) {
 					$past_class = '';

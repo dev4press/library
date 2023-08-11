@@ -7,7 +7,6 @@
  * Website: https://www.dev4press.com/
  *
  * @package Dev4Press Library
- * @package Dev4Press Library
  *
  * == Copyright ==
  * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
@@ -71,16 +70,16 @@ class WordPress {
 			'cron'         => defined( 'DOING_CRON' ) && DOING_CRON,
 			'debug'        => defined( 'WP_DEBUG' ) && WP_DEBUG,
 			'script_debug' => defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG,
-			'async_upload' => defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST[ 'action' ] ) && 'upload-attachment' === $_REQUEST[ 'action' ],
+			'async_upload' => defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action'],
 		);
 
 		if ( WPR::is_classicpress() ) {
-			$this->_switches[ 'wordpress' ]    = false;
-			$this->_switches[ 'classicpress' ] = true;
-			$this->_versions[ 'cp' ]           = function_exists( 'classicpress_version' ) ? classicpress_version() : '1.0';
+			$this->_switches['wordpress']    = false;
+			$this->_switches['classicpress'] = true;
+			$this->_versions['cp']           = function_exists( 'classicpress_version' ) ? classicpress_version() : '1.0';
 		}
 
-		$this->_versions[ 'cms' ] = $this->_versions[ 'cp' ] ?? $this->_versions[ 'wp' ];
+		$this->_versions['cms'] = $this->_versions['cp'] ?? $this->_versions['wp'];
 
 		add_action( 'rest_api_init', array( $this, 'rest_api' ) );
 	}
@@ -118,7 +117,7 @@ class WordPress {
 	public function uploads_directory() {
 		$uploads = wp_upload_dir();
 
-		return $uploads[ 'basedir' ];
+		return $uploads['basedir'];
 	}
 
 	public function major_version( $key = 'cms' ) : string {
@@ -140,32 +139,32 @@ class WordPress {
 	}
 
 	public function rest_api() {
-		$this->_switches[ 'rest' ] = defined( 'REST_REQUEST' ) && REST_REQUEST;
+		$this->_switches['rest'] = defined( 'REST_REQUEST' ) && REST_REQUEST;
 	}
 
 	public function context() : string {
-		if ( $this->_switches[ 'context' ] === false ) {
-			if ( $this->_switches[ 'cli' ] ) {
-				$this->_switches[ 'context' ] = 'CLI';
-			} else if ( $this->_switches[ 'cron' ] ) {
-				$this->_switches[ 'context' ] = 'CRON';
-			} else if ( $this->_switches[ 'ajax' ] ) {
-				$this->_switches[ 'context' ] = 'AJAX';
-			} else if ( $this->_switches[ 'rest' ] ) {
-				$this->_switches[ 'context' ] = 'REST';
+		if ( $this->_switches['context'] === false ) {
+			if ( $this->_switches['cli'] ) {
+				$this->_switches['context'] = 'CLI';
+			} else if ( $this->_switches['cron'] ) {
+				$this->_switches['context'] = 'CRON';
+			} else if ( $this->_switches['ajax'] ) {
+				$this->_switches['context'] = 'AJAX';
+			} else if ( $this->_switches['rest'] ) {
+				$this->_switches['context'] = 'REST';
 			} else {
-				$this->_switches[ 'context' ] = '';
+				$this->_switches['context'] = '';
 			}
 		}
 
-		return $this->_switches[ 'context' ];
+		return $this->_switches['context'];
 	}
 
 	public function has_coreactivity() : bool {
-		if ( ! isset( $this->_cached[ 'has_coreactivity' ] ) ) {
-			$this->_cached[ 'has_coreactivity' ] = defined( 'COREACTIVITY_VERSION' ) && function_exists( 'coreactivity' ) && class_exists( '\Dev4Press\Plugin\CoreActivity\Basic\Plugin' );
+		if ( ! isset( $this->_cached['has_coreactivity'] ) ) {
+			$this->_cached['has_coreactivity'] = defined( 'COREACTIVITY_VERSION' ) && function_exists( 'coreactivity' ) && class_exists( '\Dev4Press\Plugin\CoreActivity\Basic\Plugin' );
 		}
 
-		return $this->_cached[ 'has_coreactivity' ];
+		return $this->_cached['has_coreactivity'];
 	}
 }

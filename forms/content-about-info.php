@@ -74,16 +74,16 @@ $translations = Languages::instance()->plugin_translations( $translations );
 		$translations = Languages::instance()->plugin_translations( $translations );
 
 		foreach ( $translations as $code => $obj ) {
-			$_lang = $code . ': ' . $obj[ 'native' ] . ' / ' . $obj[ 'english' ];
+			$_lang = $code . ': ' . $obj['native'] . ' / ' . $obj['english'];
 
 			echo '<div class="d4p-block-language"><h4>' . esc_html( $_lang ) . '</h4>';
-			echo '<p>' . esc_html__( 'Plugin Version', 'd4plib' ) . ': ' . esc_html( $obj[ 'version' ] ) . '</p>';
+			echo '<p>' . esc_html__( 'Plugin Version', 'd4plib' ) . ': ' . esc_html( $obj['version'] ) . '</p>';
 
-			if ( ! empty( $obj[ 'contributors' ] ) ) {
+			if ( ! empty( $obj['contributors'] ) ) {
 				$contributors = array();
 
-				foreach ( $obj[ 'contributors' ] as $c ) {
-					$contributors[] = '<a href="' . $c[ 'url' ] . '" target="_blank" rel="noopener">' . esc_html( $c[ 'name' ] ) . '</a>';
+				foreach ( $obj['contributors'] as $c ) {
+					$contributors[] = '<a href="' . $c['url'] . '" target="_blank" rel="noopener">' . esc_html( $c['name'] ) . '</a>';
 				}
 
 				echo '<p>' . esc_html__( 'Contributors', 'd4plib' ) . ': ' . join( ', ', $contributors ) . '</p>';

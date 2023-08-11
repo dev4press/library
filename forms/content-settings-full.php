@@ -22,11 +22,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			continue;
 		}
 
-		if ( isset( $obj[ 'break' ] ) ) {
-			echo panel()->r()->settings_break( $obj[ 'break' ], $obj[ 'break-icon' ] );
+		if ( isset( $obj['break'] ) ) {
+			echo panel()->r()->settings_break( $obj['break'], $obj['break-icon'] );
 		}
 
-		echo panel()->r()->settings_group_break( $obj[ 'title' ], $obj[ 'icon' ] );
+		echo panel()->r()->settings_group_break( $obj['title'], $obj['icon'] );
 
 		$groups = $options->get( $subpanel );
 

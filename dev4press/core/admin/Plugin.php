@@ -434,8 +434,8 @@ abstract class Plugin {
 	public function get_post_type() {
 		$post_type = '';
 
-		if ( isset( $_GET[ 'post_type' ] ) ) {
-			$post_type = sanitize_key( $_GET[ 'post_type' ] );
+		if ( isset( $_GET['post_type'] ) ) {
+			$post_type = sanitize_key( $_GET['post_type'] );
 		} else {
 			global $post;
 
@@ -595,7 +595,7 @@ abstract class Plugin {
 			return null;
 		}
 
-		$scope = $this->menu_items[ $name ][ 'scope' ] ?? array();
+		$scope = $this->menu_items[ $name ]['scope'] ?? array();
 
 		if ( empty( $scope ) ) {
 			return null;

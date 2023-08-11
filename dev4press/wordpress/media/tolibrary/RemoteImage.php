@@ -51,11 +51,12 @@ class RemoteImage {
 		$this->data = wp_parse_args( $data, $defaults );
 		$this->url  = $url;
 
-		if ( empty( $this->data[ 'name' ] ) ) {
-			$this->data[ 'name' ] = basename( $this->url );
+		if ( empty( $this->data['name'] ) ) {
+			$this->data['name'] = basename( $this->url );
 
-			if ( ( $pos = strpos( $this->data[ 'name' ], '?' ) ) > 0 ) {
-				$this->data[ 'name' ] = substr( $this->data[ 'name' ], 0, $pos );
+			$pos = strpos( $this->data['name'], '?' );
+			if ( $pos > 0 ) {
+				$this->data['name'] = substr( $this->data['name'], 0, $pos );
 			}
 		}
 

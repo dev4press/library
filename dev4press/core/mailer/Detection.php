@@ -65,10 +65,10 @@ class Detection {
 	}
 
 	public function broadcast( $atts ) {
-		$name = $this->detection[ 'name' ];
+		$name = $this->detection['name'];
 
 		if ( ! empty( $name ) && isset( $this->supported[ $name ] ) ) {
-			$this->detection[ 'data' ] = $this->supported[ $name ];
+			$this->detection['data'] = $this->supported[ $name ];
 		}
 
 		$this->caller();
@@ -87,9 +87,9 @@ class Detection {
 	}
 
 	public function intercept_wp_mail( $atts ) {
-		if ( is_string( $atts[ 'headers' ] ) && ! empty( $atts[ 'headers' ] ) ) {
-			if ( strpos( $atts[ 'headers' ], 'X-WPCF7-Content-Type' ) !== false ) {
-				$this->detection[ 'name' ] = 'cf7-email';
+		if ( is_string( $atts['headers'] ) && ! empty( $atts['headers'] ) ) {
+			if ( strpos( $atts['headers'], 'X-WPCF7-Content-Type' ) !== false ) {
+				$this->detection['name'] = 'cf7-email';
 			}
 		}
 
@@ -97,11 +97,11 @@ class Detection {
 	}
 
 	public function intercept_buddypress( &$email, $email_type ) {
-		$this->detection[ 'name' ] = 'buddypress-' . $email_type;
+		$this->detection['name'] = 'buddypress-' . $email_type;
 	}
 
 	public function intercept_wp_members( $return ) {
-		$this->detection[ 'name' ] = 'wpmembers-' . ( ! empty( $return[ 'tag' ] ) ? $return[ 'tag' ] : 'custom' );
+		$this->detection['name'] = 'wpmembers-' . ( ! empty( $return['tag'] ) ? $return['tag'] : 'custom' );
 
 		return $return;
 	}
@@ -122,25 +122,25 @@ class Detection {
 		$file_line = '';
 
 		foreach ( $backtrace as $item ) {
-			if ( isset( $item[ 'file' ] ) && isset( $item[ 'line' ] ) && isset( $item[ 'function' ] ) ) {
-				if ( in_array( $item[ 'function' ], $this->aliases ) || $item[ 'function' ] == 'wp_mail' ) {
-					$file_path = $item[ 'file' ];
-					$file_line = $item[ 'line' ];
+			if ( isset( $item['file'] ) && isset( $item['line'] ) && isset( $item['function'] ) ) {
+				if ( in_array( $item['function'], $this->aliases ) || $item['function'] == 'wp_mail' ) {
+					$file_path = $item['file'];
+					$file_line = $item['line'];
 					break;
 				}
 			}
 		}
 
 		if ( ! empty( $file_path ) ) {
-			$this->detection[ 'call' ]           = Source::instance()->origin( $file_path );
-			$this->detection[ 'call' ][ 'line' ] = $file_line;
+			$this->detection['call']         = Source::instance()->origin( $file_path );
+			$this->detection['call']['line'] = $file_line;
 		}
 	}
 
 	protected function identify( string $name, string $type ) {
 		foreach ( $this->supported as $code => $data ) {
 			if ( isset( $data[ $type ] ) && $data[ $type ] == $name ) {
-				$this->detection[ 'name' ] = $code;
+				$this->detection['name'] = $code;
 				break;
 			}
 		}
@@ -152,10 +152,10 @@ class Detection {
 		add_filter( 'wpmem_email_filter', array( $this, 'intercept_wp_members' ) );
 
 		foreach ( $this->supported as $data ) {
-			if ( isset( $data[ 'filter' ] ) ) {
-				add_filter( $data[ 'filter' ], array( $this, 'intercept_filter' ) );
-			} else if ( isset( $data[ 'action' ] ) ) {
-				add_action( $data[ 'action' ], array( $this, 'intercept_action' ) );
+			if ( isset( $data['filter'] ) ) {
+				add_filter( $data['filter'], array( $this, 'intercept_filter' ) );
+			} else if ( isset( $data['action'] ) ) {
+				add_action( $data['action'], array( $this, 'intercept_action' ) );
 			}
 		}
 

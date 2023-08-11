@@ -90,18 +90,18 @@ abstract class Settings {
 	public function settings_from_panel( $obj ) : array {
 		$list = array();
 
-		if ( isset( $obj[ 'settings' ] ) ) {
-			$obj[ 'sections' ] = array(
+		if ( isset( $obj['settings'] ) ) {
+			$obj['sections'] = array(
 				'label'    => '',
 				'name'     => '',
 				'class'    => '',
-				'settings' => $obj[ 'settings' ],
+				'settings' => $obj['settings'],
 			);
-			unset( $obj[ 'settings' ] );
+			unset( $obj['settings'] );
 		}
 
-		foreach ( $obj[ 'sections' ] as $s ) {
-			foreach ( $s[ 'settings' ] as $o ) {
+		foreach ( $obj['sections'] as $s ) {
+			foreach ( $s['settings'] as $o ) {
 				if ( ! empty( $o->type ) ) {
 					$list[] = $o;
 				}

@@ -41,7 +41,7 @@ abstract class GetBack {
 	public function __construct( $admin ) {
 		$this->admin = $admin;
 
-		$this->page = isset( $_REQUEST[ 'page' ] ) ? sanitize_key( $_REQUEST[ 'page' ] ) : false;
+		$this->page = isset( $_REQUEST['page'] ) ? sanitize_key( $_REQUEST['page'] ) : false;
 
 		$this->process();
 	}

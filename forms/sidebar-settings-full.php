@@ -20,11 +20,11 @@ $_subpanels = panel()->subpanels();
             <h3><?php echo esc_html( $_panel->title ); ?></h3>
 			<?php
 
-			echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ][ 'icon' ] ) . esc_html__( 'All Settings', 'd4plib' ) . '</h4>';
+			echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . esc_html__( 'All Settings', 'd4plib' ) . '</h4>';
 
 			?>
             <div class="_info">
-				<?php echo esc_html( $_subpanels[ $_subpanel ][ 'info' ] ); ?>
+				<?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
             </div>
         </div>
         <div class="d4p-panel-mark">

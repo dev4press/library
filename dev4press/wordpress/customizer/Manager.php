@@ -126,9 +126,9 @@ abstract class Manager {
 			$input = $setting->default;
 		}
 
-		$min  = $atts[ 'min' ] ?? $input;
-		$max  = $atts[ 'max' ] ?? $input;
-		$step = $atts[ 'step' ] ?? 1;
+		$min  = $atts['min'] ?? $input;
+		$max  = $atts['max'] ?? $input;
+		$step = $atts['step'] ?? 1;
 
 		$number = $step != 1 ? floor( $input / $step ) * $step : $input;
 

@@ -51,7 +51,7 @@ abstract class Words extends Generator {
 			while ( $shuffle ) {
 				$this->shuffle();
 
-				if ( ! $word_count || $words[ $word_count - 1 ] != $this->words[ 0 ] ) {
+				if ( ! $word_count || $words[ $word_count - 1 ] != $this->words[0] ) {
 					$words      = array_merge( $words, $this->words );
 					$word_count = count( $words );
 					$shuffle    = false;

@@ -44,7 +44,7 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
             <h3><?php echo esc_html( $_panel->title ); ?></h3>
 			<?php
 
-			echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ][ 'icon' ] ) . $_subpanels[ $_subpanel ][ 'title' ] . '</h4>';
+			echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . $_subpanels[ $_subpanel ]['title'] . '</h4>';
 
 			if ( $_beta ) {
 				echo '<div class="_beta"><i class="d4p-icon d4p-ui-flask"></i> <span>' . esc_html__( 'Beta Feature', 'd4plib' ) . '</span></div>';
@@ -52,7 +52,7 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
 
 			?>
             <div class="_info">
-				<?php echo esc_html( $_subpanels[ $_subpanel ][ 'info' ] ); ?>
+				<?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
             </div>
         </div>
 

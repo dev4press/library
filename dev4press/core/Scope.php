@@ -140,7 +140,7 @@ class Scope {
 		if ( $blog_id == 0 ) {
 			return $this->blog_admin;
 		} else {
-			return $this->blog_admin && $this->blog_id = $blog_id;
+			return $this->blog_admin && $this->blog_id == $blog_id;
 		}
 	}
 
@@ -150,7 +150,7 @@ class Scope {
 		if ( $blog_id == 0 ) {
 			return $this->blog_admin;
 		} else {
-			return $this->blog_admin && $this->blog_id = $blog_id;
+			return $this->blog_admin && $this->blog_id == $blog_id;
 		}
 	}
 
@@ -160,7 +160,7 @@ class Scope {
 		if ( $blog_id == 0 ) {
 			return $this->frontend;
 		} else {
-			return $this->frontend && $this->blog_id = $blog_id;
+			return $this->frontend && $this->blog_id == $blog_id;
 		}
 	}
 

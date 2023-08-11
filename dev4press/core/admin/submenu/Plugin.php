@@ -67,19 +67,19 @@ abstract class Plugin extends BasePlugin {
 	}
 
 	public function current_screen( $screen ) {
-		if ( ! empty( $this->page_ids[ 0 ] ) && $screen->id == $this->page_ids[ 0 ] ) {
+		if ( ! empty( $this->page_ids[0] ) && $screen->id == $this->page_ids[0] ) {
 			$this->page = true;
 		}
 
 		if ( $this->page ) {
-			if ( ! empty( $_GET[ 'panel' ] ) ) {
-				$this->panel = Sanitize::slug( $_GET[ 'panel' ] );
+			if ( ! empty( $_GET['panel'] ) ) {
+				$this->panel = Sanitize::slug( $_GET['panel'] );
 			} else {
 				$this->panel = 'dashboard';
 			}
 
-			if ( ! empty( $_GET[ 'subpanel' ] ) ) {
-				$this->subpanel = Sanitize::slug( $_GET[ 'subpanel' ] );
+			if ( ! empty( $_GET['subpanel'] ) ) {
+				$this->subpanel = Sanitize::slug( $_GET['subpanel'] );
 			}
 
 			$this->screen_setup();

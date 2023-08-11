@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $_message = '';
 $_color   = 'success';
 
-if ( isset( $_GET[ 'message' ] ) && $_GET[ 'message' ] != '' ) {
-	$msg_code = Sanitize::slug( $_GET[ 'message' ] );
+if ( isset( $_GET['message'] ) && $_GET['message'] != '' ) {
+	$msg_code = Sanitize::slug( $_GET['message'] );
 
 	switch ( $msg_code ) {
 		case 'saved':
@@ -53,8 +53,8 @@ if ( isset( $_GET[ 'message' ] ) && $_GET[ 'message' ] != '' ) {
 	);
 	$msg = apply_filters( panel()->a()->h( 'admin_panel_message' ), $msg );
 
-	$_message = $msg[ 'message' ];
-	$_color   = $msg[ 'color' ];
+	$_message = $msg['message'];
+	$_color   = $msg['color'];
 }
 
 if ( $_message != '' ) {

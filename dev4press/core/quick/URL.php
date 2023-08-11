@@ -41,19 +41,19 @@ class URL {
 	}
 
 	public static function current_request_path() {
-		$uri = $_SERVER[ 'REQUEST_URI' ];
+		$uri = $_SERVER['REQUEST_URI'];
 
 		return parse_url( $uri, PHP_URL_PATH );
 	}
 
 	public static function current_url_request() : string {
-		$path_info = $_SERVER[ 'PATH_INFO' ] ?? '';
+		$path_info = $_SERVER['PATH_INFO'] ?? '';
 		list( $path_info ) = explode( '?', $path_info );
 		$path_info = str_replace( '%', '%25', $path_info );
 
-		$request         = explode( '?', $_SERVER[ 'REQUEST_URI' ] );
-		$req_uri         = $request[ 0 ];
-		$req_query       = $request[ 1 ] ?? false;
+		$request         = explode( '?', $_SERVER['REQUEST_URI'] );
+		$req_uri         = $request[0];
+		$req_query       = $request[1] ?? false;
 		$home_path       = parse_url( home_url(), PHP_URL_PATH );
 		$home_path       = $home_path ? trim( $home_path, '/' ) : '';
 		$home_path_regex = sprintf( '|^%s|i', preg_quote( $home_path, '|' ) );
@@ -77,11 +77,11 @@ class URL {
 			return home_url( self::current_url_request() );
 		} else {
 			$s        = is_ssl() ? 's' : '';
-			$protocol = Str::left( strtolower( $_SERVER[ 'SERVER_PROTOCOL' ] ), '/' ) . $s;
-			$port     = isset( $_SERVER[ 'SERVER_PORT' ] ) ? absint( $_SERVER[ 'SERVER_PORT' ] ) : 80;
+			$protocol = Str::left( strtolower( $_SERVER['SERVER_PROTOCOL'] ), '/' ) . $s;
+			$port     = isset( $_SERVER['SERVER_PORT'] ) ? absint( $_SERVER['SERVER_PORT'] ) : 80;
 			$port     = $port === 80 || $port === 443 ? '' : ':' . $port;
 
-			return $protocol . '://' . sanitize_url( $_SERVER[ 'SERVER_NAME' ] ) . $port . sanitize_url( $_SERVER[ 'REQUEST_URI' ] );
+			return $protocol . '://' . sanitize_url( $_SERVER['SERVER_NAME'] ) . $port . sanitize_url( $_SERVER['REQUEST_URI'] );
 		}
 	}
 

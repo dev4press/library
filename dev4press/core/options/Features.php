@@ -55,8 +55,8 @@ abstract class Features {
 		$list = array();
 
 		foreach ( $this->settings[ $this->feature ] as $data ) {
-			foreach ( $data[ 'sections' ] as $section ) {
-				foreach ( $section[ 'settings' ] as $o ) {
+			foreach ( $data['sections'] as $section ) {
+				foreach ( $section['settings'] as $o ) {
 					if ( ! empty( $o->type ) ) {
 						$list[] = $o;
 					}

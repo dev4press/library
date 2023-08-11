@@ -40,7 +40,7 @@ class Divider extends Control {
 	protected function render_content() {
 		$show_hr = true;
 
-		if ( isset( $this->input_attrs[ 'hide_line' ] ) && $this->input_attrs[ 'hide_line' ] === true ) {
+		if ( isset( $this->input_attrs['hide_line'] ) && $this->input_attrs['hide_line'] === true ) {
 			$show_hr = false;
 		}
 

@@ -71,7 +71,7 @@ abstract class PanelTools extends Panel {
 		$_subpanel = $this->a()->subpanel;
 
 		if ( isset( $this->subpanels[ $_subpanel ] ) ) {
-			$method = $this->subpanels[ $_subpanel ][ 'method' ];
+			$method = $this->subpanels[ $_subpanel ]['method'];
 
 			if ( $method == 'post' ) {
 				$this->form = true;
@@ -83,15 +83,15 @@ abstract class PanelTools extends Panel {
 		$_subpanel = $this->a()->subpanel;
 
 		if ( isset( $this->subpanels[ $_subpanel ] ) ) {
-			$method = $this->subpanels[ $_subpanel ][ 'method' ];
+			$method = $this->subpanels[ $_subpanel ]['method'];
 
 			if ( ! empty( $method ) ) {
 				echo '<div class="d4p-accessibility-button">';
 
 				if ( $method == 'get' ) {
-					echo '<a type="button" href="' . esc_url( $this->subpanels[ $_subpanel ][ 'button_url' ] ) . '" class="button-primary">' . KSES::standard( $this->subpanels[ $_subpanel ][ 'button_label' ] ) . '</a>';
+					echo '<a type="button" href="' . esc_url( $this->subpanels[ $_subpanel ]['button_url'] ) . '" class="button-primary">' . KSES::standard( $this->subpanels[ $_subpanel ]['button_label'] ) . '</a>';
 				} else if ( $method == 'post' ) {
-					echo '<input type="submit" value="' . esc_attr( $this->subpanels[ $_subpanel ][ 'button_label' ] ) . '" class="button-primary" />';
+					echo '<input type="submit" value="' . esc_attr( $this->subpanels[ $_subpanel ]['button_label'] ) . '" class="button-primary" />';
 				}
 
 				echo '</div>';

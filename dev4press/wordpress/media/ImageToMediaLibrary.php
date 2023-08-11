@@ -54,8 +54,8 @@ trait ImageToMediaLibrary {
 
 		$file = array(
 			'name'     => $this->_title_for_name ?
-				$this->data[ 'slug' ] . '.' . $this->ext : $this->file,
-			'type'     => $mime_type[ 'type' ],
+				$this->data['slug'] . '.' . $this->ext : $this->file,
+			'type'     => $mime_type['type'],
 			'tmp_name' => $temp,
 			'error'    => 0,
 			'size'     => filesize( $temp ),
@@ -71,8 +71,8 @@ trait ImageToMediaLibrary {
 
 		$attr = wp_handle_sideload( $file, $overrides );
 
-		if ( isset( $attr[ 'error' ] ) ) {
-			return new WP_Error( 'sideload_error', $attr[ 'error' ] );
+		if ( isset( $attr['error'] ) ) {
+			return new WP_Error( 'sideload_error', $attr['error'] );
 		}
 
 		return $attr;
@@ -81,17 +81,17 @@ trait ImageToMediaLibrary {
 	protected function _attach( $file, $post_parent = 0 ) {
 		$wp_upload_dir = wp_upload_dir();
 
-		$path = str_replace( $wp_upload_dir[ 'basedir' ] . '/', '', $file[ 'file' ] );
+		$path = str_replace( $wp_upload_dir['basedir'] . '/', '', $file['file'] );
 
 		$attachment_id = wp_insert_attachment(
 			array(
-				'guid'           => $file[ 'url' ],
-				'post_mime_type' => $file[ 'type' ],
-				'post_title'     => ! empty( $this->data[ 'title' ] ) ?
-					$this->data[ 'title' ] : preg_replace( '/\.[^.]+$/', '', basename( $file[ 'file' ] ) ),
-				'post_name'      => $this->data[ 'slug' ],
-				'post_content'   => $this->data[ 'description' ],
-				'post_excerpt'   => $this->data[ 'caption' ],
+				'guid'           => $file['url'],
+				'post_mime_type' => $file['type'],
+				'post_title'     => ! empty( $this->data['title'] ) ?
+					$this->data['title'] : preg_replace( '/\.[^.]+$/', '', basename( $file['file'] ) ),
+				'post_name'      => $this->data['slug'],
+				'post_content'   => $this->data['description'],
+				'post_excerpt'   => $this->data['caption'],
 				'post_status'    => 'inherit',
 			),
 			$path,
@@ -102,11 +102,11 @@ trait ImageToMediaLibrary {
 			return $attachment_id;
 		}
 
-		$attach_data = wp_generate_attachment_metadata( $attachment_id, $file[ 'file' ] );
+		$attach_data = wp_generate_attachment_metadata( $attachment_id, $file['file'] );
 		wp_update_attachment_metadata( $attachment_id, $attach_data );
 
-		if ( ! empty( $this->data[ 'alt' ] ) ) {
-			update_post_meta( $attachment_id, '_wp_attachment_image_alt', $this->data[ 'alt' ] );
+		if ( ! empty( $this->data['alt'] ) ) {
+			update_post_meta( $attachment_id, '_wp_attachment_image_alt', $this->data['alt'] );
 		}
 
 		return $attachment_id;
@@ -118,36 +118,36 @@ trait ImageToMediaLibrary {
 	}
 
 	protected function _prepare( $args ) {
-		$this->name = sanitize_title( pathinfo( $this->data[ 'name' ], PATHINFO_FILENAME ) );
-		$this->ext  = pathinfo( $this->data[ 'name' ], PATHINFO_EXTENSION );
+		$this->name = sanitize_title( pathinfo( $this->data['name'], PATHINFO_FILENAME ) );
+		$this->ext  = pathinfo( $this->data['name'], PATHINFO_EXTENSION );
 
 		if ( $this->ext == 'jpeg' ) {
 			$this->ext = 'jpg';
 		}
 
-		if ( empty( $this->data[ 'slug' ] ) ) {
-			if ( ! empty( $this->data[ 'title' ] ) ) {
-				$this->data[ 'slug' ] = sanitize_title( $this->data[ 'title' ] );
+		if ( empty( $this->data['slug'] ) ) {
+			if ( ! empty( $this->data['title'] ) ) {
+				$this->data['slug'] = sanitize_title( $this->data['title'] );
 			} else {
-				$this->data[ 'slug' ] = sanitize_title( $this->name );
+				$this->data['slug'] = sanitize_title( $this->name );
 			}
 		}
 
-		if ( empty( $this->data[ 'alt' ] ) && ! empty( $this->data[ 'title' ] ) ) {
-			$this->data[ 'alt' ] = $this->data[ 'title' ];
+		if ( empty( $this->data['alt'] ) && ! empty( $this->data['title'] ) ) {
+			$this->data['alt'] = $this->data['title'];
 		}
 
 		$this->file = $this->name . '.' . $this->ext;
 
-		if ( is_array( $args[ 'mimes' ] ) && ! empty( $args[ 'mimes' ] ) ) {
-			$this->_mimes = $args[ 'mimes' ];
+		if ( is_array( $args['mimes'] ) && ! empty( $args['mimes'] ) ) {
+			$this->_mimes = $args['mimes'];
 		}
 
-		if ( isset( $args[ 'test_type' ] ) && $args[ 'test_type' ] == false ) {
+		if ( isset( $args['test_type'] ) && $args['test_type'] == false ) {
 			$this->_test_type = false;
 		}
 
-		if ( isset( $args[ 'title_for_name' ] ) && $args[ 'title_for_name' ] == true ) {
+		if ( isset( $args['title_for_name'] ) && $args['title_for_name'] == true ) {
 			$this->_title_for_name = true;
 		}
 	}

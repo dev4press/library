@@ -297,7 +297,7 @@ abstract class Generator {
 
 			foreach ( $strings as $key => $string ) {
 				foreach ( $tags as $tag ) {
-					if ( $tag[ 0 ] == '<' ) {
+					if ( $tag[0] == '<' ) {
 						$string = str_replace( '$1', $string, $tag );
 					} else {
 						$string = sprintf( '<%1$s>%2$s</%1$s>', $tag, $string );

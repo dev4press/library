@@ -73,22 +73,22 @@ class Four {
 	public $ad = null;
 
 	public function __construct( $type, $name, $version, $build, $lic = '' ) {
-		$this->data[ 'type' ]    = $type;
-		$this->data[ 'name' ]    = $name;
-		$this->data[ 'version' ] = $version;
-		$this->data[ 'build' ]   = $build;
+		$this->data['type']    = $type;
+		$this->data['name']    = $name;
+		$this->data['version'] = $version;
+		$this->data['build']   = $build;
 
 		if ( $lic != '' ) {
-			$this->data[ 'lic' ] = $lic;
+			$this->data['lic'] = $lic;
 		}
 
-		$this->data[ 'multisite' ] = is_multisite() ? 'Y' : 'N';
-		$this->data[ 'bbpress' ]   = $this->_has_bbpress() ? 'Y' : 'N';
-		$this->data[ 'url' ]       = parse_url( get_bloginfo( 'url' ), PHP_URL_HOST );
-		$this->data[ 'ip' ]        = IP::server();
+		$this->data['multisite'] = is_multisite() ? 'Y' : 'N';
+		$this->data['bbpress']   = $this->_has_bbpress() ? 'Y' : 'N';
+		$this->data['url']       = parse_url( get_bloginfo( 'url' ), PHP_URL_HOST );
+		$this->data['ip']        = IP::server();
 
 		if ( function_exists( 'd4pupd_get_api_key' ) ) {
-			$this->data[ 'api' ] = d4pupd_get_api_key();
+			$this->data['api'] = d4pupd_get_api_key();
 		}
 
 		add_filter( 'http_request_args', array( $this, 'request_headers' ), 2000, 2 );
@@ -98,11 +98,11 @@ class Four {
 
 		foreach ( array_keys( $plugins ) as $plugin ) {
 			if ( isset( $this->plugins[ $plugin ] ) ) {
-				$this->data[ 'plugins' ][] = $this->plugins[ $plugin ];
+				$this->data['plugins'][] = $this->plugins[ $plugin ];
 			}
 		}
 
-		$this->data[ 'plugins' ] = join( ',', $this->data[ 'plugins' ] );
+		$this->data['plugins'] = join( ',', $this->data['plugins'] );
 	}
 
 	public static function instance( $type, $name, $version, $build, $lic = '' ) : Four {
@@ -117,17 +117,17 @@ class Four {
 
 	public function request_headers( $r, $url ) : array {
 		if ( strpos( $url, 'www.dev4press.com/service/core' ) !== false ) {
-			$r[ 'headers' ][ 'X-Dev4press-Checkin-Product' ]  = $this->_header_product();
-			$r[ 'headers' ][ 'X-Dev4press-Checkin-Origin' ]   = $this->_header_origin();
-			$r[ 'headers' ][ 'X-Dev4press-Checkin-Validate' ] = $this->_header_validate();
+			$r['headers']['X-Dev4press-Checkin-Product']  = $this->_header_product();
+			$r['headers']['X-Dev4press-Checkin-Origin']   = $this->_header_origin();
+			$r['headers']['X-Dev4press-Checkin-Validate'] = $this->_header_validate();
 		}
 
 		return $r;
 	}
 
 	public function ad() {
-		$this->data[ 'source' ] = 'ad';
-		$key                    = 'devad_' . $this->data[ 'name' ];
+		$this->data['source'] = 'ad';
+		$key                  = 'devad_' . $this->data['name'];
 
 		$data = get_site_transient( $key );
 
@@ -185,8 +185,8 @@ class Four {
 	}
 
 	private function _url( $url, $campaign = 'install' ) : string {
-		$url = add_query_arg( 'utm_source', $this->data[ 'url' ], $url );
-		$url = add_query_arg( 'utm_medium', 'web-' . $this->data[ 'name' ], $url );
+		$url = add_query_arg( 'utm_source', $this->data['url'], $url );
+		$url = add_query_arg( 'utm_medium', 'web-' . $this->data['name'], $url );
 
 		return add_query_arg( 'utm_campaign', $campaign . '-panel', $url );
 	}
@@ -196,20 +196,20 @@ class Four {
 	}
 
 	private function _header_validate() : string {
-		return $this->data[ 'api' ] . '::' .
-		       $this->data[ 'lic' ];
+		return $this->data['api'] . '::' .
+		       $this->data['lic'];
 	}
 
 	private function _header_origin() : string {
-		return $this->data[ 'url' ] . '::' .
-		       $this->data[ 'multisite' ];
+		return $this->data['url'] . '::' .
+		       $this->data['multisite'];
 	}
 
 	private function _header_product() : string {
-		return $this->data[ 'type' ] . '::' .
-		       $this->data[ 'name' ] . '::' .
-		       $this->data[ 'version' ] . '::' .
-		       $this->data[ 'build' ];
+		return $this->data['type'] . '::' .
+		       $this->data['name'] . '::' .
+		       $this->data['version'] . '::' .
+		       $this->data['build'];
 	}
 
 	private function _has_bbpress() : bool {
@@ -227,7 +227,7 @@ class Four {
 		$raw = $this->_post( $url, $this->data );
 
 		if ( ! is_wp_error( $raw ) ) {
-			return json_decode( $raw[ 'body' ] );
+			return json_decode( $raw['body'] );
 		}
 
 		return false;

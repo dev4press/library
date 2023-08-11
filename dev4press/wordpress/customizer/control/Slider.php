@@ -45,9 +45,9 @@ class Slider extends Control {
                     name="<?php echo esc_attr( $this->id ); ?>"
                     value="<?php echo esc_attr( $this->value() ); ?>"
                     class="customize-control-slider-value" <?php $this->link(); ?> />
-            <div class="slider" slider-min-value="<?php echo esc_attr( $this->input_attrs[ 'min' ] ); ?>"
-                    slider-max-value="<?php echo esc_attr( $this->input_attrs[ 'max' ] ); ?>"
-                    slider-step-value="<?php echo esc_attr( $this->input_attrs[ 'step' ] ); ?>"></div>
+            <div class="slider" slider-min-value="<?php echo esc_attr( $this->input_attrs['min'] ); ?>"
+                    slider-max-value="<?php echo esc_attr( $this->input_attrs['max'] ); ?>"
+                    slider-step-value="<?php echo esc_attr( $this->input_attrs['step'] ); ?>"></div>
             <span class="slider-reset dashicons dashicons-image-rotate"
                     slider-reset-value="<?php echo esc_attr( $this->default_value() ); ?>"></span>
 

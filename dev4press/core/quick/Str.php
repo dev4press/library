@@ -75,20 +75,20 @@ class Str {
 				return true;
 			}
 
-			if ( $input[ 0 ] === '"' && $input[ strlen( $input ) - 1 ] === '"' ) {
+			if ( $input[0] === '"' && $input[ strlen( $input ) - 1 ] === '"' ) {
 				return true;
 			}
 		}
 
-		if ( '{' != $input[ 0 ] && '[' != $input[ 0 ] ) {
+		if ( '{' != $input[0] && '[' != $input[0] ) {
 			return false;
 		}
 
-		if ( '{' == $input[ 0 ] && '}' != $input[ strlen( $input ) - 1 ] ) {
+		if ( '{' == $input[0] && '}' != $input[ strlen( $input ) - 1 ] ) {
 			return false;
 		}
 
-		if ( '[' == $input[ 0 ] && ']' != $input[ strlen( $input ) - 1 ] ) {
+		if ( '[' == $input[0] && ']' != $input[ strlen( $input ) - 1 ] ) {
 			return false;
 		}
 
@@ -205,11 +205,11 @@ class Str {
 		$matches = array();
 
 		if ( preg_match_all( '/<img(.+?)>/', $search, $matches ) ) {
-			foreach ( $matches[ 1 ] as $image ) {
+			foreach ( $matches[1] as $image ) {
 				$match = array();
 
 				if ( preg_match( '/src=(["\'])(.*?)\1/', $image, $match ) ) {
-					$images[] = $match[ 2 ];
+					$images[] = $match[2];
 				}
 			}
 		}
@@ -219,7 +219,7 @@ class Str {
 		}
 
 		if ( $limit == 1 ) {
-			return count( $images ) > 0 ? $images[ 0 ] : '';
+			return count( $images ) > 0 ? $images[0] : '';
 		} else {
 			return $images;
 		}
