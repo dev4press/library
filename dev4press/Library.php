@@ -6,6 +6,9 @@
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
  *
+ * @package Dev4Press Library
+ * @package Dev4Press Library
+ *
  * == Copyright ==
  * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
  *

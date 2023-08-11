@@ -6,6 +6,8 @@
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
  *
+ * @package Dev4Press Library
+ *
  * == Copyright ==
  * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
  *
@@ -24,6 +26,10 @@
  */
 
 namespace Dev4Press\v43\Service\GEOIP;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class GEOJSIO extends Locator {
 	private $_location_convert = array(

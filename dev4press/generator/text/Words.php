@@ -6,6 +6,8 @@
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
  *
+ * @package Dev4Press Library
+ *
  * == Notice ==
  * Based on the LoremIpsum script by Josh Sherman
  * https://github.com/joshtronic/php-loremipsum
@@ -28,6 +30,10 @@
  */
 
 namespace Dev4Press\v43\Generator\Text;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 abstract class Words extends Generator {
 	protected $first = false;

@@ -6,6 +6,8 @@
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
  *
+ * @package Dev4Press Library
+ *
  * == Copyright ==
  * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
  *
@@ -55,12 +57,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @property int    blogid
  * @property int    insert_id
  * @property int    rows_affected
+ * @method string|void            prepare( $query, ...$args )
+ * @method int|bool               query( $query )
+ * @method array|object|null      get_results( $query = null, $output = OBJECT )
+ * @method array|object|null|void get_row( $query = null, $output = OBJECT, $y = 0 )
+ * @method array                  get_col( $query, $x = 0 )
+ * @method string|null            get_var( $query = null, $x = 0, $y = 0 )
+ * @method int|false              insert( $table, $data, $format = null )
+ * @method int|false              update( $table, $data, $where, $format = null, $where_format = null )
+ * @method int|false              delete( $table, $where, $where_format = null )
+ * @method void                   flush()
  */
 abstract class DBLite {
 	protected $plugin_name = 'dev4press-library';
 	protected $plugin_instance = 'db';
 
 	protected static $_queries_log = array();
+	protected $_methods_log = array( 'query', 'get_results', 'get_row', 'get_var', 'insert', 'update', 'delete' );
 
 	public function __construct() {
 	}
@@ -87,6 +100,20 @@ abstract class DBLite {
 		return false;
 	}
 
+	public function __call( $name, $arguments ) {
+		$result = null;
+
+		if ( method_exists( $this->wpdb(), $name ) ) {
+			$result = call_user_func_array( array( $this->wpdb(), $name ), $arguments );
+
+			if ( in_array( $name, $this->_methods_log ) ) {
+				$this->_copy_logged_query();
+			}
+		}
+
+		return $result;
+	}
+
 	/**
 	 * @return wpdb
 	 *
@@ -109,7 +136,7 @@ abstract class DBLite {
 
 		$replace = array_fill( 0, count( $items ), $mod );
 
-		return $this->wpdb()->prepare( join( ', ', $replace ), $items );
+		return $this->prepare( join( ', ', $replace ), $items );
 	}
 
 	public function build_query( array $sql, bool $calc_found_rows = true ) : string {
@@ -147,34 +174,10 @@ abstract class DBLite {
 		return $_build;
 	}
 
-	public function query( string $query ) {
-		$_value = $this->wpdb()->query( $query );
-
-		$this->_copy_logged_query();
-
-		return $_value;
-	}
-
-	public function run( string $query, string $output = OBJECT ) {
-		$_value = $this->wpdb()->get_results( $query, $output );
-
-		$this->_copy_logged_query();
-
-		return $_value;
-	}
-
 	public function run_and_index( string $query, string $field, string $output = OBJECT ) : array {
-		$raw = $this->wpdb()->get_results( $query, $output );
+		$raw = $this->get_results( $query, $output );
 
 		$_value = $this->index( $raw, $field );
-
-		$this->_copy_logged_query();
-
-		return $_value;
-	}
-
-	public function get_var( string $query, $x = 0, $y = 0 ) {
-		$_value = $this->wpdb()->get_var( $query, $x, $y );
 
 		$this->_copy_logged_query();
 
@@ -187,54 +190,6 @@ abstract class DBLite {
 		return is_null( $_value ) ? $default : absint( $_value );
 	}
 
-	public function get_row( string $query, string $output = OBJECT, $y = 0 ) {
-		$_value = $this->wpdb()->get_row( $query, $output, $y );
-
-		$this->_copy_logged_query();
-
-		return $_value;
-	}
-
-	public function get_col( string $query, $x = 0 ) {
-		$_value = $this->wpdb()->get_col( $query, $x );
-
-		$this->_copy_logged_query();
-
-		return $_value;
-	}
-
-	public function get_results( string $query, string $output = OBJECT ) {
-		$_value = $this->wpdb()->get_results( $query, $output );
-
-		$this->_copy_logged_query();
-
-		return $_value;
-	}
-
-	public function insert( string $table, $data, $format = null ) {
-		$_value = $this->wpdb()->insert( $table, $data, $format );
-
-		$this->_copy_logged_query();
-
-		return $_value;
-	}
-
-	public function update( string $table, $data, $where, $format = null, $where_format = null ) {
-		$_value = $this->wpdb()->update( $table, $data, $where, $format, $where_format );
-
-		$this->_copy_logged_query();
-
-		return $_value;
-	}
-
-	public function delete( string $table, $where, $where_format = null ) {
-		$_value = $this->wpdb()->delete( $table, $where, $where_format );
-
-		$this->_copy_logged_query();
-
-		return $_value;
-	}
-
 	public function delete_by_ids( string $table, string $field, array $ids = array() ) {
 		$ids = $this->clean_ids_list( $ids );
 
@@ -245,17 +200,6 @@ abstract class DBLite {
 		$sql = "DELETE FROM `$table` WHERE $field IN (" . $this->prepare_in_list( $ids, '%d' ) . ')';
 
 		return $this->query( $sql );
-	}
-
-	public function prepare( string $query, $args ) {
-		$args = func_get_args();
-		array_shift( $args );
-
-		if ( isset( $args[ 0 ] ) && is_array( $args[ 0 ] ) ) {
-			$args = $args[ 0 ];
-		}
-
-		return $this->wpdb()->prepare( $query, $args );
 	}
 
 	public function insert_meta_data( string $table, string $column, int $id, array $meta, bool $skip_empty_values = false, bool $json_serialization = false ) {
@@ -482,15 +426,5 @@ abstract class DBLite {
 		_deprecated_function( __METHOD__, '4.0', '\Dev4Press\v43\Core\DateTime::instance()->offset()' );
 
 		return DateTime::instance()->offset();
-	}
-
-	/**
-	 * @return string
-	 * @deprecated Since 4.0, to be removed in 4.2
-	 */
-	public function get_offset_string() : string {
-		_deprecated_function( __METHOD__, '4.0', '\Dev4Press\v43\Core\DateTime::instance()->formatted_offset()' );
-
-		return DateTime::instance()->formatted_offset();
 	}
 }
