@@ -86,7 +86,7 @@ $translations = Languages::instance()->plugin_translations( $translations );
 					$contributors[] = '<a href="' . $c['url'] . '" target="_blank" rel="noopener">' . esc_html( $c['name'] ) . '</a>';
 				}
 
-				echo '<p>' . esc_html__( 'Contributors', 'd4plib' ) . ': ' . join( ', ', $contributors ) . '</p>'; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<p>' . esc_html__( 'Contributors', 'd4plib' ) . ': ' . join( ', ', $contributors ) . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			echo '</div>';

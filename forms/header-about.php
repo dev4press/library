@@ -31,7 +31,7 @@ $_plugin_title = sprintf(
         <div class="d4p-about-badge">
             <div class="d4p-about-badge-inner" style="background-color: <?php echo esc_attr( panel()->a()->settings()->i()->color() ); ?>;">
 				<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				<?php printf( esc_html__( 'Version %s', 'd4plib' ), panel()->a()->settings()->i()->version ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php printf( esc_html__( 'Version %s', 'd4plib' ), panel()->a()->settings()->i()->version ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
         </div>
     </div>
