@@ -203,7 +203,7 @@ class Enqueue {
 	}
 
 	private function url( $obj, $locale = null ) : string {
-		$url = $obj['lib'] ? trailingslashit( $this->_url . 'resources/libraries/' . $obj['path'] ) : ( isset( $obj['url'] ) ? trailingslashit( $obj['url'] ) : trailingslashit( $this->_url . 'resources/' . $obj['path'] ) );
+		$url = $obj['lib'] ? trailingslashit( $this->_url . 'resources/vendor/' . $obj['path'] ) : ( isset( $obj['url'] ) ? trailingslashit( $obj['url'] ) : trailingslashit( $this->_url . 'resources/' . $obj['path'] ) );
 
 		if ( is_null( $locale ) ) {
 			$min = $obj['min'];

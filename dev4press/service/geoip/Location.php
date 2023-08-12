@@ -81,7 +81,7 @@ class Location {
 	}
 
 	public function flag( $not_found = 'image' ) : string {
-		$_base = Library::instance()->url() . 'resources/libraries/flags/img/flag_placeholder.png';
+		$_base = Library::instance()->url() . 'resources/vendor/flags/img/flag_placeholder.png';
 
 		if ( $this->status == 'active' ) {
 			if ( $this->country_code != '' ) {
