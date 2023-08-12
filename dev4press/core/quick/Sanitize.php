@@ -186,8 +186,23 @@ class Sanitize {
 		return apply_filters( __NAMESPACE__ . '\sanitize\file_path', $filename, $filename_raw );
 	}
 
+	public static function _get_switch_array( $key, $sub_key = false, $value = 'on' ) : array {
+		$source = $_POST[ $key ] ?? array(); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$source = $sub_key !== false ? ( $source[ $sub_key ] ?? array() ) : $source;
+		$source = wp_unslash( $source );
+		$result = array();
+
+		foreach ( $source as $name => $val ) {
+			if ( $value === $val ) {
+				$result[] = sanitize_key( $name );
+			}
+		}
+
+		return $result;
+	}
+
 	public static function _get_slug( $name, $default ) {
-		return ! empty( $_GET[ $name ] ) ? self::slug( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		return ! empty( $_GET[ $name ] ) ? self::slug( wp_unslash( $_GET[ $name ] ) ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	}
 
 	public static function _get_basic( $name, $default ) {
