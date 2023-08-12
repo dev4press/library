@@ -195,7 +195,7 @@ abstract class Wizard {
 		}
 	}
 
-	/** @return \Dev4Press\v42\Core\Admin\Plugin */
+	/** @return \Dev4Press\v43\Core\Admin\Plugin */
 	abstract public function a();
 
 	abstract protected function init_panels();
