@@ -40,6 +40,18 @@ class BBP {
 		}
 	}
 
+	public static function get_post_types() : array {
+		if ( self::is_active() ) {
+			return array(
+				bbp_get_forum_post_type(),
+				bbp_get_topic_post_type(),
+				bbp_get_reply_post_type(),
+			);
+		}
+
+		return array();
+	}
+
 	public static function list_user_roles() : array {
 		$dynamic_roles = bbp_get_dynamic_roles();
 

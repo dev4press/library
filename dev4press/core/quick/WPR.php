@@ -288,6 +288,16 @@ class WPR {
 		}
 	}
 
+	public static function remove_site_url( string $url ) {
+		$site_url = untrailingslashit( site_url() );
+
+		if ( substr( $url, 0, strlen( $site_url ) ) == $site_url ) {
+			$url = str_replace( $site_url, '', $url );
+		}
+
+		return $url;
+	}
+
 	/*
 	 * Function by Micah Wood
 	 * https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
@@ -329,6 +339,21 @@ class WPR {
 		}
 
 		return $attachment_id;
+	}
+
+	public static function get_post_id_by_slug( $slug, $post_type = 'page' ) {
+		$query = new WP_Query(
+			array(
+				'name'                   => $slug,
+				'post_type'              => $post_type,
+				'numberposts'            => 1,
+				'fields'                 => 'ids',
+				'update_post_meta_cache' => false,
+				'no_found_rows'          => true,
+			) );
+		$posts = $query->get_posts();
+
+		return empty( $posts ) ? 0 : array_shift( $posts );
 	}
 
 	public static function switch_to_default_theme() {
@@ -521,16 +546,6 @@ class WPR {
 		}
 
 		return $roles;
-	}
-
-	public static function get_gmt_offset() {
-		$offset = get_option( 'gmt_offset' );
-
-		if ( empty( $offset ) ) {
-			$offset = wp_timezone_override_offset();
-		}
-
-		return $offset === false ? 0 : $offset;
 	}
 
 	public static function html_excerpt( $text, $limit, $more = null ) : string {
