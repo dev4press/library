@@ -7,6 +7,10 @@
     window.wp.dev4press.admin = {
         scroll_offset: 40,
         active_element: null,
+        toggles: {
+            on: "d4p-ui-toggle-on",
+            off: "d4p-ui-toggle-off"
+        },
         init: function() {
             wp.dev4press.admin.components.scroller.run();
             wp.dev4press.admin.components.interface.run();
@@ -243,6 +247,22 @@
                     if ($("#d4p-settings-mark").length === 1) {
                         wp.dev4press.admin.panels.settings.mark();
                     }
+
+                    $(document).on(
+                        "click",
+                        ".d4p-toggle-control-wrapper button",
+                        function(e) {
+                            e.preventDefault();
+
+                            var input = $(this).next(), c = input.prop("checked"),
+                                t = wp.dev4press.admin.toggles, n = c ? 'off' : 'on', o = c ? 'on' : 'off',
+                                group = $(this).closest(".d4p-group");
+
+                            input.prop("checked", !c);
+                            group.removeClass("d4p-group-toggle-" + o).addClass("d4p-group-toggle-" + n)
+                            $(this).find("i").removeClass(t[o]).addClass(t[n]);
+                            $(this).attr("aria-pressed", c ? "false" : "true");
+                        });
                 },
                 mark: function() {
                     $(document).on(

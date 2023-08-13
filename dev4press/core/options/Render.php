@@ -90,7 +90,27 @@ class Render {
 					$classes[] = $args['class'];
 				}
 
-				echo '<div class="' . Sanitize::html_classes( $classes ) . '" id="d4p-group-' . esc_attr( $group ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				$toggle = '';
+
+				if ( ! empty( $obj['toggle'] ) ) {
+					$t = $obj['toggle'];
+
+					$classes[] = 'd4p-group-with-toggle';
+					$classes[] = $t['value'] ? 'd4p-group-toggle-on' : 'd4p-group-toggle-off';
+					$active    = $t['on'] ?? __( "Active" );
+					$inactive  = $t['off'] ?? __( "Inactive" );
+					$icon      = $t['value'] ? 'd4p-ui-toggle-on' : 'd4p-ui-toggle-off';
+					$title     = $t['value'] ? $active : $inactive;
+
+					$checked   = $t['value'] ? ' checked="checked"' : '';
+					$name_base = $this->base . '[' . $t['group'] . '][' . $t['option'] . ']';
+
+					$toggle = '<span class="d4p-toggle-control-wrapper">';
+					$toggle .= '<button aria-pressed="' . ( $t['value'] ? 'true' : 'false' ) . '" title="" class="d4p-group-toggle-switch ' . esc_attr( $t['class'] ?? '' ) . '" data-group="' . esc_attr( $t['group'] ) . '" data-option="' . esc_attr( $t['option'] ) . '" data-on="' . esc_attr( $active ) . '" data-off="' . esc_attr( $inactive ) . '" type="button"><i aria-hidden="true" class="d4p-icon ' . esc_attr( $icon ) . '"></i><span class="d4p-accessibility-show-for-sr">' . esc_html( $title ) . '</span></button>';
+					$toggle .= '<input ' . $checked . ' value="on" name="' . esc_attr( $name_base ) . '" type="checkbox"/>';
+					$toggle .= '</span>';
+				}
+
 				$kb = isset( $obj['kb'] ) ? str_replace( '%url%', $obj['kb']['url'], $this->kb ) : '';
 
 				if ( ! empty( $kb ) ) {
@@ -101,8 +121,15 @@ class Render {
 					$kb = '<a class="d4p-kb-group" href="' . esc_url( $kb ) . '" target="_blank" rel="noopener">' . esc_html( $label ) . '</a>';
 				}
 
-				echo '<h3>' . esc_html( $obj['name'] ) . $kb . '</h3>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<div class="' . Sanitize::html_classes( $classes ) . '" id="d4p-group-' . esc_attr( $group ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<h3>' . $toggle . esc_html( $obj['name'] ) . $kb . '</h3>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo '<div class="d4p-group-inner">';
+
+				if ( isset( $obj['off'] ) ) {
+					echo '<div class="d4p-settings-off">';
+					echo '<p>' . esc_html( $obj['off']['notice'] ) . '</p>';
+					echo '</div>';
+				}
 
 				if ( isset( $obj['notice'] ) ) {
 					$type = $obj['notice']['type'] ?? 'info';
@@ -186,6 +213,10 @@ class Render {
 	}
 
 	protected function render_option( Element $setting, $group ) {
+		if ( isset( $setting->args['skip_render'] ) && $setting->args['skip_render'] === true ) {
+			return;
+		}
+
 		$name_base     = $this->base . '[' . $setting->type . '][' . $setting->name . ']';
 		$id_base       = $this->get_id( $name_base );
 		$call_function = apply_filters(
