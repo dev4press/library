@@ -61,7 +61,7 @@ class Sanitize {
 	}
 
 	public static function url( $url ) : string {
-		return esc_url_raw( $url );
+		return sanitize_url( $url );
 	}
 
 	public static function key( $key ) : string {
@@ -201,15 +201,21 @@ class Sanitize {
 		return $result;
 	}
 
-	public static function _get_slug( $name, $default ) {
+	public static function _get_slug( string $name, string $default = '' ) : string {
 		return ! empty( $_GET[ $name ] ) ? self::slug( wp_unslash( $_GET[ $name ] ) ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	}
 
-	public static function _get_basic( $name, $default ) {
+	public static function _get_basic( string $name, string $default = '' ) : string {
 		return ! empty( $_GET[ $name ] ) ? self::basic( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	}
 
-	public static function _get_absint( $name, $default ) {
+	public static function _get_absint( string $name, int $default = 0 ) : int {
 		return ! empty( $_GET[ $name ] ) ? absint( $_GET[ $name ] ) : $default;
+	}
+
+	public static function _get_ids( string $name, array $default = array() ) : array {
+		$ids = isset( $_GET[ $name ] ) ? (array) $_GET[ $name ] : $default; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+		return self::ids_list( $ids );
 	}
 }

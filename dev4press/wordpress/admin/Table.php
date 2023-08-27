@@ -376,7 +376,7 @@ abstract class Table extends WP_List_Table {
 		if ( $getback ) {
 			$url .= '&' . $this->_admin()->v() . '=getback';
 			$url .= '&_wpnonce=' . ( $nonce ?? wp_create_nonce( $this->_self_nonce_key ) );
-			$url .= '&_wp_http_referer=' . esc_url( remove_query_arg( '_wpnonce', wp_get_referer() ) );
+			$url .= '&_wp_http_referer=' . esc_url( remove_query_arg( array( '_wpnonce', '_wp_http_referer' ), wp_get_referer() ) );
 		}
 
 		return $url;
