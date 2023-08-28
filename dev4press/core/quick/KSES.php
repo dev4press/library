@@ -69,7 +69,7 @@ class KSES {
 					'class' => true,
 					'style' => true,
 				),
-				'div' => array(
+				'div'    => array(
 					'class' => true,
 					'style' => true,
 				),
@@ -153,6 +153,27 @@ class KSES {
 				'option'   => array(
 					'value'    => true,
 					'selected' => true,
+				),
+			)
+		);
+	}
+
+	public static function input( string $render ) : string {
+		return wp_kses(
+			$render,
+			array(
+				'input' => array(
+					'class'       => true,
+					'style'       => true,
+					'title'       => true,
+					'type'        => true,
+					'checked'     => true,
+					'readonly'    => true,
+					'id'          => true,
+					'name'        => true,
+					'placeholder' => true,
+					'value'       => true,
+					'data-*'      => true,
 				),
 			)
 		);

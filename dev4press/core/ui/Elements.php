@@ -70,6 +70,19 @@ class Elements {
 		return $render;
 	}
 
+	public function input( $value = '', $args = array(), $attr = array() ) : string {
+		$args       = $this->input_prepare_args( $args );
+		$attributes = $this->input_prepare_attributes( $args, $attr, $value );
+
+		$render = '<input ' . join( ' ', $attributes ) . ' />';
+
+		if ( $args['echo'] ) {
+			echo KSES::input( $render );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+
+		return $render;
+	}
+
 	public function select( $values, $args = array(), $attr = array() ) : string {
 		$args        = $this->select_prepare_args( $args );
 		$attributes  = $this->select_prepare_attributes( $args, $attr );
@@ -300,6 +313,23 @@ class Elements {
 		return $render;
 	}
 
+	private function input_prepare_args( $args ) : array {
+		$defaults = array(
+			'checked'     => false,
+			'name'        => '',
+			'id'          => '',
+			'title'       => '',
+			'placeholder' => '',
+			'type'        => 'text',
+			'class'       => '',
+			'style'       => '',
+			'echo'        => true,
+			'readonly'    => false,
+		);
+
+		return wp_parse_args( $args, $defaults );
+	}
+
 	private function select_prepare_args( $args ) : array {
 		$defaults = array(
 			'selected' => '',
@@ -341,6 +371,58 @@ class Elements {
 
 		if ( $args['readonly'] ) {
 			$attributes[] = 'readonly';
+		}
+
+		if ( ! empty( $name ) ) {
+			$attributes[] = 'name="' . esc_attr( $name ) . '"';
+		}
+
+		if ( $id != '' ) {
+			$attributes[] = 'id="' . esc_attr( $id ) . '"';
+		}
+
+		if ( ! empty( $attr ) ) {
+			foreach ( $attr as $key => $value ) {
+				$attributes[] = $key . '="' . esc_attr( $value ) . '"';
+			}
+		}
+
+		return $attributes;
+	}
+
+	private function input_prepare_attributes( $args, $attr = array(), $value = '' ) : array {
+		$args['type'] = $args['type'] ?? 'text';
+
+		$attributes = array(
+			'type="' . esc_attr( $args['type'] ) . '"',
+			'value="' . esc_attr( $value ) . '"',
+		);
+
+		$name = $args['type'] == 'radio' ? $args['name'] . '[]' : $args['name'];
+		$id   = $this->id_from_name( $args['name'], $args['id'] );
+
+		if ( ! empty( $args['class'] ) ) {
+			$attributes[] = 'class="' . esc_attr( $args['class'] ) . '"';
+		}
+
+		if ( ! empty( $args['style'] ) ) {
+			$attributes[] = 'style="' . esc_attr( $args['style'] ) . '"';
+		}
+
+		if ( ! empty( $args['title'] ) ) {
+			$attributes[] = 'title="' . esc_attr( $args['title'] ) . '"';
+		}
+
+		if ( ! empty( $args['placeholder'] ) ) {
+			$attributes[] = 'placeholder="' . esc_attr( $args['placeholder'] ) . '"';
+		}
+
+		if ( $args['readonly'] ) {
+			$attributes[] = 'readonly';
+		}
+
+		if ( $args['checked'] && in_array( $args['type'], array( 'radio', 'checkbox' ) ) ) {
+			$attributes[] = 'checked';
 		}
 
 		if ( ! empty( $name ) ) {
