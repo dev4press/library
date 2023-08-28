@@ -2,7 +2,7 @@
 
 * Version: v4.3
 * Build:   4300
-* Release: 2023.08.11.
+* Release: 2023.08.31.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
