@@ -224,4 +224,30 @@ class Str {
 			return $images;
 		}
 	}
+
+	public static function short_number_format( $size, $decimals = 0, $sep = '', $strong = false ) : string {
+		$_size = intval( $size );
+		$_unit = '';
+
+		if ( strlen( $_size ) >= 10 ) {
+			$_size = number_format( $_size / 1000000000, $decimals );
+			$_unit = 'G';
+		} else if ( strlen( $_size ) <= 9 && strlen( $_size ) >= 7 ) {
+			$_size = number_format( $_size / 1000000, $decimals );
+			$_unit = 'M';
+		} else if ( strlen( $_size ) <= 6 && strlen( $_size ) >= 4 ) {
+			$_size = number_format( $_size / 1000, $decimals );
+			$_unit = 'K';
+		}
+
+		if ( floatval( $_size ) == intval( $_size ) ) {
+			$_size = intval( $_size );
+		}
+
+		if ( $strong ) {
+			return '<strong>' . $_size . '</strong>' . $sep . $_unit;
+		} else {
+			return $_size . $sep . $_unit;
+		}
+	}
 }
