@@ -187,6 +187,10 @@ class KSES {
 					'class' => true,
 					'href'  => true,
 				),
+				'i' => array(
+					'class' => true,
+					'aria-*' => true,
+				),
 				'ul'    => array(
 					'class' => true,
 				),

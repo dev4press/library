@@ -28,6 +28,7 @@
 namespace Dev4Press\v43\Core\Plugins;
 
 use Dev4Press\v43\Core\Quick\Sanitize;
+use Dev4Press\v43\Core\UI\Elements;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -36,10 +37,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Wizard {
 	public $panel = false;
 	public $panels = array();
+	public $types = array();
+	public $allowed = array();
 	public $default = array();
+	public $storage = array();
 
 	public function __construct() {
 		$this->init_panels();
+		$this->init_data();
 	}
 
 	/** @return static */
@@ -96,7 +101,7 @@ abstract class Wizard {
 		return $this->a()->panel_url( 'wizard', $this->current_panel() );
 	}
 
-	public function get_form_nonce_key( $panel ) : string {
+	public function get_form_nonce_key( string $panel ) : string {
 		return $this->a()->plugin_prefix . '-wizard-nonce-' . $panel;
 	}
 
@@ -114,15 +119,8 @@ abstract class Wizard {
 			if ( wp_verify_nonce( $post['_nonce'], $this->get_form_nonce_key( $this->current_panel() ) ) ) {
 				$data = isset( $post[ $this->current_panel() ] ) ? (array) $post[ $this->current_panel() ] : array();
 
-				switch ( $this->current_panel() ) {
-					case 'intro':
-					case 'editors':
-					case 'features':
-					case 'integrations':
-					case 'finish':
-						$this->postback_default( $this->current_panel(), $data );
-						break;
-				}
+				$this->postback_default( $this->current_panel(), $data );
+				$this->postback_custom( $this->current_panel(), $data );
 
 				if ( $this->current_panel() != 'finish' ) {
 					$goto = $this->a()->panel_url( 'wizard', $this->next_panel() );
@@ -149,7 +147,15 @@ abstract class Wizard {
 		<?php
 	}
 
-	public function render_yes_no( $panel, $name, $value = 'yes' ) {
+	public function render_checkboxes_list( string $panel, string $name, array $value = array(), $list = array() ) {
+		Elements::instance()->checkboxes( $list, array(
+			'selected' => $value,
+			'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
+			'id'       => $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name,
+		) );
+	}
+
+	public function render_yes_no( string $panel, string $name, string $value = 'yes' ) {
 		$_name = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
 		$_id   = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
 
@@ -167,25 +173,55 @@ abstract class Wizard {
 		<?php
 	}
 
-	protected function postback_default( $panel, $data ) {
+	protected function postback_default( string $panel, $data ) : bool {
 		$map    = $this->default[ $panel ] ?? array();
 		$groups = array();
 
 		foreach ( $map as $key => $settings ) {
-			$value = $data[ $key ] ?? 'no';
-			$value = in_array( $value, array( 'yes', 'no' ) ) ? $value : 'no';
+			$type = $this->types[ $panel ][ $key ] ?? 'yesno';
 
-			foreach ( $settings as $s ) {
-				$group = $s[0];
-				$keys  = (array) $s[1];
-				$set   = $s[2][ $value ];
+			if ( $type == 'yesno' ) {
+				$value = $data[ $key ] ?? 'no';
+				$value = in_array( $value, array( 'yes', 'no' ) ) ? $value : 'no';
 
-				if ( ! in_array( $group, $groups ) ) {
-					$groups[] = $group;
+				foreach ( $settings as $s ) {
+					$group = $s[0];
+					$keys  = (array) $s[1];
+					$set   = $s[2][ $value ];
+
+					if ( ! in_array( $group, $groups ) ) {
+						$groups[] = $group;
+					}
+
+					foreach ( $keys as $k ) {
+						$this->a()->settings()->set( $k, $set, $group );
+					}
+
+					$this->storage[ $panel ][ $key ] = $set;
+				}
+			} else if ( $type == 'checkboxes' ) {
+				$value = isset( $data[ $key ] ) ? (array) $data[ $key ] : array();
+
+				if ( ! empty( $value ) ) {
+					$value = wp_unslash( $value );
+					$value = array_map( 'strtolower', $value );
+					$value = array_map( 'sanitize_key', $value );
+					$value = array_intersect( $value, $this->allowed['networks']['list'] );
 				}
 
-				foreach ( $keys as $key ) {
-					$this->a()->settings()->set( $key, $set, $group );
+				foreach ( $settings as $s ) {
+					$group = $s[0];
+					$keys  = (array) $s[1];
+
+					if ( ! in_array( $group, $groups ) ) {
+						$groups[] = $group;
+					}
+
+					foreach ( $keys as $k ) {
+						$this->a()->settings()->set( $k, $value, $group );
+					}
+
+					$this->storage[ $panel ][ $key ] = $value;
 				}
 			}
 		}
@@ -193,10 +229,18 @@ abstract class Wizard {
 		foreach ( $groups as $group ) {
 			$this->a()->settings()->save( $group );
 		}
+
+		return true;
+	}
+
+	protected function postback_custom( string $panel, $data ) {
+
 	}
 
 	/** @return \Dev4Press\v43\Core\Admin\Plugin */
 	abstract public function a();
 
 	abstract protected function init_panels();
+
+	abstract protected function init_data();
 }

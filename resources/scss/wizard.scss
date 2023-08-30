@@ -1,3 +1,5 @@
+@import 'elements/_shared';
+
 .d4p-wrap-wizard {
     margin: 60px 40px 20px 20px;
     display: flex;
@@ -161,6 +163,15 @@
 
                                 label {
                                     vertical-align: top;
+                                }
+                            }
+                        }
+
+                        &.d4p-wizard-block-checkboxes {
+                            .d4p-setting-checkboxes {
+                                .d4p-inside-wrapper {
+                                    display: flex;
+                                    flex-direction: column;
                                 }
                             }
                         }
