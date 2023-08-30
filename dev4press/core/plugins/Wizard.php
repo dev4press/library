@@ -155,22 +155,33 @@ abstract class Wizard {
 		) );
 	}
 
-	public function render_yes_no( string $panel, string $name, string $value = 'yes' ) {
+	public function render_yes_no( string $panel, string $name, string $value = 'yes', array $labels = array() ) {
 		$_name = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
 		$_id   = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
+
+		$_yes = $labels['yes'] ?? __( 'Yes', 'd4plib' );
+		$_no  = $labels['no'] ?? __( 'No', 'd4plib' );
 
 		?>
 
         <span>
 			<input type="radio" name="<?php echo esc_attr( $_name ); ?>" value="yes" id="<?php echo esc_attr( $_id ); ?>-yes"<?php echo $value == 'yes' ? ' checked' : ''; ?>/>
-			<label for="<?php echo esc_attr( $_id ); ?>-yes"><?php esc_html_e( 'Yes', 'd4plib' ); ?></label>
+			<label for="<?php echo esc_attr( $_id ); ?>-yes"><?php echo esc_html( $_yes ); ?></label>
 		</span>
         <span>
 			<input type="radio" name="<?php echo esc_attr( $_name ); ?>" value="no" id="<?php echo esc_attr( $_id ); ?>-no"<?php echo $value == 'no' ? ' checked' : ''; ?>/>
-			<label for="<?php echo esc_attr( $_id ); ?>-no"><?php esc_html_e( 'No', 'd4plib' ); ?></label>
+			<label for="<?php echo esc_attr( $_id ); ?>-no"><?php echo esc_html( $_no ); ?></label>
 		</span>
 
 		<?php
+	}
+
+	public function render_select( string $panel, string $name, string $value = '', $list = array() ) {
+		Elements::instance()->select( $list, array(
+			'selected' => $value,
+			'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
+			'id'       => $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name,
+		) );
 	}
 
 	protected function postback_default( string $panel, $data ) : bool {
@@ -184,6 +195,8 @@ abstract class Wizard {
 				$value = $data[ $key ] ?? 'no';
 				$value = in_array( $value, array( 'yes', 'no' ) ) ? $value : 'no';
 
+				$this->storage[ $panel ][ $key ] = $value == 'yes';
+
 				foreach ( $settings as $s ) {
 					$group = $s[0];
 					$keys  = (array) $s[1];
@@ -196,18 +209,14 @@ abstract class Wizard {
 					foreach ( $keys as $k ) {
 						$this->a()->settings()->set( $k, $set, $group );
 					}
-
-					$this->storage[ $panel ][ $key ] = $set;
 				}
-			} else if ( $type == 'checkboxes' ) {
-				$value = isset( $data[ $key ] ) ? (array) $data[ $key ] : array();
+			} else if ( $type == 'select' ) {
+				$value = $data[ $key ] ?? '';
+				$value = wp_unslash( $value );
+				$value = sanitize_text_field( $value );
+				$value = in_array( $value, $this->$this->allowed[ $panel ][ $key ] ) ? $value : '';
 
-				if ( ! empty( $value ) ) {
-					$value = wp_unslash( $value );
-					$value = array_map( 'strtolower', $value );
-					$value = array_map( 'sanitize_key', $value );
-					$value = array_intersect( $value, $this->allowed['networks']['list'] );
-				}
+				$this->storage[ $panel ][ $key ] = $value;
 
 				foreach ( $settings as $s ) {
 					$group = $s[0];
@@ -220,8 +229,30 @@ abstract class Wizard {
 					foreach ( $keys as $k ) {
 						$this->a()->settings()->set( $k, $value, $group );
 					}
+				}
+			} else if ( $type == 'checkboxes' ) {
+				$value = isset( $data[ $key ] ) ? (array) $data[ $key ] : array();
 
-					$this->storage[ $panel ][ $key ] = $value;
+				if ( ! empty( $value ) ) {
+					$value = wp_unslash( $value );
+					$value = array_map( 'strtolower', $value );
+					$value = array_map( 'sanitize_key', $value );
+					$value = array_intersect( $value, $this->allowed[ $panel ][ $key ] );
+				}
+
+				$this->storage[ $panel ][ $key ] = $value;
+
+				foreach ( $settings as $s ) {
+					$group = $s[0];
+					$keys  = (array) $s[1];
+
+					if ( ! in_array( $group, $groups ) ) {
+						$groups[] = $group;
+					}
+
+					foreach ( $keys as $k ) {
+						$this->a()->settings()->set( $k, $value, $group );
+					}
 				}
 			}
 		}
