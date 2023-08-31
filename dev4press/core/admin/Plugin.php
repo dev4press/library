@@ -267,7 +267,9 @@ abstract class Plugin {
 				'id'      => 'd4p-plugin-help-info',
 				'title'   => esc_html__( 'Help & Support', 'd4plib' ),
 				'content' => '<h2>' . esc_html__( 'Help & Support', 'd4plib' ) . '</h2><p>' . esc_html__( 'To get help with the plugin, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers).', 'd4plib' ) .
-				             '</p><p><a href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/" class="button-primary" target="_blank" rel="noopener">' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a> <a href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/" class="button-secondary" target="_blank">' . esc_html__( 'Support Forum', 'd4plib' ) . '</a></p>',
+				             '</p><p><a href="https://plugin.dev4press.com/' . esc_attr( $this->plugin ) . '/" class="button-primary" target="_blank" rel="noopener">' . esc_html( $this->title() ) . '</a> ' .
+				             '<a href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/" class="button-secondary" target="_blank" rel="noopener">' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a> ' .
+				             '<a href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/" class="button-secondary" target="_blank">' . esc_html__( 'Support Forum', 'd4plib' ) . '</a></p>',
 			)
 		);
 
