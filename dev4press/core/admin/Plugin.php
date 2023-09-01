@@ -260,19 +260,21 @@ abstract class Plugin {
 		$this->screen()->add_help_tab(
 			array(
 				'id'      => 'd4p-plugin-help-info',
-				'title'   => esc_html__( "Help & Support", "d4plib" ),
-				'content' => '<h2>' . esc_html__( "Help & Support", "d4plib" ) . '</h2><p>' . esc_html( sprintf( __( "To get help with %s, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers).", "d4plib" ), $this->title() ) ) .
-				             '</p><p><a href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/" class="button-primary" target="_blank" rel="noopener">' . esc_html__( "Knowledge Base", "d4plib" ) . '</a> <a href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/" class="button-secondary" target="_blank">' . esc_html__( "Support Forum", "d4plib" ) . '</a></p>'
+				'title'   => esc_html__( 'Help & Support', 'd4plib' ),
+				'content' => '<h2>' . esc_html__( 'Help & Support', 'd4plib' ) . '</h2><p>' . esc_html__( 'To get help with the plugin, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers).', 'd4plib' ) .
+				             '</p><p><a href="https://plugin.dev4press.com/' . esc_attr( $this->plugin ) . '/" class="button-primary" target="_blank" rel="noopener">' . esc_html( $this->title() ) . '</a> ' .
+				             '<a href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/" class="button-secondary" target="_blank" rel="noopener">' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a> ' .
+				             '<a href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/" class="button-secondary" target="_blank">' . esc_html__( 'Support Forum', 'd4plib' ) . '</a></p>',
 			)
 		);
 
 		$this->screen()->add_help_tab(
 			array(
 				'id'      => 'd4p-plugin-help-bugs',
-				'title'   => esc_html__( "Found a bug?", "d4plib" ),
-				'content' => '<h2>' . esc_html__( "Found a bug?", "d4plib" ) . '</h2><p>' . esc_html( sprintf( __( "If you find a bug in %s, you can report it in the support forum.", "d4plib" ), $this->title() ) ) .
-				             '</p><p>' . esc_html__( "Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger.", "d4plib" ) .
-				             '</p><p><a href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/" class="button-primary" target="_blank" rel="noopener">' . esc_html__( "Open new topic", "d4plib" ) . '</a></p>'
+				'title'   => esc_html__( 'Found a bug?', 'd4plib' ),
+				'content' => '<h2>' . esc_html__( 'Found a bug?', 'd4plib' ) . '</h2><p>' . esc_html__( 'If you find a bug in this plugin, you can report it in the support forum.', 'd4plib' ) .
+				             '</p><p>' . esc_html__( 'Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger.', 'd4plib' ) .
+				             '</p><p><a href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/" class="button-primary" target="_blank" rel="noopener">' . esc_html__( 'Open new topic', 'd4plib' ) . '</a></p>',
 			)
 		);
 
