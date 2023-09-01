@@ -3174,6 +3174,10 @@ a > .d4p-icon {
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5em;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-inner > div .d4p-status-message {
+  flex-grow: 1;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer {
   position: absolute;
