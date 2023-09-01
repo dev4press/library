@@ -32,7 +32,7 @@ if ( isset( $_GET['message'] ) && $_GET['message'] != '' ) {
 			break;
 		case 'nothing':
 			$_color   = 'error';
-			$_message = __( "Nothing's done.", 'd4plib' );
+			$_message = __( 'Nothing is done.', 'd4plib' );
 			break;
 		case 'nothing-removed':
 			$_color   = 'error';

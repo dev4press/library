@@ -3,740 +3,700 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 08/05/2023 10:05:55 PM\n"
+"POT-Creation-Date: 09/01/2023 12:41:46 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GD i18n 2.7; www.dev4press.com\n"
 
-#: dev4press/core/ui/Grid.php:228
+#: dev4press/core/ui/Grid.php:230
 msgid "%s item"
 msgid_plural "%s items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dev4press/core/admin/GetBack.php:120
+#: dev4press/core/admin/GetBack.php:121
 msgid "Only administrators can use export features."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:263
-msgid "To get help with %s, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers)."
-msgstr ""
-
-#: dev4press/core/admin/Plugin.php:272
-msgid "If you find a bug in %s, you can report it in the support forum."
-msgstr ""
-
-#: dev4press/core/admin/Plugin.php:315
+#: dev4press/core/admin/Plugin.php:322
 msgid "%s is activated and it needs to finish installation."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:324
+#: dev4press/core/admin/Plugin.php:331
 msgid "%s is updated, and you need to review the update process."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:485
+#: dev4press/core/admin/Plugin.php:492
 msgid "Panel"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:486
+#: dev4press/core/admin/Plugin.php:493
 msgid "Information"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:134
+#: dev4press/core/admin/Plugin.php:135
 msgid "Dashboard"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:143
-#: dev4press/core/admin/Plugin.php:248
+#: dev4press/core/admin/Plugin.php:144
+#: dev4press/core/admin/Plugin.php:251
 msgid "Home Page"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:144
-#: dev4press/core/admin/Plugin.php:249
-#: dev4press/core/admin/Plugin.php:264
-#: forms/sidebar.php:23
+#: dev4press/core/admin/Plugin.php:145
+#: dev4press/core/admin/Plugin.php:252
+#: dev4press/core/admin/Plugin.php:270
+#: forms/sidebar.php:28
 msgid "Knowledge Base"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:145
-#: dev4press/core/admin/Plugin.php:250
-#: dev4press/core/admin/Plugin.php:264
+#: dev4press/core/admin/Plugin.php:146
+#: dev4press/core/admin/Plugin.php:253
+#: dev4press/core/admin/Plugin.php:271
 msgid "Support Forum"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:148
+#: dev4press/core/admin/Plugin.php:149
 msgid "Buy Me A Coffee"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:262
-#: dev4press/core/admin/Plugin.php:263
+#: dev4press/core/admin/Plugin.php:267
+#: dev4press/core/admin/Plugin.php:268
 msgid "Help & Support"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:271
-#: dev4press/core/admin/Plugin.php:272
+#: dev4press/core/admin/Plugin.php:268
+msgid "To get help with the plugin, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers)."
+msgstr ""
+
+#: dev4press/core/admin/Plugin.php:278
+#: dev4press/core/admin/Plugin.php:279
 msgid "Found a bug?"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:273
+#: dev4press/core/admin/Plugin.php:279
+msgid "If you find a bug in this plugin, you can report it in the support forum."
+msgstr ""
+
+#: dev4press/core/admin/Plugin.php:280
 msgid "Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:274
+#: dev4press/core/admin/Plugin.php:281
 msgid "Open new topic"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:316
-#: dev4press/core/admin/Plugin.php:325
+#: dev4press/core/admin/Plugin.php:323
+#: dev4press/core/admin/Plugin.php:332
 msgid "Click Here"
 msgstr ""
 
-#: dev4press/core/helpers/Data.php:35
+#: dev4press/core/helpers/Data.php:36
 msgid "Africa"
 msgstr ""
 
-#: dev4press/core/helpers/Data.php:36
+#: dev4press/core/helpers/Data.php:37
 msgid "Asia"
 msgstr ""
 
-#: dev4press/core/helpers/Data.php:37
+#: dev4press/core/helpers/Data.php:38
 msgid "Europe"
 msgstr ""
 
-#: dev4press/core/helpers/Data.php:38
+#: dev4press/core/helpers/Data.php:39
 msgid "North America"
 msgstr ""
 
-#: dev4press/core/helpers/Data.php:39
+#: dev4press/core/helpers/Data.php:40
 msgid "South America"
 msgstr ""
 
-#: dev4press/core/helpers/Data.php:40
+#: dev4press/core/helpers/Data.php:41
 msgid "Oceania"
 msgstr ""
 
-#: dev4press/core/helpers/Data.php:41
+#: dev4press/core/helpers/Data.php:42
 msgid "Antarctica"
 msgstr ""
 
-#: dev4press/core/helpers/Debug.php:126
-msgid "SQL Queries"
-msgstr ""
-
-#: dev4press/core/helpers/Debug.php:129
-msgid "Total Page Time"
-msgstr ""
-
-#: dev4press/core/helpers/Debug.php:130
-msgid "seconds"
-msgstr ""
-
-#: dev4press/core/helpers/Debug.php:134
-msgid "PHP Memory Peak"
-msgstr ""
-
-#: dev4press/core/helpers/Debug.php:140
-msgid "PHP Memory Final"
-msgstr ""
-
-#: dev4press/core/helpers/Debug.php:188
-msgid "Request"
-msgstr ""
-
-#: dev4press/core/helpers/Debug.php:189
-#: dev4press/core/helpers/Debug.php:192
-#: dev4press/core/helpers/Debug.php:195
-msgid "None"
-msgstr ""
-
-#: dev4press/core/helpers/Debug.php:191
-msgid "Matched Rewrite Rule"
-msgstr ""
-
-#: dev4press/core/helpers/Debug.php:194
-msgid "Matched Rewrite Query"
-msgstr ""
-
-#: dev4press/core/helpers/Debug.php:197
-msgid "Loaded Template"
-msgstr ""
-
-#: dev4press/core/mailer/Detection.php:170
+#: dev4press/core/mailer/Detection.php:171
 msgctxt "Email Detection Type"
 msgid "Comment Notify Moderator"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:175
+#: dev4press/core/mailer/Detection.php:176
 msgctxt "Email Detection Type"
 msgid "Comment Notify Post Author"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:180
+#: dev4press/core/mailer/Detection.php:181
 msgctxt "Email Detection Type"
 msgid "Email Change Confirmation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:185
+#: dev4press/core/mailer/Detection.php:186
 msgctxt "Email Detection Type"
 msgid "Email Change Notification"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:190
+#: dev4press/core/mailer/Detection.php:191
 msgctxt "Email Detection Type"
 msgid "Password Change Notification"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:195
+#: dev4press/core/mailer/Detection.php:196
 msgctxt "Email Detection Type"
 msgid "Retrieve Password Notification"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:200
+#: dev4press/core/mailer/Detection.php:201
 msgctxt "Email Detection Type"
 msgid "Privacy Personal Data Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:205
+#: dev4press/core/mailer/Detection.php:206
 msgctxt "Email Detection Type"
 msgid "Privacy Request Confirmation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:210
+#: dev4press/core/mailer/Detection.php:211
 msgctxt "Email Detection Type"
 msgid "Privacy Erasure Fulfillment"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:215
+#: dev4press/core/mailer/Detection.php:216
 msgctxt "Email Detection Type"
 msgid "Send User Request"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:220
+#: dev4press/core/mailer/Detection.php:221
 msgctxt "Email Detection Type"
 msgid "Site Admin Email Change"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:225
+#: dev4press/core/mailer/Detection.php:226
 msgctxt "Email Detection Type"
 msgid "Site Admin Email Change Attempt"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:230
+#: dev4press/core/mailer/Detection.php:231
 msgctxt "Email Detection Type"
 msgid "Plugin or Theme Update Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:235
+#: dev4press/core/mailer/Detection.php:236
 msgctxt "Email Detection Type"
 msgid "Core Update Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:240
+#: dev4press/core/mailer/Detection.php:241
 msgctxt "Email Detection Type"
 msgid "Auto Update Debug Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:245
+#: dev4press/core/mailer/Detection.php:246
 msgctxt "Email Detection Type"
 msgid "New User Notification Admin"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:250
+#: dev4press/core/mailer/Detection.php:251
 msgctxt "Email Detection Type"
 msgid "New User Notification"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:255
+#: dev4press/core/mailer/Detection.php:256
 msgctxt "Email Detection Type"
 msgid "Password Change Notification Admin"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:260
+#: dev4press/core/mailer/Detection.php:261
 msgctxt "Email Detection Type"
 msgid "Recovery Mode Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:265
+#: dev4press/core/mailer/Detection.php:266
 msgctxt "Email Detection Type"
 msgid "Signup Blog Confirmation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:270
+#: dev4press/core/mailer/Detection.php:271
 msgctxt "Email Detection Type"
 msgid "Signup User Confirmation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:275
+#: dev4press/core/mailer/Detection.php:276
 msgctxt "Email Detection Type"
 msgid "Site Deleted Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:280
+#: dev4press/core/mailer/Detection.php:281
 msgctxt "Email Detection Type"
 msgid "Welcome Blog"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:285
+#: dev4press/core/mailer/Detection.php:286
 msgctxt "Email Detection Type"
 msgid "Welcome User"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:290
+#: dev4press/core/mailer/Detection.php:291
 msgctxt "Email Detection Type"
 msgid "New Blog Site Admin"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:295
+#: dev4press/core/mailer/Detection.php:296
 msgctxt "Email Detection Type"
 msgid "New User Site Admin"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:300
+#: dev4press/core/mailer/Detection.php:301
 msgctxt "Email Detection Type"
 msgid "Network Admin Email Confirmation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:305
+#: dev4press/core/mailer/Detection.php:306
 msgctxt "Email Detection Type"
 msgid "Network Admin Email Notification"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:310
+#: dev4press/core/mailer/Detection.php:311
 msgctxt "Email Detection Type"
 msgid "Instant Notification"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:315
+#: dev4press/core/mailer/Detection.php:316
 msgctxt "Email Detection Type"
 msgid "Daily Digest"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:320
+#: dev4press/core/mailer/Detection.php:321
 msgctxt "Email Detection Type"
 msgid "Weekly Digest"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:325
+#: dev4press/core/mailer/Detection.php:326
 msgctxt "Email Detection Type"
 msgid "Digest Notify Moderators"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:330
+#: dev4press/core/mailer/Detection.php:331
 msgctxt "Email Detection Type"
 msgid "Digest Notify Author"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:335
+#: dev4press/core/mailer/Detection.php:336
 msgctxt "Email Detection Type"
 msgid "Instant Notify"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:340
+#: dev4press/core/mailer/Detection.php:341
 msgctxt "Email Detection Type"
 msgid "New Reply In Topic"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:345
+#: dev4press/core/mailer/Detection.php:346
 msgctxt "Email Detection Type"
 msgid "New Topic In Forum"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:350
+#: dev4press/core/mailer/Detection.php:351
 msgctxt "Email Detection Type"
 msgid "Topic Auto Close"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:355
+#: dev4press/core/mailer/Detection.php:356
 msgctxt "Email Detection Type"
 msgid "Topic Manual Close"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:360
+#: dev4press/core/mailer/Detection.php:361
 msgctxt "Email Detection Type"
 msgid "Topic Edit"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:365
+#: dev4press/core/mailer/Detection.php:366
 msgctxt "Email Detection Type"
 msgid "Reply Edit"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:370
+#: dev4press/core/mailer/Detection.php:371
 msgctxt "Email Detection Type"
 msgid "New Topic Moderators"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:375
+#: dev4press/core/mailer/Detection.php:376
 msgctxt "Email Detection Type"
 msgid "New Reply Moderators"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:379
+#: dev4press/core/mailer/Detection.php:380
 msgctxt "Email Detection Type"
 msgid "Custom"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:383
+#: dev4press/core/mailer/Detection.php:384
 msgctxt "Email Detection Type"
 msgid "New User Registration"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:387
+#: dev4press/core/mailer/Detection.php:388
 msgctxt "Email Detection Type"
 msgid "New User Registration Moderated"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:391
+#: dev4press/core/mailer/Detection.php:392
 msgctxt "Email Detection Type"
 msgid "Registration Approved"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:395
+#: dev4press/core/mailer/Detection.php:396
 msgctxt "Email Detection Type"
 msgid "Password Reset"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:399
+#: dev4press/core/mailer/Detection.php:400
 msgctxt "Email Detection Type"
 msgid "Retrieve Username"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:404
+#: dev4press/core/mailer/Detection.php:405
 msgctxt "Email Detection Type"
 msgid "Admin Notification for User Registration"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:409
+#: dev4press/core/mailer/Detection.php:410
 msgctxt "Email Detection Type"
 msgid "New Topic Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:414
+#: dev4press/core/mailer/Detection.php:415
 msgctxt "Email Detection Type"
 msgid "New Post Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:419
+#: dev4press/core/mailer/Detection.php:420
 msgctxt "Email Detection Type"
 msgid "Auto Update Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:423
+#: dev4press/core/mailer/Detection.php:424
 msgctxt "Email Detection Type"
 msgid "Contact Email"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:427
+#: dev4press/core/mailer/Detection.php:428
 msgctxt "Email Detection Type"
 msgid "Core User Registration With Blog"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:431
+#: dev4press/core/mailer/Detection.php:432
 msgctxt "Email Detection Type"
 msgid "Core User Registration"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:435
-#: dev4press/core/mailer/Detection.php:439
+#: dev4press/core/mailer/Detection.php:436
+#: dev4press/core/mailer/Detection.php:440
 msgctxt "Email Detection Type"
 msgid "Core User Activation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:443
+#: dev4press/core/mailer/Detection.php:444
 msgctxt "Email Detection Type"
 msgid "Members Membership Request"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:447
+#: dev4press/core/mailer/Detection.php:448
 msgctxt "Email Detection Type"
 msgid "Members Membership Request Rejected"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:451
+#: dev4press/core/mailer/Detection.php:452
 msgctxt "Email Detection Type"
 msgid "Friends Request"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:455
+#: dev4press/core/mailer/Detection.php:456
 msgctxt "Email Detection Type"
 msgid "Friends Request Accepted"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:459
+#: dev4press/core/mailer/Detection.php:460
 msgctxt "Email Detection Type"
 msgid "Activity Comment"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:463
+#: dev4press/core/mailer/Detection.php:464
 msgctxt "Email Detection Type"
 msgid "Activity Comment Author"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:467
+#: dev4press/core/mailer/Detection.php:468
 msgctxt "Email Detection Type"
 msgid "Messages Unread"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:471
+#: dev4press/core/mailer/Detection.php:472
 msgctxt "Email Detection Type"
 msgid "Settings Verify Email Change"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:475
+#: dev4press/core/mailer/Detection.php:476
 msgctxt "Email Detection Type"
 msgid "Groups Details Updated"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:479
+#: dev4press/core/mailer/Detection.php:480
 msgctxt "Email Detection Type"
 msgid "Groups Membership Request"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:483
+#: dev4press/core/mailer/Detection.php:484
 msgctxt "Email Detection Type"
 msgid "Groups Membership Request Accepted"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:487
+#: dev4press/core/mailer/Detection.php:488
 msgctxt "Email Detection Type"
 msgid "Groups Membership Request Rejected"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:491
+#: dev4press/core/mailer/Detection.php:492
 msgctxt "Email Detection Type"
 msgid "Groups Membership Request Accepted by Admin"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:495
+#: dev4press/core/mailer/Detection.php:496
 msgctxt "Email Detection Type"
 msgid "Groups Membership Request Rejected by Admin"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:499
+#: dev4press/core/mailer/Detection.php:500
 msgctxt "Email Detection Type"
 msgid "Groups Member Promoted"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:503
+#: dev4press/core/mailer/Detection.php:504
 msgctxt "Email Detection Type"
 msgid "Groups Invitation"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:507
+#: dev4press/core/mailer/Detection.php:508
 msgctxt "Email Detection Type"
 msgid "Groups At Message"
 msgstr ""
 
-#: dev4press/core/mailer/Detection.php:511
+#: dev4press/core/mailer/Detection.php:512
 msgctxt "Email Detection Type"
 msgid "Activity At Message"
 msgstr ""
 
-#: dev4press/core/options/Features.php:91
-#: dev4press/core/options/Features.php:109
-#: dev4press/core/options/Features.php:131
-#: dev4press/core/options/Features.php:148
+#: dev4press/core/options/Features.php:92
+#: dev4press/core/options/Features.php:110
+#: dev4press/core/options/Features.php:132
+#: dev4press/core/options/Features.php:149
 msgid "Feature Status"
 msgstr ""
 
-#: dev4press/core/options/Features.php:98
+#: dev4press/core/options/Features.php:99
 msgid "Hidden"
 msgstr ""
 
-#: dev4press/core/options/Features.php:98
-msgid "This feature can't be activated or configured at this time, because one or more of the feature prerequisites are missing."
+#: dev4press/core/options/Features.php:99
+msgid "This feature can\'t be activated or configured at this time, because one or more of the feature prerequisites are missing."
 msgstr ""
 
-#: dev4press/core/options/Features.php:116
-#: dev4press/core/options/Features.php:127
-#: dev4press/core/options/Features.php:155
-#: dev4press/core/ui/admin/PanelFeatures.php:48
-#: dev4press/core/ui/admin/PanelFeatures.php:69
-#: forms/content-features-index.php:71
+#: dev4press/core/options/Features.php:117
+#: dev4press/core/options/Features.php:128
+#: dev4press/core/options/Features.php:156
+#: dev4press/core/options/Render.php:99
+#: dev4press/core/ui/admin/PanelFeatures.php:44
+#: dev4press/core/ui/admin/PanelFeatures.php:70
+#: forms/content-features-index.php:84
 msgid "Active"
 msgstr ""
 
-#: dev4press/core/options/Features.php:116
-msgid "This feature is always active, and it can't be disabled. You can enable or disable individual settings included."
+#: dev4press/core/options/Features.php:117
+msgid "This feature is always active, and it can\'t be disabled. You can enable or disable individual settings included."
 msgstr ""
 
-#: dev4press/core/options/Features.php:127
+#: dev4press/core/options/Features.php:128
+#: dev4press/core/options/Render.php:100
 msgid "Inactive"
 msgstr ""
 
-#: dev4press/core/options/Features.php:138
+#: dev4press/core/options/Features.php:139
 msgid "Override"
 msgstr ""
 
-#: dev4press/core/options/Features.php:138
+#: dev4press/core/options/Features.php:139
 msgid "The activation depends on the Network settings for this feature. Here, you can override network settings for this feature for this blog only."
 msgstr ""
 
-#: dev4press/core/options/Features.php:138
+#: dev4press/core/options/Features.php:139
 msgid "Feature network override is active"
 msgstr ""
 
-#: dev4press/core/options/Features.php:139
-#: forms/content-about-info.php:26
+#: dev4press/core/options/Features.php:140
+#: forms/content-about-info.php:30
 msgid "Status"
 msgstr ""
 
-#: dev4press/core/options/Features.php:155
-msgid "This feature will be loaded only if activated. If you don't need this feature, disable it."
+#: dev4press/core/options/Features.php:156
+msgid "This feature will be loaded only if activated. If you don\'t need this feature, disable it."
 msgstr ""
 
-#: dev4press/core/options/Features.php:155
+#: dev4press/core/options/Features.php:156
 msgid "Feature is active"
 msgstr ""
 
-#: dev4press/core/options/Render.php:306
-msgid "Toggle Additional Information"
-msgstr ""
-
-#: dev4press/core/options/Render.php:351
-#: dev4press/core/options/Render.php:649
-#: dev4press/core/ui/admin/PanelTools.php:57
-#: dev4press/core/ui/Enqueue.php:304
-msgid "Remove"
-msgstr ""
-
-#: dev4press/core/options/Render.php:557
+#: dev4press/core/options/Render.php:663
 msgid "Add New Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:586
-#: dev4press/core/options/Render.php:617
+#: dev4press/core/options/Render.php:695
+#: dev4press/core/options/Render.php:733
 msgid "No items to show"
 msgstr ""
 
-#: dev4press/core/options/Render.php:668
-#: dev4press/core/ui/Enqueue.php:308
+#: dev4press/core/options/Render.php:791
+#: dev4press/core/ui/Enqueue.php:317
 msgid "Image not selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:691
+#: dev4press/core/options/Render.php:818
 msgid "Enabled"
 msgstr ""
 
-#: dev4press/core/options/Render.php:650
-#: dev4press/core/ui/Enqueue.php:305
+#: dev4press/core/options/Render.php:768
+#: dev4press/core/options/Render.php:388
+#: dev4press/core/ui/admin/PanelTools.php:57
+#: dev4press/core/ui/Enqueue.php:313
+msgid "Remove"
+msgstr ""
+
+#: dev4press/core/options/Render.php:769
+#: dev4press/core/ui/Enqueue.php:314
 msgid "Preview"
 msgstr ""
 
-#: dev4press/core/options/Render.php:326
-#: dev4press/core/ui/Elements.php:288
+#: dev4press/core/options/Render.php:343
+msgid "Toggle Additional Information"
+msgstr ""
+
+#: dev4press/core/options/Render.php:363
+#: dev4press/core/ui/Elements.php:306
 msgid "Check All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:327
-#: dev4press/core/ui/Elements.php:289
+#: dev4press/core/options/Render.php:364
+#: dev4press/core/ui/Elements.php:307
 msgid "Uncheck All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:635
+#: dev4press/core/options/Render.php:754
 msgid "Add Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:639
+#: dev4press/core/options/Render.php:758
 msgid "No images selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:663
-#: dev4press/core/ui/Enqueue.php:306
+#: dev4press/core/options/Render.php:786
+#: dev4press/core/ui/Enqueue.php:315
 msgid "Select Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:664
+#: dev4press/core/options/Render.php:787
 msgid "Show Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:665
+#: dev4press/core/options/Render.php:788
 msgid "Clear Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:889
+#: dev4press/core/options/Render.php:1085
 msgid "Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:892
+#: dev4press/core/options/Render.php:1093
 msgid "Unit"
 msgstr ""
 
-#: dev4press/core/plugins/AJAX.php:151
+#: dev4press/core/plugins/AJAX.php:154
 msgid "Malformed Request."
 msgstr ""
 
-#: dev4press/core/plugins/AJAX.php:155
+#: dev4press/core/plugins/AJAX.php:158
 msgid "Unauthorized Request."
 msgstr ""
 
-#: dev4press/core/plugins/AJAX.php:165
+#: dev4press/core/plugins/AJAX.php:168
 msgid "Invalid Request"
-msgstr ""
-
-#: dev4press/core/plugins/Core.php:149
-msgctxt "System requirement version"
-msgid "%s version %s (%s is not active on your website)"
 msgstr ""
 
 #: dev4press/core/plugins/Core.php:151
 msgctxt "System requirement version"
-msgid "%s version %s (your system runs version %s)"
+msgid "%1$s version %2$s (%3$s is not active on your website)"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:156
+#: dev4press/core/plugins/Core.php:153
+msgctxt "System requirement version"
+msgid "%1$s version %2$s (your system runs version %3$s)"
+msgstr ""
+
+#: dev4press/core/plugins/Core.php:158
 msgctxt "System requirement notice"
-msgid "System requirements check for %s failed. This plugin requires %s. The plugin will now be disabled."
+msgid "System requirements check for %1$s failed. This plugin requires %2$s. The plugin will now be disabled."
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:159
+#: dev4press/core/plugins/Information.php:160
 msgid "Beta"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:162
+#: dev4press/core/plugins/Information.php:163
 msgid "Alpha"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:165
+#: dev4press/core/plugins/Information.php:166
 msgid "RC"
 msgstr ""
 
-#: dev4press/core/plugins/Information.php:168
+#: dev4press/core/plugins/Information.php:169
 msgid "Nightly"
 msgstr ""
 
-#: dev4press/core/plugins/InstallDB.php:80
+#: dev4press/core/plugins/InstallDB.php:83
 msgid "Some columns are missing."
 msgstr ""
 
-#: dev4press/core/plugins/InstallDB.php:86
+#: dev4press/core/plugins/InstallDB.php:91
 msgid "Table is missing."
 msgstr ""
 
-#: dev4press/core/plugins/Wizard.php:154
+#: dev4press/core/plugins/Wizard.php:161
 msgid "Yes"
 msgstr ""
 
-#: dev4press/core/plugins/Wizard.php:158
+#: dev4press/core/plugins/Wizard.php:162
 msgid "No"
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:91
+#: dev4press/core/task/AJAX.php:89
 msgid "Process is starting."
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:100
+#: dev4press/core/task/AJAX.php:98
 msgid "Process has been interrupted by user."
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:107
+#: dev4press/core/task/AJAX.php:105
 msgid "Process has completed."
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:114
-msgid "Completed %s out of %s items."
+#: dev4press/core/task/AJAX.php:112
+msgid "Completed %1$s out of %2$s items."
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelAbout.php:25
@@ -791,34 +751,34 @@ msgstr ""
 msgid "Main control panel for all the plugin individual features."
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelFeatures.php:46
-#: dev4press/core/ui/admin/PanelFeatures.php:56
-#: dev4press/core/ui/admin/PanelFeatures.php:81
-#: dev4press/core/ui/admin/PanelFeatures.php:90
+#: dev4press/core/ui/admin/PanelFeatures.php:36
+#: dev4press/core/ui/admin/PanelFeatures.php:57
+#: dev4press/core/ui/admin/PanelFeatures.php:83
+#: dev4press/core/ui/admin/PanelFeatures.php:100
 msgid "All"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelFeatures.php:47
-#: dev4press/core/ui/admin/PanelFeatures.php:61
+#: dev4press/core/ui/admin/PanelFeatures.php:40
+#: dev4press/core/ui/admin/PanelFeatures.php:62
 msgid "Always On"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelFeatures.php:49
-#: dev4press/core/ui/admin/PanelFeatures.php:73
+#: dev4press/core/ui/admin/PanelFeatures.php:48
+#: dev4press/core/ui/admin/PanelFeatures.php:74
 msgid "Disabled"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelFeatures.php:65
+#: dev4press/core/ui/admin/PanelFeatures.php:66
 msgid "Always On + Active"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelFeatures.php:82
-#: dev4press/core/ui/admin/PanelFeatures.php:95
+#: dev4press/core/ui/admin/PanelFeatures.php:87
+#: dev4press/core/ui/admin/PanelFeatures.php:105
 msgid "Override Active"
 msgstr ""
 
-#: dev4press/core/ui/admin/PanelFeatures.php:83
-#: dev4press/core/ui/admin/PanelFeatures.php:99
+#: dev4press/core/ui/admin/PanelFeatures.php:91
+#: dev4press/core/ui/admin/PanelFeatures.php:109
 msgid "Override Disabled"
 msgstr ""
 
@@ -831,7 +791,7 @@ msgid "All plugin settings are split into several panels, and you access each st
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelSettings.php:28
-#: forms/sidebar-settings-full.php:18
+#: forms/sidebar-settings-full.php:22
 msgid "All Settings"
 msgstr ""
 
@@ -895,904 +855,904 @@ msgstr ""
 msgid "Remove selected plugin settings and optionally disable plugin."
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:307
+#: dev4press/core/ui/Enqueue.php:316
 msgid "Use Selected Image"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:309
-#: dev4press/core/ui/Enqueue.php:345
+#: dev4press/core/ui/Enqueue.php:318
+#: dev4press/core/ui/Enqueue.php:355
 msgid "Are you sure you want to do this?"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:334
+#: dev4press/core/ui/Enqueue.php:344
 msgid "OK"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:335
+#: dev4press/core/ui/Enqueue.php:345
 msgid "Cancel"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:336
+#: dev4press/core/ui/Enqueue.php:346
 msgid "Delete"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:337
+#: dev4press/core/ui/Enqueue.php:347
 msgid "Disable"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:338
+#: dev4press/core/ui/Enqueue.php:348
 msgid "Empty"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:339
+#: dev4press/core/ui/Enqueue.php:349
 msgid "Send"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:340
+#: dev4press/core/ui/Enqueue.php:350
 msgid "Start"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:341
+#: dev4press/core/ui/Enqueue.php:351
 msgid "Stop"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:342
+#: dev4press/core/ui/Enqueue.php:352
 msgid "Wait"
 msgstr ""
 
-#: dev4press/core/ui/Enqueue.php:346
+#: dev4press/core/ui/Enqueue.php:356
 msgid "Please Wait..."
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:97
+#: dev4press/core/ui/Grid.php:99
 msgid "No items found."
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:199
+#: dev4press/core/ui/Grid.php:201
 msgctxt "paging"
 msgid "%1$s of %2$s"
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:174
-msgid "First page"
-msgstr ""
-
-#: dev4press/core/ui/Grid.php:185
-msgid "Previous page"
-msgstr ""
-
-#: dev4press/core/ui/Grid.php:210
+#: dev4press/core/ui/Grid.php:212
 msgid "Next page"
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:221
+#: dev4press/core/ui/Grid.php:223
 msgid "Last page"
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:135
+#: dev4press/core/ui/Grid.php:137
 msgid "Search keywords..."
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:138
+#: dev4press/core/ui/Grid.php:140
 msgid "Filter"
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:192
+#: dev4press/core/ui/Grid.php:176
+msgid "First page"
+msgstr ""
+
+#: dev4press/core/ui/Grid.php:187
+msgid "Previous page"
+msgstr ""
+
+#: dev4press/core/ui/Grid.php:194
 msgid "Current Page"
 msgstr ""
 
-#: dev4press/service/geoip/Location.php:89
-#: dev4press/service/geoip/Location.php:89
+#: dev4press/service/geoip/Location.php:90
+#: dev4press/service/geoip/Location.php:90
 msgid "Localhost or Private IP"
 msgstr ""
 
-#: dev4press/service/geoip/Location.php:93
-#: dev4press/service/geoip/Location.php:93
-msgid "IP can't be located."
+#: dev4press/service/geoip/Location.php:94
+#: dev4press/service/geoip/Location.php:94
+msgid "IP can\'t be located."
 msgstr ""
 
-#: dev4press/service/media/pixabay/Query.php:79
+#: dev4press/service/media/pixabay/Query.php:80
 msgid "Specified image ID not found."
 msgstr ""
 
-#: dev4press/service/media/pixabay/Query.php:158
+#: dev4press/service/media/pixabay/Query.php:159
 msgid "Specified video ID not found."
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:119
+#: dev4press/wordpress/admin/Table.php:124
 msgid "All Logged"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:120
+#: dev4press/wordpress/admin/Table.php:125
 msgid "Last hour"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:121
+#: dev4press/wordpress/admin/Table.php:126
 msgid "Last 12 hours"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:122
+#: dev4press/wordpress/admin/Table.php:127
 msgid "Last day"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:123
+#: dev4press/wordpress/admin/Table.php:128
 msgid "Last 7 days"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:124
+#: dev4press/wordpress/admin/Table.php:129
 msgid "Last 30 days"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:125
+#: dev4press/wordpress/admin/Table.php:130
 msgid "Last 365 days"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:137
-msgid "%s %s"
-msgstr ""
-
-#: dev4press/wordpress/content/PostType.php:41
-msgctxt "Post type label"
-msgid "Add New"
+#: dev4press/wordpress/admin/Table.php:142
+msgid "%1$s %2$s"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:42
 msgctxt "Post type label"
-msgid "Add New %s"
+msgid "Add New"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:43
 msgctxt "Post type label"
-msgid "Edit %s"
+msgid "Add New %s"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:44
 msgctxt "Post type label"
-msgid "New %s"
+msgid "Edit %s"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:45
-#: dev4press/wordpress/content/PostType.php:61
 msgctxt "Post type label"
-msgid "View %s"
+msgid "New %s"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:46
+#: dev4press/wordpress/content/PostType.php:62
 msgctxt "Post type label"
-msgid "Search %s"
+msgid "View %s"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:47
 msgctxt "Post type label"
-msgid "No %s found"
+msgid "Search %s"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:48
 msgctxt "Post type label"
-msgid "No %s found in Trash"
+msgid "No %s found"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:49
 msgctxt "Post type label"
-msgid "Parent %s:"
+msgid "No %s found in Trash"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:50
 msgctxt "Post type label"
-msgid "All %s"
+msgid "Parent %s:"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:51
 msgctxt "Post type label"
-msgid "%s Archives"
+msgid "All %s"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:52
 msgctxt "Post type label"
-msgid "Insert into %s"
+msgid "%s Archives"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:53
 msgctxt "Post type label"
-msgid "Uploaded to this %s"
+msgid "Insert into %s"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:54
 msgctxt "Post type label"
-msgid "Featured Image"
+msgid "Uploaded to this %s"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:55
 msgctxt "Post type label"
-msgid "Set featured Image"
+msgid "Featured Image"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:56
 msgctxt "Post type label"
-msgid "Remove featured Image"
+msgid "Set featured Image"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:57
 msgctxt "Post type label"
-msgid "Use featured Image"
+msgid "Remove featured Image"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:58
 msgctxt "Post type label"
-msgid "Filter %s list"
+msgid "Use featured Image"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:59
 msgctxt "Post type label"
-msgid "%s list navigation"
+msgid "Filter %s list"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:60
 msgctxt "Post type label"
-msgid "%s list"
+msgid "%s list navigation"
 msgstr ""
 
-#: dev4press/wordpress/content/PostType.php:62
+#: dev4press/wordpress/content/PostType.php:61
 msgctxt "Post type label"
-msgid "%s Attributes"
+msgid "%s list"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:63
 msgctxt "Post type label"
-msgid "%s published"
+msgid "%s Attributes"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:64
 msgctxt "Post type label"
-msgid "%s published privately"
+msgid "%s published"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:65
 msgctxt "Post type label"
-msgid "%s reverted to draft"
+msgid "%s published privately"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:66
 msgctxt "Post type label"
-msgid "%s scheduled"
+msgid "%s reverted to draft"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:67
 msgctxt "Post type label"
-msgid "%s updated"
+msgid "%s scheduled"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:68
 msgctxt "Post type label"
-msgid "Filter by Date"
+msgid "%s updated"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:69
 msgctxt "Post type label"
-msgid "%s Link"
+msgid "Filter by Date"
 msgstr ""
 
 #: dev4press/wordpress/content/PostType.php:70
 msgctxt "Post type label"
-msgid "A link to a %s"
+msgid "%s Link"
 msgstr ""
 
-#: dev4press/wordpress/content/Taxonomy.php:49
-msgctxt "Taxonomy label"
-msgid "All %s"
+#: dev4press/wordpress/content/PostType.php:71
+msgctxt "Post type label"
+msgid "A link to a %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:50
 msgctxt "Taxonomy label"
-msgid "Edit %s"
+msgid "All %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:51
 msgctxt "Taxonomy label"
-msgid "View %s"
+msgid "Edit %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:52
 msgctxt "Taxonomy label"
-msgid "Update %s"
+msgid "View %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:53
 msgctxt "Taxonomy label"
-msgid "Add New %s"
+msgid "Update %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:54
 msgctxt "Taxonomy label"
-msgid "New %s Name"
+msgid "Add New %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:55
 msgctxt "Taxonomy label"
-msgid "Parent %s"
+msgid "New %s Name"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:56
 msgctxt "Taxonomy label"
-msgid "Parent %s:"
+msgid "Parent %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:57
 msgctxt "Taxonomy label"
-msgid "Search %s"
+msgid "Parent %s:"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:58
 msgctxt "Taxonomy label"
-msgid "Popular %s"
+msgid "Search %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:59
 msgctxt "Taxonomy label"
-msgid "Separate %s with commas"
+msgid "Popular %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:60
 msgctxt "Taxonomy label"
-msgid "Add or remove %s"
+msgid "Separate %s with commas"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:61
 msgctxt "Taxonomy label"
-msgid "Choose from the most used %s"
+msgid "Add or remove %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:62
 msgctxt "Taxonomy label"
-msgid "No %s found"
+msgid "Choose from the most used %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:63
 msgctxt "Taxonomy label"
-msgid "No %s"
+msgid "No %s found"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:64
 msgctxt "Taxonomy label"
-msgid "%s list navigation"
+msgid "No %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:65
 msgctxt "Taxonomy label"
-msgid "%s list"
+msgid "%s list navigation"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:66
 msgctxt "Taxonomy label"
-msgid "Most Used"
+msgid "%s list"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:67
 msgctxt "Taxonomy label"
-msgid "&larr; Back to %s"
+msgid "Most Used"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:68
 msgctxt "Taxonomy label"
-msgid "%s Link"
+msgid "&larr; Back to %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:69
 msgctxt "Taxonomy label"
-msgid "A link to a %s"
+msgid "%s Link"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:70
 msgctxt "Taxonomy label"
-msgid "The name is how it appears on your site."
+msgid "A link to a %s"
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:71
 msgctxt "Taxonomy label"
-msgid "The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."
+msgid "The name is how it appears on your site."
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:72
 msgctxt "Taxonomy label"
-msgid "Assign a parent term to create a hierarchy. The term Jazz, for example, would be the parent of Bebop and Big Band."
+msgid "The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."
 msgstr ""
 
 #: dev4press/wordpress/content/Taxonomy.php:73
 msgctxt "Taxonomy label"
+msgid "Assign a parent term to create a hierarchy. The term Jazz, for example, would be the parent of Bebop and Big Band."
+msgstr ""
+
+#: dev4press/wordpress/content/Taxonomy.php:74
+msgctxt "Taxonomy label"
 msgid "The description is not prominent by default; however, some themes may show it."
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:98
-#: forms/content-features-index.php:7
+#: dev4press/wordpress/legacy/Widget.php:99
+#: forms/content-features-index.php:12
 msgid "Global"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:469
+#: dev4press/wordpress/legacy/Widget.php:470
 msgid "Everyone"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:470
+#: dev4press/wordpress/legacy/Widget.php:471
 msgid "Logged in users"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:471
+#: dev4press/wordpress/legacy/Widget.php:472
 msgid "Not logged in visitors"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:472
+#: dev4press/wordpress/legacy/Widget.php:473
 msgid "Users with specified roles"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:473
+#: dev4press/wordpress/legacy/Widget.php:474
 msgid "Users with specified capabilities"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:479
+#: dev4press/wordpress/legacy/Widget.php:480
 msgid "Descending"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:480
+#: dev4press/wordpress/legacy/Widget.php:481
 msgid "Ascending"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:102
+#: dev4press/wordpress/legacy/Widget.php:103
 msgid "Extra"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:106
+#: dev4press/wordpress/legacy/Widget.php:107
 msgid "Advanced"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:113
+#: dev4press/wordpress/legacy/Widget.php:114
 msgid "Shortcode"
 msgstr ""
 
-#: forms/content-about-donate.php:8
+#: forms/content-about-donate.php:12
 msgid "Support plugin development"
 msgstr ""
 
-#: forms/content-about-donate.php:15
+#: forms/content-about-donate.php:19
 msgid "Development repository"
 msgstr ""
 
-#: forms/content-about-donate.php:9
+#: forms/content-about-donate.php:13
 msgid "%s is a free plugin, and if you find it useful or want to support its future development, please consider donating."
 msgstr ""
 
-#: forms/content-about-donate.php:16
+#: forms/content-about-donate.php:20
 msgid "%s has a GitHub repository where you can contribute to development, or submit feature requests and suggestions."
 msgstr ""
 
-#: forms/content-about-info.php:15
+#: forms/content-about-info.php:19
 msgid "Current Version"
 msgstr ""
 
-#: forms/content-about-info.php:20
-#: forms/content-about-system.php:56
+#: forms/content-about-info.php:24
+#: forms/content-about-system.php:60
 msgid "Version"
 msgstr ""
 
-#: forms/content-about-info.php:23
-#: forms/content-about-system.php:59
+#: forms/content-about-info.php:27
+#: forms/content-about-system.php:63
 msgid "Build"
 msgstr ""
 
-#: forms/content-about-info.php:29
+#: forms/content-about-info.php:33
 msgid "Edition"
 msgstr ""
 
-#: forms/content-about-info.php:32
+#: forms/content-about-info.php:36
 msgid "Date"
 msgstr ""
 
-#: forms/content-about-info.php:38
+#: forms/content-about-info.php:42
 msgid "First released"
 msgstr ""
 
-#: forms/content-about-info.php:46
+#: forms/content-about-info.php:50
 msgid "System Requirements"
 msgstr ""
 
-#: forms/content-about-info.php:63
+#: forms/content-about-info.php:67
 msgid "List of included Languages"
 msgstr ""
 
-#: forms/content-about-info.php:75
+#: forms/content-about-info.php:79
 msgid "Plugin Version"
 msgstr ""
 
-#: forms/content-about-info.php:84
+#: forms/content-about-info.php:88
 msgid "Contributors"
 msgstr ""
 
-#: forms/content-about-system.php:9
+#: forms/content-about-system.php:13
 msgid "System Information"
 msgstr ""
 
-#: forms/content-about-system.php:14
+#: forms/content-about-system.php:18
 msgid "PHP Version"
 msgstr ""
 
-#: forms/content-about-system.php:23
+#: forms/content-about-system.php:27
 msgid "Debug Mode"
 msgstr ""
 
-#: forms/content-about-system.php:26
+#: forms/content-about-system.php:30
 msgid "Script Debug"
 msgstr ""
 
-#: forms/content-about-system.php:34
+#: forms/content-about-system.php:38
 msgid "Plugin Information"
 msgstr ""
 
-#: forms/content-about-system.php:39
-#: forms/content-about-system.php:65
+#: forms/content-about-system.php:43
+#: forms/content-about-system.php:69
 msgid "Path"
 msgstr ""
 
-#: forms/content-about-system.php:42
-#: forms/content-about-system.php:68
+#: forms/content-about-system.php:46
+#: forms/content-about-system.php:72
 msgid "URL"
 msgstr ""
 
-#: forms/content-about-system.php:51
+#: forms/content-about-system.php:55
 msgid "Shared Library"
 msgstr ""
 
-#: forms/content-about-system.php:17
+#: forms/content-about-system.php:21
 msgid "%s Version"
 msgstr ""
 
-#: forms/content-about-system.php:23
-#: forms/content-about-system.php:26
+#: forms/content-about-system.php:27
+#: forms/content-about-system.php:30
 msgid "ON"
 msgstr ""
 
-#: forms/content-about-system.php:23
-#: forms/content-about-system.php:26
+#: forms/content-about-system.php:27
+#: forms/content-about-system.php:30
 msgid "OFF"
 msgstr ""
 
-#: forms/content-features-index-filter.php:24
+#: forms/content-features-index-filter.php:28
 msgid "Search features by keyword"
 msgstr ""
 
-#: forms/content-features-index-filter.php:24
+#: forms/content-features-index-filter.php:28
 msgid "Search..."
 msgstr ""
 
-#: forms/content-features-index.php:95
+#: forms/content-features-index.php:114
 msgid "This is a Beta feature, and it can be unstable!"
 msgstr ""
 
-#: forms/content-features-index.php:74
-msgid "This feature can't be enabled because of the missing prerequisites."
+#: forms/content-features-index.php:89
+msgid "This feature can\'t be enabled because of the missing prerequisites."
 msgstr ""
 
-#: forms/content-features-index.php:79
-msgid "This feature can't be enabled at this time."
+#: forms/content-features-index.php:94
+msgid "This feature can\'t be enabled at this time."
 msgstr ""
 
-#: forms/content-features-index.php:84
+#: forms/content-features-index.php:101
 msgid "This feature has no settings"
 msgstr ""
 
-#: forms/content-features-index.php:90
+#: forms/content-features-index.php:109
 msgid "This feature adds a new panel"
 msgstr ""
 
-#: forms/content-features-index.php:8
+#: forms/content-features-index.php:16
 msgid "Frontend"
 msgstr ""
 
-#: forms/content-features-index.php:9
+#: forms/content-features-index.php:20
 msgid "Admin"
 msgstr ""
 
-#: forms/content-features-index.php:82
-msgid "Settings for '%s'"
+#: forms/content-features-index.php:99
+msgid "Settings for \'%s\'"
 msgstr ""
 
-#: forms/content-tools-export.php:7
-#: forms/content-tools-import.php:7
+#: forms/content-tools-export.php:11
+#: forms/content-tools-import.php:11
 msgid "Important Information"
 msgstr ""
 
-#: forms/content-tools-export.php:9
+#: forms/content-tools-export.php:13
 msgid "With this tool you export plugin settings into plain text file (JSON serialized content). Do not modify export file! Making changes to export file will make it unusable."
 msgstr ""
 
-#: forms/content-tools-import.php:9
+#: forms/content-tools-import.php:13
 msgid "With this tool you can import all plugin settings from the export file made using the Export tool. If you made changes to the export file, the import will fail."
 msgstr ""
 
-#: forms/content-tools-import.php:10
+#: forms/content-tools-import.php:14
 msgid "For import tools to work correctly, you must import a file made with the export tool running the same versions of the plugin for both import and export!"
 msgstr ""
 
-#: forms/content-tools-import.php:15
+#: forms/content-tools-import.php:19
 msgid "Import from File"
 msgstr ""
 
-#: forms/content-tools-import.php:18
+#: forms/content-tools-import.php:22
 msgid "Select file you want to import from"
 msgstr ""
 
-#: forms/content-tools-index.php:37
-#: forms/element-subpanels-blocks.php:35
+#: forms/content-tools-index.php:41
+#: forms/element-subpanels-blocks.php:39
 msgid "Open"
 msgstr ""
 
-#: forms/content-tools-updater.php:2
+#: forms/content-tools-updater.php:9
 msgid "Update status"
 msgstr ""
 
-#: forms/content-tools-updater.php:4
+#: forms/content-tools-updater.php:11
 msgid "Nothing to do here."
 msgstr ""
 
-#: forms/content-wizard-finish.php:7
+#: forms/content-wizard-finish.php:11
 msgid "This wizard has reach the end. But, there are a lot more features, a lot more settings available to explore. This was just the starting point, to configure few basic things, before you try exploring the plugin and testing the features you want to use."
 msgstr ""
 
-#: forms/content-wizard-finish.php:13
+#: forms/content-wizard-finish.php:17
 msgid "Do you want to hide this Setup Wizard?"
 msgstr ""
 
-#: forms/content-wizard-finish.php:15
-msgid "Setup Wizard can be hidden, if you don't plan to use it for now. To enable or disable at any time the Wizard you can use option in the Advanced panel on the Settings page."
+#: forms/content-wizard-finish.php:19
+msgid "Setup Wizard can be hidden, if you don\'t plan to use it for now. To enable or disable at any time the Wizard you can use option in the Advanced panel on the Settings page."
 msgstr ""
 
-#: forms/content-wizard.php:4
+#: forms/content-wizard.php:9
 msgid "Finish"
 msgstr ""
 
-#: forms/content-wizard.php:4
+#: forms/content-wizard.php:9
 msgid "Save and Continue"
 msgstr ""
 
-#: forms/content.php:1
-#: forms/fallback.php:1
+#: forms/content.php:8
+#: forms/fallback.php:8
 msgid "Nothing to show."
 msgstr ""
 
-#: forms/header-about.php:11
-msgid "Welcome to %s%s %s"
+#: forms/header-about.php:15
+msgid "Welcome to %1$s%2$s %3$s"
 msgstr ""
 
-#: forms/header-about.php:29
+#: forms/header-about.php:33
 msgid "Version %s"
 msgstr ""
 
-#: forms/message.php:13
+#: forms/message.php:17
 msgid "Settings are saved."
 msgstr ""
 
-#: forms/message.php:16
+#: forms/message.php:20
 msgid "Feature Settings reset completed."
 msgstr ""
 
-#: forms/message.php:19
+#: forms/message.php:23
 msgid "Import operation completed."
 msgstr ""
 
-#: forms/message.php:22
+#: forms/message.php:26
 msgid "Removal operation completed."
 msgstr ""
 
-#: forms/message.php:25
+#: forms/message.php:29
 msgid "Import operation failed."
 msgstr ""
 
-#: forms/message.php:30
-msgid "Nothing's done."
+#: forms/message.php:34
+msgid "Nothing is done."
 msgstr ""
 
-#: forms/message.php:34
+#: forms/message.php:38
 msgid "Nothing removed."
 msgstr ""
 
-#: forms/message.php:37
+#: forms/message.php:41
 msgid "Requested operation is invalid."
 msgstr ""
 
-#: forms/notices-bbpress.php:23
-#: forms/notices-bbpress.php:37
-#: forms/notices-bbpress.php:52
-#: forms/notices-bbpress.php:66
-#: forms/notices-bbpress.php:80
-#: forms/notices-bbpress.php:94
+#: forms/notices-bbpress.php:27
+#: forms/notices-bbpress.php:41
+#: forms/notices-bbpress.php:56
+#: forms/notices-bbpress.php:70
+#: forms/notices-bbpress.php:84
+#: forms/notices-bbpress.php:98
 msgid "Plugin Home Page"
 msgstr ""
 
-#: forms/notices-bbpress.php:24
-#: forms/notices-bbpress.php:38
-#: forms/notices-bbpress.php:53
-#: forms/notices-bbpress.php:67
-#: forms/notices-bbpress.php:81
-#: forms/notices-bbpress.php:95
+#: forms/notices-bbpress.php:28
+#: forms/notices-bbpress.php:42
+#: forms/notices-bbpress.php:57
+#: forms/notices-bbpress.php:71
+#: forms/notices-bbpress.php:85
+#: forms/notices-bbpress.php:99
 msgid "Do not show this notice anymore"
 msgstr ""
 
-#: forms/notices-bbpress.php:21
-#: forms/notices-bbpress.php:35
-#: forms/notices-bbpress.php:50
-#: forms/notices-bbpress.php:64
-#: forms/notices-bbpress.php:78
-#: forms/notices-bbpress.php:92
+#: forms/notices-bbpress.php:25
+#: forms/notices-bbpress.php:39
+#: forms/notices-bbpress.php:54
+#: forms/notices-bbpress.php:68
+#: forms/notices-bbpress.php:82
+#: forms/notices-bbpress.php:96
 msgid "Please, take a few minutes to check out another Dev4Press plugin for bbPress: %s."
 msgstr ""
 
-#: forms/sidebar-dashboard.php:16
+#: forms/sidebar-dashboard.php:20
 msgid "Version: %s"
 msgstr ""
 
-#: forms/sidebar-features-index.php:38
+#: forms/sidebar-features-index.php:42
 msgid "Bulk Control"
 msgstr ""
 
-#: forms/sidebar-features-index.php:40
+#: forms/sidebar-features-index.php:44
 msgid "You can enable or disable all the features at once."
 msgstr ""
 
-#: forms/sidebar-features-index.php:42
+#: forms/sidebar-features-index.php:46
 msgid "Enable All"
 msgstr ""
 
-#: forms/sidebar-features-index.php:43
+#: forms/sidebar-features-index.php:47
 msgid "Disable All"
 msgstr ""
 
-#: forms/sidebar-features.php:69
-#: forms/sidebar-settings-full.php:33
-#: forms/sidebar-settings.php:26
+#: forms/sidebar-features.php:79
+#: forms/sidebar-settings-full.php:37
+#: forms/sidebar-settings.php:30
 msgid "Save Settings"
 msgstr ""
 
-#: forms/sidebar-features.php:49
+#: forms/sidebar-features.php:59
 msgid "More Controls"
 msgstr ""
 
-#: forms/sidebar-features.php:51
+#: forms/sidebar-features.php:61
 msgid "If you want, you can reset all the settings for this Feature to default values."
 msgstr ""
 
-#: forms/sidebar-features.php:52
+#: forms/sidebar-features.php:62
 msgid "Reset Feature Settings"
 msgstr ""
 
-#: forms/sidebar-features.php:60
+#: forms/sidebar-features.php:70
 msgid "You can also copy the settings from the main Network settings for this feature."
 msgstr ""
 
-#: forms/sidebar-features.php:61
+#: forms/sidebar-features.php:71
 msgid "Copy Network Settings"
 msgstr ""
 
-#: forms/sidebar-features.php:73
-#: forms/sidebar-settings-full.php:36
-#: forms/sidebar-settings.php:29
-#: forms/sidebar-tools.php:44
+#: forms/sidebar-features.php:83
+#: forms/sidebar-settings-full.php:40
+#: forms/sidebar-settings.php:33
+#: forms/sidebar-tools.php:48
 msgid "Return to top"
 msgstr ""
 
-#: forms/sidebar-features.php:39
+#: forms/sidebar-features.php:49
 msgid "Beta Feature"
 msgstr ""
 
-#: forms/sidebar-settings-full.php:27
+#: forms/sidebar-settings-full.php:31
 msgid "Search Settings"
 msgstr ""
 
-#: forms/sidebar-settings-full.php:29
+#: forms/sidebar-settings-full.php:33
 msgid "Clear Search"
 msgstr ""
 
-#: forms/sidebar-settings-full.php:26
+#: forms/sidebar-settings-full.php:30
 msgid "Search through settings by typing what you need to find in this field."
 msgstr ""
 
-#: forms/sidebar-settings-index.php:21
+#: forms/sidebar-settings-index.php:25
 msgid "Show All Settings"
 msgstr ""
 
-#: forms/widget-advanced.php:8
+#: forms/widget-advanced.php:12
 msgid "Widget Visibility"
 msgstr ""
 
-#: forms/widget-advanced.php:13
+#: forms/widget-advanced.php:17
 msgid "Show widget to"
 msgstr ""
 
-#: forms/widget-advanced.php:30
+#: forms/widget-advanced.php:40
 msgid "Roles"
 msgstr ""
 
-#: forms/widget-advanced.php:39
+#: forms/widget-advanced.php:54
 msgid "If no roles are selected, widget will assume that all roles are selected."
 msgstr ""
 
-#: forms/widget-advanced.php:52
+#: forms/widget-advanced.php:67
 msgid "Capabilities"
 msgstr ""
 
-#: forms/widget-advanced.php:56
+#: forms/widget-advanced.php:71
 msgid "One or more capabilities, separated by comma."
 msgstr ""
 
-#: forms/widget-advanced.php:64
+#: forms/widget-advanced.php:79
 msgid "Visibility Filter"
 msgstr ""
 
-#: forms/widget-advanced.php:69
+#: forms/widget-advanced.php:84
 msgid "Custom filter name"
 msgstr ""
 
-#: forms/widget-advanced.php:73
-msgid "Using this value, widget will run filter for the final visibility check. This filter will be %s, replace the %s with your custom filter name defined here."
+#: forms/widget-advanced.php:88
+msgid "Using this value, widget will run filter for the final visibility check. This filter will be %1$s, replace the %2$s with your custom filter name defined here."
 msgstr ""
 
-#: forms/widget-cache.php:0
+#: forms/widget-cache.php:7
 msgid "Results Caching"
 msgstr ""
 
-#: forms/widget-cache.php:5
+#: forms/widget-cache.php:12
 msgid "Cache Period"
 msgstr ""
 
-#: forms/widget-cache.php:9
+#: forms/widget-cache.php:16
 msgid "To use cache and speed up the widget, enter number of hours for cached results to be kept. Leave 0 to disable cache."
 msgstr ""
 
-#: forms/widget-extra.php:0
+#: forms/widget-extra.php:7
 msgid "Before and After Content"
 msgstr ""
 
-#: forms/widget-extra.php:5
+#: forms/widget-extra.php:12
 msgid "Before"
 msgstr ""
 
-#: forms/widget-extra.php:11
+#: forms/widget-extra.php:18
 msgid "After"
 msgstr ""
 
-#: forms/widget-extra.php:18
+#: forms/widget-extra.php:25
 msgid "For Developers"
 msgstr ""
 
-#: forms/widget-extra.php:23
+#: forms/widget-extra.php:30
 msgid "Developer ID"
 msgstr ""
 
-#: forms/widget-extra.php:27
+#: forms/widget-extra.php:34
 msgid "This is custom string (alphanumeric, underscore and minus signs allowed) that can be used to identify the widget in code, and it can be useful for developers customizing the website."
 msgstr ""
 
-#: forms/widget-global.php:0
+#: forms/widget-global.php:7
 msgid "Basic"
 msgstr ""
 
-#: forms/widget-global.php:5
+#: forms/widget-global.php:12
 msgid "Title"
 msgstr ""
 
-#: forms/widget-global.php:11
+#: forms/widget-global.php:18
 msgid "Additional CSS Class"
 msgstr ""
 
-#: forms/widget-shortcode.php:6
+#: forms/widget-shortcode.php:10
 msgid "Widget as a Shortcode"
 msgstr ""
 
-#: forms/widget-shortcode.php:11
+#: forms/widget-shortcode.php:15
 msgid "This widget has a shortcode equivalent with all the same settings. The shortcode is displayed below, and you can copy and use it in your posts or pages. This shortcode reflects latest saved widget settings - if you make changes to widget settings, save it, before getting shortcode from this tab."
 msgstr ""
 
-#: forms/widget-shortcode.php:12
-msgid "Shortcode doesn't include options from 'Extra' and 'Advanced' settings tabs, and it doesn't include 'Title' for the widget."
+#: forms/widget-shortcode.php:16
+msgid "Shortcode doesn\'t include options from "Extra" and "Advanced" settings tabs, and it doesn\'t include "Title" for the widget."
 msgstr ""
 
-#: forms/widget-shortcode.php:25
+#: forms/widget-shortcode.php:29
 msgid "Notice"
 msgstr ""
 

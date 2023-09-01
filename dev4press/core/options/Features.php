@@ -97,7 +97,7 @@ abstract class Features {
 						'name'     => '',
 						'class'    => '',
 						'settings' => array(
-							EL::info( __( 'Hidden', 'd4plib' ), __( "This feature can't be activated or configured at this time, because one or more of the feature prerequisites are missing.", 'd4plib' ) ),
+							EL::info( __( 'Hidden', 'd4plib' ), __( 'This feature can\'t be activated or configured at this time, because one or more of the feature prerequisites are missing.', 'd4plib' ) ),
 						),
 					),
 				),
@@ -115,7 +115,7 @@ abstract class Features {
 						'name'     => '',
 						'class'    => '',
 						'settings' => array(
-							EL::info( __( 'Active', 'd4plib' ), __( "This feature is always active, and it can't be disabled. You can enable or disable individual settings included.", 'd4plib' ) ),
+							EL::info( __( 'Active', 'd4plib' ), __( 'This feature is always active, and it can\'t be disabled. You can enable or disable individual settings included.', 'd4plib' ) ),
 						),
 					),
 				),
@@ -154,7 +154,7 @@ abstract class Features {
 							'name'     => '',
 							'class'    => '',
 							'settings' => array(
-								EL::i( 'load', $this->feature, __( 'Active', 'd4plib' ), __( "This feature will be loaded only if activated. If you don't need this feature, disable it.", 'd4plib' ), Type::BOOLEAN, $this->is_enabled() )->args( array( 'label' => __( 'Feature is active', 'd4plib' ) ) ),
+								EL::i( 'load', $this->feature, __( 'Active', 'd4plib' ), __( 'This feature will be loaded only if activated. If you don\'t need this feature, disable it.', 'd4plib' ), Type::BOOLEAN, $this->is_enabled() )->args( array( 'label' => __( 'Feature is active', 'd4plib' ) ) ),
 							),
 						),
 					),

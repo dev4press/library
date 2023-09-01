@@ -92,7 +92,7 @@ class Location {
 		}
 
 		if ( $not_found == 'image' ) {
-			return '<img src="' . $_base . '" class="flag" title="' . __( "IP can't be located.", 'd4plib' ) . '" alt="' . __( "IP can't be located.", 'd4plib' ) . '" />';
+			return '<img src="' . $_base . '" class="flag" title="' . __( 'IP can\'t be located.', 'd4plib' ) . '" alt="' . __( 'IP can\'t be located.', 'd4plib' ) . '" />';
 		} else {
 			return '';
 		}

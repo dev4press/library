@@ -97,8 +97,8 @@ class Render {
 
 					$classes[] = 'd4p-group-with-toggle';
 					$classes[] = $t['value'] ? 'd4p-group-toggle-on' : 'd4p-group-toggle-off';
-					$active    = $t['on'] ?? __( "Active" );
-					$inactive  = $t['off'] ?? __( "Inactive" );
+					$active    = $t['on'] ?? __( 'Active', 'd4plib' );
+					$inactive  = $t['off'] ?? __( 'Inactive', 'd4plib' );
 					$icon      = $t['value'] ? 'd4p-ui-toggle-on' : 'd4p-ui-toggle-off';
 					$title     = $t['value'] ? $active : $inactive;
 
