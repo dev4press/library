@@ -1,7 +1,7 @@
 === Dev4Press Library ===
 == Changelog ==
 
-= Version 4.3 - 2023.08.31 =
+= Version 4.3 - 2023.09.05 =
 * New: full validation with the PHPCS and additional WPCS rules
 * New: some forms panel split into the elements files for re-usability
 * New: settings elements can have toggleable additional information
@@ -18,6 +18,7 @@
 * Edit: improvements to the `DBLite` class by using magic `__call` method
 * Edit: improvements to the Geolocation process and classes
 * Edit: improvements to the coding standards and formatting
+* Edit: improvements to the default Help panels content
 * Edit: massive improvements to Features in relation to network mode plugins
 * Edit: many updates to the plugin settings panel rendering
 * Edit: many styling improvements to the various parts of the interface
@@ -26,7 +27,10 @@
 * Edit: class `HTAccess` improves the writing to the file
 * Edit: class for `PostBack` can handle network and blog mode plugins
 * Edit: optimization of the font generating file sources
+* Edit: updates to the translations and strings included
 * Edit: several more strings escaping and kses-ing for display
+* Updated: JS Cookie 3.0.5
+* Updated: Built-in cacert.pem 20230822
 * Removed: clipboard JS file since it is already in WordPress core
 * Removed: standalone print and debug functions as no longer used
 * Removed: class `Debug` as it is now obsolete
