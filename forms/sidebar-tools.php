@@ -36,18 +36,18 @@ $_button_id = $_subpanels[ $_subpanel ]['button_id'] ?? panel()->a()->plugin_pre
             </div>
         </div>
 		<?php if ( $_subpanel != 'index' && $_subpanels[ $_subpanel ]['method'] != '' ) { ?>
-        <button class="d4p-panel-buttons">
-			<?php if ( $_subpanels[ $_subpanel ]['method'] == 'get' ) { ?>
-                <a id="<?php echo esc_attr( $_button_id ); ?>" type="button" href="<?php echo esc_url( $_subpanels[ $_subpanel ]['button_url'] ); ?>" class="button-primary"><?php echo esc_html( $_subpanels[ $_subpanel ]['button_label'] ); ?></a>
-			<?php } else if ( $_subpanels[ $_subpanel ]['method'] == 'ajax' ) { ?>
-                <button id="<?php echo esc_attr( $_button_id ); ?>" type="button" class="button-primary"><?php echo esc_html( $_subpanels[ $_subpanel ]['button_label'] ); ?></button>
-			<?php } else { ?>
-                <button id="<?php echo esc_attr( $_button_id ); ?>" type="submit" class="button-primary"><?php echo esc_html( $_subpanels[ $_subpanel ]['button_label'] ); ?></button>
-			<?php } ?>
+            <div class="d4p-panel-buttons">
+				<?php if ( $_subpanels[ $_subpanel ]['method'] == 'get' ) { ?>
+                    <a id="<?php echo esc_attr( $_button_id ); ?>" type="button" href="<?php echo esc_url( $_subpanels[ $_subpanel ]['button_url'] ); ?>" class="button-primary"><?php echo esc_html( $_subpanels[ $_subpanel ]['button_label'] ); ?></a>
+				<?php } else if ( $_subpanels[ $_subpanel ]['method'] == 'ajax' ) { ?>
+                    <button id="<?php echo esc_attr( $_button_id ); ?>" type="button" class="button-primary"><?php echo esc_html( $_subpanels[ $_subpanel ]['button_label'] ); ?></button>
+				<?php } else { ?>
+                    <button id="<?php echo esc_attr( $_button_id ); ?>" type="submit" class="button-primary"><?php echo esc_html( $_subpanels[ $_subpanel ]['button_label'] ); ?></button>
+				<?php } ?>
+            </div>
+            <div class="d4p-return-to-top">
+                <a href="#wpwrap"><?php esc_html_e( 'Return to top', 'd4plib' ); ?></a>
+            </div>
+		<?php } ?>
     </div>
-    <div class="d4p-return-to-top">
-        <a href="#wpwrap"><?php esc_html_e( 'Return to top', 'd4plib' ); ?></a>
-    </div>
-	<?php } ?>
-</div>
 </div>
