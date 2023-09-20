@@ -110,6 +110,7 @@ abstract class AJAX {
 			case 'run':
 				$this->do_run();
 
+				/* translators: AJAX task progress report. %1$s: Completed tasks count. %2$s: Total tasks count. */
 				$this->message( sprintf( __( 'Completed %1$s out of %2$s items.', 'd4plib' ), $this->data['done'], $this->data['total'] ) );
 
 				$this->save();

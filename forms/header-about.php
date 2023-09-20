@@ -13,6 +13,7 @@ $_subpanel  = panel()->current_subpanel();
 $_classes   = panel()->wrapper_class();
 
 $_plugin_title = sprintf(
+/* translators: About page welcome message. %1$s: Plugin Name. %2%s: Pro suffix. %3%s: Plugin version. */
 	__( 'Welcome to %1$s%2$s %3$s', 'd4plib' ),
 	panel()->a()->title(),
 	panel()->a()->settings()->i()->is_pro() ? ' Pro' : '',
@@ -31,7 +32,12 @@ $_plugin_title = sprintf(
         <div class="d4p-about-badge">
             <div class="d4p-about-badge-inner" style="background-color: <?php echo esc_attr( panel()->a()->settings()->i()->color() ); ?>;">
 				<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				<?php printf( esc_html__( 'Version %s', 'd4plib' ), panel()->a()->settings()->i()->version ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php
+
+				/* translators: About page plugin sign. %s: Plugin version. */
+				printf( esc_html__( 'Version %s', 'd4plib' ), panel()->a()->settings()->i()->version ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+				?>
             </div>
         </div>
     </div>

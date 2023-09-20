@@ -91,7 +91,7 @@ class WPR {
 
 		if ( $login_page ) {
 			if ( $action != '' ) {
-				$real_action = isset( $_REQUEST['action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['action'] ) ) : 'login';
+				$real_action = isset( $_REQUEST['action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['action'] ) ) : 'login'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 				return $real_action == $action;
 			}
@@ -253,7 +253,7 @@ class WPR {
 		$content = strip_shortcodes( $content );
 		$content = str_replace( array( "\r", "\n", '  ' ), ' ', $content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
-		$content = strip_tags( $content );
+		$content = wp_strip_all_tags( $content );
 
 		$words = explode( ' ', $content, $word_limit + 1 );
 
@@ -312,7 +312,7 @@ class WPR {
 				'post_type'   => 'attachment',
 				'post_status' => 'inherit',
 				'fields'      => 'ids',
-				'meta_query'  => array(
+				'meta_query'  => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 					array(
 						'value'   => $file,
 						'compare' => 'LIKE',

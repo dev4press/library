@@ -19,7 +19,12 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <span><?php esc_html_e( 'PHP Version', 'd4plib' ); ?>:</span><strong><?php echo esc_html( Library::instance()->php_version() ); ?></strong>
             </li>
             <li>
-                <span><?php echo sprintf( esc_html__( '%s Version', 'd4plib' ), esc_html( WordPress::instance()->cms_title() ) ); ?>:</span><strong><?php echo esc_html( WordPress::instance()->version() ); ?></strong>
+                <span><?php
+
+	                /* translators: About System information. %s: CMS name. */
+	                echo sprintf( esc_html__( '%s Version', 'd4plib' ), esc_html( WordPress::instance()->cms_title() ) );
+
+	                ?>:</span><strong><?php echo esc_html( WordPress::instance()->version() ); ?></strong>
             </li>
         </ul>
         <hr/>

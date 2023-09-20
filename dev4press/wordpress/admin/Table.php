@@ -140,6 +140,7 @@ abstract class Table extends WP_List_Table {
 					$list[ $year ] = $year;
 				}
 
+				/* translators: Table dropdown for periods. %1$s: Month. %2$s: Year. */
 				$list[ $year . '-' . $month ] = sprintf( __( '%1$s %2$s', 'd4plib' ), $wp_locale->get_month( $month ), $year );
 			}
 		}
@@ -287,7 +288,7 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function _get_field( $name, $default = '' ) {
-		$value = ! empty( $_GET[ $name ] ) ? Sanitize::slug( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$value = ! empty( $_GET[ $name ] ) ? Sanitize::slug( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Recommended
 
 		switch ( $name ) {
 			case 'orderby':

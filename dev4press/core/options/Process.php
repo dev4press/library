@@ -67,7 +67,7 @@ class Process {
 		$list = array();
 
 		if ( $request === false ) {
-			$request = $_REQUEST;
+			$request = $_REQUEST; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 
 		foreach ( $this->settings as $setting ) {

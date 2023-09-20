@@ -129,7 +129,7 @@ class Str {
 	}
 
 	public static function to_ids( string $input, string $delimiter = ',', string $map = 'absint' ) : array {
-		$ids = strip_tags( stripslashes( $input ) );
+		$ids = wp_strip_all_tags( stripslashes( $input ) );
 
 		$ids = explode( $delimiter, $ids );
 		$ids = array_map( 'trim', $ids );

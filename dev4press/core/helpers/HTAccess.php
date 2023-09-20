@@ -25,6 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
+// phpcs:ignoreFile WordPress.WP.AlternativeFunctions
+
 namespace Dev4Press\v43\Core\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -73,7 +75,7 @@ class HTAccess {
 				$backup_path = $this->path . '.backup';
 
 				if ( file_exists( $backup_path ) ) {
-					unlink( $backup_path );
+					wp_delete_file( $backup_path );
 				}
 
 				copy( $this->path, $backup_path );

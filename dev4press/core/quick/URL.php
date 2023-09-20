@@ -37,13 +37,13 @@ class URL {
 			return '';
 		}
 
-		return parse_url( $url, PHP_URL_HOST );
+		return wp_parse_url( $url, PHP_URL_HOST );
 	}
 
 	public static function current_request_path() {
 		$uri = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 
-		return parse_url( $uri, PHP_URL_PATH );
+		return wp_parse_url( $uri, PHP_URL_PATH );
 	}
 
 	public static function current_url_request() : string {
@@ -54,7 +54,7 @@ class URL {
 		$request         = explode( '?', $_SERVER['REQUEST_URI'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$req_uri         = $request[0];
 		$req_query       = $request[1] ?? false;
-		$home_path       = parse_url( home_url(), PHP_URL_PATH );
+		$home_path       = wp_parse_url( home_url(), PHP_URL_PATH );
 		$home_path       = $home_path ? trim( $home_path, '/' ) : '';
 		$home_path_regex = sprintf( '|^%s|i', preg_quote( $home_path, '|' ) );
 
@@ -103,7 +103,7 @@ class URL {
 		}
 
 		if ( is_null( $source ) ) {
-			$source = parse_url( get_bloginfo( 'url' ), PHP_URL_HOST );
+			$source = wp_parse_url( get_bloginfo( 'url' ), PHP_URL_HOST );
 		}
 
 		if ( ! empty( $source ) ) {

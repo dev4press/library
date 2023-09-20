@@ -149,13 +149,16 @@ abstract class Core {
 
 		foreach ( $this->_system_requirements as $req ) {
 			if ( $req[1] == 0 ) {
+				/* translators: Plugin activation system requirements notice, not active. %1$s: Requirement Name. %2$s: Requirements Version. %3$s: Requirement Name with markup. */
 				$versions[] = sprintf( _x( '%1$s version %2$s (%3$s is not active on your website)', 'System requirement version', 'd4plib' ), $req[0], '<strong>' . $req[2] . '</strong>', '<strong style="color: #900;">' . $req[0] . '</strong>' );
 			} else {
+				/* translators: Plugin activation system requirements notice, not valid. %1$s: Requirement Name. %2$s: Requirements Version. %3$s: Active version. */
 				$versions[] = sprintf( _x( '%1$s version %2$s (your system runs version %3$s)', 'System requirement version', 'd4plib' ), $req[0], '<strong>' . $req[2] . '</strong>', '<strong style="color: #900;">' . $req[1] . '</strong>' );
 			}
 		}
 
 		$render = '<div class="notice notice-error"><p>';
+		/* translators: Plugin activation system requirements notice, failed. %1$s: Plugin Name. %2$s: Requirements list. */
 		$render .= sprintf( _x( 'System requirements check for %1$s failed. This plugin requires %2$s. The plugin will now be disabled.', 'System requirement notice', 'd4plib' ), '<strong>' . $plugin . '</strong>', join( ', ', $versions ) );
 		$render .= '</p></div>';
 

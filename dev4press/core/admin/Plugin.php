@@ -320,6 +320,7 @@ abstract class Plugin {
 	public function install_notice() {
 		if ( current_user_can( 'install_plugins' ) && $this->page === false ) {
 			echo '<div class="notice notice-info is-dismissible"><p>';
+			/* translators: Plugin installation admin notice. %s: Plugin Name. */
 			echo esc_html( sprintf( __( '%s is activated and it needs to finish installation.', 'd4plib' ), $this->title() ) );
 			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( 'Click Here', 'd4plib' ) . '</a>.';
 			echo '</p></div>';
@@ -329,6 +330,7 @@ abstract class Plugin {
 	public function update_notice() {
 		if ( current_user_can( 'install_plugins' ) && $this->page === false ) {
 			echo '<div class="notice notice-info is-dismissible"><p>';
+			/* translators: Plugin updated admin notice. %s: Plugin Name. */
 			echo esc_html( sprintf( __( '%s is updated, and you need to review the update process.', 'd4plib' ), $this->title() ) );
 			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( 'Click Here', 'd4plib' ) . '</a>.';
 			echo '</p></div>';
@@ -436,8 +438,8 @@ abstract class Plugin {
 	public function get_post_type() {
 		$post_type = '';
 
-		if ( isset( $_GET['post_type'] ) ) {
-			$post_type = sanitize_key( $_GET['post_type'] );
+		if ( isset( $_GET['post_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$post_type = sanitize_key( $_GET['post_type'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		} else {
 			global $post;
 
@@ -496,9 +498,9 @@ abstract class Plugin {
 	}
 
 	protected function load_post_get_back() {
-		if ( isset( $_POST[ $this->v() ] ) && sanitize_key( $_POST[ $this->v() ] ) === 'postback' ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( isset( $_POST[ $this->v() ] ) && sanitize_key( $_POST[ $this->v() ] ) === 'postback' ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Recommended
 			$this->run_postback();
-		} else if ( isset( $_GET[ $this->v() ] ) && sanitize_key( $_GET[ $this->v() ] ) === 'getback' ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		} else if ( isset( $_GET[ $this->v() ] ) && sanitize_key( $_GET[ $this->v() ] ) === 'getback' ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Recommended
 			$this->run_getback();
 		}
 	}

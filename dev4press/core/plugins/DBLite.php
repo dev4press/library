@@ -228,8 +228,8 @@ abstract class DBLite {
 					$table,
 					array(
 						$column      => $id,
-						'meta_key'   => $key,
-						'meta_value' => $insert,
+						'meta_key'   => $key, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+						'meta_value' => $insert, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 					),
 					array( '%d', '%s', '%s' )
 				);

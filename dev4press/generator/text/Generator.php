@@ -116,7 +116,7 @@ abstract class Generator {
 		}
 
 		if ( in_array( 'bq', $settings ) ) {
-			$max = mt_rand( 1, $paragraphs );
+			$max = wp_rand( 1, $paragraphs );
 
 			for ( $i = 0; $i < $max; $i ++ ) {
 				$item = $this->sentence( array( 'p' ) );
@@ -130,7 +130,7 @@ abstract class Generator {
 		}
 
 		if ( in_array( 'code', $settings ) ) {
-			$max = mt_rand( 1, $paragraphs );
+			$max = wp_rand( 1, $paragraphs );
 
 			for ( $i = 0; $i < $max; $i ++ ) {
 				$item = $this->sentence( array( 'code' ) );
@@ -144,7 +144,7 @@ abstract class Generator {
 		}
 
 		if ( in_array( 'dl', $settings ) && ! $block_formatted ) {
-			$max = mt_rand( 1, $paragraphs ) * 3;
+			$max = wp_rand( 1, $paragraphs ) * 3;
 
 			$list = array();
 
@@ -159,7 +159,7 @@ abstract class Generator {
 		}
 
 		if ( in_array( 'ul', $settings ) ) {
-			$max = mt_rand( 1, $paragraphs ) * 3;
+			$max = wp_rand( 1, $paragraphs ) * 3;
 
 			$list = array();
 
@@ -177,7 +177,7 @@ abstract class Generator {
 		}
 
 		if ( in_array( 'ol', $settings ) ) {
-			$max = mt_rand( 1, $paragraphs ) * 3;
+			$max = wp_rand( 1, $paragraphs ) * 3;
 
 			$list = array();
 
@@ -196,8 +196,8 @@ abstract class Generator {
 
 		if ( in_array( 'headers', $settings ) ) {
 			$this->set_sentence_gauss( 5, 1 );
-			$max  = mt_rand( 1, $paragraphs );
-			$head = mt_rand( 2, 6 );
+			$max  = wp_rand( 1, $paragraphs );
+			$head = wp_rand( 2, 6 );
 
 			for ( $i = 0; $i < $max; $i ++ ) {
 				$item = $this->sentence( array( 'h' . $head ) );
@@ -254,8 +254,8 @@ abstract class Generator {
 	}
 
 	protected function gauss( $mean, $std_dev ) {
-		$x = mt_rand() / mt_getrandmax();
-		$y = mt_rand() / mt_getrandmax();
+		$x = wp_rand() / mt_getrandmax();
+		$y = wp_rand() / mt_getrandmax();
 
 		$z = sqrt( - 2 * log( $x ) ) * cos( 2 * pi() * $y );
 
@@ -322,7 +322,7 @@ abstract class Generator {
 		$total = count( $items );
 		$range = floor( $total * $frequency );
 		$range = $range < 1 ? 1 : $range;
-		$max   = mt_rand( 1, $range );
+		$max   = wp_rand( 1, $range );
 
 		$pick = $max > 0 ? (array) array_rand( $items, $max ) : array();
 

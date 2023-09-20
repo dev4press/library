@@ -25,6 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
+// phpcs:ignoreFile WordPress.WP.AlternativeFunctions
+
 namespace Dev4Press\v43\Core\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {

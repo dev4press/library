@@ -25,6 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
+// phpcs:ignoreFile WordPress.WP.I18n.MissingTranslatorsComment
+
 namespace Dev4Press\v43\WordPress\Content;
 
 if ( ! defined( 'ABSPATH' ) ) {

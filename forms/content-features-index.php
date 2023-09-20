@@ -97,7 +97,12 @@ $_scopes = array(
 						} else {
 							if ( $obj['settings'] ) {
 								?>
-                                <a title="<?php echo KSES::standard( sprintf( __( 'Settings for \'%s\'', 'd4plib' ), $obj['title'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>" href="<?php echo esc_url( $url ); ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
+                                <a title="<?php
+
+								/* translators: Features settings panel button. %s: Feature name. */
+								echo KSES::standard( sprintf( __( 'Settings for \'%s\'', 'd4plib' ), $obj['title'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+								?>" href="<?php echo esc_url( $url ); ?>"><i class="d4p-icon d4p-ui-cog"></i></a>
 							<?php } else { ?>
                                 <span title="<?php esc_html_e( 'This feature has no settings', 'd4plib' ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
 								<?php

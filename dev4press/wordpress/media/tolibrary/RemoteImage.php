@@ -83,7 +83,7 @@ class RemoteImage {
 		}
 
 		if ( file_exists( $temp ) ) {
-			unlink( $temp );
+			wp_delete_file( $temp );
 		}
 
 		return $attachment_id;
