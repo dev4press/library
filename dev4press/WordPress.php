@@ -70,8 +70,7 @@ class WordPress {
 			'cron'         => defined( 'DOING_CRON' ) && DOING_CRON,
 			'debug'        => defined( 'WP_DEBUG' ) && WP_DEBUG,
 			'script_debug' => defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG,
-			'async_upload' => defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action'],
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			'async_upload' => defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action'], // phpcs:ignore WordPress.Security.NonceVerification
 		);
 
 		if ( WPR::is_classicpress() ) {
