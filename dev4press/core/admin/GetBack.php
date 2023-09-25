@@ -41,7 +41,7 @@ abstract class GetBack {
 	public function __construct( $admin ) {
 		$this->admin = $admin;
 
-		$this->page = isset( $_REQUEST['page'] ) ? sanitize_key( $_REQUEST['page'] ) : false; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$this->page = isset( $_REQUEST['page'] ) ? sanitize_key( $_REQUEST['page'] ) : false; // phpcs:ignore WordPress.Security.NonceVerification
 
 		$this->process();
 	}
@@ -163,10 +163,10 @@ abstract class GetBack {
 	}
 
 	protected function _get( $key = 'action', $default = '' ) : string {
-		return isset( $_GET[ $key ] ) ? sanitize_key( $_GET[ $key ] ) : $default; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return isset( $_GET[ $key ] ) ? sanitize_key( $_GET[ $key ] ) : $default; // phpcs:ignore WordPress.Security.NonceVerification
 	}
 
 	protected function _is( $key = 'action' ) : bool {
-		return isset( $_GET[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return isset( $_GET[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification
 	}
 }

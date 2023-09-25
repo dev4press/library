@@ -80,7 +80,7 @@ abstract class AJAX {
 
 		$this->timer = microtime( true );
 
-		$operation = isset( $_POST['operation'] ) ? sanitize_key( $_POST['operation'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$operation = isset( $_POST['operation'] ) ? sanitize_key( $_POST['operation'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		$response  = array();
 
 		switch ( $operation ) {

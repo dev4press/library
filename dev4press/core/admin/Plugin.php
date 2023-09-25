@@ -438,8 +438,8 @@ abstract class Plugin {
 	public function get_post_type() {
 		$post_type = '';
 
-		if ( isset( $_GET['post_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$post_type = sanitize_key( $_GET['post_type'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['post_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+			$post_type = sanitize_key( $_GET['post_type'] ); // phpcs:ignore WordPress.Security.NonceVerification
 		} else {
 			global $post;
 
@@ -498,9 +498,9 @@ abstract class Plugin {
 	}
 
 	protected function load_post_get_back() {
-		if ( isset( $_POST[ $this->v() ] ) && sanitize_key( $_POST[ $this->v() ] ) === 'postback' ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_POST[ $this->v() ] ) && sanitize_key( $_POST[ $this->v() ] ) === 'postback' ) { // phpcs:ignore WordPress.Security.NonceVerification
 			$this->run_postback();
-		} else if ( isset( $_GET[ $this->v() ] ) && sanitize_key( $_GET[ $this->v() ] ) === 'getback' ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Recommended
+		} else if ( isset( $_GET[ $this->v() ] ) && sanitize_key( $_GET[ $this->v() ] ) === 'getback' ) { // phpcs:ignore WordPress.Security.NonceVerification
 			$this->run_getback();
 		}
 	}

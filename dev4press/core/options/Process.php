@@ -66,13 +66,13 @@ class Process {
 	public function process( $request = false ) : array {
 		$list = array();
 
-		if ( $request === false ) {
-			$request = $_REQUEST; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		}
-
 		foreach ( $this->settings as $setting ) {
 			if ( $setting->type != '_' ) {
-				$post = $request[ $this->base ][ $setting->type ] ?? array();
+				if ( $request === false ) {
+					$post = $_REQUEST[ $this->base ][ $setting->type ] ?? array(); // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
+				} else {
+					$post = $request[ $this->base ][ $setting->type ] ?? array();
+				}
 
 				$list[ $setting->type ][ $setting->name ] = $this->process_single( $setting, $post );
 			}

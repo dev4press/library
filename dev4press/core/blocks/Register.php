@@ -47,7 +47,7 @@ abstract class Register {
 	}
 
 	public function is_editor() : bool {
-		return WordPress::instance()->is_rest() && isset( $_GET['context'] ) && $_GET['context'] === 'edit'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return WordPress::instance()->is_rest() && isset( $_GET['context'] ) && $_GET['context'] === 'edit'; // phpcs:ignore WordPress.Security.NonceVerification
 	}
 
 	public function categories( array $categories ) : array {

@@ -192,7 +192,7 @@ class IP {
 	public static function is_cloudflare( $ip = null ) : bool {
 		if ( is_null( $ip ) ) {
 			if ( isset( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
-				$ip = $_SERVER['HTTP_X_REAL_IP'] ?? ( $_SERVER['REMOTE_ADDR'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$ip = $_SERVER['HTTP_X_REAL_IP'] ?? ( $_SERVER['REMOTE_ADDR'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 			} else {
 				return false;
 			}
@@ -224,7 +224,7 @@ class IP {
 			return '';
 		}
 
-		$ip = self::validate( $_SERVER['SERVER_ADDR'] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$ip = self::validate( $_SERVER['SERVER_ADDR'] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 
 		if ( $ip == '::1' ) {
 			$ip = '127.0.0.1';
@@ -251,7 +251,7 @@ class IP {
 
 		foreach ( $keys as $key ) {
 			if ( isset( $_SERVER[ $key ] ) ) {
-				$ips[ $key ] = $_SERVER[ $key ];  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$ips[ $key ] = sanitize_text_field( $_SERVER[ $key ] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 			}
 		}
 
@@ -261,7 +261,7 @@ class IP {
 	public static function visitor( $no_local_or_protected = false ) {
 		if ( self::is_cloudflare() ) {
 			if ( isset( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
-				return self::validate( $_SERVER['HTTP_CF_CONNECTING_IP'], true );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				return self::validate( $_SERVER['HTTP_CF_CONNECTING_IP'], true );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 			}
 
 			return '';
@@ -282,7 +282,7 @@ class IP {
 
 		foreach ( $keys as $key ) {
 			if ( array_key_exists( $key, $_SERVER ) === true ) {
-				$ip = $_SERVER[ $key ];  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$ip = sanitize_text_field( $_SERVER[ $key ] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 				break;
 			}
 		}

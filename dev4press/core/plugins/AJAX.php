@@ -83,11 +83,11 @@ abstract class AJAX {
 			$this->raise_error( 'request_invalid_method', null, 'Invalid Request method.', 405 );
 		}
 
-		if ( ! isset( $_REQUEST[ $form_key ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! isset( $_REQUEST[ $form_key ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 			$this->raise_malformed_error( null );
 		}
 
-		$request = (array) $_REQUEST[ $form_key ];  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Recommended
+		$request = (array) $_REQUEST[ $form_key ];  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 
 		if ( empty( $request ) || ! isset( $request['action'], $request['nonce'] ) ) {
 			$this->raise_malformed_error( $request );

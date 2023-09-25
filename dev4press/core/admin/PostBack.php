@@ -41,7 +41,7 @@ abstract class PostBack {
 	public function __construct( $admin ) {
 		$this->admin = $admin;
 
-		$this->page = isset( $_POST['option_page'] ) ? sanitize_key( $_POST['option_page'] ) : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$this->page = isset( $_POST['option_page'] ) ? sanitize_key( $_POST['option_page'] ) : false; // phpcs:ignore WordPress.Security.NonceVerification
 
 		if ( $this->page !== false ) {
 			$this->process();
@@ -122,8 +122,8 @@ abstract class PostBack {
 
 		$message = 'import-failed';
 
-		if ( isset( $_FILES['import_file']['tmp_name'] ) && is_uploaded_file( $_FILES['import_file']['tmp_name'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Missing
-			$raw  = file_get_contents( $_FILES['import_file']['tmp_name'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Missing,WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		if ( isset( $_FILES['import_file']['tmp_name'] ) && is_uploaded_file( $_FILES['import_file']['tmp_name'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
+			$raw  = file_get_contents( $_FILES['import_file']['tmp_name'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification,WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 			$data = json_decode( $raw, true );
 
 			if ( is_array( $data ) && ! empty( $data ) ) {

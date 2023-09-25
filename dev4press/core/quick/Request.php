@@ -44,11 +44,11 @@ class Request {
 		switch ( $scope ) {
 			default:
 			case 'REQUEST':
-				return isset( $_REQUEST[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				return isset( $_REQUEST[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification
 			case 'POST':
-				return isset( $_POST[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				return isset( $_POST[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification
 			case 'GET':
-				return isset( $_GET[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				return isset( $_GET[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification
 		}
 	}
 }

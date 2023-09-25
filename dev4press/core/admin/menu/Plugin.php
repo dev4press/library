@@ -135,8 +135,8 @@ abstract class Plugin extends BasePlugin {
 				$this->page  = true;
 				$this->panel = $panel;
 
-				if ( ! empty( $_GET['subpanel'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-					$this->subpanel = Sanitize::slug( $_GET['subpanel'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Recommended
+				if ( ! empty( $_GET['subpanel'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+					$this->subpanel = Sanitize::slug( $_GET['subpanel'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 				}
 
 				$this->screen_setup();

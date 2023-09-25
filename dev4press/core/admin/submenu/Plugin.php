@@ -97,14 +97,14 @@ abstract class Plugin extends BasePlugin {
 		}
 
 		if ( $this->page ) {
-			if ( ! empty( $_GET['panel'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				$this->panel = Sanitize::slug( $_GET['panel'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Recommended
+			if ( ! empty( $_GET['panel'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				$this->panel = Sanitize::slug( $_GET['panel'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 			} else {
 				$this->panel = 'dashboard';
 			}
 
-			if ( ! empty( $_GET['subpanel'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				$this->subpanel = Sanitize::slug( $_GET['subpanel'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Recommended
+			if ( ! empty( $_GET['subpanel'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				$this->subpanel = Sanitize::slug( $_GET['subpanel'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 			}
 
 			$this->screen_setup();

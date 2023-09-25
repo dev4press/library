@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $_message = '';
 $_color   = 'success';
 
-if ( ! empty( $_GET['message'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	$msg_code = Sanitize::slug( $_GET['message'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Recommended
+if ( ! empty( $_GET['message'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+	$msg_code = Sanitize::slug( $_GET['message'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 
 	switch ( $msg_code ) {
 		case 'saved':
