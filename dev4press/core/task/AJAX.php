@@ -66,7 +66,7 @@ abstract class AJAX {
 	}
 
 	public function check_nonce() {
-		$ajax_nonce = isset( $_REQUEST['_ajax_nonce'] ) ? sanitize_key( $_REQUEST['_ajax_nonce'] ) : '';
+		$ajax_nonce = isset( $_REQUEST['_ajax_nonce'] ) ? sanitize_key( $_REQUEST['_ajax_nonce'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		$nonce      = wp_verify_nonce( $ajax_nonce, $this->nonce );
 
 		if ( $nonce === false ) {

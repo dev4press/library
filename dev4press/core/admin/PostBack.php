@@ -118,19 +118,30 @@ abstract class PostBack {
 	}
 
 	protected function import() {
+		global $wp_filesystem;
+
 		$url = $this->a()->current_url();
 
 		$message = 'import-failed';
 
 		if ( isset( $_FILES['import_file']['tmp_name'] ) && is_uploaded_file( $_FILES['import_file']['tmp_name'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
-			$raw  = file_get_contents( $_FILES['import_file']['tmp_name'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification,WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-			$data = json_decode( $raw, true );
+			require_once( ABSPATH . '/wp-admin/includes/file.php' );
 
-			if ( is_array( $data ) && ! empty( $data ) ) {
-				$result = $this->a()->settings()->import_from_secure_json( $data );
+			WP_Filesystem();
 
-				if ( $result === true ) {
-					$message = 'imported';
+			$temp_file = $_FILES['import_file']['tmp_name'];  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
+
+			if ( $wp_filesystem->exists( $temp_file ) ) {
+				$raw = $wp_filesystem->get_contents( $temp_file );
+
+				$data = json_decode( $raw, true );
+
+				if ( is_array( $data ) && ! empty( $data ) ) {
+					$result = $this->a()->settings()->import_from_secure_json( $data );
+
+					if ( $result === true ) {
+						$message = 'imported';
+					}
 				}
 			}
 		}

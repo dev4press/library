@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 4.3.4 - 2023.10.02 =
+* Edit: settings import from file now uses WordPress native functions
+
 = Version 4.3.3 - 2023.09.26 =
 * Edit: more changes related to PHPCS and WPCS validation
 

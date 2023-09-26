@@ -1,8 +1,8 @@
 # Dev4Press Library
 
-* Version: v4.3.3
-* Build:   4330
-* Release: 2023.09.26.
+* Version: v4.3.4
+* Build:   4340
+* Release: 2023.10.02.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
