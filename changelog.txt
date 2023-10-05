@@ -1,6 +1,9 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 4.3.5 - 2023.10.05 =
+* Edit: minor changes to the `DBLite` handling of the logged query
+
 = Version 4.3.4 - 2023.10.02 =
 * New: class `File` has method to wrap `WP_Filesystem` use
 * Edit: settings import from file now uses WordPress native functions

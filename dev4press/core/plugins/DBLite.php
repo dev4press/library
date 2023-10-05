@@ -400,11 +400,11 @@ abstract class DBLite {
 				$query = $this->wpdb()->queries[ $id ];
 
 				self::$_queries_log[] = array(
-					'sql'      => $query[0],
-					'time'     => $query[1],
-					'stack'    => $query[2],
-					'start'    => $query[3],
-					'data'     => $query[4],
+					'sql'      => $query[0] ?? '',
+					'time'     => $query[1] ?? '',
+					'stack'    => $query[2] ?? '',
+					'start'    => $query[3] ?? '',
+					'data'     => $query[4] ?? '',
 					'id'       => $id,
 					'plugin'   => $this->plugin_name,
 					'instance' => $this->plugin_instance,
