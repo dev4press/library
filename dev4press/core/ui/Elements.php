@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v43\Core\UI\Elements
- * Version: v4.3
+ * Name:    Dev4Press\v44\Core\UI\Elements
+ * Version: v4.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,12 +25,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v43\Core\UI;
+namespace Dev4Press\v44\Core\UI;
 
-use Dev4Press\v43\Core\Quick\Arr;
-use Dev4Press\v43\Core\Quick\KSES;
-use Dev4Press\v43\Core\Quick\Sanitize;
-use Dev4Press\v43\WordPress\Walker\CheckboxRadio;
+use Dev4Press\v44\Core\Quick\Arr;
+use Dev4Press\v44\Core\Quick\KSES;
+use Dev4Press\v44\Core\Quick\Sanitize;
+use Dev4Press\v44\WordPress\Walker\CheckboxRadio;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -134,7 +134,7 @@ class Elements {
 				$strict = $value === 0;
 				$sel    = '';
 
-				if ( is_null( $selected ) || $selected === true || ( is_array( $selected ) && in_array( $value, $selected, $strict ) ) ) {
+				if ( is_null( $selected ) || $selected === true || ( is_array( $selected ) && in_array( $value, $selected, $strict ) ) || $selected == $value ) {
 					$sel = ' selected="selected"';
 				}
 

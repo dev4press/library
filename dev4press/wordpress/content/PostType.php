@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v43\WordPress\Content\PostType
- * Version: v4.3
+ * Name:    Dev4Press\v44\WordPress\Content\PostType
+ * Version: v4.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -27,7 +27,7 @@
 
 // phpcs:ignoreFile WordPress.WP.I18n.MissingTranslatorsComment
 
-namespace Dev4Press\v43\WordPress\Content;
+namespace Dev4Press\v44\WordPress\Content;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

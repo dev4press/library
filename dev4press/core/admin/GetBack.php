@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v43\Core\Admin\GetBack
- * Version: v4.3
+ * Name:    Dev4Press\v44\Core\Admin\GetBack
+ * Version: v4.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v43\Core\Admin;
+namespace Dev4Press\v44\Core\Admin;
 
-use Dev4Press\v43\Core\Quick\Sanitize;
-use Dev4Press\v43\Core\Quick\WPR;
+use Dev4Press\v44\Core\Quick\Sanitize;
+use Dev4Press\v44\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -46,7 +46,7 @@ abstract class GetBack {
 		$this->process();
 	}
 
-	/** @return \Dev4Press\v43\Core\Admin\Plugin|\Dev4Press\v43\Core\Admin\Menu\Plugin|\Dev4Press\v43\Core\Admin\Submenu\Plugin */
+	/** @return \Dev4Press\v44\Core\Admin\Plugin|\Dev4Press\v44\Core\Admin\Menu\Plugin|\Dev4Press\v44\Core\Admin\Submenu\Plugin */
 	public function a() {
 		return $this->admin;
 	}

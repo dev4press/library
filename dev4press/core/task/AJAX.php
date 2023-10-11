@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v43\Core\Task\AJAX
- * Version: v4.3
+ * Name:    Dev4Press\v44\Core\Task\AJAX
+ * Version: v4.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v43\Core\Task;
+namespace Dev4Press\v44\Core\Task;
 
-use Dev4Press\v43\Core\Quick\Sanitize;
-use Dev4Press\v43\Core\Quick\WPR;
+use Dev4Press\v44\Core\Quick\Sanitize;
+use Dev4Press\v44\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
