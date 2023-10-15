@@ -250,4 +250,8 @@ class Str {
 			return $_size . $sep . $_unit;
 		}
 	}
+
+	public static function camelcase_to_words( $input ) : array {
+		return preg_split( '/(^[^A-Z]+|[A-Z][^A-Z]+)/', $input, - 1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE );
+	}
 }
