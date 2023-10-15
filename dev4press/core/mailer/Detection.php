@@ -261,6 +261,11 @@ class Detection {
 				'source' => 'WordPress',
 				'label'  => _x( 'Recovery Mode Email', 'Email Detection Type', 'd4plib' ),
 			),
+			'wp-network-signup-new-site-created'                    => array(
+				'filter' => 'new_site_email',
+				'source' => 'WordPress',
+				'label'  => _x( 'New Site Created', 'Email Detection Type', 'd4plib' ),
+			),
 			'wp-network-signup-blog-confirmation'                    => array(
 				'filter' => 'wpmu_signup_blog_notification_subject',
 				'source' => 'WordPress',
