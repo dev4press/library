@@ -1,8 +1,8 @@
-# Migration Guide
+# Dev4Press Library
+## Migration Guide
 
-## v3.9 => v4.0
-
-### Class Namespaces
+### v3.9 => v4.0
+#### Class Namespaces
 
 * Dev4Press\v39\Core\Plugins\Shortcodes => Dev4Press\v40\WordPress\Legacy\Shortcodes
 * Dev4Press\v39\Core\Plugins\Widget => Dev4Press\v40\WordPress\Legacy\Widget

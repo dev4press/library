@@ -1,27 +1,29 @@
-=== Dev4Press Library ===
-== Changelog ==
+# Dev4Press Library
+## Changelog
 
-= Version 4.4 - 2023.10.16 =
+### Version 4.4 - 2023.10.16
+* New: Parsedown Extra PHP library
 * Edit: updated email detection for new WordPress emails
+* Edit: library changelog files switched to the Markdown format
 * Fix: group select rendering problem with the selected value
 
-= Version 4.3.5 - 2023.10.05 =
+### Version 4.3.5 - 2023.10.05
 * Edit: minor changes to the `DBLite` handling of the logged query
 
-= Version 4.3.4 - 2023.10.02 =
+### Version 4.3.4 - 2023.10.02
 * New: class `File` has method to wrap `WP_Filesystem` use
 * Edit: settings import from file now uses WordPress native functions
 
-= Version 4.3.3 - 2023.09.26 =
+### Version 4.3.3 - 2023.09.26
 * Edit: more changes related to PHPCS and WPCS validation
 
-= Version 4.3.2 - 2023.09.25 =
+### Version 4.3.2 - 2023.09.25
 * New: added several more UI icons
 
-= Version 4.3.1 - 2023.09.20 =
+### Version 4.3.1 - 2023.09.20
 * Edit: more changes related to PHPCS and WPCS validation
 
-= Version 4.3 - 2023.09.05 =
+### Version 4.3 - 2023.09.05
 * New: full validation with the PHPCS and additional WPCS rules
 * New: some forms panel split into the elements files for re-usability
 * New: settings elements can have toggleable additional information
@@ -57,33 +59,3 @@
 * Removed: all previously deprecated methods
 * Fix: several more instances for missing sanitation in the options rendering
 * Fix: header navigation in multisite mode show items that don't belong
-
-= Version 4.2 - 2023.06.16 =
-* New: complete the network based `Menu` class
-* New: added `KSES` class for processing HTML strings for display
-* New: added `Detection` class to detect email sender and source
-* New: added `Source` helper class to detect file source
-* New: added plugin reference and the icon
-* New: added several more UI icons
-* New: added `Elements` method to render grouped checkboxes
-* New: added settings type for the grouped checkboxes
-* New: Database install class `InstallDB` has the version property
-* New: updated and modernized flags library
-* New: expanded the main `WordPress` class
-* New: rewritten GEOIP handling objects
-* Edit: improvements to the `DBLite` class
-* Edit: improvements to the `Scope` class
-* Edit: improvements to the `Panel` class
-* Edit: improvements to the `Table` class
-* Edit: improvements to the `Table` default styling
-* Edit: improvements to database installation process
-* Edit: improvements to the admin core objects
-* Edit: many small tweaks and settings changes for admin panels
-* Edit: many tweaks and updates to the admin styling
-* Edit: improvements to the admin responsiveness
-* Edit: improvements to the `Elements` rendering
-* Edit: improved support for the network plugins
-* Edit: several more strings escaping for display
-* Removed: old flags collection CSS and images
-* Fix: server IP warning when in CLI mode
-* Fix: potential issue with the grouped select render method

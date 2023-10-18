@@ -1,13 +1,43 @@
-=== Dev4Press Library ===
-== Changelog ==
+# Dev4Press Library
+## Changelog
 
-= Version 4.1.1 - 2023.05.15 =
+### Version 4.2 - 2023.06.16
+* New: complete the network based `Menu` class
+* New: added `KSES` class for processing HTML strings for display
+* New: added `Detection` class to detect email sender and source
+* New: added `Source` helper class to detect file source
+* New: added plugin reference and the icon
+* New: added several more UI icons
+* New: added `Elements` method to render grouped checkboxes
+* New: added settings type for the grouped checkboxes
+* New: Database install class `InstallDB` has the version property
+* New: updated and modernized flags library
+* New: expanded the main `WordPress` class
+* New: rewritten GEOIP handling objects
+* Edit: improvements to the `DBLite` class
+* Edit: improvements to the `Scope` class
+* Edit: improvements to the `Panel` class
+* Edit: improvements to the `Table` class
+* Edit: improvements to the `Table` default styling
+* Edit: improvements to database installation process
+* Edit: improvements to the admin core objects
+* Edit: many small tweaks and settings changes for admin panels
+* Edit: many tweaks and updates to the admin styling
+* Edit: improvements to the admin responsiveness
+* Edit: improvements to the `Elements` rendering
+* Edit: improved support for the network plugins
+* Edit: several more strings escaping for display
+* Removed: old flags collection CSS and images
+* Fix: server IP warning when in CLI mode
+* Fix: potential issue with the grouped select render method
+
+### Version 4.1.1 - 2023.05.15
 * New: added `exclamation` icon
 * New: few additional styling changes
 * Fix: wrong `question` icon used
 * Fix: issue with the `Table` referer use
 
-= Version 4.1 - 2023.05.04 =
+### Version 4.1 - 2023.05.04
 * New: `Sanitize` includes wrapper for the URL
 * New: Rewritten JavaScript and CSS for the Meta boxes
 * New: Expanded collection of UI icons
@@ -20,11 +50,11 @@
 * Updated: CSS pack no longer contains Balloon styling
 * Fix: issues with screen load panel initialization
 
-= Version 4.0.1 - 2023.03.28 =
+### Version 4.0.1 - 2023.03.28
 * Updated: Few changes to the `plugin_locale` filter usage
 * Fix: issue with the `plugin_locale` filter missing domain
 
-= Version 4.0 - 2023.03.28 =
+### Version 4.0 - 2023.03.28
 * New: Expanded collection of UI icons
 * New: Replaced most of the plugin icons
 * New: Base abstract `Store` class for data storage
@@ -49,18 +79,18 @@
 * Fix: Referencing the namespaces that are not used
 * Fix: Features sidebar references a plugin
 
-= Version 3.9.3 - 2023.02.13 =
+### Version 3.9.3 - 2023.02.13
 * Updated: Abstract Table class now has a db() method
 * Updated: DBLite class prepare_in_list expanded with empty check
 * Fix: Abstract Table class with hardcoded DB calls wrapper
 
-= Version 3.9.2 - 2023.02.03 =
+### Version 3.9.2 - 2023.02.03
 * Fix: Potential conflict causing issue with the logging of queries
 
-= Version 3.9.1 - 2023.01.26 =
+### Version 3.9.1 - 2023.01.26
 * Updated: JavaScript replacing `substr` with `substring`
 
-= Version 3.9 - 2023.01.16 =
+### Version 3.9 - 2023.01.16
 * New: Features base classes
 * New: Completed Features base system and styling
 * New: Features panel with filtering and search
@@ -84,7 +114,7 @@
 * Fix: Problem with using capabilities in Widget class
 * Fix: Problem with storing capabilities in Widget class
 
-= Version 3.8 - 2022.05.14 =
+### Version 3.8 - 2022.05.14
 * New: Base Panel object now builds the classes
 * New: Base Micromodal object to creating modal dialogs markup
 * New: Base Grid Table object and SCSS/CSS with styling
@@ -108,10 +138,10 @@
 * Fix: Loading of sub-templates in some cases
 * Fix: curly braces access for array in one instance
 
-= Version 3.7.4 - 2022.03.11 =
+### Version 3.7.4 - 2022.03.11
 * Updated: Several minor improvements and tweaks
 
-= Version 3.7.3 - 2022.03.02 =
+### Version 3.7.3 - 2022.03.02
 * Updated: Rendering of the settings datetime field
 * Updated: Additional sanitation calls for settings fields
 * Updated: Many improvements to the Getback class
@@ -124,18 +154,18 @@
 * Fixed: Wrong argument names for some settings
 * Fixed: Wrong email sanitation call
 
-= Version 3.7.2 - 2022.02.20 =
+### Version 3.7.2 - 2022.02.20
 * New: Main Admin class method to generate getback URL
 * Updated: Scope class support for WP CLI
 * Updated: DBLite magic properties list
 * Updated: Information class default requirements
 
-= Version 3.7.1 - 2022.02.01 =
+### Version 3.7.1 - 2022.02.01
 * New: Added few new icons
 * Updated: Some additional visual improvements
 * Updated: Removed obsolete CSS properties
 
-= Version 3.7 - 2021.11.02 =
+### Version 3.7 - 2021.11.02
 * New: Static classes to replace namespaced functions
 * New: Big redesign for the admin side interface
 * New: Now uses CSS variables as a base for styling
@@ -151,7 +181,7 @@
 * Updated: WP Color Picker Alpha 3.0.0
 * Removed: Various unused JavaScript libraries
 
-= Version 3.6 - 2021.08.14 =
+### Version 3.6 - 2021.08.14
 * New: Core Library class
 * New: Core WordPress class
 * New: Core Resources class
@@ -173,19 +203,19 @@
 * Fixed: mysqli method for DBLite class
 * Fixed: various minor styling issues
 
-= Version 3.5.2 - 2021.06.21 =
+### Version 3.5.2 - 2021.06.21
 * New: bbPress related functions
 * Updated: Various core classes PHP specifications
 * Updated: Many small tweaks and changes
 * Updated: Flatpickr 4.6.9
 * Fixed: Some widget related issues
 
-= Version 3.5.1 - 2021.05.01 =
+### Version 3.5.1 - 2021.05.01
 * New: Icon and information about ArchivesPress plugin
 * Updated: Minor improvements to the ObjectSort class
 * Fixed: Few issues related to sanitize functions scope
 
-= Version 3.5 - 2021.04.14 =
+### Version 3.5 - 2021.04.14
 * New: Major refactoring to include version for every namespace
 * New: Major refactoring to add namespaces to functions
 * New: Reorganization of functions and function files
@@ -205,21 +235,21 @@
 * Fixed: Detection of the RTL text orientation
 * Fixed: Various small issues
 
-= Version 3.4.1 - 2021.02.24 =
+### Version 3.4.1 - 2021.02.24
 * Fixed: Issue with the checkboxes rendering function
 
-= Version 3.4 - 2021.02.15 =
+### Version 3.4 - 2021.02.15
 * New: Options core Element support for switch control setting
 * Updated: Various styling improvements to the metabox rendering
 * Updated: Built-in cacert.pem 20210119
 * Updated: Licensing text for individual files
 
-= Version 3.3.1 - 2020.12.28 =
+### Version 3.3.1 - 2020.12.28
 * New: CSS Size based settings
 * Updated: Various minor core improvements
 * Fixed: Few issues with the admin side rendering
 
-= Version 3.3 - 2020.11.09 =
+### Version 3.3 - 2020.11.09
 * New: Options core classes support render and process overrides
 * New: Date and time based settings
 * New: Numeric range based settings
@@ -236,7 +266,7 @@
 * Updated: Flatpickr 4.6.6
 * Fixed: Few issues with the settings rendering
 
-= Version 3.2 - 2020.08.10 =
+### Version 3.2 - 2020.08.10
 * New: Regex validation functions
 * New: Icons handling class
 * Updated: Improvements to icons font
@@ -247,11 +277,11 @@
 * Updated: Built-in cacert.pem 20200722
 * Fixed: Settings import minor issues
 
-= Version 3.1.3 - 2020.06.30 =
+### Version 3.1.3 - 2020.06.30
 * New: Network admin Plugin class
 * New: Animated Popup library
 
-= Version 3.1.2 - 2020.06.22 =
+### Version 3.1.2 - 2020.06.22
 * New: Settings and Tools panels balloon tips
 * Updated: Font expanded with new UI icons
 * Updated: Various core classes improvements
@@ -260,10 +290,10 @@
 * Fixed: missing deactivate plugin function
 * Fixed: showing about translation when there are none available
 
-= Version 3.1.1 - 2020.06.17 =
+### Version 3.1.1 - 2020.06.17
 * Updated: Dashboard elements styling
 
-= Version 3.1 - 2020.05.25 =
+### Version 3.1 - 2020.05.25
 * New: Frontend shared Enqueue class
 * New: Balloon CSS file for tooltips
 * New: Main CSS 'pack' used on plugin pages
@@ -271,7 +301,7 @@
 * Updated: Improved Export and Import
 * Fix: Minor issues with Admin Enqueue
 
-= Version 3.0.1 - 2020.04.22 =
+### Version 3.0.1 - 2020.04.22
 * New: WordPress content Traits
 * New: Expanded media library uploads
 * New: Flatpickr library
@@ -282,5 +312,5 @@
 * Fix: Minor admin panel issues
 * Fix: Minor widgets class issues
 
-= Version 3.0 - 2020.03.16 =
+### Version 3.0 - 2020.03.16
 * New: Fully Rewritten Library
