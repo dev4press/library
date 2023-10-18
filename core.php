@@ -6,7 +6,7 @@
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
  *
- * @package Dev4Press Library
+ * @package Dev4PressLibrary
  *
  * == Copyright ==
  * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
@@ -32,15 +32,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$_library_path = dirname( __FILE__ ) . '/';
+
 if ( ! defined( 'DEV4PRESS_TAB' ) ) {
 	define( 'DEV4PRESS_TAB', "\t" );
 }
 
-$_library_path = dirname( __FILE__ ) . '/';
+if ( ! defined( 'DEV4PRESS_V44_PATH' ) ) {
+	define( 'DEV4PRESS_V44_PATH', $_library_path );
+}
 
-require $_library_path . 'autoload.php';
-
-require $_library_path . 'functions/Bridge.php';
+require DEV4PRESS_V44_PATH . 'autoload.php';
+require DEV4PRESS_V44_PATH . 'functions/Bridge.php';
 
 WordPress::instance();
 Library::instance();

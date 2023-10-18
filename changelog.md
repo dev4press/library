@@ -2,10 +2,11 @@
 ## Changelog
 
 ### Version 4.4 - 2023.10.16
-* New: Parsedown Extra PHP library
+* New: render Changelog and History About panels from markdown
 * New: email detection support for WooCommerce standard emails
 * New: email detection support for WooCommerce `WP_Email` class
-* New: `Str` method to split camelcase string to word
+* New: method in `Str` to split camelcase string to word
+* New: included PHP library `ParsedownExtra`
 * Edit: updated email detection for new WordPress emails
 * Edit: library changelog files switched to the Markdown format
 * Fix: group select rendering problem with the selected value

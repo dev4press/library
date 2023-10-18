@@ -6,7 +6,7 @@
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
  *
- * @package Dev4Press Library
+ * @package Dev4PressLibrary
  *
  * == Copyright ==
  * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
@@ -49,6 +49,7 @@ abstract class Core {
 	public $svg_icon = '';
 	public $plugin = '';
 	public $url = '';
+	public $path = '';
 
 	private $_datetime;
 	private $_system_requirements = array();

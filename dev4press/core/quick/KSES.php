@@ -6,7 +6,7 @@
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
  *
- * @package Dev4Press Library
+ * @package Dev4PressLibrary
  *
  * == Copyright ==
  * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
@@ -42,6 +42,30 @@ class KSES {
 			array(
 				'code'   => array(),
 				'br'     => array(),
+				'h1'     => array(
+					'class' => true,
+					'style' => true,
+				),
+				'h2'     => array(
+					'class' => true,
+					'style' => true,
+				),
+				'h3'     => array(
+					'class' => true,
+					'style' => true,
+				),
+				'h4'     => array(
+					'class' => true,
+					'style' => true,
+				),
+				'h5'     => array(
+					'class' => true,
+					'style' => true,
+				),
+				'h6'     => array(
+					'class' => true,
+					'style' => true,
+				),
 				'p'      => array(
 					'class' => true,
 					'style' => true,

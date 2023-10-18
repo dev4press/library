@@ -6,7 +6,7 @@
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
  *
- * @package Dev4Press Library
+ * @package Dev4PressLibrary
  *
  * == Copyright ==
  * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
@@ -27,7 +27,7 @@
 
 if ( ! function_exists( 'dev4press_core_library_autoloader_44' ) ) {
 	function dev4press_core_library_autoloader_44( $class ) {
-		$path = dirname( __FILE__ ) . '/';
+		$path = DEV4PRESS_V44_PATH;
 		$base = 'Dev4Press\\v44\\';
 
 		if ( substr( $class, 0, strlen( $base ) ) == $base ) {

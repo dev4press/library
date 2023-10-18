@@ -6,7 +6,7 @@
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
  *
- * @package Dev4Press Library
+ * @package Dev4PressLibrary
  *
  * == Notice ==
  * Based on the LoremIpsum script by Josh Sherman

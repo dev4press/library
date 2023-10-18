@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v44\Service\Media\Pexels\Video
+ * Name:    Dev4Press\v44\Core\Helpers\Vendors
  * Version: v4.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,40 +25,20 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v44\Service\Media\Pexels;
+namespace Dev4Press\v44\Core\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Video {
-	public $id;
-	public $url;
-	public $name;
+class Vendors {
+	public static function parsedown() {
+		require DEV4PRESS_V44_PATH . 'vendor/parsedown-extra/Parsedown.php';
+	}
 
-	public $videos;
+	public static function parsedown_extra() {
+		self::parsedown();
 
-	public $user;
-
-	public function __construct( $response ) {
-		$this->id   = $response->id;
-		$this->url  = $response->url;
-		$this->user = $response->user;
-
-		preg_match( '/pexels\.com\/photo\/(.+?)-\d+?\//', $this->url, $output );
-
-		if ( ! empty( $output ) && isset( $output[1] ) ) {
-			$this->name = str_replace( '-', ' ', $output[1] );
-			$this->name = ucfirst( $this->name );
-		}
-
-		foreach ( $response->video_files as $video ) {
-			$video->url = $video->link;
-			unset( $video->link );
-
-			$video->preview = 'https://i.vimeocdn.com/video/' . $video->id . '_' . $video->width . 'x' . $video->height . '.jpg';
-
-			$this->videos[] = $video;
-		}
+		require DEV4PRESS_V44_PATH . 'vendor/parsedown-extra/ParsedownExtra.php';
 	}
 }
