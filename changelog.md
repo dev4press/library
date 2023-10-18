@@ -3,6 +3,9 @@
 
 ### Version 4.4 - 2023.10.16
 * New: Parsedown Extra PHP library
+* New: email detection support for WooCommerce standard emails
+* New: email detection support for WooCommerce `WP_Email` class
+* New: `Str` method to split camelcase string to word
 * Edit: updated email detection for new WordPress emails
 * Edit: library changelog files switched to the Markdown format
 * Fix: group select rendering problem with the selected value

@@ -72,10 +72,10 @@ class Store {
 		'coresecurity'                     => array(
 			'code'        => 'coresecurity',
 			'name'        => 'CoreSecurity',
-			'description' => 'A collection of many security related tools for .htaccess hardening with security events log, ReCaptcha, firewall, and tweaks collection, login and registration control and more.',
+			'description' => 'Deploy a wide array of security measures to stop spam registrations, spam content, various types of malicious threats, limit and ban access to repeated offenders and more.',
 			'punchline'   => 'Proactive protection and security hardening',
 			'color'       => '#6F1A1A',
-			'free'        => true,
+			'free'        => false,
 			'pro'         => true,
 			'internal'    => true,
 		),

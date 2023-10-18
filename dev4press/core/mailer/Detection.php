@@ -28,6 +28,7 @@
 namespace Dev4Press\v44\Core\Mailer;
 
 use Dev4Press\v44\Core\Helpers\Source;
+use Dev4Press\v44\Core\Quick\Str;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -106,6 +107,32 @@ class Detection {
 		return $return;
 	}
 
+	public function intercept_woocommerce( $callback, $object ) {
+		$class_name = get_class( $object );
+
+		if ( str_contains( $class_name, '_' ) ) {
+			$words = explode( '_', $class_name );
+
+			if ( $words[0] == 'WC' && $words[1] == 'Email' ) {
+				$words = array_slice( $words, 2 );
+			}
+		} else {
+			$words = Str::camelcase_to_words( $class_name );
+		}
+
+		$label = join( ' ', $words );
+		$words = array_map( 'strtolower', $words );
+
+		$this->detection['name'] = 'woocommerce-' . join( '-', $words );
+		$this->detection['data'] = array(
+			'source'     => 'woocommerce',
+			'label'      => $label,
+			'class_name' => $class_name,
+		);
+
+		return $callback;
+	}
+
 	public function intercept_filter( $return ) {
 		$this->identify( current_filter(), 'filter' );
 
@@ -150,6 +177,7 @@ class Detection {
 		add_filter( 'wp_mail', array( $this, 'intercept_wp_mail' ), 1 );
 		add_action( 'bp_send_email', array( $this, 'intercept_buddypress' ), 10, 2 );
 		add_filter( 'wpmem_email_filter', array( $this, 'intercept_wp_members' ) );
+		add_filter( 'woocommerce_mail_callback', array( $this, 'intercept_woocommerce' ), 10, 2 );
 
 		foreach ( $this->supported as $data ) {
 			if ( isset( $data['filter'] ) ) {
@@ -261,7 +289,7 @@ class Detection {
 				'source' => 'WordPress',
 				'label'  => _x( 'Recovery Mode Email', 'Email Detection Type', 'd4plib' ),
 			),
-			'wp-network-signup-new-site-created'                    => array(
+			'wp-network-signup-new-site-created'                     => array(
 				'filter' => 'new_site_email',
 				'source' => 'WordPress',
 				'label'  => _x( 'New Site Created', 'Email Detection Type', 'd4plib' ),
@@ -516,6 +544,21 @@ class Detection {
 			'buddypress-activity-at-message'                         => array(
 				'source' => 'BuddyPress',
 				'label'  => _x( 'Activity At Message', 'Email Detection Type', 'd4plib' ),
+			),
+			'woocommerce-low-stock'                                  => array(
+				'filter' => 'woocommerce_email_recipient_low_stock',
+				'source' => 'WooCommerce',
+				'label'  => _x( 'Low Stock', 'Email Detection Type', 'd4plib' ),
+			),
+			'woocommerce-no-stock'                                   => array(
+				'filter' => 'woocommerce_email_recipient_no_stock',
+				'source' => 'WooCommerce',
+				'label'  => _x( 'No Stock', 'Email Detection Type', 'd4plib' ),
+			),
+			'woocommerce-low-backorder'                              => array(
+				'filter' => 'woocommerce_email_recipient_backorder',
+				'source' => 'WooCommerce',
+				'label'  => _x( 'Backorder', 'Email Detection Type', 'd4plib' ),
 			),
 		);
 	}
