@@ -55,13 +55,13 @@ abstract class Locator {
 		return $instance[ static::class ];
 	}
 
-	public function expire( int $expire ) {
+	public function expire( int $expire ) : Locator {
 		$this->_expire = $expire;
 
 		return $this;
 	}
 
-	public function ua( string $user_agent ) {
+	public function ua( string $user_agent ) : Locator {
 		$this->_user_agent = $user_agent;
 
 		return $this;
@@ -127,10 +127,10 @@ abstract class Locator {
 
 		$this->bulk( array( $ip ) );
 
-		return $this->_data[ $ip ];
+		return $this->_data[ $ip ] ?? null;
 	}
 
-	public function current() {
+	public function current() : ?Location {
 		return $this->locate( IP::visitor() );
 	}
 
