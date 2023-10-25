@@ -50,7 +50,7 @@ class GEOPlugin extends Locator {
 		return $this->_url . $ips;
 	}
 
-	protected function process( $raw ) : Location {
+	protected function process( $raw ) : ?Location {
 		$code = array(
 			'status' => 'active',
 		);

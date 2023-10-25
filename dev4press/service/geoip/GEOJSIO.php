@@ -53,7 +53,7 @@ class GEOJSIO extends Locator {
 		return $this->_url . join( ',', $ips );
 	}
 
-	protected function process( $raw ) : Location {
+	protected function process( $raw ) : ?Location {
 		$code = array(
 			'status' => 'active',
 		);

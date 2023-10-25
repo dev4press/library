@@ -98,8 +98,26 @@ class Location {
 		}
 	}
 
-	public function serialize() {
-		return json_encode( (array) $this );
+	public function serialize( string $format = 'json' ) {
+		return $format == 'json' ? json_encode( $this->data() ) : maybe_serialize( $this->data() );
+	}
+
+	public function data() : array {
+		$data = (array) $this;
+
+		return array_filter( $data );
+	}
+
+	public function meta() : array {
+		$data = $this->data();
+
+		foreach ( array( 'status', 'ip', 'country_code', 'country_name' ) as $key ) {
+			if ( isset( $data[ $key ] ) ) {
+				unset( $data[ $key ] );
+			}
+		}
+
+		return $data;
 	}
 
 	public function continent() {

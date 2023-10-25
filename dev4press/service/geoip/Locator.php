@@ -74,8 +74,9 @@ abstract class Locator {
 			if ( IP::is_private( $ip ) ) {
 				$this->_data[ $ip ] = new Location(
 					array(
-						'status' => 'private',
-						'ip'     => $ip,
+						'status'       => 'private',
+						'ip'           => $ip,
+						'country_code' => 'XX',
 					)
 				);
 			} else {
@@ -169,5 +170,5 @@ abstract class Locator {
 
 	abstract protected function url( $ips ) : string;
 
-	abstract protected function process( $raw ) : Location;
+	abstract protected function process( $raw ) : ?Location;
 }
