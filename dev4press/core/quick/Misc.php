@@ -27,6 +27,8 @@
 
 namespace Dev4Press\v44\Core\Quick;
 
+use Dev4Press\v44\Library;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -92,5 +94,23 @@ class Misc {
 		$rgb = array_map( 'hexdec', $hex );
 
 		return implode( ',', $rgb );
+	}
+
+	public static function flag_from_country_code( string $country_code, string $location, string $status = 'active', string $not_found = 'image' ) : string {
+		$_base = Library::instance()->url() . 'resources/vendor/flags/img/flag_placeholder.png';
+
+		if ( $status == 'active' ) {
+			if ( $country_code != '' ) {
+				return '<img src="' . $_base . '" class="flag flag-' . strtolower( $country_code ) . '" title="' . $location . '" alt="' . $location . '" />';
+			}
+		} else if ( $status == 'private' ) {
+			return '<img src="' . $_base . '" class="flag" title="' . __( 'Localhost or Private IP', 'd4plib' ) . '" alt="' . __( 'Localhost or Private IP', 'd4plib' ) . '" />';
+		}
+
+		if ( $not_found == 'image' ) {
+			return '<img src="' . $_base . '" class="flag" title="' . __( 'IP can\'t be located.', 'd4plib' ) . '" alt="' . __( 'IP can\'t be located.', 'd4plib' ) . '" />';
+		} else {
+			return '';
+		}
 	}
 }

@@ -28,7 +28,7 @@
 namespace Dev4Press\v44\Service\GEOIP;
 
 use Dev4Press\v44\Core\Helpers\Data;
-use Dev4Press\v44\Library;
+use Dev4Press\v44\Core\Quick\Misc;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -80,22 +80,8 @@ class Location {
 		return $location;
 	}
 
-	public function flag( $not_found = 'image' ) : string {
-		$_base = Library::instance()->url() . 'resources/vendor/flags/img/flag_placeholder.png';
-
-		if ( $this->status == 'active' ) {
-			if ( $this->country_code != '' ) {
-				return '<img src="' . $_base . '" class="flag flag-' . strtolower( $this->country_code ) . '" title="' . $this->location() . '" alt="' . $this->location() . '" />';
-			}
-		} else if ( $this->status == 'private' ) {
-			return '<img src="' . $_base . '" class="flag" title="' . __( 'Localhost or Private IP', 'd4plib' ) . '" alt="' . __( 'Localhost or Private IP', 'd4plib' ) . '" />';
-		}
-
-		if ( $not_found == 'image' ) {
-			return '<img src="' . $_base . '" class="flag" title="' . __( 'IP can\'t be located.', 'd4plib' ) . '" alt="' . __( 'IP can\'t be located.', 'd4plib' ) . '" />';
-		} else {
-			return '';
-		}
+	public function flag( string $not_found = 'image' ) : string {
+		return Misc::flag_from_country_code( $this->country_code, $this->location(), $this->status, $not_found );
 	}
 
 	public function serialize( string $format = 'json' ) {
