@@ -25,13 +25,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-// phpcs:ignoreFile WordPress.WP.AlternativeFunctions
-
 namespace Dev4Press\v44\Core\Quick;
 
 use PharData;
 use WP_Error;
-use WpOrg\Requests\Exception;
+use Exception;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
