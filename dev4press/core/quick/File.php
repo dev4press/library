@@ -29,6 +29,10 @@
 
 namespace Dev4Press\v44\Core\Quick;
 
+use PharData;
+use WP_Error;
+use WpOrg\Requests\Exception;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -116,5 +120,24 @@ class File {
 		}
 
 		return $final;
+	}
+
+	public static function unpack_tar_gz( $file, $path ) {
+		$result = false;
+		$error  = '';
+
+		try {
+			$tar = new PharData( $file );
+
+			$result = $tar->extractTo( $path, null, true );
+		} catch ( Exception $e ) {
+			$error = $e->getMessage();
+		}
+
+		if ( $result === true ) {
+			return true;
+		} else {
+			return new WP_Error( 'extract', $error );
+		}
 	}
 }
