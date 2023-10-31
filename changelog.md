@@ -8,6 +8,7 @@
 * New: method in `Str` to split camelcase string to word
 * New: included PHP library `ParsedownExtra`
 * New: added several more UI icons
+* Edit: several updates and improvements to `DateTime` class
 * Edit: updated email detection for new WordPress emails
 * Edit: library changelog files switched to the Markdown format
 * Edit: many small styling tweaks for the dashboard controls

@@ -80,15 +80,17 @@ class DateTime {
 		return $gmt ? time() : $this->timestamp_gmt_to_local( time() );
 	}
 
-	public function date( $format, $gmt = true ) {
-		return $gmt ? gmdate( $format ) : gmdate( $format, $this->timestamp_gmt_to_local( time() ) );
+	public function date( $format, $gmt = true, $timestamp = null ) {
+		$timestamp = $timestamp ?? time();
+
+		return $gmt ? gmdate( $format, $timestamp ) : gmdate( $format, $this->timestamp_gmt_to_local( $timestamp ) );
 	}
 
 	public function mysql_format() : string {
 		return $this->_mysql_format;
 	}
 
-	public function mysql_date( $gmt = true ) {
-		return $this->date( $this->mysql_format(), $gmt );
+	public function mysql_date( $gmt = true, $timestamp = null ) {
+		return $this->date( $this->mysql_format(), $gmt, $timestamp );
 	}
 }
