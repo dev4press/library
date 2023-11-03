@@ -226,10 +226,17 @@ class Elements {
 
 	public function checkboxes_with_hierarchy( $values, $args = array() ) : string {
 		$args = $this->checkboxes_prepare_args( $args );
+		$name = $args['multi'] ? $args['name'] . '[]' : $args['name'];
 
 		$walker = new CheckboxRadio();
 
-		$render = '<div class="d4p-setting-checkboxes-hierarchy">';
+		$wrapper_class = 'd4p-setting-checkboxes d4p-setting-checkboxes-hierarchy';
+
+		if ( $args['class'] != '' ) {
+			$wrapper_class .= ' ' . $args['class'];
+		}
+
+		$render = '<div class="' . Sanitize::html_classes( $wrapper_class ) . '">';
 		$render .= $this->checkboxes_render_check_uncheck( $args['multi'] );
 		$render .= '<div class="d4p-inside-wrapper">';
 		$render .= '<ul class="d4p-wrapper-hierarchy">';
@@ -239,7 +246,7 @@ class Elements {
 			array(
 				'input'    => $args['multi'] ? 'checkbox' : 'radio',
 				'id'       => $this->id_from_name( $args['name'], $args['id'] ),
-				'name'     => $args['name'],
+				'name'     => $name,
 				'selected' => (array) $args['selected'],
 			)
 		);
@@ -301,6 +308,7 @@ class Elements {
 
 	private function checkboxes_render_check_uncheck( $multi ) : string {
 		$render = '';
+
 		if ( $multi ) {
 			$render .= '<div class="d4p-check-uncheck">';
 

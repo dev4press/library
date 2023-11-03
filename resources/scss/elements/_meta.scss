@@ -134,25 +134,5 @@
                 font-weight: normal;
             }
         }
-
-        .d4p-setting-checkboxes-hierarchy {
-            margin: 5px 0 0;
-
-            .d4p-wrapper-hierarchy {
-                max-height: 250px;
-                padding: 5px 0;
-                overflow: auto;
-                margin: 0;
-                line-height: 1.5;
-
-                li {
-                    margin: 0;
-                }
-
-                ul.children {
-                    margin-left: 12px;
-                }
-            }
-        }
     }
 }

@@ -654,6 +654,19 @@ details.d4p-section-details > div .form-table code {
   background: var(--d4p-color-button-inactive-background);
 }
 
+.d4p-setting-checkboxes.d4p-setting-checkboxes-hierarchy .d4p-inside-wrapper {
+  max-height: 250px;
+  padding: 5px 0;
+  overflow: auto;
+  margin: 0;
+  line-height: 1.5;
+}
+.d4p-setting-checkboxes.d4p-setting-checkboxes-hierarchy .d4p-inside-wrapper li {
+  margin: 0;
+}
+.d4p-setting-checkboxes.d4p-setting-checkboxes-hierarchy .d4p-inside-wrapper ul.children {
+  margin-left: 12px;
+}
 .d4p-setting-checkboxes .d4p-check-uncheck {
   font-size: 0.9em;
   padding: 0 0 5px;

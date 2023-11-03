@@ -105,23 +105,20 @@
 .d4plib-v44-meta-box-wrapper .__element .d4p-setting-checkbox label {
   font-weight: normal;
 }
-.d4plib-v44-meta-box-wrapper .__element .d4p-setting-checkboxes-hierarchy {
-  margin: 5px 0 0;
-}
-.d4plib-v44-meta-box-wrapper .__element .d4p-setting-checkboxes-hierarchy .d4p-wrapper-hierarchy {
+
+.d4p-setting-checkboxes.d4p-setting-checkboxes-hierarchy .d4p-inside-wrapper {
   max-height: 250px;
   padding: 5px 0;
   overflow: auto;
   margin: 0;
   line-height: 1.5;
 }
-.d4plib-v44-meta-box-wrapper .__element .d4p-setting-checkboxes-hierarchy .d4p-wrapper-hierarchy li {
+.d4p-setting-checkboxes.d4p-setting-checkboxes-hierarchy .d4p-inside-wrapper li {
   margin: 0;
 }
-.d4plib-v44-meta-box-wrapper .__element .d4p-setting-checkboxes-hierarchy .d4p-wrapper-hierarchy ul.children {
+.d4p-setting-checkboxes.d4p-setting-checkboxes-hierarchy .d4p-inside-wrapper ul.children {
   margin-left: 12px;
 }
-
 .d4p-setting-checkboxes .d4p-check-uncheck {
   font-size: 0.9em;
   padding: 0 0 5px;

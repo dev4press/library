@@ -524,28 +524,12 @@ class Render {
 
 		$value = is_null( $value ) || $value === true ? array_keys( $data ) : (array) $value;
 
-		if ( $multiple ) {
-			$this->_render_check_uncheck_all();
-		}
-
-		$walker = new CheckboxRadio();
-		$input  = $multiple ? 'checkbox' : 'radio';
-
-		echo '<div class="d4p-content-wrapper">';
-		echo '<ul class="d4p-wrapper-hierarchy">';
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo $walker->walk(
-			$data,
-			0,
-			array(
-				'input'    => $input, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				'id'       => $id_base, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				'name'     => $name_base, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				'selected' => $value, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			)
-		);
-		echo '</ul>';
-		echo '</div>';
+		Elements::instance()->checkboxes_with_hierarchy( $data, array(
+			'selected' => $value,
+			'name'     => $name_base,
+			'id'       => $id_base,
+			'multi'    => $multiple,
+		) );
 	}
 
 	protected function draw_checkboxes_group( Element $element, $value, $name_base, $id_base, $multiple = true ) {

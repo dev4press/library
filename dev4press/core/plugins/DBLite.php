@@ -425,14 +425,4 @@ abstract class DBLite {
 
 		return false;
 	}
-
-	/**
-	 * @return float|int|mixed|null
-	 * @deprecated Since 4.0, to be removed in 4.2
-	 */
-	public function gmt_offset() {
-		_deprecated_function( __METHOD__, '4.0', '\Dev4Press\v44\Core\DateTime::instance()->offset()' );
-
-		return DateTime::instance()->offset();
-	}
 }
