@@ -2,14 +2,19 @@
   --d4p-ctrl-color-tabs-background: #FFF;
   --d4p-ctrl-color-tabs-text: #111;
   --d4p-ctrl-color-tabs-border: #BBB;
+  --d4p-ctrl-color-tabslist-background: #DDD;
   --d4p-ctrl-layout-tabs-border-radius: 5px;
 }
 
+.d4p-ctrl-tabs {
+  box-sizing: border-box;
+}
 .d4p-ctrl-tabs div[role=tablist] {
   border-bottom: 1px solid var(--d4p-ctrl-color-tabs-border);
   position: relative;
   margin: 0;
   display: flex;
+  box-sizing: border-box;
 }
 .d4p-ctrl-tabs div[role=tablist] button[role=tab] {
   color: var(--d4p-ctrl-color-tabs-text);
@@ -29,8 +34,9 @@
   vertical-align: top;
 }
 .d4p-ctrl-tabs div[role=tablist] button[role=tab] i.d4p-icon {
-  vertical-align: middle;
+  vertical-align: sub;
   margin: 0 0.2em 0 0;
+  font-size: 1.2em;
 }
 .d4p-ctrl-tabs div[role=tablist] button[role=tab][aria-selected=true] {
   background: var(--d4p-ctrl-color-tabs-background);
@@ -46,9 +52,23 @@
   padding: 1.5em;
   border-top: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 @media screen and (max-width: 768px) {
   .d4p-ctrl-tabs.d4p-tabs-have-icons button[role=tab] span {
     display: none;
   }
+}
+.d4p-ctrl-tabs.d4p-tabs-in-dialog {
+  margin: -16px;
+}
+.d4p-ctrl-tabs.d4p-tabs-in-dialog div[role=tablist] {
+  background-color: var(--d4p-ctrl-color-tabslist-background);
+}
+.d4p-ctrl-tabs.d4p-tabs-in-dialog div[role=tablist] button[role=tab] {
+  border-radius: 0;
+  border: 0;
+}
+.d4p-ctrl-tabs.d4p-tabs-in-dialog .d4p-ctrl-tabs-content {
+  border-radius: 0;
 }
