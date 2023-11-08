@@ -391,7 +391,7 @@ class Icons {
 		return $this->icons;
 	}
 
-	public function icon_class( $name, $args = array() ) {
+	public function icon_class( $name, $args = array() ) : array {
 		$defaults = array(
 			'size'   => false,
 			'pull'   => false,
@@ -425,7 +425,7 @@ class Icons {
 		return $classes;
 	}
 
-	public function icon( $name, $tag = 'i', $args = array(), $attr = array() ) {
+	public function icon( $name, $tag = 'i', $args = array(), $attr = array() ) : string {
 		$render     = '';
 		$properties = array();
 		$classes    = $this->icon_class( $name, $args );
@@ -458,7 +458,7 @@ class Icons {
 		return $render;
 	}
 
-	public function icons( $list = false, $tag = 'i', $args = array(), $attr = array() ) {
+	public function icons( $list = false, $tag = 'i', $args = array(), $attr = array() ) : array {
 		$out  = array();
 		$list = $list === false ? $this->icons : $list;
 
