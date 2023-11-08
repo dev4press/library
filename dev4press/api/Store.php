@@ -77,7 +77,6 @@ class Store {
 			'color'       => '#6F1A1A',
 			'free'        => false,
 			'pro'         => true,
-			'internal'    => true,
 		),
 		'coreseo'                          => array(
 			'code'        => 'coreseo',
@@ -106,6 +105,16 @@ class Store {
 			'color'       => '#0F1086',
 			'free'        => true,
 			'pro'         => false,
+		),
+		'forummod-for-bbpress'                     => array(
+			'code'        => 'forummod-for-bbpress',
+			'name'        => 'forumMOD for bbPress',
+			'description' => 'Expand bbPress powered forums with dedicated moderation tools and features to make the forum moderation easier, supporting global and forum moderators.',
+			'punchline'   => 'Full forum control over moderation',
+			'color'       => '#ff7300',
+			'free'        => false,
+			'pro'         => true,
+			'internal'    => true,
 		),
 		'sweeppress'                       => array(
 			'code'        => 'sweeppress',
