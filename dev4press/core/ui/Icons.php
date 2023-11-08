@@ -95,6 +95,7 @@ class Icons {
 		'plugin-debugpress',
 		'plugin-demopress',
 		'plugin-dev4press-updater',
+		'plugin-forummod-for-bbpress',
 		'plugin-gd-bbpress-attachments',
 		'plugin-gd-bbpress-toolbox',
 		'plugin-gd-bbpress-tools',
