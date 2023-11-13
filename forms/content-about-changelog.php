@@ -1,6 +1,7 @@
 <?php
 
 use Dev4Press\v44\Core\Helpers\Vendors;
+use Dev4Press\v44\Core\Quick\File;
 use Dev4Press\v44\Core\Quick\KSES;
 use function Dev4Press\v44\Functions\panel;
 
@@ -13,7 +14,7 @@ $file_name = $file_name ?? 'changelog.md';
 Vendors::parsedown();
 
 $parsedown = new Parsedown();
-$changelog = \Dev4Press\v44\Core\Quick\File::get_contents( panel()->a()->plugin()->path . $file_name );
+$changelog = File::get_contents( panel()->a()->plugin()->path . $file_name );
 
 $rendered = $parsedown->text( $changelog );
 
