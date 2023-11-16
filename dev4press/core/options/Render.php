@@ -429,6 +429,26 @@ class Render {
 		$this->_datetime_element( $element, $value, $name_base, $id_base, 'datetime-local', 'd4p-input-field-datetime' );
 	}
 
+	protected function draw_license( Element $element, $value, $name_base, $id_base, $type = 'text', $class = 'widefat' ) {
+		$readonly    = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
+		$placeholder = isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? $element->args['placeholder'] : '';
+		$type        = 'text';
+		$pattern     = '^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$';
+
+		echo sprintf(
+			'<input aria-labelledby="%s__label"%s placeholder="%s" pattern="%s" type="%s" name="%s" id="%s" value="%s" class="%s" />',
+			esc_attr( $id_base ),
+			esc_attr( $readonly ),
+			esc_attr( $placeholder ),
+			esc_attr( $pattern ),
+			esc_attr( $type ),
+			esc_attr( $name_base ),
+			esc_attr( $id_base ),
+			esc_attr( $value ),
+			esc_attr( $class )
+		);
+	}
+
 	protected function draw_text( Element $element, $value, $name_base, $id_base, $type = 'text', $class = 'widefat' ) {
 		$readonly    = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 		$placeholder = isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? $element->args['placeholder'] : '';
@@ -462,7 +482,6 @@ class Render {
 				esc_attr( $class )
 			);
 		}
-
 	}
 
 	protected function draw_html( Element $element, $value, $name_base, $id_base ) {

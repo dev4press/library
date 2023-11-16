@@ -32,8 +32,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class License {
-	public $plugin = '';
-	public $data = array();
+	protected string $plugin = '';
+	protected array $data = array();
 
 	public function __construct() {
 		$this->data = get_site_option( 'dev4press-core-storage' );
@@ -55,5 +55,4 @@ abstract class License {
 
 		return $instance[ static::class ];
 	}
-
 }

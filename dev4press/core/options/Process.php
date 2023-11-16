@@ -241,6 +241,14 @@ class Process {
 			case 'month':
 				$value = Sanitize::month( $post[ $key ] );
 				break;
+			case 'license':
+				$value = Sanitize::basic( $post[ $key ] );
+				$check = preg_match( '/^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$/', $value );
+
+				if ( $check !== 1 ) {
+					$value = '';
+				}
+				break;
 			case 'text':
 			case 'textarea':
 			case 'password':
