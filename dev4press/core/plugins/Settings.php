@@ -29,6 +29,7 @@ namespace Dev4Press\v45\Core\Plugins;
 
 use Dev4Press\v45\Core\DateTime;
 use Dev4Press\v45\Core\Helpers\DB;
+use Dev4Press\v45\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -564,7 +565,9 @@ abstract class Settings {
 
 	protected function _license_control() {
 		if ( isset( $this->changed['license']['code'] ) ) {
-
+			if ( ! WPR::is_scheduled_single( $this->plugin . '-license-validation' ) ) {
+				wp_schedule_single_event( time() + 5, $this->plugin . '-license-validation' );
+			}
 		}
 	}
 

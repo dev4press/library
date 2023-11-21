@@ -61,6 +61,7 @@ abstract class Core {
 
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
+		add_action( 'after_setup_theme', array( $this, 'cron_controls' ) );
 
 		if ( $this->license ) {
 			add_action( 'after_setup_theme', array( $this, 'license_control' ) );
@@ -141,6 +142,10 @@ abstract class Core {
 	}
 
 	public function after_setup_theme() {
+	}
+
+	public function cron_controls() {
+		
 	}
 
 	public function license_control() {

@@ -4,6 +4,7 @@
 ### Version 4.5 - 2023.12.04
 
 * New: licensing support for settings and validation
+* Edit: various changes to several plugin core classes
 
 ### Version 4.4 - 2023.11.06
 * New: render Changelog and History About panels from markdown
