@@ -1,9 +1,9 @@
 <?php
 
-use Dev4Press\v44\Core\Helpers\Vendors;
-use Dev4Press\v44\Core\Quick\File;
-use Dev4Press\v44\Core\Quick\KSES;
-use function Dev4Press\v44\Functions\panel;
+use Dev4Press\v45\Core\Helpers\Vendors;
+use Dev4Press\v45\Core\Quick\File;
+use Dev4Press\v45\Core\Quick\KSES;
+use function Dev4Press\v45\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

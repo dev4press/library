@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev4Press\v44\WordPress\Walker;
+namespace Dev4Press\v45\WordPress\Walker;
 
 use Walker;
 

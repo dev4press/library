@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v44\Core\Plugins\Settings
- * Version: v4.4
+ * Name:    Dev4Press\v45\Core\Plugins\Settings
+ * Version: v4.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v44\Core\Plugins;
+namespace Dev4Press\v45\Core\Plugins;
 
-use Dev4Press\v44\Core\DateTime;
-use Dev4Press\v44\Core\Helpers\DB;
+use Dev4Press\v45\Core\DateTime;
+use Dev4Press\v45\Core\Helpers\DB;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -36,6 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class Settings {
 	public $base = 'd4p';
+	public $plugin = '';
 
 	public $info;
 	public $scope = 'blog';
@@ -217,6 +218,10 @@ abstract class Settings {
 		$this->_settings_update( $group, $this->current[ $group ] );
 
 		do_action( $this->base . '_settings_saved_to_db_' . $group, $this->changed[ $group ] ?? array() );
+
+		if ( $group == 'license' ) {
+			$this->_license_control();
+		}
 	}
 
 	public function is_install() : bool {
@@ -555,6 +560,12 @@ abstract class Settings {
 		}
 
 		return $data;
+	}
+
+	protected function _license_control() {
+		if ( isset( $this->changed['license']['code'] ) ) {
+
+		}
 	}
 
 	abstract protected function constructor();

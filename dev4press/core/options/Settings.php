@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v44\Core\Options\Settings
- * Version: v4.4
+ * Name:    Dev4Press\v45\Core\Options\Settings
+ * Version: v4.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v44\Core\Options;
+namespace Dev4Press\v45\Core\Options;
+
+use Dev4Press\v45\Core\DateTime;
+use Dev4Press\v45\Core\Quick\Str;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -109,6 +112,62 @@ abstract class Settings {
 		}
 
 		return $list;
+	}
+
+	protected function settings_license() : array {
+		$info = $this->value( 'info', 'license' );
+		$time = $this->value( 'check', 'license' );
+
+		if ( $time == 0 || empty( $info ) ) {
+			$items = array(
+				'<strong>' . __( 'License Code has not been checked yet.' ) . '</strong>',
+			);
+		} else {
+			$items = array(
+				'<span>' . __( 'Last Checked' ) . '</span>: <strong>' . DateTime::instance()->mysql_date( true, $time ) . '</strong>',
+				'<hr/>',
+				'<span>' . __( 'Valid' ) . '</span>: <strong>' . ( $info['valid'] ? esc_html__( 'Yes' ) : esc_html__( 'No' ) ) . '</strong><br/>',
+				'<span>' . __( 'Status' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $info['status'], '-' ) ) . '</strong><br/>',
+				'<span>' . __( 'Domain' ) . '</span>: <strong>' . esc_html( $info['domain'] ) . '</strong>',
+			);
+		}
+
+		return array(
+			'license-code' => array(
+				'name'     => __( 'Dev4Press License', 'd4plib' ),
+				'sections' => array(
+					array(
+						'label'    => __( "License Code" ),
+						'name'     => '',
+						'class'    => '',
+						'settings' => array(
+							$this->i( 'license', 'code', __( 'Code', 'd4plib' ), __( 'You can find your license code in the Dev4Press Dashboard.', 'd4plib' ), Type::LICENSE )->more( array(
+								__( 'Make sure to enter the license code exactly as it is listed on the Dev4Press Dashboard.' ),
+								__( 'License code is case sensitive, and all letters must be uppercase.', 'd4plib' ),
+							) )->buttons(
+								array(
+									array(
+										'type'   => 'a',
+										'target' => '_blank',
+										'link'   => 'https://https://my.dev4press.com/licenses/',
+										'class'  => 'button-secondary',
+										'title'  => __( 'Dev4Press Dashboard Licenses', 'd4plib' ),
+									),
+								)
+							),
+						),
+					),
+					array(
+						'label'    => __( "License Information" ),
+						'name'     => '',
+						'class'    => '',
+						'settings' => array(
+							$this->info( __( 'Status' ), join( '', $items ) ),
+						),
+					),
+				),
+			),
+		);
 	}
 
 	abstract protected function init();

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v44\Core\Quick\WP
- * Version: v4.4
+ * Name:    Dev4Press\v45\Core\Quick\WP
+ * Version: v4.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v44\Core\Quick;
+namespace Dev4Press\v45\Core\Quick;
 
-use Dev4Press\v44\Core\Helpers\Error;
+use Dev4Press\v45\Core\Helpers\Error;
 use WP_Error;
 use WP_Query;
 use WP_Term;
@@ -204,12 +204,6 @@ class WPR {
 		}
 	}
 
-	/**
-	 * @param bool  $cache
-	 * @param bool  $queries
-	 *
-	 * @global wpdb $wpdb
-	 */
 	public static function cache_flush( bool $cache = true, bool $queries = true ) {
 		if ( $cache ) {
 			wp_cache_flush();
@@ -590,6 +584,16 @@ class WPR {
 		}
 
 		die( wp_json_encode( $data ) );
+	}
+
+	public static function is_scheduled_single( $hook, $args = array() ) : bool {
+		$next_event = wp_get_scheduled_event( $hook, $args );
+
+		if ( ! $next_event ) {
+			return false;
+		}
+
+		return $next_event->schedule === false;
 	}
 
 	public static function next_scheduled( $hook, $args = null ) {

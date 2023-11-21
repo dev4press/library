@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v44\Core\UI\Icons
- * Version: v4.4
+ * Name:    Dev4Press\v45\Core\UI\Icons
+ * Version: v4.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v44\Core\UI;
+namespace Dev4Press\v45\Core\UI;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

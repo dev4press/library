@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v44\Core\Plugins\Core
- * Version: v4.4
+ * Name:    Dev4Press\v45\Core\Plugins\Core
+ * Version: v4.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,14 +25,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v44\Core\Plugins;
+namespace Dev4Press\v45\Core\Plugins;
 
-use Dev4Press\v44\API\Four;
-use Dev4Press\v44\Core\DateTime;
-use Dev4Press\v44\Core\Quick\BBP;
-use Dev4Press\v44\Core\Quick\KSES;
-use Dev4Press\v44\Library;
-use Dev4Press\v44\WordPress;
+use Dev4Press\v45\API\Four;
+use Dev4Press\v45\Core\DateTime;
+use Dev4Press\v45\Core\Quick\BBP;
+use Dev4Press\v45\Core\Quick\KSES;
+use Dev4Press\v45\Library;
+use Dev4Press\v45\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -44,6 +44,7 @@ abstract class Core {
 	public $widgets = false;
 	public $enqueue = false;
 	public $features = false;
+	public $license = false;
 
 	public $cap = 'activate_plugins';
 	public $svg_icon = '';
@@ -60,6 +61,10 @@ abstract class Core {
 
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
+
+		if ( $this->license ) {
+			add_action( 'after_setup_theme', array( $this, 'license_control' ) );
+		}
 	}
 
 	/** @return static */
@@ -138,6 +143,14 @@ abstract class Core {
 	public function after_setup_theme() {
 	}
 
+	public function license_control() {
+		add_filter( $this->plugin . '-license-validation', array( $this, 'cron_license_validation' ) );
+
+		if ( ! wp_next_scheduled( $this->plugin . '-license-validation' ) ) {
+			wp_schedule_event( time() + HOUR_IN_SECONDS, 'weekly', $this->plugin . '-license-validation' );
+		}
+	}
+
 	public function widgets_init() {
 	}
 
@@ -174,6 +187,12 @@ abstract class Core {
 
 	public function widget_instance() : array {
 		return $this->_widget_instance;
+	}
+
+	public function cron_license_validation() {
+		if ( $this->license ) {
+			$this->l()->validate();
+		}
 	}
 
 	protected function check_system_requirements() : array {
@@ -222,12 +241,15 @@ abstract class Core {
 
 	abstract public function run();
 
-	/** @return \Dev4Press\v44\Core\Plugins\Settings */
+	/** @return NULL|\Dev4Press\v45\Core\Plugins\Settings */
 	abstract public function s();
 
-	/** @return \Dev4Press\v44\Core\Plugins\Settings */
+	/** @return NULL|\Dev4Press\v45\Core\Plugins\Settings */
 	abstract public function b();
 
-	/** @return NULL|\Dev4Press\v44\Core\Features\Load */
+	/** @return NULL|\Dev4Press\v45\Core\Features\Load */
 	abstract public function f();
+
+	/** @return NULL|\Dev4Press\v45\Core\Plugins\License */
+	abstract public function l();
 }

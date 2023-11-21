@@ -1,7 +1,7 @@
 <?php
 
-use Dev4Press\v44\API\Languages;
-use function Dev4Press\v44\Functions\panel;
+use Dev4Press\v45\API\Languages;
+use function Dev4Press\v45\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

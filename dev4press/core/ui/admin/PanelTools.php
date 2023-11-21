@@ -1,9 +1,9 @@
 <?php
 
-namespace Dev4Press\v44\Core\UI\Admin;
+namespace Dev4Press\v45\Core\UI\Admin;
 
-use Dev4Press\v44\Core\Quick\KSES;
-use function Dev4Press\v44\Functions\panel;
+use Dev4Press\v45\Core\Quick\KSES;
+use function Dev4Press\v45\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

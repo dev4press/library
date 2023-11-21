@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v44\Core\Plugins\License
- * Version: v4.4
+ * Name:    Dev4Press\v45\Core\Plugins\License
+ * Version: v4.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v44\Core\Plugins;
+namespace Dev4Press\v45\Core\Plugins;
+
+use Dev4Press\v45\Core\Quick\URL;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -33,16 +35,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class License {
 	protected string $plugin = '';
-	protected array $data = array();
+	private string $site_url = '';
 
 	public function __construct() {
-		$this->data = get_site_option( 'dev4press-core-storage' );
-
-		if ( ! isset( $this->data[ $this->plugin ] ) ) {
-			$this->data[ $this->plugin ] = array();
-
-			update_site_option( 'dev4press-core-storage', $this->data );
-		}
+		$this->site_url = parse_url( network_site_url(), PHP_URL_HOST );
 	}
 
 	/** @return static */
@@ -55,4 +51,150 @@ abstract class License {
 
 		return $instance[ static::class ];
 	}
+
+	private function validation_url( $code, $plugin ) : string {
+		$url = 'https://api.dev4press.com/license/1.0/%s/%s/%s/';
+
+		return sprintf( $url, $code, $this->site_url, $plugin );
+	}
+
+	private function api_url( $api, $version, $code ) : string {
+		$url = 'https://api.dev4press.com/%s/%s/%s/%s/';
+
+		return sprintf( $url, $api, $version, $code, $this->site_url );
+	}
+
+	public function get_license_code() {
+		$code = $this->plugin()->s()->get( 'code', 'license' );
+
+		$check = preg_match( '/^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$/', $code );
+
+		if ( $check !== 1 ) {
+			$code = '';
+		}
+
+		return $code;
+	}
+
+	public function post( $api, $version, $data, $format = 'json' ) : array {
+		$code = $this->get_license_code();
+		$url  = $this->api_url( $api, $version, $code );
+
+		$options = array(
+			'timeout' => 60,
+			'method'  => 'POST',
+			'body'    => json_encode( $data ),
+			'headers' => array(
+				'X-Dev4press-Source-Domain' => $this->site_url,
+				'Referer'                   => URL::current_url(),
+			),
+		);
+
+		$response = wp_remote_post( $url, $options );
+
+		if ( is_wp_error( $response ) ) {
+			return array(
+				'error'   => $response->get_error_code(),
+				'message' => $response->get_error_message(),
+			);
+		} else {
+			$code = wp_remote_retrieve_response_code( $response );
+			$body = wp_remote_retrieve_body( $response );
+
+			if ( $format == 'raw' ) {
+				return array(
+					'code' => $code,
+					'body' => $body,
+				);
+			} else if ( $format == 'json' ) {
+				$data = json_decode( $body, true );
+
+				if ( is_array( $data ) && ! empty( $data ) ) {
+					if ( $code == 200 ) {
+						return $data;
+					} else {
+						if ( isset( $data['error'] ) ) {
+							return array(
+								'error'   => $code,
+								'message' => $data['error'],
+							);
+						}
+					}
+				}
+			}
+
+			return array(
+				'error'   => $code,
+				'message' => __( 'Nothing received' ),
+			);
+		}
+	}
+
+	public function validate() {
+		$code = $this->get_license_code();
+
+		if ( empty( $code ) ) {
+			$result = array(
+				'error'   => 'code-invalid',
+				'message' => __( "Code is not in a valid format." ),
+			);
+		} else {
+			$url = $this->validation_url( $code, $this->plugin()->plugin );
+
+			$options = array(
+				'timeout' => 60,
+				'headers' => array(
+					'X-Dev4press-Source-Domain' => $this->site_url,
+					'Referer'                   => URL::current_url(),
+				),
+			);
+
+			$response = wp_remote_get( $url, $options );
+			$result   = array();
+			$message  = '';
+
+			if ( ! is_wp_error( $response ) ) {
+				$body  = wp_remote_retrieve_body( $response );
+				$json  = json_decode( $body, true );
+				$error = 'invalid-response';
+
+				if ( is_array( $json ) && isset( $json['obj'] ) && isset( $json['uts'] ) && isset( $json['sig'] ) ) {
+					$check = sha1( json_encode( $json['obj'] ) . '.' . $json['uts'] );
+
+					if ( $check == $json['sig'] ) {
+						$result = array(
+							'status'  => $json['obj']['status'] ?? 'invalid',
+							'valid'   => $json['obj']['valid'] ?? 'no',
+							'api'     => $json['obj']['api'] ?? 'no',
+							'control' => $json['obj']['control'] ?? 'no',
+							'domain'  => $json['obj']['domain'] ?? '',
+						);
+					}
+				}
+
+				if ( empty( $result ) ) {
+					$result = array(
+						'error'   => 'invalid-response',
+						'message' => __( "Validation server response is not valid." ),
+					);
+				}
+			} else {
+				$error   = 'request-failed';
+				$message = $response->get_error_message();
+			}
+
+			if ( empty( $result ) ) {
+				$result = array(
+					'error'   => $error,
+					'message' => $message,
+				);
+			}
+		}
+
+		$this->plugin()->s()->set( 'check', time(), 'license' );
+		$this->plugin()->s()->set( 'info', $result, 'license' );
+		$this->plugin()->s()->save( 'license' );
+	}
+
+	abstract protected function plugin();
 }
