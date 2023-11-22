@@ -191,7 +191,7 @@ abstract class License {
 							'domain'  => $json['obj']['domain'] ?? '',
 						);
 
-						if ( $response['valid'] == 'no' ) {
+						if ( $result['valid'] == 'no' ) {
 							$record = 'invalid';
 						}
 					}

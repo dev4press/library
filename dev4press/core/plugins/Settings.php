@@ -596,7 +596,7 @@ abstract class Settings {
 				if ( ! WPR::is_scheduled_single( $this->plugin . '-license-validation' ) ) {
 					$this->set( 'record', 'in-progress', 'license', true, true );
 
-					wp_schedule_single_event( time() + 60, $this->plugin . '-license-validation' );
+					wp_schedule_single_event( time() + 5, $this->plugin . '-license-validation' );
 				}
 			}
 		}

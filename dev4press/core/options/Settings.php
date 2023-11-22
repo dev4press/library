@@ -115,10 +115,15 @@ abstract class Settings {
 	}
 
 	protected function settings_license() : array {
+		$code = $this->value( 'code', 'license' );
 		$info = $this->value( 'info', 'license' );
 		$time = $this->value( 'check', 'license' );
 
-		if ( $time == 0 || empty( $info ) ) {
+		if ( empty( $code ) ) {
+			$items = array(
+				'<strong>' . __( 'License Code is not set.' ) . '</strong>',
+			);
+		} else if ( $time == 0 || empty( $info ) ) {
 			$items = array(
 				'<strong>' . __( 'License Code has not been checked yet.' ) . '</strong>',
 			);
@@ -126,7 +131,7 @@ abstract class Settings {
 			$items = array(
 				'<span>' . __( 'Last Checked' ) . '</span>: <strong>' . DateTime::instance()->mysql_date( true, $time ) . '</strong>',
 				'<hr/>',
-				'<span>' . __( 'Valid' ) . '</span>: <strong>' . ( $info['valid'] ? esc_html__( 'Yes' ) : esc_html__( 'No' ) ) . '</strong><br/>',
+				'<span>' . __( 'Valid' ) . '</span>: <strong>' . ( $info['valid'] === 'yes' ? esc_html__( 'Yes' ) : esc_html__( 'No' ) ) . '</strong><br/>',
 				'<span>' . __( 'Status' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $info['status'], '-' ) ) . '</strong><br/>',
 				'<span>' . __( 'Domain' ) . '</span>: <strong>' . esc_html( $info['domain'] ) . '</strong>',
 			);
