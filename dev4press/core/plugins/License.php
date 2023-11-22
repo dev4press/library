@@ -64,8 +64,26 @@ abstract class License {
 		return sprintf( $url, $api, $version, $code, $this->site_url );
 	}
 
+	public function is_valid() : bool {
+		$code   = $this->get_license_code();
+		$info   = $this->plugin()->s()->raw_get( 'info', 'license' );
+		$record = $this->plugin()->s()->raw_get( 'record', 'license' );
+
+		if ( ! empty( $code ) ) {
+			if ( $record == 'in-progress' ) {
+				return true;
+			}
+
+			if ( $record == 'valid' && ( $info['valid'] ?? 'no' ) == 'yes' ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public function get_license_code() {
-		$code = $this->plugin()->s()->get( 'code', 'license' );
+		$code = $this->plugin()->s()->raw_get( 'code', 'license' );
 
 		$check = preg_match( '/^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$/', $code );
 
@@ -131,9 +149,12 @@ abstract class License {
 	}
 
 	public function validate() {
-		$code = $this->get_license_code();
+		$code   = $this->get_license_code();
+		$record = 'valid';
 
 		if ( empty( $code ) ) {
+			$record = 'invalid';
+
 			$result = array(
 				'error'   => 'code-invalid',
 				'message' => __( "Code is not in a valid format." ),
@@ -169,16 +190,24 @@ abstract class License {
 							'control' => $json['obj']['control'] ?? 'no',
 							'domain'  => $json['obj']['domain'] ?? '',
 						);
+
+						if ( $response['valid'] == 'no' ) {
+							$record = 'invalid';
+						}
 					}
 				}
 
 				if ( empty( $result ) ) {
+					$record = 'server-problem';
+
 					$result = array(
 						'error'   => 'invalid-response',
 						'message' => __( "Validation server response is not valid." ),
 					);
 				}
 			} else {
+				$record = 'server-problem';
+
 				$error   = 'request-failed';
 				$message = $response->get_error_message();
 			}
@@ -191,9 +220,11 @@ abstract class License {
 			}
 		}
 
-		$this->plugin()->s()->set( 'check', time(), 'license' );
-		$this->plugin()->s()->set( 'info', $result, 'license' );
-		$this->plugin()->s()->save( 'license' );
+		$this->plugin()->s()->bulk( array(
+			'info'   => $result,
+			'check'  => time(),
+			'record' => $record,
+		), 'license', true, true );
 	}
 
 	abstract protected function plugin();

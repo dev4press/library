@@ -53,6 +53,15 @@ abstract class Settings {
 
 	public function __construct() {
 		$this->constructor();
+
+		if ( $this->info->is_pro() ) {
+			$this->settings['license'] = array(
+				'code'   => '',
+				'info'   => array(),
+				'check'  => 0,
+				'record' => 'empty',
+			);
+		}
 	}
 
 	/** @return static */
@@ -192,12 +201,12 @@ abstract class Settings {
 		return apply_filters( $this->base . '_' . $this->scope . '_settings_get', $this->raw_get( $name, $group, $default ), $name, $group );
 	}
 
-	public function set( $name, $value, $group = 'settings', $save = false ) {
+	public function set( $name, $value, $group = 'settings', $save = false, $silent = false ) {
 		$old = $this->current[ $group ][ $name ] ?? null;
 
 		$this->current[ $group ][ $name ] = $value;
 
-		if ( $old != $value ) {
+		if ( ! $silent && $old != $value ) {
 			do_action( $this->base . '_settings_value_changed', $name, $group, $old, $value );
 
 			if ( ! isset( $this->changed[ $group ] ) ) {
@@ -211,17 +220,29 @@ abstract class Settings {
 		}
 
 		if ( $save ) {
-			$this->save( $group );
+			$this->save( $group, $silent );
 		}
 	}
 
-	public function save( $group ) {
+	public function bulk( $values, $group = 'settings', $save = false, $silent = false ) {
+		foreach ( $values as $name => $value ) {
+			$this->set( $name, $value, $group, false, true );
+		}
+
+		if ( $save ) {
+			$this->save( $group, $silent );
+		}
+	}
+
+	public function save( $group, $silent = false ) {
 		$this->_settings_update( $group, $this->current[ $group ] );
 
-		do_action( $this->base . '_settings_saved_to_db_' . $group, $this->changed[ $group ] ?? array() );
+		if ( ! $silent ) {
+			do_action( $this->base . '_settings_saved_to_db_' . $group, $this->changed[ $group ] ?? array() );
 
-		if ( $group == 'license' ) {
-			$this->_license_control();
+			if ( $group == 'license' ) {
+				$this->_license_control();
+			}
 		}
 	}
 
@@ -565,8 +586,18 @@ abstract class Settings {
 
 	protected function _license_control() {
 		if ( isset( $this->changed['license']['code'] ) ) {
-			if ( ! WPR::is_scheduled_single( $this->plugin . '-license-validation' ) ) {
-				wp_schedule_single_event( time() + 5, $this->plugin . '-license-validation' );
+			if ( empty( $this->changed['license']['code']['new'] ) ) {
+				$this->bulk( array(
+					'info'   => array(),
+					'check'  => time(),
+					'record' => 'empty',
+				), 'license', true, true );
+			} else {
+				if ( ! WPR::is_scheduled_single( $this->plugin . '-license-validation' ) ) {
+					$this->set( 'record', 'in-progress', 'license', true, true );
+
+					wp_schedule_single_event( time() + 60, $this->plugin . '-license-validation' );
+				}
 			}
 		}
 	}

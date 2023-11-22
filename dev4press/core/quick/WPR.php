@@ -42,6 +42,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class WPR {
+	public static function is_plugin_installed( $plugin ) : bool {
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+		$installed_plugins = get_plugins();
+
+		return in_array( $plugin, array_keys( $installed_plugins ) );
+	}
+
 	public static function is_plugin_active( $plugin ) : bool {
 		return in_array( $plugin, (array) get_option( 'active_plugins', array() ), true ) || self::is_plugin_active_for_network( $plugin );
 	}
@@ -290,49 +298,6 @@ class WPR {
 		}
 
 		return $url;
-	}
-
-	/*
-	 * Function by Micah Wood
-	 * https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
-	 */
-	public static function get_attachment_id_from_url( $url ) : int {
-		$attachment_id = 0;
-		$dir           = wp_upload_dir();
-
-		if ( false !== strpos( $url, $dir['baseurl'] . '/' ) ) {
-			$file       = basename( $url );
-			$query_args = array(
-				'post_type'   => 'attachment',
-				'post_status' => 'inherit',
-				'fields'      => 'ids',
-				'meta_query'  => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
-					array(
-						'value'   => $file,
-						'compare' => 'LIKE',
-						'key'     => '_wp_attachment_metadata',
-					),
-				),
-			);
-
-			$query = new WP_Query( $query_args );
-
-			if ( $query->have_posts() ) {
-				foreach ( $query->posts as $post_id ) {
-					$meta = wp_get_attachment_metadata( $post_id );
-
-					$original_file       = basename( $meta['file'] );
-					$cropped_image_files = wp_list_pluck( $meta['sizes'], 'file' );
-
-					if ( $original_file === $file || in_array( $file, $cropped_image_files ) ) {
-						$attachment_id = $post_id;
-						break;
-					}
-				}
-			}
-		}
-
-		return $attachment_id;
 	}
 
 	public static function get_post_id_by_slug( $slug, $post_type = 'page' ) {
@@ -706,5 +671,48 @@ class WPR {
 		}
 
 		return '';
+	}
+
+	/*
+	 * Function by Micah Wood
+	 * https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
+	 */
+	public static function get_attachment_id_from_url( $url ) : int {
+		$attachment_id = 0;
+		$dir           = wp_upload_dir();
+
+		if ( false !== strpos( $url, $dir['baseurl'] . '/' ) ) {
+			$file       = basename( $url );
+			$query_args = array(
+				'post_type'   => 'attachment',
+				'post_status' => 'inherit',
+				'fields'      => 'ids',
+				'meta_query'  => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+					array(
+						'value'   => $file,
+						'compare' => 'LIKE',
+						'key'     => '_wp_attachment_metadata',
+					),
+				),
+			);
+
+			$query = new WP_Query( $query_args );
+
+			if ( $query->have_posts() ) {
+				foreach ( $query->posts as $post_id ) {
+					$meta = wp_get_attachment_metadata( $post_id );
+
+					$original_file       = basename( $meta['file'] );
+					$cropped_image_files = wp_list_pluck( $meta['sizes'], 'file' );
+
+					if ( $original_file === $file || in_array( $file, $cropped_image_files ) ) {
+						$attachment_id = $post_id;
+						break;
+					}
+				}
+			}
+		}
+
+		return $attachment_id;
 	}
 }

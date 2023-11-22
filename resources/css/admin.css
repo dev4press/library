@@ -738,6 +738,9 @@
   width: 100%;
   border-radius: 0 0 var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius);
 }
+.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer a {
+  margin-right: 0.5em;
+}
 .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-card-badge {
   border-radius: var(--d4p-layout-badge-border-radius);
   color: #FFF;
