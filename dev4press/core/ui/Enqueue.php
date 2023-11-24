@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Enqueue {
 	private $_version;
-	private $_enqueue_prefix = 'd4plib3-';
+	private $_enqueue_prefix = 'd4plib-v45';
 	private $_library = 'd4plib';
 	private $_debug;
 	private $_url;

@@ -5,6 +5,7 @@
 
 * New: licensing support for settings and validation
 * Edit: various changes to several plugin core classes
+* Edit: improved `Enqueue` classes prefixes to match a library version
 
 ### Version 4.4 - 2023.11.06
 * New: render Changelog and History About panels from markdown

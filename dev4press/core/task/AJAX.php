@@ -128,6 +128,7 @@ abstract class AJAX {
 		return array(
 			'data'     => array(),
 			'messages' => array(),
+			'status'   => 'idle',
 			'total'    => 0,
 			'done'     => 0,
 		);
