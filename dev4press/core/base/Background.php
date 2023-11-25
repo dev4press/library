@@ -66,6 +66,14 @@ abstract class Background {
 		$this->worker();
 	}
 
+	public function get() {
+		$this->data = get_site_transient( $this->transient );
+
+		if ( $this->data === false ) {
+			$this->data = $this->init_data();
+		}
+	}
+
 	protected function worker() {
 		if ( $this->data['status'] == 'working' ) {
 			$this->save();
@@ -134,14 +142,6 @@ abstract class Background {
 		$this->data['tasks'][ $title ]['end'] = $this->now();
 
 		$this->save();
-	}
-
-	protected function get() {
-		$this->data = get_site_transient( $this->transient );
-
-		if ( $this->data === false ) {
-			$this->data = $this->init_data();
-		}
 	}
 
 	protected function save() {
