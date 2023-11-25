@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v45\Core\Task\Background
+ * Name:    Dev4Press\v45\Core\Task\CRON
  * Version: v4.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -27,48 +27,27 @@
 
 namespace Dev4Press\v45\Core\Task;
 
+use Dev4Press\v45\Core\Base\Background;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Background {
-	protected $nonce = '';
-	protected $action = '';
-	protected $transient = '';
-	protected $key = '';
+abstract class CRON extends Background {
+	protected $method = 'cron';
+	protected $job = '';
 
 	public function __construct() {
-		add_action( 'wp_ajax_' . $this->action, array( $this, 'handler' ) );
-		add_action( 'wp_ajax_nopriv_' . $this->action, array( $this, 'handler' ) );
+		parent::__construct();
+
+		add_action( $this->job, array( $this, 'handler' ) );
 	}
 
-	/** @return static */
-	public static function instance() {
-		static $instance = array();
+	protected function prepare() {
 
-		if ( ! isset( $instance[ static::class ] ) ) {
-			$instance[ static::class ] = new static();
-		}
-
-		return $instance[ static::class ];
 	}
 
-	protected function init_data() : array {
-		return array(
-			'data'     => array(),
-			'messages' => array(),
-			'status'   => 'idle',
-			'total'    => 0,
-			'done'     => 0,
-		);
-	}
-
-	public function check_nonce() {
-		$ajax_nonce = isset( $_REQUEST['_ajax_nonce'] ) ? sanitize_key( $_REQUEST['_ajax_nonce'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-		$nonce      = wp_verify_nonce( $ajax_nonce, $this->nonce );
-
-		if ( $nonce === false ) {
-			wp_die( - 1 );
-		}
+	protected function spawn() {
+		wp_schedule_single_event( time() + $this->delay, $this->job );
 	}
 }

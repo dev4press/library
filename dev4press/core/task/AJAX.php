@@ -27,45 +27,25 @@
 
 namespace Dev4Press\v45\Core\Task;
 
-use Dev4Press\v45\Core\Quick\Sanitize;
-use Dev4Press\v45\Core\Quick\WPR;
+use Dev4Press\v45\Core\Base\Background;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-abstract class AJAX {
-	protected $transient = '';
-	protected $action = '';
+abstract class AJAX extends Background {
+	protected $method = 'ajax';
 	protected $nonce = '';
-	protected $priv = false;
-	protected $timeout = 20;
-
-	protected $data = array();
-	protected $messages = array();
-
-	protected $timer = 0;
+	protected $action = '';
 
 	public function __construct() {
+		parent::__construct();
+
 		add_action( 'wp_ajax_' . $this->action, array( $this, 'handler' ) );
-
-		if ( $this->priv ) {
-			add_action( 'wp_ajax_nopriv_' . $this->action, array( $this, 'handler' ) );
-		}
+		add_action( 'wp_ajax_nopriv_' . $this->action, array( $this, 'handler' ) );
 	}
 
-	/** @return static */
-	public static function instance() {
-		static $instance = array();
-
-		if ( ! isset( $instance[ static::class ] ) ) {
-			$instance[ static::class ] = new static();
-		}
-
-		return $instance[ static::class ];
-	}
-
-	public function check_nonce() {
+	protected function prepare() {
 		$ajax_nonce = isset( $_REQUEST['_ajax_nonce'] ) ? sanitize_key( $_REQUEST['_ajax_nonce'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		$nonce      = wp_verify_nonce( $ajax_nonce, $this->nonce );
 
@@ -74,96 +54,34 @@ abstract class AJAX {
 		}
 	}
 
-	public function handler() {
-		$this->check_nonce();
-		$this->get();
+	protected function spawn() {
+		$url = admin_url( 'admin-ajax.php' );
+		$url = add_query_arg( array(
+			'action'      => $this->action,
+			'_ajax_nonce' => wp_create_nonce( $this->nonce ),
+		), $url );
 
-		$this->timer = microtime( true );
+		sleep( $this->delay );
 
-		$operation = isset( $_POST['operation'] ) ? sanitize_key( $_POST['operation'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-		$response  = array();
-
-		switch ( $operation ) {
-			case 'start':
-				$this->do_start();
-
-				$this->message( __( 'Process is starting.', 'd4plib' ) );
-
-				$this->save();
-
-				$response['total'] = $this->data['total'];
-				break;
-			case 'break':
-				$this->do_break();
-
-				$this->message( __( 'Process has been interrupted by user.', 'd4plib' ) );
-
-				$this->delete();
-				break;
-			case 'stop':
-				$this->do_stop();
-
-				$this->message( __( 'Process has completed.', 'd4plib' ) );
-
-				$this->delete();
-				break;
-			case 'run':
-				$this->do_run();
-
-				/* translators: AJAX task progress report. %1$s: Completed tasks count. %2$s: Total tasks count. */
-				$this->message( sprintf( __( 'Completed %1$s out of %2$s items.', 'd4plib' ), $this->data['done'], $this->data['total'] ) );
-
-				$this->save();
-
-				$response['done'] = $this->data['done'];
-				break;
-		}
-
-		$response['message'] = join( PHP_EOL, $this->messages );
-
-		WPR::json_die( $response );
-	}
-
-	protected function init_data() : array {
-		return array(
-			'data'     => array(),
-			'messages' => array(),
-			'status'   => 'idle',
-			'total'    => 0,
-			'done'     => 0,
+		wp_remote_get( $url, array(
+				'method'      => 'GET',
+				'timeout'     => 60,
+				'redirection' => 5,
+				'httpversion' => '1.1',
+				'blocking'    => false,
+				'headers'     => array(),
+			)
 		);
-	}
 
-	protected function message( $msg ) {
-		$this->data['messages'][] = $msg;
-		$this->messages[]         = $msg;
-	}
+		if ( wp_doing_ajax() ) {
+			header( "Expires: Wed, 10 Aug 2000 00:00:00 GMT" );
+			header( "Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . " GMT" );
+			header( "Cache-Control: no-store, no-cache, must-revalidate" );
+			header( "Cache-Control: post-check=0, pre-check=0", false );
+			header( "Pragma: no-cache" );
 
-	protected function get() {
-		$this->data = get_transient( $this->transient );
-
-		if ( $this->data === false ) {
-			$this->data = $this->init_data();
+			http_response_code( 204 );
+			die();
 		}
 	}
-
-	protected function save() {
-		set_transient( $this->transient, $this->data );
-	}
-
-	protected function delete() {
-		delete_transient( $this->transient );
-	}
-
-	protected function time_passed() {
-		return microtime( true ) - $this->timer;
-	}
-
-	abstract protected function do_start();
-
-	abstract protected function do_break();
-
-	abstract protected function do_stop();
-
-	abstract protected function do_run();
 }
