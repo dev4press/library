@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 10/18/2023 11:00:56 AM\n"
+"POT-Creation-Date: 11/28/2023 12:39:43 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,6 +91,14 @@ msgstr ""
 #: dev4press/core/admin/Plugin.php:325
 #: dev4press/core/admin/Plugin.php:335
 msgid "Click Here"
+msgstr ""
+
+#: dev4press/core/base/Background.php:79
+msgid "Starting the thread worker processing."
+msgstr ""
+
+#: dev4press/core/base/Background.php:98
+msgid "Spawning new background processing thread."
 msgstr ""
 
 #: dev4press/core/helpers/Data.php:37
@@ -559,6 +567,8 @@ msgid "Feature network override is active"
 msgstr ""
 
 #: dev4press/core/options/Features.php:141
+#: dev4press/core/options/Settings.php:135
+#: dev4press/core/options/Settings.php:170
 #: forms/content-about-info.php:31
 msgid "Status"
 msgstr ""
@@ -571,32 +581,32 @@ msgstr ""
 msgid "Feature is active"
 msgstr ""
 
-#: dev4press/core/options/Render.php:664
+#: dev4press/core/options/Render.php:667
 msgid "Add New Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:696
-#: dev4press/core/options/Render.php:734
+#: dev4press/core/options/Render.php:699
+#: dev4press/core/options/Render.php:737
 msgid "No items to show"
 msgstr ""
 
-#: dev4press/core/options/Render.php:792
+#: dev4press/core/options/Render.php:795
 #: dev4press/core/ui/Enqueue.php:318
 msgid "Image not selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:819
+#: dev4press/core/options/Render.php:822
 msgid "Enabled"
 msgstr ""
 
-#: dev4press/core/options/Render.php:769
+#: dev4press/core/options/Render.php:772
 #: dev4press/core/options/Render.php:389
 #: dev4press/core/ui/admin/PanelTools.php:58
 #: dev4press/core/ui/Enqueue.php:314
 msgid "Remove"
 msgstr ""
 
-#: dev4press/core/options/Render.php:770
+#: dev4press/core/options/Render.php:773
 #: dev4press/core/ui/Enqueue.php:315
 msgid "Preview"
 msgstr ""
@@ -606,42 +616,104 @@ msgid "Toggle Additional Information"
 msgstr ""
 
 #: dev4press/core/options/Render.php:364
-#: dev4press/core/ui/Elements.php:307
+#: dev4press/core/ui/Elements.php:315
 msgid "Check All"
 msgstr ""
 
 #: dev4press/core/options/Render.php:365
-#: dev4press/core/ui/Elements.php:308
+#: dev4press/core/ui/Elements.php:316
 msgid "Uncheck All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:755
+#: dev4press/core/options/Render.php:758
 msgid "Add Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:759
+#: dev4press/core/options/Render.php:762
 msgid "No images selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:787
+#: dev4press/core/options/Render.php:790
 #: dev4press/core/ui/Enqueue.php:316
 msgid "Select Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:788
+#: dev4press/core/options/Render.php:791
 msgid "Show Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:789
+#: dev4press/core/options/Render.php:792
 msgid "Clear Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:1086
+#: dev4press/core/options/Render.php:1089
 msgid "Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:1094
+#: dev4press/core/options/Render.php:1097
 msgid "Unit"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:124
+msgid "License Code is not set."
+msgstr ""
+
+#: dev4press/core/options/Settings.php:128
+msgid "License Code has not been checked yet."
+msgstr ""
+
+#: dev4press/core/options/Settings.php:132
+msgid "Last Checked"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:134
+msgid "Valid"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:136
+msgid "Domain"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:142
+msgid "Dev4Press License"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:145
+msgid "License Code"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:149
+msgid "Code"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:149
+msgid "You can find your license code in the Dev4Press Dashboard."
+msgstr ""
+
+#: dev4press/core/options/Settings.php:150
+msgid "Make sure to enter the license code exactly as it is listed on the Dev4Press Dashboard."
+msgstr ""
+
+#: dev4press/core/options/Settings.php:151
+msgid "License code is case sensitive, and all letters must be uppercase."
+msgstr ""
+
+#: dev4press/core/options/Settings.php:159
+msgid "Dev4Press Dashboard Licenses"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:166
+msgid "License Information"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:134
+#: dev4press/core/plugins/Wizard.php:162
+msgid "Yes"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:134
+#: dev4press/core/plugins/Wizard.php:163
+msgid "No"
 msgstr ""
 
 #: dev4press/core/plugins/AJAX.php:155
@@ -656,17 +728,17 @@ msgstr ""
 msgid "Invalid Request"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:154
+#: dev4press/core/plugins/Core.php:172
 msgctxt "System requirement version"
 msgid "%1$s version %2$s (%3$s is not active on your website)"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:157
+#: dev4press/core/plugins/Core.php:175
 msgctxt "System requirement version"
 msgid "%1$s version %2$s (your system runs version %3$s)"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:163
+#: dev4press/core/plugins/Core.php:181
 msgctxt "System requirement notice"
 msgid "System requirements check for %1$s failed. This plugin requires %2$s. The plugin will now be disabled."
 msgstr ""
@@ -695,28 +767,26 @@ msgstr ""
 msgid "Table is missing."
 msgstr ""
 
-#: dev4press/core/plugins/Wizard.php:162
-msgid "Yes"
+#: dev4press/core/plugins/License.php:146
+msgid "Nothing received"
 msgstr ""
 
-#: dev4press/core/plugins/Wizard.php:163
-msgid "No"
+#: dev4press/core/plugins/License.php:160
+msgid "Code is not in a valid format."
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:90
-msgid "Process is starting."
+#: dev4press/core/plugins/License.php:205
+msgid "Validation server response is not valid."
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:99
-msgid "Process has been interrupted by user."
+#: dev4press/core/quick/Misc.php:107
+#: dev4press/core/quick/Misc.php:107
+msgid "Localhost or Private IP"
 msgstr ""
 
-#: dev4press/core/task/AJAX.php:106
-msgid "Process has completed."
-msgstr ""
-
-#: dev4press/core/task/AJAX.php:114
-msgid "Completed %1$s out of %2$s items."
+#: dev4press/core/quick/Misc.php:111
+#: dev4press/core/quick/Misc.php:111
+msgid "IP can't be located."
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelAbout.php:26
@@ -959,16 +1029,6 @@ msgstr ""
 
 #: dev4press/core/ui/Grid.php:195
 msgid "Current Page"
-msgstr ""
-
-#: dev4press/service/geoip/Location.php:91
-#: dev4press/service/geoip/Location.php:91
-msgid "Localhost or Private IP"
-msgstr ""
-
-#: dev4press/service/geoip/Location.php:95
-#: dev4press/service/geoip/Location.php:95
-msgid "IP can't be located."
 msgstr ""
 
 #: dev4press/service/media/pixabay/Query.php:81
@@ -1327,7 +1387,7 @@ msgstr ""
 msgid "Shortcode"
 msgstr ""
 
-#: forms/content-about-changelog.php:42
+#: forms/content-about-changelog.php:43
 msgid "Major Version"
 msgstr ""
 

@@ -76,6 +76,8 @@ abstract class Background {
 
 	protected function worker() {
 		if ( $this->data['status'] == 'working' ) {
+			$this->add_message( __( 'Starting the thread worker processing.', 'd4plib' ) );
+
 			$this->save();
 			$result = true;
 
@@ -92,6 +94,8 @@ abstract class Background {
 			if ( $result && $this->has_more() ) {
 				$this->data['info']['threads'] ++;
 				$this->save();
+
+				$this->add_message( __( 'Spawning new background processing thread.', 'd4plib' ) );
 
 				// $this->spawn();
 			} else {
@@ -128,7 +132,11 @@ abstract class Background {
 	protected function task_start( string $title ) {
 		$this->data['info']['tasks'] ++;
 
-		$this->data['tasks'][ $title ] = array(
+		if ( ! isset( $this->data['tasks'][ $title ] ) ) {
+			$this->data['tasks'][ $title ] = array();
+		}
+
+		$this->data['tasks'][ $title ][] = array(
 			'title' => $title,
 			'start' => $this->now(),
 			'end'   => 0,
@@ -137,9 +145,14 @@ abstract class Background {
 		$this->save();
 	}
 
-	protected function task_end( string $title ) {
-		$this->data['info']['done'] ++;
-		$this->data['tasks'][ $title ]['end'] = $this->now();
+	protected function task_end( string $title, bool $done = false ) {
+		if ( $done ) {
+			$this->data['info']['done'] ++;
+		}
+
+		$last_id = array_key_last( $this->data['tasks'][ $title ] );
+
+		$this->data['tasks'][ $title ][ $last_id ]['end'] = $this->now();
 
 		$this->save();
 	}
@@ -166,6 +179,14 @@ abstract class Background {
 
 	protected function has_more() : bool {
 		return $this->data['info']['done'] < $this->data['info']['total'];
+	}
+
+	protected function add_message( string $message, string $type = 'system' ) {
+		$this->data['messages'][] = array(
+			'time'    => $this->now(),
+			'message' => $message,
+			'type'    => $type,
+		);
 	}
 
 	abstract public function start();

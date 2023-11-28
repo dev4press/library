@@ -121,19 +121,19 @@ abstract class Settings {
 
 		if ( empty( $code ) ) {
 			$items = array(
-				'<strong>' . __( 'License Code is not set.' ) . '</strong>',
+				'<strong>' . __( 'License Code is not set.', 'd4plib' ) . '</strong>',
 			);
 		} else if ( $time == 0 || empty( $info ) ) {
 			$items = array(
-				'<strong>' . __( 'License Code has not been checked yet.' ) . '</strong>',
+				'<strong>' . __( 'License Code has not been checked yet.', 'd4plib' ) . '</strong>',
 			);
 		} else {
 			$items = array(
-				'<span>' . __( 'Last Checked' ) . '</span>: <strong>' . DateTime::instance()->mysql_date( true, $time ) . '</strong>',
+				'<span>' . __( 'Last Checked', 'd4plib' ) . '</span>: <strong>' . DateTime::instance()->mysql_date( true, $time ) . '</strong>',
 				'<hr/>',
-				'<span>' . __( 'Valid' ) . '</span>: <strong>' . ( $info['valid'] === 'yes' ? esc_html__( 'Yes' ) : esc_html__( 'No' ) ) . '</strong><br/>',
-				'<span>' . __( 'Status' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $info['status'], '-' ) ) . '</strong><br/>',
-				'<span>' . __( 'Domain' ) . '</span>: <strong>' . esc_html( $info['domain'] ) . '</strong>',
+				'<span>' . __( 'Valid', 'd4plib' ) . '</span>: <strong>' . ( $info['valid'] === 'yes' ? esc_html__( 'Yes', 'd4plib' ) : esc_html__( 'No', 'd4plib' ) ) . '</strong><br/>',
+				'<span>' . __( 'Status', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $info['status'], '-' ) ) . '</strong><br/>',
+				'<span>' . __( 'Domain', 'd4plib' ) . '</span>: <strong>' . esc_html( $info['domain'] ) . '</strong>',
 			);
 		}
 
@@ -142,12 +142,12 @@ abstract class Settings {
 				'name'     => __( 'Dev4Press License', 'd4plib' ),
 				'sections' => array(
 					array(
-						'label'    => __( "License Code" ),
+						'label'    => __( 'License Code', 'd4plib' ),
 						'name'     => '',
 						'class'    => '',
 						'settings' => array(
 							$this->i( 'license', 'code', __( 'Code', 'd4plib' ), __( 'You can find your license code in the Dev4Press Dashboard.', 'd4plib' ), Type::LICENSE )->more( array(
-								__( 'Make sure to enter the license code exactly as it is listed on the Dev4Press Dashboard.' ),
+								__( 'Make sure to enter the license code exactly as it is listed on the Dev4Press Dashboard.', 'd4plib' ),
 								__( 'License code is case sensitive, and all letters must be uppercase.', 'd4plib' ),
 							) )->buttons(
 								array(
@@ -163,11 +163,11 @@ abstract class Settings {
 						),
 					),
 					array(
-						'label'    => __( "License Information" ),
+						'label'    => __( 'License Information', 'd4plib' ),
 						'name'     => '',
 						'class'    => '',
 						'settings' => array(
-							$this->info( __( 'Status' ), join( '', $items ) ),
+							$this->info( __( 'Status', 'd4plib' ), join( '', $items ) ),
 						),
 					),
 				),

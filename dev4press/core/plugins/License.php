@@ -143,7 +143,7 @@ abstract class License {
 
 			return array(
 				'error'   => $code,
-				'message' => __( 'Nothing received' ),
+				'message' => __( 'Nothing received', 'd4plib' ),
 			);
 		}
 	}
@@ -157,7 +157,7 @@ abstract class License {
 
 			$result = array(
 				'error'   => 'code-invalid',
-				'message' => __( "Code is not in a valid format." ),
+				'message' => __( 'Code is not in a valid format.', 'd4plib' ),
 			);
 		} else {
 			$url = $this->validation_url( $code, $this->plugin()->plugin );
@@ -202,7 +202,7 @@ abstract class License {
 
 					$result = array(
 						'error'   => 'invalid-response',
-						'message' => __( "Validation server response is not valid." ),
+						'message' => __( 'Validation server response is not valid.', 'd4plib' ),
 					);
 				}
 			} else {
