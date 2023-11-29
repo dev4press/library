@@ -27,6 +27,8 @@
 
 namespace Dev4Press\v45\Core\Base;
 
+use DateTime;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -187,6 +189,38 @@ abstract class Background {
 			'message' => $message,
 			'type'    => $type,
 		);
+	}
+
+	public static function render_messages( array $messages, bool $reverse = false ) : string {
+		if ( $reverse ) {
+			$messages = array_reverse( $messages );
+		}
+
+		$_icons = array(
+			'info'   => 'ui-info',
+			'system' => 'ui-server',
+		);
+
+		$_labels = array(
+			'info'   => __( 'Process Information' ),
+			'system' => __( 'System Information' ),
+		);
+
+		$render = '<ul>';
+
+		foreach ( $messages as $message ) {
+			$now = DateTime::createFromFormat( 'U.u', $message['time'] );
+
+			$render .= '<li class="__message __message-' . esc_attr( $message['type'] ) . '">';
+			$render .= '<span class="__date-time">' . $now->format( "m-d-Y H:i:s" ) . '</span>';
+			$render .= '<span class="__icon" title="' . $_labels[ $message['type'] ] . '"><i class="d4p-icon d4p-' . $_icons[ $message['type'] ] . ' d4p-icon-fw"></i></span>';
+			$render .= '<span class="__content">' . esc_html( $message['message'] ) . '</span>';
+			$render .= '</li>';
+		}
+
+		$render .= '</ul>';
+
+		return $render;
 	}
 
 	abstract public function start();

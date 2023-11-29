@@ -711,3 +711,40 @@ details.d4p-section-details > div .form-table code {
     column-count: 1;
   }
 }
+
+.d4p-background-job-messages-wrapper .d4p-background-job-messages {
+  font-family: monospace;
+  font-size: 0.9em;
+  max-height: 415px;
+  overflow: auto;
+}
+.d4p-background-job-messages-wrapper .d4p-background-job-messages ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+.d4p-background-job-messages-wrapper .d4p-background-job-messages ul li.__message {
+  display: flex;
+  padding: 0.25em 0.5em;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: flex-start;
+}
+.d4p-background-job-messages-wrapper .d4p-background-job-messages ul li.__message > span {
+  display: block;
+}
+.d4p-background-job-messages-wrapper .d4p-background-job-messages ul li.__message .__icon {
+  background: #FFF;
+  border-radius: 5px;
+  padding: 0.1em 0.3em;
+}
+.d4p-background-job-messages-wrapper .d4p-background-job-messages ul li.__message.__message-info {
+  background-color: #D7FFF3;
+}
+.d4p-background-job-messages-wrapper .d4p-background-job-messages ul li.__message.__message-system {
+  background-color: #F8FFD2;
+}
+.d4p-background-job-messages-wrapper .d4p-background-job-loader {
+  padding: 1em 0 0;
+  display: none;
+}

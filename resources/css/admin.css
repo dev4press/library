@@ -503,6 +503,11 @@
   font-size: 15px;
   line-height: 1.7;
 }
+.d4p-group .d4p-group-inner h4.d4p-bar-title {
+  margin: 0 0 1em;
+  padding: 0.25em 1em;
+  background: #E4E4E4;
+}
 .d4p-group .d4p-group-inner p {
   font-size: 1em;
   line-height: 1.7;
@@ -570,7 +575,7 @@
 }
 .d4p-group .d4p-group-inner .d4p-group-elements > div {
   flex-basis: 50%;
-  padding: 0 1em;
+  padding: 0 1.5em;
   display: flex;
   justify-content: space-between;
 }
@@ -586,6 +591,11 @@
   flex-basis: 100%;
   border-top: 1px solid #DDD;
   padding-top: 0.75em;
+}
+@media screen and (max-width: 768px) {
+  .d4p-group .d4p-group-inner .d4p-group-elements > div {
+    flex-basis: 100%;
+  }
 }
 .d4p-group.d4p-group-with-toggle .d4p-group-inner .d4p-settings-off {
   display: none;

@@ -45,6 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @method bool is_async_upload()
  * @method bool is_wordpress()
  * @method bool is_classicpress()
+ * @method bool is_stable()
  */
 class WordPress {
 	private $_versions;
@@ -71,6 +72,7 @@ class WordPress {
 			'debug'        => defined( 'WP_DEBUG' ) && WP_DEBUG,
 			'script_debug' => defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG,
 			'async_upload' => defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action'], // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
+			'stable'       => strpos( $wp_version, '-' ) === false,
 		);
 
 		if ( WPR::is_classicpress() ) {
