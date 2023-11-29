@@ -3107,6 +3107,37 @@ a > .d4p-icon {
 .d4p-group:not(.d4p-group-with-settings) .d4p-group-inner > *:last-child {
   margin-bottom: 0;
 }
+.d4p-group.d4p-group-with-tabs .d4p-header-tabs {
+  margin: 0;
+  background: #E4E4E4;
+  color: #000;
+  border-bottom: 1px solid #BBB;
+  padding: 0.4em 1em 0.4em;
+  text-align: left;
+  line-height: 1.6;
+  font-size: 1.4em;
+  font-weight: 400;
+  border-radius: var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius) 0 0;
+  box-sizing: border-box;
+}
+.d4p-group.d4p-group-with-tabs .d4p-header-tabs div[role=tablist] button[role=tab] {
+  padding: 0.3em 1em 0.4em;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: var(--d4p-layout-main-border-radius);
+}
+.d4p-group.d4p-group-with-tabs .d4p-header-tabs div[role=tablist] button[role=tab][aria-selected=true] {
+  border: 1px solid var(--d4p-color-main-border);
+  background-color: #FFF;
+}
+.d4p-group.d4p-group-with-tabs .d4p-group-inner .wp-tab-panel {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+}
 
 .d4p-group-error {
   border-color: #D00;

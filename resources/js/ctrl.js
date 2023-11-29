@@ -11,15 +11,15 @@
                 ".d4p-ctrl-tabs button[role='tab']",
                 function(e) {
                     var tabs = $(this).parent(),
-                        content = tabs.parent(),
+                        content = tabs.closest(".d4p-ctrl-tabs"),
                         id = $(this).attr("id"),
                         tab = $(this).attr("aria-controls");
 
-                    $("button[role='tab']", tabs).attr("aria-selected", "false");
-                    $("button[role='tab']#" + id, tabs).attr("aria-selected", "true");
+                    $("button[role='tab']", tabs).attr("aria-selected", "false").removeClass("d4p-ctrl-tab-is-active");
+                    $("button[role='tab']#" + id, tabs).attr("aria-selected", "true").addClass("d4p-ctrl-tab-is-active");
 
-                    $("div[role='tabpanel']", content).attr("hidden", "hidden");
-                    $("div[role='tabpanel']#" + tab, content).removeAttr("hidden");
+                    $("div[role='tabpanel']", content).attr("hidden", "hidden").removeClass("d4p-ctrl-tabs-content-active");
+                    $("div[role='tabpanel']#" + tab, content).removeAttr("hidden").addClass("d4p-ctrl-tabs-content-active");
                 }
             );
 
