@@ -208,45 +208,6 @@
                         }
                     }
 
-                    .d4p-card-badge {
-                        border-radius: var(--d4p-layout-badge-border-radius);
-                        color: #FFF;
-                        padding: 1px 10px 3px 8px;
-                        line-height: 1.5;
-
-                        .d4p-icon {
-                            font-size: 90%;
-                            vertical-align: top;
-                            margin: 6px 6px 0 0;
-                        }
-
-                        &.d4p-badge-green,
-                        &.d4p-badge-ok {
-                            background: #090;
-                        }
-
-                        &.d4p-badge-red,
-                        &.d4p-badge-error {
-                            background: #900;
-                        }
-
-                        &.d4p-badge-purple,
-                        &.d4p-badge-maintenance {
-                            background: #813E99;
-                        }
-
-                        &.d4p-badge-blue,
-                        &.d4p-badge-upgrade {
-                            background: #0A63A5;
-                        }
-
-                        &.d4p-badge-orange,
-                        &.d4p-badge-notice {
-                            background: #FC0;
-                            color: #900;
-                        }
-                    }
-
                     .d4p-group-header {
                         border-bottom: 1px solid #DDD;
                         padding: 1em;
