@@ -4,6 +4,8 @@
 ### Version 4.5 - 2023.12.06
 
 * New: licensing support for settings and validation
+* New: `Background` abstract class for handling background jobs
+* New: `AJAX` and `CRON` expanded classes for the `Background` class
 * New: settings elements related to the license value
 * New: admin interface group box with support for tabs
 * Edit: big styling changes and improvements for the plugin interface

@@ -61,9 +61,21 @@ abstract class Background {
 	}
 
 	public function handler() {
+		wp_raise_memory_limit();
+
 		$this->prepare();
 		$this->get();
-		$this->worker();
+
+		if ( $this->data['status'] == 'working' ) {
+			$this->worker();
+		} else if ( $this->data['status'] == 'waiting' ) {
+			$this->init();
+		} else if ($this->data['status'] == 'idle') {
+			$this->status( 'waiting' );
+
+			$this->save();
+			$this->spawn();
+		}
 	}
 
 	public function get() {
@@ -74,57 +86,47 @@ abstract class Background {
 		}
 	}
 
-	protected function worker() {
-		wp_raise_memory_limit();
-
-		if ( $this->data['status'] == 'working' ) {
-			$this->add_message( __( 'Starting the thread worker processing.', 'd4plib' ) );
-
-			$this->save();
-			$result = true;
-
-			if ( $this->has_more() ) {
-				while ( $this->has_more() && $this->is_on_time() ) {
-					$result = $this->task();
-
-					if ( ! $result ) {
-						break;
-					}
-				}
-			}
-
-			if ( $result && $this->has_more() ) {
-				$this->data['info']['threads'] ++;
-				$this->save();
-
-				$this->add_message( __( 'Spawning new background processing thread.', 'd4plib' ) );
-
-				$this->spawn();
-			} else {
-				$this->status( 'done' );
-
-				$this->finish();
-				$this->save();
-			}
-		}
+	public function delete() {
+		delete_site_transient( $this->transient );
 	}
 
-	protected function init_data() : array {
-		return array(
-			'status'   => 'idle',
-			'data'     => $this->defaults(),
-			'messages' => array(),
-			'info'     => array(
-				'started' => 0,
-				'ended'   => 0,
-				'timer'   => 0,
-				'threads' => 0,
-				'total'   => 0,
-				'tasks'   => 0,
-				'done'    => 0,
-			),
-			'tasks'    => array(),
-		);
+	protected function init() {
+
+	}
+
+	protected function prepare() {
+
+	}
+
+	protected function worker() {
+		$this->add_message( __( 'Starting the thread worker processing.', 'd4plib' ) );
+
+		$this->save();
+		$result = true;
+
+		if ( $this->has_more() ) {
+			while ( $this->has_more() && $this->is_on_time() ) {
+				$result = $this->task();
+
+				if ( ! $result ) {
+					break;
+				}
+			}
+		}
+
+		if ( $result && $this->has_more() ) {
+			$this->data['info']['threads'] ++;
+			$this->save();
+
+			$this->add_message( __( 'Spawning new background processing thread.', 'd4plib' ) );
+
+			$this->spawn();
+		} else {
+			$this->status( 'done' );
+
+			$this->finish();
+			$this->save();
+		}
 	}
 
 	protected function status( string $status ) {
@@ -159,6 +161,24 @@ abstract class Background {
 		$this->save();
 	}
 
+	protected function init_data() : array {
+		return array(
+			'status'   => 'idle',
+			'data'     => $this->defaults(),
+			'messages' => array(),
+			'info'     => array(
+				'started' => 0,
+				'ended'   => 0,
+				'timer'   => 0,
+				'threads' => 0,
+				'total'   => 0,
+				'tasks'   => 0,
+				'done'    => 0,
+			),
+			'tasks'    => array(),
+		);
+	}
+
 	protected function save() {
 		set_site_transient( $this->transient, $this->data );
 	}
@@ -187,9 +207,15 @@ abstract class Background {
 		);
 	}
 
-	public function delete() {
-		delete_site_transient( $this->transient );
-	}
+	abstract public function start();
+
+	abstract public function finish();
+
+	abstract protected function spawn();
+
+	abstract protected function task() : bool;
+
+	abstract protected function defaults() : array;
 
 	public static function render_messages( array $messages, bool $reverse = false ) : string {
 		if ( $reverse ) {
@@ -226,16 +252,4 @@ abstract class Background {
 
 		return $render;
 	}
-
-	abstract public function start();
-
-	abstract public function finish();
-
-	abstract protected function spawn();
-
-	abstract protected function prepare();
-
-	abstract protected function task() : bool;
-
-	abstract protected function defaults() : array;
 }

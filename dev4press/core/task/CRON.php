@@ -43,10 +43,6 @@ abstract class CRON extends Background {
 		add_action( $this->job, array( $this, 'handler' ) );
 	}
 
-	protected function prepare() {
-
-	}
-
 	protected function spawn() {
 		wp_schedule_single_event( time() + $this->delay, $this->job );
 	}
