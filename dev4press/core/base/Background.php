@@ -40,13 +40,17 @@ abstract class Background {
 	protected $data = array();
 
 	protected $timer = 0;
-	protected $offset = 5;
+	protected $offset = 0;
 	protected $max = 0;
-	protected $delay = 5;
+	protected $delay = 10;
 
 	public function __construct() {
 		$this->max   = ini_get( 'max_execution_time' );
 		$this->timer = $this->now();
+
+		if ( $this->offset == 0 ) {
+			$this->offset = absint( $this->max * .6 );
+		}
 	}
 
 	/** @return static */
@@ -70,7 +74,7 @@ abstract class Background {
 			$this->worker();
 		} else if ( $this->data['status'] == 'waiting' ) {
 			$this->init();
-		} else if ($this->data['status'] == 'idle') {
+		} else if ( $this->data['status'] == 'idle' ) {
 			$this->status( 'waiting' );
 
 			$this->save();
@@ -115,10 +119,11 @@ abstract class Background {
 		}
 
 		if ( $result && $this->has_more() ) {
+			$this->add_message( sprintf( __( 'Processing thread finished after %s seconds.', 'd4plib' ), $this->elapsed() ) );
+			$this->add_message( __( 'Spawning new background processing thread.', 'd4plib' ) );
+
 			$this->data['info']['threads'] ++;
 			$this->save();
-
-			$this->add_message( __( 'Spawning new background processing thread.', 'd4plib' ) );
 
 			$this->spawn();
 		} else {
