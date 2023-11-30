@@ -191,7 +191,13 @@
   padding: 0.1em 0.3em;
 }
 .d4p-background-job-messages-wrapper .d4p-background-job-messages ul li.__message.__message-info {
-  background-color: #D7FFF3;
+  background-color: #EBFFEF;
+}
+.d4p-background-job-messages-wrapper .d4p-background-job-messages ul li.__message.__message-activity {
+  background-color: #DFE7FF;
+}
+.d4p-background-job-messages-wrapper .d4p-background-job-messages ul li.__message.__message-error {
+  background-color: #FFEBEB;
 }
 .d4p-background-job-messages-wrapper .d4p-background-job-messages ul li.__message.__message-system {
   background-color: #F8FFD2;

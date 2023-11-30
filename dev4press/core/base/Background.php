@@ -47,8 +47,6 @@ abstract class Background {
 	public function __construct() {
 		$this->max   = ini_get( 'max_execution_time' );
 		$this->timer = $this->now();
-
-		wp_raise_memory_limit();
 	}
 
 	/** @return static */
@@ -77,6 +75,8 @@ abstract class Background {
 	}
 
 	protected function worker() {
+		wp_raise_memory_limit();
+
 		if ( $this->data['status'] == 'working' ) {
 			$this->add_message( __( 'Starting the thread worker processing.', 'd4plib' ) );
 
@@ -99,7 +99,7 @@ abstract class Background {
 
 				$this->add_message( __( 'Spawning new background processing thread.', 'd4plib' ) );
 
-				// $this->spawn();
+				$this->spawn();
 			} else {
 				$this->status( 'done' );
 
@@ -163,10 +163,6 @@ abstract class Background {
 		set_site_transient( $this->transient, $this->data );
 	}
 
-	protected function delete() {
-		delete_site_transient( $this->transient );
-	}
-
 	protected function now() {
 		return microtime( true );
 	}
@@ -191,19 +187,27 @@ abstract class Background {
 		);
 	}
 
+	public function delete() {
+		delete_site_transient( $this->transient );
+	}
+
 	public static function render_messages( array $messages, bool $reverse = false ) : string {
 		if ( $reverse ) {
 			$messages = array_reverse( $messages );
 		}
 
 		$_icons = array(
-			'info'   => 'ui-info',
-			'system' => 'ui-server',
+			'info'     => 'ui-info',
+			'system'   => 'ui-server',
+			'activity' => 'ui-play',
+			'error'    => 'ui-warning',
 		);
 
 		$_labels = array(
-			'info'   => __( 'Process Information' ),
-			'system' => __( 'System Information' ),
+			'info'     => __( 'Process', 'd4plib' ),
+			'system'   => __( 'System', 'd4plib' ),
+			'activity' => __( 'Activity', 'd4plib' ),
+			'error'    => __( 'Error', 'd4plib' ),
 		);
 
 		$render = '<ul>';

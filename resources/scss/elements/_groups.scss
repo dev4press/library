@@ -83,7 +83,8 @@
 
         h4.d4p-bar-title {
             margin: 0 0 1em;
-            padding: .25em 1em;
+            padding: .2em .8em;
+            font-size: 1.2em;
             background: #{$color-header-background};
         }
 
@@ -169,7 +170,7 @@
             display: flex;
             flex-wrap: wrap;
             row-gap: .75em;
-            margin: 0 -1.5em;
+            margin: 0 -1.5em 1.5em;
 
             > div {
                 flex-basis: 50%;
@@ -197,6 +198,10 @@
                 @media screen and (max-width: 768px) {
                     flex-basis: 100%;
                 }
+            }
+
+            &:last-child {
+                margin-bottom: 0;
             }
         }
     }

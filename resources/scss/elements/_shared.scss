@@ -130,7 +130,15 @@
                 }
 
                 &.__message-info {
-                    background-color: #D7FFF3;
+                    background-color: #EBFFEF;
+                }
+
+                &.__message-activity {
+                    background-color: #DFE7FF;
+                }
+
+                &.__message-error {
+                    background-color: #FFEBEB;
                 }
 
                 &.__message-system {

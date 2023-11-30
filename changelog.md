@@ -1,9 +1,12 @@
 # Dev4Press Library
 ## Changelog
 
-### Version 4.5 - 2023.12.04
+### Version 4.5 - 2023.12.06
 
 * New: licensing support for settings and validation
+* New: settings elements related to the license value
+* New: admin interface group box with support for tabs
+* Edit: big styling changes and improvements for the plugin interface
 * Edit: various changes to several plugin core classes
 * Edit: improved `Enqueue` classes prefixes to match a library version
 

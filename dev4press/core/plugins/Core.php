@@ -145,7 +145,7 @@ abstract class Core {
 	}
 
 	public function cron_controls() {
-		
+
 	}
 
 	public function license_control() {

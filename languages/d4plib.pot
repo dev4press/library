@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 11/28/2023 12:39:43 PM\n"
+"POT-Creation-Date: 11/30/2023 01:19:35 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,12 +93,29 @@ msgstr ""
 msgid "Click Here"
 msgstr ""
 
-#: dev4press/core/base/Background.php:79
+#: dev4press/core/base/Background.php:81
 msgid "Starting the thread worker processing."
 msgstr ""
 
-#: dev4press/core/base/Background.php:98
+#: dev4press/core/base/Background.php:100
 msgid "Spawning new background processing thread."
+msgstr ""
+
+#: dev4press/core/base/Background.php:207
+msgid "Process"
+msgstr ""
+
+#: dev4press/core/base/Background.php:208
+#: dev4press/core/ui/admin/PanelAbout.php:46
+msgid "System"
+msgstr ""
+
+#: dev4press/core/base/Background.php:209
+msgid "Activity"
+msgstr ""
+
+#: dev4press/core/base/Background.php:210
+msgid "Error"
 msgstr ""
 
 #: dev4press/core/helpers/Data.php:37
@@ -807,10 +824,6 @@ msgstr ""
 
 #: dev4press/core/ui/admin/PanelAbout.php:42
 msgid "History"
-msgstr ""
-
-#: dev4press/core/ui/admin/PanelAbout.php:46
-msgid "System"
 msgstr ""
 
 #: dev4press/core/ui/admin/PanelAbout.php:50
