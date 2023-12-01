@@ -75,6 +75,9 @@ abstract class Background {
 		} else if ( $this->data['status'] == 'waiting' ) {
 			$this->init();
 		} else if ( $this->data['status'] == 'idle' ) {
+			$this->data['info']['started'] = $this->now();
+
+			$this->add_message( __( 'Getting ready to start.', 'd4plib' ) );
 			$this->status( 'waiting' );
 
 			$this->save();
@@ -127,9 +130,16 @@ abstract class Background {
 
 			$this->spawn();
 		} else {
-			$this->status( 'done' );
+			$threads = $this->data['info']['threads'];
+
+			$this->data['info']['ended'] = $this->now();
+			$this->data['info']['timer'] = $this->data['info']['ended'] - $this->data['info']['started'];
 
 			$this->finish();
+
+			$this->add_message( sprintf( _n( 'Process finished using %s thread.', 'Process finished using %s threads.', $threads, 'd4plib' ), $threads ) );
+			$this->status( 'done' );
+
 			$this->save();
 		}
 	}
@@ -231,13 +241,15 @@ abstract class Background {
 			'info'     => 'ui-info',
 			'system'   => 'ui-server',
 			'activity' => 'ui-play',
-			'error'    => 'ui-warning',
+			'warning'  => 'ui-warning',
+			'error'    => 'ui-close-square',
 		);
 
 		$_labels = array(
 			'info'     => __( 'Process', 'd4plib' ),
 			'system'   => __( 'System', 'd4plib' ),
 			'activity' => __( 'Activity', 'd4plib' ),
+			'warning'  => __( 'Warning', 'd4plib' ),
 			'error'    => __( 'Error', 'd4plib' ),
 		);
 

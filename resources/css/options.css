@@ -744,6 +744,9 @@ details.d4p-section-details > div .form-table code {
 .d4p-background-job-messages-wrapper .d4p-background-job-messages ul li.__message.__message-activity {
   background-color: #DFE7FF;
 }
+.d4p-background-job-messages-wrapper .d4p-background-job-messages ul li.__message.__message-warning {
+  background-color: #FFF1DD;
+}
 .d4p-background-job-messages-wrapper .d4p-background-job-messages ul li.__message.__message-error {
   background-color: #FFEBEB;
 }
