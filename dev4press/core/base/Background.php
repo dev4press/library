@@ -122,7 +122,7 @@ abstract class Background {
 		}
 
 		if ( $result && $this->has_more() ) {
-			$this->add_message( sprintf( __( 'Processing thread finished after %s seconds.', 'd4plib' ), $this->elapsed() ) );
+			$this->add_message( sprintf( __( 'Processing thread finished after %s seconds.', 'd4plib' ), number_format( $this->elapsed(), 2 ) ) );
 			$this->add_message( __( 'Spawning new background processing thread.', 'd4plib' ) );
 
 			$this->data['info']['threads'] ++;
