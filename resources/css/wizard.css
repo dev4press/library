@@ -216,7 +216,7 @@
   padding: 0;
   border-top: 0;
 }
-.d4p-wrap-wizard .d4p-setup-wizard .d4p-wizard-panel .d4p-wizard-panel-inner .d4p-wizard-panel-content .d4p-wizard-option-block p {
+.d4p-wrap-wizard .d4p-setup-wizard .d4p-wizard-panel .d4p-wizard-panel-inner .d4p-wizard-panel-content .d4p-wizard-option-block > p {
   margin: 0 0 12px;
   font-weight: bold;
   line-height: 1.7;

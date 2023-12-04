@@ -3,12 +3,18 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 11/30/2023 01:19:35 PM\n"
+"POT-Creation-Date: 12/04/2023 11:01:49 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GD i18n 2.8; www.dev4press.com\n"
+
+#: dev4press/core/base/Background.php:140
+msgid "Process finished using %s thread."
+msgid_plural "Process finished using %s threads."
+msgstr[0] ""
+msgstr[1] ""
 
 #: dev4press/core/ui/Grid.php:233
 msgid "%s item"
@@ -93,28 +99,40 @@ msgstr ""
 msgid "Click Here"
 msgstr ""
 
-#: dev4press/core/base/Background.php:81
+#: dev4press/core/base/Background.php:80
+msgid "Getting ready to start."
+msgstr ""
+
+#: dev4press/core/base/Background.php:109
 msgid "Starting the thread worker processing."
 msgstr ""
 
-#: dev4press/core/base/Background.php:100
+#: dev4press/core/base/Background.php:125
+msgid "Processing thread finished after %s seconds."
+msgstr ""
+
+#: dev4press/core/base/Background.php:126
 msgid "Spawning new background processing thread."
 msgstr ""
 
-#: dev4press/core/base/Background.php:207
+#: dev4press/core/base/Background.php:249
 msgid "Process"
 msgstr ""
 
-#: dev4press/core/base/Background.php:208
+#: dev4press/core/base/Background.php:250
 #: dev4press/core/ui/admin/PanelAbout.php:46
 msgid "System"
 msgstr ""
 
-#: dev4press/core/base/Background.php:209
+#: dev4press/core/base/Background.php:251
 msgid "Activity"
 msgstr ""
 
-#: dev4press/core/base/Background.php:210
+#: dev4press/core/base/Background.php:252
+msgid "Warning"
+msgstr ""
+
+#: dev4press/core/base/Background.php:253
 msgid "Error"
 msgstr ""
 
@@ -585,7 +603,7 @@ msgstr ""
 
 #: dev4press/core/options/Features.php:141
 #: dev4press/core/options/Settings.php:135
-#: dev4press/core/options/Settings.php:170
+#: dev4press/core/options/Settings.php:171
 #: forms/content-about-info.php:31
 msgid "Status"
 msgstr ""
@@ -715,21 +733,25 @@ msgstr ""
 msgid "License code is case sensitive, and all letters must be uppercase."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:159
+#: dev4press/core/options/Settings.php:152
+msgid "License code is valid even after the subscription period has expired, as long it was not refunded or terminated."
+msgstr ""
+
+#: dev4press/core/options/Settings.php:160
 msgid "Dev4Press Dashboard Licenses"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:166
+#: dev4press/core/options/Settings.php:167
 msgid "License Information"
 msgstr ""
 
 #: dev4press/core/options/Settings.php:134
-#: dev4press/core/plugins/Wizard.php:162
+#: dev4press/core/plugins/Wizard.php:154
 msgid "Yes"
 msgstr ""
 
 #: dev4press/core/options/Settings.php:134
-#: dev4press/core/plugins/Wizard.php:163
+#: dev4press/core/plugins/Wizard.php:155
 msgid "No"
 msgstr ""
 
@@ -1518,7 +1540,7 @@ msgstr ""
 msgid "Search..."
 msgstr ""
 
-#: forms/content-features-index.php:120
+#: forms/content-features-index.php:122
 msgid "This is a Beta feature, and it can be unstable!"
 msgstr ""
 
@@ -1526,15 +1548,11 @@ msgstr ""
 msgid "This feature can't be enabled because of the missing prerequisites."
 msgstr ""
 
-#: forms/content-features-index.php:95
-msgid "This feature can't be enabled at this time."
-msgstr ""
-
-#: forms/content-features-index.php:107
+#: forms/content-features-index.php:109
 msgid "This feature has no settings"
 msgstr ""
 
-#: forms/content-features-index.php:115
+#: forms/content-features-index.php:117
 msgid "This feature adds a new panel"
 msgstr ""
 
@@ -1546,7 +1564,11 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: forms/content-features-index.php:103
+#: forms/content-features-index.php:95
+msgid "This feature can't be enabled at this time."
+msgstr ""
+
+#: forms/content-features-index.php:105
 msgid "Settings for '%s'"
 msgstr ""
 
