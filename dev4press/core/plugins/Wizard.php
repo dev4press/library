@@ -211,6 +211,10 @@ abstract class Wizard {
 		Elements::instance()->input( $value, $args );
 	}
 
+	protected function item_saved( string $panel, string $key, $value ) {
+
+	}
+
 	protected function postback_default( string $panel, $data ) : bool {
 		$map    = $this->default[ $panel ] ?? array();
 		$groups = array();
@@ -282,6 +286,8 @@ abstract class Wizard {
 					}
 				}
 			}
+
+			$this->item_saved( $panel, $key, $value );
 		}
 
 		foreach ( $groups as $group ) {

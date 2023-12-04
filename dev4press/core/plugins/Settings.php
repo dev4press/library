@@ -358,7 +358,7 @@ abstract class Settings {
 		return 'v' . $this->i()->version . '_b' . $this->i()->build;
 	}
 
-	public function reset_feature( $name ) : bool {
+	public function reset_feature( string $name, bool $save = true ) : bool {
 		$defaults = $this->feature_get( $name, true );
 
 		if ( ! empty( $defaults ) ) {
@@ -366,7 +366,9 @@ abstract class Settings {
 				$this->set( $name . '__' . $key, $value, 'features' );
 			}
 
-			$this->save( 'features' );
+			if ( $save ) {
+				$this->save( 'features' );
+			}
 
 			return true;
 		}
