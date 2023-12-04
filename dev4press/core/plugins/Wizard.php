@@ -147,14 +147,6 @@ abstract class Wizard {
 		<?php
 	}
 
-	public function render_checkboxes_list( string $panel, string $name, array $value = array(), $list = array() ) {
-		Elements::instance()->checkboxes( $list, array(
-			'selected' => $value,
-			'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
-			'id'       => $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name,
-		) );
-	}
-
 	public function render_yes_no( string $panel, string $name, string $value = 'yes', array $labels = array() ) {
 		$_name = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
 		$_id   = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
@@ -176,12 +168,47 @@ abstract class Wizard {
 		<?php
 	}
 
-	public function render_select( string $panel, string $name, string $value = '', $list = array() ) {
+	public function render_checkboxes_list( string $panel, string $name, array $value = array(), array $list = array() ) {
+		Elements::instance()->checkboxes( $list, array(
+			'selected' => $value,
+			'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
+			'id'       => $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name,
+		) );
+	}
+
+	public function render_select( string $panel, string $name, string $value = '', array $list = array() ) {
 		Elements::instance()->select( $list, array(
 			'selected' => $value,
 			'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
 			'id'       => $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name,
 		) );
+	}
+
+	public function render_input( string $panel, string $name, string $value, array $args = array() ) {
+		$args['class'] = $args['class'] ?? 'widefat';
+		$args['name']  = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
+		$args['id']    = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
+
+		Elements::instance()->input( $value, $args );
+	}
+
+	public function render_hidden( string $panel, string $name, string $value = 'no' ) {
+		$_name = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
+
+		?>
+
+        <input type="hidden" name="<?php echo esc_attr( $_name ); ?>" value="<?php echo esc_attr( $value ); ?>"/>
+
+		<?php
+	}
+
+	public function render_license( string $panel, string $name, string $value, array $args = array() ) {
+		$args['class']   = $args['class'] ?? 'widefat';
+		$args['name']    = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
+		$args['id']      = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
+		$args['pattern'] = '^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$';
+
+		Elements::instance()->input( $value, $args );
 	}
 
 	protected function postback_default( string $panel, $data ) : bool {
@@ -210,11 +237,11 @@ abstract class Wizard {
 						$this->a()->settings()->set( $k, $set, $group );
 					}
 				}
-			} else if ( $type == 'select' ) {
+			} else if ( $type == 'select' || $type == 'input' ) {
 				$value = $data[ $key ] ?? '';
 				$value = wp_unslash( $value );
 				$value = sanitize_text_field( $value );
-				$value = in_array( $value, $this->$this->allowed[ $panel ][ $key ] ) ? $value : '';
+				$value = isset( $this->allowed[ $panel ][ $key ] ) ? ( in_array( $value, $this->allowed[ $panel ][ $key ] ) ? $value : '' ) : $value;
 
 				$this->storage[ $panel ][ $key ] = $value;
 

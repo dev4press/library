@@ -149,12 +149,13 @@ abstract class Settings {
 							$this->i( 'license', 'code', __( 'Code', 'd4plib' ), __( 'You can find your license code in the Dev4Press Dashboard.', 'd4plib' ), Type::LICENSE )->more( array(
 								__( 'Make sure to enter the license code exactly as it is listed on the Dev4Press Dashboard.', 'd4plib' ),
 								__( 'License code is case sensitive, and all letters must be uppercase.', 'd4plib' ),
+								__( 'License code is valid even after the subscription period has expired, as long it was not refunded or terminated.', 'd4plib' ),
 							) )->buttons(
 								array(
 									array(
 										'type'   => 'a',
 										'target' => '_blank',
-										'link'   => 'https://https://my.dev4press.com/licenses/',
+										'link'   => 'https://my.dev4press.com/products/',
 										'class'  => 'button-secondary',
 										'title'  => __( 'Dev4Press Dashboard Licenses', 'd4plib' ),
 									),

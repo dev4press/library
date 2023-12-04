@@ -227,6 +227,12 @@
   margin: 0 0 10px;
   line-height: 1.7;
 }
+.d4p-wrap-wizard .d4p-setup-wizard .d4p-wizard-panel .d4p-wizard-panel-inner .d4p-wizard-panel-content .d4p-wizard-option-block ul {
+  list-style: disc;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 10px 0 10px 20px;
+}
 .d4p-wrap-wizard .d4p-setup-wizard .d4p-wizard-panel .d4p-wizard-panel-inner .d4p-wizard-panel-content .d4p-wizard-option-block > div {
   padding: 6px 0 6px 12px;
   border-left: 6px solid #DDD;
@@ -245,7 +251,7 @@
   display: flex;
   flex-direction: column;
 }
-.d4p-wrap-wizard .d4p-setup-wizard .d4p-wizard-panel .d4p-wizard-panel-inner .d4p-wizard-panel-content .d4p-wizard-option-block.d4p-wizard-block-select span label {
+.d4p-wrap-wizard .d4p-setup-wizard .d4p-wizard-panel .d4p-wizard-panel-inner .d4p-wizard-panel-content .d4p-wizard-option-block.d4p-wizard-block-input span label, .d4p-wrap-wizard .d4p-setup-wizard .d4p-wizard-panel .d4p-wizard-panel-inner .d4p-wizard-panel-content .d4p-wizard-option-block.d4p-wizard-block-select span label {
   display: block;
   margin-bottom: 4px;
 }

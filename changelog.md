@@ -4,13 +4,14 @@
 ### Version 4.5 - 2023.12.06
 
 * New: licensing support for settings and validation
+* New: `Enqueue` classes prefixes now match the library version
 * New: `Background` abstract class for handling background jobs
 * New: `AJAX` and `CRON` expanded classes for the `Background` class
 * New: settings elements related to the license value
 * New: admin interface group box with support for tabs
+* Edit: several improvements to the main `Wizard` class and styling
 * Edit: big styling changes and improvements for the plugin interface
 * Edit: various changes to several plugin core classes
-* Edit: improved `Enqueue` classes prefixes to match a library version
 
 ### Version 4.4 - 2023.11.06
 * New: render Changelog and History About panels from markdown

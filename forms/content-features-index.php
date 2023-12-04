@@ -91,8 +91,10 @@ $_scopes = array(
 						<?php } ?>
                     </div>
                     <div class="_settings">
-						<?php if ( $obj['hidden'] ) { ?>
-                            <span title="<?php esc_html_e( 'This feature can\'t be enabled at this time.', 'd4plib' ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
+						<?php if ( $obj['hidden'] ) {
+							$_reason = $obj['hidden_reason'] ?? __( 'This feature can\'t be enabled at this time.', 'd4plib' );
+							?>
+                            <span title="<?php echo esc_html( $_reason ); ?>"><i class="d4p-icon d4p-ui-cog-slash"></i></span>
 							<?php
 						} else {
 							if ( $obj['settings'] ) {

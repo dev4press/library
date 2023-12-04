@@ -15,6 +15,14 @@ abstract class PanelWizard extends Panel {
 		$this->init_default_subpanels();
 	}
 
+	protected function init_default_subpanels() {
+		$this->subpanels = array();
+
+		foreach ( $this->a()->wizard()->panels as $panel => $obj ) {
+			$this->subpanels[ $panel ] = array( 'title' => $obj['label'] );
+		}
+	}
+
 	public function show() {
 		$this->load( 'content-wizard.php' );
 	}

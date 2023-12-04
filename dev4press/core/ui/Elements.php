@@ -425,6 +425,10 @@ class Elements {
 			$attributes[] = 'placeholder="' . esc_attr( $args['placeholder'] ) . '"';
 		}
 
+		if ( ! empty( $args['pattern'] ) ) {
+			$attributes[] = 'pattern="' . esc_attr( $args['pattern'] ) . '"';
+		}
+
 		if ( $args['readonly'] ) {
 			$attributes[] = 'readonly';
 		}

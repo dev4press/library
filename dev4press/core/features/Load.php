@@ -193,6 +193,10 @@ abstract class Load {
 		return (bool) $this->attribute( 'is_early', $feature );
 	}
 
+	public function hidden_reason( string $feature ) : string {
+		return (string) $this->attribute( 'hidden_reason', $feature );
+	}
+
 	public function has_settings( string $feature ) : bool {
 		return (bool) $this->attribute( 'has_settings', $feature );
 	}
@@ -216,16 +220,17 @@ abstract class Load {
 	public function panels( array $panels ) : array {
 		foreach ( $this->_list as $feature => $obj ) {
 			$f = array(
-				'title'     => $obj['label'],
-				'icon'      => $obj['icon'],
-				'info'      => $obj['description'],
-				'scope'     => $this->get_scope( $feature ),
-				'settings'  => $this->has_settings( $feature ),
-				'panel'     => $this->has_menu( $feature ),
-				'beta'      => $this->is_beta( $feature ),
-				'hidden'    => $this->is_hidden( $feature ),
-				'active'    => $this->is_enabled( $feature ),
-				'always_on' => $this->is_always_on( $feature ),
+				'title'         => $obj['label'],
+				'icon'          => $obj['icon'],
+				'info'          => $obj['description'],
+				'scope'         => $this->get_scope( $feature ),
+				'settings'      => $this->has_settings( $feature ),
+				'panel'         => $this->has_menu( $feature ),
+				'beta'          => $this->is_beta( $feature ),
+				'hidden'        => $this->is_hidden( $feature ),
+				'active'        => $this->is_enabled( $feature ),
+				'always_on'     => $this->is_always_on( $feature ),
+				'hidden_reason' => $this->hidden_reason( $feature ),
 			);
 
 			$include = true;
