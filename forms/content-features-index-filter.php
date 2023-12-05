@@ -12,6 +12,8 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
 	$buttons = panel()->get_filter_buttons();
 }
 
+$_search = isset( $_GET['search'] ) ? sanitize_text_field( $_GET['search'] ) : '';
+
 ?>
 
 <div class="d4p-features-filter">
@@ -26,6 +28,6 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
 		?>
     </div>
     <div class="d4p-features-filter-search">
-        <input aria-label="<?php esc_html_e( 'Search features by keyword', 'd4plib' ); ?>" placeholder="<?php esc_html_e( 'Search...', 'd4plib' ); ?>" type="text"/><i class="d4p-icon d4p-ui-clear"></i>
+        <input aria-label="<?php esc_html_e( 'Search features by keyword', 'd4plib' ); ?>" value="<?php echo esc_attr( $_search ); ?>" placeholder="<?php esc_html_e( 'Search...', 'd4plib' ); ?>" type="text"/><i class="d4p-icon d4p-ui-clear"></i>
     </div>
 </div>

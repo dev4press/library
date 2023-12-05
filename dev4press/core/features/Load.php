@@ -101,6 +101,36 @@ abstract class Load {
 		}
 	}
 
+	public function filter_by_attributes( array $attr = array() ) : array {
+		$list = array();
+
+		foreach ( $this->_list as $code => $feature ) {
+			$add = true;
+
+			foreach ( $attr as $name => $value ) {
+				if ( $name == 'is_enabled' ) {
+					$v = $this->is_enabled( $code );
+				} else if ( $name == 'is_active' ) {
+					$v = $this->is_active( $code );
+				} else {
+					$v = $feature['attributes'][ $name ] ?? null;
+				}
+
+				$add = ! is_null( $v ) && $v === $value;
+
+				if ( ! $add ) {
+					break;
+				}
+			}
+
+			if ( $add ) {
+				$list[ $code ] = $feature;
+			}
+		}
+
+		return $list;
+	}
+
 	public function attribute( string $attr, string $feature, $default = null ) {
 		if ( $attr == 'get_scope' ) {
 			$attr = 'scope';

@@ -1,7 +1,7 @@
 # Dev4Press Library
 ## Changelog
 
-### Version 4.5 - 2023.12.06
+### Version 4.5 - 2023.12.07
 
 * New: licensing support for settings and validation
 * New: `Enqueue` classes prefixes now match the library version
@@ -12,6 +12,7 @@
 * Edit: several improvements to the main `Wizard` class and styling
 * Edit: big styling changes and improvements for the plugin interface
 * Edit: various changes to several plugin core classes
+* Edit: improvements to the `Features` panel filtering
 
 ### Version 4.4 - 2023.11.06
 * New: render Changelog and History About panels from markdown

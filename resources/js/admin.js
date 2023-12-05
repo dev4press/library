@@ -169,6 +169,7 @@
                     );
 
                     wp.dev4press.admin.panels.features.counters();
+                    wp.dev4press.admin.panels.features.filter();
                 },
                 filter: function() {
                     var button = $(".d4p-features-filter-buttons button.is-selected"),
