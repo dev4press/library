@@ -75,6 +75,10 @@ abstract class Load {
 		return $this->is_network_enabled() && is_multisite();
 	}
 
+	public function feature( string $feature ) {
+		return $this->_list[ $feature ] ?? null;
+	}
+
 	public function list() : array {
 		return array_keys( $this->_list );
 	}

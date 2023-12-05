@@ -28,6 +28,7 @@
 namespace Dev4Press\v45\Core\Base;
 
 use DateTime;
+use Dev4Press\v45\Core\Helpers\IP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -76,6 +77,8 @@ abstract class Background {
 			$this->init();
 		} else if ( $this->data['status'] == 'idle' ) {
 			$this->data['info']['started'] = $this->now();
+			$this->data['info']['user_id'] = get_current_user_id();
+			$this->data['info']['ip']      = IP::visitor();
 
 			$this->add_message( __( 'Getting ready to start.', 'd4plib' ) );
 			$this->status( 'waiting' );
@@ -189,6 +192,8 @@ abstract class Background {
 				'total'   => 0,
 				'tasks'   => 0,
 				'done'    => 0,
+				'user_id' => 0,
+				'ip'      => '',
 			),
 			'tasks'    => array(),
 		);
