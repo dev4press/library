@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Enqueue {
 	private static $_current_instance = null;
 
-	private $_enqueue_prefix = 'd4plib-v45';
+	private $_enqueue_prefix = 'd4plib-v45-';
 	private $_url;
 	private $_rtl;
 	private $_debug;
