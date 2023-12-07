@@ -74,6 +74,10 @@ abstract class License {
 				return true;
 			}
 
+			if ( $record == 'server-problem' ) {
+				return ( $info['valid'] ?? 'no' ) == 'yes';
+			}
+
 			if ( $record == 'valid' && ( $info['valid'] ?? 'no' ) == 'yes' ) {
 				return true;
 			}
@@ -151,11 +155,17 @@ abstract class License {
 	public function validate() {
 		$code   = $this->get_license_code();
 		$record = 'valid';
+		$result = array();
+		$last   = array();
 
 		if ( empty( $code ) ) {
 			$record = 'invalid';
-
 			$result = array(
+				'status' => 'invalid',
+				'valid'  => 'no',
+				'domain' => 'no',
+			);
+			$last   = array(
 				'error'   => 'code-invalid',
 				'message' => __( 'Code is not in a valid format.', 'd4plib' ),
 			);
@@ -171,7 +181,6 @@ abstract class License {
 			);
 
 			$response = wp_remote_get( $url, $options );
-			$result   = array();
 			$message  = '';
 
 			if ( ! is_wp_error( $response ) ) {
@@ -200,7 +209,7 @@ abstract class License {
 				if ( empty( $result ) ) {
 					$record = 'server-problem';
 
-					$result = array(
+					$last = array(
 						'error'   => 'invalid-response',
 						'message' => __( 'Validation server response is not valid.', 'd4plib' ),
 					);
@@ -213,16 +222,19 @@ abstract class License {
 			}
 
 			if ( empty( $result ) ) {
-				$result = array(
+				$last = array(
 					'error'   => $error,
 					'message' => $message,
 				);
+
+				$result = $this->plugin()->s()->raw_get( 'info', 'license' );
 			}
 		}
 
 		$this->plugin()->s()->bulk( array(
 			'info'   => $result,
 			'check'  => time(),
+			'last'   => $last,
 			'record' => $record,
 		), 'license', true, true );
 	}

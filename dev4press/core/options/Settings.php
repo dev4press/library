@@ -118,6 +118,7 @@ abstract class Settings {
 		$code = $this->value( 'code', 'license' );
 		$info = $this->value( 'info', 'license' );
 		$time = $this->value( 'check', 'license' );
+		$last = $this->value( 'last', 'license' );
 
 		if ( empty( $code ) ) {
 			$items = array(
@@ -128,16 +129,20 @@ abstract class Settings {
 				'<strong>' . __( 'License Code has not been checked yet.', 'd4plib' ) . '</strong>',
 			);
 		} else {
+			$valid  = $info['valid'] ?? '';
+			$status = $info['status'] ?? '';
+			$domain = $info['domain'] ?? '';
+
 			$items = array(
 				'<span>' . __( 'Last Checked', 'd4plib' ) . '</span>: <strong>' . DateTime::instance()->mysql_date( true, $time ) . '</strong>',
 				'<hr/>',
-				'<span>' . __( 'Valid', 'd4plib' ) . '</span>: <strong>' . ( $info['valid'] === 'yes' ? esc_html__( 'Yes', 'd4plib' ) : esc_html__( 'No', 'd4plib' ) ) . '</strong><br/>',
-				'<span>' . __( 'Status', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $info['status'], '-' ) ) . '</strong><br/>',
-				'<span>' . __( 'Domain', 'd4plib' ) . '</span>: <strong>' . esc_html( $info['domain'] ) . '</strong>',
+				'<span>' . __( 'Valid', 'd4plib' ) . '</span>: <strong>' . ( $valid === 'yes' ? esc_html__( 'Yes', 'd4plib' ) : esc_html__( 'No', 'd4plib' ) ) . '</strong><br/>',
+				'<span>' . __( 'Status', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $status, '-' ) ) . '</strong><br/>',
+				'<span>' . __( 'Domain', 'd4plib' ) . '</span>: <strong>' . esc_html( $domain ) . '</strong>',
 			);
 		}
 
-		return array(
+		$settings = array(
 			'license-code' => array(
 				'name'     => __( 'Dev4Press License', 'd4plib' ),
 				'sections' => array(
@@ -174,6 +179,22 @@ abstract class Settings {
 				),
 			),
 		);
+
+		if (!empty($last)) {
+			$error = $last['error'] ?? '';
+			$message = $last['message'] ?? '';
+
+			$settings['license-code']['sections'][] = array(
+				'label'    => __( 'Verification Error', 'd4plib' ),
+				'name'     => '',
+				'class'    => '',
+				'settings' => array(
+					$this->info( __( 'Status', 'd4plib' ), '<strong>' . $error . '</strong><br/>'.$message ),
+				),
+			);
+		}
+
+		return $settings;
 	}
 
 	abstract protected function init();

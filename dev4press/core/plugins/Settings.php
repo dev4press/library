@@ -58,6 +58,7 @@ abstract class Settings {
 			$this->settings['license'] = array(
 				'code'   => '',
 				'info'   => array(),
+				'last'   => array(),
 				'check'  => 0,
 				'record' => 'empty',
 			);
