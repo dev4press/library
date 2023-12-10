@@ -203,6 +203,11 @@
             &:last-child {
                 margin-bottom: 0;
             }
+
+            &.d4p-elements-next {
+                border-top: 1px solid #DDD;
+                padding-top: 1em;
+            }
         }
     }
 
