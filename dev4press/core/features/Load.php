@@ -257,6 +257,7 @@ abstract class Load {
 				'title'         => $obj['label'],
 				'icon'          => $obj['icon'],
 				'info'          => $obj['description'],
+				'kb'            => $obj['kb'] ?? array(),
 				'scope'         => $this->get_scope( $feature ),
 				'settings'      => $this->has_settings( $feature ),
 				'panel'         => $this->has_menu( $feature ),

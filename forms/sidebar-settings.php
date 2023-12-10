@@ -24,7 +24,24 @@ $_subpanels = panel()->subpanels();
 
 			?>
             <div class="_info">
-				<?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
+		        <?php
+
+		        echo esc_html( $_subpanels[ $_subpanel ]['info'] );
+
+		        if ( isset( $_subpanels[ $_subpanel ]['kb'] ) ) {
+			        $url   = $_subpanels[ $_subpanel ]['kb']['url'];
+			        $label = $_subpanels[ $_subpanel ]['kb']['label'] ?? __( 'Knowledge Base', 'd4plib' );
+
+			        ?>
+
+                    <div class="_kb">
+                        <a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $label ); ?></a>
+                    </div>
+
+			        <?php
+		        }
+
+		        ?>
             </div>
         </div>
         <div class="d4p-panel-buttons">
