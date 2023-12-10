@@ -75,10 +75,10 @@ abstract class License {
 			}
 
 			if ( $record == 'server-problem' ) {
-				return ( $info['valid'] ?? 'no' ) == 'yes';
+				return ( $info[ 'valid' ] ?? 'no' ) == 'yes';
 			}
 
-			if ( $record == 'valid' && ( $info['valid'] ?? 'no' ) == 'yes' ) {
+			if ( $record == 'valid' && ( $info[ 'valid' ] ?? 'no' ) == 'yes' ) {
 				return true;
 			}
 		}
@@ -98,6 +98,15 @@ abstract class License {
 		return $code;
 	}
 
+	public function get( $api, $version, $format = 'json' ) : array {
+		$code = $this->get_license_code();
+		$url  = $this->api_url( $api, $version, $code );
+
+		$response = wp_remote_get( $url );
+
+		return $this->process_response( $response, $format );
+	}
+
 	public function post( $api, $version, $data, $format = 'json' ) : array {
 		$code = $this->get_license_code();
 		$url  = $this->api_url( $api, $version, $code );
@@ -114,42 +123,7 @@ abstract class License {
 
 		$response = wp_remote_post( $url, $options );
 
-		if ( is_wp_error( $response ) ) {
-			return array(
-				'error'   => $response->get_error_code(),
-				'message' => $response->get_error_message(),
-			);
-		} else {
-			$code = wp_remote_retrieve_response_code( $response );
-			$body = wp_remote_retrieve_body( $response );
-
-			if ( $format == 'raw' ) {
-				return array(
-					'code' => $code,
-					'body' => $body,
-				);
-			} else if ( $format == 'json' ) {
-				$data = json_decode( $body, true );
-
-				if ( is_array( $data ) && ! empty( $data ) ) {
-					if ( $code == 200 ) {
-						return $data;
-					} else {
-						if ( isset( $data['error'] ) ) {
-							return array(
-								'error'   => $code,
-								'message' => $data['error'],
-							);
-						}
-					}
-				}
-			}
-
-			return array(
-				'error'   => $code,
-				'message' => __( 'Nothing received', 'd4plib' ),
-			);
-		}
+		return $this->process_response( $response, $format );
 	}
 
 	public function validate() {
@@ -188,19 +162,19 @@ abstract class License {
 				$json  = json_decode( $body, true );
 				$error = 'invalid-response';
 
-				if ( is_array( $json ) && isset( $json['obj'] ) && isset( $json['uts'] ) && isset( $json['sig'] ) ) {
-					$check = sha1( json_encode( $json['obj'] ) . '.' . $json['uts'] );
+				if ( is_array( $json ) && isset( $json[ 'obj' ] ) && isset( $json[ 'uts' ] ) && isset( $json[ 'sig' ] ) ) {
+					$check = sha1( json_encode( $json[ 'obj' ] ) . '.' . $json[ 'uts' ] );
 
-					if ( $check == $json['sig'] ) {
+					if ( $check == $json[ 'sig' ] ) {
 						$result = array(
-							'status'  => $json['obj']['status'] ?? 'invalid',
-							'valid'   => $json['obj']['valid'] ?? 'no',
-							'api'     => $json['obj']['api'] ?? 'no',
-							'control' => $json['obj']['control'] ?? 'no',
-							'domain'  => $json['obj']['domain'] ?? '',
+							'status'  => $json[ 'obj' ][ 'status' ] ?? 'invalid',
+							'valid'   => $json[ 'obj' ][ 'valid' ] ?? 'no',
+							'api'     => $json[ 'obj' ][ 'api' ] ?? 'no',
+							'control' => $json[ 'obj' ][ 'control' ] ?? 'no',
+							'domain'  => $json[ 'obj' ][ 'domain' ] ?? '',
 						);
 
-						if ( $result['valid'] == 'no' ) {
+						if ( $result[ 'valid' ] == 'no' ) {
 							$record = 'invalid';
 						}
 					}
@@ -237,6 +211,45 @@ abstract class License {
 			'last'   => $last,
 			'record' => $record,
 		), 'license', true, true );
+	}
+
+	protected function process_response( $response, $format = 'json' ) : array {
+		if ( is_wp_error( $response ) ) {
+			return array(
+				'error'   => $response->get_error_code(),
+				'message' => $response->get_error_message(),
+			);
+		} else {
+			$code = wp_remote_retrieve_response_code( $response );
+			$body = wp_remote_retrieve_body( $response );
+
+			if ( $format == 'raw' ) {
+				return array(
+					'code' => $code,
+					'body' => $body,
+				);
+			} else if ( $format == 'json' ) {
+				$data = json_decode( $body, true );
+
+				if ( is_array( $data ) && ! empty( $data ) ) {
+					if ( $code == 200 ) {
+						return $data;
+					} else {
+						if ( isset( $data[ 'error' ] ) ) {
+							return array(
+								'error'   => $code,
+								'message' => $data[ 'error' ],
+							);
+						}
+					}
+				}
+			}
+
+			return array(
+				'error'   => $code,
+				'message' => __( 'Nothing received', 'd4plib' ),
+			);
+		}
 	}
 
 	abstract protected function plugin();
