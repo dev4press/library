@@ -53,7 +53,7 @@ class HTAccess {
 
 	public function load() {
 		if ( $this->file_exists() ) {
-			return explode( PHP_EOL, implode( '', file( $this->path ) ) );
+			return file( $this->path, FILE_IGNORE_NEW_LINES );
 		} else {
 			return array();
 		}
@@ -150,6 +150,7 @@ class HTAccess {
 	public function cleanup() : bool {
 		if ( $this->file_exists() && $this->is_writable() ) {
 			$marker_data = $this->load();
+			$modded_data = array();
 
 			$f = fopen( $this->path, 'w' );
 
@@ -158,53 +159,78 @@ class HTAccess {
 			}
 
 			if ( flock( $f, LOCK_EX ) ) {
-				$modded_data = array();
-
 				$line_start  = 0;
 				$line_end    = 0;
 				$marker_size = count( $marker_data );
 
 				for ( $i = 0; $i < $marker_size; $i ++ ) {
-					if ( ! empty( $marker_data[ $i ] ) ) {
+					if ( ! empty( trim( $marker_data[ $i ] ) ) ) {
 						$line_start = $i;
 						break;
 					}
 				}
 
 				for ( $i = $marker_size - 1; $i > 0; $i -- ) {
-					if ( ! empty( $marker_data[ $i ] ) ) {
+					if ( ! empty( trim( $marker_data[ $i ] ) ) ) {
 						$line_end = $i;
 						break;
 					}
 				}
 
-				$blocked = false;
+				$prev_empty     = false;
+				$prev_comment   = false;
+				$prev_directive = false;
 				for ( $i = $line_start; $i < $line_end + 1; $i ++ ) {
-					$add_line = true;
-					$end_line = false;
+					$begin      = false;
+					$comment    = false;
+					$end        = false;
+					$directive  = false;
+					$add_before = false;
+					$add_after  = false;
+					$marker     = $marker_data[ $i ];
+					$line       = trim( $marker );
 
-					$marker_line = $marker_data[ $i ];
+					if ( substr( $line, 0, 8 ) == '# BEGIN ' ) {
+						$begin = true;
+					} else if ( substr( $line, 0, 5 ) == '# END' ) {
+						$end = true;
+					} else if ( substr( $line, 0, 2 ) == '# ' ) {
+						$comment = true;
+					} else if ( ! empty( $line ) ) {
+						$directive = true;
+					}
 
-					if ( $blocked ) {
-						if ( ! empty( $marker_line ) ) {
-							$blocked = false;
-						} else {
-							$add_line = false;
+					if ( $directive ) {
+						if ( ! $prev_comment && ! $prev_directive && ! $prev_empty ) {
+							$add_before = true;
 						}
 					}
 
-					if ( substr( $marker_line, 0, 5 ) == '# END' ) {
-						$end_line = true;
-						$blocked  = true;
-					}
-
-					if ( $add_line ) {
-						$modded_data[] = $marker_line;
-
-						if ( $end_line ) {
-							$modded_data[] = '';
+					if ( $comment ) {
+						if ( $prev_directive || ( ! $prev_empty && ! $prev_comment ) ) {
+							$add_before = true;
 						}
 					}
+
+					if ( $end ) {
+						$add_after = true;
+					}
+
+					if ( $add_before ) {
+						$modded_data[] = '';
+					}
+
+					if ( $directive || $begin || $end || $comment ) {
+						$modded_data[] = $marker;
+					}
+
+					if ( $add_after ) {
+						$modded_data[] = '';
+					}
+
+					$prev_comment   = $begin || $end || $comment;
+					$prev_empty     = $add_after;
+					$prev_directive = $directive;
 				}
 
 				foreach ( $modded_data as $marker_line ) {
@@ -214,6 +240,8 @@ class HTAccess {
 				fflush( $f );
 				flock( $f, LOCK_UN );
 			} else {
+				fclose( $f );
+
 				return false;
 			}
 
@@ -244,12 +272,12 @@ class HTAccess {
 			'mod_headers'        => in_array( 'mod_headers', $mods ),
 		);
 
-		if ( $is_apache && ! $check['found'] ) {
-			$check['writable'] = is_writable( ABSPATH );
+		if ( $is_apache && ! $check[ 'found' ] ) {
+			$check[ 'writable' ] = is_writable( ABSPATH );
 		}
 
-		if ( $is_apache && $check['writable'] && $check['apache'] ) {
-			$check['automatic'] = true;
+		if ( $is_apache && $check[ 'writable' ] && $check[ 'is_apache' ] ) {
+			$check[ 'automatic' ] = true;
 		}
 
 		return $check;
