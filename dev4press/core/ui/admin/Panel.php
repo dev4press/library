@@ -38,7 +38,13 @@ abstract class Panel {
 		$render       = $this->render_class;
 		$this->render = $render::instance();
 
-		add_action( 'load-' . $this->a()->screen_id, array( $this, 'screen_options_show' ) );
+		$page_id = $this->a()->screen_id;
+
+		if ( is_network_admin() && str_ends_with( $page_id, '-network' ) ) {
+			$page_id = substr( $page_id, 0, - 8 );
+		}
+
+		add_action( 'load-' . $page_id, array( $this, 'screen_options_show' ) );
 
 		add_action( $this->h( 'enqueue_scripts_early' ), array( $this, 'enqueue_scripts_early' ) );
 		add_action( $this->h( 'enqueue_scripts' ), array( $this, 'enqueue_scripts' ) );
