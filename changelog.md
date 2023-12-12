@@ -17,6 +17,7 @@
 * Edit: improvements to the `Features` panel filtering
 * Edit: unique library prefix for files added by `Enqueue`
 * Fix: issue with the screen options handling on networks setups
+* Fix: minor problem with the getting group settings
 
 ### Version 4.4 - 2023.11.06
 * New: render Changelog and History About panels from markdown

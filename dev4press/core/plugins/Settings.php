@@ -176,8 +176,8 @@ abstract class Settings {
 			return $this->settings[ $group ];
 		}
 
-		$default = $this->settings[ $group ];
-		$current = $this->current[ $group ];
+		$default = $this->settings[ $group ] ?? array();
+		$current = $this->current[ $group ] ?? array();
 
 		return wp_parse_args( $current, $default );
 	}
