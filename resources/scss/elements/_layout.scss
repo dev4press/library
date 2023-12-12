@@ -159,7 +159,7 @@
             .d4p-header-special-button {
                 display: flex;
                 align-items: center;
-                gap: .75em;
+                gap: .5em;
                 font-size: 1.1em;
                 padding: 0.6em 0.9em;
                 border-radius: var(--d4p-layout-main-border-radius);
@@ -174,6 +174,17 @@
                     color: var(--d4p-color-layout-accent);
                     font-size: 1.5em;
                 }
+
+                @media screen and (max-width: 768px) {
+                    font-size: 1em;
+                    justify-content: space-between;
+                }
+
+                @media screen and (max-width: 359px) {
+                    img {
+                        display: none;
+                    }
+                }
             }
         }
 
@@ -185,16 +196,12 @@
                 margin-top: -15px;
 
                 ul {
+                    flex-wrap: wrap;
+                    row-gap: 1em;
+
                     li {
                         &.d4p-nav-button {
                             margin-right: 2%;
-                        }
-                    }
-                }
-
-                ul {
-                    li {
-                        &.d4p-nav-button {
                             width: 49%;
 
                             > a {

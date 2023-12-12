@@ -13,6 +13,7 @@
 * Edit: fully rewritten cleanup method for `HTACCESS` class
 * Edit: big styling changes and improvements for the plugin interface
 * Edit: various changes to several plugin core classes
+* Edit: improvements to the admin header display with extra buttons
 * Edit: improvements to the `Features` panel filtering
 * Edit: unique library prefix for files added by `Enqueue`
 * Fix: issue with the screen options handling on networks setups
