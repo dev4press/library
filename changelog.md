@@ -1,6 +1,11 @@
 # Dev4Press Library
 ## Changelog
 
+### Version 4.5.1 - 2023.12.18
+
+* Edit: few minor tweaks in the Customizer `Manager` class
+* Fix: few escaping issues with rendering some settings
+
 ### Version 4.5 - 2023.12.12
 
 * New: licensing support for settings and validation

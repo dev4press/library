@@ -64,30 +64,30 @@ abstract class Manager {
 		return $this->_prefix;
 	}
 
-	public function name( $name ) {
+	public function name( $name ) : string {
 		return $this->prefix() . $name;
 	}
 
-	public function section( $name ) {
+	public function section( $name ) : string {
 		return $this->_panel . '-' . $name;
 	}
 
-	public function get_default( $name ) {
+	public function get_default( $name, $default = '' ) {
 		if ( isset( $this->_defaults[ $name ] ) ) {
 			return $this->_defaults[ $name ];
 		}
 
-		return '';
+		return $default;
 	}
 
-	public function get( $name ) {
+	public function get( $name, $default = null ) {
 		if ( isset( $this->_defaults[ $name ] ) ) {
 			$value = get_theme_mod( $this->name( $name ), $this->_defaults[ $name ] );
 
 			return apply_filters( $this->prefix() . '_customizer_get_option_value_' . $name, $value );
 		}
 
-		return null;
+		return $default;
 	}
 
 	public function enqueue() {
@@ -111,7 +111,7 @@ abstract class Manager {
 		return (bool) $input;
 	}
 
-	public function sanitize_color( $input, $setting ) {
+	public function sanitize_color( $input, $setting ) : ?string {
 		if ( empty( $input ) ) {
 			$input = $setting->default;
 		}

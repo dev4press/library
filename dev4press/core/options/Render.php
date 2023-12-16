@@ -393,8 +393,8 @@ class Render {
 
 	protected function _datetime_element( Element $element, $value, $name_base, $id_base, $type = 'text', $class = '' ) {
 		$readonly  = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
-		$min       = isset( $element->args['min'] ) ? ' min="' . $element->args['min'] . '"' : '';
-		$max       = isset( $element->args['max'] ) ? ' max="' . $element->args['max'] . '"' : '';
+		$min       = isset( $element->args['min'] ) ? ' min="' . esc_attr($element->args['min']) . '"' : '';
+		$max       = isset( $element->args['max'] ) ? ' max="' . esc_attr($element->args['max']) . '"' : '';
 		$flatpickr = isset( $element->args['flatpickr'] ) && $element->args['flatpickr'];
 		$type      = $flatpickr ? 'text' : $type;
 		$class     = 'widefat' . ( $flatpickr ? ' ' . $class : '' );
@@ -408,8 +408,8 @@ class Render {
 			esc_attr( $value ),
 			esc_attr( $class ),
 			esc_attr( $readonly ),
-			esc_attr( $min ),
-			esc_attr( $max )
+			$min,
+			$max
 		);
 	}
 
@@ -440,8 +440,8 @@ class Render {
 			esc_attr( $id_base ),
 			esc_attr( $readonly ),
 			esc_attr( $placeholder ),
-			esc_attr( $pattern ),
-			esc_attr( $type ),
+			$pattern,
+			$type,
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $value ),
@@ -500,9 +500,9 @@ class Render {
 	protected function draw_number( Element $element, $value, $name_base, $id_base ) {
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
-		$min  = isset( $element->args['min'] ) ? ' min="' . floatval( $element->args['min'] ) . '"' : '';
-		$max  = isset( $element->args['max'] ) ? ' max="' . floatval( $element->args['max'] ) . '"' : '';
-		$step = isset( $element->args['step'] ) ? ' step="' . floatval( $element->args['step'] ) . '"' : '';
+		$min  = isset( $element->args['min'] ) ? ' min="' . floatval( esc_attr( $element->args['min'] ) ) . '"' : '';
+		$max  = isset( $element->args['max'] ) ? ' max="' . floatval( esc_attr( $element->args['max'] ) ) . '"' : '';
+		$step = isset( $element->args['step'] ) ? ' step="' . floatval( esc_attr( $element->args['step'] ) ) . '"' : '';
 
 		echo sprintf(
 			'<input aria-labelledby="%s__label"%s type="number" name="%s" id="%s" value="%s" class="widefat"%s%s%s />',
@@ -511,9 +511,9 @@ class Render {
 			esc_attr( $name_base ),
 			esc_attr( $id_base ),
 			esc_attr( $value ),
-			esc_attr( $min ),
-			esc_attr( $max ),
-			esc_attr( $step )
+			$min,
+			$max,
+			$step
 		);
 
 		if ( isset( $element->args['label_unit'] ) ) {
