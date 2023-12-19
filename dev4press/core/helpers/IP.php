@@ -45,29 +45,29 @@ class IP {
 	);
 
 	protected static $cloudflare_ipv4 = array(
-		'173.245.48.0/20',
 		'103.21.244.0/22',
 		'103.22.200.0/22',
 		'103.31.4.0/22',
-		'141.101.64.0/18',
-		'108.162.192.0/18',
-		'190.93.240.0/20',
-		'188.114.96.0/20',
-		'197.234.240.0/22',
-		'198.41.128.0/17',
-		'162.158.0.0/15',
 		'104.16.0.0/13',
 		'104.24.0.0/14',
-		'172.64.0.0/13',
+		'108.162.192.0/18',
 		'131.0.72.0/22',
+		'141.101.64.0/18',
+		'162.158.0.0/15',
+		'172.64.0.0/13',
+		'173.245.48.0/20',
+		'188.114.96.0/20',
+		'190.93.240.0/20',
+		'197.234.240.0/22',
+		'198.41.128.0/17',
 	);
 
 	protected static $cloudflare_ipv6 = array(
 		'2400:cb00::/32',
+		'2405:8100::/32',
+		'2405:b500::/32',
 		'2606:4700::/32',
 		'2803:f800::/32',
-		'2405:b500::/32',
-		'2405:8100::/32',
 		'2a06:98c0::/29',
 		'2c0f:f248::/32',
 	);
@@ -193,6 +193,11 @@ class IP {
 		if ( is_null( $ip ) ) {
 			if ( isset( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
 				$ip = $_SERVER['HTTP_X_REAL_IP'] ?? ( $_SERVER['REMOTE_ADDR'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+				$ip = self::validate( $ip );
+
+				if ( $ip === false ) {
+					return false;
+				}
 			} else {
 				return false;
 			}
@@ -251,20 +256,24 @@ class IP {
 
 		foreach ( $keys as $key ) {
 			if ( isset( $_SERVER[ $key ] ) ) {
-				$ips[ $key ] = sanitize_text_field( $_SERVER[ $key ] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+				$ip = self::validate( $_SERVER[ $key ] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+
+				if ( $ip !== false ) {
+					$ips[ $key ] = $ip;
+				}
 			}
 		}
 
 		return $ips;
 	}
 
-	public static function visitor( $no_local_or_protected = false ) {
+	public static function visitor() : string {
 		if ( self::is_cloudflare() ) {
-			if ( isset( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
-				return self::validate( $_SERVER['HTTP_CF_CONNECTING_IP'], true );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-			}
+			$ip = self::validate( $_SERVER['HTTP_CF_CONNECTING_IP'] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 
-			return '';
+			if ( $ip !== false ) {
+				return $ip;
+			}
 		}
 
 		$keys = array(
@@ -282,52 +291,45 @@ class IP {
 
 		foreach ( $keys as $key ) {
 			if ( array_key_exists( $key, $_SERVER ) === true ) {
-				$ip = sanitize_text_field( $_SERVER[ $key ] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-				break;
+				$ip = self::validate( $_SERVER[ $key ] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+
+				if ( $ip !== false ) {
+					break;
+				}
 			}
 		}
 
-		if ( $no_local_or_protected ) {
-			$ip = self::validate( $ip, true );
-		} else {
-			if ( $ip == '::1' ) {
-				$ip = '127.0.0.1';
-			} else if ( $ip != '' ) {
-				$ip = self::cleanup( $ip );
-			}
+		if ( $ip === false ) {
+			$ip = '';
 		}
 
-		return $ip;
+		if ( $ip === '::1' ) {
+			$ip = '127.0.0.1';
+		}
+
+		return (string) $ip;
 	}
 
-	public static function validate( $ip, $no_local_or_protected = false ) {
+	public static function validate( $ip ) {
 		$ips = explode( ',', $ip );
 
 		foreach ( $ips as $_ip ) {
 			$_ip = trim( $_ip );
 
-			if ( $no_local_or_protected ) {
-				if ( filter_var( $_ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) !== false ) {
-					return $_ip;
-				}
-			} else {
-				if ( filter_var( $_ip, FILTER_VALIDATE_IP ) !== false ) {
-					return $_ip;
-				}
+			$filtered = filter_var( $_ip, FILTER_VALIDATE_IP );
+
+			if ( $filtered !== false ) {
+				return $filtered;
 			}
 		}
 
 		return false;
 	}
 
-	public static function cleanup( $ip ) {
-		if ( preg_replace( '/[^0-9a-fA-F:., ]/', '', $ip ) ) {
-			$ips = explode( ',', $ip );
+	public static function cleanup( $ip ) : string {
+		$ip = self::validate( $ip );
 
-			return trim( $ips[ count( $ips ) - 1 ] );
-		} else {
-			return false;
-		}
+		return $ip === false ? '' : $ip;
 	}
 
 	public static function random_ipv4() : string {

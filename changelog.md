@@ -1,6 +1,11 @@
 # Dev4Press Library
 ## Changelog
 
+### Version 4.5.2 - 2023.12.19
+
+* Edit: improved `IP` class method for getting visitor IP
+* Fix: potential vulnerability related to visitor IP method
+
 ### Version 4.5.1 - 2023.12.18
 
 * Edit: few minor tweaks in the Customizer `Manager` class
