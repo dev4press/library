@@ -75,7 +75,7 @@ class Query {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		$key = md5( 'images' . json_encode( $args ) );
+		$key = md5( 'images' . wp_json_encode( $args ) );
 
 		if ( ! isset( $this->_cache[ $key ] ) ) {
 			$url = add_query_arg( $args, $this->_api_url . 'v1/search' );
@@ -134,7 +134,7 @@ class Query {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		$key = md5( 'videos' . json_encode( $args ) );
+		$key = md5( 'videos' . wp_json_encode( $args ) );
 
 		if ( ! isset( $this->_cache[ $key ] ) ) {
 			$url = add_query_arg( $args, $this->_api_url . 'videos/search' );

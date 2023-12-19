@@ -308,7 +308,7 @@ abstract class Settings {
 		$ctrl = $import['ctrl'] ?? false;
 		$raw  = $import['data'] ?? false;
 
-		$data = gzuncompress( base64_decode( urldecode( $raw ) ) );
+		$data = gzuncompress( base64_decode( urldecode( $raw ) ) ); // phpcs:ignore Generic.PHP.ForbiddenFunctions
 
 		if ( $ctrl && $data && strlen( $ctrl ) == 64 ) {
 			$ctrl        = substr( $ctrl, 8, 32 );
@@ -327,13 +327,13 @@ abstract class Settings {
 	}
 
 	public function export_to_json( $list = array() ) {
-		return json_encode( $this->_settings_to_array( $list ) );
+		return wp_json_encode( $this->_settings_to_array( $list ) );
 	}
 
 	public function export_to_secure_json( $list = array() ) {
 		$export = $this->_settings_to_array( $list );
 
-		$encoded = json_encode( $export );
+		$encoded = wp_json_encode( $export );
 
 		if ( $encoded === false ) {
 			return false;
@@ -345,10 +345,10 @@ abstract class Settings {
 		$export = array(
 			'name' => $name,
 			'ctrl' => strtolower( wp_generate_password( 8, false ) ) . md5( $encoded . $name . $size ) . strtolower( wp_generate_password( 24, false ) ),
-			'data' => urlencode( base64_encode( gzcompress( $encoded, 9 ) ) ),
+			'data' => urlencode( base64_encode( gzcompress( $encoded, 9 ) ) ), // phpcs:ignore Generic.PHP.ForbiddenFunctions
 		);
 
-		return json_encode( $export, JSON_PRETTY_PRINT );
+		return wp_json_encode( $export, JSON_PRETTY_PRINT );
 	}
 
 	public function file_version() : string {

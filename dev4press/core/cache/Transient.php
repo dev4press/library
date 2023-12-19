@@ -45,7 +45,7 @@ abstract class Transient {
 		$key = $name;
 
 		if ( ! empty( $args ) ) {
-			$key .= '-' . md5( json_encode( $args ) );
+			$key .= '-' . md5( wp_json_encode( $args ) );
 		}
 
 		return $this->store . '-' . $key;

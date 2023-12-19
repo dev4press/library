@@ -238,7 +238,7 @@ class Four {
 
 		$options = array(
 			'timeout'    => 15,
-			'body'       => json_encode( $data ),
+			'body'       => wp_json_encode( $data ),
 			'method'     => 'POST',
 			'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo( 'url' ),
 		);

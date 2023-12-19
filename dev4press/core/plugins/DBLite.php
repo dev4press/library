@@ -213,7 +213,7 @@ abstract class DBLite {
 	public function insert_meta_data( string $table, string $column, int $id, array $meta, bool $skip_empty_values = false, bool $json_serialization = false ) {
 		foreach ( $meta as $key => $value ) {
 			if ( is_array( $value ) || is_object( $value ) ) {
-				$insert = $json_serialization ? json_encode( $value ) : maybe_serialize( $value );
+				$insert = $json_serialization ? wp_json_encode( $value ) : maybe_serialize( $value );
 			} else {
 				$insert = $value;
 			}

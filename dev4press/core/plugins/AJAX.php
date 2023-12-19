@@ -186,7 +186,7 @@ abstract class AJAX {
 		if ( $json ) {
 			header( 'Content-Type: application/json' );
 
-			die( json_encode( $response ) );
+			die( wp_json_encode( $response ) );
 		} else {
 			die( $response ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}

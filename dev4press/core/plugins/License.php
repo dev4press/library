@@ -38,7 +38,7 @@ abstract class License {
 	private string $site_url = '';
 
 	public function __construct() {
-		$this->site_url = parse_url( network_site_url(), PHP_URL_HOST );
+		$this->site_url = wp_parse_url( network_site_url(), PHP_URL_HOST );
 	}
 
 	/** @return static */
@@ -114,7 +114,7 @@ abstract class License {
 		$options = array(
 			'timeout' => 60,
 			'method'  => 'POST',
-			'body'    => json_encode( $data ),
+			'body'    => wp_json_encode( $data ),
 			'headers' => array(
 				'X-Dev4press-Source-Domain' => $this->site_url,
 				'Referer'                   => URL::current_url(),
@@ -163,7 +163,7 @@ abstract class License {
 				$error = 'invalid-response';
 
 				if ( is_array( $json ) && isset( $json[ 'obj' ] ) && isset( $json[ 'uts' ] ) && isset( $json[ 'sig' ] ) ) {
-					$check = sha1( json_encode( $json[ 'obj' ] ) . '.' . $json[ 'uts' ] );
+					$check = sha1( wp_json_encode( $json[ 'obj' ] ) . '.' . $json[ 'uts' ] );
 
 					if ( $check == $json[ 'sig' ] ) {
 						$result = array(

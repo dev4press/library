@@ -102,7 +102,7 @@ class Query {
 
 		$args['key'] = $this->_api_key;
 
-		$key = md5( 'images' . json_encode( $args ) );
+		$key = md5( 'images' . wp_json_encode( $args ) );
 
 		if ( ! isset( $this->_cache[ $key ] ) ) {
 			$args = array_filter( $args );
@@ -179,7 +179,7 @@ class Query {
 
 		$args['key'] = $this->_api_key;
 
-		$key = md5( 'videos' . json_encode( $args ) );
+		$key = md5( 'videos' . wp_json_encode( $args ) );
 
 		if ( ! isset( $this->_cache[ $key ] ) ) {
 			$args = array_filter( $args );

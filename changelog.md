@@ -3,7 +3,9 @@
 
 ### Version 4.5.2 - 2023.12.19
 
+* Edit: function `json_encode` replaced with `wp_json_encode`
 * Edit: improved `IP` class method for getting visitor IP
+* Edit: various validation changes and function use changes
 * Fix: potential vulnerability related to visitor IP method
 
 ### Version 4.5.1 - 2023.12.18

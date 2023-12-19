@@ -85,7 +85,7 @@ class Location {
 	}
 
 	public function serialize( string $format = 'json' ) {
-		return $format == 'json' ? json_encode( $this->data() ) : maybe_serialize( $this->data() );
+		return $format == 'json' ? wp_json_encode( $this->data() ) : maybe_serialize( $this->data() );
 	}
 
 	public function data() : array {
