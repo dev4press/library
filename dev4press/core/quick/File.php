@@ -76,9 +76,9 @@ class File {
 	}
 
 	public static function gzip_uncompressed_size( $file_path ) {
-		$fp = fopen( $file_path, 'rb' );
+		$fp = fopen( $file_path, 'rb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		fseek( $fp, - 4, SEEK_END );
-		$buf = fread( $fp, 4 );
+		$buf = fread( $fp, 4 ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		$elm = unpack( 'V', $buf );
 
 		return end( $elm );

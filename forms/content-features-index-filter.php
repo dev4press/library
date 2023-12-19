@@ -12,7 +12,7 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
 	$buttons = panel()->get_filter_buttons();
 }
 
-$_search = isset( $_GET['search'] ) ? sanitize_text_field( $_GET['search'] ) : '';
+$_search = isset( $_GET['search'] ) ? sanitize_text_field( $_GET['search'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 
 ?>
 

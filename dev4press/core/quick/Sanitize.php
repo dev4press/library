@@ -61,7 +61,7 @@ class Sanitize {
 	}
 
 	public static function url( $url ) : string {
-		return sanitize_url( $url );
+		return sanitize_url( $url ); // phpcs:ignore WordPress.WP.DeprecatedFunctions
 	}
 
 	public static function key( $key ) : string {
