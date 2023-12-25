@@ -1,8 +1,8 @@
 <?php
 
-use Dev4Press\v45\Core\Quick\KSES;
-use Dev4Press\v45\Core\Quick\Sanitize;
-use function Dev4Press\v45\Functions\panel;
+use Dev4Press\v46\Core\Quick\KSES;
+use Dev4Press\v46\Core\Quick\Sanitize;
+use function Dev4Press\v46\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

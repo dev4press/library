@@ -1,7 +1,7 @@
 <?php
 /**
  * Name:    Dev4Press Core Loader
- * Version: v4.5.2
+ * Version: v4.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,8 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-use Dev4Press\v45\Library;
-use Dev4Press\v45\WordPress;
+use Dev4Press\v46\Library;
+use Dev4Press\v46\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
