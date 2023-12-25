@@ -27,7 +27,7 @@
 
 if ( ! function_exists( 'dev4press_core_library_autoloader_46' ) ) {
 	function dev4press_core_library_autoloader_46( $class ) {
-		$path = DEV4PRESS_V45_PATH;
+		$path = DEV4PRESS_v46_PATH;
 		$base = 'Dev4Press\\v46\\';
 
 		if ( substr( $class, 0, strlen( $base ) ) == $base ) {

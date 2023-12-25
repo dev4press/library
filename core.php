@@ -38,12 +38,12 @@ if ( ! defined( 'DEV4PRESS_TAB' ) ) {
 	define( 'DEV4PRESS_TAB', "\t" );
 }
 
-if ( ! defined( 'DEV4PRESS_V45_PATH' ) ) {
-	define( 'DEV4PRESS_V45_PATH', $_library_path );
+if ( ! defined( 'DEV4PRESS_v46_PATH' ) ) {
+	define( 'DEV4PRESS_v46_PATH', $_library_path );
 }
 
-require DEV4PRESS_V45_PATH . 'autoload.php';
-require DEV4PRESS_V45_PATH . 'functions/Bridge.php';
+require DEV4PRESS_v46_PATH . 'autoload.php';
+require DEV4PRESS_v46_PATH . 'functions/Bridge.php';
 
 WordPress::instance();
 Library::instance();

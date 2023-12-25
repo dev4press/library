@@ -33,12 +33,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Vendors {
 	public static function parsedown() {
-		require DEV4PRESS_V45_PATH . 'vendor/parsedown-extra/Parsedown.php';
+		require DEV4PRESS_v46_PATH . 'vendor/parsedown-extra/Parsedown.php';
 	}
 
 	public static function parsedown_extra() {
 		self::parsedown();
 
-		require DEV4PRESS_V45_PATH . 'vendor/parsedown-extra/ParsedownExtra.php';
+		require DEV4PRESS_v46_PATH . 'vendor/parsedown-extra/ParsedownExtra.php';
 	}
 }

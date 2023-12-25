@@ -3,6 +3,8 @@
 
 ### Version 4.6 - 2023.12.28
 
+* Edit: expanded the `KSES` validation for the `Input` control
+* Fix: input rendering class stripping `min` and `max` attributes
 * Fix: checkbox and radio rendering not matching selected value
 
 ### Version 4.5.2 - 2023.12.19
