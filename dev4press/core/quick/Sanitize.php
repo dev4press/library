@@ -69,11 +69,19 @@ class Sanitize {
 	}
 
 	public static function slug( $text ) : string {
-		return trim( sanitize_title_with_dashes( stripslashes( $text ) ), "-_ \t\n\r\0\x0B" );
+		if ( is_null( $text ) ) {
+			return '';
+		}
+
+		return trim( sanitize_title_with_dashes( stripslashes( (string) $text ) ), "-_ \t\n\r\0\x0B" );
 	}
 
-	public static function basic( string $text, bool $strip_shortcodes = true ) : string {
-		$text = stripslashes( $text );
+	public static function basic( $text, bool $strip_shortcodes = true ) : string {
+		if ( is_null( $text ) ) {
+			return '';
+		}
+
+		$text = stripslashes( (string) $text );
 
 		if ( $strip_shortcodes ) {
 			$text = strip_shortcodes( $text );
@@ -83,8 +91,12 @@ class Sanitize {
 	}
 
 	public static function extended( $text, $tags = null, $protocols = array(), bool $strip_shortcodes = false ) : string {
+		if ( is_null( $text ) ) {
+			return '';
+		}
+
 		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
-		$text = stripslashes( $text );
+		$text = stripslashes( (string) $text );
 
 		if ( $strip_shortcodes ) {
 			$text = strip_shortcodes( $text );
@@ -94,9 +106,13 @@ class Sanitize {
 	}
 
 	public static function html( $text, $tags = null, $protocols = array() ) : string {
+		if ( is_null( $text ) ) {
+			return '';
+		}
+
 		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
 
-		return wp_kses( trim( stripslashes( $text ) ), $tags, $protocols );
+		return wp_kses( trim( stripslashes( (string) $text ) ), $tags, $protocols );
 	}
 
 	public static function html_classes( $classes ) : string {
