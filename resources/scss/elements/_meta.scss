@@ -5,6 +5,12 @@
         box-sizing: border-box;
     }
 
+    hr {
+        margin: 1em 0;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+    }
+
     .wp-tab-bar {
         margin-bottom: 5px;
 
@@ -17,6 +23,10 @@
                 margin: 0;
                 border: 0;
                 cursor: pointer;
+
+                i.d4p-icon {
+                    margin-right: 4px;
+                }
             }
 
             &.wp-tab-active {
@@ -33,28 +43,46 @@
 
     .wp-tab-panel {
         max-height: 360px;
-        padding: 1.5em;
+        padding: 1em;
         overflow: auto;
+    }
+
+    h3 {
+        margin: 0 0 1em;
+    }
+
+    h4 {
+        margin: 0 0 .25em;
+        font-size: 1.2em;
     }
 
     .__row {
         display: flex;
-        margin: 0 -1em 1.5em;
+        column-gap: 2em;
+        row-gap: 1em;
+        margin: 0 0 1em;
 
         .__column {
-            margin: 0 1em;
             flex: 0 1 100%;
+
+            &:empty {
+                display: none;
+            }
         }
 
         &.__col-two {
             .__column {
-                flex-basis: 50%;
+                flex-basis: calc((100% - 2em) / 2);
             }
         }
 
         &.__col-three {
             .__column {
-                flex-basis: 33%;
+                flex-basis: calc((100% - 4em) / 3);
+            }
+
+            .__column_expanded {
+                flex-basis: calc(100% - (100% - 4em) / 3);
             }
         }
 
@@ -69,7 +97,6 @@
             &.__col-two {
                 .__column {
                     flex-basis: 100%;
-                    margin-bottom: 1.5em;
 
                     &:last-child {
                         margin-bottom: 0;
@@ -110,13 +137,14 @@
 
     .__element {
         .d4p-setting-checkboxes {
-            .d4p-content-wrapper {
+            .d4p-inside-wrapper {
                 display: flex;
                 flex-wrap: wrap;
 
                 label {
                     flex: 1 1 50%;
                     font-weight: normal;
+                    word-break: break-all;
                 }
 
                 @media screen and (max-width: 599px) {
@@ -132,6 +160,42 @@
         .d4p-setting-checkbox {
             label {
                 font-weight: normal;
+            }
+        }
+    }
+}
+
+#side-sortables {
+    .d4plib-#{$library-code}-meta-box-wrapper {
+        .wp-tab-bar li button {
+            span {
+                display: none;
+            }
+        }
+
+        .__row {
+            flex-direction: column;
+
+            &.__col-two,
+            &.__col-three {
+                .__column {
+                    flex-basis: 100%;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+
+        .d4p-setting-checkboxes {
+            &.d4p-columns-two,
+            &.d4p-columns-three,
+            &.d4p-columns-four,
+            &.d4p-columns-five {
+                .d4p-inside-wrapper {
+                    column-count: 1;
+                }
             }
         }
     }

@@ -3,6 +3,7 @@
 
 ### Version 4.6 - 2023.12.28
 
+* New: metabox styling rebuilt and improved with sidebar styling support
 * Edit: expanded the `KSES` validation for the `Input` control
 * Fix: input rendering class stripping `min` and `max` attributes
 * Fix: checkbox and radio rendering not matching selected value
