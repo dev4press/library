@@ -154,6 +154,9 @@ class KSES {
 					'type'  => true,
 					'class' => true,
 				),
+				'span' => array(
+					'class' => true,
+				),
 			)
 		);
 	}

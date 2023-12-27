@@ -6,6 +6,7 @@
 * New: metabox styling rebuilt and improved with sidebar styling support
 * Edit: various improvements to the `Sanitize` class
 * Edit: expanded the `KSES` validation for the `Input` control
+* Fix: few issues with rendering of the widgets tab control
 * Fix: method for basic cleanup in `Sanitize` class fails in some cases
 * Fix: input rendering class stripping `min` and `max` attributes
 * Fix: checkbox and radio rendering not matching selected value
