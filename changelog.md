@@ -4,6 +4,7 @@
 ### Version 4.6 - 2023.12.28
 
 * New: metabox styling rebuilt and improved with sidebar styling support
+* Edit: show knowledge base button/link for individual features
 * Edit: various improvements to the `Sanitize` class
 * Edit: expanded the `KSES` validation for the `Input` control
 * Fix: few issues with rendering of the widgets tab control

@@ -112,21 +112,41 @@ $_scopes = array(
 						}
 						?>
                     </div>
-					<?php if ( $obj['panel'] ) { ?>
+					<?php
+
+					if ( $obj['panel'] ) {
+						?>
                         <div class="_scope">
                             <span title="<?php esc_html_e( 'This feature adds a new panel', 'd4plib' ); ?>"><i class="d4p-icon d4p-ui-folder"></i></span>
                         </div>
-					<?php } ?>
-					<?php if ( $obj['beta'] ) { ?>
+						<?php
+					}
+
+					if ( $obj['beta'] ) {
+						?>
                         <div class="_scope">
                             <span title="<?php esc_attr_e( 'This is a Beta feature, and it can be unstable!', 'd4plib' ); ?>"><i class="d4p-icon d4p-ui-flask"></i></span>
                         </div>
-					<?php } ?>
-					<?php if ( panel()->a()->plugin()->f()->is_scope_enabled() ) { ?>
+						<?php
+					}
+
+					if ( panel()->a()->plugin()->f()->is_scope_enabled() ) {
+						?>
                         <div class="_scope">
                             <span title="<?php echo esc_attr( $_scopes[ $obj['scope'] ]['label'] ); ?>"><i class="d4p-icon <?php echo esc_attr( $_scopes[ $obj['scope'] ]['icon'] ); ?>"></i></span>
                         </div>
-					<?php } ?>
+						<?php
+					}
+
+					if ( ! empty( $obj['kb']['url'] ) ) {
+						?>
+                        <div class="_scope">
+                            <a target="_blank" rel="noopener" href="<?php echo esc_attr( $obj['kb']['url'] ); ?>" title="<?php esc_attr_e( 'Get more information in the Knowledge Base' ); ?>"><i class="d4p-icon d4p-ui-book-spells"></i></a>
+                        </div>
+						<?php
+					}
+
+					?>
                 </div>
             </div>
 
