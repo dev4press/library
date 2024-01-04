@@ -1,7 +1,7 @@
 <?php
 
-use Dev4Press\v46\Core\Options\Render;
-use function Dev4Press\v46\Functions\panel;
+use Dev4Press\v47\Core\Options\Render;
+use function Dev4Press\v47\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

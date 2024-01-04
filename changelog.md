@@ -1,6 +1,12 @@
 # Dev4Press Library
 ## Changelog
 
+### Version 4.7 - 2024.01.11
+
+* New: added several more UI icons
+* * Updated: Built-in cacert.pem 20231212
+* Fix: problem with the rendering of hierarchy checkboxes
+
 ### Version 4.6 - 2023.12.28
 
 * New: metabox styling rebuilt and improved with sidebar styling support
