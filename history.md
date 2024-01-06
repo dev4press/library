@@ -61,7 +61,7 @@
 * Edit: updates to the translations and strings included
 * Edit: several more strings escaping and kses-ing for display
 * Updated: JS Cookie 3.0.5
-* Updated: Built-in cacert.pem 20230822
+* Updated: built-in cacert.pem 20230822
 * Removed: clipboard JS file since it is already in WordPress core
 * Removed: standalone print and debug functions as no longer used
 * Removed: class `Debug` as it is now obsolete
@@ -137,7 +137,7 @@
 * Updated: Few updates to the settings rendering
 * Updated: Various improvements to the styling
 * Updated: Recommendation API list of plugins
-* Updated: Built-in cacert.pem 20230110
+* Updated: built-in cacert.pem 20230110
 * Deprecated: `DBLite` methods for time zone offset
 * Removed: All previously deprecated methods
 * Fix: `DBLite` method `analyze_table` was not returning results
@@ -175,7 +175,7 @@
 * Updated: Various improvements to Core classes
 * Updated: Expanded BBPress static Core class
 * Updated: Additional icons to the Icons font
-* Updated: Built-in cacert.pem 20221011
+* Updated: built-in cacert.pem 20221011
 * Updated: Clipboard.js 2.0.11
 * Removed: All previously deprecated functions
 * Deprecated: Some additional functions and methods
@@ -198,7 +198,7 @@
 * Updated: Post Type and Taxonomy traits updated labels
 * Updated: Each menu item can have own capability
 * Updated: Sanitize method names updates
-* Updated: Built-in cacert.pem 20220426
+* Updated: built-in cacert.pem 20220426
 * Updated: Mark.js 9.0.0
 * Updated: Clipboard.js 2.0.10
 * Updated: Flatpickr 4.6.13
@@ -242,7 +242,7 @@
 * New: Pattern validation for slug field types
 * Updated: Many improvements and tweaks to the About panel
 * Updated: Improvements to the RTL styling
-* Updated: Built-in cacert.pem 20210930
+* Updated: built-in cacert.pem 20210930
 * Updated: Clipboard 2.0.8
 * Updated: Cookie 3.0.1
 * Updated: MarkJS 9.0.0
@@ -265,7 +265,7 @@
 * Updated: Removed retired plugins from the list
 * Updated: JavaScript migrate compatibility updates
 * Updated: Various PHP related improvements
-* Updated: Built-in cacert.pem 20210705
+* Updated: built-in cacert.pem 20210705
 * Removed: Previously deprecated functions
 * Removed: Many defines for system flags
 * Fixed: mysqli method for DBLite class
@@ -309,7 +309,7 @@
 ### Version 3.4 - 2021.02.15
 * New: Options core Element support for switch control setting
 * Updated: Various styling improvements to the metabox rendering
-* Updated: Built-in cacert.pem 20210119
+* Updated: built-in cacert.pem 20210119
 * Updated: Licensing text for individual files
 
 ### Version 3.3.1 - 2020.12.28
@@ -330,7 +330,7 @@
 * Updated: Font expanded with new UI icons
 * Updated: Various rendering tweaks and improvements
 * Updated: Various styling improvements
-* Updated: Built-in cacert.pem 20201014
+* Updated: built-in cacert.pem 20201014
 * Updated: Flatpickr 4.6.6
 * Fixed: Few issues with the settings rendering
 
@@ -342,7 +342,7 @@
 * Updated: Various JavaScript improvements
 * Updated: Various minor improvements
 * Updated: Function to format file size
-* Updated: Built-in cacert.pem 20200722
+* Updated: built-in cacert.pem 20200722
 * Fixed: Settings import minor issues
 
 ### Version 3.1.3 - 2020.06.30

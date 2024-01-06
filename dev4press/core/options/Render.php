@@ -31,7 +31,6 @@ use Dev4Press\v47\Core\Quick\Arr;
 use Dev4Press\v47\Core\Quick\KSES;
 use Dev4Press\v47\Core\Quick\Sanitize;
 use Dev4Press\v47\Core\UI\Elements;
-use Dev4Press\v47\WordPress\Walker\CheckboxRadio;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -367,15 +366,28 @@ class Render {
 		echo '</div>';
 	}
 
-	protected function _pair_element( $name, $id, $i, $value, $element, $hide = false ) {
-		echo '<div class="pair-element-' . esc_attr( $i ) . '" style="display: ' . ( $hide ? 'none' : 'block' ) . '">';
-		echo '<label for="' . esc_attr( $id ) . '_key">' . KSES::strong( $element->args['label_key'] ) . ':</label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<input type="text" name="' . esc_attr( $name ) . '[key]" id="' . esc_attr( $id ) . '_key" value="' . esc_attr( $value['key'] ) . '" class="widefat" />';
+	protected function _pair_element( $name, $id, $i, $value, $element, $hide = false, $layout = 'normal' ) {
+		$type_key    = $element->args['type_key'] ?? 'text';
+		$type_value  = $element->args['type_value'] ?? 'text';
+		$label_key   = $element->args['label_key'] ?? __( 'Key' );
+		$label_value = $element->args['label_value'] ?? __( 'Value' );
+		$remove      = $element->args['label_button_remove'] ?? '<i aria-label="' . __( 'Remove' ) . '" class="d4p-icon d4p-ui-times"></i><span class="d4p-sr-only">' . __( 'Remove' ) . '</span>';
 
-		echo '<label for="' . esc_attr( $id ) . '_value">' . KSES::strong( $element->args['label_value'] ) . ':</label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<input type="text" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value['value'] ) . '" class="widefat" />';
+		echo '<div class="d4p-element-pair-single pair-element-' . esc_attr( $i ) . '" style="' . ( $hide ? 'display:none' : '' ) . '">';
 
-		echo '<a role="button" class="button-secondary" href="#">' . KSES::strong( $element->args['label_button_remove'] ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		if ( $layout == 'normal' ) {
+			echo '<label for="' . esc_attr( $id ) . '_key">' . KSES::strong( $label_key ) . ':</label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+
+		echo '<div><input placeholder="' . esc_attr( $label_key ) . '" type="' . esc_attr( $type_key ) . '" name="' . esc_attr( $name ) . '[key]" id="' . esc_attr( $id ) . '_key" value="' . esc_attr( $value['key'] ) . '" class="widefat" /></div>';
+
+		if ( $layout == 'normal' ) {
+			echo '<label for="' . esc_attr( $id ) . '_value">' . KSES::strong( $label_value ) . ':</label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+
+		echo '<div><input placeholder="' . esc_attr( $label_value ) . '" type="' . esc_attr( $type_value ) . '" name="' . esc_attr( $name ) . '[value]" id="' . esc_attr( $id ) . '_value" value="' . esc_attr( $value['value'] ) . '" class="widefat" /></div>';
+
+		echo '<span><a role="button" class="button-secondary" href="#">' . KSES::strong( $remove ) . '</a></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</div>';
 	}
 
@@ -393,8 +405,8 @@ class Render {
 
 	protected function _datetime_element( Element $element, $value, $name_base, $id_base, $type = 'text', $class = '' ) {
 		$readonly  = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
-		$min       = isset( $element->args['min'] ) ? ' min="' . esc_attr($element->args['min']) . '"' : '';
-		$max       = isset( $element->args['max'] ) ? ' max="' . esc_attr($element->args['max']) . '"' : '';
+		$min       = isset( $element->args['min'] ) ? ' min="' . esc_attr( $element->args['min'] ) . '"' : '';
+		$max       = isset( $element->args['max'] ) ? ' max="' . esc_attr( $element->args['max'] ) . '"' : '';
 		$flatpickr = isset( $element->args['flatpickr'] ) && $element->args['flatpickr'];
 		$type      = $flatpickr ? 'text' : $type;
 		$class     = 'widefat' . ( $flatpickr ? ' ' . $class : '' );
@@ -1022,6 +1034,13 @@ class Render {
 	}
 
 	protected function draw_expandable_pairs( Element $element, $value, $name_base, $id_base = '' ) {
+		$layout = $element->args['layout'] ?? 'normal';
+		$class  = array(
+			'd4p-expandable-pairs-wrapper',
+			'd4p-expandable-pairs-layout-' . $layout,
+		);
+
+		echo '<div class="' . Sanitize::html_classes( $class ) . '">';
 		$this->_pair_element(
 			$name_base . '[0]',
 			$id_base . '_0',
@@ -1031,8 +1050,22 @@ class Render {
 				'value' => '',
 			),
 			$element,
-			true
+			true,
+			$layout
 		);
+
+		echo '<div class="d4p-expandable-pairs-inside">';
+
+		if ( $layout == 'inline' ) {
+			$label_key   = $element->args['label_key'] ?? __( 'Key' );
+			$label_value = $element->args['label_value'] ?? __( 'Value' );
+
+			echo '<div class="d4p-element-pair-single">';
+			echo '<div><span>' . $label_key . '</span></div>';
+			echo '<div><span>' . $label_value . '</span></div>';
+			echo '<span>&nbsp;</span>';
+			echo '</div>';
+		}
 
 		$i = 1;
 		foreach ( $value as $key => $val ) {
@@ -1044,13 +1077,32 @@ class Render {
 					'key'   => $key,
 					'value' => $val,
 				),
-				$element
+				$element,
+				false,
+				$layout
 			);
 			$i ++;
 		}
 
-		echo '<a role="button" class="button-primary" href="#">' . esc_html( $element->args['label_button_add'] ) . '</a>';
+		$this->_pair_element(
+			$name_base . '[' . $i . ']',
+			$id_base . '_' . $i,
+			$i,
+			array(
+				'key'   => '',
+				'value' => '',
+			),
+			$element,
+			false,
+			$layout
+		);
+
+		echo '</div>';
+
+		echo '<a role="button" class="button-primary" href="#">' . KSES::strong( $element->args['label_button_add'] ?? __( 'Add New' ) ) . '</a>';
 		echo '<input type="hidden" value="' . esc_attr( $i ) . '" class="d4p-next-id" />';
+
+		echo '</div>';
 	}
 
 	protected function draw_expandable_raw( Element $element, $value, $name_base, $id_base = '' ) {

@@ -226,7 +226,6 @@ class Elements {
 
 	public function checkboxes_with_hierarchy( $values, $args = array() ) : string {
 		$args = $this->checkboxes_prepare_args( $args );
-		$name = $args['multi'] ? $args['name'] . '[]' : $args['name'];
 
 		$walker = new CheckboxRadio();
 
@@ -246,7 +245,7 @@ class Elements {
 			array(
 				'input'    => $args['multi'] ? 'checkbox' : 'radio',
 				'id'       => $this->id_from_name( $args['name'], $args['id'] ),
-				'name'     => $name,
+				'name'     => $args['name'],
 				'selected' => (array) $args['selected'],
 			)
 		);

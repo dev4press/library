@@ -139,6 +139,7 @@ class Icons {
 		'ui-arrow-up',
 		'ui-arrows-v',
 		'ui-assistive-listening-systems',
+		'ui-asterisk',
 		'ui-badge',
 		'ui-badge-check',
 		'ui-badge-percent',

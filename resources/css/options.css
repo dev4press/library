@@ -207,16 +207,44 @@
   width: 80px;
   vertical-align: top;
 }
-.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs > div {
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs .d4p-expandable-pairs-layout-normal .d4p-expandable-pairs-inside .d4p-element-pair-single {
   border: 1px solid #CCC;
   padding: 10px;
   margin: 0 0 10px;
 }
-.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs > div a {
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs .d4p-expandable-pairs-layout-normal .d4p-expandable-pairs-inside .d4p-element-pair-single a {
   font-size: 0.9em;
 }
-.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs > div input {
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs .d4p-expandable-pairs-layout-normal .d4p-expandable-pairs-inside .d4p-element-pair-single input {
   margin: 0 0 5px;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs .d4p-expandable-pairs-layout-inline .d4p-expandable-pairs-inside {
+  margin: 0 0 1em;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs .d4p-expandable-pairs-layout-inline .d4p-expandable-pairs-inside .d4p-element-pair-single {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs .d4p-expandable-pairs-layout-inline .d4p-expandable-pairs-inside .d4p-element-pair-single:first-child {
+  border-bottom: 3px solid #DDD;
+  font-weight: bold;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs .d4p-expandable-pairs-layout-inline .d4p-expandable-pairs-inside .d4p-element-pair-single > div {
+  flex-grow: 1;
+  flex-basis: calc((100% - 36px) / 2);
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs .d4p-expandable-pairs-layout-inline .d4p-expandable-pairs-inside .d4p-element-pair-single > span {
+  flex-shrink: 1;
+  min-width: 36px;
+  display: block;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper.d4p-setting-expandable_pairs .d4p-expandable-pairs-layout-inline .d4p-expandable-pairs-inside .d4p-element-pair-single > span a {
+  display: block;
+  padding: 4px 12px;
+  text-align: center;
 }
 @media screen and (max-width: 840px) {
   .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper input[type=time],
@@ -528,12 +556,12 @@ details.d4p-section-details > div .form-table code {
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox] + label:before {
   font-family: "dev4press";
   display: inline-block;
-  content: "\f207";
+  content: "\f208";
   font-size: 2em;
   line-height: 1;
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation input[type=checkbox]:checked + label:before {
-  content: "\f208";
+  content: "\f209";
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._activation i {
   font-size: 2em;

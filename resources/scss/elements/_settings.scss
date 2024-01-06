@@ -289,17 +289,57 @@
             }
 
             &.d4p-setting-expandable_pairs {
-                > div {
-                    border: 1px solid #CCC;
-                    padding: 10px;
-                    margin: 0 0 10px;
+                .d4p-expandable-pairs-layout-normal {
+                    .d4p-expandable-pairs-inside {
+                        .d4p-element-pair-single {
+                            border: 1px solid #CCC;
+                            padding: 10px;
+                            margin: 0 0 10px;
 
-                    a {
-                        font-size: .9em;
+                            a {
+                                font-size: .9em;
+                            }
+
+                            input {
+                                margin: 0 0 5px;
+                            }
+                        }
                     }
+                }
 
-                    input {
-                        margin: 0 0 5px;
+                .d4p-expandable-pairs-layout-inline {
+                    .d4p-expandable-pairs-inside {
+                        margin: 0 0 1em;
+
+                        .d4p-element-pair-single {
+                            display: flex;
+                            flex-wrap: nowrap;
+                            align-items: center;
+                            gap: 5px;
+                            margin-bottom: 5px;
+
+                            &:first-child {
+                                border-bottom: 3px solid #DDD;
+                                font-weight: bold;
+                            }
+
+                            > div {
+                                flex-grow: 1;
+                                flex-basis: calc((100% - 36px) / 2);
+                            }
+
+                            > span {
+                                flex-shrink: 1;
+                                min-width: 36px;
+                                display: block;
+
+                                a {
+                                    display: block;
+                                    padding: 4px 12px;
+                                    text-align: center;
+                                }
+                            }
+                        }
                     }
                 }
             }

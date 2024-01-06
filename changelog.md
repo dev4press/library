@@ -1,11 +1,15 @@
 # Dev4Press Library
+
 ## Changelog
 
 ### Version 4.7 - 2024.01.11
 
+* New: option for expandable pairs has new layout and styling
 * New: added several more UI icons
-* Updated: Built-in cacert.pem 20231212
+* Edit: various improvements for expandable pairs control
+* Edit: built-in cacert.pem 20231212
 * Fix: problem with the rendering of hierarchy checkboxes
+* Fix: missing default elements for expandable pairs control
 
 ### Version 4.6 - 2023.12.28
 
