@@ -154,7 +154,7 @@ class KSES {
 					'type'  => true,
 					'class' => true,
 				),
-				'span' => array(
+				'span'   => array(
 					'class' => true,
 				),
 			)
@@ -194,6 +194,7 @@ class KSES {
 					'class'        => true,
 					'style'        => true,
 					'title'        => true,
+					'alt'          => true,
 					'type'         => true,
 					'checked'      => true,
 					'readonly'     => true,
@@ -205,11 +206,13 @@ class KSES {
 					'max'          => true,
 					'step'         => true,
 					'size'         => true,
+					'minlength'    => true,
 					'maxlength'    => true,
 					'multiple'     => true,
 					'pattern'      => true,
 					'required'     => true,
 					'autocomplete' => true,
+					'autofocus'    => true,
 					'data-*'       => true,
 				),
 			)

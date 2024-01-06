@@ -70,9 +70,9 @@ class Elements {
 		return $render;
 	}
 
-	public function input( $value = '', $args = array(), $attr = array() ) : string {
+	public function input( $value = '', $args = array(), $attr = array(), $aria = array() ) : string {
 		$args       = $this->input_prepare_args( $args );
-		$attributes = $this->input_prepare_attributes( $args, $attr, $value );
+		$attributes = $this->input_prepare_attributes( $args, $attr, $aria, $value );
 
 		$render = '<input ' . join( ' ', $attributes ) . ' />';
 
@@ -206,6 +206,7 @@ class Elements {
 		$render = '<div class="' . Sanitize::html_classes( $wrapper_class ) . '">';
 		$render .= $this->checkboxes_render_check_uncheck( $args['multi'] );
 		$render .= '<div class="d4p-inside-wrapper">';
+
 		foreach ( $values as $group ) {
 			$render .= '<div class="d4p-group-title">' . $group['title'] . '</div>';
 			foreach ( $group['values'] as $key => $title ) {
@@ -214,6 +215,7 @@ class Elements {
 				$render .= sprintf( '<label><input %s />%s</label>', join( ' ', $attributes ), esc_html( $title ) );
 			}
 		}
+
 		$render .= '</div>';
 		$render .= '</div>';
 
@@ -322,16 +324,26 @@ class Elements {
 
 	private function input_prepare_args( $args ) : array {
 		$defaults = array(
-			'checked'     => false,
-			'name'        => '',
-			'id'          => '',
-			'title'       => '',
-			'placeholder' => '',
-			'type'        => 'text',
-			'class'       => '',
-			'style'       => '',
-			'echo'        => true,
-			'readonly'    => false,
+			'echo'         => true,
+			'type'         => 'text',
+			'checked'      => false,
+			'readonly'     => false,
+			'required'     => false,
+			'autofocus'    => false,
+			'name'         => '',
+			'id'           => '',
+			'title'        => '',
+			'alt'          => '',
+			'placeholder'  => '',
+			'minlength'    => '',
+			'maxlength'    => '',
+			'class'        => '',
+			'style'        => '',
+			'min'          => '',
+			'max'          => '',
+			'step'         => '',
+			'size'         => '',
+			'autocomplete' => '',
 		);
 
 		return wp_parse_args( $args, $defaults );
@@ -397,7 +409,11 @@ class Elements {
 		return $attributes;
 	}
 
-	private function input_prepare_attributes( $args, $attr = array(), $value = '' ) : array {
+	private function input_prepare_attributes( $args, $attr = array(), $aria = array(), $value = '' ) : array {
+		$plain_attr   = array( 'class', 'style', 'title', 'pattern', 'placeholder', 'autocomplete', 'alt' );
+		$numeric_attr = array( 'min', 'max', 'step' );
+		$absint_attr  = array( 'maxlength', 'minlength', 'size' );
+
 		$args['type'] = $args['type'] ?? 'text';
 
 		$attributes = array(
@@ -408,28 +424,42 @@ class Elements {
 		$name = $args['type'] == 'radio' ? $args['name'] . '[]' : $args['name'];
 		$id   = $this->id_from_name( $args['name'], $args['id'] );
 
-		if ( ! empty( $args['class'] ) ) {
-			$attributes[] = 'class="' . esc_attr( $args['class'] ) . '"';
+		foreach ( $plain_attr as $a ) {
+			if ( ! empty( $args[ $a ] ) ) {
+				$attributes[] = $a . '="' . esc_attr( $args[ $a ] ) . '"';
+			}
 		}
 
-		if ( ! empty( $args['style'] ) ) {
-			$attributes[] = 'style="' . esc_attr( $args['style'] ) . '"';
+		foreach ( $numeric_attr as $a ) {
+			if ( ! empty( $args[ $a ] ) ) {
+				$val = floatval( $args[ $a ] );
+
+				if ( $val > 0 ) {
+					$attributes[] = $a . '="' . $val . '"';
+				}
+			}
 		}
 
-		if ( ! empty( $args['title'] ) ) {
-			$attributes[] = 'title="' . esc_attr( $args['title'] ) . '"';
-		}
+		foreach ( $absint_attr as $a ) {
+			if ( ! empty( $args[ $a ] ) ) {
+				$val = absint( $args[ $a ] );
 
-		if ( ! empty( $args['placeholder'] ) ) {
-			$attributes[] = 'placeholder="' . esc_attr( $args['placeholder'] ) . '"';
-		}
-
-		if ( ! empty( $args['pattern'] ) ) {
-			$attributes[] = 'pattern="' . esc_attr( $args['pattern'] ) . '"';
+				if ( $val > 0 ) {
+					$attributes[] = $a . '="' . $val . '"';
+				}
+			}
 		}
 
 		if ( $args['readonly'] ) {
 			$attributes[] = 'readonly';
+		}
+
+		if ( $args['required'] ) {
+			$attributes[] = 'required';
+		}
+
+		if ( $args['autofocus'] ) {
+			$attributes[] = 'autofocus';
 		}
 
 		if ( $args['checked'] && in_array( $args['type'], array( 'radio', 'checkbox' ) ) ) {
@@ -447,6 +477,12 @@ class Elements {
 		if ( ! empty( $attr ) ) {
 			foreach ( $attr as $key => $value ) {
 				$attributes[] = $key . '="' . esc_attr( $value ) . '"';
+			}
+		}
+
+		if ( ! empty( $aria ) ) {
+			foreach ( $aria as $key => $value ) {
+				$attributes[] = 'aria-' . $key . '="' . esc_attr( $value ) . '"';
 			}
 		}
 

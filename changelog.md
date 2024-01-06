@@ -5,7 +5,9 @@
 ### Version 4.7 - 2024.01.11
 
 * New: option for expandable pairs has new layout and styling
+* New: expanded the `Elements` method `input` with more attributes
 * New: added several more UI icons
+* Edit: settings `Render` class uses `Elements` for input types
 * Edit: various improvements for expandable pairs control
 * Edit: built-in cacert.pem 20231212
 * Fix: problem with the rendering of hierarchy checkboxes

@@ -441,59 +441,36 @@ class Render {
 		$this->_datetime_element( $element, $value, $name_base, $id_base, 'datetime-local', 'd4p-input-field-datetime' );
 	}
 
-	protected function draw_license( Element $element, $value, $name_base, $id_base, $type = 'text', $class = 'widefat' ) {
-		$readonly    = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
-		$placeholder = isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? $element->args['placeholder'] : '';
-		$type        = 'text';
-		$pattern     = '^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$';
-
-		echo sprintf(
-			'<input aria-labelledby="%s__label"%s placeholder="%s" pattern="%s" type="%s" name="%s" id="%s" value="%s" class="%s" />',
-			esc_attr( $id_base ),
-			esc_attr( $readonly ),
-			esc_attr( $placeholder ),
-			$pattern,
-			$type,
-			esc_attr( $name_base ),
-			esc_attr( $id_base ),
-			esc_attr( $value ),
-			esc_attr( $class )
-		);
+	protected function draw_license( Element $element, $value, $name_base, $id_base ) {
+		Elements::instance()->input( $value, array(
+			'echo'        => true,
+			'id'          => $id_base,
+			'name'        => $name_base,
+			'class'       => 'widefat',
+			'type'        => 'text',
+			'readonly'    => isset( $element->args['readonly'] ) && $element->args['readonly'],
+			'placeholder' => isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? $element->args['placeholder'] : '',
+			'pattern'     => '^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$',
+		), array(), array(
+			'labelledby' => $id_base . '__label',
+		) );
 	}
 
-	protected function draw_text( Element $element, $value, $name_base, $id_base, $type = 'text', $class = 'widefat' ) {
-		$readonly    = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
-		$placeholder = isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? $element->args['placeholder'] : '';
-		$type        = isset( $element->args['type'] ) && ! empty( $element->args['type'] ) ? $element->args['type'] : $type;
-
-		if ( isset( $element->args['pattern'] ) ) {
-			$pattern = $element->args['pattern'];
-
-			echo sprintf(
-				'<input aria-labelledby="%s__label"%s placeholder="%s" pattern="%s" type="%s" name="%s" id="%s" value="%s" class="%s" />',
-				esc_attr( $id_base ),
-				esc_attr( $readonly ),
-				esc_attr( $placeholder ),
-				esc_attr( $pattern ),
-				esc_attr( $type ),
-				esc_attr( $name_base ),
-				esc_attr( $id_base ),
-				esc_attr( $value ),
-				esc_attr( $class )
-			);
-		} else {
-			echo sprintf(
-				'<input aria-labelledby="%s__label"%s placeholder="%s" type="%s" name="%s" id="%s" value="%s" class="%s" />',
-				esc_attr( $id_base ),
-				esc_attr( $readonly ),
-				esc_attr( $placeholder ),
-				esc_attr( $type ),
-				esc_attr( $name_base ),
-				esc_attr( $id_base ),
-				esc_attr( $value ),
-				esc_attr( $class )
-			);
-		}
+	protected function draw_text( Element $element, $value, $name_base, $id_base, $type = 'text' ) {
+		Elements::instance()->input( $value, array(
+			'echo'        => true,
+			'id'          => $id_base,
+			'name'        => $name_base,
+			'class'       => 'widefat',
+			'minlength'   => $element->args['minlength'] ?? '',
+			'maxlength'   => $element->args['maxlength'] ?? '',
+			'type'        => isset( $element->args['type'] ) && ! empty( $element->args['type'] ) ? $element->args['type'] : $type,
+			'readonly'    => isset( $element->args['readonly'] ) && $element->args['readonly'],
+			'placeholder' => isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? $element->args['placeholder'] : '',
+			'pattern'     => isset( $element->args['pattern'] ) && ! empty( $element->args['pattern'] ) ? $element->args['pattern'] : '',
+		), array(), array(
+			'labelledby' => $id_base . '__label',
+		) );
 	}
 
 	protected function draw_html( Element $element, $value, $name_base, $id_base ) {
@@ -510,23 +487,20 @@ class Render {
 	}
 
 	protected function draw_number( Element $element, $value, $name_base, $id_base ) {
-		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
-
-		$min  = isset( $element->args['min'] ) ? ' min="' . floatval( esc_attr( $element->args['min'] ) ) . '"' : '';
-		$max  = isset( $element->args['max'] ) ? ' max="' . floatval( esc_attr( $element->args['max'] ) ) . '"' : '';
-		$step = isset( $element->args['step'] ) ? ' step="' . floatval( esc_attr( $element->args['step'] ) ) . '"' : '';
-
-		echo sprintf(
-			'<input aria-labelledby="%s__label"%s type="number" name="%s" id="%s" value="%s" class="widefat"%s%s%s />',
-			esc_attr( $id_base ),
-			esc_attr( $readonly ),
-			esc_attr( $name_base ),
-			esc_attr( $id_base ),
-			esc_attr( $value ),
-			$min,
-			$max,
-			$step
-		);
+		Elements::instance()->input( $value, array(
+			'echo'        => true,
+			'id'          => $id_base,
+			'name'        => $name_base,
+			'class'       => 'widefat',
+			'type'        => 'number',
+			'min'         => $element->args['min'] ?? '',
+			'max'         => $element->args['max'] ?? '',
+			'step'        => $element->args['step'] ?? '',
+			'readonly'    => isset( $element->args['readonly'] ) && $element->args['readonly'],
+			'placeholder' => isset( $element->args['placeholder'] ) && ! empty( $element->args['placeholder'] ) ? $element->args['placeholder'] : '',
+		), array(), array(
+			'labelledby' => $id_base . '__label',
+		) );
 
 		if ( isset( $element->args['label_unit'] ) ) {
 			echo '<span class="d4p-field-unit">' . esc_html( $element->args['label_unit'] ) . '</span>';
@@ -728,7 +702,6 @@ class Render {
 		$child      = $element->args['child_of'] ?? 0;
 		$depth      = $element->args['depth'] ?? 0;
 
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		$list = wp_dropdown_pages(
 			array(
 				'echo'              => false,
