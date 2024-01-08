@@ -2,7 +2,7 @@
 
 ## Changelog
 
-### Version 4.7 - 2024.01.11
+### Version 4.7 - 2024.01.09
 
 * New: option for expandable pairs has new layout and styling
 * New: expanded the `Elements` method `input` with more attributes
