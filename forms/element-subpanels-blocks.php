@@ -24,7 +24,7 @@ foreach ( panel()->subpanels() as $subpanel => $obj ) {
 	$url = $obj['url'] ?? panel()->a()->subpanel_url( $subpanel );
 
 	if ( isset( $obj['break'] ) ) {
-		echo panel()->r()->settings_break( $obj['break'], $obj['break-icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo panel()->r()->settings_break( $obj['break'], $obj['break-icon'] ?? '', $obj['break-info'] ?? '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	?>

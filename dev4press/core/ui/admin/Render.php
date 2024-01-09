@@ -2,6 +2,8 @@
 
 namespace Dev4Press\v47\Core\UI\Admin;
 
+use Dev4Press\v47\Core\Quick\KSES;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -65,9 +67,16 @@ class Render {
 		return $break;
 	}
 
-	public function settings_break( $label, $icon = '' ) : string {
+	public function settings_break( $label, $icon = '', $info = '' ) : string {
 		$break = '<div class="d4p-feature-break">';
 		$break .= '<h2 id="settings-break-' . sanitize_key( $label ) . '">' . $this->icon( $icon ) . $label . '</h3>';
+		$break .= '<div class="d4p-feature-break-info">';
+
+		if ( ! empty( $info ) ) {
+			$break .= '<div>' . KSES::standard( $info ) . '</div>';
+		}
+
+		$break .= '</div>';
 		$break .= '</div>';
 
 		return $break;

@@ -376,7 +376,6 @@ details.d4p-section-details > div .form-table code {
 .d4p-feature-break {
   margin: 0 0 2em;
   padding: 0;
-  border-bottom: 2px solid #555;
 }
 .d4p-feature-break h2 {
   border-radius: var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius) 0 0;
@@ -393,6 +392,14 @@ details.d4p-section-details > div .form-table code {
 .d4p-feature-break h2 i {
   margin: 0 7px 0 0;
   font-size: 18px;
+}
+.d4p-feature-break .d4p-feature-break-info {
+  border-top: 2px solid #555;
+}
+.d4p-feature-break .d4p-feature-break-info div {
+  font-size: 1.2em;
+  padding: 0.5em 1em;
+  background: #DDD;
 }
 
 .d4p-panel-features-counts {

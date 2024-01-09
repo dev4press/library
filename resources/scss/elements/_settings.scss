@@ -509,7 +509,6 @@ details.d4p-section-details {
 .d4p-feature-break {
     margin: 0 0 2em;
     padding: 0;
-    border-bottom: 2px solid #555;
 
     h2 {
         border-radius: var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius) 0 0;
@@ -526,6 +525,16 @@ details.d4p-section-details {
         i {
             margin: 0 7px 0 0;
             font-size: 18px;
+        }
+    }
+
+    .d4p-feature-break-info {
+        border-top: 2px solid #555;
+
+        div {
+            font-size: 1.2em;
+            padding: .5em 1em;
+            background: #DDD;
         }
     }
 }
