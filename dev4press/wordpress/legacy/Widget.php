@@ -174,22 +174,26 @@ abstract class Widget extends WP_Widget {
 	protected function shared_update( array $new_instance, array $old_instance ) : array {
 		$instance = $old_instance;
 
-		$instance['title'] = Sanitize::basic( $new_instance['title'] );
+		$instance['title'] = Sanitize::basic( ( $new_instance['title'] ?? '' ) );
 
-		$instance['_class'] = Sanitize::basic( $new_instance['_class'] );
-		$instance['_tab']   = sanitize_key( $new_instance['_tab'] );
-		$instance['_hook']  = sanitize_key( $new_instance['_hook'] );
-		$instance['_devid'] = sanitize_key( $new_instance['_devid'] );
+		$instance['_class'] = Sanitize::basic( ( $new_instance['_class'] ?? '' ) );
+		$instance['_tab']   = Sanitize::key( ( $new_instance['_tab'] ?? '' ) );
+		$instance['_hook']  = Sanitize::key( ( $new_instance['_hook'] ?? '' ) );
+		$instance['_devid'] = Sanitize::key( ( $new_instance['_devid'] ?? '' ) );
 
-		$instance['_users'] = $this->get_valid_list_value( '_users', $new_instance['_users'], array_keys( $this->get_list_user_visibility() ) );
+		$instance['_users'] = $this->get_valid_list_value( '_users', $new_instance['_users'] ?? 'all', array_keys( $this->get_list_user_visibility() ) );
 
-		$_capabilities = Sanitize::basic( $new_instance['_capabilities'] );
-		$_capabilities = explode( ',', $_capabilities );
-		$_capabilities = array_map( 'trim', $_capabilities );
-		$_capabilities = array_unique( $_capabilities );
-		$_capabilities = array_filter( $_capabilities );
+		if ( isset( $new_instance['_capabilities'] ) ) {
+			$_capabilities = Sanitize::basic( $new_instance['_capabilities'] );
+			$_capabilities = explode( ',', $_capabilities );
+			$_capabilities = array_map( 'trim', $_capabilities );
+			$_capabilities = array_unique( $_capabilities );
+			$_capabilities = array_filter( $_capabilities );
 
-		$instance['_capabilities'] = join( ', ', $_capabilities );
+			$instance['_capabilities'] = join( ', ', $_capabilities );
+		} else {
+			$instance['_capabilities'] = '';
+		}
 
 		$instance['_roles'] = array();
 
@@ -209,11 +213,11 @@ abstract class Widget extends WP_Widget {
 		}
 
 		if ( current_user_can( 'unfiltered_html' ) ) {
-			$instance['_before'] = $new_instance['_before'];
-			$instance['_after']  = $new_instance['_after'];
+			$instance['_before'] = $new_instance['_before'] ?? '';
+			$instance['_after']  = $new_instance['_after'] ?? '';
 		} else {
-			$instance['_before'] = Sanitize::html( $new_instance['_before'] );
-			$instance['_after']  = Sanitize::html( $new_instance['_after'] );
+			$instance['_before'] = Sanitize::html( ( $new_instance['_before'] ?? '' ) );
+			$instance['_after']  = Sanitize::html( ( $new_instance['_after'] ?? '' ) );
 		}
 
 		return $instance;
