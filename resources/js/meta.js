@@ -11,17 +11,7 @@
 
             $(document).on(
                 "click",
-                wrapper + " .d4p-check-uncheck a",
-                function(e) {
-                    e.preventDefault();
-
-                    var checkall = $(this).attr("href").substring(1) === "checkall";
-
-                    $(this).parent().parent().find("input[type=checkbox]").prop("checked", checkall);
-                }
-            );
-
-            $(wrapper + " .wp-tab-bar button").click(
+                wrapper + " .wp-tab-bar button",
                 function(e) {
                     e.preventDefault();
 
@@ -42,6 +32,33 @@
                         .addClass("tabs-panel-active");
                 }
             );
+
+            $(document).on(
+                "click",
+                wrapper + " .d4p-check-uncheck a",
+                function(e) {
+                    e.preventDefault();
+
+                    var checkall = $(this).attr("href").substring(1) === "checkall";
+
+                    $(this).parent().parent().find("input[type=checkbox]").prop("checked", checkall);
+                }
+            );
+
+            $(document).on(
+                "change",
+                wrapper + " .d4p-metabox-value-override",
+                function(e) {
+                    var sel = $(this).val(),
+                        target = $(this).parent().parent().next();
+
+                    if (sel === "yes") {
+                        target.show();
+                    } else {
+                        target.hide();
+                    }
+                }
+            )
         }
     };
 
