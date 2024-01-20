@@ -3289,86 +3289,86 @@ a > .d4p-icon {
     flex: 1 1 calc(50% - 0.5em);
   }
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-cards-wrapper {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-cards-wrapper {
   width: 100%;
   max-width: 1200px;
   display: flex;
   flex-wrap: wrap;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-cards-wrapper .d4p-group.d4p-dashboard-card {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-cards-wrapper .d4p-group.d4p-dashboard-card {
   flex: 0 1 calc(50% - 2em);
   margin: 1em;
   position: relative;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-cards-wrapper .d4p-group.d4p-card-double {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-cards-wrapper .d4p-group.d4p-card-double {
   flex: 1 0 100%;
   max-width: calc(100% - 2em);
 }
 @media screen and (max-width: 1200px) {
-  .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-cards-wrapper {
+  .d4p-wrap.d4p-with-cards .d4p-content .d4p-cards-wrapper {
     flex-direction: column;
   }
-  .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-cards-wrapper .d4p-group.d4p-dashboard-card {
+  .d4p-wrap.d4p-with-cards .d4p-content .d4p-cards-wrapper .d4p-group.d4p-dashboard-card {
     max-width: calc(100% - 2em);
   }
 }
 @media screen and (max-width: 640px) {
-  .d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-cards-wrapper .d4p-group.d4p-dashboard-card {
+  .d4p-wrap.d4p-with-cards .d4p-content .d4p-cards-wrapper .d4p-group.d4p-dashboard-card {
     margin: 1em 0;
     max-width: 100%;
   }
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card {
   display: block;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-card-double .d4p-group-inner {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card.d4p-card-double .d4p-group-inner {
   font-size: 105%;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner {
   padding: 15px;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner h4 {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner h4 {
   margin: 0 0 0.75em;
   font-size: 1.15em;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner hr {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner hr {
   margin: 0.75em 0;
   border: 0;
   border-top: 1px solid #DDD;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul {
   list-style: none;
   margin: 0;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li {
   margin: 3px 0;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-with-bullets {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-with-bullets {
   list-style: outside disc;
   margin-left: 1em;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-with-bullets li {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-with-bullets li {
   list-style: inherit;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-header,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-inner {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-header,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-inner {
   display: flex;
   gap: 0.5em;
   flex-direction: column;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-header > div,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-inner > div {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-header > div,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-inner > div {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   gap: 0.5em;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-header > div .d4p-status-message,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-inner > div .d4p-status-message {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-header > div .d4p-status-message,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card.d4p-dashboard-status .d4p-group-inner > div .d4p-status-message {
   flex-grow: 1;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer {
   position: absolute;
   border-top: 1px solid #DDD;
   background: #F8F8F8;
@@ -3378,18 +3378,18 @@ a > .d4p-icon {
   width: 100%;
   border-radius: 0 0 var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius);
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer a {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer a {
   margin-right: 0.5em;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header {
   border-bottom: 1px solid #DDD;
   padding: 1em;
   background: #F2F2F2;
   text-align: left;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -3398,9 +3398,9 @@ a > .d4p-icon {
   column-gap: 1em;
   row-gap: 0.25em;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -3408,43 +3408,43 @@ a > .d4p-icon {
   font-size: 1em;
   flex: 1 1 calc(50% - 0.5em);
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li a,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li a {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li a,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li a {
   text-decoration: none;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li a i,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a i,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li a i {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li a i,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a i,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li a i {
   color: #555;
   font-size: 105%;
   margin-right: 3px;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li a strong,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a strong,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li a strong {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li a strong,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a strong,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li a strong {
   font-weight: 700;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li .d4p-card-badge,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li .d4p-card-badge,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li .d4p-card-badge {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li .d4p-card-badge,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li .d4p-card-badge,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li .d4p-card-badge {
   margin-top: 2px;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-full-width,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul.d4p-full-width,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul.d4p-full-width {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-full-width,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul.d4p-full-width,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul.d4p-full-width {
   flex-direction: column;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-full-width li,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul.d4p-full-width li,
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul.d4p-full-width li {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-full-width li,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul.d4p-full-width li,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul.d4p-full-width li {
   width: 100%;
   padding: 0;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-status-message {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-status-message {
   font-weight: 500;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row {
   display: flex;
   gap: 0.75em;
   align-items: flex-start;
@@ -3453,39 +3453,39 @@ a > .d4p-icon {
   font-size: 15px;
   line-height: 24px;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row button {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row button {
   padding: 0;
   border: 0;
   margin: 0;
   background: transparent;
   cursor: pointer;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle {
   flex-shrink: 1;
   font-size: 22px;
   line-height: 1;
   vertical-align: top;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle i {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle i {
   vertical-align: top;
   font-size: 1.2em;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle.d4p-type-status-enabled {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle.d4p-type-status-enabled {
   color: #3B7D33;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle.d4p-type-status-disabled {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row .d4p-type-toggle.d4p-type-status-disabled {
   color: #D05757;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row div {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row div {
   flex-grow: 1;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row div em {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-dashboard-status-row div em {
   display: block;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card:not(.d4p-dashboard-card-no-footer) .d4p-group-header + .d4p-group-inner {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card:not(.d4p-dashboard-card-no-footer) .d4p-group-header + .d4p-group-inner {
   margin-bottom: 3.5em;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-content .d4p-group.d4p-dashboard-card.d4p-card-double .d4p-group-footer {
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card.d4p-card-double .d4p-group-footer {
   position: relative;
 }
 

@@ -524,7 +524,7 @@ abstract class Plugin {
 	}
 
 	public function action_url( $action, $nonce, $args = '', $panel = '', $subpanel = '', $network = null ) : string {
-		$base = empty( $panel ) ? $this->current_url() : $this->panel_url( $panel, $subpanel, $network );
+		$base = empty( $panel ) ? $this->current_url() : $this->panel_url( $panel, $subpanel, '', $network );
 		$base = add_query_arg(
 			array(
 				$this->v()      => 'getback',
