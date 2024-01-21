@@ -2,7 +2,7 @@
 
 ## Changelog
 
-### Version 4.7 - 2024.01.15
+### Version 4.7 - 2024.01.20
 
 * New: option for expandable pairs has new layout and styling
 * New: expanded the `Elements` method `input` with more attributes
@@ -10,10 +10,12 @@
 * Edit: various improvements to the metabox handling and styling
 * Edit: settings `Render` class uses `Elements` for input types
 * Edit: various improvements for expandable pairs control
+* Edit: changes related to WordPress and PHP code standards
 * Edit: built-in cacert.pem 20231212
 * Fix: problem with the rendering of hierarchy checkboxes
 * Fix: missing default elements for expandable pairs control
 * Fix: several issues with validation of data for `Widget` class
+* Fix: issue with the action URL method for admin class
 
 ### Version 4.6 - 2023.12.28
 
