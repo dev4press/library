@@ -97,7 +97,7 @@ class Resources {
 				'ext'  => 'css',
 				'min'  => true,
 			),
-			'pack-embed'       => array(
+			'pack-embed' => array(
 				'path' => 'css/',
 				'file' => 'pack-embed',
 				'ext'  => 'css',
@@ -106,18 +106,6 @@ class Resources {
 			'about'      => array(
 				'path' => 'css/',
 				'file' => 'about',
-				'ext'  => 'css',
-				'min'  => true,
-			),
-			'font'       => array(
-				'path' => 'css/',
-				'file' => 'font',
-				'ext'  => 'css',
-				'min'  => true,
-			),
-			'font-embed' => array(
-				'path' => 'css/',
-				'file' => 'font-embed',
 				'ext'  => 'css',
 				'min'  => true,
 			),
@@ -326,6 +314,20 @@ class Resources {
 			),
 		),
 		'css' => array(
+			'font'                   => array(
+				'lib'  => false,
+				'path' => 'css/',
+				'file' => 'font',
+				'ext'  => 'css',
+				'min'  => true,
+			),
+			'font-embed'             => array(
+				'lib'  => false,
+				'path' => 'css/',
+				'file' => 'font-embed',
+				'ext'  => 'css',
+				'min'  => true,
+			),
 			'animated-popup'         => array(
 				'lib'  => true,
 				'path' => 'animated-popup/',

@@ -145,7 +145,9 @@ class Enqueue {
 
 			if ( ! empty( $args['int'] ) ) {
 				foreach ( $args['int'] as $lib ) {
-					$req[] = $this->_actual['css'][ $lib ];
+					if ( isset( $this->_actual['css'][ $lib ] ) ) {
+						$req[] = $this->_actual['css'][ $lib ];
+					}
 				}
 			}
 
@@ -164,7 +166,9 @@ class Enqueue {
 
 			if ( ! empty( $args['int'] ) ) {
 				foreach ( $args['int'] as $lib ) {
-					$req[] = $this->_actual['js'][ $lib ];
+					if ( isset( $this->_actual['js'][ $lib ] ) ) {
+						$req[] = $this->_actual['js'][ $lib ];
+					}
 				}
 			}
 
@@ -178,7 +182,8 @@ class Enqueue {
 
 				if ( $_locale !== false ) {
 					$this->_locales[ $name ] = $_locale;
-					$loc_code                = $code . '-' . $_locale;
+
+					$loc_code = $code . '-' . $_locale;
 
 					wp_register_script( $loc_code, $this->url( $args, $_locale ), array( $code ), $args['ver'], $footer );
 
