@@ -10,6 +10,7 @@
 * Edit: various improvements to the metabox handling and styling
 * Edit: settings `Render` class uses `Elements` for input types
 * Edit: various improvements for expandable pairs control
+* Edit: changes related to WordPress and PHP code standards
 * Edit: built-in cacert.pem 20231212
 * Fix: problem with the rendering of hierarchy checkboxes
 * Fix: missing default elements for expandable pairs control
