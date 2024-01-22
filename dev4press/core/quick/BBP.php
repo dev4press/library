@@ -140,12 +140,13 @@ class BBP {
 		return WPR::is_current_user_roles( bbp_get_keymaster_role() );
 	}
 
-	/**
-	 * @depecated since 4.1, to be removed in 4.2. Use WPR::get_user_display_name() instead.
-	 */
-	public static function get_user_display_name( int $user_id = 0 ) : string {
-		_deprecated_function( __METHOD__, '4.1', 'WPR::get_user_display_name' );
+	public static function can_use_pretty_urls() : bool {
+		if ( function_exists( 'bbp_use_pretty_urls' ) ) {
+			return bbp_use_pretty_urls();
+		}
 
-		return WPR::get_user_display_name( $user_id );
+		global $wp_rewrite;
+
+		return $wp_rewrite->using_permalinks();
 	}
 }
