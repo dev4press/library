@@ -264,8 +264,8 @@ abstract class Background {
 			$now = DateTime::createFromFormat( 'U.u', $message['time'] );
 
 			$render .= '<li class="__message __message-' . esc_attr( $message['type'] ) . '">';
-			$render .= '<span class="__date-time">' . $now->format( "m-d-Y H:i:s" ) . '</span>';
-			$render .= '<span class="__icon" title="' . $_labels[ $message['type'] ] . '"><i class="d4p-icon d4p-' . $_icons[ $message['type'] ] . ' d4p-icon-fw"></i></span>';
+			$render .= '<span class="__date-time">' . $now->format( 'm-d-Y H:i:s' ) . '</span>';
+			$render .= '<span class="__icon" title="' . esc_attr( $_labels[ $message['type'] ] ) . '"><i class="d4p-icon d4p-' . esc_attr( $_icons[ $message['type'] ] ) . ' d4p-icon-fw"></i></span>';
 			$render .= '<span class="__content">' . esc_html( $message['message'] ) . '</span>';
 			$render .= '</li>';
 		}
