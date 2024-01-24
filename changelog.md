@@ -8,6 +8,7 @@
 * New: expanded the `Elements` method `input` with more attributes
 * New: expanded the `BBP` class with `can_use_pretty_urls` method
 * New: added several more UI icons
+* Edit: rewritten `IP` class for getting visitor IP with extra options
 * Edit: various improvements to the metabox handling and styling
 * Edit: settings `Render` class uses `Elements` for input types
 * Edit: various improvements for expandable pairs control
