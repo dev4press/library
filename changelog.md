@@ -1,6 +1,10 @@
 # Dev4Press Library
 ## Changelog
 
+### Version 4.6.1 - 2024.01.29
+
+* Edit: rewritten `IP` class for getting visitor IP with extra options
+
 ### Version 4.6 - 2023.12.28
 
 * New: metabox styling rebuilt and improved with sidebar styling support

@@ -255,48 +255,41 @@ class IP {
 		$ips = array();
 
 		foreach ( $keys as $key ) {
-			if ( isset( $_SERVER[ $key ] ) ) {
-				$ip = self::validate( $_SERVER[ $key ] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+			$ip = self::get_ip_key_value( $key );
 
-				if ( $ip !== false ) {
-					$ips[ $key ] = $ip;
-				}
+			if ( $ip !== false ) {
+				$ips[ $key ] = $ip;
 			}
 		}
 
 		return $ips;
 	}
 
-	public static function visitor() : string {
+	public static function visitor( bool $standard = true ) : string {
 		if ( self::is_cloudflare() ) {
-			$ip = self::validate( $_SERVER['HTTP_CF_CONNECTING_IP'] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+			$ip = self::get_ip_key_value( 'HTTP_CF_CONNECTING_IP' );
 
 			if ( $ip !== false ) {
 				return $ip;
 			}
 		}
 
-		$keys = array(
-			'HTTP_CLIENT_IP',
-			'HTTP_X_REAL_IP',
-			'HTTP_X_FORWARDED_FOR',
-			'HTTP_X_FORWARDED',
-			'HTTP_X_CLUSTER_CLIENT_IP',
-			'HTTP_FORWARDED_FOR',
-			'HTTP_FORWARDED',
-			'REMOTE_ADDR',
-		);
+		$ip = self::get_ip_key_value( 'HTTP_CLIENT_IP' );
 
-		$ip = '';
+		if ( ! $ip ) {
+			$ip = self::get_ip_key_value( 'HTTP_X_FORWARDED_FOR' );
+		}
 
-		foreach ( $keys as $key ) {
-			if ( array_key_exists( $key, $_SERVER ) === true ) {
-				$ip = self::validate( $_SERVER[ $key ] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		if ( ! $ip ) {
+			$ip = self::get_ip_key_value( 'HTTP_X_FORWARDED' );
+		}
 
-				if ( $ip !== false ) {
-					break;
-				}
-			}
+		if ( ! $standard ) {
+			$ip = self::get_visitor_ip_non_standard();
+		}
+
+		if ( ! $ip ) {
+			$ip = self::get_ip_key_value( 'REMOTE_ADDR' );
 		}
 
 		if ( $ip === false ) {
@@ -334,5 +327,38 @@ class IP {
 
 	public static function random_ipv4() : string {
 		return wp_rand( 0, 255 ) . '.' . wp_rand( 0, 255 ) . '.' . wp_rand( 0, 255 ) . '.' . wp_rand( 0, 255 );
+	}
+
+	public static function get_ip_key_value( $key ) {
+		$ip = false;
+
+		if ( array_key_exists( $key, $_SERVER ) === true ) {
+			$ip = ! empty( $_SERVER[ $key ] ) ? $_SERVER[ $key ] : false; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+
+			if ( $ip !== false ) {
+				$ip = self::validate( $ip );
+			}
+		}
+
+		return $ip;
+	}
+
+	public static function get_visitor_ip_non_standard() {
+		$keys = array(
+			'HTTP_X_CLUSTER_CLIENT_IP',
+			'HTTP_X_REAL_IP',
+			'HTTP_FORWARDED_FOR',
+			'HTTP_FORWARDED',
+		);
+
+		foreach ( $keys as $key ) {
+			$ip = self::get_ip_key_value( $key );
+
+			if ( $ip !== false ) {
+				break;
+			}
+		}
+
+		return $ip;
 	}
 }
