@@ -369,9 +369,9 @@ class Render {
 	protected function _pair_element( $name, $id, $i, $value, $element, $hide = false, $layout = 'normal' ) {
 		$type_key    = $element->args['type_key'] ?? 'text';
 		$type_value  = $element->args['type_value'] ?? 'text';
-		$label_key   = $element->args['label_key'] ?? __( 'Key' );
-		$label_value = $element->args['label_value'] ?? __( 'Value' );
-		$remove      = $element->args['label_button_remove'] ?? '<i aria-label="' . __( 'Remove' ) . '" class="d4p-icon d4p-ui-times"></i><span class="d4p-sr-only">' . __( 'Remove' ) . '</span>';
+		$label_key   = $element->args['label_key'] ?? __( 'Key', 'd4plib' );
+		$label_value = $element->args['label_value'] ?? __( 'Value', 'd4plib' );
+		$remove      = $element->args['label_button_remove'] ?? '<i aria-label="' . __( 'Remove', 'd4plib' ) . '" class="d4p-icon d4p-ui-times"></i><span class="d4p-sr-only">' . __( 'Remove', 'd4plib' ) . '</span>';
 
 		echo '<div class="d4p-element-pair-single pair-element-' . esc_attr( $i ) . '" style="' . ( $hide ? 'display:none' : '' ) . '">';
 
@@ -1030,8 +1030,8 @@ class Render {
 		echo '<div class="d4p-expandable-pairs-inside">';
 
 		if ( $layout == 'inline' ) {
-			$label_key   = $element->args['label_key'] ?? __( 'Key' );
-			$label_value = $element->args['label_value'] ?? __( 'Value' );
+			$label_key   = $element->args['label_key'] ?? __( 'Key', 'd4plib' );
+			$label_value = $element->args['label_value'] ?? __( 'Value', 'd4plib' );
 
 			echo '<div class="d4p-element-pair-single">';
 			echo '<div><span>' . $label_key . '</span></div>';
@@ -1072,7 +1072,7 @@ class Render {
 
 		echo '</div>';
 
-		echo '<a role="button" class="button-primary" href="#">' . KSES::strong( $element->args['label_button_add'] ?? __( 'Add New' ) ) . '</a>';
+		echo '<a role="button" class="button-primary" href="#">' . KSES::strong( $element->args['label_button_add'] ?? __( 'Add New', 'd4plib' ) ) . '</a>';
 		echo '<input type="hidden" value="' . esc_attr( $i ) . '" class="d4p-next-id" />';
 
 		echo '</div>';
