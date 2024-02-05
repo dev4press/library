@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v46\Core\Base\Background
- * Version: v4.6
+ * Name:    Dev4Press\v47\Core\Base\Background
+ * Version: v4.7
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v46\Core\Base;
+namespace Dev4Press\v47\Core\Base;
 
 use DateTime;
-use Dev4Press\v46\Core\Helpers\IP;
+use Dev4Press\v47\Core\Helpers\IP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -264,8 +264,8 @@ abstract class Background {
 			$now = DateTime::createFromFormat( 'U.u', $message['time'] );
 
 			$render .= '<li class="__message __message-' . esc_attr( $message['type'] ) . '">';
-			$render .= '<span class="__date-time">' . $now->format( "m-d-Y H:i:s" ) . '</span>';
-			$render .= '<span class="__icon" title="' . $_labels[ $message['type'] ] . '"><i class="d4p-icon d4p-' . $_icons[ $message['type'] ] . ' d4p-icon-fw"></i></span>';
+			$render .= '<span class="__date-time">' . $now->format( 'm-d-Y H:i:s' ) . '</span>';
+			$render .= '<span class="__icon" title="' . esc_attr( $_labels[ $message['type'] ] ) . '"><i class="d4p-icon d4p-' . esc_attr( $_icons[ $message['type'] ] ) . ' d4p-icon-fw"></i></span>';
 			$render .= '<span class="__content">' . esc_html( $message['message'] ) . '</span>';
 			$render .= '</li>';
 		}

@@ -1,5 +1,26 @@
 # Dev4Press Library
+
 ## Changelog
+
+### Version 4.7 - 2024.02.12
+
+* New: option for expandable pairs has new layout and styling
+* New: expanded the `Elements` method `input` with more attributes
+* New: expanded the `BBP` class with `can_use_pretty_urls` method
+* New: expanded the `BBP` class with new roles check methods for `user_id`
+* New: expanded the `WPR` class with new roles check methods for `user_id`
+* New: added several more UI icons
+* Edit: rewritten `IP` class for getting visitor IP with extra options
+* Edit: various improvements to the metabox handling and styling
+* Edit: settings `Render` class uses `Elements` for input types
+* Edit: various improvements for expandable pairs control
+* Edit: changes related to WordPress and PHP code standards
+* Edit: built-in cacert.pem 20231212
+* Removed: all previously deprecated methods
+* Fix: problem with the rendering of hierarchy checkboxes
+* Fix: missing default elements for expandable pairs control
+* Fix: several issues with validation of data for `Widget` class
+* Fix: issue with the action URL method for admin class
 
 ### Version 4.6 - 2023.12.28
 

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v46\Core\UI\Icons
- * Version: v4.6
+ * Name:    Dev4Press\v47\Core\UI\Icons
+ * Version: v4.7
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v46\Core\UI;
+namespace Dev4Press\v47\Core\UI;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -139,6 +139,7 @@ class Icons {
 		'ui-arrow-up',
 		'ui-arrows-v',
 		'ui-assistive-listening-systems',
+		'ui-asterisk',
 		'ui-badge',
 		'ui-badge-check',
 		'ui-badge-percent',
@@ -201,6 +202,10 @@ class Icons {
 		'ui-columns',
 		'ui-comment',
 		'ui-comment-dots',
+		'ui-comment-dots-check',
+		'ui-comment-dots-clock',
+		'ui-comment-dots-exclamation',
+		'ui-comment-dots-xmark',
 		'ui-comments',
 		'ui-comments-question',
 		'ui-copy',
@@ -246,6 +251,7 @@ class Icons {
 		'ui-hexagon',
 		'ui-home',
 		'ui-honey',
+		'ui-hourglass',
 		'ui-icons',
 		'ui-id-card',
 		'ui-info',
@@ -265,6 +271,7 @@ class Icons {
 		'ui-lock',
 		'ui-magic',
 		'ui-magnet',
+		'ui-mailbox',
 		'ui-memo',
 		'ui-memo-pad',
 		'ui-microchip',
@@ -299,6 +306,7 @@ class Icons {
 		'ui-radar',
 		'ui-reply',
 		'ui-ribbon',
+		'ui-robot',
 		'ui-rocket',
 		'ui-rss',
 		'ui-search',

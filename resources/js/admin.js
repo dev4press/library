@@ -520,7 +520,8 @@
                         function(e) {
                             e.preventDefault();
 
-                            var list = $(this).closest(".d4p-setting-expandable_pairs"),
+                            var list = $(this).closest(".d4p-expandable-pairs-wrapper"),
+                                inside = $(".d4p-expandable-pairs-inside", list),
                                 next = $(".d4p-next-id", list),
                                 next_id = next.val(),
                                 el = $(".pair-element-0", list).clone();
@@ -534,8 +535,8 @@
                                 }
                             );
 
-                            el.attr("class", "pair-element-" + next_id).fadeIn();
-                            $(this).before(el);
+                            el.attr("class", "d4p-element-pair-single pair-element-" + next_id).fadeIn();
+                            inside.append(el);
 
                             next_id++;
                             next.val(next_id);

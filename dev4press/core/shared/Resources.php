@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v46\Core\Shared\Enqueue
- * Version: v4.6
+ * Name:    Dev4Press\v47\Core\Shared\Enqueue
+ * Version: v4.7
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v46\Core\Shared;
+namespace Dev4Press\v47\Core\Shared;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -97,21 +97,15 @@ class Resources {
 				'ext'  => 'css',
 				'min'  => true,
 			),
+			'pack-embed' => array(
+				'path' => 'css/',
+				'file' => 'pack-embed',
+				'ext'  => 'css',
+				'min'  => true,
+			),
 			'about'      => array(
 				'path' => 'css/',
 				'file' => 'about',
-				'ext'  => 'css',
-				'min'  => true,
-			),
-			'font'       => array(
-				'path' => 'css/',
-				'file' => 'font',
-				'ext'  => 'css',
-				'min'  => true,
-			),
-			'font-embed' => array(
-				'path' => 'css/',
-				'file' => 'font-embed',
 				'ext'  => 'css',
 				'min'  => true,
 			),
@@ -192,7 +186,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'animated-popup/',
 				'file' => 'animated-popup.min',
-				'ver'  => '1.8',
+				'ver'  => '2.0',
 				'ext'  => 'js',
 				'min'  => false,
 			),
@@ -208,7 +202,7 @@ class Resources {
 				'lib'        => true,
 				'path'       => 'flatpickr/',
 				'file'       => 'flatpickr.min',
-				'ver'        => '4.6.11',
+				'ver'        => '4.6.13',
 				'ext'        => 'js',
 				'min'        => false,
 				'min_locale' => true,
@@ -234,7 +228,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'confirm-date',
-				'ver'  => '4.6.11',
+				'ver'  => '4.6.13',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' ),
@@ -243,7 +237,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'month-select',
-				'ver'  => '4.6.11',
+				'ver'  => '4.6.13',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' ),
@@ -252,7 +246,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'week-select',
-				'ver'  => '4.6.11',
+				'ver'  => '4.6.13',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' ),
@@ -261,7 +255,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'minmax-time',
-				'ver'  => '4.6.11',
+				'ver'  => '4.6.13',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' ),
@@ -270,7 +264,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'range',
-				'ver'  => '4.6.11',
+				'ver'  => '4.6.13',
 				'ext'  => 'js',
 				'min'  => true,
 				'int'  => array( 'flatpickr' ),
@@ -320,11 +314,25 @@ class Resources {
 			),
 		),
 		'css' => array(
+			'font'                   => array(
+				'lib'  => false,
+				'path' => 'css/',
+				'file' => 'font',
+				'ext'  => 'css',
+				'min'  => true,
+			),
+			'font-embed'             => array(
+				'lib'  => false,
+				'path' => 'css/',
+				'file' => 'font-embed',
+				'ext'  => 'css',
+				'min'  => true,
+			),
 			'animated-popup'         => array(
 				'lib'  => true,
 				'path' => 'animated-popup/',
 				'file' => 'animated-popup.min',
-				'ver'  => '1.8',
+				'ver'  => '2.0',
 				'ext'  => 'css',
 				'min'  => false,
 			),
@@ -340,7 +348,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/',
 				'file' => 'flatpickr.min',
-				'ver'  => '4.6.11',
+				'ver'  => '4.6.13',
 				'ext'  => 'css',
 				'min'  => false,
 			),
@@ -348,7 +356,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'confirm-date',
-				'ver'  => '4.6.11',
+				'ver'  => '4.6.13',
 				'ext'  => 'css',
 				'min'  => true,
 				'int'  => array( 'flatpickr' ),
@@ -357,7 +365,7 @@ class Resources {
 				'lib'  => true,
 				'path' => 'flatpickr/plugins',
 				'file' => 'month-select',
-				'ver'  => '4.6.11',
+				'ver'  => '4.6.13',
 				'ext'  => 'css',
 				'min'  => true,
 				'int'  => array( 'flatpickr' ),

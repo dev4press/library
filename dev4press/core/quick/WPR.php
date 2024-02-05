@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v46\Core\Quick\WP
- * Version: v4.6
+ * Name:    Dev4Press\v47\Core\Quick\WP
+ * Version: v4.7
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,17 +25,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v46\Core\Quick;
+namespace Dev4Press\v47\Core\Quick;
 
-use Dev4Press\v46\Core\Helpers\Error;
+use Dev4Press\v47\Core\Helpers\Error;
 use WP_Error;
 use WP_Query;
 use WP_Term;
-use wpdb;
-use function add_action;
-use function add_filter;
-use function get_term;
-use function get_term_by;
+use WP_User;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -177,7 +173,7 @@ class WPR {
 		$current = self::current_user_roles();
 		$roles   = (array) $roles;
 
-		if ( is_array( $current ) && ! empty( $roles ) ) {
+		if ( ! empty( $roles ) ) {
 			$match = array_intersect( $roles, $current );
 
 			return ! empty( $match );
@@ -186,11 +182,34 @@ class WPR {
 		}
 	}
 
+	public static function is_user_roles( int $user_id, $roles = array() ) : bool {
+		$current = self::get_user_roles( $user_id );
+		$roles   = (array) $roles;
+
+		if ( ! empty( $roles ) ) {
+			$match = array_intersect( $roles, $current );
+
+			return ! empty( $match );
+		} else {
+			return false;
+		}
+	}
+
+	public static function get_user_roles( int $user_id ) : array {
+		$user = get_user_by( 'id', $user_id );
+
+		if ( $user instanceof WP_User ) {
+			return $user->roles;
+		}
+
+		return array();
+	}
+
 	public static function current_user_roles() : array {
 		if ( is_user_logged_in() ) {
 			global $current_user;
 
-			return (array) $current_user->roles;
+			return $current_user->roles;
 		} else {
 			return array();
 		}
@@ -679,7 +698,8 @@ class WPR {
 	 */
 	public static function get_attachment_id_from_url( $url ) : int {
 		$attachment_id = 0;
-		$dir           = wp_upload_dir();
+
+		$dir = wp_upload_dir();
 
 		if ( false !== strpos( $url, $dir['baseurl'] . '/' ) ) {
 			$file       = basename( $url );

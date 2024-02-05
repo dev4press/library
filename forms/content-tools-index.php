@@ -1,7 +1,7 @@
 <?php
 
-use Dev4Press\v46\Core\Quick\Sanitize;
-use function Dev4Press\v46\Functions\panel;
+use Dev4Press\v47\Core\Quick\Sanitize;
+use function Dev4Press\v47\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$url = panel()->a()->panel_url( 'tools', $subpanel );
 
 			if ( isset( $obj['break'] ) ) {
-				echo panel()->r()->settings_break( $obj['break'], $obj['break-icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo panel()->r()->settings_break( $obj['break'], $obj['break-icon'] ?? '', $obj['break-info'] ?? '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			?>

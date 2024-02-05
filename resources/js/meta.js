@@ -2,26 +2,16 @@
 (function($, window, document, undefined) {
     window.wp = window.wp || {};
     window.wp.dev4press = window.wp.dev4press || {};
-    window.wp.dev4press.v46 = window.wp.dev4press.v46 || {};
+    window.wp.dev4press.v47 = window.wp.dev4press.v47 || {};
 
-    window.wp.dev4press.v46.metabox = {
-        library: 'v46',
+    window.wp.dev4press.v47.metabox = {
+        library: 'v47',
         init: function() {
-            const wrapper = ".d4plib-" + wp.dev4press.v46.metabox.library + "-meta-box-wrapper";
+            const wrapper = ".d4plib-" + wp.dev4press.v47.metabox.library + "-meta-box-wrapper";
 
             $(document).on(
                 "click",
-                wrapper + " .d4p-check-uncheck a",
-                function(e) {
-                    e.preventDefault();
-
-                    var checkall = $(this).attr("href").substring(1) === "checkall";
-
-                    $(this).parent().parent().find("input[type=checkbox]").prop("checked", checkall);
-                }
-            );
-
-            $(wrapper + " .wp-tab-bar button").click(
+                wrapper + " .wp-tab-bar button",
                 function(e) {
                     e.preventDefault();
 
@@ -42,12 +32,39 @@
                         .addClass("tabs-panel-active");
                 }
             );
+
+            $(document).on(
+                "click",
+                wrapper + " .d4p-check-uncheck a",
+                function(e) {
+                    e.preventDefault();
+
+                    var checkall = $(this).attr("href").substring(1) === "checkall";
+
+                    $(this).parent().parent().find("input[type=checkbox]").prop("checked", checkall);
+                }
+            );
+
+            $(document).on(
+                "change",
+                wrapper + " .d4p-metabox-value-override",
+                function(e) {
+                    var sel = $(this).val(),
+                        target = $(this).parent().parent().next();
+
+                    if (sel === "yes") {
+                        target.show();
+                    } else {
+                        target.hide();
+                    }
+                }
+            )
         }
     };
 
     $(document).ready(
         function() {
-            wp.dev4press.v46.metabox.init();
+            wp.dev4press.v47.metabox.init();
         }
     );
 })(jQuery, window, document);

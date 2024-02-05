@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 12/04/2023 11:01:49 PM\n"
+"POT-Creation-Date: 02/04/2024 06:22:41 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GD i18n 2.8; www.dev4press.com\n"
 
-#: dev4press/core/base/Background.php:140
+#: dev4press/core/base/Background.php:143
 msgid "Process finished using %s thread."
 msgid_plural "Process finished using %s threads."
 msgstr[0] ""
@@ -54,6 +54,8 @@ msgstr ""
 #: dev4press/core/admin/Plugin.php:146
 #: dev4press/core/admin/Plugin.php:253
 #: dev4press/core/admin/Plugin.php:271
+#: forms/sidebar-features.php:61
+#: forms/sidebar-settings.php:33
 #: forms/sidebar.php:29
 msgid "Knowledge Base"
 msgstr ""
@@ -99,40 +101,40 @@ msgstr ""
 msgid "Click Here"
 msgstr ""
 
-#: dev4press/core/base/Background.php:80
+#: dev4press/core/base/Background.php:83
 msgid "Getting ready to start."
 msgstr ""
 
-#: dev4press/core/base/Background.php:109
+#: dev4press/core/base/Background.php:112
 msgid "Starting the thread worker processing."
 msgstr ""
 
-#: dev4press/core/base/Background.php:125
+#: dev4press/core/base/Background.php:128
 msgid "Processing thread finished after %s seconds."
 msgstr ""
 
-#: dev4press/core/base/Background.php:126
+#: dev4press/core/base/Background.php:129
 msgid "Spawning new background processing thread."
 msgstr ""
 
-#: dev4press/core/base/Background.php:249
+#: dev4press/core/base/Background.php:254
 msgid "Process"
 msgstr ""
 
-#: dev4press/core/base/Background.php:250
+#: dev4press/core/base/Background.php:255
 #: dev4press/core/ui/admin/PanelAbout.php:46
 msgid "System"
 msgstr ""
 
-#: dev4press/core/base/Background.php:251
+#: dev4press/core/base/Background.php:256
 msgid "Activity"
 msgstr ""
 
-#: dev4press/core/base/Background.php:252
+#: dev4press/core/base/Background.php:257
 msgid "Warning"
 msgstr ""
 
-#: dev4press/core/base/Background.php:253
+#: dev4press/core/base/Background.php:258
 msgid "Error"
 msgstr ""
 
@@ -573,7 +575,7 @@ msgstr ""
 #: dev4press/core/options/Features.php:118
 #: dev4press/core/options/Features.php:129
 #: dev4press/core/options/Features.php:157
-#: dev4press/core/options/Render.php:100
+#: dev4press/core/options/Render.php:99
 #: dev4press/core/ui/admin/PanelFeatures.php:45
 #: dev4press/core/ui/admin/PanelFeatures.php:71
 #: forms/content-features-index.php:85
@@ -585,7 +587,7 @@ msgid "This feature is always active, and it can't be disabled. You can enable o
 msgstr ""
 
 #: dev4press/core/options/Features.php:129
-#: dev4press/core/options/Render.php:101
+#: dev4press/core/options/Render.php:100
 msgid "Inactive"
 msgstr ""
 
@@ -602,8 +604,9 @@ msgid "Feature network override is active"
 msgstr ""
 
 #: dev4press/core/options/Features.php:141
-#: dev4press/core/options/Settings.php:135
-#: dev4press/core/options/Settings.php:171
+#: dev4press/core/options/Settings.php:140
+#: dev4press/core/options/Settings.php:176
+#: dev4press/core/options/Settings.php:192
 #: forms/content-about-info.php:31
 msgid "Status"
 msgstr ""
@@ -616,141 +619,158 @@ msgstr ""
 msgid "Feature is active"
 msgstr ""
 
-#: dev4press/core/options/Render.php:667
-msgid "Add New Value"
+#: dev4press/core/options/Render.php:372
+#: dev4press/core/options/Render.php:1033
+msgid "Key"
 msgstr ""
 
-#: dev4press/core/options/Render.php:699
-#: dev4press/core/options/Render.php:737
-msgid "No items to show"
+#: dev4press/core/options/Render.php:373
+#: dev4press/core/options/Render.php:1034
+#: dev4press/core/options/Render.php:1114
+msgid "Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:795
-#: dev4press/core/ui/Enqueue.php:318
-msgid "Image not selected."
-msgstr ""
-
-#: dev4press/core/options/Render.php:822
-msgid "Enabled"
-msgstr ""
-
-#: dev4press/core/options/Render.php:772
-#: dev4press/core/options/Render.php:389
+#: dev4press/core/options/Render.php:374
+#: dev4press/core/options/Render.php:374
+#: dev4press/core/options/Render.php:757
+#: dev4press/core/options/Render.php:401
 #: dev4press/core/ui/admin/PanelTools.php:58
 #: dev4press/core/ui/Enqueue.php:314
 msgid "Remove"
 msgstr ""
 
-#: dev4press/core/options/Render.php:773
+#: dev4press/core/options/Render.php:653
+msgid "Add New Value"
+msgstr ""
+
+#: dev4press/core/options/Render.php:685
+#: dev4press/core/options/Render.php:722
+msgid "No items to show"
+msgstr ""
+
+#: dev4press/core/options/Render.php:780
+#: dev4press/core/ui/Enqueue.php:318
+msgid "Image not selected."
+msgstr ""
+
+#: dev4press/core/options/Render.php:807
+msgid "Enabled"
+msgstr ""
+
+#: dev4press/core/options/Render.php:1075
+msgid "Add New"
+msgstr ""
+
+#: dev4press/core/options/Render.php:758
 #: dev4press/core/ui/Enqueue.php:315
 msgid "Preview"
 msgstr ""
 
-#: dev4press/core/options/Render.php:344
+#: dev4press/core/options/Render.php:343
 msgid "Toggle Additional Information"
 msgstr ""
 
-#: dev4press/core/options/Render.php:364
-#: dev4press/core/ui/Elements.php:315
+#: dev4press/core/options/Render.php:363
+#: dev4press/core/ui/Elements.php:316
 msgid "Check All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:365
-#: dev4press/core/ui/Elements.php:316
+#: dev4press/core/options/Render.php:364
+#: dev4press/core/ui/Elements.php:317
 msgid "Uncheck All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:758
+#: dev4press/core/options/Render.php:743
 msgid "Add Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:762
+#: dev4press/core/options/Render.php:747
 msgid "No images selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:790
+#: dev4press/core/options/Render.php:775
 #: dev4press/core/ui/Enqueue.php:316
 msgid "Select Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:791
+#: dev4press/core/options/Render.php:776
 msgid "Show Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:792
+#: dev4press/core/options/Render.php:777
 msgid "Clear Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:1089
-msgid "Value"
-msgstr ""
-
-#: dev4press/core/options/Render.php:1097
+#: dev4press/core/options/Render.php:1122
 msgid "Unit"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:124
+#: dev4press/core/options/Settings.php:125
 msgid "License Code is not set."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:128
+#: dev4press/core/options/Settings.php:129
 msgid "License Code has not been checked yet."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:132
+#: dev4press/core/options/Settings.php:137
 msgid "Last Checked"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:134
+#: dev4press/core/options/Settings.php:139
 msgid "Valid"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:136
+#: dev4press/core/options/Settings.php:141
 msgid "Domain"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:142
+#: dev4press/core/options/Settings.php:147
 msgid "Dev4Press License"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:145
+#: dev4press/core/options/Settings.php:150
 msgid "License Code"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:149
+#: dev4press/core/options/Settings.php:154
 msgid "Code"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:149
+#: dev4press/core/options/Settings.php:154
 msgid "You can find your license code in the Dev4Press Dashboard."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:150
+#: dev4press/core/options/Settings.php:155
 msgid "Make sure to enter the license code exactly as it is listed on the Dev4Press Dashboard."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:151
+#: dev4press/core/options/Settings.php:156
 msgid "License code is case sensitive, and all letters must be uppercase."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:152
+#: dev4press/core/options/Settings.php:157
 msgid "License code is valid even after the subscription period has expired, as long it was not refunded or terminated."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:160
+#: dev4press/core/options/Settings.php:165
 msgid "Dev4Press Dashboard Licenses"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:167
+#: dev4press/core/options/Settings.php:172
 msgid "License Information"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:134
+#: dev4press/core/options/Settings.php:188
+msgid "Verification Error"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:139
 #: dev4press/core/plugins/Wizard.php:154
 msgid "Yes"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:134
+#: dev4press/core/options/Settings.php:139
 #: dev4press/core/plugins/Wizard.php:155
 msgid "No"
 msgstr ""
@@ -806,16 +826,16 @@ msgstr ""
 msgid "Table is missing."
 msgstr ""
 
-#: dev4press/core/plugins/License.php:146
-msgid "Nothing received"
-msgstr ""
-
-#: dev4press/core/plugins/License.php:160
+#: dev4press/core/plugins/License.php:144
 msgid "Code is not in a valid format."
 msgstr ""
 
-#: dev4press/core/plugins/License.php:205
+#: dev4press/core/plugins/License.php:188
 msgid "Validation server response is not valid."
+msgstr ""
+
+#: dev4press/core/plugins/License.php:250
+msgid "Nothing received"
 msgstr ""
 
 #: dev4press/core/quick/Misc.php:107
@@ -1382,31 +1402,31 @@ msgstr ""
 msgid "Global"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:471
+#: dev4press/wordpress/legacy/Widget.php:475
 msgid "Everyone"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:472
+#: dev4press/wordpress/legacy/Widget.php:476
 msgid "Logged in users"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:473
+#: dev4press/wordpress/legacy/Widget.php:477
 msgid "Not logged in visitors"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:474
+#: dev4press/wordpress/legacy/Widget.php:478
 msgid "Users with specified roles"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:475
+#: dev4press/wordpress/legacy/Widget.php:479
 msgid "Users with specified capabilities"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:481
+#: dev4press/wordpress/legacy/Widget.php:485
 msgid "Descending"
 msgstr ""
 
-#: dev4press/wordpress/legacy/Widget.php:482
+#: dev4press/wordpress/legacy/Widget.php:486
 msgid "Ascending"
 msgstr ""
 
@@ -1532,16 +1552,20 @@ msgstr ""
 msgid "OFF"
 msgstr ""
 
-#: forms/content-features-index-filter.php:29
+#: forms/content-features-index-filter.php:31
 msgid "Search features by keyword"
 msgstr ""
 
-#: forms/content-features-index-filter.php:29
+#: forms/content-features-index-filter.php:31
 msgid "Search..."
 msgstr ""
 
-#: forms/content-features-index.php:122
+#: forms/content-features-index.php:128
 msgid "This is a Beta feature, and it can be unstable!"
+msgstr ""
+
+#: forms/content-features-index.php:144
+msgid "Get more information in the Knowledge Base"
 msgstr ""
 
 #: forms/content-features-index.php:90
@@ -1552,7 +1576,7 @@ msgstr ""
 msgid "This feature has no settings"
 msgstr ""
 
-#: forms/content-features-index.php:117
+#: forms/content-features-index.php:120
 msgid "This feature adds a new panel"
 msgstr ""
 
@@ -1717,35 +1741,35 @@ msgstr ""
 msgid "Disable All"
 msgstr ""
 
-#: forms/sidebar-features.php:80
+#: forms/sidebar-features.php:99
 #: forms/sidebar-settings-full.php:38
-#: forms/sidebar-settings.php:31
+#: forms/sidebar-settings.php:48
 msgid "Save Settings"
 msgstr ""
 
-#: forms/sidebar-features.php:60
+#: forms/sidebar-features.php:79
 msgid "More Controls"
 msgstr ""
 
-#: forms/sidebar-features.php:62
+#: forms/sidebar-features.php:81
 msgid "If you want, you can reset all the settings for this Feature to default values."
 msgstr ""
 
-#: forms/sidebar-features.php:63
+#: forms/sidebar-features.php:82
 msgid "Reset Feature Settings"
 msgstr ""
 
-#: forms/sidebar-features.php:71
+#: forms/sidebar-features.php:90
 msgid "You can also copy the settings from the main Network settings for this feature."
 msgstr ""
 
-#: forms/sidebar-features.php:72
+#: forms/sidebar-features.php:91
 msgid "Copy Network Settings"
 msgstr ""
 
-#: forms/sidebar-features.php:84
+#: forms/sidebar-features.php:103
 #: forms/sidebar-settings-full.php:41
-#: forms/sidebar-settings.php:34
+#: forms/sidebar-settings.php:51
 #: forms/sidebar-tools.php:49
 msgid "Return to top"
 msgstr ""

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v46\WordPress\Legacy\Widget
- * Version: v4.6
+ * Name:    Dev4Press\v47\WordPress\Legacy\Widget
+ * Version: v4.7
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v46\WordPress\Legacy;
+namespace Dev4Press\v47\WordPress\Legacy;
 
-use Dev4Press\v46\Core\Quick\Sanitize;
-use Dev4Press\v46\Core\Quick\WPR;
+use Dev4Press\v47\Core\Quick\Sanitize;
+use Dev4Press\v47\Core\Quick\WPR;
 use WP_Widget;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -75,7 +75,7 @@ abstract class Widget extends WP_Widget {
 	protected $cache_time = 0;
 	protected $cache_key = '';
 
-	/** @var \Dev4Press\v46\Core\UI\Widgets */
+	/** @var \Dev4Press\v47\Core\UI\Widgets */
 	protected $widgets_render;
 
 	public function __construct( $id_base = false, $name = '', $widget_options = array(), $control_options = array() ) {
@@ -174,27 +174,31 @@ abstract class Widget extends WP_Widget {
 	protected function shared_update( array $new_instance, array $old_instance ) : array {
 		$instance = $old_instance;
 
-		$instance['title'] = Sanitize::basic( $new_instance['title'] );
+		$instance['title'] = Sanitize::basic( ( $new_instance['title'] ?? '' ) );
 
-		$instance['_class'] = Sanitize::basic( $new_instance['_class'] );
-		$instance['_tab']   = sanitize_key( $new_instance['_tab'] );
-		$instance['_hook']  = sanitize_key( $new_instance['_hook'] );
-		$instance['_devid'] = sanitize_key( $new_instance['_devid'] );
+		$instance['_class'] = Sanitize::basic( ( $new_instance['_class'] ?? '' ) );
+		$instance['_tab']   = Sanitize::key( ( $new_instance['_tab'] ?? '' ) );
+		$instance['_hook']  = Sanitize::key( ( $new_instance['_hook'] ?? '' ) );
+		$instance['_devid'] = Sanitize::key( ( $new_instance['_devid'] ?? '' ) );
 
-		$instance['_users'] = $this->get_valid_list_value( '_users', $new_instance['_users'], array_keys( $this->get_list_user_visibility() ) );
+		$instance['_users'] = $this->get_valid_list_value( '_users', $new_instance['_users'] ?? 'all', array_keys( $this->get_list_user_visibility() ) );
 
-		$_capabilities = Sanitize::basic( $new_instance['_capabilities'] );
-		$_capabilities = explode( ',', $_capabilities );
-		$_capabilities = array_map( 'trim', $_capabilities );
-		$_capabilities = array_unique( $_capabilities );
-		$_capabilities = array_filter( $_capabilities );
+		if ( isset( $new_instance['_capabilities'] ) ) {
+			$_capabilities = Sanitize::basic( $new_instance['_capabilities'] );
+			$_capabilities = explode( ',', $_capabilities );
+			$_capabilities = array_map( 'trim', $_capabilities );
+			$_capabilities = array_unique( $_capabilities );
+			$_capabilities = array_filter( $_capabilities );
 
-		$instance['_capabilities'] = join( ', ', $_capabilities );
+			$instance['_capabilities'] = join( ', ', $_capabilities );
+		} else {
+			$instance['_capabilities'] = '';
+		}
 
 		$instance['_roles'] = array();
 
 		if ( isset( $new_instance['_roles'] ) ) {
-			$_roles      = array_map( '\Dev4Press\v46\Core\Quick\Sanitize::basic', $new_instance['_roles'] );
+			$_roles      = array_map( '\Dev4Press\v47\Core\Quick\Sanitize::basic', $new_instance['_roles'] );
 			$valid_roles = WPR::list_user_roles();
 
 			foreach ( $_roles as $role ) {
@@ -209,11 +213,11 @@ abstract class Widget extends WP_Widget {
 		}
 
 		if ( current_user_can( 'unfiltered_html' ) ) {
-			$instance['_before'] = $new_instance['_before'];
-			$instance['_after']  = $new_instance['_after'];
+			$instance['_before'] = $new_instance['_before'] ?? '';
+			$instance['_after']  = $new_instance['_after'] ?? '';
 		} else {
-			$instance['_before'] = Sanitize::html( $new_instance['_before'] );
-			$instance['_after']  = Sanitize::html( $new_instance['_after'] );
+			$instance['_before'] = Sanitize::html( ( $new_instance['_before'] ?? '' ) );
+			$instance['_after']  = Sanitize::html( ( $new_instance['_after'] ?? '' ) );
 		}
 
 		return $instance;

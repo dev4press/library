@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v46\Library
- * Version: v4.6
+ * Name:    Dev4Press\v47\Library
+ * Version: v4.7
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v46;
+namespace Dev4Press\v47;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -35,11 +35,11 @@ class Library {
 	/**
 	 * @var string
 	 */
-	private $_version = '4.6';
+	private $_version = '4.7';
 	/**
 	 * @var string
 	 */
-	private $_build = '4600';
+	private $_build = '4700';
 	/**
 	 * @var string
 	 */

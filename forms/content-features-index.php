@@ -1,8 +1,8 @@
 <?php
 
-use Dev4Press\v46\Core\Quick\KSES;
-use Dev4Press\v46\Core\Quick\Sanitize;
-use function Dev4Press\v46\Functions\panel;
+use Dev4Press\v47\Core\Quick\KSES;
+use Dev4Press\v47\Core\Quick\Sanitize;
+use function Dev4Press\v47\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -141,7 +141,7 @@ $_scopes = array(
 					if ( ! empty( $obj['kb']['url'] ) ) {
 						?>
                         <div class="_scope">
-                            <a target="_blank" rel="noopener" href="<?php echo esc_attr( $obj['kb']['url'] ); ?>" title="<?php esc_attr_e( 'Get more information in the Knowledge Base' ); ?>"><i class="d4p-icon d4p-ui-book-spells"></i></a>
+                            <a target="_blank" rel="noopener" href="<?php echo esc_attr( $obj['kb']['url'] ); ?>" title="<?php esc_attr_e( 'Get more information in the Knowledge Base', 'd4plib' ); ?>"><i class="d4p-icon d4p-ui-book-spells"></i></a>
                         </div>
 						<?php
 					}

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v46\Core\Helpers\ObjectsSort
- * Version: v4.6
+ * Name:    Dev4Press\v47\Core\Helpers\ObjectsSort
+ * Version: v4.7
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v46\Core\Helpers;
+namespace Dev4Press\v47\Core\Helpers;
 
-use Dev4Press\v46\WordPress;
+use Dev4Press\v47\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

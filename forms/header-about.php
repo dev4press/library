@@ -1,7 +1,7 @@
 <?php
 
-use Dev4Press\v46\Core\Quick\Sanitize;
-use function Dev4Press\v46\Functions\panel;
+use Dev4Press\v47\Core\Quick\Sanitize;
+use function Dev4Press\v47\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
