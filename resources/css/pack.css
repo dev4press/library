@@ -2580,44 +2580,41 @@ a > .d4p-icon {
   color: var(--d4p-color-layout-accent);
   text-decoration: none;
 }
-.d4p-wrap .d4p-header .d4p-navigator ul {
+.d4p-wrap .d4p-header .d4p-navigator > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
+  column-gap: 3em;
 }
-.d4p-wrap .d4p-header .d4p-navigator ul li {
+.d4p-wrap .d4p-header .d4p-navigator > ul > li {
+  border: 1px solid var(--d4p-color-main-border);
+  border-radius: var(--d4p-layout-main-border-radius);
+  background-color: var(--d4p-color-main-background);
   list-style: none;
   margin: 0;
-  padding: 0;
-}
-.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button {
-  flex-shrink: 1;
-  margin-right: 3em;
-  position: relative;
-}
-.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button:last-child {
-  margin-right: 0;
-}
-.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button > a {
-  border-radius: var(--d4p-layout-main-border-radius);
-  border: 1px solid var(--d4p-color-main-border);
-  background-color: var(--d4p-color-main-background);
-  position: relative;
-  display: inline-block;
-  outline: none;
-  font-size: 15px;
-  line-height: 1.7;
-  padding: 0.5em 1em;
-  margin: 0;
+  display: block;
   width: 250px;
-  white-space: nowrap;
+  padding: 0.5em 0.8em;
+  line-height: 1.7;
+  font-size: 15px;
 }
-.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button > a i.d4p-icon {
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button {
+  position: relative;
+  flex-shrink: 1;
+}
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button > a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  outline: none;
+  display: block;
+}
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button > a i.d4p-icon {
   vertical-align: bottom;
 }
-.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul {
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul {
   border: 1px solid var(--d4p-color-main-border);
   border-radius: var(--d4p-layout-main-border-radius);
   background-color: var(--d4p-color-main-background);
@@ -2627,58 +2624,92 @@ a > .d4p-icon {
   padding: 5px 0;
   position: absolute;
   top: 40px;
+  left: 0;
   width: 250px;
-  z-index: 100;
+  z-index: 10000;
   max-height: 372px;
   overflow: auto;
 }
-.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul a {
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul li {
+  margin: 0;
+  padding: 0;
+  line-height: 2.2;
+}
+@media screen and (max-width: 768px) {
+  .d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul {
+    width: 100%;
+  }
+}
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  outline: none;
   display: block;
   padding: 0 10px;
 }
-.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul a:hover {
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul a:hover {
   background: var(--d4p-color-layout-accent);
   color: #FFF;
 }
-.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul .d4p-features-mark {
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul .d4p-features-mark {
   float: right;
 }
-.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul .d4p-nav-current {
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul .d4p-nav-current {
   background: var(--d4p-color-main-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  outline: none;
   display: block;
   padding: 0 10px;
   color: #FFF;
 }
-.d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button ul .d4p-nav-current i.d4p-icon {
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul .d4p-nav-current i.d4p-icon {
   line-height: inherit;
   vertical-align: bottom;
 }
-.d4p-wrap .d4p-header .d4p-navigator .d4p-header-special-button {
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-header-special-button {
+  display: flex;
+  align-items: center;
+  column-gap: 2em;
+  row-gap: 0.5em;
+  width: auto;
+}
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-header-special-button .d4p-nav-button-inner {
   display: flex;
   align-items: center;
   gap: 0.5em;
-  font-size: 1.1em;
-  padding: 0.6em 0.9em;
-  border-radius: var(--d4p-layout-main-border-radius);
-  border: 1px solid var(--d4p-color-main-border);
-  background-color: var(--d4p-color-main-background);
 }
-.d4p-wrap .d4p-header .d4p-navigator .d4p-header-special-button span {
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-header-special-button .d4p-nav-button-inner span {
   font-family: monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.d4p-wrap .d4p-header .d4p-navigator .d4p-header-special-button i {
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-header-special-button .d4p-nav-button-inner i {
   color: var(--d4p-color-layout-accent);
-  font-size: 1.5em;
 }
-@media screen and (max-width: 768px) {
-  .d4p-wrap .d4p-header .d4p-navigator .d4p-header-special-button {
-    font-size: 1em;
+@media screen and (max-width: 639px) {
+  .d4p-wrap .d4p-header .d4p-navigator > ul {
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+  .d4p-wrap .d4p-header .d4p-navigator > ul > li {
+    width: calc(50% - 0.5em);
+  }
+  .d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-header-special-button {
     justify-content: space-between;
+    width: 100%;
   }
 }
-@media screen and (max-width: 359px) {
-  .d4p-wrap .d4p-header .d4p-navigator .d4p-header-special-button img {
-    display: none;
+@media screen and (max-width: 399px) {
+  .d4p-wrap .d4p-header .d4p-navigator > ul > li {
+    width: 100%;
+  }
+  .d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-header-special-button {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 @media screen and (max-width: 768px) {
@@ -2688,20 +2719,6 @@ a > .d4p-icon {
   .d4p-wrap .d4p-header .d4p-navigator {
     width: 100%;
     margin-top: -15px;
-  }
-  .d4p-wrap .d4p-header .d4p-navigator ul {
-    flex-wrap: wrap;
-    row-gap: 1em;
-  }
-  .d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button {
-    margin-right: 2%;
-    width: 49%;
-  }
-  .d4p-wrap .d4p-header .d4p-navigator ul li.d4p-nav-button > a {
-    width: 100%;
-  }
-  .d4p-wrap .d4p-header .d4p-navigator .d4p-nav-button ul {
-    width: 100%;
   }
 }
 @media screen and (max-width: 1024px) {
