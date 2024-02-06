@@ -89,6 +89,12 @@ abstract class Plugin extends BasePlugin {
 	}
 
 	public function admin_menu() {
+		if ( $this->is_multisite && ! is_network_admin() ) {
+			if ( apply_filters( $this->h( 'hide_blog_admin' ), false, get_current_blog_id() ) ) {
+				return;
+			}
+		}
+
 		$parent = $this->plugin . '-dashboard';
 
 		add_menu_page(

@@ -420,6 +420,24 @@ abstract class Plugin {
 		return $this->setup_items + $this->menu_items;
 	}
 
+	public function action_url( $action, $nonce, $args = '', $panel = '', $subpanel = '', $network = null ) : string {
+		$base = empty( $panel ) ? $this->current_url() : $this->panel_url( $panel, $subpanel, '', $network );
+		$base = add_query_arg(
+			array(
+				$this->v()      => 'getback',
+				'single-action' => $action,
+				'_wpnonce'      => wp_create_nonce( $nonce ),
+			),
+			$base
+		);
+
+		if ( ! empty( $args ) ) {
+			$base .= '&' . trim( $args, '&' );
+		}
+
+		return $base;
+	}
+
 	public function message_process( $code, $msg ) {
 		return $msg;
 	}
@@ -476,6 +494,44 @@ abstract class Plugin {
 		return true;
 	}
 
+	public function features_definitions( $feature ) {
+
+	}
+
+	public function screen_options_save( $status, $option, $value ) {
+		if ( in_array( $option, $this->per_page_options ) ) {
+			return absint( $value );
+		}
+
+		return $status;
+	}
+
+	public function is_save_destination_primary() : bool {
+		if ( $this->plugin_network && $this->is_multisite ) {
+			return is_network_admin();
+		}
+
+		return true;
+	}
+
+	public function get_menu_item_network_url_flag( $name ) : ?bool {
+		if ( ! $this->is_multisite ) {
+			return null;
+		}
+
+		$scope = $this->menu_items[ $name ]['scope'] ?? array();
+
+		if ( empty( $scope ) ) {
+			return null;
+		}
+
+		if ( in_array( 'network', $scope ) && ! in_array( 'blog', $scope ) ) {
+			return true;
+		}
+
+		return null;
+	}
+
 	protected function screen_setup() {
 		$this->install_or_update();
 		$this->load_post_get_back();
@@ -523,24 +579,6 @@ abstract class Plugin {
 	protected function extra_enqueue_scripts_final( $hook ) {
 	}
 
-	public function action_url( $action, $nonce, $args = '', $panel = '', $subpanel = '', $network = null ) : string {
-		$base = empty( $panel ) ? $this->current_url() : $this->panel_url( $panel, $subpanel, '', $network );
-		$base = add_query_arg(
-			array(
-				$this->v()      => 'getback',
-				'single-action' => $action,
-				'_wpnonce'      => wp_create_nonce( $nonce ),
-			),
-			$base
-		);
-
-		if ( ! empty( $args ) ) {
-			$base .= '&' . trim( $args, '&' );
-		}
-
-		return $base;
-	}
-
 	abstract public function main_url() : string;
 
 	abstract public function current_url( $with_subpanel = true ) : string;
@@ -573,42 +611,4 @@ abstract class Plugin {
 
 	/** @return \Dev4Press\v47\Core\Plugins\Settings */
 	abstract public function settings_blog();
-
-	public function features_definitions( $feature ) {
-
-	}
-
-	public function screen_options_save( $status, $option, $value ) {
-		if ( in_array( $option, $this->per_page_options ) ) {
-			return absint( $value );
-		}
-
-		return $status;
-	}
-
-	public function is_save_destination_primary() : bool {
-		if ( $this->plugin_network && $this->is_multisite ) {
-			return is_network_admin();
-		}
-
-		return true;
-	}
-
-	public function get_menu_item_network_url_flag( $name ) : ?bool {
-		if ( ! $this->is_multisite ) {
-			return null;
-		}
-
-		$scope = $this->menu_items[ $name ]['scope'] ?? array();
-
-		if ( empty( $scope ) ) {
-			return null;
-		}
-
-		if ( in_array( 'network', $scope ) && ! in_array( 'blog', $scope ) ) {
-			return true;
-		}
-
-		return null;
-	}
 }
