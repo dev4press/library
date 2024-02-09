@@ -9,6 +9,7 @@
 * New: expanded the `BBP` class with `can_use_pretty_urls` method
 * New: expanded the `BBP` class with new roles check methods for `user_id`
 * New: expanded the `WPR` class with new roles check methods for `user_id`
+* New: expanded the `File` class with `put_contents` method
 * New: added several more UI icons
 * Edit: rewritten `IP` class for getting visitor IP with extra options
 * Edit: various improvements to the metabox handling and styling
