@@ -75,6 +75,18 @@ class File {
 		return $wp_filesystem->get_contents( $path );
 	}
 
+	public static function put_contents( $path, $content ) {
+		global $wp_filesystem;
+
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . '/wp-admin/includes/file.php';
+
+			WP_Filesystem();
+		}
+
+		return $wp_filesystem->put_contents( $path, $content );
+	}
+
 	public static function gzip_uncompressed_size( $file_path ) {
 		$fp = fopen( $file_path, 'rb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		fseek( $fp, - 4, SEEK_END );
