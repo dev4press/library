@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### Version 4.7.1 - 2024.03.04
+
+* Edit: `IP` class option for forwarded IP keys
+
 ### Version 4.7 - 2024.02.12
 
 * New: option for expandable pairs has new layout and styling

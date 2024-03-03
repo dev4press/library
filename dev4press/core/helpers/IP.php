@@ -265,7 +265,9 @@ class IP {
 		return $ips;
 	}
 
-	public static function visitor( bool $standard = true ) : string {
+	public static function visitor( bool $forwarded = true, bool $standard = true ) : string {
+		$ip = false;
+
 		if ( self::is_cloudflare() ) {
 			$ip = self::get_ip_key_value( 'HTTP_CF_CONNECTING_IP' );
 
@@ -274,14 +276,16 @@ class IP {
 			}
 		}
 
-		$ip = self::get_ip_key_value( 'HTTP_CLIENT_IP' );
+		if ( $forwarded ) {
+			$ip = self::get_ip_key_value( 'HTTP_CLIENT_IP' );
 
-		if ( ! $ip ) {
-			$ip = self::get_ip_key_value( 'HTTP_X_FORWARDED_FOR' );
-		}
+			if ( ! $ip ) {
+				$ip = self::get_ip_key_value( 'HTTP_X_FORWARDED_FOR' );
+			}
 
-		if ( ! $ip ) {
-			$ip = self::get_ip_key_value( 'HTTP_X_FORWARDED' );
+			if ( ! $ip ) {
+				$ip = self::get_ip_key_value( 'HTTP_X_FORWARDED' );
+			}
 		}
 
 		if ( ! $standard ) {
