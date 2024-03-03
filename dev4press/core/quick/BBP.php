@@ -133,11 +133,11 @@ class BBP {
 	}
 
 	public static function is_user_moderator( int $user_id ) : bool {
-		return WPR::is_user_roles($user_id, bbp_get_moderator_role());
+		return WPR::is_user_roles( $user_id, bbp_get_moderator_role() );
 	}
 
 	public static function is_user_keymaster( int $user_id ) : bool {
-		return WPR::is_user_roles($user_id, bbp_get_keymaster_role());
+		return WPR::is_user_roles( $user_id, bbp_get_keymaster_role() );
 	}
 
 	public static function is_current_user_moderator() : bool {

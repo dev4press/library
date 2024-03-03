@@ -75,10 +75,10 @@ abstract class License {
 			}
 
 			if ( $record == 'server-problem' ) {
-				return ( $info[ 'valid' ] ?? 'no' ) == 'yes';
+				return ( $info['valid'] ?? 'no' ) == 'yes';
 			}
 
-			if ( $record == 'valid' && ( $info[ 'valid' ] ?? 'no' ) == 'yes' ) {
+			if ( $record == 'valid' && ( $info['valid'] ?? 'no' ) == 'yes' ) {
 				return true;
 			}
 		}
@@ -162,19 +162,19 @@ abstract class License {
 				$json  = json_decode( $body, true );
 				$error = 'invalid-response';
 
-				if ( is_array( $json ) && isset( $json[ 'obj' ] ) && isset( $json[ 'uts' ] ) && isset( $json[ 'sig' ] ) ) {
-					$check = sha1( wp_json_encode( $json[ 'obj' ] ) . '.' . $json[ 'uts' ] );
+				if ( is_array( $json ) && isset( $json['obj'] ) && isset( $json['uts'] ) && isset( $json['sig'] ) ) {
+					$check = sha1( wp_json_encode( $json['obj'] ) . '.' . $json['uts'] );
 
-					if ( $check == $json[ 'sig' ] ) {
+					if ( $check == $json['sig'] ) {
 						$result = array(
-							'status'  => $json[ 'obj' ][ 'status' ] ?? 'invalid',
-							'valid'   => $json[ 'obj' ][ 'valid' ] ?? 'no',
-							'api'     => $json[ 'obj' ][ 'api' ] ?? 'no',
-							'control' => $json[ 'obj' ][ 'control' ] ?? 'no',
-							'domain'  => $json[ 'obj' ][ 'domain' ] ?? '',
+							'status'  => $json['obj']['status'] ?? 'invalid',
+							'valid'   => $json['obj']['valid'] ?? 'no',
+							'api'     => $json['obj']['api'] ?? 'no',
+							'control' => $json['obj']['control'] ?? 'no',
+							'domain'  => $json['obj']['domain'] ?? '',
 						);
 
-						if ( $result[ 'valid' ] == 'no' ) {
+						if ( $result['valid'] == 'no' ) {
 							$record = 'invalid';
 						}
 					}
@@ -235,10 +235,10 @@ abstract class License {
 					if ( $code == 200 ) {
 						return $data;
 					} else {
-						if ( isset( $data[ 'error' ] ) ) {
+						if ( isset( $data['error'] ) ) {
 							return array(
 								'error'   => $code,
-								'message' => $data[ 'error' ],
+								'message' => $data['error'],
 							);
 						}
 					}

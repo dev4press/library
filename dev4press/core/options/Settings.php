@@ -180,8 +180,8 @@ abstract class Settings {
 			),
 		);
 
-		if (!empty($last)) {
-			$error = $last['error'] ?? '';
+		if ( ! empty( $last ) ) {
+			$error   = $last['error'] ?? '';
 			$message = $last['message'] ?? '';
 
 			$settings['license-code']['sections'][] = array(
@@ -189,7 +189,7 @@ abstract class Settings {
 				'name'     => '',
 				'class'    => '',
 				'settings' => array(
-					$this->info( __( 'Status', 'd4plib' ), '<strong>' . $error . '</strong><br/>'.$message ),
+					$this->info( __( 'Status', 'd4plib' ), '<strong>' . $error . '</strong><br/>' . $message ),
 				),
 			);
 		}

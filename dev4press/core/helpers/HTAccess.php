@@ -272,12 +272,12 @@ class HTAccess {
 			'mod_headers'        => in_array( 'mod_headers', $mods ),
 		);
 
-		if ( $is_apache && ! $check[ 'found' ] ) {
-			$check[ 'writable' ] = is_writable( ABSPATH );
+		if ( $is_apache && ! $check['found'] ) {
+			$check['writable'] = is_writable( ABSPATH );
 		}
 
-		if ( $is_apache && $check[ 'writable' ] && $check[ 'is_apache' ] ) {
-			$check[ 'automatic' ] = true;
+		if ( $is_apache && $check['writable'] && $check['is_apache'] ) {
+			$check['automatic'] = true;
 		}
 
 		return $check;
