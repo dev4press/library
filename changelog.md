@@ -2,6 +2,11 @@
 
 ## Changelog
 
+### Version 4.7.2 - 2024.03.15
+
+* Edit: few more updates to the options rendering class
+* Fix: several more instances for missing sanitation in the options rendering
+
 ### Version 4.7.1 - 2024.03.04
 
 * Edit: `IP` class option for forwarded IP keys

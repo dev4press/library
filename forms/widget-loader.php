@@ -31,7 +31,7 @@ $_tab = $instance['_tab'];
 				$selected = 'true';
 			}
 
-			echo '<a tabindex="0" id="' . esc_attr( $tabkey ) . '-tab" aria-controls="' . esc_attr( $tabkey ) . '" aria-selected="' . esc_attr( $selected ) . '" role="tab" data-tabname="' . esc_attr( $the_tab ) . '" href="#' . esc_attr( $tabkey ) . '" class="' . esc_attr( $class ) . '">' . KSES::buttons( $obj['name'] ) . '</a>';
+			echo '<a tabindex="0" id="' . esc_attr( $tabkey ) . '-tab" aria-controls="' . esc_attr( $tabkey ) . '" aria-selected="' . esc_attr( $selected ) . '" role="tab" data-tabname="' . esc_attr( $the_tab ) . '" href="#' . esc_attr( $tabkey ) . '" class="' . esc_attr( $class ) . '">' . KSES::buttons( $obj['name'] ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 
 		?>

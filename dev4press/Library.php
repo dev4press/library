@@ -35,11 +35,11 @@ class Library {
 	/**
 	 * @var string
 	 */
-	private $_version = '4.7.1';
+	private $_version = '4.7.2';
 	/**
 	 * @var string
 	 */
-	private $_build = '4710';
+	private $_build = '4720';
 	/**
 	 * @var string
 	 */

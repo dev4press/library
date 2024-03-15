@@ -420,8 +420,8 @@ class Render {
 			esc_attr( $value ),
 			esc_attr( $class ),
 			esc_attr( $readonly ),
-			$min,
-			$max
+			$min, // phpcs:ignore WordPress.Security.EscapeOutput
+			$max // phpcs:ignore WordPress.Security.EscapeOutput
 		);
 	}
 
@@ -1013,7 +1013,7 @@ class Render {
 			'd4p-expandable-pairs-layout-' . $layout,
 		);
 
-		echo '<div class="' . Sanitize::html_classes( $class ) . '">';
+		echo '<div class="' . Sanitize::html_classes( $class ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput
 		$this->_pair_element(
 			$name_base . '[0]',
 			$id_base . '_0',
@@ -1034,8 +1034,8 @@ class Render {
 			$label_value = $element->args['label_value'] ?? __( 'Value', 'd4plib' );
 
 			echo '<div class="d4p-element-pair-single">';
-			echo '<div><span>' . $label_key . '</span></div>';
-			echo '<div><span>' . $label_value . '</span></div>';
+			echo '<div><span>' . esc_html( $label_key ) . '</span></div>';
+			echo '<div><span>' . esc_html( $label_value ) . '</span></div>';
 			echo '<span>&nbsp;</span>';
 			echo '</div>';
 		}
@@ -1072,7 +1072,7 @@ class Render {
 
 		echo '</div>';
 
-		echo '<a role="button" class="button-primary" href="#">' . KSES::strong( $element->args['label_button_add'] ?? __( 'Add New', 'd4plib' ) ) . '</a>';
+		echo '<a role="button" class="button-primary" href="#">' . KSES::strong( $element->args['label_button_add'] ?? esc_html__( 'Add New', 'd4plib' ) ) . '</a>';  // phpcs:ignore WordPress.Security.EscapeOutput
 		echo '<input type="hidden" value="' . esc_attr( $i ) . '" class="d4p-next-id" />';
 
 		echo '</div>';
