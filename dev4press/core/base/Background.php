@@ -125,6 +125,7 @@ abstract class Background {
 		}
 
 		if ( $result && $this->has_more() ) {
+			/* translators: Background process threads finished. %s: Thread elapsed time. */
 			$this->add_message( sprintf( __( 'Processing thread finished after %s seconds.', 'd4plib' ), number_format( $this->elapsed(), 2 ) ) );
 			$this->add_message( __( 'Spawning new background processing thread.', 'd4plib' ) );
 
@@ -140,6 +141,7 @@ abstract class Background {
 
 			$this->finish();
 
+			/* translators: Background process threads message. %s: Number of threads. */
 			$this->add_message( sprintf( _n( 'Process finished using %s thread.', 'Process finished using %s threads.', $threads, 'd4plib' ), $threads ) );
 			$this->status( 'done' );
 
