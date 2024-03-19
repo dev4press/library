@@ -1,9 +1,9 @@
 # Dev4Press Library
 ## About
 
-* Version: v4.7.2
-* Build:   4720
-* Release: 2024.03.15.
+* Version: v4.7.3
+* Build:   4730
+* Release: 2024.03.21.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/

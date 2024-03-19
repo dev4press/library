@@ -288,7 +288,7 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function _get_field( $name, $default = '' ) {
-		$value = ! empty( $_GET[ $name ] ) ? Sanitize::slug( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
+		$value = ! empty( $_GET[ $name ] ) ? $_GET[ $name ] : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 
 		switch ( $name ) {
 			case 'orderby':

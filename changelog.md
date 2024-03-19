@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### Version 4.7.3 - 2024.03.21
+
+* Fix: problem with the Table object and orderby processing
+
 ### Version 4.7.2 - 2024.03.15
 
 * Edit: few more updates to the options rendering class
