@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v47\Core\Options\Render
- * Version: v4.7
+ * Name:    Dev4Press\v48\Core\Options\Render
+ * Version: v4.8
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,12 +25,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v47\Core\Options;
+namespace Dev4Press\v48\Core\Options;
 
-use Dev4Press\v47\Core\Quick\Arr;
-use Dev4Press\v47\Core\Quick\KSES;
-use Dev4Press\v47\Core\Quick\Sanitize;
-use Dev4Press\v47\Core\UI\Elements;
+use Dev4Press\v48\Core\Quick\Arr;
+use Dev4Press\v48\Core\Quick\KSES;
+use Dev4Press\v48\Core\Quick\Sanitize;
+use Dev4Press\v48\Core\UI\Elements;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

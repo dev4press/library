@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v47\Core\Options\Settings
- * Version: v4.7
+ * Name:    Dev4Press\v48\Core\Options\Settings
+ * Version: v4.8
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v47\Core\Options;
+namespace Dev4Press\v48\Core\Options;
 
-use Dev4Press\v47\Core\DateTime;
-use Dev4Press\v47\Core\Quick\Str;
+use Dev4Press\v48\Core\DateTime;
+use Dev4Press\v48\Core\Quick\Str;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

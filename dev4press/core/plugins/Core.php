@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v47\Core\Plugins\Core
- * Version: v4.7
+ * Name:    Dev4Press\v48\Core\Plugins\Core
+ * Version: v4.8
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,14 +25,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v47\Core\Plugins;
+namespace Dev4Press\v48\Core\Plugins;
 
-use Dev4Press\v47\API\Four;
-use Dev4Press\v47\Core\DateTime;
-use Dev4Press\v47\Core\Quick\BBP;
-use Dev4Press\v47\Core\Quick\KSES;
-use Dev4Press\v47\Library;
-use Dev4Press\v47\WordPress;
+use Dev4Press\v48\API\Four;
+use Dev4Press\v48\Core\DateTime;
+use Dev4Press\v48\Core\Quick\BBP;
+use Dev4Press\v48\Core\Quick\KSES;
+use Dev4Press\v48\Library;
+use Dev4Press\v48\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -52,20 +52,18 @@ abstract class Core {
 	public $url = '';
 	public $path = '';
 
-	private $_datetime;
-	private $_system_requirements = array();
-	private $_widget_instance = array();
+	protected $_datetime;
+	protected $_system_requirements = array();
+	protected $_widget_instance = array();
+	protected $_plugins_loaded_priority = 10;
+	protected $_after_setup_theme_priority = 10;
 
 	public function __construct() {
 		$this->_datetime = new DateTime();
 
-		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
-		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
+		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), $this->_plugins_loaded_priority );
+		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), $this->_after_setup_theme_priority );
 		add_action( 'after_setup_theme', array( $this, 'cron_controls' ) );
-
-		if ( $this->license ) {
-			add_action( 'after_setup_theme', array( $this, 'license_control' ) );
-		}
 	}
 
 	/** @return static */
@@ -145,11 +143,13 @@ abstract class Core {
 	}
 
 	public function cron_controls() {
-
+		if ( $this->license ) {
+			$this->license_control();
+		}
 	}
 
 	public function license_control() {
-		add_filter( $this->plugin . '-license-validation', array( $this, 'cron_license_validation' ) );
+		add_action( $this->plugin . '-license-validation', array( $this, 'cron_license_validation' ) );
 
 		if ( ! wp_next_scheduled( $this->plugin . '-license-validation' ) ) {
 			wp_schedule_event( time() + HOUR_IN_SECONDS, 'weekly', $this->plugin . '-license-validation' );
@@ -246,15 +246,15 @@ abstract class Core {
 
 	abstract public function run();
 
-	/** @return NULL|\Dev4Press\v47\Core\Plugins\Settings */
+	/** @return NULL|\Dev4Press\v48\Core\Plugins\Settings */
 	abstract public function s();
 
-	/** @return NULL|\Dev4Press\v47\Core\Plugins\Settings */
+	/** @return NULL|\Dev4Press\v48\Core\Plugins\Settings */
 	abstract public function b();
 
-	/** @return NULL|\Dev4Press\v47\Core\Features\Load */
+	/** @return NULL|\Dev4Press\v48\Core\Features\Load */
 	abstract public function f();
 
-	/** @return NULL|\Dev4Press\v47\Core\Plugins\License */
+	/** @return NULL|\Dev4Press\v48\Core\Plugins\License */
 	abstract public function l();
 }

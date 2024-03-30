@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v47\API\Four
- * Version: v4.7
+ * Name:    Dev4Press\v48\API\Four
+ * Version: v4.8
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v47\API;
+namespace Dev4Press\v48\API;
 
-use Dev4Press\v47\Core\Helpers\IP;
+use Dev4Press\v48\Core\Helpers\IP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
