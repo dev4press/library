@@ -2,9 +2,11 @@
 
 ## Changelog
 
-### Version 4.8 - 2024.04.14
+### Version 4.8 - 2024.04.08
 
 * New: `Core` object has priority options for the loading actions
+* New: `Settings` object can specify some groups as network wide
+* New: added several more UI icons
 * Fix: some `Core` properties were private not protected
 * Fix: license check job initialized with filter not action
 

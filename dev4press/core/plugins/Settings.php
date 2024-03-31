@@ -50,6 +50,7 @@ abstract class Settings {
 	public $changed = array();
 
 	public $skip_update = array();
+	public $network_groups = array();
 
 	public function __construct() {
 		$this->constructor();
@@ -115,6 +116,12 @@ abstract class Settings {
 
 				foreach ( $groups as $key ) {
 					$this->current[ $key ] = $this->_settings_get( $key );
+
+					if ( in_array( $key, $this->network_groups ) && ! is_array( $this->current[ $key ] ) ) {
+						$this->current[ $key ] = $this->_settings_get( $key, 'blog' );
+
+						$this->_settings_update( $key, $this->current[ $key ] );
+					}
 
 					if ( ! is_array( $this->current[ $key ] ) ) {
 						$data = $this->group( $key );
@@ -385,8 +392,8 @@ abstract class Settings {
 		$this->set( 'db_version', $version, 'core', true );
 	}
 
-	protected function _name( $name ) : string {
-		return 'd4p_' . $this->scope . '_' . $this->info->code . '_' . $name;
+	protected function _name( $name, $force_scope = '' ) : string {
+		return 'd4p_' . $this->_group_scope( $name, $force_scope ) . '_' . $this->info->code . '_' . $name;
 	}
 
 	protected function _install() {
@@ -547,27 +554,36 @@ abstract class Settings {
 		}
 	}
 
-	protected function _settings_get( $name ) {
-		if ( $this->scope == 'network' ) {
-			return get_site_option( $this->_name( $name ) );
+	protected function _settings_get( $name, $force_scope = '' ) {
+		$scope = $this->_group_scope( $name, $force_scope );
+		$_name = $this->_name( $name, $force_scope );
+
+		if ( $scope == 'network' ) {
+			return get_site_option( $_name );
 		} else {
-			return get_option( $this->_name( $name ) );
+			return get_option( $_name );
 		}
 	}
 
-	protected function _settings_delete( $name ) {
-		if ( $this->scope == 'network' ) {
-			delete_site_option( $this->_name( $name ) );
+	protected function _settings_delete( $name, $force_scope = '' ) {
+		$scope = $this->_group_scope( $name, $force_scope );
+		$_name = $this->_name( $name, $force_scope );
+
+		if ( $scope == 'network' ) {
+			delete_site_option( $_name );
 		} else {
-			delete_option( $this->_name( $name ) );
+			delete_option( $_name );
 		}
 	}
 
 	protected function _settings_update( $name, $data ) {
-		if ( $this->scope == 'network' ) {
-			update_site_option( $this->_name( $name ), $data );
+		$scope = $this->_group_scope( $name );
+		$_name = $this->_name( $name );
+
+		if ( $scope == 'network' ) {
+			update_site_option( $_name, $data );
 		} else {
-			update_option( $this->_name( $name ), $data );
+			update_option( $_name, $data, 'yes' );
 		}
 	}
 
@@ -585,6 +601,16 @@ abstract class Settings {
 		}
 
 		return $data;
+	}
+
+	protected function _group_scope( $name, $force_scope = '' ) {
+		$scope = empty( $force_scope ) ? $this->scope : $force_scope;
+
+		if ( empty( $force_scope ) && $scope == 'blog' && in_array( $name, $this->network_groups ) ) {
+			$scope = 'network';
+		}
+
+		return $scope;
 	}
 
 	protected function _license_control() {
