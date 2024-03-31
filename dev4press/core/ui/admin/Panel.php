@@ -29,16 +29,18 @@ abstract class Panel {
 	protected $form_autocomplete = 'off';
 	protected $form_method = 'post';
 	protected $table_object = null;
+	protected $subpanel = '';
 
 	public $storage = array();
 
 	public function __construct( $admin ) {
-		$this->admin = $admin;
+		$render = $this->render_class;
 
-		$render       = $this->render_class;
-		$this->render = $render::instance();
+		$this->admin    = $admin;
+		$this->render   = $render::instance();
+		$this->subpanel = $this->admin->subpanel;
 
-		$page_id = $this->a()->screen_id;
+		$page_id = $this->admin->screen_id;
 
 		if ( is_network_admin() && str_ends_with( $page_id, '-network' ) ) {
 			$page_id = substr( $page_id, 0, - 8 );
@@ -90,7 +92,7 @@ abstract class Panel {
 	}
 
 	public function current_subpanel() : string {
-		$_subpanel = $this->a()->subpanel;
+		$_subpanel = $this->subpanel;
 
 		if ( ! empty( $this->subpanels ) ) {
 			$_available = array_keys( $this->subpanels );
@@ -261,7 +263,7 @@ abstract class Panel {
 		}
 
 		if ( $subpanel ) {
-			echo "<input type='hidden' name='" . esc_attr( $this->a()->n() ) . "[subpanel]' value='" . esc_attr( $this->a()->subpanel ) . "' />";
+			echo "<input type='hidden' name='" . esc_attr( $this->a()->n() ) . "[subpanel]' value='" . esc_attr( $this->subpanel ) . "' />";
 		}
 
 		wp_nonce_field( $group . '-options' );
@@ -275,23 +277,41 @@ abstract class Panel {
 	}
 
 	public function include_generic( $base, $name = '', $subname = '', $args = array() ) {
-		$name     = empty( $name ) ? $this->a()->panel : $name;
-		$subname  = empty( $subname ) ? ( empty( $this->a()->subpanel ) ? '' : $this->a()->subpanel ) : $subname;
-		$fallback = $base . '-' . $name;
-		$content  = $base . '-' . $name;
+		$name    = $this->get_panel_suffix( $name );
+		$subname = $this->get_subpanel_suffix( $subname );
 
-		if ( ! empty( $subname ) ) {
-			$content .= '-' . $subname;
-		}
-
-		$fallback .= '.php';
-		$content  .= '.php';
+		$fallback = $this->get_fallback_include( $base, $name, $subname );
+		$content  = $this->get_content_include( $base, $name, $subname );
 
 		$this->load( $content, $fallback, $base . '.php', $args );
 	}
 
 	public function get_table_object() {
 		return null;
+	}
+
+	protected function get_content_include( $base, $name, $subname = '' ) : string {
+		$content = $base . '-' . $name;
+
+		if ( ! empty( $subname ) ) {
+			$content .= '-' . $subname;
+		}
+
+		$content .= '.php';
+
+		return $content;
+	}
+
+	protected function get_fallback_include( $base, $name, $subname = '' ) : string {
+		return $base . '-' . $name . '.php';
+	}
+
+	protected function get_panel_suffix( $name = '' ) {
+		return empty( $name ) ? $this->a()->panel : $name;
+	}
+
+	protected function get_subpanel_suffix( $subname = '' ) {
+		return empty( $subname ) ? ( empty( $this->subpanel ) ? '' : $this->subpanel ) : $subname;
 	}
 
 	protected function interface_colors() {
