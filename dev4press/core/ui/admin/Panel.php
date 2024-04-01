@@ -29,7 +29,6 @@ abstract class Panel {
 	protected $form_autocomplete = 'off';
 	protected $form_method = 'post';
 	protected $table_object = null;
-	protected $subpanel = '';
 
 	public $storage = array();
 
@@ -38,7 +37,6 @@ abstract class Panel {
 
 		$this->admin    = $admin;
 		$this->render   = $render::instance();
-		$this->subpanel = $this->admin->subpanel;
 
 		$page_id = $this->admin->screen_id;
 
@@ -92,7 +90,7 @@ abstract class Panel {
 	}
 
 	public function current_subpanel() : string {
-		$_subpanel = $this->subpanel;
+		$_subpanel = $this->a()->subpanel;
 
 		if ( ! empty( $this->subpanels ) ) {
 			$_available = array_keys( $this->subpanels );
@@ -263,7 +261,7 @@ abstract class Panel {
 		}
 
 		if ( $subpanel ) {
-			echo "<input type='hidden' name='" . esc_attr( $this->a()->n() ) . "[subpanel]' value='" . esc_attr( $this->subpanel ) . "' />";
+			echo "<input type='hidden' name='" . esc_attr( $this->a()->n() ) . "[subpanel]' value='" . esc_attr( $this->a()->subpanel ) . "' />";
 		}
 
 		wp_nonce_field( $group . '-options' );
@@ -311,7 +309,7 @@ abstract class Panel {
 	}
 
 	protected function get_subpanel_suffix( $subname = '' ) {
-		return empty( $subname ) ? ( empty( $this->subpanel ) ? '' : $this->subpanel ) : $subname;
+		return empty( $subname ) ? ( empty( $this->a()->subpanel ) ? '' : $this->a()->subpanel ) : $subname;
 	}
 
 	protected function interface_colors() {

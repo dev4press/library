@@ -692,6 +692,17 @@ class WPR {
 		return '';
 	}
 
+	public static function get_blogs_count() : int {
+		if ( is_multisite() ) {
+			return absint( get_sites( array(
+				'count'  => true,
+				'number' => 0,
+			) ) );
+		}
+
+		return 1;
+	}
+
 	/*
 	 * Function by Micah Wood
 	 * https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
