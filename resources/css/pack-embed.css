@@ -3520,7 +3520,7 @@ a > .d4p-icon {
   display: block;
 }
 .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card:not(.d4p-dashboard-card-no-footer) .d4p-group-header + .d4p-group-inner {
-  margin-bottom: 3.5em;
+  margin-bottom: 3.75em;
 }
 .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card.d4p-card-double .d4p-group-footer {
   position: relative;

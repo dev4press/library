@@ -7,6 +7,7 @@
 * New: `Core` object has priority options for the loading actions
 * New: `Settings` object can specify some groups as network wide
 * New: added several more UI icons
+* Edit: improvements to the default styling for dashboard and tabs
 * Edit: improvements to base `Panel` object content file names
 * Edit: built-in cacert.pem 20240311
 * Fix: some `Core` properties were private not protected
