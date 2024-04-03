@@ -72,8 +72,8 @@ class ObjectsSort {
 		}
 	}
 
-	public static function run( $objects_array, $properties = array(), $uasort = false ) {
-		$_sort = new ObjectsSort( $objects_array, $properties, $uasort );
+	public static function run( $objects_array, $properties = array(), $associative = false ) {
+		$_sort = new ObjectsSort( $objects_array, $properties, $associative );
 
 		return $_sort->sorted;
 	}
