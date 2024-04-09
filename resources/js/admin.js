@@ -433,6 +433,7 @@
                 wp.dev4press.admin.settings.check_uncheck.run();
                 wp.dev4press.admin.settings.switch.run();
                 wp.dev4press.admin.settings.code_editor.run();
+                wp.dev4press.admin.settings.clear.run();
             },
             more_toggle: {
                 run: function() {
@@ -634,6 +635,32 @@
                             });
 
                         wp.codeEditor.initialize($(this), editorSettings);
+                    });
+                }
+            },
+            clear: {
+                run: function() {
+                    $(".d4p-field-clear-button").each(function() {
+                        var clear = $(this),
+                            field = clear.prev();
+
+                        if (field.val().length > 0) {
+                            clear.addClass("__active");
+                        }
+
+                        field.on("keyup change", function() {
+                            if ($(this).val().length === 0) {
+                                clear.removeClass("__active");
+                            } else {
+                                clear.addClass("__active");
+                            }
+                        })
+                    });
+
+                    $(document).on("click", ".d4p-field-clear-button", function(e) {
+                        e.preventDefault();
+
+                        $(this).removeClass("__active").prev().val("");
                     });
                 }
             }

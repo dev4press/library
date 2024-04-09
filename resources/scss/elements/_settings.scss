@@ -85,6 +85,30 @@
         }
 
         .d4p-setting-wrapper {
+            position: relative;
+
+            .d4p-field-clear-button {
+                position: absolute;
+                top: .2em;
+                right: .2em;
+                line-height: 1;
+                font-size: 1.2em;
+                cursor: default;
+                border: 0;
+                padding: 4px;
+                background: transparent;
+                opacity: .1;
+
+                &.__active {
+                    opacity: .9;
+                    cursor: pointer;
+                }
+
+                @media screen and (max-width: 768px) {
+                    top: .3em;
+                }
+            }
+
             label {
                 line-height: 1.8;
             }

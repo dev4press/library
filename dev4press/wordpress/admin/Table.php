@@ -38,17 +38,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Table extends WP_List_Table {
-	public $total = 0;
-
-	public $_request_args = array();
-	public $_sanitize_orderby_fields = array();
-	public $_checkbox_field = '';
-	public $_table_class_name = '';
-	public $_self_nonce_key = '';
-	public $_table_primary_column = '';
-	public $_views_separator = ' |';
-	public $_rows_per_page_key = '';
-	public $_rows_per_page_default = 25;
+	public array $_request_args = array();
+	public array $_sanitize_orderby_fields = array();
+	public string $_checkbox_field = '';
+	public string $_table_class_name = '';
+	public string $_self_nonce_key = '';
+	public string $_table_primary_column = '';
+	public string $_views_separator = ' |';
+	public string $_rows_per_page_key = '';
+	public int $_rows_per_page_default = 25;
 
 	public function __construct( $args = array() ) {
 		parent::__construct( $args );

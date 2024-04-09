@@ -57,11 +57,12 @@ abstract class Settings {
 
 		if ( $this->info->is_pro() ) {
 			$this->settings['license'] = array(
-				'code'   => '',
-				'info'   => array(),
-				'last'   => array(),
-				'check'  => 0,
-				'record' => 'empty',
+				'code'      => '',
+				'info'      => array(),
+				'last'      => array(),
+				'check'     => 0,
+				'record'    => 'empty',
+				'dashboard' => 0,
 			);
 		}
 	}

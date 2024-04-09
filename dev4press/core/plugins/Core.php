@@ -31,6 +31,7 @@ use Dev4Press\v48\API\Four;
 use Dev4Press\v48\Core\DateTime;
 use Dev4Press\v48\Core\Quick\BBP;
 use Dev4Press\v48\Core\Quick\KSES;
+use Dev4Press\v48\Core\Quick\WPR;
 use Dev4Press\v48\Library;
 use Dev4Press\v48\WordPress;
 
@@ -197,6 +198,18 @@ abstract class Core {
 	public function cron_license_validation() {
 		if ( $this->license ) {
 			$this->l()->validate();
+		}
+	}
+
+	public function dashboard_license_validation() {
+		$dashboard = $this->s()->get( 'dashboard', 'license' );
+
+		if ( $dashboard + DAY_IN_SECONDS < time() ) {
+			if ( ! WPR::is_scheduled_single( $this->plugin . '-license-validation' ) ) {
+				$this->s()->set( 'dashboard', time(), 'license', true, true );
+
+				wp_schedule_single_event( time() + 5, $this->plugin . '-license-validation' );
+			}
 		}
 	}
 

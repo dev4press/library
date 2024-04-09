@@ -64,6 +64,10 @@ abstract class License {
 		return sprintf( $url, $api, $version, $code, $this->site_url );
 	}
 
+	public function dashboard() {
+		$this->plugin()->dashboard_license_validation();
+	}
+
 	public function is_valid() : bool {
 		$code   = $this->get_license_code();
 		$info   = $this->plugin()->s()->raw_get( 'info', 'license' );

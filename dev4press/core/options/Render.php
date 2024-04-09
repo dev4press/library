@@ -324,6 +324,10 @@ class Render {
 		}
 	}
 
+	protected function render_clear_button() {
+		echo '<button class="d4p-field-clear-button" type="button" aria-label="' . esc_html__( 'Clear Value' ) . '"><i class="d4p-icon d4p-ui-clear"></i></button>';
+	}
+
 	protected function _render_description( Element $setting ) {
 		if ( ! empty( $setting->notice ) && $setting->input != 'info' ) {
 			echo '<div class="d4p-description">' . KSES::standard( $setting->notice ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -454,6 +458,8 @@ class Render {
 		), array(), array(
 			'labelledby' => $id_base . '__label',
 		) );
+
+		$this->render_clear_button();
 	}
 
 	protected function draw_text( Element $element, $value, $name_base, $id_base, $type = 'text' ) {
@@ -471,6 +477,10 @@ class Render {
 		), array(), array(
 			'labelledby' => $id_base . '__label',
 		) );
+
+		if ( isset( $element->args['clear'] ) && $element->args['clear'] ) {
+			$this->render_clear_button();
+		}
 	}
 
 	protected function draw_html( Element $element, $value, $name_base, $id_base ) {
@@ -956,6 +966,10 @@ class Render {
 			esc_attr( $value ),
 			esc_attr( $autocomplete )
 		);
+
+		if ( isset( $element->args['clear'] ) && $element->args['clear'] ) {
+			$this->render_clear_button();
+		}
 	}
 
 	protected function draw_file( Element $element, $value, $name_base, $id_base ) {

@@ -59,6 +59,30 @@
     padding-bottom: 0;
   }
 }
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper {
+  position: relative;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-field-clear-button {
+  position: absolute;
+  top: 0.2em;
+  right: 0.2em;
+  line-height: 1;
+  font-size: 1.2em;
+  cursor: default;
+  border: 0;
+  padding: 4px;
+  background: transparent;
+  opacity: 0.1;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-field-clear-button.__active {
+  opacity: 0.9;
+  cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-field-clear-button {
+    top: 0.3em;
+  }
+}
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper label {
   line-height: 1.8;
 }

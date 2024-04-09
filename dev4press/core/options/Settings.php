@@ -131,15 +131,38 @@ abstract class Settings {
 		} else {
 			$valid  = $info['valid'] ?? '';
 			$status = $info['status'] ?? '';
-			$domain = $info['domain'] ?? '';
+			$domain = $info['domain'] ?? '/';
+			$type   = $info['type'] ?? '/';
 
 			$items = array(
 				'<span>' . __( 'Last Checked', 'd4plib' ) . '</span>: <strong>' . DateTime::instance()->mysql_date( true, $time ) . '</strong>',
 				'<hr/>',
 				'<span>' . __( 'Valid', 'd4plib' ) . '</span>: <strong>' . ( $valid === 'yes' ? esc_html__( 'Yes', 'd4plib' ) : esc_html__( 'No', 'd4plib' ) ) . '</strong><br/>',
 				'<span>' . __( 'Status', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $status, '-' ) ) . '</strong><br/>',
-				'<span>' . __( 'Domain', 'd4plib' ) . '</span>: <strong>' . esc_html( $domain ) . '</strong>',
+				'<span>' . __( 'Domain', 'd4plib' ) . '</span>: <strong>' . esc_html( $domain ) . '</strong><br/>',
+				'<span>' . __( 'Type', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $type, '-' ) ) . '</strong>',
 			);
+		}
+
+		$buttons = array(
+			array(
+				'type'   => 'a',
+				'target' => '_blank',
+				'link'   => 'https://my.dev4press.com/license/?code=' . $code,
+				'class'  => 'button-primary',
+				'title'  => __( 'Manage License Code', 'd4plib' ),
+			),
+			array(
+				'type'   => 'a',
+				'target' => '_blank',
+				'link'   => 'https://my.dev4press.com/products/',
+				'class'  => 'button-secondary',
+				'title'  => __( 'Dev4Press Dashboard Licenses', 'd4plib' ),
+			),
+		);
+
+		if ( empty( $code ) ) {
+			unset( $buttons[0] );
 		}
 
 		$settings = array(
@@ -155,17 +178,7 @@ abstract class Settings {
 								__( 'Make sure to enter the license code exactly as it is listed on the Dev4Press Dashboard.', 'd4plib' ),
 								__( 'License code is case sensitive, and all letters must be uppercase.', 'd4plib' ),
 								__( 'License code is valid even after the subscription period has expired, as long it was not refunded or terminated.', 'd4plib' ),
-							) )->buttons(
-								array(
-									array(
-										'type'   => 'a',
-										'target' => '_blank',
-										'link'   => 'https://my.dev4press.com/products/',
-										'class'  => 'button-secondary',
-										'title'  => __( 'Dev4Press Dashboard Licenses', 'd4plib' ),
-									),
-								)
-							),
+							) )->buttons( $buttons ),
 						),
 					),
 					array(
