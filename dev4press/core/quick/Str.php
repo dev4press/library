@@ -92,6 +92,10 @@ class Str {
 			return false;
 		}
 
+		if ( function_exists( 'json_validate' ) ) {
+			return json_validate( $input );
+		}
+
 		return null !== json_decode( $input );
 	}
 

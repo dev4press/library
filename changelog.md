@@ -2,7 +2,7 @@
 
 ## Changelog
 
-### Version 4.8 - 2024.04.08
+### Version 4.8 - 2024.04.18
 
 * New: `Core` object has priority options for the loading actions
 * New: `Settings` object can specify some groups as network wide

@@ -3,7 +3,7 @@
 
 * Version: v4.8
 * Build:   4800
-* Release: 2024.04.08.
+* Release: 2024.04.18.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
