@@ -78,7 +78,7 @@ class WordPress {
 		if ( WPR::is_classicpress() ) {
 			$this->_switches['wordpress']    = false;
 			$this->_switches['classicpress'] = true;
-			$this->_versions['cp']           = function_exists( 'classicpress_version' ) ? classicpress_version() : '1.0';
+			$this->_versions['cp']           = function_exists( 'classicpress_version' ) ? classicpress_version() : '2.0';
 		}
 
 		$this->_versions['cms'] = $this->_versions['cp'] ?? $this->_versions['wp'];
