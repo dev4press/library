@@ -7,6 +7,7 @@
 * New: `Core` object has priority options for the loading actions
 * New: `Settings` object can specify some groups as network wide
 * New: settings now can render the `Clear` button for text-based field
+* New: checkbox based options can be used for the option switch control
 * New: added several more UI icons
 * Edit: improvements to the default styling for dashboard and tabs
 * Edit: improvements to base `Panel` object content file names
