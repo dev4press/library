@@ -3,7 +3,7 @@
 
 * Version: v4.8
 * Build:   4800
-* Release: 2024.04.18.
+* Release: 2024.04.22.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
@@ -14,11 +14,11 @@
 ### Server
 
 * PHP: 7.4 or newer
-* mySQL: 5.1 or newer
+* mySQL: 5.5 or newer
 
 ### WordPress
 
-* WordPress: 5.7 or newer
+* WordPress: 5.8 or newer
 
 ### ClassicPress
 

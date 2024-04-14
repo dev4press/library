@@ -54,7 +54,7 @@ abstract class Information {
 	public $author_url = 'https://www.dev4press.com/';
 
 	public $php = '7.4';
-	public $mysql = '5.0';
+	public $mysql = '5.5';
 
 	public $cms = array(
 		'wordpress'    => '5.8',
