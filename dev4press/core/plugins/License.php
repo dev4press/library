@@ -175,7 +175,9 @@ abstract class License {
 							'valid'   => $json['obj']['valid'] ?? 'no',
 							'api'     => $json['obj']['api'] ?? 'no',
 							'control' => $json['obj']['control'] ?? 'no',
-							'domain'  => $json['obj']['domain'] ?? '',
+							'domain'  => $json['obj']['website'] ?? '',
+							'entry'   => $json['obj']['entry'] ?? '',
+							'type'    => $json['obj']['type'] ?? '',
 						);
 
 						if ( $result['valid'] == 'no' ) {
@@ -193,8 +195,7 @@ abstract class License {
 					);
 				}
 			} else {
-				$record = 'server-problem';
-
+				$record  = 'server-problem';
 				$error   = 'request-failed';
 				$message = $response->get_error_message();
 			}
