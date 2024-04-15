@@ -74,7 +74,7 @@ class Detection {
 
 		$this->caller();
 
-		do_action( 'd4p_mailer_notification_detected', $this->detection, $atts );
+		do_action( 'dev4press_mailer_notification_detected', $this->detection, $atts );
 
 		return $atts;
 	}

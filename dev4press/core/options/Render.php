@@ -261,11 +261,11 @@ class Render {
 		}
 
 		if ( $setting->input == 'hidden' ) {
-			do_action( 'd4p_settings_group_hidden_top', $setting, $group );
+			do_action( 'dev4press_settings_group_hidden_top', $setting, $group );
 
 			$this->call( $call_function, $setting, $name_base, $id_base );
 
-			do_action( 'd4p_settings_group_hidden_bottom', $setting, $group );
+			do_action( 'dev4press_settings_group_hidden_bottom', $setting, $group );
 		} else {
 			if ( isset( $setting->args['data'] ) && is_array( $setting->args['data'] ) && ! empty( $setting->args['data'] ) ) {
 				foreach ( $setting->args['data'] as $key => $value ) {
@@ -307,7 +307,7 @@ class Render {
 				echo '</th><td>';
 				echo '<div class="' . Sanitize::html_classes( $class ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-				do_action( 'd4p_settings_group_top', $setting, $group );
+				do_action( 'dev4press_settings_group_top', $setting, $group );
 
 				$this->call( $call_function, $setting, $name_base, $id_base );
 
@@ -315,7 +315,7 @@ class Render {
 				$this->_render_more( $setting );
 				$this->_render_buttons( $setting );
 
-				do_action( 'd4p_settings_group_bottom', $setting, $group );
+				do_action( 'dev4press_settings_group_bottom', $setting, $group );
 
 				echo '</div>';
 				echo '</td>';

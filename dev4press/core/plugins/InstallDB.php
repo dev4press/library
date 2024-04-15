@@ -116,7 +116,7 @@ abstract class InstallDB {
 	private function delta( $query ) : array {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-		do_action( 'd4p_install_db_delta', $this->plugin, $this->prefix, $query );
+		do_action( 'dev4press_install_db_delta', $this->plugin, $this->prefix, $query );
 
 		return dbDelta( $query );
 	}

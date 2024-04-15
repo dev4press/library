@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-function _dev4press_display_notice_for_plugin( $plugin ) {
+function dev4press_display_notice_for_plugin( $plugin ) {
 	/* translators: Notice title suggesting bbPress plugin. %s: Plugin name. */
 	echo KSES::strong( sprintf( __( 'Please, take a few minutes to check out another Dev4Press plugin for bbPress: %s.', 'd4plib' ), '<strong>' . $plugin . '</strong>' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
@@ -28,7 +28,7 @@ if ( ! WPR::is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-b
 	?>
 
     <div class="d4p-notice-info">
-		<?php _dev4press_display_notice_for_plugin( 'GD Power Search Pro for bbPress' ); ?>
+		<?php dev4press_display_notice_for_plugin( 'GD Power Search Pro for bbPress' ); ?>
         <blockquote>Enhanced and powerful search for bbPress powered forums, with options to filter results by post author, forums, publication period, topic tags and few other things.</blockquote>
         <a target="_blank" rel="noopener" href="<?php echo esc_url( $url ); ?>" class="button-primary"><?php esc_html_e( 'Plugin Home Page', 'd4plib' ); ?></a>
         <a href="<?php echo esc_url( $_dismiss_url ); ?>dismiss-power-search" class="button-secondary"><?php esc_html_e( 'Do not show this notice anymore', 'd4plib' ); ?></a>
@@ -42,7 +42,7 @@ if ( ! WPR::is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-b
 	?>
 
     <div class="d4p-notice-info">
-		<?php _dev4press_display_notice_for_plugin( 'GD bbPress Toolbox Pro' ); ?>
+		<?php dev4press_display_notice_for_plugin( 'GD bbPress Toolbox Pro' ); ?>
         <blockquote>Expand bbPress powered forums with attachments upload, BBCodes support, signatures, widgets, quotes, toolbar menu, activity tracking, enhanced widgets, extra views...</blockquote>
         <a target="_blank" rel="noopener" href="<?php echo esc_url( $url ); ?>" class="button-primary"><?php esc_html_e( 'Plugin Home Page', 'd4plib' ); ?></a>
         <a href="<?php echo esc_url( $_dismiss_url ); ?>dismiss-bbpress-toolbox" class="button-secondary"><?php esc_html_e( 'Do not show this notice anymore', 'd4plib' ); ?></a>
@@ -57,7 +57,7 @@ if ( ! WPR::is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-b
 	?>
 
     <div class="d4p-notice-info">
-		<?php _dev4press_display_notice_for_plugin( 'GD Topic Prefix Pro for bbPress' ); ?>
+		<?php dev4press_display_notice_for_plugin( 'GD Topic Prefix Pro for bbPress' ); ?>
         <blockquote>Implements topic prefixes system, with support for styling customization, forum specific prefix groups with use of user roles, default prefixes, filtering of topics by prefix and more.</blockquote>
         <a target="_blank" rel="noopener" href="<?php echo esc_url( $url ); ?>" class="button-primary"><?php esc_html_e( 'Plugin Home Page', 'd4plib' ); ?></a>
         <a href="<?php echo esc_url( $_dismiss_url ); ?>dismiss-topic-prefix" class="button-secondary"><?php esc_html_e( 'Do not show this notice anymore', 'd4plib' ); ?></a>
@@ -71,7 +71,7 @@ if ( ! WPR::is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-b
 	?>
 
     <div class="d4p-notice-info">
-		<?php _dev4press_display_notice_for_plugin( 'GD Topic Prefix Pro for bbPress' ); ?>
+		<?php dev4press_display_notice_for_plugin( 'GD Topic Prefix Pro for bbPress' ); ?>
         <blockquote>Easy to use and highly configurable plugin for adding notices throughout the bbPress powered forums, with powerful rules editor to control each notice display and location.</blockquote>
         <a target="_blank" rel="noopener" href="<?php echo esc_url( $url ); ?>" class="button-primary"><?php esc_html_e( 'Plugin Home Page', 'd4plib' ); ?></a>
         <a href="<?php echo esc_url( $_dismiss_url ); ?>dismiss-forum-notices" class="button-secondary"><?php esc_html_e( 'Do not show this notice anymore', 'd4plib' ); ?></a>
@@ -85,7 +85,7 @@ if ( ! WPR::is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-b
 	?>
 
     <div class="d4p-notice-info">
-		<?php _dev4press_display_notice_for_plugin( 'GD Topic Polls Pro for bbPress' ); ?>
+		<?php dev4press_display_notice_for_plugin( 'GD Topic Polls Pro for bbPress' ); ?>
         <blockquote>Implements a polls system for bbPress powered forums, where users can add polls to topics, with a wide range of settings to control voting, poll closing, display of results and more.</blockquote>
         <a target="_blank" rel="noopener" href="<?php echo esc_url( $url ); ?>" class="button-primary"><?php esc_html_e( 'Plugin Home Page', 'd4plib' ); ?></a>
         <a href="<?php echo esc_url( $_dismiss_url ); ?>dismiss-topic-polls" class="button-secondary"><?php esc_html_e( 'Do not show this notice anymore', 'd4plib' ); ?></a>
@@ -99,7 +99,7 @@ if ( ! WPR::is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-b
 	?>
 
     <div class="d4p-notice-info">
-		<?php _dev4press_display_notice_for_plugin( 'GD Quantum Theme Pro for bbPress' ); ?>
+		<?php dev4press_display_notice_for_plugin( 'GD Quantum Theme Pro for bbPress' ); ?>
         <blockquote>Responsive and modern theme to fully replace default bbPress theme templates and styles, with multiple colour schemes and Customizer integration for more control.</blockquote>
         <a target="_blank" rel="noopener" href="<?php echo esc_url( $url ); ?>" class="button-primary"><?php esc_html_e( 'Plugin Home Page', 'd4plib' ); ?></a>
         <a href="<?php echo esc_url( $_dismiss_url ); ?>dismiss-quantum-theme" class="button-secondary"><?php esc_html_e( 'Do not show this notice anymore', 'd4plib' ); ?></a>
