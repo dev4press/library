@@ -424,8 +424,8 @@ class Render {
 			esc_attr( $value ),
 			esc_attr( $class ),
 			esc_attr( $readonly ),
-			$min, // phpcs:ignore WordPress.Security.EscapeOutput
-			$max // phpcs:ignore WordPress.Security.EscapeOutput
+			$min, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			$max // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 	}
 
