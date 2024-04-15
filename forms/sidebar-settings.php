@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v48\Core\Quick\KSES;
 use function Dev4Press\v48\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,33 +16,33 @@ $_subpanels = panel()->subpanels();
     <div class="d4p-panel-scroller d4p-scroll-active">
         <div class="d4p-panel-title">
             <div class="_icon">
-				<?php echo panel()->r()->icon( $_panel->icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo KSES::buttons( panel()->r()->icon( $_panel->icon ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
             <h3><?php echo esc_html( $_panel->title ); ?></h3>
 			<?php
 
-			echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . esc_html( $_subpanels[ $_subpanel ]['title'] ) . '</h4>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<h4>' . KSES::buttons( panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) ) . esc_html( $_subpanels[ $_subpanel ]['title'] ) . '</h4>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 			?>
             <div class="_info">
-		        <?php
+				<?php
 
-		        echo esc_html( $_subpanels[ $_subpanel ]['info'] );
+				echo esc_html( $_subpanels[ $_subpanel ]['info'] );
 
-		        if ( isset( $_subpanels[ $_subpanel ]['kb'] ) ) {
-			        $url   = $_subpanels[ $_subpanel ]['kb']['url'];
-			        $label = $_subpanels[ $_subpanel ]['kb']['label'] ?? __( 'Knowledge Base', 'd4plib' );
+				if ( isset( $_subpanels[ $_subpanel ]['kb'] ) ) {
+					$url   = $_subpanels[ $_subpanel ]['kb']['url'];
+					$label = $_subpanels[ $_subpanel ]['kb']['label'] ?? __( 'Knowledge Base', 'd4plib' );
 
-			        ?>
+					?>
 
                     <div class="_kb">
                         <a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $label ); ?></a>
                     </div>
 
-			        <?php
-		        }
+					<?php
+				}
 
-		        ?>
+				?>
             </div>
         </div>
         <div class="d4p-panel-buttons">

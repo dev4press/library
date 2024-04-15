@@ -44,26 +44,32 @@ class KSES {
 				'br'     => array(),
 				'hr'     => array(),
 				'h1'     => array(
+					'id'    => true,
 					'class' => true,
 					'style' => true,
 				),
 				'h2'     => array(
+					'id'    => true,
 					'class' => true,
 					'style' => true,
 				),
 				'h3'     => array(
+					'id'    => true,
 					'class' => true,
 					'style' => true,
 				),
 				'h4'     => array(
+					'id'    => true,
 					'class' => true,
 					'style' => true,
 				),
 				'h5'     => array(
+					'id'    => true,
 					'class' => true,
 					'style' => true,
 				),
 				'h6'     => array(
+					'id'    => true,
 					'class' => true,
 					'style' => true,
 				),
@@ -138,6 +144,7 @@ class KSES {
 			$render,
 			array(
 				'div'    => array(
+					'id'    => true,
 					'class' => true,
 				),
 				'a'      => array(
@@ -156,6 +163,10 @@ class KSES {
 				),
 				'span'   => array(
 					'class' => true,
+				),
+				'i'      => array(
+					'class'  => true,
+					'aria-*' => true,
 				),
 			)
 		);

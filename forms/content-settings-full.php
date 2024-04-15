@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v48\Core\Quick\KSES;
 use Dev4Press\v48\Core\Options\Render;
 use function Dev4Press\v48\Functions\panel;
 
@@ -26,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			echo panel()->r()->settings_break( $obj['break'], $obj['break-icon'] ?? '', $obj['break-info'] ?? '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
-		echo panel()->r()->settings_group_break( $obj['title'], $obj['icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo KSES::standard( panel()->r()->settings_group_break( $obj['title'], $obj['icon'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$groups = $options->get( $subpanel );
 
