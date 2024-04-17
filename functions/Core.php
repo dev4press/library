@@ -29,21 +29,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-function dev4press_v48_autoload_for_plugin( $class, $base, $path, $path_prefix = '' ) {
-	if ( substr( $class, 0, strlen( $base ) ) == $base ) {
-		$clean = substr( $class, strlen( $base ) );
-		$parts = explode( '\\', $clean );
+if ( ! function_exists( 'dev4press_v48_autoload_for_plugin' ) ) {
+	function dev4press_v48_autoload_for_plugin( $class, $base, $path, $path_prefix = '' ) {
+		if ( substr( $class, 0, strlen( $base ) ) == $base ) {
+			$clean = substr( $class, strlen( $base ) );
+			$parts = explode( '\\', $clean );
 
-		$class_name = $parts[ count( $parts ) - 1 ];
-		unset( $parts[ count( $parts ) - 1 ] );
+			$class_name = $parts[ count( $parts ) - 1 ];
+			unset( $parts[ count( $parts ) - 1 ] );
 
-		$class_namespace = join( '/', $parts );
-		$class_namespace = strtolower( $class_namespace );
+			$class_namespace = join( '/', $parts );
+			$class_namespace = strtolower( $class_namespace );
 
-		$path .= $path_prefix . $class_namespace . '/' . $class_name . '.php';
+			$path .= $path_prefix . $class_namespace . '/' . $class_name . '.php';
 
-		if ( file_exists( $path ) ) {
-			include $path;
+			if ( file_exists( $path ) ) {
+				include $path;
+			}
 		}
 	}
 }
