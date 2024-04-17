@@ -63,6 +63,7 @@ abstract class Grid {
 
 	public function __construct() {
 		$this->current_url = URL::current_url();
+
 		$this->parse_args();
 		$this->table_init();
 	}
