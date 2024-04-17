@@ -64,8 +64,10 @@ class Sanitize {
 		return sanitize_url( $url ); // phpcs:ignore WordPress.WP.DeprecatedFunctions
 	}
 
-	public static function key( $key ) : string {
-		return sanitize_key( $key );
+	public static function key( $text ) : string {
+		$text = stripslashes( (string) $text );
+
+		return sanitize_key( $text );
 	}
 
 	public static function slug( $text ) : string {
@@ -73,7 +75,9 @@ class Sanitize {
 			return '';
 		}
 
-		return trim( sanitize_title_with_dashes( stripslashes( (string) $text ) ), "-_ \t\n\r\0\x0B" );
+		$text = stripslashes( (string) $text );
+
+		return trim( sanitize_title_with_dashes( $text ), "-_ \t\n\r\0\x0B" );
 	}
 
 	public static function basic( $text, bool $strip_shortcodes = true ) : string {
