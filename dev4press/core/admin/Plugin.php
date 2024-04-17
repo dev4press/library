@@ -532,6 +532,14 @@ abstract class Plugin {
 		return null;
 	}
 
+	public function get_panel_cap( $panel ) {
+		if ( empty( $this->menu_items ) ) {
+			$this->admin_menu_items();
+		}
+
+		return $this->menu_items[ $panel ]['cap'] ?? $this->menu_cap;
+	}
+
 	protected function screen_setup() {
 		$this->install_or_update();
 		$this->load_post_get_back();

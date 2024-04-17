@@ -65,23 +65,38 @@ abstract class PostBack {
 		check_admin_referer( $this->get_page_name( $name ) . '-options' );
 	}
 
+	protected function check_capability( $name ) : bool {
+		if ( ! current_user_can( $this->a()->get_panel_cap( $name ) ) ) {
+			wp_die( __( 'You are not authorized to submit data for processing for this panel.', 'd4plib' ), __( 'Unauthorized request.', 'd4plib' ) );
+		}
+
+		return true;
+	}
+
 	protected function process() {
 		if ( $this->p() == $this->get_page_name( 'tools' ) ) {
 			$this->check_referer( 'tools' );
+			$this->check_capability( 'tools' );
 
 			$this->tools();
 		}
 
 		if ( $this->p() == $this->get_page_name( 'settings' ) ) {
 			$this->check_referer( 'settings' );
+			$this->check_capability( 'settings' );
 
-			$this->settings();
+			$request = $_REQUEST ?? array(); // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
+
+			$this->settings( $request );
 		}
 
 		if ( $this->p() == $this->get_page_name( 'features' ) ) {
 			$this->check_referer( 'features' );
+			$this->check_capability( 'features' );
 
-			$this->features();
+			$request = $_REQUEST ?? array(); // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
+
+			$this->features( $request );
 		}
 	}
 
@@ -93,9 +108,9 @@ abstract class PostBack {
 		}
 	}
 
-	protected function settings() {
+	protected function settings( $request ) {
 		$base = $this->a()->settings_definitions()->settings( $this->a()->subpanel );
-		$this->_process_save_data( $base );
+		$this->_process_save_data( $base, $request );
 
 		$filter = $this->a()->h( 'settings_saved_for_' . $this->a()->subpanel );
 
@@ -105,9 +120,9 @@ abstract class PostBack {
 		exit;
 	}
 
-	protected function features() {
+	protected function features( $request ) {
 		$base = $this->a()->features_definitions( $this->a()->subpanel )->settings();
-		$this->_process_save_data( $base );
+		$this->_process_save_data( $base, $request );
 
 		$filter = $this->a()->h( 'settings_saved_for_feature_' . $this->a()->subpanel );
 
@@ -150,8 +165,9 @@ abstract class PostBack {
 		exit;
 	}
 
-	protected function _process_save_data( $base ) {
-		$data    = Process::instance( $this->a()->n(), $this->a()->plugin_prefix )->prepare( $base )->process();
+	protected function _process_save_data( $base, $request ) {
+		$data = Process::instance( $this->a()->n(), $this->a()->plugin_prefix )->prepare( $base )->process( $request );
+
 		$filter  = $this->a()->h( 'settings_save_settings_value' );
 		$primary = $this->a()->is_save_destination_primary();
 

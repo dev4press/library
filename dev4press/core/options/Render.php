@@ -325,7 +325,7 @@ class Render {
 	}
 
 	protected function render_clear_button() {
-		echo '<button class="d4p-field-clear-button" type="button" aria-label="' . esc_html__( 'Clear Value' ) . '"><i class="d4p-icon d4p-ui-clear"></i></button>';
+		echo '<button class="d4p-field-clear-button" type="button" aria-label="' . esc_html__( 'Clear Value', 'd4plib' ) . '"><i class="d4p-icon d4p-ui-clear"></i></button>';
 	}
 
 	protected function _render_description( Element $setting ) {

@@ -3,20 +3,20 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 02/04/2024 06:22:41 PM\n"
+"POT-Creation-Date: 04/17/2024 09:38:29 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GD i18n 2.8; www.dev4press.com\n"
 
-#: dev4press/core/base/Background.php:143
+#: dev4press/core/base/Background.php:145
 msgid "Process finished using %s thread."
 msgid_plural "Process finished using %s threads."
 msgstr[0] ""
 msgstr[1] ""
 
-#: dev4press/core/ui/Grid.php:233
+#: dev4press/core/ui/Grid.php:234
 msgid "%s item"
 msgid_plural "%s items"
 msgstr[0] ""
@@ -34,11 +34,11 @@ msgstr ""
 msgid "%s is updated, and you need to review the update process."
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:495
+#: dev4press/core/admin/Plugin.php:559
 msgid "Panel"
 msgstr ""
 
-#: dev4press/core/admin/Plugin.php:496
+#: dev4press/core/admin/Plugin.php:560
 msgid "Information"
 msgstr ""
 
@@ -55,7 +55,7 @@ msgstr ""
 #: dev4press/core/admin/Plugin.php:253
 #: dev4press/core/admin/Plugin.php:271
 #: forms/sidebar-features.php:61
-#: forms/sidebar-settings.php:33
+#: forms/sidebar-settings.php:34
 #: forms/sidebar.php:29
 msgid "Knowledge Base"
 msgstr ""
@@ -101,6 +101,14 @@ msgstr ""
 msgid "Click Here"
 msgstr ""
 
+#: dev4press/core/admin/PostBack.php:70
+msgid "You are not authorized to submit data for processing for this panel."
+msgstr ""
+
+#: dev4press/core/admin/PostBack.php:70
+msgid "Unauthorized request."
+msgstr ""
+
 #: dev4press/core/base/Background.php:83
 msgid "Getting ready to start."
 msgstr ""
@@ -109,32 +117,32 @@ msgstr ""
 msgid "Starting the thread worker processing."
 msgstr ""
 
-#: dev4press/core/base/Background.php:128
+#: dev4press/core/base/Background.php:129
 msgid "Processing thread finished after %s seconds."
 msgstr ""
 
-#: dev4press/core/base/Background.php:129
+#: dev4press/core/base/Background.php:130
 msgid "Spawning new background processing thread."
 msgstr ""
 
-#: dev4press/core/base/Background.php:254
+#: dev4press/core/base/Background.php:256
 msgid "Process"
 msgstr ""
 
-#: dev4press/core/base/Background.php:255
+#: dev4press/core/base/Background.php:257
 #: dev4press/core/ui/admin/PanelAbout.php:46
 msgid "System"
 msgstr ""
 
-#: dev4press/core/base/Background.php:256
+#: dev4press/core/base/Background.php:258
 msgid "Activity"
 msgstr ""
 
-#: dev4press/core/base/Background.php:257
+#: dev4press/core/base/Background.php:259
 msgid "Warning"
 msgstr ""
 
-#: dev4press/core/base/Background.php:258
+#: dev4press/core/base/Background.php:260
 msgid "Error"
 msgstr ""
 
@@ -604,9 +612,9 @@ msgid "Feature network override is active"
 msgstr ""
 
 #: dev4press/core/options/Features.php:141
-#: dev4press/core/options/Settings.php:140
-#: dev4press/core/options/Settings.php:176
-#: dev4press/core/options/Settings.php:192
+#: dev4press/core/options/Settings.php:141
+#: dev4press/core/options/Settings.php:189
+#: dev4press/core/options/Settings.php:205
 #: forms/content-about-info.php:31
 msgid "Status"
 msgstr ""
@@ -619,89 +627,93 @@ msgstr ""
 msgid "Feature is active"
 msgstr ""
 
-#: dev4press/core/options/Render.php:372
-#: dev4press/core/options/Render.php:1033
+#: dev4press/core/options/Render.php:376
+#: dev4press/core/options/Render.php:1047
 msgid "Key"
 msgstr ""
 
-#: dev4press/core/options/Render.php:373
-#: dev4press/core/options/Render.php:1034
-#: dev4press/core/options/Render.php:1114
+#: dev4press/core/options/Render.php:377
+#: dev4press/core/options/Render.php:1048
+#: dev4press/core/options/Render.php:1128
 msgid "Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:374
-#: dev4press/core/options/Render.php:374
-#: dev4press/core/options/Render.php:757
-#: dev4press/core/options/Render.php:401
+#: dev4press/core/options/Render.php:378
+#: dev4press/core/options/Render.php:378
+#: dev4press/core/options/Render.php:767
+#: dev4press/core/options/Render.php:405
 #: dev4press/core/ui/admin/PanelTools.php:58
 #: dev4press/core/ui/Enqueue.php:314
 msgid "Remove"
 msgstr ""
 
-#: dev4press/core/options/Render.php:653
+#: dev4press/core/options/Render.php:663
 msgid "Add New Value"
 msgstr ""
 
-#: dev4press/core/options/Render.php:685
-#: dev4press/core/options/Render.php:722
+#: dev4press/core/options/Render.php:695
+#: dev4press/core/options/Render.php:732
 msgid "No items to show"
 msgstr ""
 
-#: dev4press/core/options/Render.php:780
+#: dev4press/core/options/Render.php:790
 #: dev4press/core/ui/Enqueue.php:318
 msgid "Image not selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:807
+#: dev4press/core/options/Render.php:817
 msgid "Enabled"
 msgstr ""
 
-#: dev4press/core/options/Render.php:1075
-msgid "Add New"
-msgstr ""
-
-#: dev4press/core/options/Render.php:758
+#: dev4press/core/options/Render.php:768
 #: dev4press/core/ui/Enqueue.php:315
 msgid "Preview"
 msgstr ""
 
-#: dev4press/core/options/Render.php:343
+#: dev4press/core/options/Render.php:328
+msgid "Clear Value"
+msgstr ""
+
+#: dev4press/core/options/Render.php:347
 msgid "Toggle Additional Information"
 msgstr ""
 
-#: dev4press/core/options/Render.php:363
+#: dev4press/core/options/Render.php:367
 #: dev4press/core/ui/Elements.php:316
 msgid "Check All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:364
+#: dev4press/core/options/Render.php:368
 #: dev4press/core/ui/Elements.php:317
 msgid "Uncheck All"
 msgstr ""
 
-#: dev4press/core/options/Render.php:743
+#: dev4press/core/options/Render.php:753
 msgid "Add Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:747
+#: dev4press/core/options/Render.php:757
 msgid "No images selected."
 msgstr ""
 
-#: dev4press/core/options/Render.php:775
+#: dev4press/core/options/Render.php:785
 #: dev4press/core/ui/Enqueue.php:316
 msgid "Select Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:776
+#: dev4press/core/options/Render.php:786
 msgid "Show Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:777
+#: dev4press/core/options/Render.php:787
 msgid "Clear Image"
 msgstr ""
 
-#: dev4press/core/options/Render.php:1122
+#: dev4press/core/options/Render.php:1089
+msgid "Add New"
+msgstr ""
+
+#: dev4press/core/options/Render.php:1136
 msgid "Unit"
 msgstr ""
 
@@ -713,64 +725,72 @@ msgstr ""
 msgid "License Code has not been checked yet."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:137
+#: dev4press/core/options/Settings.php:138
 msgid "Last Checked"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:139
+#: dev4press/core/options/Settings.php:140
 msgid "Valid"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:141
+#: dev4press/core/options/Settings.php:142
 msgid "Domain"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:147
-msgid "Dev4Press License"
+#: dev4press/core/options/Settings.php:143
+msgid "Type"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:150
-msgid "License Code"
+#: dev4press/core/options/Settings.php:153
+msgid "Manage License Code"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:154
-msgid "Code"
-msgstr ""
-
-#: dev4press/core/options/Settings.php:154
-msgid "You can find your license code in the Dev4Press Dashboard."
-msgstr ""
-
-#: dev4press/core/options/Settings.php:155
-msgid "Make sure to enter the license code exactly as it is listed on the Dev4Press Dashboard."
-msgstr ""
-
-#: dev4press/core/options/Settings.php:156
-msgid "License code is case sensitive, and all letters must be uppercase."
-msgstr ""
-
-#: dev4press/core/options/Settings.php:157
-msgid "License code is valid even after the subscription period has expired, as long it was not refunded or terminated."
-msgstr ""
-
-#: dev4press/core/options/Settings.php:165
+#: dev4press/core/options/Settings.php:160
 msgid "Dev4Press Dashboard Licenses"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:172
+#: dev4press/core/options/Settings.php:170
+msgid "Dev4Press License"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:173
+msgid "License Code"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:177
+msgid "Code"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:177
+msgid "You can find your license code in the Dev4Press Dashboard."
+msgstr ""
+
+#: dev4press/core/options/Settings.php:178
+msgid "Make sure to enter the license code exactly as it is listed on the Dev4Press Dashboard."
+msgstr ""
+
+#: dev4press/core/options/Settings.php:179
+msgid "License code is case sensitive, and all letters must be uppercase."
+msgstr ""
+
+#: dev4press/core/options/Settings.php:180
+msgid "License code is valid even after the subscription period has expired, as long it was not refunded or terminated."
+msgstr ""
+
+#: dev4press/core/options/Settings.php:185
 msgid "License Information"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:188
+#: dev4press/core/options/Settings.php:201
 msgid "Verification Error"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:139
+#: dev4press/core/options/Settings.php:140
 #: dev4press/core/plugins/Wizard.php:154
 msgid "Yes"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:139
+#: dev4press/core/options/Settings.php:140
 #: dev4press/core/plugins/Wizard.php:155
 msgid "No"
 msgstr ""
@@ -787,17 +807,17 @@ msgstr ""
 msgid "Invalid Request"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:172
+#: dev4press/core/plugins/Core.php:175
 msgctxt "System requirement version"
 msgid "%1$s version %2$s (%3$s is not active on your website)"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:175
+#: dev4press/core/plugins/Core.php:178
 msgctxt "System requirement version"
 msgid "%1$s version %2$s (your system runs version %3$s)"
 msgstr ""
 
-#: dev4press/core/plugins/Core.php:181
+#: dev4press/core/plugins/Core.php:184
 msgctxt "System requirement notice"
 msgid "System requirements check for %1$s failed. This plugin requires %2$s. The plugin will now be disabled."
 msgstr ""
@@ -826,15 +846,15 @@ msgstr ""
 msgid "Table is missing."
 msgstr ""
 
-#: dev4press/core/plugins/License.php:144
+#: dev4press/core/plugins/License.php:148
 msgid "Code is not in a valid format."
 msgstr ""
 
-#: dev4press/core/plugins/License.php:188
+#: dev4press/core/plugins/License.php:194
 msgid "Validation server response is not valid."
 msgstr ""
 
-#: dev4press/core/plugins/License.php:250
+#: dev4press/core/plugins/License.php:255
 msgid "Nothing received"
 msgstr ""
 
@@ -1049,40 +1069,40 @@ msgstr ""
 msgid "Please Wait..."
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:100
+#: dev4press/core/ui/Grid.php:101
 msgid "No items found."
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:203
+#: dev4press/core/ui/Grid.php:204
 msgctxt "paging"
 msgid "%1$s of %2$s"
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:214
+#: dev4press/core/ui/Grid.php:215
 msgid "Next page"
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:225
+#: dev4press/core/ui/Grid.php:226
 msgid "Last page"
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:138
+#: dev4press/core/ui/Grid.php:139
 msgid "Search keywords..."
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:141
+#: dev4press/core/ui/Grid.php:142
 msgid "Filter"
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:177
+#: dev4press/core/ui/Grid.php:178
 msgid "First page"
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:188
+#: dev4press/core/ui/Grid.php:189
 msgid "Previous page"
 msgstr ""
 
-#: dev4press/core/ui/Grid.php:195
+#: dev4press/core/ui/Grid.php:196
 msgid "Current Page"
 msgstr ""
 
@@ -1094,35 +1114,35 @@ msgstr ""
 msgid "Specified video ID not found."
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:125
+#: dev4press/wordpress/admin/Table.php:123
 msgid "All Logged"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:126
+#: dev4press/wordpress/admin/Table.php:124
 msgid "Last hour"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:127
+#: dev4press/wordpress/admin/Table.php:125
 msgid "Last 12 hours"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:128
+#: dev4press/wordpress/admin/Table.php:126
 msgid "Last day"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:129
+#: dev4press/wordpress/admin/Table.php:127
 msgid "Last 7 days"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:130
+#: dev4press/wordpress/admin/Table.php:128
 msgid "Last 30 days"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:131
+#: dev4press/wordpress/admin/Table.php:129
 msgid "Last 365 days"
 msgstr ""
 
-#: dev4press/wordpress/admin/Table.php:144
+#: dev4press/wordpress/admin/Table.php:142
 msgid "%1$s %2$s"
 msgstr ""
 
@@ -1743,7 +1763,7 @@ msgstr ""
 
 #: forms/sidebar-features.php:99
 #: forms/sidebar-settings-full.php:38
-#: forms/sidebar-settings.php:48
+#: forms/sidebar-settings.php:49
 msgid "Save Settings"
 msgstr ""
 
@@ -1769,7 +1789,7 @@ msgstr ""
 
 #: forms/sidebar-features.php:103
 #: forms/sidebar-settings-full.php:41
-#: forms/sidebar-settings.php:51
+#: forms/sidebar-settings.php:52
 #: forms/sidebar-tools.php:49
 msgid "Return to top"
 msgstr ""

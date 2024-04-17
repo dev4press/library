@@ -130,6 +130,8 @@ abstract class Core {
 
 	public function deactivate() {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+		// This call deactivates this plugin only, it can't deactivate other plugins
 		deactivate_plugins( $this->plugin_name() );
 	}
 

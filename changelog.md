@@ -8,11 +8,13 @@
 * New: `Settings` object can specify some groups as network wide
 * New: settings now can render the `Clear` button for text-based field
 * New: checkbox based options can be used for the option switch control
+* New: check for capability for postback for main plugin panels
 * New: added several more UI icons
 * Edit: improvements to the default styling for dashboard and tabs
 * Edit: improvements to base `Panel` object content file names
 * Edit: improvements to the `License` base class related to API updates
 * Edit: improvements to the autoload function implementation
+* Edit: various improvements to the data processing and saving
 * Edit: outdated actions prefixes replacing `d4p` with `dev4press`
 * Edit: various improvements to sanitization and escaping
 * Edit: built-in cacert.pem 20240311
