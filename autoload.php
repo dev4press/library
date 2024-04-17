@@ -25,29 +25,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-if ( ! function_exists( 'dev4press_core_library_autoloader_48' ) ) {
-	function dev4press_core_library_autoloader_48( $class ) {
+if ( ! function_exists( 'dev4press_core_library_autoloader_v48' ) ) {
+	function dev4press_core_library_autoloader_v48( $class ) {
 		$path = DEV4PRESS_V48_PATH;
 		$base = 'Dev4Press\\v48\\';
 
-		if ( substr( $class, 0, strlen( $base ) ) == $base ) {
-			$clean = substr( $class, strlen( $base ) );
-
-			$parts = explode( '\\', $clean );
-
-			$class_name = $parts[ count( $parts ) - 1 ];
-			unset( $parts[ count( $parts ) - 1 ] );
-
-			$class_namespace = join( '/', $parts );
-			$class_namespace = strtolower( $class_namespace );
-
-			$path .= 'dev4press/' . $class_namespace . '/' . $class_name . '.php';
-
-			if ( file_exists( $path ) ) {
-				include $path;
-			}
-		}
+		dev4press_v48_autoload_for_plugin( $class, $base, $path, 'dev4press/' );
 	}
 
-	spl_autoload_register( 'dev4press_core_library_autoloader_48' );
+	spl_autoload_register( 'dev4press_core_library_autoloader_v48' );
 }

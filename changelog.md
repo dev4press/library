@@ -12,6 +12,7 @@
 * Edit: improvements to the default styling for dashboard and tabs
 * Edit: improvements to base `Panel` object content file names
 * Edit: improvements to the `License` base class related to API updates
+* Edit: improvements to the autoload function implementation
 * Edit: built-in cacert.pem 20240311
 * Fix: some `Core` properties were private not protected
 * Fix: license check job initialized with filter not action

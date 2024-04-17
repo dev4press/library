@@ -42,8 +42,10 @@ if ( ! defined( 'DEV4PRESS_V48_PATH' ) ) {
 	define( 'DEV4PRESS_V48_PATH', $_library_path );
 }
 
-require DEV4PRESS_V48_PATH . 'autoload.php';
+require DEV4PRESS_V48_PATH . 'functions/Core.php';
 require DEV4PRESS_V48_PATH . 'functions/Bridge.php';
+
+require DEV4PRESS_V48_PATH . 'autoload.php';
 
 WordPress::instance();
 Library::instance();
