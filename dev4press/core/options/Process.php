@@ -36,18 +36,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Process {
-	public $bool_values = array( true, false );
+	public string $base;
+	public string $prefix;
+	public array $settings;
+	public array $bool_values = array(
+		true,
+		false,
+	);
 
-	public $base = 'd4pvalue';
-	public $prefix = 'd4p';
-	public $settings;
-
-	public function __construct( $base, $prefix = 'd4p' ) {
+	public function __construct( $base = 'dev4press-value', $prefix = 'dev4press' ) {
 		$this->base   = $base;
 		$this->prefix = $prefix;
 	}
 
-	public static function instance( $base = 'd4pvalue', $prefix = 'd4p' ) : Process {
+	public static function instance( $base = 'dev4press-value', $prefix = 'dev4press' ) : Process {
 		static $process = array();
 
 		if ( ! isset( $process[ $base ] ) ) {
@@ -68,7 +70,7 @@ class Process {
 
 		foreach ( $this->settings as $setting ) {
 			if ( $setting->type != '_' ) {
-				$post = $request[ $this->base ][ $setting->type ] ?? array();
+				$post = $request[ $setting->type ] ?? array();
 
 				$list[ $setting->type ][ $setting->name ] = $this->process_single( $setting, $post );
 			}
@@ -85,15 +87,14 @@ class Process {
 
 	public function process_single( $setting, $post ) {
 		$input = $setting->input;
-		$key   = $setting->name;
-		$value = null;
+		$base  = $post[ $setting->name ];
 
 		switch ( $input ) {
 			default:
-				$value = apply_filters( $this->prefix . '_process_option_call_back_for_' . $input, $value, $post[ $key ], $setting );
+				$value = apply_filters( $this->prefix . '_process_option_call_back_for_' . $input, null, $base, $setting );
 
 				if ( is_null( $value ) ) {
-					$value = Sanitize::basic( (string) $post[ $key ] );
+					$value = Sanitize::text( (string) $base );
 				}
 				break;
 			case 'skip':
@@ -105,7 +106,7 @@ class Process {
 			case 'expandable_raw':
 				$value = array();
 
-				foreach ( $post[ $key ] as $id => $data ) {
+				foreach ( $base as $id => $data ) {
 					if ( $id > 0 ) {
 						$_val = trim( stripslashes( $data['value'] ) );
 
@@ -118,9 +119,9 @@ class Process {
 			case 'expandable_text':
 				$value = array();
 
-				foreach ( $post[ $key ] as $id => $data ) {
+				foreach ( $base as $id => $data ) {
 					if ( $id > 0 ) {
-						$_val = Sanitize::basic( $data['value'] );
+						$_val = Sanitize::text( $data['value'] );
 
 						if ( ! empty( $_val ) ) {
 							$value[] = $_val;
@@ -131,10 +132,10 @@ class Process {
 			case 'expandable_pairs':
 				$value = array();
 
-				foreach ( $post[ $key ] as $id => $data ) {
+				foreach ( $base as $id => $data ) {
 					if ( $id > 0 ) {
-						$_key = Sanitize::basic( $data['key'] );
-						$_val = Sanitize::basic( $data['value'] );
+						$_key = Sanitize::text( $data['key'] );
+						$_val = Sanitize::text( $data['value'] );
 
 						if ( ! empty( $_key ) && ! empty( $_val ) ) {
 							$value[ $_key ] = $_val;
@@ -143,69 +144,66 @@ class Process {
 				}
 				break;
 			case 'range_integer':
-				$value = intval( $post[ $key ]['a'] ) . '=>' . intval( $post[ $key ]['b'] );
+				$value = intval( $base['a'] ) . '=>' . intval( $base['b'] );
 				break;
 			case 'range_absint':
-				$value = absint( $post[ $key ]['a'] ) . '=>' . absint( $post[ $key ]['b'] );
+				$value = absint( $base['a'] ) . '=>' . absint( $base['b'] );
 				break;
 			case 'x_by_y':
-				$value = Sanitize::basic( $post[ $key ]['x'] ) . 'x' . Sanitize::basic( $post[ $key ]['y'] );
+				$value = Sanitize::text( $base['x'] ) . 'x' . Sanitize::text( $base['y'] );
 				break;
 			case 'html':
 			case 'code':
 			case 'text_html':
 			case 'text_rich':
-				$value = Sanitize::html( $post[ $key ] );
+				$value = Sanitize::html( $base );
 				break;
 			case 'bool':
-				$value = isset( $post[ $key ] ) ? $this->bool_values[0] : $this->bool_values[1];
+				$value = isset( $base ) ? $this->bool_values[0] : $this->bool_values[1];
 				break;
 			case 'number':
-				$value = floatval( $post[ $key ] );
+				$value = floatval( $base );
 				break;
 			case 'integer':
-				$value = intval( $post[ $key ] );
+				$value = intval( $base );
 				break;
 			case 'image':
 			case 'absint':
 			case 'dropdown_pages':
 			case 'dropdown_categories':
-				$value = absint( $post[ $key ] );
+				$value = absint( $base );
 				break;
 			case 'images':
-				if ( ! isset( $post[ $key ] ) ) {
+				if ( ! isset( $base ) ) {
 					$value = array();
 				} else {
-					$value = (array) $post[ $key ];
-					$value = array_map( 'intval', $value );
-					$value = array_filter( $value );
+					$value = Sanitize::ids_list( (array) $base );
 				}
 				break;
 			case 'listing':
-				$value = Str::split_to_list( stripslashes( $post[ $key ] ) );
+				$value = Str::split_to_list( stripslashes( $base ) );
 				break;
 			case 'media':
 				$value = 0;
-				if ( $post[ $key ] != '' ) {
-					$value = absint( substr( $post[ $key ], 3 ) );
+				if ( $base != '' ) {
+					$value = Sanitize::absint( substr( $base, 3 ) );
 				}
 				break;
 			case 'checkboxes':
 			case 'checkboxes_hierarchy':
 			case 'select_multi':
 			case 'group_multi':
-				if ( ! isset( $post[ $key ] ) ) {
+				if ( ! isset( $base ) ) {
 					$value = array();
 				} else {
-					$value = (array) $post[ $key ];
-					$value = array_map( '\Dev4Press\v48\Core\Quick\Sanitize::basic', $value );
+					$value = array_map( '\Dev4Press\v48\Core\Quick\Sanitize::text', (array) $base );
 				}
 				break;
 			case 'css_size':
 				$sizes = Arr::get_css_size_units();
 
-				$value = Sanitize::basic( $post[ $key ]['val'] );
-				$unit  = strtolower( Sanitize::basic( $post[ $key ]['unit'] ) );
+				$value = Sanitize::text( $base['val'] );
+				$unit  = strtolower( Sanitize::text( $base['unit'] ) );
 
 				if ( ! isset( $sizes[ $unit ] ) ) {
 					$unit = 'px';
@@ -214,31 +212,31 @@ class Process {
 				$value = $value . $unit;
 				break;
 			case 'slug':
-				$value = Sanitize::slug( $post[ $key ] );
+				$value = Sanitize::slug( $base );
 				break;
 			case 'slug_ext':
-				$value = sanitize_key( $post[ $key ] );
+				$value = Sanitize::key( $base );
 				break;
 			case 'slug_slash':
-				$value = $this->slug_slashes( $post[ $key ] );
+				$value = Sanitize::slag_with_slashes( $base );
 				break;
 			case 'email':
-				$value = sanitize_email( $post[ $key ] );
+				$value = Sanitize::email( $base );
 				break;
 			case 'date':
-				$value = Sanitize::date( $post[ $key ] );
+				$value = Sanitize::date( $base );
 				break;
 			case 'time':
-				$value = Sanitize::time( $post[ $key ] );
+				$value = Sanitize::time( $base );
 				break;
 			case 'datetime':
-				$value = Sanitize::date( $post[ $key ], 'Y-m-d H:i:s' );
+				$value = Sanitize::date( $base, 'Y-m-d H:i:s' );
 				break;
 			case 'month':
-				$value = Sanitize::month( $post[ $key ] );
+				$value = Sanitize::month( $base );
 				break;
 			case 'license':
-				$value = Sanitize::basic( $post[ $key ] );
+				$value = Sanitize::text( $base );
 				$check = preg_match( '/^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$/', $value );
 
 				if ( $check !== 1 ) {
@@ -256,7 +254,7 @@ class Process {
 			case 'select':
 			case 'radios':
 			case 'radios_hierarchy':
-				$value = Sanitize::basic( $post[ $key ] );
+				$value = Sanitize::text( $base );
 				break;
 		}
 

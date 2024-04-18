@@ -104,11 +104,11 @@ class Misc {
 				return '<img src="' . $_base . '" class="flag flag-' . strtolower( $country_code ) . '" title="' . $location . '" alt="' . $location . '" />';
 			}
 		} else if ( $status == 'private' ) {
-			return '<img src="' . $_base . '" class="flag" title="' . __( 'Localhost or Private IP', 'd4plib' ) . '" alt="' . __( 'Localhost or Private IP', 'd4plib' ) . '" />';
+			return '<img src="' . $_base . '" class="flag" title="' . esc_html__( 'Localhost or Private IP', 'd4plib' ) . '" alt="' . esc_html__( 'Localhost or Private IP', 'd4plib' ) . '" />';
 		}
 
 		if ( $not_found == 'image' ) {
-			return '<img src="' . $_base . '" class="flag" title="' . __( 'IP can\'t be located.', 'd4plib' ) . '" alt="' . __( 'IP can\'t be located.', 'd4plib' ) . '" />';
+			return '<img src="' . $_base . '" class="flag" title="' . esc_html__( 'IP can\'t be located.', 'd4plib' ) . '" alt="' . esc_html__( 'IP can\'t be located.', 'd4plib' ) . '" />';
 		} else {
 			return '';
 		}

@@ -162,7 +162,7 @@ abstract class Widget extends WP_Widget {
 	}
 
 	protected function get_valid_list_value( $name, $value, $list ) {
-		$value = Sanitize::basic( $value );
+		$value = Sanitize::text( $value );
 
 		if ( in_array( $value, $list ) ) {
 			return $value;
@@ -174,9 +174,9 @@ abstract class Widget extends WP_Widget {
 	protected function shared_update( array $new_instance, array $old_instance ) : array {
 		$instance = $old_instance;
 
-		$instance['title'] = Sanitize::basic( ( $new_instance['title'] ?? '' ) );
+		$instance['title'] = Sanitize::text( ( $new_instance['title'] ?? '' ) );
 
-		$instance['_class'] = Sanitize::basic( ( $new_instance['_class'] ?? '' ) );
+		$instance['_class'] = Sanitize::text( ( $new_instance['_class'] ?? '' ) );
 		$instance['_tab']   = Sanitize::key( ( $new_instance['_tab'] ?? '' ) );
 		$instance['_hook']  = Sanitize::key( ( $new_instance['_hook'] ?? '' ) );
 		$instance['_devid'] = Sanitize::key( ( $new_instance['_devid'] ?? '' ) );
@@ -184,7 +184,7 @@ abstract class Widget extends WP_Widget {
 		$instance['_users'] = $this->get_valid_list_value( '_users', $new_instance['_users'] ?? 'all', array_keys( $this->get_list_user_visibility() ) );
 
 		if ( isset( $new_instance['_capabilities'] ) ) {
-			$_capabilities = Sanitize::basic( $new_instance['_capabilities'] );
+			$_capabilities = Sanitize::text( $new_instance['_capabilities'] );
 			$_capabilities = explode( ',', $_capabilities );
 			$_capabilities = array_map( 'trim', $_capabilities );
 			$_capabilities = array_unique( $_capabilities );

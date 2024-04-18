@@ -80,7 +80,18 @@ class Sanitize {
 		return trim( sanitize_title_with_dashes( $text ), "-_ \t\n\r\0\x0B" );
 	}
 
-	public static function basic( $text, bool $strip_shortcodes = true ) : string {
+	public static function slag_with_slashes( $text ) : string {
+		if ( is_null( $text ) ) {
+			return '';
+		}
+
+		$text = stripslashes( (string) $text );
+		$text = strtolower( $text );
+
+		return preg_replace( '/[^a-z0-9.\/_\-]/', '', $text );
+	}
+
+	public static function text( $text, bool $strip_shortcodes = false ) : string {
 		if ( is_null( $text ) ) {
 			return '';
 		}
@@ -94,12 +105,12 @@ class Sanitize {
 		return trim( wp_kses( $text, array() ) );
 	}
 
-	public static function extended( $text, $tags = null, $protocols = array(), bool $strip_shortcodes = false ) : string {
+	public static function html( $text, $tags = null, $protocols = array(), bool $strip_shortcodes = false ) : string {
 		if ( is_null( $text ) ) {
 			return '';
 		}
 
-		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
+		$tags = is_null( $tags ) ? 'post' : $tags;
 		$text = stripslashes( (string) $text );
 
 		if ( $strip_shortcodes ) {
@@ -109,14 +120,28 @@ class Sanitize {
 		return wp_kses( trim( $text ), $tags, $protocols );
 	}
 
-	public static function html( $text, $tags = null, $protocols = array() ) : string {
-		if ( is_null( $text ) ) {
-			return '';
+	public static function deep( array $input, string $method, bool $strip_shortcodes = false ) : array {
+		switch ( $method ) {
+			default:
+			case 'html':
+				$input = map_deep( $input, '\Dev4Press\v48\Core\Quick\Sanitize::html' );
+				break;
+			case 'text':
+				$input = map_deep( $input, '\Dev4Press\v48\Core\Quick\Sanitize::text' );
+				break;
+			case 'key':
+				$input = map_deep( $input, '\Dev4Press\v48\Core\Quick\Sanitize::key' );
+				break;
+			case 'slug':
+				$input = map_deep( $input, '\Dev4Press\v48\Core\Quick\Sanitize::slug' );
+				break;
 		}
 
-		$tags = is_null( $tags ) ? wp_kses_allowed_html( 'post' ) : $tags;
+		if ( $strip_shortcodes ) {
+			$input = map_deep( $input, 'strip_shortcodes' );
+		}
 
-		return wp_kses( trim( stripslashes( (string) $text ) ), $tags, $protocols );
+		return $input;
 	}
 
 	public static function html_classes( $classes ) : string {
@@ -124,26 +149,6 @@ class Sanitize {
 		$list = array_map( 'sanitize_html_class', $list );
 
 		return trim( join( ' ', $list ) );
-	}
-
-	public static function basic_array( array $input, bool $strip_shortcodes = true ) : array {
-		$output = array();
-
-		foreach ( $input as $key => $value ) {
-			$output[ $key ] = self::basic( $value, $strip_shortcodes );
-		}
-
-		return $output;
-	}
-
-	public static function key_array( array $input ) : array {
-		$output = array();
-
-		foreach ( $input as $key => $value ) {
-			$output[ $key ] = sanitize_key( $value );
-		}
-
-		return $output;
 	}
 
 	public static function ids_list( $ids, $map = 'absint' ) : array {
@@ -207,9 +212,8 @@ class Sanitize {
 	}
 
 	public static function _get_switch_array( $key, $sub_key = false, $value = 'on' ) : array {
-		$source = $_POST[ $key ] ?? array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
+		$source = self::deep( $_POST[ $key ] ?? array(), 'key' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 		$source = $sub_key !== false ? ( $source[ $sub_key ] ?? array() ) : $source;
-		$source = wp_unslash( $source );
 		$result = array();
 
 		foreach ( $source as $name => $val ) {
@@ -222,11 +226,11 @@ class Sanitize {
 	}
 
 	public static function _get_slug( string $name, string $default = '' ) : string {
-		return ! empty( $_GET[ $name ] ) ? self::slug( wp_unslash( $_GET[ $name ] ) ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
+		return ! empty( $_GET[ $name ] ) ? self::slug( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 	}
 
-	public static function _get_basic( string $name, string $default = '' ) : string {
-		return ! empty( $_GET[ $name ] ) ? self::basic( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
+	public static function _get_text( string $name, string $default = '' ) : string {
+		return ! empty( $_GET[ $name ] ) ? self::text( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 	}
 
 	public static function _get_absint( string $name, int $default = 0 ) : int {
@@ -237,5 +241,50 @@ class Sanitize {
 		$ids = isset( $_GET[ $name ] ) ? (array) $_GET[ $name ] : $default; // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
 
 		return self::ids_list( $ids );
+	}
+
+	/**
+	 * @deprecated 4.8 to be removed in 5.0
+	 */
+	public static function basic_array( array $input, bool $strip_shortcodes = true ) : array {
+		_deprecated_function( __FUNCTION__, '4.8', 'Sanitize::deep()' );
+
+		return self::deep( $input, 'text', $strip_shortcodes );
+	}
+
+	/**
+	 * @deprecated 4.8 to be removed in 5.0
+	 */
+	public static function key_array( array $input ) : array {
+		_deprecated_function( __FUNCTION__, '4.8', 'Sanitize::deep()' );
+
+		return self::deep( $input, 'key' );
+	}
+
+	/**
+	 * @deprecated 4.8 to be removed in 5.0
+	 */
+	public static function basic( $text, bool $strip_shortcodes = true ) : string {
+		_deprecated_function( __FUNCTION__, '4.8', 'Sanitize::text()' );
+
+		return self::text( $text, $strip_shortcodes );
+	}
+
+	/**
+	 * @deprecated 4.8 to be removed in 5.0
+	 */
+	public static function extended( $text, $tags = null, $protocols = array(), bool $strip_shortcodes = false ) : string {
+		_deprecated_function( __FUNCTION__, '4.8', 'Sanitize::html()' );
+
+		return self::html( $text, $tags, $protocols, $strip_shortcodes );
+	}
+
+	/**
+	 * @deprecated 4.8 to be removed in 5.0
+	 */
+	public static function _get_basic( string $name, string $default = '' ) : string {
+		_deprecated_function( __FUNCTION__, '4.8', 'Sanitize::_get_text()' );
+
+		return self::_get_text( $name, $default );
 	}
 }

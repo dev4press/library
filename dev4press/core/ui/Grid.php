@@ -111,8 +111,8 @@ abstract class Grid {
 
 	protected function parse_args() {
 		$this->filters['order']   = isset( $_GET['order'] ) && strtoupper( $_GET['order'] ) === 'ASC' ? 'ASC' : 'DESC'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
-		$this->filters['orderby'] = ! empty( $_GET['orderby'] ) ? Sanitize::basic( $_GET['orderby'] ) : $this->default_orderby; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
-		$this->filters['search']  = ! empty( $_GET['search'] ) ? Sanitize::basic( $_GET['search'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
+		$this->filters['orderby'] = ! empty( $_GET['orderby'] ) ? Sanitize::text( $_GET['orderby'] ) : $this->default_orderby; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
+		$this->filters['search']  = ! empty( $_GET['search'] ) ? Sanitize::text( $_GET['search'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 		$this->filters['pg']      = ! empty( $_GET['pg'] ) ? absint( $_GET['pg'] ) : 1; // phpcs:ignore WordPress.Security.NonceVerification
 
 		foreach ( $this->vars as $key => $method ) {

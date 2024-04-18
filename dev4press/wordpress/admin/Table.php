@@ -290,7 +290,7 @@ abstract class Table extends WP_List_Table {
 
 		switch ( $name ) {
 			case 'orderby':
-				$value = Sanitize::basic( $value );
+				$value = Sanitize::text( $value );
 
 				if ( ! in_array( $value, $this->_sanitize_orderby_fields ) ) {
 					$value = $default;
@@ -307,7 +307,7 @@ abstract class Table extends WP_List_Table {
 				$value = absint( $value );
 				break;
 			case 's':
-				$value = Sanitize::basic( $value );
+				$value = Sanitize::text( $value );
 				break;
 			case 'period':
 			case 'view':

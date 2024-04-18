@@ -106,7 +106,7 @@ class Store {
 			'free'        => true,
 			'pro'         => false,
 		),
-		'forummod-for-bbpress'                     => array(
+		'forummod-for-bbpress'             => array(
 			'code'        => 'forummod-for-bbpress',
 			'name'        => 'forumMOD for bbPress',
 			'description' => 'Expand bbPress powered forums with dedicated moderation tools and features to make the forum moderation easier, supporting global and forum moderators.',

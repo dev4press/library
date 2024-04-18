@@ -87,7 +87,7 @@ abstract class AJAX {
 			$this->raise_malformed_error( null );
 		}
 
-		$request = (array) $_REQUEST[ $form_key ];  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
+		$request = Sanitize::deep( (array) $_REQUEST[ $form_key ], 'html' );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 
 		if ( empty( $request ) || ! isset( $request['action'], $request['nonce'] ) ) {
 			$this->raise_malformed_error( $request );
@@ -115,7 +115,7 @@ abstract class AJAX {
 
 					if ( $non ) {
 						if ( isset( $request[ $key ] ) ) {
-							$request[ $key ] = Sanitize::basic( $request[ $key ] );
+							$request[ $key ] = Sanitize::text( $request[ $key ] );
 							$nonce           = $this->prefix . '-' . $action . '-' . $request[ $key ];
 
 							if ( ! wp_verify_nonce( $request['nonce'], $nonce ) ) {

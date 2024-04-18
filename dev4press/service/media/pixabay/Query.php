@@ -78,7 +78,7 @@ class Query {
 			return $this->_format_image( $response->hits[0] );
 		}
 
-		return new WP_Error( 'not_found', __( 'Specified image ID not found.', 'd4plib' ) );
+		return new WP_Error( 'not_found', esc_html__( 'Specified image ID not found.', 'd4plib' ) );
 	}
 
 	public function images( $args = array() ) {

@@ -46,12 +46,11 @@ abstract class AJAX extends Background {
 	}
 
 	protected function prepare() {
-		$ajax_nonce = isset( $_REQUEST['_ajax_nonce'] ) ? sanitize_key( $_REQUEST['_ajax_nonce'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-		$nonce      = wp_verify_nonce( $ajax_nonce, $this->nonce );
-
-		if ( $nonce === false ) {
-			wp_die( - 1 );
+		if ( isset( $_REQUEST['_ajax_nonce'] ) && wp_verify_nonce( $_REQUEST['_ajax_nonce'], $this->nonce ) ) {
+			return;
 		}
+
+		wp_die( - 1 );
 	}
 
 	protected function spawn() {

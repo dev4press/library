@@ -35,8 +35,8 @@ abstract class Panel {
 	public function __construct( $admin ) {
 		$render = $this->render_class;
 
-		$this->admin    = $admin;
-		$this->render   = $render::instance();
+		$this->admin  = $admin;
+		$this->render = $render::instance();
 
 		$page_id = $this->admin->screen_id;
 

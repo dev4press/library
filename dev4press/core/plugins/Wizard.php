@@ -110,7 +110,7 @@ abstract class Wizard {
 	}
 
 	public function panel_postback() {
-		$post = $_POST[ $this->a()->plugin_prefix ]['wizard'] ?? array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$post = isset( $_POST[ $this->a()->plugin_prefix ]['wizard'] ) ? Sanitize::deep( $_POST[ $this->a()->plugin_prefix ]['wizard'], 'text' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		$goto = $this->a()->panel_url();
 
 		if ( ! empty( $post ) ) {

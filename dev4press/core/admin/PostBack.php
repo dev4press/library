@@ -67,7 +67,7 @@ abstract class PostBack {
 
 	protected function check_capability( $name ) : bool {
 		if ( ! current_user_can( $this->a()->get_panel_cap( $name ) ) ) {
-			wp_die( __( 'You are not authorized to submit data for processing for this panel.', 'd4plib' ), __( 'Unauthorized request.', 'd4plib' ) );
+			wp_die( esc_html__( 'You are not authorized to submit data for processing for this panel.', 'd4plib' ), __( 'Unauthorized request.', 'd4plib' ) );
 		}
 
 		return true;
@@ -85,7 +85,7 @@ abstract class PostBack {
 			$this->check_referer( 'settings' );
 			$this->check_capability( 'settings' );
 
-			$request = $_REQUEST ?? array(); // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
+			$request = isset( $_REQUEST[ $this->a()->n() ] ) ? Sanitize::deep( $_REQUEST[ $this->a()->n() ], 'html' ) : array(); // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
 
 			$this->settings( $request );
 		}
@@ -94,7 +94,7 @@ abstract class PostBack {
 			$this->check_referer( 'features' );
 			$this->check_capability( 'features' );
 
-			$request = $_REQUEST ?? array(); // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
+			$request = isset( $_REQUEST[ $this->a()->n() ] ) ? Sanitize::deep( $_REQUEST[ $this->a()->n() ], 'html' ) : array(); // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
 
 			$this->features( $request );
 		}

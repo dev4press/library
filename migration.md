@@ -21,3 +21,4 @@
 * d4p_settings_group_top => dev4press_settings_group_top
 * d4p_settings_group_bottom => dev4press_settings_group_bottom
 * d4p_install_db_delta => dev4press_install_db_delta
+* d4p_process_option_call_back_for_$name => dev4press_process_option_call_back_for_$name
