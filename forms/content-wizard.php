@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v48\Core\Quick\KSES;
 use Dev4Press\v48\Core\Quick\Sanitize;
 use function Dev4Press\v48\Functions\panel;
 
@@ -15,10 +16,10 @@ $label = panel()->a()->wizard()->is_last_panel() ? __( 'Finish', 'd4plib' ) : __
     <div class="d4p-setup-wizard">
         <div class="d4p-wizard-logo" style="color: <?php echo esc_attr( panel()->a()->settings()->i()->color() ); ?>;">
             <div class="d4p-wizard-badge">
-				<?php echo panel()->r()->icon( 'plugin-' . panel()->a()->plugin ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo KSES::buttons( panel()->r()->icon( 'plugin-' . panel()->a()->plugin ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
             <div class="d4p-wizard-title">
-				<?php echo panel()->a()->title(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo esc_html( panel()->a()->title() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
         </div>
 

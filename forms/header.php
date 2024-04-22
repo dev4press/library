@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v48\Core\Quick\KSES;
 use Dev4Press\v48\Core\Quick\Sanitize;
 use function Dev4Press\v48\Functions\panel;
 
@@ -26,7 +27,7 @@ if ( panel()->a()->plugin()->f() ) {
         <div class="d4p-navigator">
             <ul>
                 <li class="d4p-nav-button">
-                    <a href="#"><?php echo panel()->r()->icon( $_panels[ $_panel ]['icon'] );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo $_panels[ $_panel ]['title'];  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
+                    <a href="#"><?php echo KSES::buttons( panel()->r()->icon( $_panels[ $_panel ]['icon'] ) );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo $_panels[ $_panel ]['title'];  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
 					<?php if ( $_panel != 'install' && $_panel != 'update' ) { ?>
                         <ul>
 							<?php
@@ -57,7 +58,7 @@ if ( panel()->a()->plugin()->f() ) {
                 </li>
 				<?php if ( ! empty( $_subpanels ) ) { ?>
                     <li class="d4p-nav-button">
-                        <a href="#"><?php echo panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html( $_subpanels[ $_subpanel ]['title'] ); ?></a>
+                        <a href="#"><?php echo KSES::buttons( panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html( $_subpanels[ $_subpanel ]['title'] ); ?></a>
                         <ul>
 							<?php
 
@@ -93,11 +94,11 @@ if ( panel()->a()->plugin()->f() ) {
                         </ul>
                     </li>
 				<?php } ?>
-				<?php echo panel()->header_fill(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php panel()->include_header_fill(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </ul>
         </div>
         <div class="d4p-plugin">
-			<?php echo panel()->a()->title(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php echo esc_html( panel()->a()->title() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         </div>
     </div>
 	<?php panel()->include_messages(); ?>

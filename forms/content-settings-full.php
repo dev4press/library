@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 
 		if ( isset( $obj['break'] ) ) {
-			echo panel()->r()->settings_break( $obj['break'], $obj['break-icon'] ?? '', $obj['break-info'] ?? '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo KSES::standard( panel()->r()->settings_break( $obj['break'], $obj['break-icon'] ?? '', $obj['break-info'] ?? '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		echo KSES::standard( panel()->r()->settings_group_break( $obj['title'], $obj['icon'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

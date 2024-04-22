@@ -2,6 +2,7 @@
 
 namespace Dev4Press\v48\Core\UI\Admin;
 
+use Dev4Press\v48\Core\Quick\KSES;
 use Dev4Press\v48\WordPress\Admin\Table;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -211,6 +212,10 @@ abstract class Panel {
 
 	public function forms_path_plugin() : string {
 		return $this->a()->path . 'forms/';
+	}
+
+	public function include_header_fill() {
+		echo KSES::standard( $this->header_fill() );
 	}
 
 	public function include_messages() {
