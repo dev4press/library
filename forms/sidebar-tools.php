@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v48\Core\Quick\KSES;
 use function Dev4Press\v48\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,7 +22,7 @@ $_button_id = $_subpanels[ $_subpanel ]['button_id'] ?? panel()->a()->plugin_pre
     <div class="d4p-panel-scroller d4p-scroll-active">
         <div class="d4p-panel-title">
             <div class="_icon">
-				<?php echo panel()->r()->icon( $_panel->icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	            <?php echo KSES::buttons( panel()->r()->icon( $_panel->icon ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
             <h3><?php echo esc_html( $_panel->title ); ?></h3>
 			<?php
