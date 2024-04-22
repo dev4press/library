@@ -15,7 +15,7 @@ $_panel = panel()->object();
 <div class="d4p-sidebar">
     <div class="d4p-panel-title">
         <div class="_icon">
-			<?php echo KSES::buttons( panel()->r()->icon( $_panel->icon ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php echo KSES::strong( panel()->r()->icon( $_panel->icon ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         </div>
         <h3><?php echo esc_html( $_panel->title ); ?></h3>
 

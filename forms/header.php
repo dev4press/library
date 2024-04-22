@@ -27,7 +27,7 @@ if ( panel()->a()->plugin()->f() ) {
         <div class="d4p-navigator">
             <ul>
                 <li class="d4p-nav-button">
-                    <a href="#"><?php echo KSES::buttons( panel()->r()->icon( $_panels[ $_panel ]['icon'] ) );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo $_panels[ $_panel ]['title'];  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
+                    <a href="#"><?php echo KSES::strong( panel()->r()->icon( $_panels[ $_panel ]['icon'] ) );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo $_panels[ $_panel ]['title'];  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
 					<?php if ( $_panel != 'install' && $_panel != 'update' ) { ?>
                         <ul>
 							<?php
@@ -58,7 +58,7 @@ if ( panel()->a()->plugin()->f() ) {
                 </li>
 				<?php if ( ! empty( $_subpanels ) ) { ?>
                     <li class="d4p-nav-button">
-                        <a href="#"><?php echo KSES::buttons( panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html( $_subpanels[ $_subpanel ]['title'] ); ?></a>
+                        <a href="#"><?php echo KSES::strong( panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html( $_subpanels[ $_subpanel ]['title'] ); ?></a>
                         <ul>
 							<?php
 

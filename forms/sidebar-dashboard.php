@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="d4p-sidebar">
     <div class="d4p-dashboard-badge" style="background-color: <?php echo esc_attr( panel()->a()->settings()->i()->color() ); ?>;">
         <div class="_icon">
-			<?php echo KSES::buttons( panel()->r()->icon( 'plugin-' . panel()->a()->plugin, '9x' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php echo KSES::strong( panel()->r()->icon( 'plugin-' . panel()->a()->plugin, '9x' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         </div>
         <h3>
 			<?php echo esc_html( panel()->a()->title() ); ?>
@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			echo '<div class="d4p-links-group">';
 
 			foreach ( $group as $_link ) {
-				echo '<a class="' . esc_attr( $_link['class'] ) . '" href="' . esc_url( $_link['url'] ) . '">' . KSES::buttons( panel()->r()->icon( $_link['icon'] ) ) . '<span>' . $_link['label'] . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<a class="' . esc_attr( $_link['class'] ) . '" href="' . esc_url( $_link['url'] ) . '">' . KSES::strong( panel()->r()->icon( $_link['icon'] ) ) . '<span>' . $_link['label'] . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			echo '</div>';

@@ -32,7 +32,7 @@ $_plugin_title = sprintf(
         </div>
         <div class="d4p-about-badge">
             <div class="d4p-about-badge-inner" style="background-color: <?php echo esc_attr( panel()->a()->settings()->i()->color() ); ?>;">
-				<?php echo KSES::buttons( panel()->r()->icon( 'plugin-' . panel()->a()->plugin ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo KSES::strong( panel()->r()->icon( 'plugin-' . panel()->a()->plugin ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<?php
 
 				/* translators: About page plugin sign. %s: Plugin version. */

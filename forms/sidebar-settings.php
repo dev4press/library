@@ -16,12 +16,12 @@ $_subpanels = panel()->subpanels();
     <div class="d4p-panel-scroller d4p-scroll-active">
         <div class="d4p-panel-title">
             <div class="_icon">
-				<?php echo KSES::buttons( panel()->r()->icon( $_panel->icon ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo KSES::strong( panel()->r()->icon( $_panel->icon ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
             <h3><?php echo esc_html( $_panel->title ); ?></h3>
 			<?php
 
-			echo '<h4>' . KSES::buttons( panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) ) . esc_html( $_subpanels[ $_subpanel ]['title'] ) . '</h4>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<h4>' . KSES::strong( panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) ) . esc_html( $_subpanels[ $_subpanel ]['title'] ) . '</h4>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 			?>
             <div class="_info">
