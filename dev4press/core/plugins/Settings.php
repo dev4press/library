@@ -50,6 +50,7 @@ abstract class Settings {
 	public $changed = array();
 
 	public $skip_update = array();
+	public $skip_export = array();
 	public $network_groups = array();
 
 	public function __construct() {
@@ -311,7 +312,7 @@ abstract class Settings {
 		}
 	}
 
-	public function import_from_secure_json( $import ) : bool {
+	public function import_from_secure_json( $import, $list = array() ) : bool {
 		$name = $import['name'] ?? false;
 		$ctrl = $import['ctrl'] ?? false;
 		$raw  = $import['data'] ?? false;
@@ -325,7 +326,7 @@ abstract class Settings {
 
 			if ( $ctrl_import === $ctrl ) {
 				$data = json_decode( $data, true );
-				$this->import_from_object( $data );
+				$this->import_from_object( $data, $list );
 
 				return true;
 			}
@@ -591,6 +592,7 @@ abstract class Settings {
 	protected function _settings_to_array( $list = array() ) : array {
 		if ( empty( $list ) ) {
 			$list = $this->_groups();
+			$list = array_diff( $list, $this->skip_export );
 		}
 
 		$data = array(

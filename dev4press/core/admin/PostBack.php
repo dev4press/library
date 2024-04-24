@@ -152,7 +152,8 @@ abstract class PostBack {
 				$data = json_decode( $raw, true );
 
 				if ( is_array( $data ) && ! empty( $data ) ) {
-					$result = $this->a()->settings()->import_from_secure_json( $data );
+					$groups = Sanitize::_get_switch_array( 'import_group' );
+					$result = $this->a()->settings()->import_from_secure_json( $data, $groups );
 
 					if ( $result === true ) {
 						$message = 'imported';
