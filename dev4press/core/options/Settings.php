@@ -133,15 +133,26 @@ abstract class Settings {
 			$status = $info['status'] ?? '';
 			$domain = $info['domain'] ?? '/';
 			$type   = $info['type'] ?? '/';
+			$error  = $info['error'] ?? '';
 
 			$items = array(
 				'<span>' . __( 'Last Checked', 'd4plib' ) . '</span>: <strong>' . DateTime::instance()->mysql_date( true, $time ) . '</strong>',
 				'<hr/>',
 				'<span>' . __( 'Valid', 'd4plib' ) . '</span>: <strong>' . ( $valid === 'yes' ? esc_html__( 'Yes', 'd4plib' ) : esc_html__( 'No', 'd4plib' ) ) . '</strong><br/>',
-				'<span>' . __( 'Status', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $status, '-' ) ) . '</strong><br/>',
-				'<span>' . __( 'Domain', 'd4plib' ) . '</span>: <strong>' . esc_html( $domain ) . '</strong><br/>',
-				'<span>' . __( 'Type', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $type, '-' ) ) . '</strong>',
+				'<span>' . __( 'Status', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $status, '-' ) ) . '</strong>',
 			);
+
+			if ( ! empty( $error ) ) {
+				$items[] = '<br/><span>' . __( 'Error', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $error, '-' ) ) . '</strong>';
+			}
+
+			if ( ! empty( $domain ) ) {
+				$items[] = '<hr/><span>' . __( 'Domain', 'd4plib' ) . '</span>: <strong>' . esc_html( $domain ) . '</strong>';
+
+				if ( ! empty( $type ) ) {
+					$items[] = '<br/><span>' . __( 'Type', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $type, '-' ) ) . '</strong>';
+				}
+			}
 		}
 
 		$buttons = array(

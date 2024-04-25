@@ -2,7 +2,7 @@
 
 ## Changelog
 
-### Version 4.8 - 2024.04.22
+### Version 4.8 - 2024.04.26
 
 * New: `Core` object has priority options for the loading actions
 * New: `Settings` object can specify some groups as network wide
@@ -17,6 +17,7 @@
 * Edit: improvements to base `Panel` object content file names
 * Edit: improvements to the `License` base class related to API updates
 * Edit: improvements to the autoload function implementation
+* Edit: improvements to import of plugin settings
 * Edit: various improvements to the data processing and saving
 * Edit: outdated actions prefixes replacing `d4p` with `dev4press`
 * Edit: various improvements to sanitization and escaping

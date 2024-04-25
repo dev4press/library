@@ -170,6 +170,7 @@ abstract class License {
 					$check = sha1( wp_json_encode( $json['obj'] ) . '.' . $json['uts'] );
 
 					if ( $check == $json['sig'] ) {
+						$error  = $json['obj']['error'] ?? '';
 						$result = array(
 							'status'  => $json['obj']['status'] ?? 'invalid',
 							'valid'   => $json['obj']['valid'] ?? 'no',
@@ -182,6 +183,10 @@ abstract class License {
 
 						if ( $result['valid'] == 'no' ) {
 							$record = 'invalid';
+						}
+
+						if ( ! empty( $error ) ) {
+							$result['error'] = $error;
 						}
 					}
 				}
