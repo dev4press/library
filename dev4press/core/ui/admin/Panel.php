@@ -215,7 +215,7 @@ abstract class Panel {
 	}
 
 	public function include_header_fill() {
-		echo KSES::standard( $this->header_fill() );
+		echo KSES::standard( $this->header_fill() ); // phpcs:ignore WordPress.Security.EscapeOutput
 	}
 
 	public function include_messages() {

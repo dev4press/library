@@ -95,7 +95,7 @@ class WPR {
 
 		if ( $login_page ) {
 			if ( $action != '' ) {
-				$real_action = isset( $_GET['action'] ) ? Sanitize::text( $_GET['action'] ) : 'login';
+				$real_action = isset( $_GET['action'] ) ? Sanitize::text( $_GET['action'] ) : 'login'; // phpcs:ignore WordPress.Security.NonceVerification
 
 				return $real_action == $action;
 			}
