@@ -2,6 +2,11 @@
 
 ## Changelog
 
+### Version 4.9 - 2024.05.21
+
+* Edit: additional optional settings for some of the option types 
+* Fix: expandable pair option can skip a new values on saving
+
 ### Version 4.8 - 2024.04.26
 
 * New: `Core` object has priority options for the loading actions

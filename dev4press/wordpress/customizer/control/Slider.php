@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v48\WordPress\Customizer\Control\Slider
- * Version: v4.8
+ * Name:    Dev4Press\v49\WordPress\Customizer\Control\Slider
+ * Version: v4.9
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v48\WordPress\Customizer\Control;
+namespace Dev4Press\v49\WordPress\Customizer\Control;
 
-use Dev4Press\v48\WordPress\Customizer\Control;
+use Dev4Press\v49\WordPress\Customizer\Control;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

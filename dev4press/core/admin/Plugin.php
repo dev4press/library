@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v48\Core\Admin\Plugin
- * Version: v4.8
+ * Name:    Dev4Press\v49\Core\Admin\Plugin
+ * Version: v4.9
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,11 +25,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v48\Core\Admin;
+namespace Dev4Press\v49\Core\Admin;
 
-use Dev4Press\v48\Core\Quick\Sanitize;
-use Dev4Press\v48\Core\UI\Enqueue;
-use Dev4Press\v48\WordPress;
+use Dev4Press\v49\Core\Quick\Sanitize;
+use Dev4Press\v49\Core\UI\Enqueue;
+use Dev4Press\v49\WordPress;
 use WP_Screen;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -68,10 +68,10 @@ abstract class Plugin {
 	public $screen_id = '';
 	public $per_page_options = array();
 
-	/** @var \Dev4Press\v48\Core\UI\Admin\Panel */
+	/** @var \Dev4Press\v49\Core\UI\Admin\Panel */
 	public $object = null;
 
-	/** @var \Dev4Press\v48\Core\UI\Enqueue */
+	/** @var \Dev4Press\v49\Core\UI\Enqueue */
 	public $enqueue = null;
 
 	public $enqueue_packed = true;
@@ -605,18 +605,18 @@ abstract class Plugin {
 
 	abstract public function run_postback();
 
-	/** @return \Dev4Press\v48\Core\Plugins\Wizard */
+	/** @return \Dev4Press\v49\Core\Plugins\Wizard */
 	abstract public function wizard();
 
-	/** @return \Dev4Press\v48\Core\Plugins\Core */
+	/** @return \Dev4Press\v49\Core\Plugins\Core */
 	abstract public function plugin();
 
-	/** @return \Dev4Press\v48\Core\Plugins\Settings */
+	/** @return \Dev4Press\v49\Core\Plugins\Settings */
 	abstract public function settings();
 
-	/** @return \Dev4Press\v48\Core\Options\Settings */
+	/** @return \Dev4Press\v49\Core\Options\Settings */
 	abstract public function settings_definitions();
 
-	/** @return \Dev4Press\v48\Core\Plugins\Settings */
+	/** @return \Dev4Press\v49\Core\Plugins\Settings */
 	abstract public function settings_blog();
 }

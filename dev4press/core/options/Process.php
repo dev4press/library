@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v48\Core\Options\Process
- * Version: v4.8
+ * Name:    Dev4Press\v49\Core\Options\Process
+ * Version: v4.9
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,11 +25,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v48\Core\Options;
+namespace Dev4Press\v49\Core\Options;
 
-use Dev4Press\v48\Core\Quick\Arr;
-use Dev4Press\v48\Core\Quick\Sanitize;
-use Dev4Press\v48\Core\Quick\Str;
+use Dev4Press\v49\Core\Quick\Arr;
+use Dev4Press\v49\Core\Quick\Sanitize;
+use Dev4Press\v49\Core\Quick\Str;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -130,14 +130,15 @@ class Process {
 				}
 				break;
 			case 'expandable_pairs':
-				$value = array();
+				$value          = array();
+				$optional_value = $setting->args['optional_value'] ?? false;
 
 				foreach ( $base as $id => $data ) {
 					if ( $id > 0 ) {
 						$_key = Sanitize::text( $data['key'] );
 						$_val = Sanitize::text( $data['value'] );
 
-						if ( ! empty( $_key ) && ! empty( $_val ) ) {
+						if ( ! empty( $_key ) && ( $optional_value || ! empty( $_val ) ) ) {
 							$value[ $_key ] = $_val;
 						}
 					}
@@ -196,7 +197,7 @@ class Process {
 				if ( ! isset( $base ) ) {
 					$value = array();
 				} else {
-					$value = array_map( '\Dev4Press\v48\Core\Quick\Sanitize::text', (array) $base );
+					$value = array_map( '\Dev4Press\v49\Core\Quick\Sanitize::text', (array) $base );
 				}
 				break;
 			case 'css_size':

@@ -2,12 +2,12 @@
 (function($, window, document, undefined) {
     window.wp = window.wp || {};
     window.wp.dev4press = window.wp.dev4press || {};
-    window.wp.dev4press.v48 = window.wp.dev4press.v48 || {};
+    window.wp.dev4press.v49 = window.wp.dev4press.v49 || {};
 
-    window.wp.dev4press.v48.metabox = {
-        library: 'v48',
+    window.wp.dev4press.v49.metabox = {
+        library: 'v49',
         init: function() {
-            const wrapper = ".d4plib-" + wp.dev4press.v48.metabox.library + "-meta-box-wrapper";
+            const wrapper = ".d4plib-" + wp.dev4press.v49.metabox.library + "-meta-box-wrapper";
 
             $(document).on(
                 "click",
@@ -64,7 +64,7 @@
 
     $(document).ready(
         function() {
-            wp.dev4press.v48.metabox.init();
+            wp.dev4press.v49.metabox.init();
         }
     );
 })(jQuery, window, document);

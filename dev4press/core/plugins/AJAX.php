@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v48\Core\Plugins\AJAX
- * Version: v4.8
+ * Name:    Dev4Press\v49\Core\Plugins\AJAX
+ * Version: v4.9
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v48\Core\Plugins;
+namespace Dev4Press\v49\Core\Plugins;
 
-use Dev4Press\v48\Core\Quick\Sanitize;
+use Dev4Press\v49\Core\Quick\Sanitize;
 
 abstract class AJAX {
 	protected $prefix = 'd4plib';
