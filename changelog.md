@@ -4,8 +4,9 @@
 
 ### Version 4.9 - 2024.05.21
 
+* New: default styling for the `Micromodal` JS modal library
 * Edit: additional optional settings for some of the option types 
-* Fix: expandable pair option can skip a new values on saving
+* Fix: an expandable pair option can skip new values on saving
 
 ### Version 4.8 - 2024.04.26
 

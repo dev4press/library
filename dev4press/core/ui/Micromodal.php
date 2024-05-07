@@ -51,7 +51,9 @@ class Micromodal {
 	protected $settings = array();
 
 	public function __construct() {
-
+		if ( $this->defaults_args['modal-class'] == 'dev4press' ) {
+			$this->defaults_args['modal-class'] = 'dev4press-v49';
+		}
 	}
 
 	public static function instance() : Micromodal {
@@ -104,7 +106,7 @@ class Micromodal {
 	}
 
 	protected function _open() : string {
-		return '<div data-modal="{{modal-name}}" class="micromodal-dialog-wrapper {{modal-class}}-modal {{modal-class}}-modal-slide" id="{{modal-class}}-modal-{{modal-name}}" aria-hidden="true">
+		return '<div data-modal="{{modal-name}}" class="micromodal-{{modal-name}} micromodal-dialog-wrapper {{modal-class}}-modal {{modal-class}}-modal-slide" id="{{modal-class}}-modal-{{modal-name}}" aria-hidden="true">
     <div class="{{modal-class}}-modal__overlay" tabindex="-1"' . ( $this->settings['close-by-overlay'] ? ' data-micromodal-close' : '' ) . '>
         <div class="{{modal-class}}-modal__container" role="dialog" aria-modal="true" aria-labelledby="{{modal-class}}-modal-{{modal-name}}-title">';
 	}

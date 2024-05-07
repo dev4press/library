@@ -336,6 +336,14 @@ class Resources {
 				'ext'  => 'css',
 				'min'  => false,
 			),
+			'micromodal'             => array(
+				'lib'  => false,
+				'path' => 'css',
+				'file' => 'micromodal',
+				'ver'  => '0.4.10',
+				'ext'  => 'css',
+				'min'  => true,
+			),
 			'flags'                  => array(
 				'lib'  => true,
 				'path' => 'flags/css/',
