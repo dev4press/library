@@ -13,7 +13,7 @@
  * https://github.com/joshtronic/php-loremipsum
  *
  * == Copyright ==
- * Copyright 2008 - 2023 Milan Petrovic (email: support@dev4press.com)
+ * Copyright 2008 - 2024 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
