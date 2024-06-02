@@ -66,7 +66,7 @@ class Store {
 			'description' => 'Add popular social networks share buttons to posts and pages, lists of social network profiles with customizable styling and full block editor support.',
 			'punchline'   => 'Share to social networks with ease',
 			'color'       => '#0773B7',
-			'free'        => false,
+			'free'        => true,
 			'pro'         => true,
 		),
 		'coresecurity'                     => array(

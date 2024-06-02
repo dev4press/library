@@ -2,10 +2,14 @@
 
 ## Changelog
 
-### Version 4.9 - 2024.05.21
+### Version 4.9 - 2024.06.03
 
 * New: default styling for the `Micromodal` JS modal library
+* New: added several more icons to the icon font
 * Edit: additional optional settings for some of the option types 
+* Removed: use of `EOT` font from the icon font stylesheets
+* Removed: all the previously included `MO` translation files
+* Fix: several issues when saving plugin boolean settings
 * Fix: an expandable pair option can skip new values on saving
 
 ### Version 4.8 - 2024.04.26

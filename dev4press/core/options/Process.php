@@ -87,7 +87,7 @@ class Process {
 
 	public function process_single( $setting, $post ) {
 		$input = $setting->input;
-		$base  = $post[ $setting->name ];
+		$base  = $post[ $setting->name ] ?? '';
 
 		switch ( $input ) {
 			default:
@@ -106,12 +106,14 @@ class Process {
 			case 'expandable_raw':
 				$value = array();
 
-				foreach ( $base as $id => $data ) {
-					if ( $id > 0 ) {
-						$_val = trim( stripslashes( $data['value'] ) );
+				if ( is_array( $base ) ) {
+					foreach ( $base as $id => $data ) {
+						if ( $id > 0 ) {
+							$_val = trim( stripslashes( $data['value'] ) );
 
-						if ( $_val != '' ) {
-							$value[] = $_val;
+							if ( $_val != '' ) {
+								$value[] = $_val;
+							}
 						}
 					}
 				}
@@ -119,39 +121,42 @@ class Process {
 			case 'expandable_text':
 				$value = array();
 
-				foreach ( $base as $id => $data ) {
-					if ( $id > 0 ) {
-						$_val = Sanitize::text( $data['value'] );
+				if ( is_array( $base ) ) {
+					foreach ( $base as $id => $data ) {
+						if ( $id > 0 ) {
+							$_val = Sanitize::text( $data['value'] );
 
-						if ( ! empty( $_val ) ) {
-							$value[] = $_val;
+							if ( ! empty( $_val ) ) {
+								$value[] = $_val;
+							}
 						}
 					}
 				}
 				break;
 			case 'expandable_pairs':
-				$value          = array();
-				$optional_value = $setting->args['optional_value'] ?? false;
+				$value = array();
 
-				foreach ( $base as $id => $data ) {
-					if ( $id > 0 ) {
-						$_key = Sanitize::text( $data['key'] );
-						$_val = Sanitize::text( $data['value'] );
+				if ( is_array( $base ) ) {
+					foreach ( $base as $id => $data ) {
+						if ( $id > 0 ) {
+							$_key = Sanitize::text( $data['key'] );
+							$_val = Sanitize::text( $data['value'] );
 
-						if ( ! empty( $_key ) && ( $optional_value || ! empty( $_val ) ) ) {
-							$value[ $_key ] = $_val;
+							if ( ! empty( $_key ) && ! empty( $_val ) ) {
+								$value[ $_key ] = $_val;
+							}
 						}
 					}
 				}
 				break;
 			case 'range_integer':
-				$value = intval( $base['a'] ) . '=>' . intval( $base['b'] );
+				$value = intval( $base['a'] ?? 0 ) . '=>' . intval( $base['b'] ?? 0 );
 				break;
 			case 'range_absint':
-				$value = absint( $base['a'] ) . '=>' . absint( $base['b'] );
+				$value = absint( $base['a'] ?? 0 ) . '=>' . absint( $base['b'] ?? 0 );
 				break;
 			case 'x_by_y':
-				$value = Sanitize::text( $base['x'] ) . 'x' . Sanitize::text( $base['y'] );
+				$value = Sanitize::text( $base['x'] ?? '' ) . 'x' . Sanitize::text( $base['y'] ?? '' );
 				break;
 			case 'html':
 			case 'code':
@@ -160,7 +165,7 @@ class Process {
 				$value = Sanitize::html( $base );
 				break;
 			case 'bool':
-				$value = isset( $base ) ? $this->bool_values[0] : $this->bool_values[1];
+				$value = ! empty( $base ) ? $this->bool_values[0] : $this->bool_values[1];
 				break;
 			case 'number':
 				$value = floatval( $base );
@@ -175,7 +180,7 @@ class Process {
 				$value = absint( $base );
 				break;
 			case 'images':
-				if ( ! isset( $base ) ) {
+				if ( empty( $base ) ) {
 					$value = array();
 				} else {
 					$value = Sanitize::ids_list( (array) $base );
@@ -186,7 +191,7 @@ class Process {
 				break;
 			case 'media':
 				$value = 0;
-				if ( $base != '' ) {
+				if ( ! empty( $base ) ) {
 					$value = Sanitize::absint( substr( $base, 3 ) );
 				}
 				break;
@@ -194,17 +199,17 @@ class Process {
 			case 'checkboxes_hierarchy':
 			case 'select_multi':
 			case 'group_multi':
-				if ( ! isset( $base ) ) {
+				if ( empty( $base ) ) {
 					$value = array();
 				} else {
-					$value = array_map( '\Dev4Press\v49\Core\Quick\Sanitize::text', (array) $base );
+					$value = array_map( '\Dev4Press\v48\Core\Quick\Sanitize::text', (array) $base );
 				}
 				break;
 			case 'css_size':
 				$sizes = Arr::get_css_size_units();
 
-				$value = Sanitize::text( $base['val'] );
-				$unit  = strtolower( Sanitize::text( $base['unit'] ) );
+				$value = Sanitize::text( $base['val'] ?? '' );
+				$unit  = strtolower( Sanitize::text( $base['unit'] ?? '' ) );
 
 				if ( ! isset( $sizes[ $unit ] ) ) {
 					$unit = 'px';

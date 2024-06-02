@@ -1,9 +1,9 @@
 # Dev4Press Library
 ## About
 
-* Version: v4.8
-* Build:   4800
-* Release: 2024.04.26.
+* Version: v4.9
+* Build:   4900
+* Release: 2024.06.03.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
@@ -27,4 +27,4 @@
 ### Optional
 
 * bbPress 2.6.2 or newer
-* BuddyPress 8.0 or newer
+* BuddyPress 10.0 or newer
