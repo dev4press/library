@@ -202,7 +202,7 @@ class Process {
 				if ( empty( $base ) ) {
 					$value = array();
 				} else {
-					$value = array_map( '\Dev4Press\v48\Core\Quick\Sanitize::text', (array) $base );
+					$value = array_map( '\Dev4Press\v49\Core\Quick\Sanitize::text', (array) $base );
 				}
 				break;
 			case 'css_size':
