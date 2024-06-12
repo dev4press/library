@@ -462,6 +462,10 @@ abstract class Settings {
 			}
 		}
 
+		if ( $this->info->is_pro() ) {
+			$this->_license_schedule();
+		}
+
 		if ( $this->has_db ) {
 			$this->_db();
 		}
@@ -626,12 +630,16 @@ abstract class Settings {
 					'record' => 'empty',
 				), 'license', true, true );
 			} else {
-				if ( ! WPR::is_scheduled_single( $this->plugin . '-license-validation' ) ) {
-					$this->set( 'record', 'in-progress', 'license', true, true );
-
-					wp_schedule_single_event( time() + 5, $this->plugin . '-license-validation' );
-				}
+				$this->_license_schedule();
 			}
+		}
+	}
+
+	protected function _license_schedule() {
+		if ( ! empty( $this->plugin ) && ! WPR::is_scheduled_single( $this->plugin . '-license-validation' ) ) {
+			$this->set( 'record', 'in-progress', 'license', true, true );
+
+			wp_schedule_single_event( time() + 5, $this->plugin . '-license-validation' );
 		}
 	}
 
