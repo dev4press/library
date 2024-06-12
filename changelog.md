@@ -2,6 +2,11 @@
 
 ## Changelog
 
+### Version 4.9.1 - 2024.06.12
+
+* Edit: few tweaks and improvements to the license code validation
+* Fix: license code validation shows wrong information in some cases
+
 ### Version 4.9 - 2024.06.03
 
 * New: default styling for the `Micromodal` JS modal library

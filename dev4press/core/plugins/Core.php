@@ -64,7 +64,6 @@ abstract class Core {
 
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), $this->_plugins_loaded_priority );
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), $this->_after_setup_theme_priority );
-		add_action( 'after_setup_theme', array( $this, 'cron_controls' ) );
 	}
 
 	/** @return static */
@@ -105,6 +104,7 @@ abstract class Core {
 			}
 		} else {
 			$this->init_capabilities();
+			$this->cron_controls();
 			$this->run();
 		}
 	}

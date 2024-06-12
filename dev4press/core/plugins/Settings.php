@@ -621,6 +621,7 @@ abstract class Settings {
 			if ( empty( $this->changed['license']['code']['new'] ) ) {
 				$this->bulk( array(
 					'info'   => array(),
+					'last'   => array(),
 					'check'  => time(),
 					'record' => 'empty',
 				), 'license', true, true );

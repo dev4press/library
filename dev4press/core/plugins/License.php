@@ -52,18 +52,6 @@ abstract class License {
 		return $instance[ static::class ];
 	}
 
-	private function validation_url( $code, $plugin ) : string {
-		$url = 'https://api.dev4press.com/license/1.0/%s/%s/%s/';
-
-		return sprintf( $url, $code, $this->site_url, $plugin );
-	}
-
-	private function api_url( $api, $version, $code ) : string {
-		$url = 'https://api.dev4press.com/%s/%s/%s/%s/';
-
-		return sprintf( $url, $api, $version, $code, $this->site_url );
-	}
-
 	public function dashboard() {
 		$this->plugin()->dashboard_license_validation();
 	}
@@ -91,7 +79,7 @@ abstract class License {
 	}
 
 	public function get_license_code() {
-		$code = $this->plugin()->s()->raw_get( 'code', 'license' );
+		$code = $this->get_raw_license_code();
 
 		$check = preg_match( '/^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$/', $code );
 
@@ -131,17 +119,23 @@ abstract class License {
 	}
 
 	public function validate() {
-		$code   = $this->get_license_code();
-		$record = 'valid';
-		$result = array();
-		$last   = array();
+		$code_raw = $this->get_raw_license_code();
+		$code     = $this->get_license_code();
+		$record   = 'valid';
+		$result   = array();
+		$last     = array();
 
-		if ( empty( $code ) ) {
+		if ( empty( $code_raw ) ) {
+			$record = 'empty';
+			$result = array(
+				'status' => 'empty',
+				'valid'  => 'no',
+			);
+		} else if ( empty( $code ) ) {
 			$record = 'invalid';
 			$result = array(
 				'status' => 'invalid',
 				'valid'  => 'no',
-				'domain' => 'no',
 			);
 			$last   = array(
 				'error'   => 'code-invalid',
@@ -221,6 +215,22 @@ abstract class License {
 			'last'   => $last,
 			'record' => $record,
 		), 'license', true, true );
+	}
+
+	private function validation_url( $code, $plugin ) : string {
+		$url = 'https://api.dev4press.com/license/1.0/%s/%s/%s/';
+
+		return sprintf( $url, $code, $this->site_url, $plugin );
+	}
+
+	private function api_url( $api, $version, $code ) : string {
+		$url = 'https://api.dev4press.com/%s/%s/%s/%s/';
+
+		return sprintf( $url, $api, $version, $code, $this->site_url );
+	}
+
+	protected function get_raw_license_code() {
+		return $this->plugin()->s()->raw_get( 'code', 'license' );
 	}
 
 	protected function process_response( $response, $format = 'json' ) : array {
