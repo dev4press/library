@@ -354,6 +354,26 @@ class Detection {
 				'source' => 'coreActivity',
 				'label'  => _x( 'Weekly Digest', 'Email Detection Type', 'd4plib' ),
 			),
+			'coresecurity-digest-daily'                              => array(
+				'filter' => 'coresecurity-digest-email-subject-daily',
+				'source' => 'coreSecurity',
+				'label'  => _x( 'Daily Digest', 'Email Detection Type', 'd4plib' ),
+			),
+			'coresecurity-digest-weekly'                             => array(
+				'filter' => 'coresecurity-digest-email-subject-weekly',
+				'source' => 'coreSecurity',
+				'label'  => _x( 'Weekly Digest', 'Email Detection Type', 'd4plib' ),
+			),
+			'coresecurity-digest-monthly'                             => array(
+				'filter' => 'coresecurity-digest-email-subject-monthly',
+				'source' => 'coreSecurity',
+				'label'  => _x( 'Monthly Digest', 'Email Detection Type', 'd4plib' ),
+			),
+			'coresecurity-instant-notification'                             => array(
+				'filter' => 'coresecurity-instant-email-subject',
+				'source' => 'coreSecurity',
+				'label'  => _x( 'Instant Notification', 'Email Detection Type', 'd4plib' ),
+			),
 			'gdpol-digest-notify-moderators'                         => array(
 				'action' => 'gdpol_daily_digest_notify_moderators_pre_notify',
 				'source' => 'GD Topic Polls',

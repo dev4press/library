@@ -55,13 +55,17 @@ abstract class Load {
 		return $instance[ static::class ];
 	}
 
-	protected function allow_load( string $feature, bool $early = false, string $scope = '' ) : bool {
+	protected function allow_load( string $feature, bool $early = false, string $scope = '', bool $main = true ) : bool {
 		if ( ! $this->is_hidden( $feature ) ) {
 			if ( $this->is_always_on( $feature ) || $this->is_enabled( $feature ) ) {
 				if ( $early === $this->is_early( $feature ) ) {
 					$actual = $this->get_scope( $feature );
 
 					if ( empty( $scope ) || $actual == 'global' || $actual == $scope ) {
+						if ( $this->is_main_site_only( $feature ) ) {
+							return $main;
+						}
+
 						return true;
 					}
 				}
@@ -87,7 +91,7 @@ abstract class Load {
 		$scope = Scope::instance()->is_frontend() ? 'front' : 'admin';
 
 		foreach ( $this->list() as $feature ) {
-			if ( $this->allow_load( $feature, $early, $scope ) ) {
+			if ( $this->allow_load( $feature, $early, $scope, is_main_site() ) ) {
 				$this->_active[] = $feature;
 
 				if ( class_exists( $this->_list[ $feature ]['main'] ) ) {
@@ -148,6 +152,7 @@ abstract class Load {
 				'is_always_on',
 				'is_early',
 				'is_hidden',
+				'is_main_site_only',
 				'has_settings',
 				'has_menu',
 				'has_meta_tab',
@@ -208,7 +213,7 @@ abstract class Load {
 	}
 
 	public function is_active( string $feature ) : bool {
-		return $this->is_always_on( $feature ) || in_array( $feature, $this->_active );
+		return in_array( $feature, $this->_active );
 	}
 
 	public function is_beta( string $feature ) : bool {
@@ -217,6 +222,10 @@ abstract class Load {
 
 	public function is_hidden( string $feature ) : bool {
 		return (bool) $this->attribute( 'is_hidden', $feature );
+	}
+
+	public function is_main_site_only( string $feature ) : bool {
+		return (bool) $this->attribute( 'is_main_site_only', $feature );
 	}
 
 	public function is_always_on( string $feature ) : bool {
