@@ -87,6 +87,22 @@ abstract class Load {
 		return array_keys( $this->_list );
 	}
 
+	public function get_all_active() : array {
+		return $this->_active;
+	}
+
+	public function get_all_allowed_to_load() : array {
+		$load = array();
+
+		foreach ( $this->_load as $feature => $status ) {
+			if ( $status ) {
+				$load[] = $feature;
+			}
+		}
+
+		return $load;
+	}
+
 	public function load_main( bool $early = false ) {
 		$scope = Scope::instance()->is_frontend() ? 'front' : 'admin';
 
