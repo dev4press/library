@@ -20,6 +20,9 @@ if ( ! empty( $_GET['message'] ) ) { // phpcs:ignore WordPress.Security.NonceVer
 		case 'feature-reset':
 			$_message = __( 'Feature Settings reset completed.', 'd4plib' );
 			break;
+		case 'feature-network-copy':
+			$_message = __( 'Feature Settings have been copied from the Network.', 'd4plib' );
+			break;
 		case 'imported':
 			$_message = __( 'Import operation completed.', 'd4plib' );
 			break;

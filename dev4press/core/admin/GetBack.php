@@ -87,8 +87,12 @@ abstract class GetBack {
 		}
 
 		if ( $this->a()->panel == 'features' ) {
-			if ( ! empty( $this->a()->subpanel ) && $this->is_single_action( 'reset' ) ) {
-				$this->feature_reset();
+			if ( ! empty( $this->a()->subpanel ) ) {
+				if ( $this->is_single_action( 'reset' ) ) {
+					$this->feature_reset();
+				} else if ( $this->is_single_action( 'network-copy' ) ) {
+					$this->feature_network_copy();
+				}
 			}
 		}
 
@@ -99,10 +103,35 @@ abstract class GetBack {
 		}
 	}
 
-	protected function feature_reset() {
-		check_ajax_referer( $this->a()->plugin_prefix . '-feature-reset-' . $this->a()->subpanel );
+	protected function feature_network_copy() {
+		$feature = $this->a()->subpanel;
 
-		$this->a()->settings()->reset_feature( $this->a()->subpanel );
+		check_ajax_referer( $this->a()->plugin_prefix . '-feature-network-copy-' . $feature );
+
+		if ( $this->a()->plugin()->f()->is_network_enabled() && ! is_network_admin() ) {
+			$settings = $this->a()->plugin()->f()->s()->feature_get( $feature );
+
+			foreach ( $settings as $key => $value ) {
+				$this->a()->plugin()->f()->b()->set( $feature . '__' . $key, $value, 'features' );
+			}
+
+			$this->a()->plugin()->f()->b()->save( 'features' );
+		}
+
+		wp_redirect( $this->a()->current_url() . '&message=feature-network-copy' );
+		exit;
+	}
+
+	protected function feature_reset() {
+		$feature = $this->a()->subpanel;
+
+		check_ajax_referer( $this->a()->plugin_prefix . '-feature-reset-' . $feature );
+
+		if ( $this->a()->plugin()->f()->is_network_enabled() && ! is_network_admin() ) {
+			$this->a()->plugin()->f()->b()->reset_feature( $feature );
+		} else {
+			$this->a()->plugin()->f()->s()->reset_feature( $feature );
+		}
 
 		wp_redirect( $this->a()->current_url() . '&message=feature-reset' );
 		exit;

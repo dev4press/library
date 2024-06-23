@@ -7,6 +7,7 @@
 * Edit: expanded list of detected email types to include coreSecurity Pro
 * Edit: various styling improvements to all the grid pages
 * Edit: improvements to the `Features` loading for the main site only features
+* Fix: few minor issues with the handling of the feature settings
 
 ### Version 4.9.1 - 2024.06.12
 
