@@ -40,7 +40,11 @@ class KSES {
 		return wp_kses(
 			$render,
 			array(
-				'code'   => array(),
+				'code'   => array(
+					'id'    => true,
+					'class' => true,
+					'style' => true,
+				),
 				'br'     => array(),
 				'hr'     => array(),
 				'h1'     => array(
@@ -86,11 +90,21 @@ class KSES {
 					'style' => true,
 				),
 				'a'      => array(
-					'href'   => array(),
-					'title'  => array(),
-					'class'  => array(),
-					'target' => array(),
+					'href'   => true,
+					'title'  => true,
+					'class'  => true,
+					'style'  => true,
+					'target' => true,
 					'data-*' => true,
+					'aria-*' => true,
+				),
+				'img'    => array(
+					'src'    => true,
+					'title'  => true,
+					'class'  => true,
+					'style'  => true,
+					'alt'    => true,
+					'aria-*' => true,
 				),
 				'em'     => array(
 					'class' => true,
@@ -225,6 +239,7 @@ class KSES {
 					'autocomplete' => true,
 					'autofocus'    => true,
 					'data-*'       => true,
+					'aria-*'       => true,
 				),
 			)
 		);

@@ -8,6 +8,7 @@
 * Edit: various styling improvements to all the grid pages
 * Edit: improvements to the `Features` loading for the main site only features
 * Fix: few minor issues with the handling of the feature settings
+* Fix: minor problems with the standard set of `KSES` tags and attributes
 
 ### Version 4.9.1 - 2024.06.12
 
