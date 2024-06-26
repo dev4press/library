@@ -39,6 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @method bool is_ajax()
  * @method bool is_cron()
  * @method bool is_rest()
+ * @method bool is_xmlrpc()
  * @method bool is_debug()
  * @method bool is_multisite()
  * @method bool is_script_debug()
@@ -69,6 +70,7 @@ class WordPress {
 			'admin'        => defined( 'WP_ADMIN' ) && WP_ADMIN,
 			'ajax'         => defined( 'DOING_AJAX' ) && DOING_AJAX,
 			'cron'         => defined( 'DOING_CRON' ) && DOING_CRON,
+			'xmlrpc'       => defined( 'XMLRPC_REQUEST' ) && XMLRPC_REQUEST,
 			'debug'        => defined( 'WP_DEBUG' ) && WP_DEBUG,
 			'script_debug' => defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG,
 			'async_upload' => defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && 'upload-attachment' === $_REQUEST['action'], // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
@@ -91,7 +93,7 @@ class WordPress {
 			$switch = substr( $name, 3 );
 
 			if ( isset( $this->_switches[ $switch ] ) ) {
-				return $this->_switches[ $switch ];
+				return $this->_switches[ $switch ] ?? false;
 			}
 		}
 
