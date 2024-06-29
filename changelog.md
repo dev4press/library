@@ -4,7 +4,9 @@
 
 ### Version 5.0 - 2024.06.26
 
+* New: extracted `Dialogs` JavaScript library from `Admin`
 * Edit: default location is now `vendor/dev4press-library`
+* Removed: outdated JavaScript `helpers` library
 
 ### Version 4.9.2 - 2024.06.26
 

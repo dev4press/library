@@ -76,12 +76,18 @@ class Resources {
 				'ext'  => 'js',
 				'min'  => true,
 			),
+			'dialogs' => array(
+				'path' => 'js/',
+				'file' => 'dialogs',
+				'ext'  => 'js',
+				'min'  => true,
+			),
 			'admin'         => array(
 				'path' => 'js/',
 				'file' => 'admin',
 				'ext'  => 'js',
 				'min'  => true,
-				'int'  => array( 'confirmsubmit' ),
+				'int'  => array( 'dialogs', 'confirmsubmit' ),
 			),
 		),
 		'css' => array(

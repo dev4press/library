@@ -219,6 +219,10 @@ final class Enqueue {
 					$this->localize_admin();
 				}
 
+				if ( $name == 'dialogs' ) {
+					$this->localize_dialogs();
+				}
+
 				if ( $name == 'meta' ) {
 					$this->localize_meta();
 				}
@@ -271,6 +275,38 @@ final class Enqueue {
 		} else if ( $type == 'css' ) {
 			wp_enqueue_style( $handle, $url, $req, $version );
 		}
+	}
+
+	private function localize_dialogs() {
+		wp_localize_script(
+			$this->prefix() . 'dialogs',
+			'd4plib_admin_dialogs',
+			array(
+				'icons'   => array(
+					'spinner' => '<i class="d4p-icon d4p-ui-spinner d4p-icon-fw d4p-icon-spin"></i>',
+					'ok'      => '<i class="d4p-icon d4p-ui-check d4p-icon-fw" aria-hidden="true"></i> ',
+					'cancel'  => '<i class="d4p-icon d4p-ui-cancel d4p-icon-fw" aria-hidden="true"></i> ',
+					'delete'  => '<i class="d4p-icon d4p-ui-trash d4p-icon-fw" aria-hidden="true"></i> ',
+					'disable' => '<i class="d4p-icon d4p-ui-times d4p-icon-fw" aria-hidden="true"></i> ',
+					'empty'   => '<i class="d4p-icon d4p-ui-eraser d4p-icon-fw" aria-hidden="true"></i> ',
+					'send'    => '<i class="d4p-icon d4p-ui-paper-plane d4p-icon-fw" aria-hidden="true"></i> ',
+					'start'   => '<i class="d4p-icon d4p-ui-play d4p-icon-fw" aria-hidden="true"></i> ',
+					'stop'    => '<i class="d4p-icon d4p-ui-box d4p-icon-fw" aria-hidden="true"></i> ',
+					'wait'    => '<i class="d4p-icon d4p-ui-hourglass d4p-icon-fw" aria-hidden="true"></i> ',
+				),
+				'buttons' => array(
+					'ok'      => __( 'OK', 'd4plib' ),
+					'cancel'  => __( 'Cancel', 'd4plib' ),
+					'delete'  => __( 'Delete', 'd4plib' ),
+					'disable' => __( 'Disable', 'd4plib' ),
+					'empty'   => __( 'Empty', 'd4plib' ),
+					'send'    => __( 'Send', 'd4plib' ),
+					'start'   => __( 'Start', 'd4plib' ),
+					'stop'    => __( 'Stop', 'd4plib' ),
+					'wait'    => __( 'Wait', 'd4plib' ),
+				),
+			)
+		);
 	}
 
 	private function localize_admin() {
@@ -332,26 +368,6 @@ final class Enqueue {
 				'flatpickr' => $this->locale_js_code( 'flatpickr' ),
 			),
 			'ui'  => array(
-				'icons'    => array(
-					'spinner' => '<i class="d4p-icon d4p-ui-spinner d4p-icon-fw d4p-icon-spin"></i>',
-					'ok'      => '<i class="d4p-icon d4p-ui-check d4p-icon-fw" aria-hidden="true"></i> ',
-					'send'    => '<i class="d4p-icon d4p-ui-paper-plane d4p-icon-fw" aria-hidden="true"></i> ',
-					'cancel'  => '<i class="d4p-icon d4p-ui-cancel d4p-icon-fw" aria-hidden="true"></i> ',
-					'delete'  => '<i class="d4p-icon d4p-ui-trash d4p-icon-fw" aria-hidden="true"></i> ',
-					'disable' => '<i class="d4p-icon d4p-ui-times d4p-icon-fw" aria-hidden="true"></i> ',
-					'empty'   => '<i class="d4p-icon d4p-ui-eraser d4p-icon-fw" aria-hidden="true"></i> ',
-				),
-				'buttons'  => array(
-					'ok'      => __( 'OK', 'd4plib' ),
-					'cancel'  => __( 'Cancel', 'd4plib' ),
-					'delete'  => __( 'Delete', 'd4plib' ),
-					'disable' => __( 'Disable', 'd4plib' ),
-					'empty'   => __( 'Empty', 'd4plib' ),
-					'send'    => __( 'Send', 'd4plib' ),
-					'start'   => __( 'Start', 'd4plib' ),
-					'stop'    => __( 'Stop', 'd4plib' ),
-					'wait'    => __( 'Wait', 'd4plib' ),
-				),
 				'messages' => array(
 					'areyousure' => __( 'Are you sure you want to do this?', 'd4plib' ),
 					'pleasewait' => __( 'Please Wait...', 'd4plib' ),
