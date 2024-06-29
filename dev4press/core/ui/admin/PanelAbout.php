@@ -1,8 +1,8 @@
 <?php
 
-namespace Dev4Press\v49\Core\UI\Admin;
+namespace Dev4Press\v50\Core\UI\Admin;
 
-use Dev4Press\v49\Core\Admin\Plugin;
+use Dev4Press\v50\Core\Admin\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

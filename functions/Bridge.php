@@ -1,7 +1,7 @@
 <?php
 /**
  * Name:    Base Library Functions: Bridge
- * Version: v4.9
+ * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v49\Functions;
+namespace Dev4Press\v50\Functions;
 
-use Dev4Press\v49\Core\UI\Admin\Panel;
+use Dev4Press\v50\Core\UI\Admin\Panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

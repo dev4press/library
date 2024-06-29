@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v49\Core\Options\Process
- * Version: v4.9
+ * Name:    Dev4Press\v50\Core\Options\Process
+ * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,11 +25,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v49\Core\Options;
+namespace Dev4Press\v50\Core\Options;
 
-use Dev4Press\v49\Core\Quick\Arr;
-use Dev4Press\v49\Core\Quick\Sanitize;
-use Dev4Press\v49\Core\Quick\Str;
+use Dev4Press\v50\Core\Quick\Arr;
+use Dev4Press\v50\Core\Quick\Sanitize;
+use Dev4Press\v50\Core\Quick\Str;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -202,7 +202,7 @@ class Process {
 				if ( empty( $base ) ) {
 					$value = array();
 				} else {
-					$value = array_map( '\Dev4Press\v49\Core\Quick\Sanitize::text', (array) $base );
+					$value = array_map( '\Dev4Press\v50\Core\Quick\Sanitize::text', (array) $base );
 				}
 				break;
 			case 'css_size':

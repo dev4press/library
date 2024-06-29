@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v49\Library
- * Version: v4.9
+ * Name:    Dev4Press\v50\Library
+ * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v49;
+namespace Dev4Press\v50;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -35,11 +35,11 @@ class Library {
 	/**
 	 * @var string
 	 */
-	private $_version = '4.9.2';
+	private $_version = '5.0';
 	/**
 	 * @var string
 	 */
-	private $_build = '4920';
+	private $_build = '5000';
 	/**
 	 * @var string
 	 */
@@ -64,7 +64,7 @@ class Library {
 	public function __construct() {
 		$this->_php_version  = (string) phpversion();
 		$this->_php_code     = absint( substr( str_replace( '.', '', $this->_php_version ), 0, 2 ) );
-		$this->_library_url  = str_replace( '/d4plib/dev4press/', '/d4plib/', plugins_url( '/', __FILE__ ) );
+		$this->_library_url  = str_replace( '/vendor/dev4press-library/dev4press/', '/vendor/dev4press-library/', plugins_url( '/', __FILE__ ) );
 		$this->_library_path = wp_normalize_path( trailingslashit( dirname( __FILE__, 2 ) ) );
 		$this->_cacert_path  = wp_normalize_path( $this->_library_path . 'resources/curl/cacert.pem' );
 	}

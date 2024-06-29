@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v49\Core\Scope
- * Version: v4.9
+ * Name:    Dev4Press\v50\Core\Scope
+ * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v49\Core;
+namespace Dev4Press\v50\Core;
 
-use Dev4Press\v49\WordPress;
+use Dev4Press\v50\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

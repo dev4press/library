@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v49\Core\Task\Job
- * Version: v4.9
+ * Name:    Dev4Press\v50\Core\Task\Job
+ * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v49\Core\Task;
+namespace Dev4Press\v50\Core\Task;
 
 abstract class Job {
 	protected $data;

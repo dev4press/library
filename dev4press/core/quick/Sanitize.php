@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v49\Core\Quick\Sanitize
- * Version: v4.9
+ * Name:    Dev4Press\v50\Core\Quick\Sanitize
+ * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v49\Core\Quick;
+namespace Dev4Press\v50\Core\Quick;
 
 use DateTime;
 
@@ -124,16 +124,16 @@ class Sanitize {
 		switch ( $method ) {
 			default:
 			case 'html':
-				$input = map_deep( $input, '\Dev4Press\v49\Core\Quick\Sanitize::html' );
+				$input = map_deep( $input, '\Dev4Press\v50\Core\Quick\Sanitize::html' );
 				break;
 			case 'text':
-				$input = map_deep( $input, '\Dev4Press\v49\Core\Quick\Sanitize::text' );
+				$input = map_deep( $input, '\Dev4Press\v50\Core\Quick\Sanitize::text' );
 				break;
 			case 'key':
-				$input = map_deep( $input, '\Dev4Press\v49\Core\Quick\Sanitize::key' );
+				$input = map_deep( $input, '\Dev4Press\v50\Core\Quick\Sanitize::key' );
 				break;
 			case 'slug':
-				$input = map_deep( $input, '\Dev4Press\v49\Core\Quick\Sanitize::slug' );
+				$input = map_deep( $input, '\Dev4Press\v50\Core\Quick\Sanitize::slug' );
 				break;
 		}
 

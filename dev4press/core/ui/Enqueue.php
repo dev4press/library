@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v49\Core\UI\Enqueue
- * Version: v4.9
+ * Name:    Dev4Press\v50\Core\UI\Enqueue
+ * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v49\Core\UI;
+namespace Dev4Press\v50\Core\UI;
 
-use Dev4Press\v49\Core\Shared\Resources;
-use Dev4Press\v49\Library;
+use Dev4Press\v50\Core\Shared\Resources;
+use Dev4Press\v50\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -36,13 +36,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Enqueue {
 	private $_version;
-	private $_enqueue_prefix = 'd4plib-v49-';
-	private $_library = 'd4plib';
+	private $_enqueue_prefix = 'd4plib-v50-';
+	private $_library = 'vendor/dev4press-library';
 	private $_debug;
 	private $_url;
 	private $_rtl = false;
 
-	/** @var \Dev4Press\v49\Core\Admin\Plugin|\Dev4Press\v49\Core\Admin\Menu\Plugin|\Dev4Press\v49\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v50\Core\Admin\Plugin|\Dev4Press\v50\Core\Admin\Menu\Plugin|\Dev4Press\v50\Core\Admin\Submenu\Plugin */
 	private $_admin;
 
 	private $_loaded = array(
@@ -55,7 +55,7 @@ final class Enqueue {
 	);
 
 	/**
-	 * @param $admin \Dev4Press\v49\Core\Admin\Plugin|\Dev4Press\v49\Core\Admin\Menu\Plugin|\Dev4Press\v49\Core\Admin\Submenu\Plugin
+	 * @param $admin \Dev4Press\v50\Core\Admin\Plugin|\Dev4Press\v50\Core\Admin\Menu\Plugin|\Dev4Press\v50\Core\Admin\Submenu\Plugin
 	 */
 	public function __construct( $admin ) {
 		$this->_libraries['js']  = Resources::instance()->ui_js() + Resources::instance()->shared_js();
@@ -69,9 +69,9 @@ final class Enqueue {
 	}
 
 	/**
-	 * @param $admin \Dev4Press\v49\Core\Admin\Plugin|\Dev4Press\v49\Core\Admin\Menu\Plugin|\Dev4Press\v49\Core\Admin\Submenu\Plugin
+	 * @param $admin \Dev4Press\v50\Core\Admin\Plugin|\Dev4Press\v50\Core\Admin\Menu\Plugin|\Dev4Press\v50\Core\Admin\Submenu\Plugin
 	 *
-	 * @return \Dev4Press\v49\Core\UI\Enqueue
+	 * @return \Dev4Press\v50\Core\UI\Enqueue
 	 */
 	public static function instance( $admin ) : Enqueue {
 		static $_d4p_lib_loader = array();

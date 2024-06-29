@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v49\Core\Helpers\Download
- * Version: v4.9
+ * Name:    Dev4Press\v50\Core\Helpers\Download
+ * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -27,7 +27,7 @@
 
 // phpcs:ignoreFile WordPress.WP.AlternativeFunctions
 
-namespace Dev4Press\v49\Core\Helpers;
+namespace Dev4Press\v50\Core\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

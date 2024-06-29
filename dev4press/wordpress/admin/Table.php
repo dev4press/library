@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v49\Core\Admin\Table
- * Version: v4.9
+ * Name:    Dev4Press\v50\Core\Admin\Table
+ * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,13 +25,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v49\WordPress\Admin;
+namespace Dev4Press\v50\WordPress\Admin;
 
-use Dev4Press\v49\Core\Helpers\DB;
-use Dev4Press\v49\Core\Plugins\DBLite;
-use Dev4Press\v49\Core\Quick\Sanitize;
+use Dev4Press\v50\Core\Helpers\DB;
+use Dev4Press\v50\Core\Plugins\DBLite;
+use Dev4Press\v50\Core\Quick\Sanitize;
 use WP_List_Table;
-use function Dev4Press\v49\Functions\panel;
+use function Dev4Press\v50\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -60,7 +60,7 @@ abstract class Table extends WP_List_Table {
 		$this->process_request_args();
 	}
 
-	public function change_primary_column( $column ) {
+	public function change_primary_column( $column ) : string {
 		return $this->_table_primary_column;
 	}
 
@@ -109,10 +109,6 @@ abstract class Table extends WP_List_Table {
 		echo '</ul>';
 	}
 
-	protected function get_period_dropdown_sql( $column, $table ) : string {
-		return "SELECT DISTINCT YEAR($column) AS year, MONTH($column) AS month FROM $table ORDER BY $column DESC";
-	}
-
 	public function get_period_dropdown( $column, $table ) : array {
 		global $wp_locale;
 
@@ -148,6 +144,10 @@ abstract class Table extends WP_List_Table {
 
 	protected function db() : ?DBLite {
 		return null;
+	}
+
+	protected function get_period_dropdown_sql( $column, $table ) : string {
+		return "SELECT DISTINCT YEAR($column) AS year, MONTH($column) AS month FROM $table ORDER BY $column DESC";
 	}
 
 	protected function get_views() : array {

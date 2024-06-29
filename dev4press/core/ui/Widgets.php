@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v49\Core\UI\Widgets
- * Version: v4.9
+ * Name:    Dev4Press\v50\Core\UI\Widgets
+ * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,14 +25,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v49\Core\UI;
+namespace Dev4Press\v50\Core\UI;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 final class Widgets {
-	/** @var \Dev4Press\v49\Core\Admin\Plugin|\Dev4Press\v49\Core\Admin\Menu\Plugin|\Dev4Press\v49\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v50\Core\Admin\Plugin|\Dev4Press\v50\Core\Admin\Menu\Plugin|\Dev4Press\v50\Core\Admin\Submenu\Plugin */
 	private $_admin;
 
 	public function __construct( $admin ) {
@@ -55,7 +55,7 @@ final class Widgets {
 	}
 
 	public function forms_path_library() : string {
-		return $this->a()->path . 'd4plib/forms/';
+		return $this->a()->path . 'vendor/dev4press-library/forms/';
 	}
 
 	public function forms_path_plugin() : string {

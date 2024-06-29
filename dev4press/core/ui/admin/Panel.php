@@ -1,9 +1,9 @@
 <?php
 
-namespace Dev4Press\v49\Core\UI\Admin;
+namespace Dev4Press\v50\Core\UI\Admin;
 
-use Dev4Press\v49\Core\Quick\KSES;
-use Dev4Press\v49\WordPress\Admin\Table;
+use Dev4Press\v50\Core\Quick\KSES;
+use Dev4Press\v50\WordPress\Admin\Table;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -12,10 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Panel {
 	private static $_current_instance = null;
 
-	/** @var \Dev4Press\v49\Core\Admin\Plugin|\Dev4Press\v49\Core\Admin\Menu\Plugin|\Dev4Press\v49\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v50\Core\Admin\Plugin|\Dev4Press\v50\Core\Admin\Menu\Plugin|\Dev4Press\v50\Core\Admin\Submenu\Plugin */
 	private $admin;
 
-	/** @var \Dev4Press\v49\Core\UI\Admin\Render */
+	/** @var \Dev4Press\v50\Core\UI\Admin\Render */
 	private $render;
 
 	protected $sidebar = true;
@@ -23,7 +23,7 @@ abstract class Panel {
 	protected $table = false;
 	protected $cards = false;
 	protected $subpanels = array();
-	protected $render_class = '\\Dev4Press\\v49\\Core\\UI\\Admin\\Render';
+	protected $render_class = '\\Dev4Press\\v50\\Core\\UI\\Admin\\Render';
 	protected $wrapper_class = '';
 	protected $default_subpanel = 'index';
 	protected $form_multiform = false;
@@ -207,7 +207,7 @@ abstract class Panel {
 	}
 
 	public function forms_path_library() : string {
-		return $this->a()->path . 'd4plib/forms/';
+		return $this->a()->path . 'vendor/dev4press-library/forms/';
 	}
 
 	public function forms_path_plugin() : string {

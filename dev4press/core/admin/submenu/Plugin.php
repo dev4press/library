@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v49\Core\Admin\Submenu\Plugin
- * Version: v4.9
+ * Name:    Dev4Press\v50\Core\Admin\Submenu\Plugin
+ * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v49\Core\Admin\Submenu;
+namespace Dev4Press\v50\Core\Admin\Submenu;
 
-use Dev4Press\v49\Core\Admin\Plugin as BasePlugin;
-use Dev4Press\v49\Core\Quick\Sanitize;
+use Dev4Press\v50\Core\Admin\Plugin as BasePlugin;
+use Dev4Press\v50\Core\Quick\Sanitize;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
