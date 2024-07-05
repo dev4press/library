@@ -63,7 +63,7 @@ class Library {
 	/**
 	 * @var string
 	 */
-	private $_base_path = 'vendor/dev4press-library';
+	private $_base_path = 'library';
 
 	public function __construct() {
 		$this->_php_version  = (string) phpversion();

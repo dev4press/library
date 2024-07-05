@@ -242,49 +242,4 @@ class Sanitize {
 
 		return self::ids_list( $ids );
 	}
-
-	/**
-	 * @deprecated 4.8 to be removed in 5.0
-	 */
-	public static function basic_array( array $input, bool $strip_shortcodes = true ) : array {
-		_deprecated_function( __FUNCTION__, '4.8', 'Sanitize::deep()' );
-
-		return self::deep( $input, 'text', $strip_shortcodes );
-	}
-
-	/**
-	 * @deprecated 4.8 to be removed in 5.0
-	 */
-	public static function key_array( array $input ) : array {
-		_deprecated_function( __FUNCTION__, '4.8', 'Sanitize::deep()' );
-
-		return self::deep( $input, 'key' );
-	}
-
-	/**
-	 * @deprecated 4.8 to be removed in 5.0
-	 */
-	public static function basic( $text, bool $strip_shortcodes = true ) : string {
-		_deprecated_function( __FUNCTION__, '4.8', 'Sanitize::text()' );
-
-		return self::text( $text, $strip_shortcodes );
-	}
-
-	/**
-	 * @deprecated 4.8 to be removed in 5.0
-	 */
-	public static function extended( $text, $tags = null, $protocols = array(), bool $strip_shortcodes = false ) : string {
-		_deprecated_function( __FUNCTION__, '4.8', 'Sanitize::html()' );
-
-		return self::html( $text, $tags, $protocols, $strip_shortcodes );
-	}
-
-	/**
-	 * @deprecated 4.8 to be removed in 5.0
-	 */
-	public static function _get_basic( string $name, string $default = '' ) : string {
-		_deprecated_function( __FUNCTION__, '4.8', 'Sanitize::_get_text()' );
-
-		return self::_get_text( $name, $default );
-	}
 }

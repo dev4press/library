@@ -3,7 +3,7 @@
 
 * Version: v5.0
 * Build:   5000
-* Release: 2024.06.26.
+* Release: 2024.07.08.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
@@ -18,7 +18,7 @@
 
 ### WordPress
 
-* WordPress: 5.8 or newer
+* WordPress: 5.9 or newer
 
 ### ClassicPress
 
