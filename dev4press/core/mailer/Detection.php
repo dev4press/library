@@ -374,6 +374,11 @@ class Detection {
 				'source' => 'coreSecurity',
 				'label'  => _x( 'Instant Notification', 'Email Detection Type', 'd4plib' ),
 			),
+			'coresecurity-user-notification'                      => array(
+				'filter' => 'coresecurity-user-notification-email-subject',
+				'source' => 'coreSecurity',
+				'label'  => _x( 'User Notification', 'Email Detection Type', 'd4plib' ),
+			),
 			'gdpol-digest-notify-moderators'                         => array(
 				'action' => 'gdpol_daily_digest_notify_moderators_pre_notify',
 				'source' => 'GD Topic Polls',

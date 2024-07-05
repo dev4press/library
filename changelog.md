@@ -6,7 +6,7 @@
 
 * New: extracted `Dialogs` JavaScript library from `Admin`
 * New: added several more icons to the icon font
-* Edit: default location is now `vendor/dev4press-library`
+* Edit: default location is now `library`
 * Edit: many updates to the `Background` class
 * Edit: many updates to the `CRON` task class
 * Removed: outdated JavaScript `helpers` library
