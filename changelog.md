@@ -2,7 +2,7 @@
 
 ## Changelog
 
-### Version 5.0 - 2024.07.08
+### Version 5.0 - 2024.07.10
 
 * New: updated library and plugins system requirements
 * New: extracted `Dialogs` JavaScript library from `Admin`

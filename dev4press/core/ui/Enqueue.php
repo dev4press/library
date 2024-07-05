@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class Enqueue {
 	private $_version;
 	private $_enqueue_prefix = 'd4plib-v50-';
-	private $_library = 'vendor/dev4press-library';
+	private $_library;
 	private $_debug;
 	private $_url;
 	private $_rtl = false;
@@ -64,6 +64,7 @@ final class Enqueue {
 		$this->_url     = $admin->url;
 		$this->_admin   = $admin;
 		$this->_version = Library::instance()->version();
+		$this->_library = Library::instance()->base_path();
 
 		add_action( 'admin_init', array( $this, 'start' ), 15 );
 	}
