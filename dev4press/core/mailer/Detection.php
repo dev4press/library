@@ -364,12 +364,12 @@ class Detection {
 				'source' => 'coreSecurity',
 				'label'  => _x( 'Weekly Digest', 'Email Detection Type', 'd4plib' ),
 			),
-			'coresecurity-digest-monthly'                             => array(
+			'coresecurity-digest-monthly'                            => array(
 				'filter' => 'coresecurity-digest-email-subject-monthly',
 				'source' => 'coreSecurity',
 				'label'  => _x( 'Monthly Digest', 'Email Detection Type', 'd4plib' ),
 			),
-			'coresecurity-instant-notification'                             => array(
+			'coresecurity-instant-notification'                      => array(
 				'filter' => 'coresecurity-instant-email-subject',
 				'source' => 'coreSecurity',
 				'label'  => _x( 'Instant Notification', 'Email Detection Type', 'd4plib' ),

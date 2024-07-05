@@ -2,8 +2,6 @@
 
 namespace Dev4Press\v50\Core\UI\Admin;
 
-use Dev4Press\v50\Core\Admin\Plugin;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

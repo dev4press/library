@@ -27,7 +27,6 @@
 
 namespace Dev4Press\v50\Core\Admin;
 
-use Dev4Press\v50\Core\Quick\Sanitize;
 use Dev4Press\v50\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {

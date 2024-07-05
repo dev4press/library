@@ -1,5 +1,6 @@
 <?php
 
+use Dev4Press\v50\Library;
 use function Dev4Press\v50\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				?></p>
             <a href="https://www.buymeacoffee.com/millan" target="_blank" rel="noopener">
-                <img style="max-width: 320px" alt="BuyMeACoffee" src="<?php echo esc_url( panel()->a()->url . 'vendor/dev4press-library/resources/gfx/buy_me_a_coffee.png' ); ?>"/>
+                <img style="max-width: 320px" alt="BuyMeACoffee" src="<?php echo esc_url( panel()->a()->url . Library::instance()->base_path() . '/resources/gfx/buy_me_a_coffee.png' ); ?>"/>
             </a>
         </div>
         <div class="core-col-sm-12 core-col-md-6">

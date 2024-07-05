@@ -27,9 +27,9 @@
 
 namespace Dev4Press\v50\Core\Quick;
 
+use Exception;
 use PharData;
 use WP_Error;
-use Exception;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

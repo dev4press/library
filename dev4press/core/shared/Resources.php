@@ -76,7 +76,7 @@ class Resources {
 				'ext'  => 'js',
 				'min'  => true,
 			),
-			'dialogs' => array(
+			'dialogs'       => array(
 				'path' => 'js/',
 				'file' => 'dialogs',
 				'ext'  => 'js',

@@ -2,10 +2,13 @@
 
 ## Changelog
 
-### Version 5.0 - 2024.06.26
+### Version 5.0 - 2024.07.08
 
 * New: extracted `Dialogs` JavaScript library from `Admin`
+* New: added several more icons to the icon font
 * Edit: default location is now `vendor/dev4press-library`
+* Edit: many updates to the `Background` class
+* Edit: many updates to the `CRON` task class
 * Removed: outdated JavaScript `helpers` library
 
 ### Version 4.9.2 - 2024.06.26

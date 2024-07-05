@@ -27,7 +27,6 @@
 
 namespace Dev4Press\v50\Core\Plugins;
 
-use Dev4Press\v50\Core\DateTime;
 use Dev4Press\v50\Core\Quick\Sanitize;
 use wpdb;
 

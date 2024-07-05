@@ -27,8 +27,8 @@
 
 namespace Dev4Press\v50\Core\Admin;
 
-use Dev4Press\v50\Core\Quick\Sanitize;
 use Dev4Press\v50\Core\UI\Enqueue;
+use Dev4Press\v50\Library;
 use Dev4Press\v50\WordPress;
 use WP_Screen;
 
@@ -413,7 +413,7 @@ abstract class Plugin {
 	}
 
 	public function lib_path() : string {
-		return $this->path . 'vendor/dev4press-library/';
+		return $this->path . Library::instance()->base_path() . '/';
 	}
 
 	public function panels() : array {

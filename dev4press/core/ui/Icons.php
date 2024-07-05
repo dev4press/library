@@ -37,6 +37,7 @@ class Icons {
 	protected $prefix_control = 'd4p-icon-';
 
 	protected $icons = array(
+		'brand-classicpress',
 		'brand-deviantart',
 		'brand-facebook',
 		'brand-github',
@@ -155,6 +156,7 @@ class Icons {
 		'ui-box',
 		'ui-brackets',
 		'ui-briefcase',
+		'ui-broom',
 		'ui-browser',
 		'ui-bug',
 		'ui-bullhorn',
@@ -215,6 +217,7 @@ class Icons {
 		'ui-dots-square',
 		'ui-download',
 		'ui-droplet',
+		'ui-dumpster',
 		'ui-edit',
 		'ui-elephant',
 		'ui-envelope',
@@ -303,7 +306,9 @@ class Icons {
 		'ui-question-sqaure',
 		'ui-quote-left',
 		'ui-quote-right',
+		'ui-rabbit',
 		'ui-radar',
+		'ui-recycle',
 		'ui-reply',
 		'ui-ribbon',
 		'ui-robot',
@@ -355,7 +360,9 @@ class Icons {
 		'ui-unlock',
 		'ui-upload',
 		'ui-user',
+		'ui-user-cancel',
 		'ui-user-circle',
+		'ui-user-exclamation',
 		'ui-user-group',
 		'ui-user-lock',
 		'ui-user-secret',
@@ -368,6 +375,7 @@ class Icons {
 		'ui-warning',
 		'ui-warning-octagon',
 		'ui-warning-triangle',
+		'ui-wizard',
 		'ui-wrench',
 	);
 

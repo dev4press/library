@@ -27,6 +27,8 @@
 
 namespace Dev4Press\v50\Core\UI;
 
+use Dev4Press\v50\Library;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -55,7 +57,7 @@ final class Widgets {
 	}
 
 	public function forms_path_library() : string {
-		return $this->a()->path . 'vendor/dev4press-library/forms/';
+		return $this->a()->path . Library::instance()->base_path() . '/forms/';
 	}
 
 	public function forms_path_plugin() : string {

@@ -37,6 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Background {
 	protected $method = '';
 	protected $transient = '';
+	protected $abort_transient = '';
 
 	protected $data = array();
 
@@ -44,6 +45,7 @@ abstract class Background {
 	protected $offset = 0;
 	protected $max = 0;
 	protected $delay = 10;
+	protected $abort = '';
 
 	public function __construct() {
 		$this->max   = ini_get( 'max_execution_time' );
@@ -65,39 +67,74 @@ abstract class Background {
 		return $instance[ static::class ];
 	}
 
+	public function load() {
+		if ( empty( $this->data ) ) {
+			wp_raise_memory_limit();
+
+			$this->prepare();
+			$this->get();
+		}
+	}
+
 	public function handler() {
-		wp_raise_memory_limit();
+		$this->load();
 
-		$this->prepare();
-		$this->get();
-
-		if ( $this->data['status'] == 'working' ) {
-			$this->worker();
-		} else if ( $this->data['status'] == 'waiting' ) {
-			$this->init();
-		} else if ( $this->data['status'] == 'idle' ) {
-			$this->data['info']['started'] = $this->now();
-			$this->data['info']['user_id'] = get_current_user_id();
-			$this->data['info']['ip']      = IP::visitor();
-
-			$this->add_message( __( 'Getting ready to start.', 'd4plib' ) );
-			$this->status( 'waiting' );
+		if ( $this->abort == 'abort' ) {
+			$this->add_message( __( 'Process has been aborted.', 'd4plib' ) );
+			$this->status( 'abort' );
 
 			$this->save();
-			$this->spawn();
+		} else {
+			if ( $this->data['status'] == 'working' ) {
+				$this->worker();
+			} else if ( $this->data['status'] == 'waiting' ) {
+				$this->init();
+			} else if ( $this->data['status'] == 'idle' ) {
+				$this->data['info']['started'] = $this->now();
+				$this->data['info']['user_id'] = get_current_user_id();
+				$this->data['info']['ip']      = IP::visitor();
+
+				$this->add_message( __( 'Getting ready to start.', 'd4plib' ) );
+				$this->status( 'waiting' );
+
+				$this->save();
+				$this->spawn();
+			}
 		}
 	}
 
 	public function get() {
-		$this->data = get_site_transient( $this->transient );
+		$this->data  = get_site_transient( $this->transient );
+		$this->abort = get_site_transient( $this->abort_transient );
 
 		if ( $this->data === false ) {
 			$this->data = $this->init_data();
 		}
+
+		if ( ! is_string( $this->abort ) ) {
+			$this->abort = '';
+		}
+	}
+
+	public function abort() {
+		set_site_transient( $this->abort_transient, 'abort' );
 	}
 
 	public function delete() {
 		delete_site_transient( $this->transient );
+		delete_site_transient( $this->abort_transient );
+	}
+
+	public function stalled() {
+		$this->load();
+
+		if ( $this->data['status'] == 'working' && $this->has_more() ) {
+			$last = absint( $this->now() ) - absint( $this->data['info']['latest'] );
+
+			if ( $last > $this->max * 3 ) {
+				$this->spawn();
+			}
+		}
 	}
 
 	protected function init() {
@@ -189,6 +226,7 @@ abstract class Background {
 			'info'     => array(
 				'started' => 0,
 				'ended'   => 0,
+				'latest'  => 0,
 				'timer'   => 0,
 				'threads' => 0,
 				'total'   => 0,
@@ -202,7 +240,11 @@ abstract class Background {
 	}
 
 	protected function save() {
+		$this->data['info']['latest'] = $this->now();
+
 		set_site_transient( $this->transient, $this->data );
+
+		delete_site_transient( $this->abort_transient );
 	}
 
 	protected function now() {
@@ -265,8 +307,14 @@ abstract class Background {
 		foreach ( $messages as $message ) {
 			$now = DateTime::createFromFormat( 'U.u', $message['time'] );
 
+			if ( $now === false ) {
+				$now = DateTime::createFromFormat( 'U', absint( $message['time'] ?? 0 ) );
+			}
+
+			$date_time = $now === false ? '/' : $now->format( 'm-d-Y H:i:s' );
+
 			$render .= '<li class="__message __message-' . esc_attr( $message['type'] ) . '">';
-			$render .= '<span class="__date-time">' . $now->format( 'm-d-Y H:i:s' ) . '</span>';
+			$render .= '<span class="__date-time">' . $date_time . '</span>';
 			$render .= '<span class="__icon" title="' . esc_attr( $_labels[ $message['type'] ] ) . '"><i class="d4p-icon d4p-' . esc_attr( $_icons[ $message['type'] ] ) . ' d4p-icon-fw"></i></span>';
 			$render .= '<span class="__content">' . esc_html( $message['message'] ) . '</span>';
 			$render .= '</li>';

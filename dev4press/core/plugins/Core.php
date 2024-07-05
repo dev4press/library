@@ -111,7 +111,7 @@ abstract class Core {
 
 	public function load_textdomain() {
 		load_plugin_textdomain( $this->plugin, false, $this->plugin . '/languages' );
-		load_plugin_textdomain( 'd4plib', false, $this->plugin . '/vendor/dev4press-library/languages' );
+		load_plugin_textdomain( 'd4plib', false, $this->plugin . '/' . Library::instance()->base_path() . '/languages' );
 	}
 
 	public function init_capabilities() {

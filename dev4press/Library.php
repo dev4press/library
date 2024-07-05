@@ -60,11 +60,15 @@ class Library {
 	 * @var string
 	 */
 	private $_cacert_path;
+	/**
+	 * @var string
+	 */
+	private $_base_path = 'vendor/dev4press-library';
 
 	public function __construct() {
 		$this->_php_version  = (string) phpversion();
 		$this->_php_code     = absint( substr( str_replace( '.', '', $this->_php_version ), 0, 2 ) );
-		$this->_library_url  = str_replace( '/vendor/dev4press-library/dev4press/', '/vendor/dev4press-library/', plugins_url( '/', __FILE__ ) );
+		$this->_library_url  = str_replace( '/' . $this->_base_path . '/dev4press/', '/' . $this->_base_path . '/', plugins_url( '/', __FILE__ ) );
 		$this->_library_path = wp_normalize_path( trailingslashit( dirname( __FILE__, 2 ) ) );
 		$this->_cacert_path  = wp_normalize_path( $this->_library_path . 'resources/curl/cacert.pem' );
 	}
@@ -101,6 +105,10 @@ class Library {
 
 	public function path() : string {
 		return $this->_library_path;
+	}
+
+	public function base_path() : string {
+		return $this->_base_path;
 	}
 
 	public function url() : string {

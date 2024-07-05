@@ -44,6 +44,8 @@ abstract class CRON extends Background {
 	}
 
 	protected function spawn() {
-		wp_schedule_single_event( time() + $this->delay, $this->job );
+		if ( ! wp_next_scheduled( $this->job ) ) {
+			wp_schedule_single_event( time() + $this->delay, $this->job );
+		}
 	}
 }

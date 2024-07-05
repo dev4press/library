@@ -285,6 +285,7 @@ final class Enqueue {
 				'icons'   => array(
 					'spinner' => '<i class="d4p-icon d4p-ui-spinner d4p-icon-fw d4p-icon-spin"></i>',
 					'ok'      => '<i class="d4p-icon d4p-ui-check d4p-icon-fw" aria-hidden="true"></i> ',
+					'close'   => '<i class="d4p-icon d4p-ui-times d4p-icon-fw" aria-hidden="true"></i> ',
 					'cancel'  => '<i class="d4p-icon d4p-ui-cancel d4p-icon-fw" aria-hidden="true"></i> ',
 					'delete'  => '<i class="d4p-icon d4p-ui-trash d4p-icon-fw" aria-hidden="true"></i> ',
 					'disable' => '<i class="d4p-icon d4p-ui-times d4p-icon-fw" aria-hidden="true"></i> ',
@@ -295,7 +296,9 @@ final class Enqueue {
 					'wait'    => '<i class="d4p-icon d4p-ui-hourglass d4p-icon-fw" aria-hidden="true"></i> ',
 				),
 				'buttons' => array(
+					'loading' => __( 'Loading', 'd4plib' ),
 					'ok'      => __( 'OK', 'd4plib' ),
+					'close'   => __( 'Close', 'd4plib' ),
 					'cancel'  => __( 'Cancel', 'd4plib' ),
 					'delete'  => __( 'Delete', 'd4plib' ),
 					'disable' => __( 'Disable', 'd4plib' ),

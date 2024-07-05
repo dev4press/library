@@ -3,7 +3,6 @@
 namespace Dev4Press\v50\Core\UI\Admin;
 
 use Dev4Press\v50\Core\Quick\KSES;
-use function Dev4Press\v50\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

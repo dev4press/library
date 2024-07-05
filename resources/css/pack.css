@@ -1316,68 +1316,76 @@ a > .d4p-icon {
   content: "\f217";
 }
 
-.d4p-icon.d4p-ui-user-circle:before {
+.d4p-icon.d4p-ui-user-cancel:before {
   content: "\f218";
 }
 
-.d4p-icon.d4p-ui-user-group:before {
+.d4p-icon.d4p-ui-user-circle:before {
   content: "\f219";
 }
 
-.d4p-icon.d4p-ui-user-lock:before {
+.d4p-icon.d4p-ui-user-exclamation:before {
   content: "\f21a";
 }
 
-.d4p-icon.d4p-ui-user-secret:before {
+.d4p-icon.d4p-ui-user-group:before {
   content: "\f21b";
 }
 
-.d4p-icon.d4p-ui-user-square:before {
+.d4p-icon.d4p-ui-user-lock:before {
   content: "\f21c";
 }
 
-.d4p-icon.d4p-ui-user-tag:before {
+.d4p-icon.d4p-ui-user-secret:before {
   content: "\f21d";
 }
 
-.d4p-icon.d4p-ui-user:before {
+.d4p-icon.d4p-ui-user-square:before {
   content: "\f21e";
 }
 
-.d4p-icon.d4p-ui-users:before {
+.d4p-icon.d4p-ui-user-tag:before {
   content: "\f21f";
 }
 
-.d4p-icon.d4p-ui-video:before {
+.d4p-icon.d4p-ui-user:before {
   content: "\f220";
 }
 
-.d4p-icon.d4p-ui-vote-nay:before {
+.d4p-icon.d4p-ui-users:before {
   content: "\f221";
 }
 
-.d4p-icon.d4p-ui-vote-yea:before {
+.d4p-icon.d4p-ui-video:before {
   content: "\f222";
 }
 
-.d4p-icon.d4p-ui-warning-octagon:before {
+.d4p-icon.d4p-ui-vote-nay:before {
   content: "\f223";
 }
 
-.d4p-icon.d4p-ui-warning-triangle:before {
+.d4p-icon.d4p-ui-vote-yea:before {
   content: "\f224";
 }
 
-.d4p-icon.d4p-ui-warning:before {
+.d4p-icon.d4p-ui-warning-octagon:before {
   content: "\f225";
 }
 
-.d4p-icon.d4p-ui-wizard:before {
+.d4p-icon.d4p-ui-warning-triangle:before {
   content: "\f226";
 }
 
-.d4p-icon.d4p-ui-wrench:before {
+.d4p-icon.d4p-ui-warning:before {
   content: "\f227";
+}
+
+.d4p-icon.d4p-ui-wizard:before {
+  content: "\f228";
+}
+
+.d4p-icon.d4p-ui-wrench:before {
+  content: "\f229";
 }
 
 .d4p-icon.d4p-ui-arrow-right:before {
