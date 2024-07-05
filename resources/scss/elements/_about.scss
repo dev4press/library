@@ -436,8 +436,9 @@
 
 .github-repo-button {
     background: #4078C0;
-    max-width: 320px;
-    border-radius: 15px;
+    max-width: 240px;
+    height: 64px;
+    border-radius: 10px;
     padding: 13px;
     color: #FFF;
     display: flex;
@@ -445,8 +446,7 @@
     gap: 13px;
 
     span {
-        font-size: 1.8em;
+        font-size: 1.1em;
         font-weight: 300;
-        letter-spacing: -1px;
     }
 }

@@ -37,6 +37,9 @@ if ( ! defined( 'ABSPATH' ) ) {
             <a href="https://www.buymeacoffee.com/millan" target="_blank" rel="noopener">
                 <img alt="BuyMeACoffee" src="<?php echo esc_url( panel()->a()->url . Library::instance()->base_path() . '/resources/gfx/buy_me_a_coffee.png' ); ?>"/>
             </a>
+            <a href="https://ko-fi.com/milanpetrovic" target="_blank" rel="noopener">
+                <img alt="KoFi" src="<?php echo esc_url( panel()->a()->url . Library::instance()->base_path() . '/resources/gfx/ko_fi.png' ); ?>"/>
+            </a>
         </div>
 
 		<?php

@@ -50,10 +50,19 @@
 
                 &.buy-me-a-coffee {
                     text-align: center;
+                    display: flex;
+                    flex-wrap: wrap;
+                    row-gap: .2em;
+                    justify-content: center;
+                    column-gap: 1em;
 
-                    img {
-                        width: 100%;
-                        max-width: 250px;
+                    a {
+                        display: block;
+
+                        img {
+                            width: 100%;
+                            max-width: 250px;
+                        }
                     }
                 }
 

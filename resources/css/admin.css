@@ -750,8 +750,16 @@
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-links-group.buy-me-a-coffee {
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.2em;
+  justify-content: center;
+  column-gap: 1em;
 }
-.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-links-group.buy-me-a-coffee img {
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-links-group.buy-me-a-coffee a {
+  display: block;
+}
+.d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-links-group.buy-me-a-coffee a img {
   width: 100%;
   max-width: 250px;
 }

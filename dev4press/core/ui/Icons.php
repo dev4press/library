@@ -37,6 +37,7 @@ class Icons {
 	protected $prefix_control = 'd4p-icon-';
 
 	protected $icons = array(
+		'brand-buymeacoffee',
 		'brand-classicpress',
 		'brand-deviantart',
 		'brand-facebook',
@@ -44,6 +45,7 @@ class Icons {
 		'brand-github-alt',
 		'brand-gravityforms',
 		'brand-instagram',
+		'brand-ko-fi',
 		'brand-linkedin',
 		'brand-reddit',
 		'brand-stack-exchange',
