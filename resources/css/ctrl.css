@@ -91,6 +91,7 @@
 }
 .d4p-ctrl-tabs.d4p-tabs-in-dialog .d4p-ctrl-tabs-content {
   border-radius: 0;
+  border-bottom: 0;
 }
 
 dl.d4p-ctrl-list {
