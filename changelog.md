@@ -10,6 +10,7 @@
 * Edit: default location is now `library`
 * Edit: many updates to the `Background` class
 * Edit: many updates to the `CRON` task class
+* Edit: various tweaks to the shared styling
 * Removed: outdated JavaScript `helpers` library
 * Removed: all previously deprecated methods
 
