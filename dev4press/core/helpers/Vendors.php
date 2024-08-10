@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Core\Helpers\Vendors
+ * Name:    Dev4Press\v51\Core\Helpers\Vendors
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Core\Helpers;
+namespace Dev4Press\v51\Core\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -33,12 +33,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Vendors {
 	public static function parsedown() {
-		require DEV4PRESS_V50_PATH . 'vendor/parsedown-extra/Parsedown.php';
+		require DEV4PRESS_V51_PATH . 'vendor/parsedown-extra/Parsedown.php';
 	}
 
 	public static function parsedown_extra() {
 		self::parsedown();
 
-		require DEV4PRESS_V50_PATH . 'vendor/parsedown-extra/ParsedownExtra.php';
+		require DEV4PRESS_V51_PATH . 'vendor/parsedown-extra/ParsedownExtra.php';
 	}
 }

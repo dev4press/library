@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\WordPress\Legacy\Widget
+ * Name:    Dev4Press\v51\WordPress\Legacy\Widget
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\WordPress\Legacy;
+namespace Dev4Press\v51\WordPress\Legacy;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

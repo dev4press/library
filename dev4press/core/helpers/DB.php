@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Core\Helpers\DB
+ * Name:    Dev4Press\v51\Core\Helpers\DB
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Core\Helpers;
+namespace Dev4Press\v51\Core\Helpers;
 
-use Dev4Press\v50\Core\Plugins\DBLite;
+use Dev4Press\v51\Core\Plugins\DBLite;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

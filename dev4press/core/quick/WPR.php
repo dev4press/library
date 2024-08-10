@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Core\Quick\WP
+ * Name:    Dev4Press\v51\Core\Quick\WP
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Core\Quick;
+namespace Dev4Press\v51\Core\Quick;
 
-use Dev4Press\v50\Core\Helpers\Error;
+use Dev4Press\v51\Core\Helpers\Error;
 use WP_Error;
 use WP_Query;
 use WP_Term;

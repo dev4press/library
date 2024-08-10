@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Core\Plugins\Core
+ * Name:    Dev4Press\v51\Core\Plugins\Core
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,15 +25,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Core\Plugins;
+namespace Dev4Press\v51\Core\Plugins;
 
-use Dev4Press\v50\API\Four;
-use Dev4Press\v50\Core\DateTime;
-use Dev4Press\v50\Core\Quick\BBP;
-use Dev4Press\v50\Core\Quick\KSES;
-use Dev4Press\v50\Core\Quick\WPR;
-use Dev4Press\v50\Library;
-use Dev4Press\v50\WordPress;
+use Dev4Press\v51\API\Four;
+use Dev4Press\v51\Core\DateTime;
+use Dev4Press\v51\Core\Quick\BBP;
+use Dev4Press\v51\Core\Quick\KSES;
+use Dev4Press\v51\Core\Quick\WPR;
+use Dev4Press\v51\Library;
+use Dev4Press\v51\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -261,15 +261,15 @@ abstract class Core {
 
 	abstract public function run();
 
-	/** @return NULL|\Dev4Press\v50\Core\Plugins\Settings */
+	/** @return NULL|\Dev4Press\v51\Core\Plugins\Settings */
 	abstract public function s();
 
-	/** @return NULL|\Dev4Press\v50\Core\Plugins\Settings */
+	/** @return NULL|\Dev4Press\v51\Core\Plugins\Settings */
 	abstract public function b();
 
-	/** @return NULL|\Dev4Press\v50\Core\Features\Load */
+	/** @return NULL|\Dev4Press\v51\Core\Features\Load */
 	abstract public function f();
 
-	/** @return NULL|\Dev4Press\v50\Core\Plugins\License */
+	/** @return NULL|\Dev4Press\v51\Core\Plugins\License */
 	abstract public function l();
 }

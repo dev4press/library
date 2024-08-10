@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Core\Admin\GetBack
+ * Name:    Dev4Press\v51\Core\Admin\GetBack
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Core\Admin;
+namespace Dev4Press\v51\Core\Admin;
 
-use Dev4Press\v50\Core\Quick\WPR;
+use Dev4Press\v51\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -45,7 +45,7 @@ abstract class GetBack {
 		$this->process();
 	}
 
-	/** @return \Dev4Press\v50\Core\Admin\Plugin|\Dev4Press\v50\Core\Admin\Menu\Plugin|\Dev4Press\v50\Core\Admin\Submenu\Plugin */
+	/** @return \Dev4Press\v51\Core\Admin\Plugin|\Dev4Press\v51\Core\Admin\Menu\Plugin|\Dev4Press\v51\Core\Admin\Submenu\Plugin */
 	public function a() {
 		return $this->admin;
 	}

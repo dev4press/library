@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Services\GEOIP\Locator
+ * Name:    Dev4Press\v51\Services\GEOIP\Locator
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Service\GEOIP;
+namespace Dev4Press\v51\Service\GEOIP;
 
-use Dev4Press\v50\Core\Helpers\IP;
+use Dev4Press\v51\Core\Helpers\IP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

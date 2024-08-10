@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@keyframes dev4press-v50-modal-fade-in {
+@keyframes dev4press-v51-modal-fade-in {
   from {
     opacity: 0;
   }
@@ -7,7 +7,7 @@
     opacity: 1;
   }
 }
-@keyframes dev4press-v50-modal-fade-out {
+@keyframes dev4press-v51-modal-fade-out {
   from {
     opacity: 1;
   }
@@ -15,7 +15,7 @@
     opacity: 0;
   }
 }
-@keyframes dev4press-v50-modal-slide-in {
+@keyframes dev4press-v51-modal-slide-in {
   from {
     transform: translateY(15%);
   }
@@ -23,7 +23,7 @@
     transform: translateY(0);
   }
 }
-@keyframes dev4press-v50-modal-slide-out {
+@keyframes dev4press-v51-modal-slide-out {
   from {
     transform: translateY(0);
   }
@@ -31,29 +31,29 @@
     transform: translateY(-10%);
   }
 }
-.dev4press-v50-modal.dev4press-v50-modal-slide {
+.dev4press-v51-modal.dev4press-v51-modal-slide {
   display: none;
 }
-.dev4press-v50-modal.dev4press-v50-modal-slide.is-open {
+.dev4press-v51-modal.dev4press-v51-modal-slide.is-open {
   display: block;
 }
-.dev4press-v50-modal.dev4press-v50-modal-slide .dev4press-v50-modal__container,
-.dev4press-v50-modal.dev4press-v50-modal-slide .dev4press-v50-modal__overlay {
+.dev4press-v51-modal.dev4press-v51-modal-slide .dev4press-v51-modal__container,
+.dev4press-v51-modal.dev4press-v51-modal-slide .dev4press-v51-modal__overlay {
   will-change: transform;
 }
-.dev4press-v50-modal.dev4press-v50-modal-slide[aria-hidden=false] .dev4press-v50-modal__overlay {
-  animation: dev4press-v50-modal-fade-in 0.3s cubic-bezier(0, 0, 0.2, 1);
+.dev4press-v51-modal.dev4press-v51-modal-slide[aria-hidden=false] .dev4press-v51-modal__overlay {
+  animation: dev4press-v51-modal-fade-in 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
-.dev4press-v50-modal.dev4press-v50-modal-slide[aria-hidden=false] .dev4press-v50-modal__container {
-  animation: dev4press-v50-modal-slide-in 0.3s cubic-bezier(0, 0, 0.2, 1);
+.dev4press-v51-modal.dev4press-v51-modal-slide[aria-hidden=false] .dev4press-v51-modal__container {
+  animation: dev4press-v51-modal-slide-in 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
-.dev4press-v50-modal.dev4press-v50-modal-slide[aria-hidden=true] .dev4press-v50-modal__overlay {
-  animation: dev4press-v50-modal-fade-out 0.3s cubic-bezier(0, 0, 0.2, 1);
+.dev4press-v51-modal.dev4press-v51-modal-slide[aria-hidden=true] .dev4press-v51-modal__overlay {
+  animation: dev4press-v51-modal-fade-out 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
-.dev4press-v50-modal.dev4press-v50-modal-slide[aria-hidden=true] .dev4press-v50-modal__container {
-  animation: dev4press-v50-modal-slide-out 0.3s cubic-bezier(0, 0, 0.2, 1);
+.dev4press-v51-modal.dev4press-v51-modal-slide[aria-hidden=true] .dev4press-v51-modal__container {
+  animation: dev4press-v51-modal-slide-out 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
-.dev4press-v50-modal .dev4press-v50-modal__overlay {
+.dev4press-v51-modal .dev4press-v51-modal__overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -65,7 +65,7 @@
   align-items: center;
   z-index: 9999;
 }
-.dev4press-v50-modal .dev4press-v50-modal__container {
+.dev4press-v51-modal .dev4press-v51-modal__container {
   background-color: #FFF;
   padding: 0;
   width: 95%;
@@ -75,12 +75,12 @@
   box-sizing: border-box;
   z-index: 10000;
 }
-.dev4press-v50-modal .dev4press-v50-modal__container .dev4press-v50-modal__footer {
+.dev4press-v51-modal .dev4press-v51-modal__container .dev4press-v51-modal__footer {
   padding: 15px;
   background-color: #EEE;
   border-top: 1px solid #DDD;
 }
-.dev4press-v50-modal .dev4press-v50-modal__container .dev4press-v50-modal__header {
+.dev4press-v51-modal .dev4press-v51-modal__container .dev4press-v51-modal__header {
   display: flex;
   padding: 15px;
   background-color: #EEE;
@@ -88,7 +88,7 @@
   justify-content: space-between;
   align-items: center;
 }
-.dev4press-v50-modal .dev4press-v50-modal__container .dev4press-v50-modal__header .dev4press-v50-modal__title {
+.dev4press-v51-modal .dev4press-v51-modal__container .dev4press-v51-modal__header .dev4press-v51-modal__title {
   margin-top: 0;
   margin-bottom: 0;
   font-weight: 600;
@@ -97,17 +97,17 @@
   color: #111;
   box-sizing: border-box;
 }
-.dev4press-v50-modal .dev4press-v50-modal__container .dev4press-v50-modal__header .dev4press-v50-modal__close {
+.dev4press-v51-modal .dev4press-v51-modal__container .dev4press-v51-modal__header .dev4press-v51-modal__close {
   background: transparent;
   font-weight: bold;
   color: #00449E;
   border: 0;
   padding: 0;
 }
-.dev4press-v50-modal .dev4press-v50-modal__container .dev4press-v50-modal__header .dev4press-v50-modal__close:before {
+.dev4press-v51-modal .dev4press-v51-modal__container .dev4press-v51-modal__header .dev4press-v51-modal__close:before {
   content: "✕";
 }
-.dev4press-v50-modal .dev4press-v50-modal__container .dev4press-v50-modal__content {
+.dev4press-v51-modal .dev4press-v51-modal__container .dev4press-v51-modal__content {
   padding: 0;
   margin: 0;
   line-height: 1.5;
@@ -115,7 +115,7 @@
   max-height: calc(100vh - 200px);
   overflow: auto;
 }
-.dev4press-v50-modal .dev4press-v50-modal__container .dev4press-v50-modal__footer .dev4press-v50-modal__btn {
+.dev4press-v51-modal .dev4press-v51-modal__container .dev4press-v51-modal__footer .dev4press-v51-modal__btn {
   font-size: 13px;
   padding: 8px 24px;
   background-color: #C4C4C4;
@@ -137,14 +137,14 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-backface-visibility: hidden;
 }
-.dev4press-v50-modal .dev4press-v50-modal__container .dev4press-v50-modal__footer .dev4press-v50-modal__btn:active, .dev4press-v50-modal .dev4press-v50-modal__container .dev4press-v50-modal__footer .dev4press-v50-modal__btn:hover {
+.dev4press-v51-modal .dev4press-v51-modal__container .dev4press-v51-modal__footer .dev4press-v51-modal__btn:active, .dev4press-v51-modal .dev4press-v51-modal__container .dev4press-v51-modal__footer .dev4press-v51-modal__btn:hover {
   background-image: none;
   background-color: #DDD;
 }
-.dev4press-v50-modal .dev4press-v50-modal__container .dev4press-v50-modal__footer .dev4press-v50-modal__btn.dev4press-v50-modal__btn-primary {
+.dev4press-v51-modal .dev4press-v51-modal__container .dev4press-v51-modal__footer .dev4press-v51-modal__btn.dev4press-v51-modal__btn-primary {
   background-color: #00449E;
   color: #FFF;
 }
-.dev4press-v50-modal .dev4press-v50-modal__container .dev4press-v50-modal__footer .dev4press-v50-modal__btn.dev4press-v50-modal__btn-primary:active, .dev4press-v50-modal .dev4press-v50-modal__container .dev4press-v50-modal__footer .dev4press-v50-modal__btn.dev4press-v50-modal__btn-primary:hover {
+.dev4press-v51-modal .dev4press-v51-modal__container .dev4press-v51-modal__footer .dev4press-v51-modal__btn.dev4press-v51-modal__btn-primary:active, .dev4press-v51-modal .dev4press-v51-modal__container .dev4press-v51-modal__footer .dev4press-v51-modal__btn.dev4press-v51-modal__btn-primary:hover {
   background-color: #0052BB;
 }

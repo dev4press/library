@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\WordPress\Media\ImageToMediaLibrary
+ * Name:    Dev4Press\v51\WordPress\Media\ImageToMediaLibrary
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\WordPress\Media;
+namespace Dev4Press\v51\WordPress\Media;
 
 use WP_Error;
 

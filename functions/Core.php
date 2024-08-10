@@ -29,8 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'dev4press_v50_autoload_for_plugin' ) ) {
-	function dev4press_v50_autoload_for_plugin( $class, $base, $path, $path_prefix = '' ) {
+if ( ! function_exists( 'dev4press_v51_autoload_for_plugin' ) ) {
+	function dev4press_v51_autoload_for_plugin( $class, $base, $path, $path_prefix = '' ) {
 		if ( substr( $class, 0, strlen( $base ) ) == $base ) {
 			$clean = substr( $class, strlen( $base ) );
 			$parts = explode( '\\', $clean );

@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\WordPress
+ * Name:    Dev4Press\v51\WordPress
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50;
+namespace Dev4Press\v51;
 
-use Dev4Press\v50\Core\Quick\WPR;
+use Dev4Press\v51\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

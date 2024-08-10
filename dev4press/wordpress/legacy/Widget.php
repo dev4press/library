@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\WordPress\Legacy\Widget
+ * Name:    Dev4Press\v51\WordPress\Legacy\Widget
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\WordPress\Legacy;
+namespace Dev4Press\v51\WordPress\Legacy;
 
-use Dev4Press\v50\Core\Quick\Sanitize;
-use Dev4Press\v50\Core\Quick\WPR;
+use Dev4Press\v51\Core\Quick\Sanitize;
+use Dev4Press\v51\Core\Quick\WPR;
 use WP_Widget;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -75,7 +75,7 @@ abstract class Widget extends WP_Widget {
 	protected $cache_time = 0;
 	protected $cache_key = '';
 
-	/** @var \Dev4Press\v50\Core\UI\Widgets */
+	/** @var \Dev4Press\v51\Core\UI\Widgets */
 	protected $widgets_render;
 
 	public function __construct( $id_base = false, $name = '', $widget_options = array(), $control_options = array() ) {
@@ -198,7 +198,7 @@ abstract class Widget extends WP_Widget {
 		$instance['_roles'] = array();
 
 		if ( isset( $new_instance['_roles'] ) ) {
-			$_roles      = array_map( '\Dev4Press\v50\Core\Quick\Sanitize::text', $new_instance['_roles'] );
+			$_roles      = array_map( '\Dev4Press\v51\Core\Quick\Sanitize::text', $new_instance['_roles'] );
 			$valid_roles = WPR::list_user_roles();
 
 			foreach ( $_roles as $role ) {

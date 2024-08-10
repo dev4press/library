@@ -25,8 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-use Dev4Press\v50\Library;
-use Dev4Press\v50\WordPress;
+use Dev4Press\v51\Library;
+use Dev4Press\v51\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -38,14 +38,14 @@ if ( ! defined( 'DEV4PRESS_TAB' ) ) {
 	define( 'DEV4PRESS_TAB', "\t" );
 }
 
-if ( ! defined( 'DEV4PRESS_V50_PATH' ) ) {
-	define( 'DEV4PRESS_V50_PATH', $_library_path );
+if ( ! defined( 'DEV4PRESS_V51_PATH' ) ) {
+	define( 'DEV4PRESS_V51_PATH', $_library_path );
 }
 
-require DEV4PRESS_V50_PATH . 'functions/Core.php';
-require DEV4PRESS_V50_PATH . 'functions/Bridge.php';
+require DEV4PRESS_V51_PATH . 'functions/Core.php';
+require DEV4PRESS_V51_PATH . 'functions/Bridge.php';
 
-require DEV4PRESS_V50_PATH . 'autoload.php';
+require DEV4PRESS_V51_PATH . 'autoload.php';
 
 WordPress::instance();
 Library::instance();

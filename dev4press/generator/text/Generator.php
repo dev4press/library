@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Generator\Text\Generator
+ * Name:    Dev4Press\v51\Generator\Text\Generator
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -29,7 +29,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Generator\Text;
+namespace Dev4Press\v51\Generator\Text;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

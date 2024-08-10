@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Core\Base\Background
+ * Name:    Dev4Press\v51\Core\Base\Background
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Core\Base;
+namespace Dev4Press\v51\Core\Base;
 
 use DateTime;
-use Dev4Press\v50\Core\Helpers\IP;
+use Dev4Press\v51\Core\Helpers\IP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

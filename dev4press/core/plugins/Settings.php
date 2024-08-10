@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Core\Plugins\Settings
+ * Name:    Dev4Press\v51\Core\Plugins\Settings
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,11 +25,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Core\Plugins;
+namespace Dev4Press\v51\Core\Plugins;
 
-use Dev4Press\v50\Core\DateTime;
-use Dev4Press\v50\Core\Helpers\DB;
-use Dev4Press\v50\Core\Quick\WPR;
+use Dev4Press\v51\Core\DateTime;
+use Dev4Press\v51\Core\Helpers\DB;
+use Dev4Press\v51\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

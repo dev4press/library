@@ -80,6 +80,7 @@
 * Fix: minor problem with the getting group settings
 
 ### Version 4.4 - 2023.11.06
+
 * New: render Changelog and History About panels from markdown
 * New: email detection support for WooCommerce standard emails
 * New: email detection support for WooCommerce `WP_Email` class
@@ -95,22 +96,28 @@
 * Fix: group select rendering problem with the selected value
 
 ### Version 4.3.5 - 2023.10.05
+
 * Edit: minor changes to the `DBLite` handling of the logged query
 
 ### Version 4.3.4 - 2023.10.02
+
 * New: class `File` has method to wrap `WP_Filesystem` use
 * Edit: settings import from file now uses WordPress native functions
 
 ### Version 4.3.3 - 2023.09.26
+
 * Edit: more changes related to PHPCS and WPCS validation
 
 ### Version 4.3.2 - 2023.09.25
+
 * New: added several more UI icons
 
 ### Version 4.3.1 - 2023.09.20
+
 * Edit: more changes related to PHPCS and WPCS validation
 
 ### Version 4.3 - 2023.09.05
+
 * New: full validation with the PHPCS and additional WPCS rules
 * New: some forms panel split into the elements files for re-usability
 * New: settings elements can have toggleable additional information
@@ -148,6 +155,7 @@
 * Fix: header navigation in multisite mode show items that don't belong
 
 ### Version 4.2 - 2023.06.16
+
 * New: complete the network based `Menu` class
 * New: added `KSES` class for processing HTML strings for display
 * New: added `Detection` class to detect email sender and source
@@ -178,12 +186,14 @@
 * Fix: potential issue with the grouped select render method
 
 ### Version 4.1.1 - 2023.05.15
+
 * New: added `exclamation` icon
 * New: few additional styling changes
 * Fix: wrong `question` icon used
 * Fix: issue with the `Table` referer use
 
 ### Version 4.1 - 2023.05.04
+
 * New: `Sanitize` includes wrapper for the URL
 * New: Rewritten JavaScript and CSS for the Meta boxes
 * New: Expanded collection of UI icons
@@ -197,10 +207,12 @@
 * Fix: issues with screen load panel initialization
 
 ### Version 4.0.1 - 2023.03.28
+
 * Updated: Few changes to the `plugin_locale` filter usage
 * Fix: issue with the `plugin_locale` filter missing domain
 
 ### Version 4.0 - 2023.03.28
+
 * New: Expanded collection of UI icons
 * New: Replaced most of the plugin icons
 * New: Base abstract `Store` class for data storage
@@ -226,17 +238,21 @@
 * Fix: Features sidebar references a plugin
 
 ### Version 3.9.3 - 2023.02.13
+
 * Updated: Abstract Table class now has a db() method
 * Updated: DBLite class prepare_in_list expanded with empty check
 * Fix: Abstract Table class with hardcoded DB calls wrapper
 
 ### Version 3.9.2 - 2023.02.03
+
 * Fix: Potential conflict causing issue with the logging of queries
 
 ### Version 3.9.1 - 2023.01.26
+
 * Updated: JavaScript replacing `substr` with `substring`
 
 ### Version 3.9 - 2023.01.16
+
 * New: Features base classes
 * New: Completed Features base system and styling
 * New: Features panel with filtering and search
@@ -261,6 +277,7 @@
 * Fix: Problem with storing capabilities in Widget class
 
 ### Version 3.8 - 2022.05.14
+
 * New: Base Panel object now builds the classes
 * New: Base Micromodal object to creating modal dialogs markup
 * New: Base Grid Table object and SCSS/CSS with styling
@@ -285,9 +302,11 @@
 * Fix: curly braces access for array in one instance
 
 ### Version 3.7.4 - 2022.03.11
+
 * Updated: Several minor improvements and tweaks
 
 ### Version 3.7.3 - 2022.03.02
+
 * Updated: Rendering of the settings datetime field
 * Updated: Additional sanitation calls for settings fields
 * Updated: Many improvements to the Getback class
@@ -301,17 +320,20 @@
 * Fixed: Wrong email sanitation call
 
 ### Version 3.7.2 - 2022.02.20
+
 * New: Main Admin class method to generate getback URL
 * Updated: Scope class support for WP CLI
 * Updated: DBLite magic properties list
 * Updated: Information class default requirements
 
 ### Version 3.7.1 - 2022.02.01
+
 * New: Added few new icons
 * Updated: Some additional visual improvements
 * Updated: Removed obsolete CSS properties
 
 ### Version 3.7 - 2021.11.02
+
 * New: Static classes to replace namespaced functions
 * New: Big redesign for the admin side interface
 * New: Now uses CSS variables as a base for styling
@@ -328,6 +350,7 @@
 * Removed: Various unused JavaScript libraries
 
 ### Version 3.6 - 2021.08.14
+
 * New: Core Library class
 * New: Core WordPress class
 * New: Core Resources class
@@ -350,6 +373,7 @@
 * Fixed: various minor styling issues
 
 ### Version 3.5.2 - 2021.06.21
+
 * New: bbPress related functions
 * Updated: Various core classes PHP specifications
 * Updated: Many small tweaks and changes
@@ -357,11 +381,13 @@
 * Fixed: Some widget related issues
 
 ### Version 3.5.1 - 2021.05.01
+
 * New: Icon and information about ArchivesPress plugin
 * Updated: Minor improvements to the ObjectSort class
 * Fixed: Few issues related to sanitize functions scope
 
 ### Version 3.5 - 2021.04.14
+
 * New: Major refactoring to include version for every namespace
 * New: Major refactoring to add namespaces to functions
 * New: Reorganization of functions and function files
@@ -382,20 +408,24 @@
 * Fixed: Various small issues
 
 ### Version 3.4.1 - 2021.02.24
+
 * Fixed: Issue with the checkboxes rendering function
 
 ### Version 3.4 - 2021.02.15
+
 * New: Options core Element support for switch control setting
 * Updated: Various styling improvements to the metabox rendering
 * Updated: built-in cacert.pem 20210119
 * Updated: Licensing text for individual files
 
 ### Version 3.3.1 - 2020.12.28
+
 * New: CSS Size based settings
 * Updated: Various minor core improvements
 * Fixed: Few issues with the admin side rendering
 
 ### Version 3.3 - 2020.11.09
+
 * New: Options core classes support render and process overrides
 * New: Date and time based settings
 * New: Numeric range based settings
@@ -413,6 +443,7 @@
 * Fixed: Few issues with the settings rendering
 
 ### Version 3.2 - 2020.08.10
+
 * New: Regex validation functions
 * New: Icons handling class
 * Updated: Improvements to icons font
@@ -424,10 +455,12 @@
 * Fixed: Settings import minor issues
 
 ### Version 3.1.3 - 2020.06.30
+
 * New: Network admin Plugin class
 * New: Animated Popup library
 
 ### Version 3.1.2 - 2020.06.22
+
 * New: Settings and Tools panels balloon tips
 * Updated: Font expanded with new UI icons
 * Updated: Various core classes improvements
@@ -437,9 +470,11 @@
 * Fixed: showing about translation when there are none available
 
 ### Version 3.1.1 - 2020.06.17
+
 * Updated: Dashboard elements styling
 
 ### Version 3.1 - 2020.05.25
+
 * New: Frontend shared Enqueue class
 * New: Balloon CSS file for tooltips
 * New: Main CSS 'pack' used on plugin pages
@@ -448,6 +483,7 @@
 * Fix: Minor issues with Admin Enqueue
 
 ### Version 3.0.1 - 2020.04.22
+
 * New: WordPress content Traits
 * New: Expanded media library uploads
 * New: Flatpickr library
@@ -459,4 +495,29 @@
 * Fix: Minor widgets class issues
 
 ### Version 3.0 - 2020.03.16
+
 * New: Fully Rewritten Library
+
+### Version 4.8 - 2024.04.26
+
+* New: `Core` object has priority options for the loading actions
+* New: `Settings` object can specify some groups as network wide
+* New: settings now can render the `Clear` button for text-based field
+* New: checkbox based options can be used for the option switch control
+* New: check for capability for postback for main plugin panels
+* New: rewritten most of the settings processing for better validation
+* New: `Sanitize` class has new method for `deep` processing
+* New: `Sanitize` class renames some methods with proper names
+* New: added several more UI icons to the icon font
+* Edit: improvements to the default styling for dashboard and tabs
+* Edit: improvements to base `Panel` object content file names
+* Edit: improvements to the `License` base class related to API updates
+* Edit: improvements to the autoload function implementation
+* Edit: improvements to import of plugin settings
+* Edit: various improvements to the data processing and saving
+* Edit: outdated actions prefixes replacing `d4p` with `dev4press`
+* Edit: various improvements to sanitization and escaping
+* Edit: built-in cacert.pem 20240311
+* Deprecated: several methods in the `Sanitize` class
+* Fix: some `Core` properties were private not protected
+* Fix: license check job initialized with filter not action

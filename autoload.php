@@ -25,13 +25,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-if ( ! function_exists( 'dev4press_core_library_autoloader_v50' ) ) {
-	function dev4press_core_library_autoloader_v50( $class ) {
-		$path = DEV4PRESS_V50_PATH;
-		$base = 'Dev4Press\\v50\\';
+if ( ! function_exists( 'dev4press_core_library_autoloader_v51' ) ) {
+	function dev4press_core_library_autoloader_v51( $class ) {
+		$path = DEV4PRESS_V51_PATH;
+		$base = 'Dev4Press\\v51\\';
 
-		dev4press_v50_autoload_for_plugin( $class, $base, $path, 'dev4press/' );
+		dev4press_v51_autoload_for_plugin( $class, $base, $path, 'dev4press/' );
 	}
 
-	spl_autoload_register( 'dev4press_core_library_autoloader_v50' );
+	spl_autoload_register( 'dev4press_core_library_autoloader_v51' );
 }

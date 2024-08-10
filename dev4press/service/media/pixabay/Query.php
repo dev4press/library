@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Service\Media\Pixabay\Query
+ * Name:    Dev4Press\v51\Service\Media\Pixabay\Query
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Service\Media\Pixabay;
+namespace Dev4Press\v51\Service\Media\Pixabay;
 
 use WP_Error;
 

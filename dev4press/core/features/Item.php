@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Core\Features\Item
+ * Name:    Dev4Press\v51\Core\Features\Item
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Core\Features;
+namespace Dev4Press\v51\Core\Features;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

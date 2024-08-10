@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Core\Admin\Table
+ * Name:    Dev4Press\v51\Core\Admin\Table
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,13 +25,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\WordPress\Admin;
+namespace Dev4Press\v51\WordPress\Admin;
 
-use Dev4Press\v50\Core\Helpers\DB;
-use Dev4Press\v50\Core\Plugins\DBLite;
-use Dev4Press\v50\Core\Quick\Sanitize;
+use Dev4Press\v51\Core\Helpers\DB;
+use Dev4Press\v51\Core\Plugins\DBLite;
+use Dev4Press\v51\Core\Quick\Sanitize;
 use WP_List_Table;
-use function Dev4Press\v50\Functions\panel;
+use function Dev4Press\v51\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

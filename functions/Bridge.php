@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Functions;
+namespace Dev4Press\v51\Functions;
 
-use Dev4Press\v50\Core\UI\Admin\Panel;
+use Dev4Press\v51\Core\UI\Admin\Panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

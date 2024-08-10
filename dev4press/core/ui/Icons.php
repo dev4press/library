@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Core\UI\Icons
+ * Name:    Dev4Press\v51\Core\UI\Icons
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Core\UI;
+namespace Dev4Press\v51\Core\UI;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -313,6 +313,8 @@ class Icons {
 		'ui-recycle',
 		'ui-reply',
 		'ui-ribbon',
+		'ui-right-from-bracket',
+		'ui-right-to-bracket',
 		'ui-robot',
 		'ui-rocket',
 		'ui-rss',

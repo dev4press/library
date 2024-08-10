@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v50\Core\Mailer\Detection
+ * Name:    Dev4Press\v51\Core\Mailer\Detection
  * Version: v5.0
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v50\Core\Mailer;
+namespace Dev4Press\v51\Core\Mailer;
 
-use Dev4Press\v50\Core\Helpers\Source;
-use Dev4Press\v50\Core\Quick\Str;
+use Dev4Press\v51\Core\Helpers\Source;
+use Dev4Press\v51\Core\Quick\Str;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
