@@ -1,7 +1,7 @@
 <?php
 /**
  * Name:    Dev4Press\v51\API\Store
- * Version: v5.0
+ * Version: v5.1
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -344,7 +344,7 @@ class Store {
 	}
 
 	public function url( $code ) : string {
-		return isset( $this->_plugins[ $code ] ) ? 'https://plugins.dev4press.com/' . $code . '/' : '';
+		return isset( $this->_plugins[ $code ] ) ? 'https://www.dev4press.com/plugins/' . $code . '/' : '';
 	}
 
 	public function is_free( $code ) : bool {

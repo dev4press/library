@@ -1,7 +1,7 @@
 <?php
 /**
  * Name:    Dev4Press\v51\Library
- * Version: v5.0
+ * Version: v5.1
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -35,11 +35,11 @@ class Library {
 	/**
 	 * @var string
 	 */
-	private $_version = '5.0';
+	private $_version = '5.1';
 	/**
 	 * @var string
 	 */
-	private $_build = '5000';
+	private $_build = '5100';
 	/**
 	 * @var string
 	 */

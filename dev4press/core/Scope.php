@@ -1,7 +1,7 @@
 <?php
 /**
  * Name:    Dev4Press\v51\Core\Scope
- * Version: v5.0
+ * Version: v5.1
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/

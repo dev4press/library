@@ -1,7 +1,7 @@
 <?php
 /**
  * Name:    Dev4Press\v51\Core\Admin\Plugin
- * Version: v5.0
+ * Version: v5.1
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -249,7 +249,7 @@ abstract class Plugin {
 		$links = apply_filters(
 			$this->plugin_prefix . '_admin_help_sidebar_links',
 			array(
-				'home'  => '<a target="_blank" rel="noopener" href="https://plugins.dev4press.com/' . esc_attr( $this->plugin ) . '/">' . esc_html__( 'Home Page', 'd4plib' ) . '</a>',
+				'home'  => '<a target="_blank" rel="noopener" href="https://www.dev4press.com/plugins/' . esc_attr( $this->plugin ) . '/">' . esc_html__( 'Home Page', 'd4plib' ) . '</a>',
 				'kb'    => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/">' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a>',
 				'forum' => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/">' . esc_html__( 'Support Forum', 'd4plib' ) . '</a>',
 			),

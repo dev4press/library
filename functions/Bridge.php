@@ -1,7 +1,7 @@
 <?php
 /**
  * Name:    Base Library Functions: Bridge
- * Version: v5.0
+ * Version: v5.1
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/

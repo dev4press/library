@@ -1,7 +1,7 @@
 <?php
 /**
  * Name:    Dev4Press\v51\Core\Options\Settings
- * Version: v5.0
+ * Version: v5.1
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -159,14 +159,14 @@ abstract class Settings {
 			array(
 				'type'   => 'a',
 				'target' => '_blank',
-				'link'   => 'https://my.dev4press.com/license/?code=' . $code,
+				'link'   => 'https://www.dev4press.com/account/licenses/license/?code=' . $code,
 				'class'  => 'button-primary',
 				'title'  => __( 'Manage License Code', 'd4plib' ),
 			),
 			array(
 				'type'   => 'a',
 				'target' => '_blank',
-				'link'   => 'https://my.dev4press.com/products/',
+				'link'   => 'https://www.dev4press.com/account/licenses/',
 				'class'  => 'button-secondary',
 				'title'  => __( 'Dev4Press Dashboard Licenses', 'd4plib' ),
 			),

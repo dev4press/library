@@ -1,7 +1,7 @@
 # Dev4Press Library
 ## About
 
-* Version: v5.0
+* Version: v5.1
 * Build:   5000
 * Release: 2024.07.08.
 * Author:  Milan Petrovic
