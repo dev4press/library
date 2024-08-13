@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Render {
 	public $base = 'd4pvalue';
 	public $prefix = 'd4p';
-	public $kb = 'https://support.dev4press.com/kb/%type%/%url%/';
+	public $kb = 'https://www.dev4press.com/kb/%type%/%url%/';
 
 	public $panel;
 	public $groups;
