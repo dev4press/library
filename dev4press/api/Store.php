@@ -344,7 +344,7 @@ class Store {
 	}
 
 	public function url( $code ) : string {
-		return isset( $this->_plugins[ $code ] ) ? 'https://plugins.dev4press.com/' . $code . '/' : '';
+		return isset( $this->_plugins[ $code ] ) ? 'https://www.dev4press.com/plugins/' . $code . '/' : '';
 	}
 
 	public function is_free( $code ) : bool {

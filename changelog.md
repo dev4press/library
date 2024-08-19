@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### Version 5.0.1 - 2024.08.22
+
+* Edit: updated links format for the Dev4Press website
+
 ### Version 5.0 - 2024.07.10
 
 * New: updated library and plugins system requirements

@@ -143,7 +143,7 @@ abstract class Plugin {
 	public function plugin_links( $links, $file ) {
 		if ( $file == $this->plugin_name() ) {
 			$links[] = '<a target="_blank" rel="noopener" href="' . esc_url( $this->settings()->i()->url() ) . '"><span class="dashicons dashicons-flag" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( 'Home Page', 'd4plib' ) . '</a>';
-			$links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/"><span class="dashicons dashicons-book-alt" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a>';
+			$links[] = '<a target="_blank" rel="noopener" href="https://www.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/"><span class="dashicons dashicons-book-alt" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a>';
 			$links[] = '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/"><span class="dashicons dashicons-sos" aria-hidden="true" style="font-size: 16px; line-height: 1.3"></span>' . esc_html__( 'Support Forum', 'd4plib' ) . '</a>';
 
 			if ( $this->buy_me_a_coffee ) {
@@ -249,8 +249,8 @@ abstract class Plugin {
 		$links = apply_filters(
 			$this->plugin_prefix . '_admin_help_sidebar_links',
 			array(
-				'home'  => '<a target="_blank" rel="noopener" href="https://plugins.dev4press.com/' . esc_attr( $this->plugin ) . '/">' . esc_html__( 'Home Page', 'd4plib' ) . '</a>',
-				'kb'    => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/">' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a>',
+				'home'  => '<a target="_blank" rel="noopener" href="https://www.dev4press.com/plugins/' . esc_attr( $this->plugin ) . '/">' . esc_html__( 'Home Page', 'd4plib' ) . '</a>',
+				'kb'    => '<a target="_blank" rel="noopener" href="https://www.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/">' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a>',
 				'forum' => '<a target="_blank" rel="noopener" href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/">' . esc_html__( 'Support Forum', 'd4plib' ) . '</a>',
 			),
 			$this
@@ -267,8 +267,8 @@ abstract class Plugin {
 				'id'      => 'd4p-plugin-help-info',
 				'title'   => esc_html__( 'Help & Support', 'd4plib' ),
 				'content' => '<h2>' . esc_html__( 'Help & Support', 'd4plib' ) . '</h2><p>' . esc_html__( 'To get help with the plugin, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers).', 'd4plib' ) .
-				             '</p><p><a href="https://plugin.dev4press.com/' . esc_attr( $this->plugin ) . '/" class="button-primary" target="_blank" rel="noopener">' . esc_html( $this->title() ) . '</a> ' .
-				             '<a href="https://support.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/" class="button-secondary" target="_blank" rel="noopener">' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a> ' .
+				             '</p><p><a href="https://www.dev4press.com/plugins/' . esc_attr( $this->plugin ) . '/" class="button-primary" target="_blank" rel="noopener">' . esc_html( $this->title() ) . '</a> ' .
+				             '<a href="https://www.dev4press.com/kb/product/' . esc_attr( $this->plugin ) . '/" class="button-secondary" target="_blank" rel="noopener">' . esc_html__( 'Knowledge Base', 'd4plib' ) . '</a> ' .
 				             '<a href="https://support.dev4press.com/forums/forum/plugins/' . esc_attr( $this->plugin ) . '/" class="button-secondary" target="_blank">' . esc_html__( 'Support Forum', 'd4plib' ) . '</a></p>',
 			)
 		);
