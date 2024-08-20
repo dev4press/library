@@ -2,9 +2,11 @@
 
 ## Changelog
 
-### Version 5.0.1 - 2024.08.22
+### Version 5.0.1 - 2024.08.20
 
 * Edit: updated links format for the Dev4Press website
+* Edit: few tweaks to the Pixabay integration implementation
+* Edit: few tweaks to the Words generator class
 
 ### Version 5.0 - 2024.07.10
 
