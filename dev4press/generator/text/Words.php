@@ -43,6 +43,7 @@ abstract class Words extends Generator {
 
 	public function words( $count = 1, $tags = false, $array = false ) {
 		$words      = array();
+		$count      = absint( $count );
 		$word_count = 0;
 
 		while ( $word_count < $count ) {
@@ -64,7 +65,7 @@ abstract class Words extends Generator {
 		return $this->output( $words, $tags, $array );
 	}
 
-	public function protected_first( $count = 0 ) {
+	public function protected_first( $count = 0 ) : Words {
 		if ( $count == 0 ) {
 			$this->first       = false;
 			$this->first_count = 0;

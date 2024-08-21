@@ -56,11 +56,11 @@ class Image {
 		$this->id        = $response->id;
 		$this->type      = $response->type;
 		$this->url       = $response->pageURL;
-		$this->likes     = $response->likes;
-		$this->views     = $response->views;
-		$this->downloads = $response->downloads;
-		$this->favorites = $response->favorites;
-		$this->comments  = $response->comments;
+		$this->likes     = $response->likes ?? 0;
+		$this->views     = $response->views ?? 0;
+		$this->downloads = $response->downloads ?? 0;
+		$this->favorites = $response->favorites ?? 0;
+		$this->comments  = $response->comments ?? 0;
 
 		$this->width  = $response->imageWidth;
 		$this->height = $response->imageHeight;
