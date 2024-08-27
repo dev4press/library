@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class License {
-	protected bool $freemius = false;
+	protected string $freemius = '';
 	protected string $plugin = '';
 	private string $site_url = '';
 
@@ -55,12 +55,14 @@ abstract class License {
 
 	public function dashboard() {
 		if ( $this->is_freemius() ) {
-			$this->plugin()->dashboard_license_validation();
+			return;
 		}
+
+		$this->plugin()->dashboard_license_validation();
 	}
 
 	public function is_freemius() : bool {
-		return $this->freemius;
+		return ! empty( $this->freemius ) && function_exists( $this->freemius );
 	}
 
 	public function is_valid() : bool {
@@ -130,6 +132,10 @@ abstract class License {
 	}
 
 	public function validate() {
+		if ( $this->is_freemius() ) {
+			return;
+		}
+
 		$code_raw = $this->get_raw_license_code();
 		$code     = $this->get_license_code();
 		$record   = 'valid';

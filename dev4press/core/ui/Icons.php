@@ -41,6 +41,7 @@ class Icons {
 		'brand-classicpress',
 		'brand-deviantart',
 		'brand-facebook',
+		'brand-freemius',
 		'brand-github',
 		'brand-github-alt',
 		'brand-gravityforms',

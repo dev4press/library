@@ -2,12 +2,13 @@
 
 ## Changelog
 
-### Version 5.1 - 2024.07.10
+### Version 5.1 - 2024.09.03
 
 * New: added several more icons to the icon font
+* New: expanded `License` object with additional control
 * Edit: updated links format for the Dev4Press website
-* Edit: few tweaks to the Pixabay integration implementation
-* Edit: few tweaks to the Words generator class
+* Edit: few tweaks to the `Pixabay` integration implementation
+* Edit: few tweaks to the `Words` generator class
 
 ### Version 5.0 - 2024.07.10
 

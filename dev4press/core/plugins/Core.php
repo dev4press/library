@@ -152,10 +152,12 @@ abstract class Core {
 	}
 
 	public function license_control() {
-		add_action( $this->plugin . '-license-validation', array( $this, 'cron_license_validation' ) );
+		if ( ! $this->l()->is_freemius() ) {
+			add_action( $this->plugin . '-license-validation', array( $this, 'cron_license_validation' ) );
 
-		if ( ! wp_next_scheduled( $this->plugin . '-license-validation' ) ) {
-			wp_schedule_event( time() + HOUR_IN_SECONDS, 'weekly', $this->plugin . '-license-validation' );
+			if ( ! wp_next_scheduled( $this->plugin . '-license-validation' ) ) {
+				wp_schedule_event( time() + HOUR_IN_SECONDS, 'weekly', $this->plugin . '-license-validation' );
+			}
 		}
 	}
 
