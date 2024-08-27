@@ -119,7 +119,7 @@ abstract class Load {
 
 	public function load_admin() {
 		foreach ( $this->list() as $feature ) {
-			if ( class_exists( $this->_list[ $feature ]['admin'] ) ) {
+			if ( ! empty( $this->_list[ $feature ]['admin'] ) && class_exists( $this->_list[ $feature ]['admin'] ) ) {
 				$this->_list[ $feature ]['admin']::instance();
 			}
 		}
@@ -358,7 +358,7 @@ abstract class Load {
 	}
 
 	public function get_for_edit( string $feature, string $name, $default = null ) {
-		$real   = $feature . '__' . $name;
+		$real = $feature . '__' . $name;
 
 		if ( $this->network_mode() && ! is_network_admin() ) {
 			if ( $this->allow_blog_override( $feature ) ) {

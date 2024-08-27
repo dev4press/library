@@ -29,6 +29,7 @@ abstract class Panel {
 	protected $form_multiform = false;
 	protected $form_autocomplete = 'off';
 	protected $form_method = 'post';
+	protected $directory = 'panels';
 	protected $table_object = null;
 
 	public $storage = array();
@@ -206,12 +207,12 @@ abstract class Panel {
 		$this->include_footer();
 	}
 
-	public function forms_path_library() : string {
-		return $this->a()->path . Library::instance()->base_path() . '/forms/';
+	public function forms_path_library( $path = '' ) : string {
+		return $this->a()->path . Library::instance()->base_path() . '/forms/' . ( empty( $path ) ? '' : $path . '/' );
 	}
 
-	public function forms_path_plugin() : string {
-		return $this->a()->path . 'forms/';
+	public function forms_path_plugin( $path = '' ) : string {
+		return $this->a()->path . 'forms/' . ( empty( $path ) ? '' : $path . '/' );
 	}
 
 	public function include_header_fill() {
@@ -334,16 +335,19 @@ abstract class Panel {
 
 	protected function load( $name, $fallback = '', $default = '', $args = array() ) {
 		$list = array(
+			$this->forms_path_plugin( $this->directory ) . $name,
 			$this->forms_path_plugin() . $name,
 			$this->forms_path_library() . $name,
 		);
 
 		if ( ! empty( $fallback ) ) {
+			$list[] = $this->forms_path_plugin( $this->directory ) . $fallback;
 			$list[] = $this->forms_path_plugin() . $fallback;
 			$list[] = $this->forms_path_library() . $fallback;
 		}
 
 		if ( ! empty( $default ) ) {
+			$list[] = $this->forms_path_plugin( $this->directory ) . $fallback;
 			$list[] = $this->forms_path_plugin() . $default;
 			$list[] = $this->forms_path_library() . $default;
 		}

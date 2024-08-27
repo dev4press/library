@@ -221,7 +221,18 @@ abstract class Settings {
 		return $settings;
 	}
 
+	protected function init_license() {
+		if ( ! is_null( $this->admin()->plugin()->l() ) && $this->admin()->plugin()->l()->is_freemius() === false ) {
+			$this->settings = array_merge( array(
+				'license' => $this->settings_license(),
+			), $this->settings );
+		}
+	}
+
 	abstract protected function init();
+
+	/** @return \Dev4Press\v51\Core\Admin\Plugin */
+	abstract protected function admin();
 
 	abstract protected function value( $name, $group = 'settings', $default = null );
 }

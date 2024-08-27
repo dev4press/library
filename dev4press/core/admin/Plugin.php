@@ -163,6 +163,14 @@ abstract class Plugin {
 	public function admin_menu_items() {
 	}
 
+	protected function process_menu_items() {
+		foreach ( $this->menu_items as &$menu_item ) {
+			if ( isset( $menu_item['is_pro'] ) && $menu_item['is_pro'] ) {
+				$menu_item['title'] = ( $menu_item['short'] ?? $menu_item['title'] ) . '<strong style="background: red; padding: 0 3px 1px; color: #fff; margin: 0 0 0 5px; font-size: 95%; border-radius: 3px;">PRO</strong>';
+			}
+		}
+	}
+
 	/**
 	 * Generate filter or action handle for the specified name, prefixed with plugin prefix and admin.
 	 *
