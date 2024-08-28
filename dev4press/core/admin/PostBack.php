@@ -57,15 +57,15 @@ abstract class PostBack {
 		return $this->page;
 	}
 
-	protected function get_page_name( $name ) : string {
+	public function get_page_name( $name ) : string {
 		return $this->a()->plugin . '-' . $name;
 	}
 
-	protected function check_referer( $name ) {
+	public function check_referer( $name ) {
 		check_admin_referer( $this->get_page_name( $name ) . '-options' );
 	}
 
-	protected function check_capability( $name ) : bool {
+	public function check_capability( $name ) : bool {
 		if ( ! current_user_can( $this->a()->get_panel_cap( $name ) ) ) {
 			wp_die( esc_html__( 'You are not authorized to submit data for processing for this panel.', 'd4plib' ), esc_html__( 'Unauthorized request.', 'd4plib' ) );
 		}

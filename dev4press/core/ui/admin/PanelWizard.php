@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class PanelWizard extends Panel {
-	protected $sidebar = false;
+	protected bool $sidebar = false;
 
 	public function __construct( $admin ) {
 		parent::__construct( $admin );

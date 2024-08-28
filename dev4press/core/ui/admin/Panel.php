@@ -17,22 +17,20 @@ abstract class Panel {
 
 	/** @var \Dev4Press\v51\Core\UI\Admin\Render */
 	private $render;
-
-	protected $sidebar = true;
-	protected $form = false;
-	protected $table = false;
-	protected $cards = false;
-	protected $subpanels = array();
 	protected $render_class = '\\Dev4Press\\v51\\Core\\UI\\Admin\\Render';
-	protected $wrapper_class = '';
-	protected $default_subpanel = 'index';
-	protected $form_multiform = false;
-	protected $form_autocomplete = 'off';
-	protected $form_method = 'post';
-	protected $directory = 'panels';
 	protected $table_object = null;
 
-	public $storage = array();
+	protected array $subpanels = array();
+	protected bool $sidebar = true;
+	protected bool $form = false;
+	protected bool $table = false;
+	protected bool $cards = false;
+	protected bool $form_multiform = false;
+	protected string $form_autocomplete = 'off';
+	protected string $form_method = 'post';
+	protected string $wrapper_class = '';
+	protected string $default_subpanel = 'index';
+	protected string $directory = 'panels';
 
 	public function __construct( $admin ) {
 		$render = $this->render_class;
@@ -121,31 +119,6 @@ abstract class Panel {
 		return $this->cards;
 	}
 
-	public function validate_subpanel( $name ) {
-		if ( empty( $this->subpanels ) ) {
-			return '';
-		}
-
-		if ( isset( $this->subpanels[ $name ] ) ) {
-			return $name;
-		}
-
-		$valid = array_keys( $this->subpanels );
-
-		return $valid[0];
-	}
-
-	public function enqueue_scripts_early() {
-
-	}
-
-	public function enqueue_scripts() {
-
-	}
-
-	public function screen_options_show() {
-	}
-
 	public function wrapper_class() : array {
 		$_classes = array(
 			'd4p-wrap',
@@ -178,6 +151,31 @@ abstract class Panel {
 		}
 
 		return $_classes;
+	}
+
+	public function validate_subpanel( $name ) {
+		if ( empty( $this->subpanels ) ) {
+			return '';
+		}
+
+		if ( isset( $this->subpanels[ $name ] ) ) {
+			return $name;
+		}
+
+		$valid = array_keys( $this->subpanels );
+
+		return $valid[0];
+	}
+
+	public function enqueue_scripts_early() {
+
+	}
+
+	public function enqueue_scripts() {
+
+	}
+
+	public function screen_options_show() {
 	}
 
 	public function prepare() {
@@ -314,7 +312,7 @@ abstract class Panel {
 		return empty( $name ) ? $this->a()->panel : $name;
 	}
 
-	protected function get_subpanel_suffix( $subname = '' ) {
+	protected function get_subpanel_suffix( $subname = '' ) : string {
 		return empty( $subname ) ? ( empty( $this->a()->subpanel ) ? '' : $this->a()->subpanel ) : $subname;
 	}
 

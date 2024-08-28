@@ -7,10 +7,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class PanelAbout extends Panel {
-	protected $sidebar = false;
+	protected bool $sidebar = false;
 	protected $history = false;
-	protected $default_subpanel = 'whatsnew';
-	protected $wrapper_class = 'd4p-page-about';
+	protected string $default_subpanel = 'whatsnew';
+	protected string $wrapper_class = 'd4p-page-about';
 
 	public function __construct( $admin ) {
 		parent::__construct( $admin );

@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class PanelSettings extends Panel {
-	protected $form = true;
-	protected $form_multiform = true;
+	protected bool $form = true;
+	protected bool $form_multiform = true;
 
 	public $settings_class = '';
 

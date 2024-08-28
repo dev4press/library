@@ -54,7 +54,31 @@ abstract class GetBack {
 		return $this->page;
 	}
 
-	protected function check_nonce( $action, $nonce = '_wpnonce', $die = true ) {
+	public function is_single_action( $name, $key = 'single-action' ) : bool {
+		return $this->_get( $key ) == $name;
+	}
+
+	public function is_bulk_action() : bool {
+		return ( $this->_is() && $this->_get() != '-1' ) || ( $this->_is( 'action2' ) && $this->_get( 'action2' ) != '-1' );
+	}
+
+	public function get_single_action( $key = 'single-action' ) : string {
+		return $this->_get( $key );
+	}
+
+	public function get_bulk_action() : string {
+		$action = $this->_get();
+		$action = $action == '-1' ? '' : $action;
+
+		if ( $action == '' ) {
+			$action = $this->_get( 'action2' );
+			$action = $action == '-1' ? '' : $action;
+		}
+
+		return $action;
+	}
+
+	public function check_nonce( $action, $nonce = '_wpnonce', $die = true ) {
 		check_ajax_referer( $action, $nonce, $die );
 	}
 
@@ -164,30 +188,6 @@ abstract class GetBack {
 			wp_redirect( $this->a()->current_url( false ) );
 			exit;
 		}
-	}
-
-	protected function is_single_action( $name, $key = 'single-action' ) : bool {
-		return $this->_get( $key ) == $name;
-	}
-
-	protected function is_bulk_action() : bool {
-		return ( $this->_is() && $this->_get() != '-1' ) || ( $this->_is( 'action2' ) && $this->_get( 'action2' ) != '-1' );
-	}
-
-	protected function get_single_action( $key = 'single-action' ) : string {
-		return $this->_get( $key );
-	}
-
-	protected function get_bulk_action() : string {
-		$action = $this->_get();
-		$action = $action == '-1' ? '' : $action;
-
-		if ( $action == '' ) {
-			$action = $this->_get( 'action2' );
-			$action = $action == '-1' ? '' : $action;
-		}
-
-		return $action;
 	}
 
 	protected function _get( $key = 'action', $default = '' ) : string {
