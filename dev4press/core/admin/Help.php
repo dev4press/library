@@ -38,6 +38,17 @@ abstract class Help {
 		$this->admin = $admin;
 	}
 
+	/** @return static */
+	public static function instance( $admin ) {
+		static $instance = array();
+
+		if ( ! isset( $instance[ static::class ] ) ) {
+			$instance[ static::class ] = new static( $admin );
+		}
+
+		return $instance[ static::class ];
+	}
+
 	/** @return \Dev4Press\v51\Core\Admin\Plugin|\Dev4Press\v51\Core\Admin\Menu\Plugin|\Dev4Press\v51\Core\Admin\Submenu\Plugin */
 	protected function a() {
 		return $this->admin;

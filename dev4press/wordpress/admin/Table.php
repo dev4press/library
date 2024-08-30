@@ -262,7 +262,7 @@ abstract class Table extends WP_List_Table {
 		);
 	}
 
-	protected function query_metas( string $table, string $index, string $column = null ) {
+	protected function query_metas( string $table, string $index, ?string $column = null ) {
 		$column = $column ?? $index;
 
 		$ids = $this->db()->clean_ids_list( wp_list_pluck( $this->items, $index ) );
@@ -368,7 +368,7 @@ abstract class Table extends WP_List_Table {
 		return $this->_admin()->current_url();
 	}
 
-	protected function _self( $args, $getback = false, $nonce = null ) : string {
+	protected function _self( string $args, bool $getback = false, ?string $nonce = null ) : string {
 		$url = $this->_url();
 		$url .= '&' . $args;
 

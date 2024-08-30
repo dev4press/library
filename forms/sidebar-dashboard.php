@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php echo KSES::strong( panel()->r()->icon( 'plugin-' . panel()->a()->plugin, '9x' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         </div>
         <h3>
-			<?php echo esc_html( panel()->a()->title() ); ?>
+			<?php echo KSES::strong( panel()->a()->title() ); ?>
         </h3>
         <div class="_version-wrapper">
             <span class="_edition"><?php echo esc_html( ucfirst( panel()->a()->settings()->i()->edition ) ); ?></span>

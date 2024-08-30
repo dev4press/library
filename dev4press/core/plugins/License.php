@@ -65,6 +65,10 @@ abstract class License {
 		return ! empty( $this->freemius ) && function_exists( $this->freemius );
 	}
 
+	public function can_use_premium_code__premium_only() : bool {
+		return $this->is_valid();
+	}
+
 	public function is_valid() : bool {
 		if ( $this->is_freemius() ) {
 			return true;

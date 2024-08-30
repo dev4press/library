@@ -40,24 +40,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Core {
-	public $is_debug = false;
+	public bool $is_debug = false;
 
-	public $widgets = false;
-	public $enqueue = false;
-	public $features = false;
-	public $license = false;
+	public bool $widgets = false;
+	public bool $enqueue = false;
+	public bool $features = false;
+	public bool $license = false;
 
-	public $cap = 'activate_plugins';
-	public $svg_icon = '';
-	public $plugin = '';
-	public $url = '';
-	public $path = '';
+	public string $cap = 'activate_plugins';
+	public string $svg_icon = '';
+	public string $plugin = '';
+	public string $url = '';
+	public string $path = '';
 
-	protected $_datetime;
-	protected $_system_requirements = array();
-	protected $_widget_instance = array();
-	protected $_plugins_loaded_priority = 10;
-	protected $_after_setup_theme_priority = 10;
+	protected array $_system_requirements = array();
+	protected array $_widget_instance = array();
+	protected int $_plugins_loaded_priority = 10;
+	protected int $_after_setup_theme_priority = 10;
+	protected DateTime $_datetime;
 
 	public function __construct() {
 		$this->_datetime = new DateTime();

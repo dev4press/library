@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class PanelAbout extends Panel {
 	protected bool $sidebar = false;
-	protected $history = false;
+	protected bool $history = false;
 	protected string $default_subpanel = 'whatsnew';
 	protected string $wrapper_class = 'd4p-page-about';
 

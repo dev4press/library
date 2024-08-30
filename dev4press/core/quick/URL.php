@@ -85,7 +85,7 @@ class URL {
 		}
 	}
 
-	public static function add_campaign_tracking( string $url, string $campaign = '', string $medium = '', string $content = '', string $term = '', $source = null ) : string {
+	public static function add_campaign_tracking( string $url, string $campaign = '', string $medium = '', string $content = '', string $term = '', ?string $source = null ) : string {
 		if ( ! empty( $campaign ) ) {
 			$url = add_query_arg( 'utm_campaign', $campaign, $url );
 		}

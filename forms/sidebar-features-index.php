@@ -24,7 +24,7 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
             <div class="_icon">
 				<?php echo KSES::strong( panel()->r()->icon( $_panel->icon ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
-            <h3><?php echo esc_html( $_panel->title ); ?></h3>
+            <h3><?php echo KSES::strong( $_panel->title ); ?></h3>
             <div class="_info">
 				<?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
             </div>

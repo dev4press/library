@@ -30,7 +30,7 @@ abstract class Panel {
 	protected string $form_method = 'post';
 	protected string $wrapper_class = '';
 	protected string $default_subpanel = 'index';
-	protected string $directory = 'panels';
+	protected string $directory = '';
 
 	public function __construct( $admin ) {
 		$render = $this->render_class;

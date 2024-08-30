@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Core {
-	public $store = 'd4plib';
+	public string $store = 'd4plib';
 
 	public function __construct() {
 		$this->clear();

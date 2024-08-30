@@ -328,6 +328,14 @@
   padding: 0;
   text-transform: uppercase;
 }
+.d4p-wrap .d4p-sidebar .d4p-panel-title h3 .dev4press-pro-badge {
+  display: block;
+  max-width: fit-content;
+  padding: 2px 5px 4px !important;
+  font-size: 60% !important;
+  clear: both !important;
+  margin: 10px auto 0 !important;
+}
 .d4p-wrap .d4p-sidebar .d4p-panel-title h4 {
   background-color: var(--d4p-color-sidebar-icon-background);
   border-radius: var(--d4p-layout-main-border-radius);

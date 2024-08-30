@@ -18,7 +18,7 @@ $_subpanels = panel()->subpanels();
             <div class="_icon">
 				<?php echo KSES::strong( panel()->r()->icon( $_panel->icon ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
-            <h3><?php echo esc_html( $_panel->title ); ?></h3>
+            <h3><?php echo KSES::strong( $_panel->title ); ?></h3>
 			<?php
 
 			echo '<h4>' . panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) . esc_html__( 'All Settings', 'd4plib' ) . '</h4>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
