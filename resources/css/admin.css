@@ -915,6 +915,13 @@
   font-size: 1em;
   flex: 1 1 calc(50% - 0.5em);
 }
+@media screen and (max-width: 540px) {
+  .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li,
+  .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li,
+  .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li {
+    flex: 1 1 100%;
+  }
+}
 .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul li a,
 .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li a,
 .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li a {
@@ -936,6 +943,25 @@
 .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul li .d4p-card-badge,
 .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul li .d4p-card-badge {
   margin-top: 2px;
+}
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-three-columns li,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul.d4p-three-columns li,
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul.d4p-three-columns li {
+  flex: 1 1 calc((100% - 2em) / 3);
+}
+@media screen and (max-width: 939px) {
+  .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-three-columns li,
+  .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul.d4p-three-columns li,
+  .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul.d4p-three-columns li {
+    flex: 1 1 calc(50% - 0.5em);
+  }
+}
+@media screen and (max-width: 540px) {
+  .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-three-columns li,
+  .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul.d4p-three-columns li,
+  .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-footer ul.d4p-three-columns li {
+    flex: 1 1 100%;
+  }
 }
 .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-inner ul.d4p-full-width,
 .d4p-wrap.d4p-with-cards .d4p-content .d4p-group.d4p-dashboard-card .d4p-group-header ul.d4p-full-width,

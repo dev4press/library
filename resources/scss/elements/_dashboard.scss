@@ -246,6 +246,10 @@
                                 font-size: 1em;
                                 flex: 1 1 calc(50% - .5em);
 
+                                @media screen and (max-width: 540px) {
+                                    flex: 1 1 100%;
+                                }
+
                                 a {
                                     text-decoration: none;
 
@@ -262,6 +266,20 @@
 
                                 .d4p-card-badge {
                                     margin-top: 2px;
+                                }
+                            }
+
+                            &.d4p-three-columns {
+                                li {
+                                    flex: 1 1 calc((100% - 2em) / 3);
+
+                                    @media screen and (max-width: 939px) {
+                                        flex: 1 1 calc(50% - .5em);
+                                    }
+
+                                    @media screen and (max-width: 540px) {
+                                        flex: 1 1 100%;
+                                    }
                                 }
                             }
 
