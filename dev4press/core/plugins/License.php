@@ -61,6 +61,10 @@ abstract class License {
 		$this->plugin()->dashboard_license_validation();
 	}
 
+	public function get_upgrade_url() : string {
+		return URL::add_campaign_tracking( 'https://www.dev4press.com/plugins/' . $this->plugin . '/pricing/', 'license-upgrade' );
+	}
+
 	public function is_freemius() : bool {
 		return ! empty( $this->freemius ) && function_exists( $this->freemius );
 	}
