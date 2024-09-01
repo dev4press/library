@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$_plugin = panel()->a()->settings()->i();
-$sysreq  = $_plugin->system_requirements();
+$_plugin  = panel()->a()->settings()->i();
+$_sys_req = $_plugin->system_requirements();
 
 $translations = panel()->a()->settings()->i()->translations;
 $translations = Languages::instance()->plugin_translations( $translations );
@@ -31,7 +31,7 @@ $translations = Languages::instance()->plugin_translations( $translations );
                     <span><?php esc_html_e( 'Status', 'd4plib' ); ?>:</span><strong><?php echo esc_html( ucfirst( $_plugin->status ) ); ?></strong>
                 </li>
                 <li>
-                    <span><?php esc_html_e( 'Edition', 'd4plib' ); ?>:</span><strong><?php echo esc_html( ucfirst( $_plugin->edition ) ); ?></strong>
+                    <span><?php esc_html_e( 'Edition', 'd4plib' ); ?>:</span><strong><?php echo esc_html( ucfirst( $_plugin->get_edition() ) ); ?></strong>
                 </li>
                 <li>
                     <span><?php esc_html_e( 'Date', 'd4plib' ); ?>:</span><strong><?php echo esc_html( $_plugin->updated ); ?></strong>
@@ -54,7 +54,7 @@ $translations = Languages::instance()->plugin_translations( $translations );
             <ul class="d4p-info-list">
 				<?php
 
-				foreach ( $sysreq as $name => $version ) {
+				foreach ( $_sys_req as $name => $version ) {
 					echo '<li><span>' . esc_html( $name ) . ':</span><strong>' . esc_html( $version ) . '</strong></li>';
 				}
 

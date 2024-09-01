@@ -97,6 +97,14 @@ abstract class Information {
 		return $this->edition === 'pro';
 	}
 
+	public function get_edition( bool $only_pro = false, string $empty = '' ) : string {
+		if ( $only_pro && $this->edition !== 'pro' ) {
+			return $empty;
+		}
+
+		return ucfirst( $this->edition );
+	}
+
 	public function name() : string {
 		return Store::instance()->name( $this->code );
 	}

@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php echo KSES::strong( panel()->a()->title() ); ?>
         </h3>
         <div class="_version-wrapper">
-            <span class="_edition"><?php echo esc_html( ucfirst( panel()->a()->settings()->i()->edition ) ); ?></span>
+            <span class="_edition"><?php echo esc_html( panel()->a()->settings()->i()->get_edition() ); ?></span>
             <span class="_version"><?php
 
 				/* translators: Plugin version label. %s: Version number. */

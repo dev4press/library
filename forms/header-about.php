@@ -15,9 +15,9 @@ $_classes   = panel()->wrapper_class();
 
 $_plugin_title = sprintf(
 /* translators: About page welcome message. %1$s: Plugin Name. %2%s: Pro suffix. %3%s: Plugin version. */
-	__( 'Welcome to %1$s%2$s %3$s', 'd4plib' ),
+	__( 'Welcome to %1$s %2$s %3$s', 'd4plib' ),
 	panel()->a()->title(),
-	panel()->a()->settings()->i()->is_pro() ? ' Pro' : '',
+	panel()->a()->settings()->i()->get_edition( true ),
 	panel()->a()->settings()->i()->version
 );
 
