@@ -81,7 +81,7 @@ class Store {
 		'corebackup'                       => array(
 			'code'        => 'corebackup',
 			'name'        => 'coreBackup',
-			'description' => 'Collection of various administration tools, features and tweaks that can help with everyday website tasks, maintenance and optimization.',
+			'description' => 'An easy-to-use plugin to back up website files and database, supporting backup customization, uploading backups to cloud storage, and more.',
 			'punchline'   => 'Website database and files backup solution',
 			'color'       => '#C65C0F',
 			'free'        => true,
