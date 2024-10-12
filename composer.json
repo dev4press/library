@@ -1,0 +1,25 @@
+{
+  "name": "dev4press/library",
+  "type": "library",
+  "license": "GPL-3.0-or-later",
+  "homepage": "https://www.dev4press.com/",
+  "authors": [
+    {
+      "name": "Milan Petrovic",
+      "email": "support@dev4press.com",
+      "homepage": "https://www.dev4press.com/"
+    }
+  ],
+  "support": {
+    "forum": "https://support.dev4press.com/",
+    "source": "https://github.com/dev4press/library"
+  },
+  "autoload": {
+    "files": [
+      "core.php"
+    ]
+  },
+  "require": {
+    "php": "^7.4"
+  }
+}
