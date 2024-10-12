@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### Version 5.2 - 2024.10.15
+
+* New: updated to work with the composer include
+
 ### Version 5.1 - 2024.09.04
 
 * New: added several more icons to the icon font

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v51\Core\Plugins\Wizard
- * Version: v5.1
+ * Name:    Dev4Press\v52\Core\Plugins\Wizard
+ * Version: v5.2
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v51\Core\Plugins;
+namespace Dev4Press\v52\Core\Plugins;
 
-use Dev4Press\v51\Core\Quick\Sanitize;
-use Dev4Press\v51\Core\UI\Elements;
+use Dev4Press\v52\Core\Quick\Sanitize;
+use Dev4Press\v52\Core\UI\Elements;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -301,7 +301,7 @@ abstract class Wizard {
 
 	}
 
-	/** @return \Dev4Press\v51\Core\Admin\Plugin */
+	/** @return \Dev4Press\v52\Core\Admin\Plugin */
 	abstract public function a();
 
 	abstract protected function init_panels();

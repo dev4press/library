@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v51\Core\Options\Settings
- * Version: v5.1
+ * Name:    Dev4Press\v52\Core\Options\Settings
+ * Version: v5.2
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v51\Core\Options;
+namespace Dev4Press\v52\Core\Options;
 
-use Dev4Press\v51\Core\DateTime;
-use Dev4Press\v51\Core\Quick\Str;
+use Dev4Press\v52\Core\DateTime;
+use Dev4Press\v52\Core\Quick\Str;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -231,7 +231,7 @@ abstract class Settings {
 
 	abstract protected function init();
 
-	/** @return \Dev4Press\v51\Core\Admin\Plugin */
+	/** @return \Dev4Press\v52\Core\Admin\Plugin */
 	abstract protected function admin();
 
 	abstract protected function value( $name, $group = 'settings', $default = null );

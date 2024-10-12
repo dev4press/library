@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v51\Core\Features\Load
- * Version: v5.1
+ * Name:    Dev4Press\v52\Core\Features\Load
+ * Version: v5.2
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v51\Core\Features;
+namespace Dev4Press\v52\Core\Features;
 
-use Dev4Press\v51\Core\Scope;
+use Dev4Press\v52\Core\Scope;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -1,17 +1,15 @@
 <?php
 
-use Dev4Press\v51\Core\Helpers\Vendors;
-use Dev4Press\v51\Core\Quick\File;
-use Dev4Press\v51\Core\Quick\KSES;
-use function Dev4Press\v51\Functions\panel;
+use Dev4Press\v52\Core\Helpers\Vendors;
+use Dev4Press\v52\Core\Quick\File;
+use Dev4Press\v52\Core\Quick\KSES;
+use function Dev4Press\v52\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 $file_name = $file_name ?? 'changelog.md';
-
-Vendors::parsedown();
 
 $parsedown = new Parsedown();
 $changelog = File::get_contents( panel()->a()->plugin()->path . $file_name );

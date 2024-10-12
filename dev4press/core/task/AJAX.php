@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v51\Core\Task\AJAX
- * Version: v5.1
+ * Name:    Dev4Press\v52\Core\Task\AJAX
+ * Version: v5.2
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v51\Core\Task;
+namespace Dev4Press\v52\Core\Task;
 
-use Dev4Press\v51\Core\Base\Background;
+use Dev4Press\v52\Core\Base\Background;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Dev4Press\v51\Core\UI\Admin;
+namespace Dev4Press\v52\Core\UI\Admin;
 
-use Dev4Press\v51\Core\Quick\KSES;
-use Dev4Press\v51\Library;
+use Dev4Press\v52\Core\Quick\KSES;
+use Dev4Press\v52\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -12,12 +12,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Panel {
 	private static $_current_instance = null;
 
-	/** @var \Dev4Press\v51\Core\Admin\Plugin|\Dev4Press\v51\Core\Admin\Menu\Plugin|\Dev4Press\v51\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v52\Core\Admin\Plugin|\Dev4Press\v52\Core\Admin\Menu\Plugin|\Dev4Press\v52\Core\Admin\Submenu\Plugin */
 	private $admin;
 
-	/** @var \Dev4Press\v51\Core\UI\Admin\Render */
+	/** @var \Dev4Press\v52\Core\UI\Admin\Render */
 	private $render;
-	protected $render_class = '\\Dev4Press\\v51\\Core\\UI\\Admin\\Render';
+	protected $render_class = '\\Dev4Press\\v52\\Core\\UI\\Admin\\Render';
 	protected $table_object = null;
 
 	protected array $subpanels = array();

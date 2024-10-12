@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v51\Core\Options\Features
- * Version: v5.1
+ * Name:    Dev4Press\v52\Core\Options\Features
+ * Version: v5.2
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v51\Core\Options;
+namespace Dev4Press\v52\Core\Options;
 
-use Dev4Press\v51\Core\Options\Element as EL;
+use Dev4Press\v52\Core\Options\Element as EL;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -165,6 +165,6 @@ abstract class Features {
 
 	abstract protected function init();
 
-	/** @return \Dev4Press\v51\Core\Features\Load */
+	/** @return \Dev4Press\v52\Core\Features\Load */
 	abstract public function core();
 }

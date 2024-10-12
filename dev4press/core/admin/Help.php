@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v51\Core\Admin\Help
- * Version: v5.1
+ * Name:    Dev4Press\v52\Core\Admin\Help
+ * Version: v5.2
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v51\Core\Admin;
+namespace Dev4Press\v52\Core\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -49,7 +49,7 @@ abstract class Help {
 		return $instance[ static::class ];
 	}
 
-	/** @return \Dev4Press\v51\Core\Admin\Plugin|\Dev4Press\v51\Core\Admin\Menu\Plugin|\Dev4Press\v51\Core\Admin\Submenu\Plugin */
+	/** @return \Dev4Press\v52\Core\Admin\Plugin|\Dev4Press\v52\Core\Admin\Menu\Plugin|\Dev4Press\v52\Core\Admin\Submenu\Plugin */
 	protected function a() {
 		return $this->admin;
 	}

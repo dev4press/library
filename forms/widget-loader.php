@@ -1,6 +1,6 @@
 <?php
 
-use Dev4Press\v51\Core\Quick\KSES;
+use Dev4Press\v52\Core\Quick\KSES;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

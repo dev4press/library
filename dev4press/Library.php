@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v51\Library
- * Version: v5.1
+ * Name:    Dev4Press\v52\Library
+ * Version: v5.2
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v51;
+namespace Dev4Press\v52;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
