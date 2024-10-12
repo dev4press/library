@@ -1,5 +1,6 @@
 {
   "name": "dev4press/library",
+  "description": "Dev4Press Shared Code Library used in WordPress plugins developed on Dev4Press.com",
   "type": "library",
   "license": "GPL-3.0-or-later",
   "homepage": "https://www.dev4press.com/",
@@ -20,6 +21,7 @@
     ]
   },
   "require": {
-    "php": "^7.4"
+    "php": "^7.4",
+    "erusev/parsedown-extra": "*"
   }
 }
