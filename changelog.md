@@ -6,6 +6,7 @@
 
 * New: updated to work with the composer include
 * New: added several more icons to the icon font
+* Edit: built-in cacert.pem 20240924
 
 ### Version 5.1 - 2024.09.04
 

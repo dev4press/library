@@ -2,7 +2,7 @@
 ## About
 
 * Version: v5.2
-* Build:   5000
+* Build:   5200
 * Release: 2024.07.08.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
