@@ -67,6 +67,10 @@ abstract class Background {
 		return $instance[ static::class ];
 	}
 
+	public function is_aborted() : bool {
+		return $this->abort === 'abort';
+	}
+
 	public function load() {
 		if ( empty( $this->data ) ) {
 			wp_raise_memory_limit();
@@ -80,16 +84,13 @@ abstract class Background {
 		$this->load();
 
 		if ( $this->abort == 'abort' ) {
-			$this->add_message( __( 'Process has been aborted.', 'd4plib' ) );
-			$this->status( 'abort' );
-
-			$this->save();
+			$this->do_abort();
 		} else {
-			if ( $this->data['status'] == 'working' ) {
+			if ( $this->get_status() == 'working' ) {
 				$this->worker();
-			} else if ( $this->data['status'] == 'waiting' ) {
+			} else if ( $this->get_status() == 'waiting' ) {
 				$this->init();
-			} else if ( $this->data['status'] == 'idle' ) {
+			} else if ( $this->get_status() == 'idle' ) {
 				$this->data['info']['started'] = $this->now();
 				$this->data['info']['user_id'] = get_current_user_id();
 				$this->data['info']['ip']      = IP::visitor();
@@ -122,6 +123,11 @@ abstract class Background {
 
 	public function delete() {
 		delete_site_transient( $this->transient );
+
+		$this->delete_abort();
+	}
+
+	public function delete_abort() {
 		delete_site_transient( $this->abort_transient );
 	}
 
@@ -166,10 +172,20 @@ abstract class Background {
 			$this->add_message( sprintf( __( 'Processing thread finished after %s seconds.', 'd4plib' ), number_format( $this->elapsed(), 2 ) ) );
 			$this->add_message( __( 'Spawning new background processing thread.', 'd4plib' ) );
 
-			$this->data['info']['threads'] ++;
-			$this->save();
+			if ( $this->is_on_time() ) {
+				$this->check_abort();
 
-			$this->spawn();
+				if ( $this->is_aborted() ) {
+					$this->do_abort();
+				}
+			}
+
+			if ( $this->get_status() != 'abort' ) {
+				$this->data['info']['threads'] ++;
+				$this->save();
+
+				$this->spawn();
+			}
 		} else {
 			$threads = $this->data['info']['threads'];
 
@@ -184,10 +200,16 @@ abstract class Background {
 
 			$this->save();
 		}
+
+		$this->delete_abort();
 	}
 
 	protected function status( string $status ) {
 		$this->data['status'] = $status;
+	}
+
+	public function get_status() {
+		return $this->data['status'];
 	}
 
 	protected function task_start( string $title ) {
@@ -243,8 +265,6 @@ abstract class Background {
 		$this->data['info']['latest'] = $this->now();
 
 		set_site_transient( $this->transient, $this->data );
-
-		delete_site_transient( $this->abort_transient );
 	}
 
 	protected function now() {
@@ -269,6 +289,23 @@ abstract class Background {
 			'message' => $message,
 			'type'    => $type,
 		);
+	}
+
+	protected function check_abort() {
+		wp_cache_delete( $this->abort_transient, 'site-transient' );
+
+		$this->abort = get_site_transient( $this->abort_transient );
+
+		if ( ! is_string( $this->abort ) ) {
+			$this->abort = '';
+		}
+	}
+
+	protected function do_abort() {
+		$this->add_message( __( 'Process has been aborted.', 'd4plib' ) );
+		$this->status( 'abort' );
+
+		$this->save();
 	}
 
 	abstract public function start();

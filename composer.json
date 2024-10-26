@@ -1,6 +1,7 @@
 {
   "name": "dev4press/library",
   "description": "Dev4Press Shared Code Library used in WordPress plugins developed on Dev4Press.com",
+  "version": "5.2",
   "type": "library",
   "license": "GPL-3.0-or-later",
   "homepage": "https://www.dev4press.com/",
@@ -8,7 +9,8 @@
     {
       "name": "Milan Petrovic",
       "email": "support@dev4press.com",
-      "homepage": "https://www.dev4press.com/"
+      "homepage": "https://www.dev4press.com/",
+	  "role": "Developer"
     }
   ],
   "support": {
