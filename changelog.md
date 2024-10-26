@@ -7,6 +7,10 @@
 * New: updated to work with the composer include
 * New: added several more icons to the icon font
 * New: expanded `DBLite` with more methods for `WPDB`
+* New: expanded `DBLite` with method to get table name
+* New: expanded `Arr` with `insert_before` method
+* New: expanded `Table` with `timstamp_to_date` method
+* New: class `DirectoryFilter` iterator
 * Edit: method `mysqli` in `DBLite` always return `TRUE` 
 * Edit: built-in cacert.pem 20240924
 

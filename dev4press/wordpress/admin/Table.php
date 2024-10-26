@@ -146,6 +146,12 @@ abstract class Table extends WP_List_Table {
 		return null;
 	}
 
+	protected function timestamp_to_date( $value ) : string {
+		$timestamp = coresecurity()->datetime()->timestamp_gmt_to_local( $value );
+
+		return gmdate( 'Y.m.d', $timestamp ) . '<br/>@ ' . gmdate( 'H:i:s', $timestamp );
+	}
+
 	protected function get_period_dropdown_sql( $column, $table ) : string {
 		return "SELECT DISTINCT YEAR($column) AS year, MONTH($column) AS month FROM $table ORDER BY $column DESC";
 	}

@@ -83,4 +83,11 @@ class Arr {
 			'vmax' => 'vmax',
 		);
 	}
+
+	public static function insert_before( array $array, string $key, array $new ) : array {
+		$keys = array_keys( $array );
+		$pos  = array_search( $key, $keys );
+
+		return array_merge( array_slice( $array, 0, $pos ), $new, array_slice( $array, $pos ) );
+	}
 }

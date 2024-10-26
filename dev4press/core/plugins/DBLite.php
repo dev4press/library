@@ -143,6 +143,16 @@ abstract class DBLite {
 		return $wpdb;
 	}
 
+	public function table_name( $name ) {
+		$table = $this->wpdb()->$name;
+
+		if ( empty( $table ) ) {
+			$table = $this->$name ?? '';
+		}
+
+		return empty( $table ) ? $name : $table;
+	}
+
 	public function clean_ids_list( $ids ) : array {
 		return Sanitize::ids_list( $ids );
 	}
