@@ -85,7 +85,7 @@ if ( ! WPR::is_plugin_active( 'gd-power-search-for-bbpress/gd-power-search-for-b
 	?>
 
     <div class="d4p-notice-info">
-		<?php dev4press_display_notice_for_plugin( 'GD Topic Polls Pro for bbPress' ); ?>
+		<?php dev4press_display_notice_for_plugin( 'topicPolls Pro for bbPress' ); ?>
         <blockquote>Implements a polls system for bbPress powered forums, where users can add polls to topics, with a wide range of settings to control voting, poll closing, display of results and more.</blockquote>
         <a target="_blank" rel="noopener" href="<?php echo esc_url( $url ); ?>" class="button-primary"><?php esc_html_e( 'Plugin Home Page', 'd4plib' ); ?></a>
         <a href="<?php echo esc_url( $_dismiss_url ); ?>dismiss-topic-polls" class="button-secondary"><?php esc_html_e( 'Do not show this notice anymore', 'd4plib' ); ?></a>

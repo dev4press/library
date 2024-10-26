@@ -381,17 +381,17 @@ class Detection {
 			),
 			'gdpol-digest-notify-moderators'                         => array(
 				'action' => 'gdpol_daily_digest_notify_moderators_pre_notify',
-				'source' => 'GD Topic Polls',
+				'source' => 'topicPolls for bbPress',
 				'label'  => _x( 'Digest Notify Moderators', 'Email Detection Type', 'd4plib' ),
 			),
 			'gdpol-digest-notify-author'                             => array(
 				'action' => 'gdpol_daily_digest_notify_author_pre_notify',
-				'source' => 'GD Topic Polls',
+				'source' => 'topicPolls for bbPress',
 				'label'  => _x( 'Digest Notify Author', 'Email Detection Type', 'd4plib' ),
 			),
 			'gdpol-instant-notify'                                   => array(
 				'action' => 'gdpol_instant_notify_pre_notify',
-				'source' => 'GD Topic Polls',
+				'source' => 'topicPolls for bbPress',
 				'label'  => _x( 'Instant Notify', 'Email Detection Type', 'd4plib' ),
 			),
 			'bbpress-new-reply-in-topic'                             => array(
