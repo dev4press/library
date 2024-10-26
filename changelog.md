@@ -6,6 +6,8 @@
 
 * New: updated to work with the composer include
 * New: added several more icons to the icon font
+* New: expanded `DBLite` with more methods for `WPDB`
+* Edit: method `mysqli` in `DBLite` always return `TRUE` 
 * Edit: built-in cacert.pem 20240924
 
 ### Version 5.1 - 2024.09.04

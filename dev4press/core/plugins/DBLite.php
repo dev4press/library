@@ -56,6 +56,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @property int    blogid
  * @property int    insert_id
  * @property int    rows_affected
+ * @property int    num_rows
+ * @property int    num_queries
+ * @property array  queries
+ * @property string last_query
+ * @property string last_error
+ * @property bool   show_errors
+ * @property bool   suppress_errors
+ * @property float  time_start
+ * @method string                 get_blog_prefix( $blog_id = null )
  * @method string|void            prepare( $query, ...$args )
  * @method int|bool               query( $query )
  * @method array|object|null      get_results( $query = null, $output = OBJECT )
@@ -65,9 +74,19 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @method int|false              insert( $table, $data, $format = null )
  * @method int|false              update( $table, $data, $where, $format = null, $where_format = null )
  * @method int|false              delete( $table, $where, $where_format = null )
+ * @method int|false              replace( $table, $data, $format = null )
+ * @method void                   log_query( $query, $query_time, $query_callstack, $query_start, $query_data )
  * @method void                   flush()
+ * @method bool                   hide_errors()
+ * @method bool                   show_errors()
+ * @method bool                   suppress_errors( $suppress = true )
+ * @method true                   timer_start()
+ * @method float                  timer_stop()
+ * @method string|null            db_version()
+ * @method string                 db_server_info()
  */
 abstract class DBLite {
+	public $use_mysqli = true;
 	protected $plugin_name = 'dev4press-library';
 	protected $plugin_instance = 'db';
 
@@ -257,17 +276,7 @@ abstract class DBLite {
 	}
 
 	public function mysqli() : bool {
-		$use_mysqli = false;
-
-		if ( function_exists( 'mysqli_connect' ) ) {
-			$use_mysqli = true;
-
-			if ( defined( 'WP_USE_EXT_MYSQL' ) ) {
-				$use_mysqli = ! WP_USE_EXT_MYSQL;
-			}
-		}
-
-		return $use_mysqli;
+		return true;
 	}
 
 	public function prefix() : string {
