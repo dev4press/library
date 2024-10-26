@@ -30,6 +30,7 @@ namespace Dev4Press\v52\WordPress\Admin;
 use Dev4Press\v52\Core\Helpers\DB;
 use Dev4Press\v52\Core\Plugins\DBLite;
 use Dev4Press\v52\Core\Quick\Sanitize;
+use Dev4Press\v52\Library;
 use WP_List_Table;
 use function Dev4Press\v52\Functions\panel;
 
@@ -147,7 +148,7 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function timestamp_to_date( $value ) : string {
-		$timestamp = coresecurity()->datetime()->timestamp_gmt_to_local( $value );
+		$timestamp = Library::instance()->datetime()->timestamp_gmt_to_local( $value );
 
 		return gmdate( 'Y.m.d', $timestamp ) . '<br/>@ ' . gmdate( 'H:i:s', $timestamp );
 	}

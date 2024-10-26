@@ -27,6 +27,8 @@
 
 namespace Dev4Press\v52;
 
+use Dev4Press\v52\Core\DateTime;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -64,8 +66,10 @@ class Library {
 	 * @var string
 	 */
 	private $_base_path = 'vendor/dev4press/library';
+	private DateTime $_datetime;
 
 	public function __construct() {
+		$this->_datetime     = new DateTime();
 		$this->_php_version  = (string) phpversion();
 		$this->_php_code     = absint( substr( str_replace( '.', '', $this->_php_version ), 0, 2 ) );
 		$this->_library_url  = str_replace( '/' . $this->_base_path . '/dev4press/', '/' . $this->_base_path . '/', plugins_url( '/', __FILE__ ) );
@@ -81,6 +85,10 @@ class Library {
 		}
 
 		return $instance;
+	}
+
+	public function datetime() : DateTime {
+		return $this->_datetime;
 	}
 
 	public function charset() {

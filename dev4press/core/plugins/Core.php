@@ -57,11 +57,8 @@ abstract class Core {
 	protected array $_widget_instance = array();
 	protected int $_plugins_loaded_priority = 10;
 	protected int $_after_setup_theme_priority = 10;
-	protected DateTime $_datetime;
 
 	public function __construct() {
-		$this->_datetime = new DateTime();
-
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), $this->_plugins_loaded_priority );
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), $this->_after_setup_theme_priority );
 	}
@@ -78,7 +75,7 @@ abstract class Core {
 	}
 
 	public function datetime() : DateTime {
-		return $this->_datetime;
+		return Library::instance()->datetime();
 	}
 
 	public function plugins_loaded() {
