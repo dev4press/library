@@ -11,7 +11,9 @@
 * New: expanded `Arr` with `insert_before` method
 * New: expanded `Table` with `timstamp_to_date` method
 * New: class `DirectoryFilter` iterator
-* Edit: method `mysqli` in `DBLite` always return `TRUE` 
+* Edit: method `mysqli` in `DBLite` always return `TRUE`
+* Edit: few updates to the display of the plugin edition
+* Edit: many updates to the plugin dashboard styling
 * Edit: built-in cacert.pem 20240924
 
 ### Version 5.1 - 2024.09.04

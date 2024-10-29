@@ -2497,9 +2497,9 @@ a > .d4p-icon {
   --d4p-color-layout-accent: #004185;
   --d4p-color-main-border: #BBB;
   --d4p-color-main-background: #FFF;
-  --d4p-color-main-text: #333;
+  --d4p-color-main-text: #222;
   --d4p-color-sidebar-background: #F0F0F0;
-  --d4p-color-sidebar-text: #333;
+  --d4p-color-sidebar-text: #222;
   --d4p-color-section-background: #F4F4F4;
   --d4p-color-section-text: #111;
   --d4p-color-header-background: #E4E4E4;
@@ -2590,9 +2590,9 @@ a > .d4p-icon {
   --d4p-color-layout-accent: #004185;
   --d4p-color-main-border: #BBB;
   --d4p-color-main-background: #FFF;
-  --d4p-color-main-text: #333;
+  --d4p-color-main-text: #222;
   --d4p-color-sidebar-background: #F0F0F0;
-  --d4p-color-sidebar-text: #333;
+  --d4p-color-sidebar-text: #222;
   --d4p-color-section-background: #F4F4F4;
   --d4p-color-section-text: #111;
   --d4p-color-header-background: #E4E4E4;
@@ -3305,6 +3305,7 @@ a > .d4p-icon {
   padding: 2em 1.5em;
   text-align: center;
   border-radius: var(--d4p-layout-main-border-radius);
+  background-color: var(--d4p-color-layout-accent);
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge * {
   color: #FFF;
@@ -3312,18 +3313,16 @@ a > .d4p-icon {
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge h3 {
   word-break: keep-all;
   font-weight: 300;
-  letter-spacing: -1px;
   margin: 0.5em 0 0;
   padding: 0;
-  text-transform: uppercase;
-  line-height: 1.1;
-  font-size: 32px;
+  line-height: 1.2;
+  font-size: 2.4em;
 }
 .d4p-wrap.d4p-panel-dashboard .d4p-sidebar .d4p-dashboard-badge ._version-wrapper {
-  margin: 1.6em -1.1em -1.2em;
+  margin: 1.5em -1.2em -1.5em;
   padding: 1em;
   border-top: 1px solid var(--d4p-color-main-border);
-  font-size: 1.3em;
+  font-size: 1.4em;
   text-align: center;
   font-weight: 300;
   display: flex;
@@ -3395,6 +3394,18 @@ a > .d4p-icon {
 .d4p-wrap.d4p-with-cards .d4p-content .d4p-cards-wrapper .d4p-group.d4p-card-double {
   flex: 1 0 100%;
   max-width: calc(100% - 2em);
+}
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-cards-wrapper .d4p-group.d4p-dashboard-card-upsell {
+  border-color: var(--d4p-color-layout-accent);
+}
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-cards-wrapper .d4p-group.d4p-dashboard-card-upsell > h3 {
+  background-color: var(--d4p-color-layout-accent);
+  color: #FFF;
+}
+.d4p-wrap.d4p-with-cards .d4p-content .d4p-cards-wrapper .d4p-group.d4p-dashboard-card-upsell .d4p-group-header p {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 500;
 }
 @media screen and (max-width: 1200px) {
   .d4p-wrap.d4p-with-cards .d4p-content .d4p-cards-wrapper {

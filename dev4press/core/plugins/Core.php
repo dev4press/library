@@ -78,6 +78,21 @@ abstract class Core {
 		return Library::instance()->datetime();
 	}
 
+	public function edition() : string {
+		if ( $this->license ) {
+			return $this->l()->can_use_premium_code__premium_only() ? 'pro' : 'lite';
+		}
+
+		return 'free';
+	}
+
+	public function edition_label( bool $only_pro = false ) : string {
+		$edition = $this->edition();
+		$label   = $edition == 'pro' ? 'Pro' : ( $edition == 'lite' ? 'Lite' : 'Free' );
+
+		return $only_pro && $edition == 'pro' ? $label : '';
+	}
+
 	public function plugins_loaded() {
 		$this->is_debug = WordPress::instance()->is_script_debug();
 

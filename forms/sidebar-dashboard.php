@@ -10,15 +10,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <div class="d4p-sidebar">
-    <div class="d4p-dashboard-badge" style="background-color: <?php echo esc_attr( panel()->a()->settings()->i()->color() ); ?>;">
+    <div class="d4p-dashboard-badge">
         <div class="_icon">
-			<?php echo KSES::strong( panel()->r()->icon( 'plugin-' . panel()->a()->plugin, '9x' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php echo KSES::strong( panel()->r()->icon( 'plugin-' . panel()->a()->plugin, '8x' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         </div>
         <h3>
 			<?php echo KSES::strong( panel()->a()->title() ); ?>
         </h3>
         <div class="_version-wrapper">
-            <span class="_edition"><?php echo esc_html( panel()->a()->settings()->i()->get_edition() ); ?></span>
+            <span class="_edition"><?php echo esc_html( panel()->a()->plugin()->edition_label() ); ?></span>
             <span class="_version"><?php
 
 				/* translators: Plugin version label. %s: Version number. */
