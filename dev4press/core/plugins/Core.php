@@ -90,7 +90,7 @@ abstract class Core {
 		$edition = $this->edition();
 		$label   = $edition == 'pro' ? 'Pro' : ( $edition == 'lite' ? 'Lite' : 'Free' );
 
-		return $only_pro && $edition == 'pro' ? $label : '';
+		return ( $only_pro && $edition == 'pro' ) || ! $only_pro ? $label : '';
 	}
 
 	public function plugins_loaded() {
