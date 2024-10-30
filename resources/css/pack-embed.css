@@ -3114,6 +3114,13 @@ a > .d4p-icon {
 .d4p-group h3 .d4p-toggle-control-wrapper button i.d4p-ui-toggle-off {
   color: red;
 }
+.d4p-group.d4p-group-card-upsell {
+  border-color: var(--d4p-color-layout-accent);
+}
+.d4p-group.d4p-group-card-upsell > h3 {
+  background-color: var(--d4p-color-layout-accent);
+  color: #FFF;
+}
 .d4p-group.d4p-group-tools label {
   display: block;
   line-height: 1.8;
@@ -3156,6 +3163,7 @@ a > .d4p-icon {
   padding: 1em;
   text-align: left;
   width: 100%;
+  border-radius: 0 0 var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius);
 }
 .d4p-group .d4p-group-inner .d4p-group-notice {
   padding: 1em;

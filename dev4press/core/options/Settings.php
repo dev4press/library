@@ -207,7 +207,7 @@ abstract class Settings {
 		if ( empty( $code ) || empty( $valid ) ) {
 			$settings['license-code']['footer'] = array(
 				'class'   => '',
-				'content' => '<a href="' . $this->admin()->plugin()->l()->get_upgrade_url() . '" target="_blank">' . _e( "Buy Pro License" ) . '</a>',
+				'content' => '<a class="button-primary" href="' . $this->admin()->plugin()->l()->get_upgrade_url() . '" target="_blank">' . __( "Buy Pro License" ) . '</a>',
 			);
 		}
 

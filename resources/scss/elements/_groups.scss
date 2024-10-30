@@ -65,6 +65,15 @@
         }
     }
 
+    &.d4p-group-card-upsell {
+        border-color: var(--d4p-color-layout-accent);
+
+        > h3 {
+            background-color: var(--d4p-color-layout-accent);
+            color: #FFF;
+        }
+    }
+
     &.d4p-group-tools {
         label {
             display: block;
@@ -117,6 +126,7 @@
             padding: 1em;
             text-align: left;
             width: 100%;
+            border-radius: 0 0 var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius);
         }
 
         .d4p-group-notice {
