@@ -507,6 +507,7 @@ details.d4p-section-details > div .form-table code {
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .d4p-features-wrapper .d4p-feature-box.hide-feature {
   display: none;
@@ -520,6 +521,18 @@ details.d4p-section-details > div .form-table code {
   .d4p-features-wrapper .d4p-feature-box {
     flex-basis: calc(100% - 2em);
   }
+}
+.d4p-features-wrapper .d4p-feature-box ._banner {
+  position: absolute;
+  top: 0;
+  right: -2.7em;
+  background: var(--d4p-color-layout-accent);
+  padding: 0.4em 2.8em 0.4em 3.3em;
+  transform: rotate(45deg);
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #FFF;
+  letter-spacing: 2px;
 }
 .d4p-features-wrapper .d4p-feature-box ._info {
   padding: 2em 1.5em;

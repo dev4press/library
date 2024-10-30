@@ -98,6 +98,7 @@
         position: relative;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
 
         &.hide-feature {
             display: none;
@@ -109,6 +110,19 @@
 
         @media screen and (max-width: 440px) {
             flex-basis: calc(100% - 2em);
+        }
+
+        ._banner {
+            position: absolute;
+            top: 0;
+            right: -2.7em;
+            background: var(--d4p-color-layout-accent);
+            padding: .4em 2.8em .4em 3.3em;
+            transform: rotate(45deg);
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #FFF;
+            letter-spacing: 2px;
         }
 
         ._info {
