@@ -65,7 +65,13 @@ if ( panel()->a()->plugin()->f() ) {
 							foreach ( $_subpanels as $subpanel => $obj ) {
 								$_feature_status = '';
 
-								if ( isset( $obj['skip'] ) && in_array( 'menu', $obj['skip'] ) ) {
+								$modd = $obj['modd'] ?? 'regular';
+
+								if ( panel()->a()->plugin()->license === false ) {
+									$modd = 'regular';
+								}
+
+								if ( $modd === 'premium' || ( isset( $obj['skip'] ) && in_array( 'menu', $obj['skip'] ) ) ) {
 									continue;
 								}
 
