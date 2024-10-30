@@ -120,6 +120,12 @@ abstract class Settings {
 		$time = $this->value( 'check', 'license' );
 		$last = $this->value( 'last', 'license' );
 
+		$valid  = $info['valid'] ?? '';
+		$status = $info['status'] ?? '';
+		$domain = $info['domain'] ?? '/';
+		$type   = $info['type'] ?? '/';
+		$error  = $info['error'] ?? '';
+
 		if ( empty( $code ) ) {
 			$items = array(
 				'<strong>' . __( 'License Code is not set.', 'd4plib' ) . '</strong>',
@@ -129,12 +135,6 @@ abstract class Settings {
 				'<strong>' . __( 'License Code has not been checked yet.', 'd4plib' ) . '</strong>',
 			);
 		} else {
-			$valid  = $info['valid'] ?? '';
-			$status = $info['status'] ?? '';
-			$domain = $info['domain'] ?? '/';
-			$type   = $info['type'] ?? '/';
-			$error  = $info['error'] ?? '';
-
 			$items = array(
 				'<span>' . __( 'Last Checked', 'd4plib' ) . '</span>: <strong>' . DateTime::instance()->mysql_date( true, $time ) . '</strong>',
 				'<hr/>',
@@ -203,6 +203,13 @@ abstract class Settings {
 				),
 			),
 		);
+
+		if ( empty( $code ) || empty( $valid ) ) {
+			$settings['license-code']['footer'] = array(
+				'class'   => '',
+				'content' => '<a href="' . $this->admin()->plugin()->l()->get_upgrade_url() . '" target="_blank">' . _e( "Buy Pro License" ) . '</a>',
+			);
+		}
 
 		if ( ! empty( $last ) ) {
 			$error   = $last['error'] ?? '';

@@ -154,6 +154,18 @@ class Render {
 					$this->render_section( $section, $group );
 				}
 
+				if ( isset( $obj['footer'] ) ) {
+					$classes = array( 'd4p-group-footer' );
+
+					if ( ! empty( $obj['footer']['class'] ) ) {
+						$classes[] = $obj['footer']['class'];
+					}
+
+					echo '<div class="' . Sanitize::html_classes( $classes ) . '">';
+					echo $obj['footer']['content'];
+					echo '</div>';
+				}
+
 				echo '</div>';
 				echo '</div>';
 			}
