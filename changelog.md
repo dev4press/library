@@ -2,7 +2,7 @@
 
 ## Changelog
 
-### Version 5.2 - 2024.11.01
+### Version 5.2 - 2024.11.02
 
 * New: updated to work with the composer include
 * New: added several more icons to the icon font
@@ -11,8 +11,10 @@
 * New: expanded `Arr` with `insert_before` method
 * New: expanded `Table` with `timstamp_to_date` method
 * New: class `DirectoryFilter` iterator
+* New: the settings panel can handle Pro only groups
 * Edit: method `mysqli` in `DBLite` always return `TRUE`
 * Edit: few updates to the display of the plugin edition
+* Edit: improved styling for the plugin settings panel
 * Edit: many updates to the plugin dashboard styling
 * Edit: built-in cacert.pem 20240924
 

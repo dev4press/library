@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
 "Project-Id-Version: Dev4Press Library\n"
-"POT-Creation-Date: 10/30/2024 10:28:13 PM\n"
+"POT-Creation-Date: 10/31/2024 08:46:33 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,7 +149,7 @@ msgid "Warning"
 msgstr ""
 
 #: dev4press/core/base/Background.php:339
-#: dev4press/core/options/Settings.php:146
+#: dev4press/core/options/Settings.php:167
 msgid "Error"
 msgstr ""
 
@@ -632,9 +632,9 @@ msgid "Feature network override is active"
 msgstr ""
 
 #: dev4press/core/options/Features.php:141
-#: dev4press/core/options/Settings.php:142
-#: dev4press/core/options/Settings.php:200
-#: dev4press/core/options/Settings.php:223
+#: dev4press/core/options/Settings.php:163
+#: dev4press/core/options/Settings.php:221
+#: dev4press/core/options/Settings.php:244
 #: forms/content-about-info.php:31
 msgid "Status"
 msgstr ""
@@ -737,85 +737,97 @@ msgstr ""
 msgid "Unit"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:131
+#: dev4press/core/options/Settings.php:66
+msgid "Get more options with Pro version"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:70
+msgid "Additional Options"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:78
+msgid "Upgrade to the Pro version"
+msgstr ""
+
+#: dev4press/core/options/Settings.php:152
 msgid "License Code is not set."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:135
+#: dev4press/core/options/Settings.php:156
 msgid "License Code has not been checked yet."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:139
+#: dev4press/core/options/Settings.php:160
 msgid "Last Checked"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:141
+#: dev4press/core/options/Settings.php:162
 msgid "Valid"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:150
+#: dev4press/core/options/Settings.php:171
 msgid "Domain"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:153
+#: dev4press/core/options/Settings.php:174
 msgid "Type"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:164
+#: dev4press/core/options/Settings.php:185
 msgid "Manage License Code"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:171
+#: dev4press/core/options/Settings.php:192
 msgid "Dev4Press Dashboard Licenses"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:181
+#: dev4press/core/options/Settings.php:202
 msgid "Dev4Press License"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:184
+#: dev4press/core/options/Settings.php:205
 msgid "License Code"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:188
+#: dev4press/core/options/Settings.php:209
 msgid "Code"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:188
+#: dev4press/core/options/Settings.php:209
 msgid "You can find your license code in the Dev4Press Dashboard."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:189
+#: dev4press/core/options/Settings.php:210
 msgid "Make sure to enter the license code exactly as it is listed on the Dev4Press Dashboard."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:190
+#: dev4press/core/options/Settings.php:211
 msgid "License code is case sensitive, and all letters must be uppercase."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:191
+#: dev4press/core/options/Settings.php:212
 msgid "License code is valid even after the subscription period has expired, as long it was not refunded or terminated."
 msgstr ""
 
-#: dev4press/core/options/Settings.php:196
+#: dev4press/core/options/Settings.php:217
 msgid "License Information"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:210
+#: dev4press/core/options/Settings.php:231
 #: forms/element-subpanels-blocks.php:56
 msgid "Buy Pro License"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:219
+#: dev4press/core/options/Settings.php:240
 msgid "Verification Error"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:141
+#: dev4press/core/options/Settings.php:162
 #: dev4press/core/plugins/Wizard.php:154
 msgid "Yes"
 msgstr ""
 
-#: dev4press/core/options/Settings.php:141
+#: dev4press/core/options/Settings.php:162
 #: dev4press/core/plugins/Wizard.php:155
 msgid "No"
 msgstr ""

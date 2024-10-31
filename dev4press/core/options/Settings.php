@@ -60,6 +60,27 @@ abstract class Settings {
 		return Element::info( $title, $notice );
 	}
 
+	public function upsell( string $content ) : array {
+		return array(
+			'pro_features' => array(
+				'name'     => __( 'Get more options with Pro version', 'd4plib' ),
+				'sections' => array(
+					array(
+						'settings' => array(
+							$this->info( __( 'Additional Options', 'd4plib' ), $content ),
+						),
+					),
+				),
+				'args'     => array(
+					'class' => 'd4p-group-card-upsell',
+				),
+				'footer'   => array(
+					'content' => '<a class="button-primary" href="' . $this->admin()->plugin()->l()->get_upgrade_url() . '">' . __( 'Upgrade to the Pro version', 'd4plib' ) . '</a>',
+				),
+			),
+		);
+	}
+
 	public function all() {
 		return $this->settings;
 	}
