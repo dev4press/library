@@ -86,6 +86,10 @@ abstract class Core {
 		return 'free';
 	}
 
+	public function fs() {
+		return null;
+	}
+
 	public function edition_label( bool $only_pro = false ) : string {
 		$edition = $this->edition();
 		$label   = $edition == 'pro' ? 'Pro' : ( $edition == 'lite' ? 'Lite' : 'Free' );

@@ -75,7 +75,7 @@ abstract class Settings {
 					'class' => 'd4p-group-card-upsell',
 				),
 				'footer'   => array(
-					'content' => '<a class="button-primary" href="' . $this->admin()->plugin()->l()->get_upgrade_url() . '">' . __( 'Upgrade to the Pro version', 'd4plib' ) . '</a>',
+					'content' => '<a class="button-primary" href="' . $this->admin()->plugin()->fs()->get_upgrade_url() . '">' . __( 'Upgrade to the Pro version', 'd4plib' ) . '</a>',
 				),
 			),
 		);
@@ -228,7 +228,7 @@ abstract class Settings {
 		if ( empty( $code ) || empty( $valid ) ) {
 			$settings['license-code']['footer'] = array(
 				'class'   => '',
-				'content' => '<a class="button-primary" href="' . $this->admin()->plugin()->l()->get_upgrade_url() . '" target="_blank">' . __( 'Buy Pro License', 'd4plib' ) . '</a>',
+				'content' => '<a class="button-primary" href="' . $this->admin()->plugin()->fs()->get_upgrade_url() . '" target="_blank">' . __( 'Buy Pro License', 'd4plib' ) . '</a>',
 			);
 		}
 

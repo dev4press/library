@@ -36,7 +36,7 @@ foreach ( panel()->subpanels() as $subpanel => $obj ) {
 	}
 
 	if ( $modd === 'premium' ) {
-		$pro = panel()->a()->plugin()->l()->get_upgrade_url();
+		$pro = panel()->a()->plugin()->fs()->get_upgrade_url();
 	}
 
 	?>
