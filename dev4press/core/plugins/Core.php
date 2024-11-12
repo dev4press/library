@@ -80,7 +80,7 @@ abstract class Core {
 
 	public function edition() : string {
 		if ( $this->license ) {
-			return $this->l()->can_use_premium_code__premium_only() ? 'pro' : 'lite';
+			return $this->fs()->can_use_premium_code__premium_only() ? 'pro' : 'lite';
 		}
 
 		return 'free';

@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### Version 5.2.1 - 2024.11.12
+
+* Edit: various license related tweaks and improvements
+
 ### Version 5.2 - 2024.11.02
 
 * New: updated to work with the composer include
