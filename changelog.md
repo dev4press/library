@@ -2,7 +2,7 @@
 
 ## Changelog
 
-### Version 5.2.1 - 2024.11.12
+### Version 5.2.2 - 2024.11.12
 
 * Edit: various license related tweaks and improvements
 
