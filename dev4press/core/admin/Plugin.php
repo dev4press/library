@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v52\Core\Admin\Plugin
- * Version: v5.2
+ * Name:    Dev4Press\v53\Core\Admin\Plugin
+ * Version: v5.3
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -9,7 +9,7 @@
  * @package Dev4PressLibrary
  *
  * == Copyright ==
- * Copyright 2008 - 2024 Milan Petrovic (email: support@dev4press.com)
+ * Copyright 2008 - 2025 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,11 +25,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v52\Core\Admin;
+namespace Dev4Press\v53\Core\Admin;
 
-use Dev4Press\v52\Core\UI\Enqueue;
-use Dev4Press\v52\Library;
-use Dev4Press\v52\WordPress;
+use Dev4Press\v53\Core\UI\Admin\Panel;
+use Dev4Press\v53\Core\UI\Enqueue;
+use Dev4Press\v53\Library;
+use Dev4Press\v53\WordPress;
 use WP_Screen;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -37,48 +38,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Plugin {
-	public $plugin = '';
-	public $plugin_prefix = '';
-	public $plugin_menu = '';
-	public $plugin_title = '';
-	public $plugin_blog = true;
-	public $buy_me_a_coffee = false;
-	public $plugin_network = false;
-	public $plugin_settings = '';
+	public string $menu_cap = 'activate_plugins';
 
-	public $variant = 'core';
+	public string $plugin = '';
+	public string $plugin_prefix = '';
+	public string $plugin_menu = '';
+	public string $plugin_title = '';
+	public string $plugin_settings = '';
+	public string $url = '';
+	public string $path = '';
+	public string $variant = 'core';
 
-	public $menu_cap = 'activate_plugins';
-	public $has_widgets = false;
-	public $has_metabox = false;
+	public bool $has_widgets = false;
+	public bool $has_metabox = false;
+	public bool $is_multisite = false;
+	public bool $enqueue_packed = true;
+	public bool $plugin_blog = true;
+	public bool $buy_me_a_coffee = false;
+	public bool $plugin_network = false;
 
-	public $is_multisite = false;
+	public bool $is_debug = false;
+	public bool $auto_mod_interface_colors = false;
+	public bool $auto_mod_install_update = true;
 
-	public $url = '';
-	public $path = '';
+	public bool $page = false;
+	public string $panel = '';
+	public string $subpanel = '';
 
-	public $is_debug = false;
-	public $auto_mod_interface_colors = false;
-	public $auto_mod_install_update = true;
+	public string $screen_id = '';
+	public array $per_page_options = array();
 
-	public $page = false;
-	public $panel = '';
-	public $subpanel = '';
+	public array $enqueue_wp = array();
+	public array $menu_items = array();
+	public array $setup_items = array();
+	public array $page_ids = array();
 
-	public $screen_id = '';
-	public $per_page_options = array();
-
-	/** @var \Dev4Press\v52\Core\UI\Admin\Panel */
-	public $object = null;
-
-	/** @var \Dev4Press\v52\Core\UI\Enqueue */
-	public $enqueue = null;
-
-	public $enqueue_packed = true;
-	public $enqueue_wp = array();
-	public $menu_items = array();
-	public $setup_items = array();
-	public $page_ids = array();
+	public ?Panel $object = null;
+	public ?Enqueue $enqueue = null;
 
 	public function __construct() {
 		if ( is_multisite() ) {
@@ -461,7 +457,7 @@ abstract class Plugin {
 		return add_query_arg( '_wpnonce', wp_create_nonce( $nonce ), $url );
 	}
 
-	public function get_post_type() {
+	public function get_post_type() : string {
 		$post_type = '';
 
 		if ( isset( $_GET['post_type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
@@ -613,18 +609,18 @@ abstract class Plugin {
 
 	abstract public function run_postback();
 
-	/** @return \Dev4Press\v52\Core\Plugins\Wizard */
+	/** @return \Dev4Press\v53\Core\Plugins\Wizard */
 	abstract public function wizard();
 
-	/** @return \Dev4Press\v52\Core\Plugins\Core */
+	/** @return \Dev4Press\v53\Core\Plugins\Core */
 	abstract public function plugin();
 
-	/** @return \Dev4Press\v52\Core\Plugins\Settings */
+	/** @return \Dev4Press\v53\Core\Plugins\Settings */
 	abstract public function settings();
 
-	/** @return \Dev4Press\v52\Core\Options\Settings */
-	abstract public function settings_definitions();
-
-	/** @return \Dev4Press\v52\Core\Plugins\Settings */
+	/** @return \Dev4Press\v53\Core\Plugins\Settings */
 	abstract public function settings_blog();
+
+	/** @return \Dev4Press\v53\Core\Options\Settings */
+	abstract public function settings_definitions();
 }

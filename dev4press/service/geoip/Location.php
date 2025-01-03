@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v52\Services\GEOIP\Location
- * Version: v5.2
+ * Name:    Dev4Press\v53\Services\GEOIP\Location
+ * Version: v5.3
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -9,7 +9,7 @@
  * @package Dev4PressLibrary
  *
  * == Copyright ==
- * Copyright 2008 - 2024 Milan Petrovic (email: support@dev4press.com)
+ * Copyright 2008 - 2025 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v52\Service\GEOIP;
+namespace Dev4Press\v53\Service\GEOIP;
 
-use Dev4Press\v52\Core\Helpers\Data;
-use Dev4Press\v52\Core\Quick\Misc;
+use Dev4Press\v53\Core\Helpers\Data;
+use Dev4Press\v53\Core\Quick\Misc;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

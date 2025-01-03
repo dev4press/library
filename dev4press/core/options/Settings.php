@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v52\Core\Options\Settings
- * Version: v5.2
+ * Name:    Dev4Press\v53\Core\Options\Settings
+ * Version: v5.3
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -9,7 +9,7 @@
  * @package Dev4PressLibrary
  *
  * == Copyright ==
- * Copyright 2008 - 2024 Milan Petrovic (email: support@dev4press.com)
+ * Copyright 2008 - 2025 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v52\Core\Options;
+namespace Dev4Press\v53\Core\Options;
 
-use Dev4Press\v52\Core\DateTime;
-use Dev4Press\v52\Core\Quick\Str;
+use Dev4Press\v53\Core\DateTime;
+use Dev4Press\v53\Core\Quick\Str;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -259,7 +259,7 @@ abstract class Settings {
 
 	abstract protected function init();
 
-	/** @return \Dev4Press\v52\Core\Admin\Plugin */
+	/** @return \Dev4Press\v53\Core\Admin\Plugin */
 	abstract protected function admin();
 
 	abstract protected function value( $name, $group = 'settings', $default = null );

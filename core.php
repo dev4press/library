@@ -1,7 +1,7 @@
 <?php
 /**
  * Name:    Dev4Press Core Loader
- * Version: v5.2
+ * Version: v5.3
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -9,7 +9,7 @@
  * @package Dev4PressLibrary
  *
  * == Copyright ==
- * Copyright 2008 - 2024 Milan Petrovic (email: support@dev4press.com)
+ * Copyright 2008 - 2025 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,8 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-use Dev4Press\v52\Library;
-use Dev4Press\v52\WordPress;
+use Dev4Press\v53\Library;
+use Dev4Press\v53\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -38,14 +38,14 @@ if ( ! defined( 'DEV4PRESS_TAB' ) ) {
 	define( 'DEV4PRESS_TAB', "\t" );
 }
 
-if ( ! defined( 'DEV4PRESS_V52_PATH' ) ) {
-	define( 'DEV4PRESS_V52_PATH', $_library_path );
+if ( ! defined( 'DEV4PRESS_V53_PATH' ) ) {
+	define( 'DEV4PRESS_V53_PATH', $_library_path );
 }
 
-require DEV4PRESS_V52_PATH . 'functions/Core.php';
-require DEV4PRESS_V52_PATH . 'functions/Bridge.php';
+require DEV4PRESS_V53_PATH . 'functions/Core.php';
+require DEV4PRESS_V53_PATH . 'functions/Bridge.php';
 
-require DEV4PRESS_V52_PATH . 'autoload.php';
+require DEV4PRESS_V53_PATH . 'autoload.php';
 
 WordPress::instance();
 Library::instance();

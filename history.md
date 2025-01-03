@@ -2,6 +2,18 @@
 
 ## Changelog
 
+### Version 5.0 - 2024.07.10
+
+* New: updated library and plugins system requirements
+* New: extracted `Dialogs` JavaScript library from `Admin`
+* New: added several more icons to the icon font
+* Edit: default location is now `library`
+* Edit: many updates to the `Background` class
+* Edit: many updates to the `CRON` task class
+* Edit: various tweaks to the shared styling
+* Removed: outdated JavaScript `helpers` library
+* Removed: all previously deprecated methods
+
 ### Version 4.9.2 - 2024.06.26
 
 * Edit: expanded list of detected email types to include coreSecurity Pro

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v52\WordPress
- * Version: v5.2
+ * Name:    Dev4Press\v53\WordPress
+ * Version: v5.3
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -9,7 +9,7 @@
  * @package Dev4PressLibrary
  *
  * == Copyright ==
- * Copyright 2008 - 2024 Milan Petrovic (email: support@dev4press.com)
+ * Copyright 2008 - 2025 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v52;
+namespace Dev4Press\v53;
 
-use Dev4Press\v52\Core\Quick\WPR;
+use Dev4Press\v53\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -49,12 +49,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @method bool is_stable()
  */
 class WordPress {
-	private $_versions;
-	private $_switches;
-	private $_cached;
+	private array $_versions;
+	private array $_switches;
+	private array $_cached;
 
 	public function __construct() {
 		global $wp_version;
+
+		$this->_cached = array();
 
 		$this->_versions = array(
 			'wp' => $wp_version,

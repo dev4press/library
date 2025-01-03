@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v52\Core\Admin\Table
- * Version: v5.2
+ * Name:    Dev4Press\v53\Core\Admin\Table
+ * Version: v5.3
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -9,7 +9,7 @@
  * @package Dev4PressLibrary
  *
  * == Copyright ==
- * Copyright 2008 - 2024 Milan Petrovic (email: support@dev4press.com)
+ * Copyright 2008 - 2025 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,14 +25,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v52\WordPress\Admin;
+namespace Dev4Press\v53\WordPress\Admin;
 
-use Dev4Press\v52\Core\Helpers\DB;
-use Dev4Press\v52\Core\Plugins\DBLite;
-use Dev4Press\v52\Core\Quick\Sanitize;
-use Dev4Press\v52\Library;
+use Dev4Press\v53\Core\Helpers\DB;
+use Dev4Press\v53\Core\Plugins\DBLite;
+use Dev4Press\v53\Core\Quick\Sanitize;
+use Dev4Press\v53\Library;
 use WP_List_Table;
-use function Dev4Press\v52\Functions\panel;
+use function Dev4Press\v53\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

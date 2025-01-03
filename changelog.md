@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### Version 5.3 - 2025.01.12
+
+* Edit: built-in cacert.pem 20241231
+
 ### Version 5.2.2 - 2024.11.12
 
 * Edit: various license related tweaks and improvements
@@ -33,15 +37,3 @@
 * Edit: few tweaks to the `Words` generator class
 * Edit: updates to the various base form templates
 * Edit: many styling improvements and tweaks
-
-### Version 5.0 - 2024.07.10
-
-* New: updated library and plugins system requirements
-* New: extracted `Dialogs` JavaScript library from `Admin`
-* New: added several more icons to the icon font
-* Edit: default location is now `library`
-* Edit: many updates to the `Background` class
-* Edit: many updates to the `CRON` task class
-* Edit: various tweaks to the shared styling
-* Removed: outdated JavaScript `helpers` library
-* Removed: all previously deprecated methods

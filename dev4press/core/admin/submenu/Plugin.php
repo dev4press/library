@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v52\Core\Admin\Submenu\Plugin
- * Version: v5.2
+ * Name:    Dev4Press\v53\Core\Admin\Submenu\Plugin
+ * Version: v5.3
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -9,7 +9,7 @@
  * @package Dev4PressLibrary
  *
  * == Copyright ==
- * Copyright 2008 - 2024 Milan Petrovic (email: support@dev4press.com)
+ * Copyright 2008 - 2025 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,19 +25,19 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v52\Core\Admin\Submenu;
+namespace Dev4Press\v53\Core\Admin\Submenu;
 
-use Dev4Press\v52\Core\Admin\Plugin as BasePlugin;
-use Dev4Press\v52\Core\Quick\Sanitize;
+use Dev4Press\v53\Core\Admin\Plugin as BasePlugin;
+use Dev4Press\v53\Core\Quick\Sanitize;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 abstract class Plugin extends BasePlugin {
-	public $variant = 'submenu';
+	public string $variant = 'submenu';
 
-	protected $menu = 'options-general.php';
+	protected string $menu = 'options-general.php';
 
 	public function main_url() : string {
 		return self_admin_url( $this->menu . '?page=' . $this->plugin );

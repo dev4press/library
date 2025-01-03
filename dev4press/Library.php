@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v52\Library
- * Version: v5.2
+ * Name:    Dev4Press\v53\Library
+ * Version: v5.3
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -9,7 +9,7 @@
  * @package Dev4PressLibrary
  *
  * == Copyright ==
- * Copyright 2008 - 2024 Milan Petrovic (email: support@dev4press.com)
+ * Copyright 2008 - 2025 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,9 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v52;
+namespace Dev4Press\v53;
 
-use Dev4Press\v52\Core\DateTime;
+use Composer\CaBundle\CaBundle;
+use Dev4Press\v53\Core\DateTime;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,35 +38,35 @@ class Library {
 	/**
 	 * @var string
 	 */
-	private $_version = '5.2.2';
+	private string $_version = '5.3';
 	/**
 	 * @var string
 	 */
-	private $_build = '5220';
+	private string $_build = '5300';
 	/**
 	 * @var string
 	 */
-	private $_php_version;
+	private string $_php_version;
 	/**
 	 * @var int
 	 */
-	private $_php_code;
+	private int $_php_code;
 	/**
 	 * @var string
 	 */
-	private $_library_url;
+	private string $_library_url;
 	/**
 	 * @var string
 	 */
-	private $_library_path;
+	private string $_library_path;
 	/**
 	 * @var string
 	 */
-	private $_cacert_path;
+	private string $_cacert_path;
 	/**
 	 * @var string
 	 */
-	private $_base_path = 'vendor/dev4press/library';
+	private string $_base_path = 'vendor/dev4press/library';
 	private DateTime $_datetime;
 
 	public function __construct() {
@@ -74,7 +75,7 @@ class Library {
 		$this->_php_code     = absint( substr( str_replace( '.', '', $this->_php_version ), 0, 2 ) );
 		$this->_library_url  = str_replace( '/' . $this->_base_path . '/dev4press/', '/' . $this->_base_path . '/', plugins_url( '/', __FILE__ ) );
 		$this->_library_path = wp_normalize_path( trailingslashit( dirname( __FILE__, 2 ) ) );
-		$this->_cacert_path  = wp_normalize_path( $this->_library_path . 'resources/curl/cacert.pem' );
+		$this->_cacert_path  = CaBundle::getSystemCaRootBundlePath();
 	}
 
 	public static function instance() : Library {

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Name:    Dev4Press\v52\Core\Iterator\DirectoryFilter
- * Version: v5.2
+ * Name:    Dev4Press\v53\Core\Iterator\DirectoryFilter
+ * Version: v5.3
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -10,7 +10,7 @@
  * @package Dev4PressLibrary
  *
  * == Copyright ==
- * Copyright 2008 - 2024 Milan Petrovic (email: support@dev4press.com)
+ * Copyright 2008 - 2025 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v52\Core\Iterator;
+namespace Dev4Press\v53\Core\Iterator;
 
 use RecursiveFilterIterator;
 use RecursiveIterator;
