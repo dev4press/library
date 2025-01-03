@@ -34,8 +34,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Source {
-	private $paths = array();
-	private $origins = array();
+	private array $paths = array();
+	private array $origins = array();
 
 	public function __construct() {
 		foreach (

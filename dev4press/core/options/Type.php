@@ -132,7 +132,7 @@ class Type {
 		'x_by_y'               => self::X_BY_Y,
 	);
 
-	public static function to_string( $value ) {
+	public static function to_string( $value ) : ?string {
 		if ( is_null( $value ) ) {
 			return null;
 		}

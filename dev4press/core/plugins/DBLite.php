@@ -86,12 +86,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @method string                 db_server_info()
  */
 abstract class DBLite {
-	public $use_mysqli = true;
-	protected $plugin_name = 'dev4press-library';
-	protected $plugin_instance = 'db';
+	public bool $use_mysqli = true;
+	protected string $plugin_name = 'dev4press-library';
+	protected string $plugin_instance = 'db';
 
-	protected static $_queries_log = array();
-	protected $_methods_log = array( 'query', 'get_results', 'get_row', 'get_var', 'insert', 'update', 'delete' );
+	protected static array $_queries_log = array();
+	protected array $_methods_log = array( 'query', 'get_results', 'get_row', 'get_var', 'insert', 'update', 'delete' );
 
 	public function __construct() {
 	}
@@ -202,6 +202,24 @@ abstract class DBLite {
 		return $_build;
 	}
 
+	public function get_ids( string $sql, string $key, bool $filter = true ) : array {
+		$raw = $this->get_results( $sql );
+		$raw = $this->pluck( $raw, $key );
+		$raw = array_map( 'absint', $raw );
+
+		if ( $filter ) {
+			$raw = array_filter( $raw );
+		}
+
+		return $raw;
+	}
+
+	public function get_table_rows_count( string $table ) : int {
+		$sql = "SELECT COUNT(*) FROM " . $table;
+
+		return absint( $this->get_var( $sql ) );
+	}
+
 	public function run( string $query, string $output = OBJECT ) {
 		$_value = $this->get_results( $query, $output );
 
@@ -286,7 +304,7 @@ abstract class DBLite {
 	}
 
 	public function mysqli() : bool {
-		return true;
+		return $this->use_mysqli;
 	}
 
 	public function prefix() : string {
@@ -360,7 +378,7 @@ abstract class DBLite {
 		return current_time( 'mysql', $gmt );
 	}
 
-	public function check_table( $name ) : string {
+	public function check_table( string $name ) : string {
 		$row = $this->get_row( 'CHECK TABLE `' . $name . '`' );
 
 		if ( ! is_null( $row ) ) {
@@ -370,11 +388,11 @@ abstract class DBLite {
 		}
 	}
 
-	public function analyze_table( $name ) {
+	public function analyze_table( string $name ) {
 		return $this->get_results( 'ANALYZE TABLE `' . $name . '`' );
 	}
 
-	public function alter_table_force( $name ) : array {
+	public function alter_table_force( string $name ) : array {
 		$this->get_results( 'ALTER TABLE `' . $name . '` FORCE' );
 
 		return array(

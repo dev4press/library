@@ -36,22 +36,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Settings {
-	public $base = 'd4p';
-	public $plugin = '';
+	public string $base = 'd4p';
+	public string $plugin = '';
 
-	public $info;
-	public $scope = 'blog';
-	public $has_db = false;
+	public string $scope = 'blog';
 
-	public $current = array();
-	public $settings = array();
-	public $legacy = array();
-	public $temp = array();
-	public $changed = array();
+	public bool $has_db = false;
 
-	public $skip_update = array();
-	public $skip_export = array();
-	public $network_groups = array();
+	public array $current = array();
+	public array $settings = array();
+	public array $legacy = array();
+	public array $temp = array();
+	public array $changed = array();
+
+	public array $skip_update = array();
+	public array $skip_export = array();
+	public array $network_groups = array();
+	public Information $info;
 
 	public function __construct() {
 		$this->constructor();

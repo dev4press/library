@@ -34,42 +34,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Scope {
-	/**
-	 * @var string
-	 */
-	private $scope;
-
-	/**
-	 * @var bool
-	 */
-	private $multisite;
-
-	/**
-	 * @var bool
-	 */
-	private $admin = false;
-	/**
-	 * @var bool
-	 */
-	private $network_admin = false;
-	/**
-	 * @var bool
-	 */
-	private $user_admin = false;
-	/**
-	 * @var bool
-	 */
-	private $blog_admin = false;
-
-	/**
-	 * @var bool
-	 */
-	private $frontend = false;
-
-	/**
-	 * @var int
-	 */
-	private $blog_id;
+	private string $scope;
+	private bool $multisite;
+	private bool $admin = false;
+	private bool $network_admin = false;
+	private bool $user_admin = false;
+	private bool $blog_admin = false;
+	private bool $frontend = false;
+	private int $blog_id;
 
 	public function __construct() {
 		$this->multisite = is_multisite();

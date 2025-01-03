@@ -32,10 +32,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Transient {
-	public $store = 'd4plib';
+	public string $store = 'd4plib';
 
 	protected $expiration = DAY_IN_SECONDS;
-	protected $elements = array();
+	protected array $elements = array();
 
 	public function __construct() {
 

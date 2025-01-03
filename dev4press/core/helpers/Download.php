@@ -34,10 +34,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Download {
-	private $_file_path;
-	private $_file_name;
+	private string $_file_path;
+	private ?string $_file_name;
 
-	public function __construct( $file_path, $file_name = null ) {
+	public function __construct( string $file_path, ?string $file_name = null ) {
 		$this->_file_path = $file_path;
 		$this->_file_name = $file_name;
 
@@ -46,7 +46,7 @@ class Download {
 		}
 	}
 
-	public static function instance( $file_path, $file_name = null ) : Download {
+	public static function instance( string $file_path, ?string $file_name = null ) : Download {
 		static $_download = array();
 
 		$key = $file_path . '-' . $file_name;
@@ -58,15 +58,15 @@ class Download {
 		return $_download[ $key ];
 	}
 
-	public static function file_simple( $file_path, $file_name = null, $gdr_readfile = true ) {
-		self::instance( $file_path, $file_name )->simple( ! $gdr_readfile );
+	public static function file_simple( string $file_path, ?string $file_name = null, $read_file = true ) {
+		self::instance( $file_path, $file_name )->simple( ! $read_file );
 	}
 
-	public static function file_resume( $file_path, $file_name = null ) {
+	public static function file_resume( string $file_path, ?string $file_name = null ) {
 		self::instance( $file_path, $file_name )->resume();
 	}
 
-	public static function file_read( $file_path, $part_size_mb = 2, $return_size = true ) {
+	public static function file_read( string $file_path, $part_size_mb = 2, $return_size = true ) {
 		return self::instance( $file_path )->read_file( $part_size_mb, $return_size );
 	}
 
@@ -98,7 +98,7 @@ class Download {
 		}
 	}
 
-	public function simple( $system = false ) {
+	public function simple( bool $system = false ) {
 		header( 'Pragma: public' );
 		header( 'Expires: 0' );
 		header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );

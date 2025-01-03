@@ -30,11 +30,11 @@ namespace Dev4Press\v53\Core\Plugins;
 use Dev4Press\v53\Core\Quick\Sanitize;
 
 abstract class AJAX {
-	protected $prefix = 'd4plib';
-	protected $form = 'd4plib-form';
-	protected $action = 'd4plib-action';
-	protected $no_cache_headers = true;
-	protected $validation = array();
+	protected string $prefix = 'd4plib';
+	protected string $form = 'd4plib-form';
+	protected string $action = 'd4plib-action';
+	protected bool $no_cache_headers = true;
+	protected array $validation = array();
 
 	public function __construct() {
 		add_action( $this->prefix . '_ajax_request_error', array( $this, 'process_error' ), 10, 5 );

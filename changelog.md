@@ -4,7 +4,9 @@
 
 ### Version 5.3 - 2025.01.12
 
-* Edit: built-in cacert.pem 20241231
+* New: composer file requirements expanded
+* New: many PHP related changes and improvements
+* Removed: built-in cacert.pem
 
 ### Version 5.2.2 - 2024.11.12
 

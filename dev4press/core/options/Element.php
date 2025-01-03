@@ -32,21 +32,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Element {
-	public $type;
-	public $name;
-	public $title;
-	public $notice;
-	public $input;
+	public string $type;
+	public string $name;
+	public string $title;
+	public string $notice;
+	public string $input;
+	public string $source;
+
+	public array $args = array();
+	public array $switch = array();
+	public array $more = array();
+	public array $buttons = array();
+	public string $more_method = 'list';
+
+	/** @var mixed */
 	public $value;
-
-	public $source;
+	/** @var mixed */
 	public $data;
-
-	public $args = array();
-	public $switch = array();
-	public $more = array();
-	public $buttons = array();
-	public $more_method = 'list';
 
 	public function __construct( string $type, string $name, string $title = '', string $notice = '', string $input = 'text', $value = '' ) {
 		$this->type   = $type;

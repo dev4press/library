@@ -37,19 +37,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Render {
-	public $base = 'd4pvalue';
-	public $prefix = 'd4p';
-	public $kb = 'https://www.dev4press.com/kb/%type%/%url%/';
+	public string $base = 'd4pvalue';
+	public string $prefix = 'd4p';
+	public string $kb = 'https://www.dev4press.com/kb/%type%/%url%/';
 
 	public $panel;
 	public $groups;
 
-	public function __construct( $base, $prefix = 'd4p' ) {
+	public function __construct( string $base, string $prefix = 'd4p' ) {
 		$this->base   = $base;
 		$this->prefix = $prefix;
 	}
 
-	public static function instance( $base = 'd4pvalue', $prefix = 'd4p' ) : Render {
+	public static function instance( string $base = 'd4pvalue', string $prefix = 'd4p' ) : Render {
 		static $render = array();
 
 		if ( ! isset( $render[ $base ] ) ) {

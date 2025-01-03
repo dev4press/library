@@ -35,42 +35,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Information {
-	public $code = '';
+	public string $code = '';
 
-	public $version = '';
-	public $build = 0;
-	public $updated = '';
-	public $status = '';
-	public $edition = '';
-	public $released = '';
+	public string $version = '';
+	public int $build = 0;
+	public string $updated = '';
+	public string $status = '';
+	public string $edition = '';
+	public string $released = '';
 
-	public $plugin_url = '';
-	public $github_url = '';
-	public $wp_org_url = '';
+	public string $plugin_url = '';
+	public string $github_url = '';
+	public string $wp_org_url = '';
 
-	public $is_bbpress_plugin = false;
+	public bool $is_bbpress_plugin = false;
 
-	public $author_name = 'Milan Petrovic';
-	public $author_url = 'https://www.dev4press.com/';
+	public string $author_name = 'Milan Petrovic';
+	public string $author_url = 'https://www.dev4press.com/';
 
-	public $php = '7.4';
-	public $mysql = '5.5';
+	public string $php = '7.4';
+	public string $mysql = '5.5';
 
-	public $cms = array(
+	public array $cms = array(
 		'wordpress'    => '6.0',
 		'classicpress' => '2.0',
 	);
 
-	public $plugins = array(
+	public array $plugins = array(
 		'bbpress'    => false,
 		'buddypress' => false,
 	);
 
-	public $install = false;
-	public $update = false;
-	public $previous = 0;
+	public bool $install = false;
+	public bool $update = false;
+	public int $previous = 0;
 
-	public $translations = array();
+	public array $translations = array();
 
 	public function __construct() {
 		if ( $this->is_bbpress_plugin ) {

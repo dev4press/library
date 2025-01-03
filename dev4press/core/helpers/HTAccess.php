@@ -34,12 +34,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class HTAccess {
-	public $begin = 'BEGIN';
-	public $end = 'END';
+	public string $begin = 'BEGIN';
+	public string $end = 'END';
+	public string $path = '';
 
-	public $path = '';
-
-	public function __construct( $path = '' ) {
+	public function __construct( string $path = '' ) {
 		$this->path = $path == '' ? ABSPATH . '.htaccess' : $path;
 	}
 
@@ -59,11 +58,11 @@ class HTAccess {
 		}
 	}
 
-	public function remove( $marker, $cleanup = false, $backup = false ) : bool {
+	public function remove( string $marker, bool $cleanup = false, bool $backup = false ) : bool {
 		return $this->insert( $marker, array(), 'end', $cleanup, $backup );
 	}
 
-	public function insert( $marker, $insertion = array(), $location = 'end', $cleanup = false, $backup = false ) : bool {
+	public function insert( string $marker, array $insertion = array(), string $location = 'end', bool $cleanup = false, bool $backup = false ) : bool {
 		if ( ! $this->file_exists() || $this->is_writable() ) {
 			if ( ! $this->file_exists() ) {
 				$marker_data = '';
@@ -135,7 +134,7 @@ class HTAccess {
 		}
 	}
 
-	public function write( $f, $marker, $insertion = array() ) {
+	public function write( $f, string $marker, array $insertion = array() ) {
 		if ( is_array( $insertion ) && ! empty( $insertion ) ) {
 			fwrite( $f, PHP_EOL . '# BEGIN ' . $marker . PHP_EOL );
 

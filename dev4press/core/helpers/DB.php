@@ -34,5 +34,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class DB extends DBLite {
-
 }

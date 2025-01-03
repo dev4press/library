@@ -35,37 +35,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Library {
-	/**
-	 * @var string
-	 */
 	private string $_version = '5.3';
-	/**
-	 * @var string
-	 */
 	private string $_build = '5300';
-	/**
-	 * @var string
-	 */
 	private string $_php_version;
-	/**
-	 * @var int
-	 */
 	private int $_php_code;
-	/**
-	 * @var string
-	 */
 	private string $_library_url;
-	/**
-	 * @var string
-	 */
 	private string $_library_path;
-	/**
-	 * @var string
-	 */
 	private string $_cacert_path;
-	/**
-	 * @var string
-	 */
 	private string $_base_path = 'vendor/dev4press/library';
 	private DateTime $_datetime;
 

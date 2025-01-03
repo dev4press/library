@@ -34,10 +34,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class InstallDB {
-	protected $version = 0;
-	protected $prefix = '';
-	protected $plugin = '';
-	protected $tables = array();
+	protected int $version = 0;
+	protected string $prefix = '';
+	protected string $plugin = '';
+	protected array $tables = array();
 
 	public function __construct() {
 	}

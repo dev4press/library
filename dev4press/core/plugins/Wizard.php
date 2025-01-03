@@ -35,12 +35,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Wizard {
-	public $panel = false;
-	public $panels = array();
-	public $types = array();
-	public $allowed = array();
-	public $default = array();
-	public $storage = array();
+	public bool $panel = false;
+	public array $panels = array();
+	public array $types = array();
+	public array $allowed = array();
+	public array $default = array();
+	public array $storage = array();
 
 	public function __construct() {
 		$this->init_panels();

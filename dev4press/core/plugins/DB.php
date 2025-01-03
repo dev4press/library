@@ -34,15 +34,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class DB extends DBLite {
-	public $db_site = array();
 	public $db;
 
-	public $_prefix = '';
-	public $_tables = array();
-	public $_network_tables = array();
-	public $_metas = array();
+	public array $db_site = array();
+	public array $_tables = array();
+	public array $_network_tables = array();
+	public array $_metas = array();
+	public string $_prefix = '';
 
-	protected $_meta_translate = array();
+	protected array $_meta_translate = array();
 
 	public function __construct() {
 		parent::__construct();
