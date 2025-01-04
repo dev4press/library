@@ -1,6 +1,5 @@
 <?php
 
-use Dev4Press\v53\Core\Helpers\Vendors;
 use Dev4Press\v53\Core\Quick\File;
 use Dev4Press\v53\Core\Quick\KSES;
 use function Dev4Press\v53\Functions\panel;
@@ -15,17 +14,17 @@ $parsedown = new Parsedown();
 $changelog = File::get_contents( panel()->a()->plugin()->path . $file_name );
 
 $rendered = $parsedown->text( $changelog );
-
 $rendered = preg_replace( '/<h1>.+?<\/h1>/', '', $rendered );
 $rendered = preg_replace( '/<h2>.+?<\/h2>/', '', $rendered );
 $rendered = preg_replace( '/<h3>(.+?)<\/h3>/', '<h4>$1</h4>', trim( $rendered ) );
 $rendered = preg_replace( '/<h4>|<ul>|<li>/', PHP_EOL . "$0", $rendered );
-$rendered = explode( PHP_EOL, $rendered );
-$rendered = array_filter( $rendered );
+
+$lines = explode( PHP_EOL, $rendered );
+$lines = array_filter( $lines );
 
 $_is_first = true;
 $_versions = array();
-foreach ( $rendered as $line ) {
+foreach ( $lines as $line ) {
 	preg_match( '/<h4>Version:\s(.+?)\..+?<\/h4>/', $line, $output );
 
 	if ( isset( $output[1] ) ) {

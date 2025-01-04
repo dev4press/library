@@ -2,11 +2,14 @@
 
 ## Changelog
 
-### Version 5.3 - 2025.01.12
+### Version 5.3 - 2025.01.10
 
 * New: composer file requirements expanded
 * New: many PHP related changes and improvements
+* New: expanded `DBLite` with few new methods
+* Edit: improved styling for the plugin settings panel
 * Removed: built-in cacert.pem
+* Removed: unused balloon stylesheet
 
 ### Version 5.2.2 - 2024.11.12
 

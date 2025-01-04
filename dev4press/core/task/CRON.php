@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class CRON extends Background {
-	protected $method = 'cron';
+	protected string $method = 'cron';
 	protected $job = '';
 
 	public function __construct() {

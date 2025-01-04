@@ -43,8 +43,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @property string $feature_name
  */
 abstract class Item {
-	public $name = '';
-	public $settings = array();
+	public string $name = '';
+	public array $settings = array();
 
 	public function __construct() {
 		if ( $this->has_settings() ) {

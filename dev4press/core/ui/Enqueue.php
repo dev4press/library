@@ -29,30 +29,31 @@ namespace Dev4Press\v53\Core\UI;
 
 use Dev4Press\v53\Core\Shared\Resources;
 use Dev4Press\v53\Library;
+use Dev4Press\v53\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 final class Enqueue {
-	private $_version;
-	private $_enqueue_prefix = 'd4plib-v53-';
-	private $_library;
-	private $_debug;
-	private $_url;
-	private $_rtl = false;
+	private string $_version;
+	private string $_enqueue_prefix = 'd4plib-v53-';
+	private string $_library;
+	private string $_url;
+	private bool $_debug = false;
+	private bool $_rtl = false;
+
+	private array $_loaded = array(
+		'js'  => array(),
+		'css' => array(),
+	);
+	private array $_libraries = array(
+		'js'  => array(),
+		'css' => array(),
+	);
 
 	/** @var \Dev4Press\v53\Core\Admin\Plugin|\Dev4Press\v53\Core\Admin\Menu\Plugin|\Dev4Press\v53\Core\Admin\Submenu\Plugin */
 	private $_admin;
-
-	private $_loaded = array(
-		'js'  => array(),
-		'css' => array(),
-	);
-	private $_libraries = array(
-		'js'  => array(),
-		'css' => array(),
-	);
 
 	/**
 	 * @param $admin \Dev4Press\v53\Core\Admin\Plugin|\Dev4Press\v53\Core\Admin\Menu\Plugin|\Dev4Press\v53\Core\Admin\Submenu\Plugin
@@ -92,7 +93,7 @@ final class Enqueue {
 
 	public function start() {
 		$this->_rtl   = is_rtl();
-		$this->_debug = $this->_admin->is_debug;
+		$this->_debug = WordPress::instance()->is_script_debug();
 	}
 
 	public function register( $type, $name, $args = array() ) : Enqueue {

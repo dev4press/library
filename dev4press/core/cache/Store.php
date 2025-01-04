@@ -32,15 +32,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Store {
-	protected $global_groups = array();
+	protected array $global_groups = array();
 
-	private $cache = array();
+	private array $cache = array();
+	private string $blog_prefix;
+	private bool $multisite;
 
-	private $blog_prefix;
-	private $multisite;
-
-	public $cache_hits = 0;
-	public $cache_misses = 0;
+	public int $cache_hits = 0;
+	public int $cache_misses = 0;
 
 	public function __construct() {
 		$this->multisite   = is_multisite();
@@ -57,11 +56,11 @@ class Store {
 		return $instance;
 	}
 
-	protected function _exists( $key, $group ) : bool {
+	protected function _exists( string $key, string $group ) : bool {
 		return isset( $this->cache[ $group ] ) && ( isset( $this->cache[ $group ][ $key ] ) || array_key_exists( $key, $this->cache[ $group ] ) );
 	}
 
-	private function _group( $group = '' ) : string {
+	private function _group( string $group = '' ) : string {
 		if ( empty( $group ) ) {
 			$group = 'default';
 		}
@@ -69,7 +68,7 @@ class Store {
 		return $group;
 	}
 
-	private function _key( $key, $group ) : string {
+	private function _key( string $key, string $group ) : string {
 		if ( $this->multisite && ! isset( $this->global_groups[ $group ] ) ) {
 			$key = $this->blog_prefix . $key;
 		}
@@ -173,7 +172,7 @@ class Store {
 		return true;
 	}
 
-	public function get_group( $group ) : array {
+	public function get_group( string $group ) : array {
 		if ( isset( $this->cache[ $group ] ) ) {
 			return $this->cache[ $group ];
 		}

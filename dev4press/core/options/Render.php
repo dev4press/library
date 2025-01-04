@@ -124,6 +124,12 @@ class Render {
 				echo '<h3>' . $toggle . esc_html( $obj['name'] ) . $kb . '</h3>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo '<div class="d4p-group-inner">';
 
+				if ( ! empty( $obj['toggle']['label'] ) ) {
+					echo '<div class="d4p-settings-on">';
+					echo '<p>' . esc_html( $obj['toggle']['label'] ) . '</p>';
+					echo '</div>';
+				}
+
 				if ( isset( $obj['off'] ) ) {
 					echo '<div class="d4p-settings-off">';
 					echo '<p>' . esc_html( $obj['off']['notice'] ) . '</p>';

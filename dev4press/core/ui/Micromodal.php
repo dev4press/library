@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Micromodal {
-	protected $defaults_args = array(
+	protected array $defaults_args = array(
 		'modal-class'          => 'dev4press',
 		'modal-name'           => '',
 		'modal-title'          => 'Modal Dialog',
@@ -41,14 +41,14 @@ class Micromodal {
 		'modal-button-primary' => 'OK',
 		'modal-button-close'   => 'Close',
 	);
-	protected $defaults_settings = array(
+	protected array $defaults_settings = array(
 		'show-action-button' => true,
 		'close-by-overlay'   => true,
 		'close-by-cross'     => true,
 		'close-by-button'    => true,
 	);
-	protected $args = array();
-	protected $settings = array();
+	protected array $args = array();
+	protected array $settings = array();
 
 	public function __construct() {
 		if ( $this->defaults_args['modal-class'] == 'dev4press' ) {

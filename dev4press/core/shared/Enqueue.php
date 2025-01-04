@@ -37,23 +37,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Enqueue {
 	private static $_current_instance = null;
 
-	private $_enqueue_prefix = 'd4plib-v53-';
-	private $_url;
-	private $_rtl;
-	private $_debug;
+	private string $_enqueue_prefix = 'd4plib-v53-';
+	private string $_url;
+	private bool $_rtl = false;
+	private bool $_debug = false;
 
-	private $_locales = array();
-	private $_actual = array(
+	private array $_locales = array();
+	private array $_actual = array(
 		'js'  => array(),
 		'css' => array(),
 	);
 
-	private $_deps = array(
+	private array $_deps = array(
 		'js'  => array(),
 		'css' => array(),
 	);
 
-	private $_libraries = array(
+	private array $_libraries = array(
 		'js'  => array(),
 		'css' => array(),
 	);
@@ -133,8 +133,12 @@ class Enqueue {
 		return $this->_locales[ $name ] ?? '';
 	}
 
-	public function is_rtl() {
+	public function is_rtl() : bool {
 		return $this->_rtl;
+	}
+
+	public function is_debug() : bool {
+		return $this->_debug;
 	}
 
 	public function register_styles() {

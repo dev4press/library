@@ -35,11 +35,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Background {
-	protected $method = '';
-	protected $transient = '';
-	protected $abort_transient = '';
+	protected string $method = '';
+	protected string $transient = '';
+	protected string $abort_transient = '';
 
-	protected $data = array();
+	protected array $data = array();
 
 	protected $timer = 0;
 	protected $offset = 0;
@@ -143,6 +143,10 @@ abstract class Background {
 		}
 	}
 
+	public function get_status() {
+		return $this->data['status'];
+	}
+
 	protected function init() {
 
 	}
@@ -206,10 +210,6 @@ abstract class Background {
 
 	protected function status( string $status ) {
 		$this->data['status'] = $status;
-	}
-
-	public function get_status() {
-		return $this->data['status'];
 	}
 
 	protected function task_start( string $title ) {

@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @method string get_scope()
  */
 abstract class Admin {
-	public $name = '';
+	public string $name = '';
 
 	public function __construct() {
 	}

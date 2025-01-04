@@ -34,15 +34,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Load {
-	protected $_network_enabled = false;
-	protected $_scope_enabled = true;
+	protected bool $_network_enabled = false;
+	protected bool $_scope_enabled = true;
+	protected string $_default_scope = 'global';
 
-	protected $_load;
-	protected $_load_blog;
-	protected $_list;
-	protected $_active = array();
-	protected $_scopes = array( 'global', 'admin', 'front' );
-	protected $_default_scope = 'global';
+	protected array $_load = array();
+	protected array $_load_blog = array();
+	protected array $_list = array();
+	protected array $_active = array();
+	protected array $_scopes = array( 'global', 'admin', 'front' );
 
 	/** @return static */
 	public static function instance() {

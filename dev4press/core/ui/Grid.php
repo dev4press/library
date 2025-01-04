@@ -35,15 +35,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Grid {
-	protected $default_orderby = 'id';
-	protected $items_per_page = 20;
-	protected $show_search = true;
-	protected $prefix = 'd4plib';
-	protected $grid_classes = '';
-	protected $table_columns = array();
-	protected $sortable_columns = array();
+	protected string $default_orderby = 'id';
+	protected int $items_per_page = 20;
+	protected bool $show_search = true;
+	protected string $prefix = 'd4plib';
+	protected string $grid_classes = '';
+	protected array $table_columns = array();
+	protected array $sortable_columns = array();
 
-	protected $sortables = array(
+	protected array $sortables = array(
 		'up'    => '▲',
 		'down'  => '▼',
 		'first' => '«',
@@ -51,15 +51,15 @@ abstract class Grid {
 		'next'  => '›',
 		'last'  => '»',
 	);
-	protected $vars = array();
-	protected $filters = array();
+	protected array $vars = array();
+	protected array $filters = array();
 
 	protected $pager;
 	protected $sql;
 	protected $items;
 	protected $total;
 
-	protected $current_url;
+	protected string $current_url;
 
 	public function __construct() {
 		$this->current_url = URL::current_url();

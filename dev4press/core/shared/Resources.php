@@ -171,12 +171,6 @@ class Resources {
 				'ext'  => 'css',
 				'min'  => true,
 			),
-			'balloon'    => array(
-				'path' => 'css/',
-				'file' => 'balloon',
-				'ext'  => 'css',
-				'min'  => true,
-			),
 		),
 	);
 

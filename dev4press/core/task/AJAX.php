@@ -34,9 +34,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class AJAX extends Background {
-	protected $method = 'ajax';
-	protected $nonce = '';
-	protected $action = '';
+	protected string $method = 'ajax';
+	protected string $nonce = '';
+	protected string $action = '';
 
 	public function __construct() {
 		parent::__construct();

@@ -32,11 +32,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Icons {
-	protected $base = 'd4p-icon';
-	protected $prefix = 'd4p-';
-	protected $prefix_control = 'd4p-icon-';
+	protected string $base = 'd4p-icon';
+	protected string $prefix = 'd4p-';
+	protected string $prefix_control = 'd4p-icon-';
 
-	protected $icons = array(
+	protected array $icons = array(
 		'brand-buymeacoffee',
 		'brand-classicpress',
 		'brand-deviantart',
@@ -386,11 +386,11 @@ class Icons {
 		'ui-wrench',
 	);
 
-	protected $bool_args = array(
+	protected array $bool_args = array(
 		'full' => 'fw',
 		'spin' => 'spin',
 	);
-	protected $valid_args = array(
+	protected array $valid_args = array(
 		'size'   => array( 'lg', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x' ),
 		'pull'   => array( 'left', 'right' ),
 		'flip'   => array( 'vertical', 'horizontal', 'both' ),
@@ -411,7 +411,7 @@ class Icons {
 		return $instance;
 	}
 
-	public function icons_list() {
+	public function icons_list() : array {
 		return $this->icons;
 	}
 
