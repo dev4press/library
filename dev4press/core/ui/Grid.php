@@ -27,8 +27,10 @@
 
 namespace Dev4Press\v53\Core\UI;
 
+use Dev4Press\v53\Core\Plugins\DBLite;
 use Dev4Press\v53\Core\Quick\Sanitize;
 use Dev4Press\v53\Core\Quick\URL;
+use Dev4Press\v53\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -93,8 +95,76 @@ abstract class Grid {
 		return ! empty( $this->items );
 	}
 
-	protected function table_init() {
+	protected function db() : ?DBLite {
+		return null;
+	}
 
+	protected function get_period_dropdown( $column, $table ) : array {
+		global $wp_locale;
+
+		$sql    = $this->get_period_dropdown_sql( $column, $table );
+		$months = $this->db()->run( $sql );
+
+		$list = array(
+			''              => __( 'All Logged', 'd4plib' ),
+			'last-hour'     => __( 'Last hour', 'd4plib' ),
+			'last-half-day' => __( 'Last 12 hours', 'd4plib' ),
+			'last-day'      => __( 'Last day', 'd4plib' ),
+			'last-week'     => __( 'Last 7 days', 'd4plib' ),
+			'last-month'    => __( 'Last 30 days', 'd4plib' ),
+			'last-year'     => __( 'Last 365 days', 'd4plib' ),
+		);
+
+		foreach ( $months as $row ) {
+			if ( $row->month > 0 && $row->year > 0 ) {
+				$month = zeroise( $row->month, 2 );
+				$year  = $row->year;
+
+				if ( ! isset( $list[ $year ] ) ) {
+					$list[ $year ] = $year;
+				}
+
+				/* translators: Table dropdown for periods. %1$s: Month. %2$s: Year. */
+				$list[ $year . '-' . $month ] = sprintf( __( '%1$s %2$s', 'd4plib' ), $wp_locale->get_month( $month ), $year );
+			}
+		}
+
+		return $list;
+	}
+
+	protected function query_items( array $sql, bool $do_order = true, bool $do_limit = true, string $index_field = '' ) {
+		if ( $do_order ) {
+			$sql['order'] = ( $this->sortable_columns[$this->filters['orderby']] ?? $this->default_orderby ) . ' ' . $this->filters['order'];
+		}
+
+		if ( $do_limit ) {
+			$paged  = $this->filters['pg'];
+			$offset = absint( ( $paged - 1 ) * $this->items_per_page );
+
+			$sql['limit'] = $offset . ', ' . $this->items_per_page;
+		}
+
+		$query = $this->db()->build_query( $sql );
+
+		if ( empty( $index_field ) ) {
+			$this->items = $this->db()->run( $query );
+		} else {
+			$this->items = $this->db()->run_and_index( $query, $index_field );
+		}
+
+		$this->total = $this->db()->get_found_rows();
+
+		$this->complete();
+	}
+
+	protected function get_period_dropdown_sql( $column, $table ) : string {
+		return "SELECT DISTINCT YEAR($column) AS year, MONTH($column) AS month FROM $table ORDER BY $column DESC";
+	}
+
+	protected function timestamp_to_date( $value, string $split = '<br/>' ) : string {
+		$timestamp = Library::instance()->datetime()->timestamp_gmt_to_local( $value );
+
+		return gmdate( 'Y.m.d', $timestamp ) . $split. '@ ' . gmdate( 'H:i:s', $timestamp );
 	}
 
 	protected function no_items() {
@@ -337,4 +407,6 @@ abstract class Grid {
 			'current_page' => $this->filters['pg'],
 		);
 	}
+
+	abstract protected function table_init();
 }
