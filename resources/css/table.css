@@ -140,11 +140,14 @@
 }
 .d4p-grid-table-wrapper div.d4p-grid-filter > * {
   max-width: 220px;
+  font-size: var(--d4p-grid-table-base-font-size);
 }
 .d4p-grid-table-wrapper div.d4p-grid-pager {
   margin: 1em 0 0;
   text-align: center;
   line-height: 2;
+  display: flex;
+  justify-content: space-between;
 }
 @media (max-width: 767px) {
   .d4p-grid-table-wrapper div.d4p-grid-pager .displaying-num {

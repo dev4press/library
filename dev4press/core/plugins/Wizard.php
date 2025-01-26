@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Wizard {
-	public bool $panel = false;
+	public string $panel = '';
 	public array $panels = array();
 	public array $types = array();
 	public array $allowed = array();
