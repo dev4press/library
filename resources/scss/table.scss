@@ -188,6 +188,7 @@
 
         > * {
             max-width: 220px;
+            font-size: var(--d4p-grid-table-base-font-size);
         }
     }
 
@@ -195,6 +196,8 @@
         margin: 1em 0 0;
         text-align: center;
         line-height: 2;
+        display: flex;
+        justify-content: space-between;
 
         .displaying-num {
             @media (max-width: 767px) {

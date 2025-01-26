@@ -3,7 +3,7 @@
 
 * Version: v5.3
 * Build:   5300
-* Release: 2025.01.12.
+* Release: 2025.01.26.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
