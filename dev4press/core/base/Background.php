@@ -105,15 +105,19 @@ abstract class Background {
 	}
 
 	public function get() {
-		$this->data  = get_site_transient( $this->transient );
-		$this->abort = get_site_transient( $this->abort_transient );
+		$_data  = get_site_transient( $this->transient );
+		$_abort = get_site_transient( $this->abort_transient );
 
-		if ( $this->data === false ) {
+		if ( ! is_array( $_data ) ) {
 			$this->data = $this->init_data();
+		} else {
+			$this->data = $_data;
 		}
 
 		if ( ! is_string( $this->abort ) ) {
 			$this->abort = '';
+		} else {
+			$this->abort = $_abort;
 		}
 	}
 
