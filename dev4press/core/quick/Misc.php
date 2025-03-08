@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v53\Core\Quick\Misc
- * Version: v5.3
+ * Name:    Dev4Press\v54\Core\Quick\Misc
+ * Version: v5.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v53\Core\Quick;
+namespace Dev4Press\v54\Core\Quick;
 
-use Dev4Press\v53\Library;
+use Dev4Press\v54\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

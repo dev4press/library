@@ -1,7 +1,7 @@
 <?php
 /**
  * Name:    Base Library Functions: Core
- * Version: v5.3
+ * Version: v5.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -29,8 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! function_exists( 'dev4press_v53_autoload_for_plugin' ) ) {
-	function dev4press_v53_autoload_for_plugin( $class, $base, $path, $path_prefix = '' ) {
+if ( ! function_exists( 'dev4press_v54_autoload_for_plugin' ) ) {
+	function dev4press_v54_autoload_for_plugin( $class, $base, $path, $path_prefix = '' ) {
 		if ( substr( $class, 0, strlen( $base ) ) == $base ) {
 			$clean = substr( $class, strlen( $base ) );
 			$parts = explode( '\\', $clean );

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v53\API\Store
- * Version: v5.3
+ * Name:    Dev4Press\v54\API\Store
+ * Version: v5.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v53\API;
+namespace Dev4Press\v54\API;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -48,6 +48,7 @@ class Store {
 			'description' => 'Breadcrumbs based navigation, fully responsive and customizable, supporting post types, all types of archives, 404 pages, search results and third-party plugins.',
 			'punchline'   => 'Improve your website navigation with Breadcrumbs',
 			'color'       => '#EA0000',
+			'freemius'    => true,
 			'free'        => true,
 			'pro'         => true,
 		),
@@ -66,6 +67,7 @@ class Store {
 			'description' => 'Add popular social networks share buttons to posts and pages, lists of social network profiles with customizable styling and full block editor support.',
 			'punchline'   => 'Share to social networks with ease',
 			'color'       => '#0773B7',
+			'freemius'    => true,
 			'free'        => true,
 			'pro'         => true,
 		),
@@ -75,6 +77,7 @@ class Store {
 			'description' => 'Deploy a wide array of security measures to stop spam registrations, spam content, various types of malicious threats, limit and ban access to repeated offenders and more.',
 			'punchline'   => 'Proactive protection and security hardening',
 			'color'       => '#6F1A1A',
+			'freemius'    => true,
 			'free'        => false,
 			'pro'         => true,
 		),
@@ -132,6 +135,7 @@ class Store {
 			'description' => 'Remove various old, unused or obsolete data from the database, optimize the database for best performance. Schedule cleanup tasks to run automatically.',
 			'punchline'   => 'Powerful database cleanup for WordPress',
 			'color'       => '#67AF12',
+			'freemius'    => true,
 			'free'        => true,
 			'pro'         => true,
 		),
@@ -182,10 +186,11 @@ class Store {
 		),
 		'gd-bbpress-toolbox'               => array(
 			'code'        => 'gd-bbpress-toolbox',
-			'name'        => 'GD bbPress Toolbox',
+			'name'        => 'forumToolbox for bbPress',
 			'description' => 'Expand bbPress powered forums with attachments upload, BBCodes support, signatures, widgets, quotes, toolbar menu, activity tracking, enhanced widgets, extra views...',
 			'punchline'   => 'Enhancing WordPress forums powered by bbPress',
 			'color'       => '#224760',
+			'freemius'    => true,
 			'free'        => false,
 			'pro'         => true,
 		),
@@ -209,19 +214,21 @@ class Store {
 		),
 		'gd-forum-notices-for-bbpress'     => array(
 			'code'        => 'gd-forum-notices-for-bbpress',
-			'name'        => 'GD Forum Notices for bbPress',
+			'name'        => 'forumNotices for bbPress',
 			'description' => 'Easy to use and highly configurable plugin for adding notices throughout the bbPress powered forums, with powerful rules editor to control each notice display and location.',
 			'punchline'   => 'Easily add notices to bbPress powered forums',
 			'color'       => '#005273',
+			'freemius'    => true,
 			'free'        => false,
 			'pro'         => true,
 		),
 		'gd-knowledge-base'                => array(
 			'code'        => 'gd-knowledge-base',
-			'name'        => 'GD Knowledge Base',
+			'name'        => 'KnowledgePress',
 			'description' => 'Complete knowledge base system supporting all themes, with different content types, FAQ, products, live search, feedbacks and ratings, built-in analytics and more.',
 			'punchline'   => 'The knowledge base plugin you have been waiting for',
 			'color'       => '#3c6d29',
+			'freemius'    => true,
 			'free'        => false,
 			'pro'         => true,
 		),
@@ -245,19 +252,21 @@ class Store {
 		),
 		'gd-power-search-for-bbpress'      => array(
 			'code'        => 'gd-power-search-for-bbpress',
-			'name'        => 'GD Power Search for bbPress',
+			'name'        => 'powerSearch for bbPress',
 			'description' => 'Enhanced and powerful search for bbPress powered forums, with options to filter results by post author, forums, publication period, topic tags and few other things.',
 			'punchline'   => 'Advanced search for bbPress powered forums',
 			'color'       => '#670240',
+			'freemius'    => true,
 			'free'        => true,
 			'pro'         => true,
 		),
 		'gd-quantum-theme-for-bbpress'     => array(
 			'code'        => 'gd-quantum-theme-for-bbpress',
-			'name'        => 'GD Quantum Theme for bbPress',
+			'name'        => 'quantumTheme for bbPress',
 			'description' => 'Responsive and modern theme to fully replace default bbPress theme templates and styles, with multiple colour schemes and Customizer integration for more control.',
 			'punchline'   => 'New theme for bbPress powered forums',
 			'color'       => '#D67500',
+			'freemius'    => true,
 			'free'        => false,
 			'pro'         => true,
 		),
@@ -269,6 +278,7 @@ class Store {
 			'color'       => '#333333',
 			'free'        => false,
 			'pro'         => true,
+			'internal'    => true,
 		),
 		'gd-rating-system'                 => array(
 			'code'        => 'gd-rating-system',
@@ -279,30 +289,23 @@ class Store {
 			'free'        => true,
 			'pro'         => true,
 		),
-		'gd-security-toolbox'              => array(
-			'code'        => 'gd-security-toolbox',
-			'name'        => 'GD Security Toolbox',
-			'description' => 'A collection of many security related tools for .htaccess hardening with security events log, ReCaptcha, firewall, and tweaks collection, login and registration control and more.',
-			'punchline'   => 'Proactive protection and security hardening',
-			'color'       => '#6F1A1A',
-			'free'        => false,
-			'pro'         => true,
-		),
 		'gd-topic-polls'                   => array(
 			'code'        => 'gd-topic-polls',
 			'name'        => 'topicPolls for bbPress',
 			'description' => 'Implements polls system for bbPress powered forums, where users can add polls to topics, with a wide range of settings to control voting, poll closing, display of results and more.',
 			'punchline'   => 'Enhance bbPress forums with topic polls',
 			'color'       => '#01665e',
+			'freemius'    => true,
 			'free'        => true,
 			'pro'         => true,
 		),
 		'gd-topic-prefix'                  => array(
 			'code'        => 'gd-topic-prefix',
-			'name'        => 'GD Topic Prefix for bbPress',
+			'name'        => 'topicPrefix for bbPress',
 			'description' => 'Implements topic prefixes system, with support for styling customization, forum specific prefix groups with use of user roles, default prefixes, filtering of topics by prefix and more.',
 			'punchline'   => 'Easy to use topic prefixes for bbPress forums',
 			'color'       => '#A10A0A',
+			'freemius'    => true,
 			'free'        => false,
 			'pro'         => true,
 		),

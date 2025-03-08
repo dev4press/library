@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v53\Core\Plugins\License
- * Version: v5.3
+ * Name:    Dev4Press\v54\Core\Plugins\License
+ * Version: v5.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v53\Core\Plugins;
+namespace Dev4Press\v54\Core\Plugins;
 
-use Dev4Press\v53\Core\Quick\URL;
+use Dev4Press\v54\Core\Quick\URL;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -36,6 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class License {
 	protected string $freemius = '';
 	protected string $plugin = '';
+	protected bool $has_free =  false;
 	private string $site_url = '';
 
 	public function __construct() {
@@ -71,6 +72,10 @@ abstract class License {
 
 	public function can_use_premium_code__premium_only() : bool {
 		return $this->is_valid();
+	}
+
+	public function has_free_version() : bool {
+		return $this->has_free;
 	}
 
 	public function is_valid() : bool {

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v53\Library
- * Version: v5.3
+ * Name:    Dev4Press\v54\Library
+ * Version: v5.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,18 +25,18 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v53;
+namespace Dev4Press\v54;
 
 use Composer\CaBundle\CaBundle;
-use Dev4Press\v53\Core\DateTime;
+use Dev4Press\v54\Core\DateTime;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class Library {
-	private string $_version = '5.3';
-	private string $_build = '5300';
+	private string $_version = '5.4';
+	private string $_build = '5400';
 	private string $_php_version;
 	private int $_php_code;
 	private string $_library_url;

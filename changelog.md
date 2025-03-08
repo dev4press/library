@@ -2,6 +2,11 @@
 
 ## Changelog
 
+### Version 5.4 - 2025.04.05
+
+* New: additional free flag in the License
+* New: show admin notices when license is not activated
+
 ### Version 5.3 - 2025.01.26
 
 * New: composer file requirements expanded
@@ -31,15 +36,3 @@
 * Edit: improved styling for the plugin settings panel
 * Edit: many updates to the plugin dashboard styling
 * Edit: built-in cacert.pem 20240924
-
-### Version 5.1 - 2024.09.04
-
-* New: added several more icons to the icon font
-* New: expanded `License` object with additional control
-* Edit: font icons now only embeds `WOFF2` font version
-* Edit: updated links format for the Dev4Press website
-* Edit: improved the main `Panel` class for loading templates
-* Edit: few tweaks to the `Pixabay` integration implementation
-* Edit: few tweaks to the `Words` generator class
-* Edit: updates to the various base form templates
-* Edit: many styling improvements and tweaks

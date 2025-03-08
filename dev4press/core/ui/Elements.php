@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v53\Core\UI\Elements
- * Version: v5.3
+ * Name:    Dev4Press\v54\Core\UI\Elements
+ * Version: v5.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,12 +25,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v53\Core\UI;
+namespace Dev4Press\v54\Core\UI;
 
-use Dev4Press\v53\Core\Quick\Arr;
-use Dev4Press\v53\Core\Quick\KSES;
-use Dev4Press\v53\Core\Quick\Sanitize;
-use Dev4Press\v53\WordPress\Walker\CheckboxRadio;
+use Dev4Press\v54\Core\Quick\Arr;
+use Dev4Press\v54\Core\Quick\KSES;
+use Dev4Press\v54\Core\Quick\Sanitize;
+use Dev4Press\v54\WordPress\Walker\CheckboxRadio;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

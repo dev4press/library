@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v53\Core\Admin\Plugin
- * Version: v5.3
+ * Name:    Dev4Press\v54\Core\Admin\Plugin
+ * Version: v5.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,12 +25,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v53\Core\Admin;
+namespace Dev4Press\v54\Core\Admin;
 
-use Dev4Press\v53\Core\UI\Admin\Panel;
-use Dev4Press\v53\Core\UI\Enqueue;
-use Dev4Press\v53\Library;
-use Dev4Press\v53\WordPress;
+use Dev4Press\v54\Core\UI\Admin\Panel;
+use Dev4Press\v54\Core\UI\Enqueue;
+use Dev4Press\v54\Library;
+use Dev4Press\v54\WordPress;
 use WP_Screen;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -319,6 +319,10 @@ abstract class Plugin {
 		if ( $this->settings()->is_update() ) {
 			add_action( 'admin_notices', array( $this, 'update_notice' ) );
 		}
+
+		if ( $this->plugin()->show_license_notice() ) {
+			add_action( 'admin_notices', array( $this, 'license_notice' ) );
+		}
 	}
 
 	public function install_notice() {
@@ -327,6 +331,16 @@ abstract class Plugin {
 			/* translators: Plugin installation admin notice. %s: Plugin Name. */
 			echo esc_html( sprintf( __( '%s is activated and it needs to finish installation.', 'd4plib' ), $this->title() ) );
 			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( 'Click Here', 'd4plib' ) . '</a>.';
+			echo '</p></div>';
+		}
+	}
+
+	public function license_notice() {
+		if ( current_user_can( 'install_plugins' ) && $this->page !== false ) {
+			echo '<div class="notice notice-error"><p>';
+			/* translators: Plugin installation admin notice. %s: Plugin Name. */
+			echo esc_html( sprintf( __( '%s requires license code to be activated. All plugin features will be disabled until the license is activated', 'd4plib' ), $this->title() ) );
+			echo ' <a href="' . esc_url( $this->panel_url( 'settings', 'license' ) ) . '">' . esc_html__( 'Click Here', 'd4plib' ) . '</a>.';
 			echo '</p></div>';
 		}
 	}
@@ -609,18 +623,18 @@ abstract class Plugin {
 
 	abstract public function run_postback();
 
-	/** @return \Dev4Press\v53\Core\Plugins\Wizard */
+	/** @return \Dev4Press\v54\Core\Plugins\Wizard */
 	abstract public function wizard();
 
-	/** @return \Dev4Press\v53\Core\Plugins\Core */
+	/** @return \Dev4Press\v54\Core\Plugins\Core */
 	abstract public function plugin();
 
-	/** @return \Dev4Press\v53\Core\Plugins\Settings */
+	/** @return \Dev4Press\v54\Core\Plugins\Settings */
 	abstract public function settings();
 
-	/** @return \Dev4Press\v53\Core\Plugins\Settings */
+	/** @return \Dev4Press\v54\Core\Plugins\Settings */
 	abstract public function settings_blog();
 
-	/** @return \Dev4Press\v53\Core\Options\Settings */
+	/** @return \Dev4Press\v54\Core\Options\Settings */
 	abstract public function settings_definitions();
 }

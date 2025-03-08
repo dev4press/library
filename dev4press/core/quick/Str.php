@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v53\Core\Quick\Str
- * Version: v5.3
+ * Name:    Dev4Press\v54\Core\Quick\Str
+ * Version: v5.4
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v53\Core\Quick;
+namespace Dev4Press\v54\Core\Quick;
 
 use DateTime;
-use Dev4Press\v53\Library;
+use Dev4Press\v54\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -257,5 +257,13 @@ class Str {
 
 	public static function camelcase_to_words( $input ) : array {
 		return preg_split( '/(^[^A-Z]+|[A-Z][^A-Z]+)/', $input, - 1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE );
+	}
+
+	public static function clean_content_for_email( string $content, bool $strip_tags = true ) : string {
+		if ( $strip_tags ) {
+			$content = wp_strip_all_tags( $content );
+		}
+
+		return wp_specialchars_decode( trim( $content ), ENT_QUOTES );
 	}
 }

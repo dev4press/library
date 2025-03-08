@@ -1,8 +1,8 @@
 <?php
 
-use Dev4Press\v53\Core\Quick\KSES;
-use Dev4Press\v53\Core\Quick\WPR;
-use Dev4Press\v53\Core\UI\Elements;
+use Dev4Press\v54\Core\Quick\KSES;
+use Dev4Press\v54\Core\Quick\WPR;
+use Dev4Press\v54\Core\UI\Elements;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
