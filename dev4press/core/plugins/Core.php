@@ -31,7 +31,6 @@ use Dev4Press\v54\API\Four;
 use Dev4Press\v54\Core\DateTime;
 use Dev4Press\v54\Core\Quick\BBP;
 use Dev4Press\v54\Core\Quick\KSES;
-use Dev4Press\v54\Core\Quick\WPR;
 use Dev4Press\v54\Library;
 use Dev4Press\v54\WordPress;
 
@@ -165,7 +164,7 @@ abstract class Core {
 
 	public function show_license_notice() : bool {
 		if ( $this->license ) {
-			if ( $this->l()->has_free_version() && ! $this->l()->is_freemius() && ! $this->l()->is_valid() ) {
+			if ( ! $this->l()->has_free_version() && ! $this->l()->is_freemius() && ! $this->l()->is_valid() ) {
 				return true;
 			}
 		}
@@ -241,10 +240,8 @@ abstract class Core {
 		$dashboard = $this->s()->get( 'dashboard', 'license' );
 
 		if ( $dashboard + DAY_IN_SECONDS < time() ) {
-			if ( ! WPR::is_scheduled_single( $this->get_license_action() ) ) {
-				$this->s()->set( 'dashboard', time(), 'license', true, true );
-				$this->l()->validate();
-			}
+			$this->s()->set( 'dashboard', time(), 'license', true, true );
+			$this->l()->validate( true );
 		}
 	}
 

@@ -327,7 +327,7 @@ abstract class Plugin {
 
 	public function install_notice() {
 		if ( current_user_can( 'install_plugins' ) && $this->page === false ) {
-			echo '<div class="notice notice-info is-dismissible"><p>';
+			echo '<div class="notice notice-info"><p>';
 			/* translators: Plugin installation admin notice. %s: Plugin Name. */
 			echo esc_html( sprintf( __( '%s is activated and it needs to finish installation.', 'd4plib' ), $this->title() ) );
 			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( 'Click Here', 'd4plib' ) . '</a>.';
@@ -336,11 +336,11 @@ abstract class Plugin {
 	}
 
 	public function license_notice() {
-		if ( current_user_can( 'install_plugins' ) && $this->page !== false ) {
+		if ( current_user_can( 'install_plugins' ) ) {
 			echo '<div class="notice notice-error"><p>';
 			/* translators: Plugin installation admin notice. %s: Plugin Name. */
-			echo esc_html( sprintf( __( '%s requires license code to be activated. All plugin features will be disabled until the license is activated', 'd4plib' ), $this->title() ) );
-			echo ' <a href="' . esc_url( $this->panel_url( 'settings', 'license' ) ) . '">' . esc_html__( 'Click Here', 'd4plib' ) . '</a>.';
+			echo esc_html( sprintf( __( '%s requires license code to be activated. All plugin features will be disabled until the license is activated.', 'd4plib' ), $this->title() ) );
+			echo ' <a href="' . esc_url( $this->panel_url( 'settings', 'license' ) ) . '">' . esc_html__( 'Add License', 'd4plib' ) . '</a>.';
 			echo '</p></div>';
 		}
 	}

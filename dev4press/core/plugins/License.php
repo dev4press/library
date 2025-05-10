@@ -148,7 +148,7 @@ abstract class License {
 		return $this->process_response( $response, $format );
 	}
 
-	public function validate() {
+	public function validate( $dashboard = false ) {
 		if ( $this->is_freemius() ) {
 			return;
 		}
@@ -243,12 +243,18 @@ abstract class License {
 			}
 		}
 
-		$this->plugin()->s()->bulk( array(
+		$bulk = array(
 			'info'   => $result,
 			'check'  => time(),
 			'last'   => $last,
 			'record' => $record,
-		), 'license', true, true );
+		);
+
+		if ( $dashboard ) {
+			$bulk['dashboard'] = $bulk['check'];
+		}
+
+		$this->plugin()->s()->bulk( $bulk, 'license', true, true );
 	}
 
 	private function validation_url( $code, $plugin ) : string {
