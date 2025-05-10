@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class License {
 	protected string $freemius = '';
 	protected string $plugin = '';
-	protected bool $has_free =  false;
+	protected bool $has_free = false;
 	private string $site_url = '';
 
 	public function __construct() {
@@ -114,6 +114,10 @@ abstract class License {
 		}
 
 		return $code;
+	}
+
+	public function last_validation_timestamp() : int {
+		return absint( $this->plugin()->s()->get( 'check', 'license' ) );
 	}
 
 	public function get( $api, $version, $format = 'json' ) : array {

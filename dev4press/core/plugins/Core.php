@@ -175,10 +175,10 @@ abstract class Core {
 
 	public function license_control() {
 		if ( ! $this->l()->is_freemius() ) {
-			add_action( $this->plugin . '-license-validation', array( $this, 'cron_license_validation' ) );
+			add_action( $this->get_license_action(), array( $this, 'cron_license_validation' ) );
 
-			if ( ! wp_next_scheduled( $this->plugin . '-license-validation' ) ) {
-				wp_schedule_event( time() + HOUR_IN_SECONDS, 'weekly', $this->plugin . '-license-validation' );
+			if ( ! wp_next_scheduled( $this->get_license_action() ) ) {
+				wp_schedule_event( time() + HOUR_IN_SECONDS, 'weekly', $this->get_license_action() );
 			}
 		}
 	}
@@ -221,6 +221,16 @@ abstract class Core {
 		return $this->_widget_instance;
 	}
 
+	public function maybe_license_validation() {
+		if ( $this->license && ! $this->l()->is_freemius() ) {
+			$timestamp = $this->l()->last_validation_timestamp();
+
+			if ( $timestamp + WEEK_IN_SECONDS < time() ) {
+				$this->l()->validate();
+			}
+		}
+	}
+
 	public function cron_license_validation() {
 		if ( $this->license ) {
 			$this->l()->validate();
@@ -231,10 +241,9 @@ abstract class Core {
 		$dashboard = $this->s()->get( 'dashboard', 'license' );
 
 		if ( $dashboard + DAY_IN_SECONDS < time() ) {
-			if ( ! WPR::is_scheduled_single( $this->plugin . '-license-validation' ) ) {
+			if ( ! WPR::is_scheduled_single( $this->get_license_action() ) ) {
 				$this->s()->set( 'dashboard', time(), 'license', true, true );
-
-				wp_schedule_single_event( time() + 5, $this->plugin . '-license-validation' );
+				$this->l()->validate();
 			}
 		}
 	}
@@ -281,6 +290,10 @@ abstract class Core {
 		}
 
 		return $list;
+	}
+
+	protected function get_license_action() : string {
+		return $this->plugin . '-license-validation';
 	}
 
 	public function fs() {

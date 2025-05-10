@@ -205,7 +205,7 @@ class Store {
 		),
 		'gd-forum-manager-for-bbpress'     => array(
 			'code'        => 'gd-forum-manager-for-bbpress',
-			'name'        => 'GD Forum Manager for bbPress',
+			'name'        => 'forumManager for bbPress',
 			'description' => 'Expand how the moderators can manage forum content from the frontend, including forums and topics quick and bulk editing from any page showing list of topics or forums.',
 			'punchline'   => 'Manage forums and topics from frontend with ease',
 			'color'       => '#540073',
@@ -243,7 +243,7 @@ class Store {
 		),
 		'gd-members-directory-for-bbpress' => array(
 			'code'        => 'gd-members-directory-for-bbpress',
-			'name'        => 'GD Members Directory for bbPress',
+			'name'        => 'membersDirectory for bbPress',
 			'description' => 'Easy to use plugin for adding forum members directory page into bbPress powered forums including members filtering and additional widgets for listing members in the sidebar.',
 			'punchline'   => 'Members Directory for bbPress powered forums',
 			'color'       => '#057C8C',

@@ -134,7 +134,7 @@ abstract class Grid {
 
 	protected function query_items( array $sql, bool $do_order = true, bool $do_limit = true, string $index_field = '' ) {
 		if ( $do_order ) {
-			$sql['order'] = ( $this->sortable_columns[$this->filters['orderby']] ?? $this->default_orderby ) . ' ' . $this->filters['order'];
+			$sql['order'] = ( $this->sortable_columns[ $this->filters['orderby'] ] ?? $this->default_orderby ) . ' ' . $this->filters['order'];
 		}
 
 		if ( $do_limit ) {
@@ -164,7 +164,7 @@ abstract class Grid {
 	protected function timestamp_to_date( $value, string $split = '<br/>' ) : string {
 		$timestamp = Library::instance()->datetime()->timestamp_gmt_to_local( $value );
 
-		return gmdate( 'Y.m.d', $timestamp ) . $split. '@ ' . gmdate( 'H:i:s', $timestamp );
+		return gmdate( 'Y.m.d', $timestamp ) . $split . '@ ' . gmdate( 'H:i:s', $timestamp );
 	}
 
 	protected function no_items() {

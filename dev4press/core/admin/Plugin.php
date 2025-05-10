@@ -568,6 +568,8 @@ abstract class Plugin {
 		$this->object = $class::instance( $this );
 
 		$this->subpanel = $this->object->validate_subpanel( $this->subpanel );
+
+		$this->plugin()->maybe_license_validation();
 	}
 
 	protected function default_panel_object() : object {

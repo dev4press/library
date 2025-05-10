@@ -621,6 +621,10 @@ abstract class Settings {
 		return $scope;
 	}
 
+	protected function _license_action() : string {
+		return $this->plugin . '-license-validation';
+	}
+
 	protected function _license_control() {
 		if ( isset( $this->changed['license']['code'] ) ) {
 			if ( empty( $this->changed['license']['code']['new'] ) ) {
@@ -637,10 +641,14 @@ abstract class Settings {
 	}
 
 	protected function _license_schedule() {
-		if ( ! empty( $this->plugin ) && ! WPR::is_scheduled_single( $this->plugin . '-license-validation' ) ) {
+		if ( ! empty( $this->plugin ) ) {
 			$this->set( 'record', 'in-progress', 'license', true, true );
 
-			wp_schedule_single_event( time() + 5, $this->plugin . '-license-validation' );
+			do_action( $this->_license_action() );
+
+			if ( ! WPR::is_scheduled_single( $this->_license_action() ) ) {
+				wp_schedule_single_event( time() + 5, $this->_license_action() );
+			}
 		}
 	}
 

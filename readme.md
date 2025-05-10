@@ -3,7 +3,7 @@
 
 * Version: v5.4
 * Build:   5400
-* Release: 2025.04.05.
+* Release: 2025.05.24.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
