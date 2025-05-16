@@ -517,7 +517,6 @@ class WPR {
 	}
 
 	public static function list_user_roles() : array {
-		$roles = array();
 
 		foreach ( wp_roles()->roles as $role => $details ) {
 			$roles[ $role ] = translate_user_role( $details['name'] );

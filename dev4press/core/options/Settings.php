@@ -156,6 +156,8 @@ abstract class Settings {
 				'<strong>' . __( 'License Code has not been checked yet.', 'd4plib' ) . '</strong>',
 			);
 		} else {
+			$time = DateTime::instance()->timestamp_gmt_to_local($time);
+
 			$items = array(
 				'<span>' . __( 'Last Checked', 'd4plib' ) . '</span>: <strong>' . DateTime::instance()->mysql_date( true, $time ) . '</strong>',
 				'<hr/>',

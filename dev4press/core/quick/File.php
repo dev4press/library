@@ -115,7 +115,7 @@ class File {
 						if (
 							( is_dir( $path . $file ) && ( in_array( $filter, array( 'folders', 'all' ) ) ) ) ||
 							( is_file( $path . $file ) && ( in_array( $filter, array( 'files', 'all' ) ) ) ) ||
-							( ( is_file( $path . $file ) || is_dir( $path . $file ) ) && ( in_array( $filter, array( 'all' ) ) ) ) ) {
+							( ( is_file( $path . $file ) || is_dir( $path . $file ) ) && ( $filter == 'all' ) ) ) {
 							$add = $full_path ? $path : '';
 
 							if ( $reg_expr == '' ) {

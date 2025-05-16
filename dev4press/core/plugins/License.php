@@ -37,7 +37,7 @@ abstract class License {
 	protected string $freemius = '';
 	protected string $plugin = '';
 	protected bool $has_free = false;
-	private string $site_url = '';
+	private string $site_url;
 
 	public function __construct() {
 		$this->site_url = wp_parse_url( network_site_url(), PHP_URL_HOST );

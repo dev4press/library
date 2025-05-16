@@ -536,7 +536,7 @@ abstract class Settings {
 
 		foreach ( $options as $option ) {
 			$key   = $option->meta_key;
-			$cache = "{$site_id}:$key";
+			$cache = "$site_id:$key";
 
 			$option->meta_value = maybe_unserialize( $option->meta_value );
 
