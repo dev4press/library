@@ -2,9 +2,9 @@
 
 ## Changelog
 
-### Version 5.4 - 2025.05.24
+### Version 5.4 - 2025.05.23
 
-* New: additional free flag in the License
+* New: additional free flag in the `License`
 * New: show admin notices when license is not activated
 * New: updated license validation on save
 * New: improved weekly license validation
