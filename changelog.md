@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### Version 5.5 - 2025.12.12
+
+* New: additional functions for string manipulation
+
 ### Version 5.4 - 2025.05.23
 
 * New: additional free flag in the `License`

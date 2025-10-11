@@ -1,7 +1,7 @@
 <?php
 /**
  * Name:    Dev4Press Core Autoloader
- * Version: v5.4
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,13 +25,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-if ( ! function_exists( 'dev4press_core_library_autoloader_v54' ) ) {
-	function dev4press_core_library_autoloader_v54( $class ) {
-		$path = DEV4PRESS_V54_PATH;
-		$base = 'Dev4Press\\v54\\';
+if ( ! function_exists( 'dev4press_core_library_autoloader_v55' ) ) {
+	function dev4press_core_library_autoloader_v55( $class ) {
+		$path = DEV4PRESS_V55_PATH;
+		$base = 'Dev4Press\\v55\\';
 
-		dev4press_v54_autoload_for_plugin( $class, $base, $path, 'dev4press/' );
+		dev4press_v55_autoload_for_plugin( $class, $base, $path, 'dev4press/' );
 	}
 
-	spl_autoload_register( 'dev4press_core_library_autoloader_v54' );
+	spl_autoload_register( 'dev4press_core_library_autoloader_v55' );
 }

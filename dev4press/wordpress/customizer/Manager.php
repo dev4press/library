@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\WordPress\Customizer\Core
- * Version: v5.4
+ * Name:    Dev4Press\v55\WordPress\Customizer\Core
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\WordPress\Customizer;
+namespace Dev4Press\v55\WordPress\Customizer;
 
-use Dev4Press\v54\Library;
-use Dev4Press\v54\WordPress;
+use Dev4Press\v55\Library;
+use Dev4Press\v55\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

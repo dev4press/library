@@ -1,6 +1,6 @@
 @font-face {
   font-family: "dev4press";
-  src: url("fonts/dev4press.woff2?5.4.0") format("woff2"), url("fonts/dev4press.woff?5.4.0") format("woff");
+  src: url("fonts/dev4press.woff2?5.5.0") format("woff2"), url("fonts/dev4press.woff?5.5.0") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: auto;
@@ -3215,8 +3215,6 @@ a > .d4p-icon {
 .d4p-group .d4p-group-inner .d4p-group-elements > div {
   flex-basis: 50%;
   padding: 0 1.5em;
-  display: flex;
-  justify-content: space-between;
 }
 .d4p-group .d4p-group-inner .d4p-group-elements > div.d4p-group-element-full {
   flex-basis: 100%;
@@ -3230,6 +3228,10 @@ a > .d4p-icon {
   flex-basis: 100%;
   border-top: 1px solid #DDD;
   padding-top: 0.75em;
+}
+.d4p-group .d4p-group-inner .d4p-group-elements > div {
+  display: flex;
+  justify-content: space-between;
 }
 @media screen and (max-width: 768px) {
   .d4p-group .d4p-group-inner .d4p-group-elements > div {

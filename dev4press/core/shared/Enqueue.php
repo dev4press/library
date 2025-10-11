@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Shared\Enqueue
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Shared\Enqueue
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Shared;
+namespace Dev4Press\v55\Core\Shared;
 
-use Dev4Press\v54\Library;
-use Dev4Press\v54\WordPress;
+use Dev4Press\v55\Library;
+use Dev4Press\v55\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Enqueue {
 	private static $_current_instance = null;
 
-	private string $_enqueue_prefix = 'd4plib-v54-';
+	private string $_enqueue_prefix = 'd4plib-v55-';
 	private string $_url;
 	private bool $_rtl = false;
 	private bool $_debug = false;

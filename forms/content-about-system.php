@@ -1,8 +1,8 @@
 <?php
 
-use Dev4Press\v54\Library;
-use Dev4Press\v54\WordPress;
-use function Dev4Press\v54\Functions\panel;
+use Dev4Press\v55\Library;
+use Dev4Press\v55\WordPress;
+use function Dev4Press\v55\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

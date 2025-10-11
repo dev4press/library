@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\UI\Widgets
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\UI\Widgets
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,16 +25,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\UI;
+namespace Dev4Press\v55\Core\UI;
 
-use Dev4Press\v54\Library;
+use Dev4Press\v55\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 final class Widgets {
-	/** @var \Dev4Press\v54\Core\Admin\Plugin|\Dev4Press\v54\Core\Admin\Menu\Plugin|\Dev4Press\v54\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v55\Core\Admin\Plugin|\Dev4Press\v55\Core\Admin\Menu\Plugin|\Dev4Press\v55\Core\Admin\Submenu\Plugin */
 	private $_admin;
 
 	public function __construct( $admin ) {

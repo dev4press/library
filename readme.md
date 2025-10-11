@@ -1,9 +1,9 @@
 # Dev4Press Library
 ## About
 
-* Version: v5.4
-* Build:   5400
-* Release: 2025.05.23.
+* Version: v5.5
+* Build:   5500
+* Release: 2025.12.12.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
@@ -13,12 +13,12 @@
 
 ### Server
 
-* PHP: 7.4 or newer
+* PHP: 8.0 or newer
 * mySQL: 5.5 or newer
 
 ### WordPress
 
-* WordPress: 6.0 or newer
+* WordPress: 6.3 or newer
 
 ### ClassicPress
 
