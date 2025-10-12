@@ -47,7 +47,7 @@ class Scope {
 		$this->multisite = is_multisite();
 		$this->blog_id   = get_current_blog_id();
 
-		if ( WordPress::instance()->is_cli() ) {
+		if ( WordPress::i()->is_cli() ) {
 			$this->scope = 'cli';
 		} else {
 			if ( is_admin() ) {
@@ -72,11 +72,16 @@ class Scope {
 		}
 	}
 
-	public static function instance() : Scope {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = null;
 
 		if ( ! isset( $instance ) ) {
-			$instance = new Scope();
+			$instance = new static();
 		}
 
 		return $instance;

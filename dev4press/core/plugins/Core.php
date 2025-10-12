@@ -49,6 +49,7 @@ abstract class Core {
 	public string $cap = 'activate_plugins';
 	public string $svg_icon = '';
 	public string $plugin = '';
+	public string $plugin_prefix = '';
 	public string $url = '';
 	public string $path = '';
 
@@ -56,14 +57,19 @@ abstract class Core {
 	protected array $_widget_instance = array();
 	protected int $_plugins_loaded_priority = 10;
 	protected int $_after_setup_theme_priority = 10;
+	protected string $_library_code = 'v55';
 
 	public function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), $this->_plugins_loaded_priority );
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), $this->_after_setup_theme_priority );
 	}
 
-	/** @return static */
-	public static function instance() {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {
@@ -74,7 +80,7 @@ abstract class Core {
 	}
 
 	public function datetime() : DateTime {
-		return Library::instance()->datetime();
+		return Library::i()->datetime();
 	}
 
 	public function edition() : string {
@@ -92,8 +98,8 @@ abstract class Core {
 		return ( $only_pro && $edition == 'pro' ) || ! $only_pro ? $label : '';
 	}
 
-	public function plugins_loaded() {
-		$this->is_debug = WordPress::instance()->is_script_debug();
+	public function plugins_loaded() : void {
+		$this->is_debug = WordPress::i()->is_script_debug();
 
 		if ( $this->widgets === true || ! empty( $this->widgets ) ) {
 			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
@@ -120,12 +126,12 @@ abstract class Core {
 		}
 	}
 
-	public function load_textdomain() {
+	public function load_textdomain() : void {
 		load_plugin_textdomain( $this->plugin, false, $this->plugin . '/languages' );
-		load_plugin_textdomain( 'd4plib', false, $this->plugin . '/' . Library::instance()->base_path() . '/languages' );
+		load_plugin_textdomain( 'd4plib', false, $this->plugin . '/' . Library::i()->base_path() . '/languages' );
 	}
 
-	public function init_capabilities() {
+	public function init_capabilities() : void {
 		$role = get_role( 'administrator' );
 
 		if ( ! is_null( $role ) ) {
@@ -139,10 +145,9 @@ abstract class Core {
 		return $this->plugin . '/' . $this->plugin . '.php';
 	}
 
-	public function deactivate() {
+	public function deactivate() : void {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
-		// This call deactivates this plugin only, it can't deactivate other plugins
 		deactivate_plugins( $this->plugin_name() );
 	}
 
@@ -153,10 +158,10 @@ abstract class Core {
 		return $four->ad_render( $panel );
 	}
 
-	public function after_setup_theme() {
+	public function after_setup_theme() : void {
 	}
 
-	public function cron_controls() {
+	public function cron_controls() : void {
 		if ( $this->license ) {
 			$this->license_control();
 		}
@@ -172,7 +177,7 @@ abstract class Core {
 		return false;
 	}
 
-	public function license_control() {
+	public function license_control() : void {
 		if ( ! $this->l()->is_freemius() ) {
 			add_action( $this->get_license_action(), array( $this, 'cron_license_validation' ) );
 
@@ -188,7 +193,7 @@ abstract class Core {
 	public function enqueue_scripts() {
 	}
 
-	public function system_requirements_notices() {
+	public function system_requirements_notices() : void {
 		$plugin   = $this->s()->i()->name();
 		$versions = array();
 
@@ -212,7 +217,7 @@ abstract class Core {
 		$this->deactivate();
 	}
 
-	public function store_widget_instance( $instance ) {
+	public function store_widget_instance( $instance ) : void {
 		$this->_widget_instance = (array) $instance;
 	}
 
@@ -220,7 +225,7 @@ abstract class Core {
 		return $this->_widget_instance;
 	}
 
-	public function maybe_license_validation() {
+	public function maybe_license_validation() : void {
 		if ( $this->license && ! $this->l()->is_freemius() ) {
 			$timestamp = $this->l()->last_validation_timestamp();
 
@@ -230,13 +235,13 @@ abstract class Core {
 		}
 	}
 
-	public function cron_license_validation() {
+	public function cron_license_validation() : void {
 		if ( $this->license ) {
 			$this->l()->validate();
 		}
 	}
 
-	public function dashboard_license_validation() {
+	public function dashboard_license_validation() : void {
 		$dashboard = $this->s()->get( 'dashboard', 'license' );
 
 		if ( $dashboard + DAY_IN_SECONDS < time() ) {
@@ -254,16 +259,16 @@ abstract class Core {
 
 		$list = array();
 
-		$cms = $this->s()->i()->requirement_version( WordPress::instance()->cms() );
+		$cms = $this->s()->i()->requirement_version( WordPress::i()->cms() );
 
-		if ( WordPress::instance()->is_version_equal_or_higher( $cms ) === false ) {
-			$list[] = array( WordPress::instance()->cms_title(), WordPress::instance()->version(), $cms );
+		if ( WordPress::i()->is_version_equal_or_higher( $cms ) === false ) {
+			$list[] = array( WordPress::i()->cms_title(), WordPress::i()->version(), $cms );
 		}
 
 		$php = $this->s()->i()->requirement_version( 'php' );
 
-		if ( version_compare( Library::instance()->php_version(), $php, '>=' ) === false ) {
-			$list[] = array( 'PHP', Library::instance()->php_version(), $php );
+		if ( version_compare( Library::i()->php_version(), $php, '>=' ) === false ) {
+			$list[] = array( 'PHP', Library::i()->php_version(), $php );
 		}
 
 		$mysql = $this->s()->i()->requirement_version( 'mysql' );
@@ -291,6 +296,10 @@ abstract class Core {
 
 	protected function get_license_action() : string {
 		return $this->plugin . '-license-validation';
+	}
+
+	public function hook( string $name ) : string {
+		return $this->plugin_prefix . '_' . $name;
 	}
 
 	public function fs() {

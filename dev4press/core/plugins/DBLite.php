@@ -99,8 +99,12 @@ abstract class DBLite {
 	public function init() {
 	}
 
-	/** @return static */
-	public static function instance() {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {

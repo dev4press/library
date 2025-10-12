@@ -44,8 +44,15 @@ abstract class Load {
 	protected array $_active = array();
 	protected array $_scopes = array( 'global', 'admin', 'front' );
 
-	/** @return static */
-	public static function instance() {
+	protected function __construct() {
+	}
+
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {

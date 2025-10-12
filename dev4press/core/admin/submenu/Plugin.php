@@ -78,7 +78,7 @@ abstract class Plugin extends BasePlugin {
 		return $url;
 	}
 
-	public function admin_menu() {
+	public function admin_menu() : void {
 		$this->page_ids[] = add_submenu_page(
 			$this->menu,
 			$this->plugin_title,

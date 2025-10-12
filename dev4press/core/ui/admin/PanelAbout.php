@@ -12,13 +12,7 @@ abstract class PanelAbout extends Panel {
 	protected string $default_subpanel = 'whatsnew';
 	protected string $wrapper_class = 'd4p-page-about';
 
-	public function __construct( $admin ) {
-		parent::__construct( $admin );
-
-		$this->init_default_subpanels();
-	}
-
-	protected function init_default_subpanels() {
+	protected function init_default_subpanels() : void {
 		$this->subpanels = array(
 			'whatsnew'  => array(
 				'title' => __( 'What&#8217;s New', 'd4plib' ),

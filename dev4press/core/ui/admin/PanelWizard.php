@@ -9,13 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class PanelWizard extends Panel {
 	protected bool $sidebar = false;
 
-	public function __construct( $admin ) {
-		parent::__construct( $admin );
-
-		$this->init_default_subpanels();
-	}
-
-	protected function init_default_subpanels() {
+	protected function init_default_subpanels() : void {
 		$this->subpanels = array();
 
 		foreach ( $this->a()->wizard()->panels as $panel => $obj ) {
@@ -23,11 +17,11 @@ abstract class PanelWizard extends Panel {
 		}
 	}
 
-	public function show() {
+	public function show() : void {
 		$this->load( 'content-wizard.php' );
 	}
 
-	public function enqueue_scripts() {
+	public function enqueue_scripts() : void {
 		$this->a()->e()->css( 'wizard' )->js( 'wizard' );
 	}
 }

@@ -97,7 +97,7 @@ class Misc {
 	}
 
 	public static function flag_from_country_code( string $country_code, string $location, string $status = 'active', string $not_found = 'image' ) : string {
-		$_base = Library::instance()->url() . 'resources/vendor/flags/img/flag_placeholder.png';
+		$_base = Library::i()->url() . 'resources/vendor/flags/img/flag_placeholder.png';
 
 		if ( $status == 'active' ) {
 			if ( $country_code != '' ) {

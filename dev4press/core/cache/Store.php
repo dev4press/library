@@ -46,11 +46,16 @@ class Store {
 		$this->blog_prefix = $this->multisite ? get_current_blog_id() . ':' : '';
 	}
 
-	public static function instance() : Store {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = false;
 
 		if ( $instance === false ) {
-			$instance = new Store();
+			$instance = new static();
 		}
 
 		return $instance;
@@ -76,7 +81,7 @@ class Store {
 		return $key;
 	}
 
-	public function add_global_groups( $groups ) {
+	public function add_global_groups( $groups ) : void {
 		$groups = (array) $groups;
 
 		$groups              = array_fill_keys( $groups, true );
@@ -180,7 +185,7 @@ class Store {
 		return array();
 	}
 
-	public function stats() {
+	public function stats() : void {
 		echo '<p>';
 		echo '<strong>Cache Hits:</strong> ' . esc_html( $this->cache_hits ) . '<br />';
 		echo '<strong>Cache Misses:</strong> ' . esc_html( $this->cache_misses ) . '<br />';
@@ -192,7 +197,7 @@ class Store {
 		echo '</ul>';
 	}
 
-	public function switch_to_blog( $blog_id ) {
+	public function switch_to_blog( $blog_id ) : void {
 		$blog_id           = (int) $blog_id;
 		$this->blog_prefix = $this->multisite ? $blog_id . ':' : '';
 	}

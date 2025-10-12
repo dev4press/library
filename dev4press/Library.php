@@ -34,8 +34,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Library {
+final class Library {
 	private string $_version = '5.5';
+	private string $_code = 'v55';
 	private string $_build = '5500';
 	private string $_php_version;
 	private int $_php_code;
@@ -54,11 +55,16 @@ class Library {
 		$this->_cacert_path  = CaBundle::getSystemCaRootBundlePath();
 	}
 
-	public static function instance() : Library {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : self {
+		return self::i();
+	}
+
+	public static function i() : self {
 		static $instance = null;
 
 		if ( ! isset( $instance ) ) {
-			$instance = new Library();
+			$instance = new self();
 		}
 
 		return $instance;
@@ -66,6 +72,10 @@ class Library {
 
 	public function datetime() : DateTime {
 		return $this->_datetime;
+	}
+
+	public function hook( string $name ) : string {
+		return 'dev4press_' . $this->_code . '_' . $name;
 	}
 
 	public function charset() {

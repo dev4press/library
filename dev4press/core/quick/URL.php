@@ -40,6 +40,19 @@ class URL {
 		return wp_parse_url( $url, PHP_URL_HOST );
 	}
 
+	public static function clean_domain_name( string $url = '' ) : string {
+		$url = empty( $url ) ? get_option( 'siteurl' ) : $url;
+
+		$domain = preg_replace( '|https?://|', '', $url );
+		$slash  = strpos( $domain, '/' );
+
+		if ( $slash ) {
+			$domain = substr( $domain, 0, $slash );
+		}
+
+		return $domain;
+	}
+
 	public static function current_request_path() {
 		$uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_url( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput,WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput,WordPress.WP.DeprecatedFunctions
 

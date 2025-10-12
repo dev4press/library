@@ -49,11 +49,16 @@ class Process {
 		$this->prefix = $prefix;
 	}
 
-	public static function instance( $base = 'dev4press-value', $prefix = 'dev4press' ) : Process {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance( string $base = 'dev4press-value', string $prefix = 'dev4press' ) : static {
+		return static::i( $base, $prefix );
+	}
+
+	public static function i( string $base = 'dev4press-value', string $prefix = 'dev4press' ) : static {
 		static $process = array();
 
 		if ( ! isset( $process[ $base ] ) ) {
-			$process[ $base ] = new Process( $base, $prefix );
+			$process[ $base ] = new static( $base, $prefix );
 		}
 
 		return $process[ $base ];

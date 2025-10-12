@@ -44,7 +44,7 @@ class Source {
 				'mu-plugin'   => WPMU_PLUGIN_DIR,
 				'stylesheet'  => get_stylesheet_directory(),
 				'template'    => get_template_directory(),
-				'uploads'     => WordPress::instance()->uploads_directory(),
+				'uploads'     => WordPress::i()->uploads_directory(),
 				'wp-content'  => WP_CONTENT_DIR,
 				'wp-includes' => ABSPATH . 'wp-includes',
 				'wp-admin'    => ABSPATH . 'wp-admin',

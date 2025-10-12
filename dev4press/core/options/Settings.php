@@ -41,8 +41,7 @@ abstract class Settings {
 		$this->init();
 	}
 
-	/** @return static */
-	public static function instance() {
+	public static function instance() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {

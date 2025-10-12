@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @method bool is_classicpress()
  * @method bool is_stable()
  */
-class WordPress {
+final class WordPress {
 	private array $_versions;
 	private array $_switches;
 	private array $_cached;
@@ -91,7 +91,7 @@ class WordPress {
 	}
 
 	public function __call( $name, $arguments ) {
-		if ( substr( $name, 0, 3 ) === 'is_' ) {
+		if ( str_starts_with( $name, 'is_' ) ) {
 			$switch = substr( $name, 3 );
 
 			if ( isset( $this->_switches[ $switch ] ) ) {
@@ -102,11 +102,16 @@ class WordPress {
 		return false;
 	}
 
-	public static function instance() : WordPress {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : self {
+		return self::i();
+	}
+
+	public static function i() : self {
 		static $instance = null;
 
 		if ( ! isset( $instance ) ) {
-			$instance = new WordPress();
+			$instance = new self();
 		}
 
 		return $instance;

@@ -154,12 +154,39 @@
   display: block;
   padding: 0 10px;
 }
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul a .d4p-features-mark {
+  float: right;
+}
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul a .d4p-nav-badge {
+  background: var(--d4p-color-layout-accent);
+  color: #fff;
+  float: right;
+  border-radius: var(--d4p-layout-badge-border-radius);
+  display: block;
+  padding: 3px 5px;
+  line-height: 1.1;
+  margin: 5px 0 0;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
 .d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul a:hover {
   background: var(--d4p-color-layout-accent);
   color: #FFF;
 }
-.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul .d4p-features-mark {
-  float: right;
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul a:hover .d4p-nav-badge {
+  background: #FFF;
+  color: var(--d4p-color-layout-accent);
+}
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul .d4p-nav-break {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  outline: none;
+  display: block;
+  padding: 0 10px;
+  font-weight: bold;
+  border-top: 1px solid var(--d4p-color-main-border);
+  color: var(--d4p-color-layout-accent);
 }
 .d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul .d4p-nav-current {
   background: var(--d4p-color-main-text);
@@ -482,6 +509,9 @@
   max-width: 955px;
   width: 100%;
 }
+.d4p-group.d4p-switch-group-is-hidden {
+  display: none;
+}
 .d4p-group h3 {
   margin: 0;
   background: #E4E4E4;
@@ -628,8 +658,7 @@
   margin: 0 -1.5em 1.5em;
 }
 .d4p-group .d4p-group-inner .d4p-group-elements > div {
-  flex-basis: 50%;
-  padding: 0 1.5em;
+  flex-basis: calc(50% - 0.75em);
 }
 .d4p-group .d4p-group-inner .d4p-group-elements > div.d4p-group-element-full {
   flex-basis: 100%;
@@ -659,6 +688,10 @@
 .d4p-group .d4p-group-inner .d4p-group-elements.d4p-elements-next {
   border-top: 1px solid #DDD;
   padding-top: 1em;
+}
+.d4p-group .d4p-group-inner .d4p-group-elements.d4p-regular-flow {
+  column-gap: 1.5em;
+  margin: 0 0 1.5em;
 }
 .d4p-group.d4p-group-with-toggle .d4p-group-inner .d4p-settings-on,
 .d4p-group.d4p-group-with-toggle .d4p-group-inner .d4p-settings-off {
@@ -701,13 +734,20 @@
   background: #E4E4E4;
   color: #000;
   border-bottom: 1px solid #BBB;
-  padding: 0.4em 1em 0.4em;
+  padding: 0.6em 0.8em 0.6em;
   text-align: left;
   line-height: 1.6;
   font-size: 1.4em;
   font-weight: 400;
   border-radius: var(--d4p-layout-main-border-radius) var(--d4p-layout-main-border-radius) 0 0;
   box-sizing: border-box;
+}
+.d4p-group.d4p-group-with-tabs .d4p-header-tabs div[role=tablist] {
+  border-bottom: 0;
+}
+.d4p-group.d4p-group-with-tabs .d4p-header-tabs div[role=tablist] .d4p-ctrl-tab {
+  font-size: 0.85em;
+  padding: 0.2em 1em;
 }
 .d4p-group.d4p-group-with-tabs .d4p-header-tabs div[role=tablist] button[role=tab] {
   padding: 0.3em 1em 0.4em;
@@ -726,6 +766,10 @@
   margin: 0;
   border: 0;
   background-color: transparent;
+}
+.d4p-group.d4p-group-with-tabs .d4p-group-inner .d4p-ctrl-tabs-content {
+  border: 0;
+  padding: 0;
 }
 
 .d4p-group-error {

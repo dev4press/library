@@ -3,7 +3,7 @@
 
 * Version: v5.5
 * Build:   5500
-* Release: 2025.12.12.
+* Release: 2025.12.08.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
@@ -14,11 +14,11 @@
 ### Server
 
 * PHP: 8.0 or newer
-* mySQL: 5.5 or newer
+* mySQL: 5.1 or newer
 
 ### WordPress
 
-* WordPress: 6.3 or newer
+* WordPress: 6.1 or newer
 
 ### ClassicPress
 

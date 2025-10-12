@@ -141,14 +141,44 @@
                                 display: block;
                                 padding: 0 10px;
 
+                                .d4p-features-mark {
+                                    float: right;
+                                }
+
+                                .d4p-nav-badge {
+                                    background: var(--d4p-color-layout-accent);
+                                    color: #fff;
+                                    float: right;
+                                    border-radius: var(--d4p-layout-badge-border-radius);
+                                    display: block;
+                                    padding: 3px 5px;
+                                    line-height: 1.1;
+                                    margin: 5px 0 0;
+                                    font-weight: 500;
+                                    letter-spacing: 1px;
+                                }
+
                                 &:hover {
                                     background: var(--d4p-color-layout-accent);
                                     color: #FFF;
+
+                                    .d4p-nav-badge {
+                                        background: #FFF;
+                                        color: var(--d4p-color-layout-accent);
+                                    }
                                 }
                             }
 
-                            .d4p-features-mark {
-                                float: right;
+                            .d4p-nav-break {
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                outline: none;
+                                display: block;
+                                padding: 0 10px;
+                                font-weight: bold;
+                                border-top: 1px solid var(--d4p-color-main-border);
+                                color: var(--d4p-color-layout-accent);
                             }
 
                             .d4p-nav-current {

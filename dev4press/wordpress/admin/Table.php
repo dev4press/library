@@ -148,7 +148,7 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function timestamp_to_date( $value ) : string {
-		$timestamp = Library::instance()->datetime()->timestamp_gmt_to_local( $value );
+		$timestamp = Library::i()->datetime()->timestamp_gmt_to_local( $value );
 
 		return gmdate( 'Y.m.d', $timestamp ) . '<br/>@ ' . gmdate( 'H:i:s', $timestamp );
 	}

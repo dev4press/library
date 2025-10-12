@@ -34,12 +34,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Help {
 	protected $admin;
 
-	public function __construct( $admin ) {
+	protected function __construct( $admin ) {
 		$this->admin = $admin;
 	}
 
-	/** @return static */
-	public static function instance( $admin ) {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance( $admin ) : static {
+		return static::i( $admin );
+	}
+
+	public static function i( $admin ) : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {

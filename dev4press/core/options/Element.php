@@ -44,11 +44,10 @@ class Element {
 	public array $more = array();
 	public array $buttons = array();
 	public string $more_method = 'list';
+	public string $more_label = '';
 
-	/** @var mixed */
-	public $value;
-	/** @var mixed */
-	public $data;
+	public mixed $value;
+	public mixed $data;
 
 	public function __construct( string $type, string $name, string $title = '', string $notice = '', string $input = 'text', $value = '' ) {
 		$this->type   = $type;
@@ -92,9 +91,10 @@ class Element {
 		return $this;
 	}
 
-	public function more( array $more = array(), string $method = 'list' ) : Element {
+	public function more( array $more = array(), string $method = 'list', string $label = '' ) : Element {
 		$this->more        = $more;
 		$this->more_method = $method;
+		$this->more_label  = $label;
 
 		return $this;
 	}

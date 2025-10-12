@@ -35,6 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Four {
 	private $plugins = array(
+		'coremailer/plugin.php'                                     => '95',
 		'sweeppress/sweeppress.php'                                     => '89',
 		'breadcrumbspress/breadcrumbspress.php'                         => '87',
 		'dev4press-updater/dev4press-updater.php'                       => '11',

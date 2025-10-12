@@ -162,7 +162,7 @@ abstract class Grid {
 	}
 
 	protected function timestamp_to_date( $value, string $split = '<br/>' ) : string {
-		$timestamp = Library::instance()->datetime()->timestamp_gmt_to_local( $value );
+		$timestamp = Library::i()->datetime()->timestamp_gmt_to_local( $value );
 
 		return gmdate( 'Y.m.d', $timestamp ) . $split . '@ ' . gmdate( 'H:i:s', $timestamp );
 	}

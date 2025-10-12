@@ -56,17 +56,22 @@ class Micromodal {
 		}
 	}
 
-	public static function instance() : Micromodal {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = false;
 
 		if ( $instance === false ) {
-			$instance = new Micromodal();
+			$instance = new static();
 		}
 
 		return $instance;
 	}
 
-	public function init( array $args, array $settings = array() ) {
+	public function init( array $args, array $settings = array() ) : void {
 		$this->args     = wp_parse_args( $args, $this->defaults_args );
 		$this->settings = wp_parse_args( $settings, $this->defaults_settings );
 	}

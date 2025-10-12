@@ -2,9 +2,18 @@
 
 ## Changelog
 
-### Version 5.5 - 2025.12.12
+### Version 5.5 - 2025.12.08
 
+* New: system requirements - `PHP` 8.0 or newer 
+* New: many `PHP` related changes and improvements
+* New: shared code for background `Runner` interface
 * New: additional functions for string manipulation
+* New: refactoring and core improvements
+* Edit: changes related to WordPress and PHP code standards
+* Edit: improvements to the rendering of various panels
+* Edit: improvements to the settings and options rendering
+* Edit: updates to the plugin code classes
+* Edit: improved styling for the plugin settings panel
 
 ### Version 5.4 - 2025.05.23
 
@@ -22,23 +31,3 @@
 * Edit: improved styling for the plugin settings panel
 * Removed: built-in cacert.pem
 * Removed: unused balloon stylesheet
-
-### Version 5.2.2 - 2024.11.12
-
-* Edit: various license related tweaks and improvements
-
-### Version 5.2 - 2024.11.02
-
-* New: updated to work with the composer include
-* New: added several more icons to the icon font
-* New: expanded `DBLite` with more methods for `WPDB`
-* New: expanded `DBLite` with method to get table name
-* New: expanded `Arr` with `insert_before` method
-* New: expanded `Table` with `timstamp_to_date` method
-* New: class `DirectoryFilter` iterator
-* New: the settings panel can handle Pro only groups
-* Edit: method `mysqli` in `DBLite` always return `TRUE`
-* Edit: few updates to the display of the plugin edition
-* Edit: improved styling for the plugin settings panel
-* Edit: many updates to the plugin dashboard styling
-* Edit: built-in cacert.pem 20240924

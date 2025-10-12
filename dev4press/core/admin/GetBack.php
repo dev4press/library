@@ -28,6 +28,7 @@
 namespace Dev4Press\v55\Core\Admin;
 
 use Dev4Press\v55\Core\Quick\WPR;
+use JetBrains\PhpStorm\NoReturn;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -39,8 +40,7 @@ abstract class GetBack {
 
 	public function __construct( $admin ) {
 		$this->admin = $admin;
-
-		$this->page = isset( $_REQUEST['page'] ) ? sanitize_key( $_REQUEST['page'] ) : false; // phpcs:ignore WordPress.Security.NonceVerification
+		$this->page  = isset( $_REQUEST['page'] ) ? sanitize_key( $_REQUEST['page'] ) : false; // phpcs:ignore WordPress.Security.NonceVerification
 
 		$this->process();
 	}
@@ -78,11 +78,11 @@ abstract class GetBack {
 		return $action;
 	}
 
-	public function check_nonce( $action, $nonce = '_wpnonce', $die = true ) {
+	public function check_nonce( $action, $nonce = '_wpnonce', $die = true ) : void {
 		check_ajax_referer( $action, $nonce, $die );
 	}
 
-	protected function process() {
+	protected function process() : void {
 		if ( $this->a()->panel == 'dashboard' ) {
 			if ( $this->is_single_action( 'dismiss-topic-prefix', 'action' ) ) {
 				$this->front_dismiss_plugin( 'notice_gdtox_hide' );
@@ -126,7 +126,8 @@ abstract class GetBack {
 		}
 	}
 
-	protected function feature_network_copy() {
+	#[NoReturn]
+	protected function feature_network_copy() : void {
 		$feature = $this->a()->subpanel;
 
 		check_ajax_referer( $this->a()->plugin_prefix . '-feature-network-copy-' . $feature );
@@ -145,7 +146,8 @@ abstract class GetBack {
 		exit;
 	}
 
-	protected function feature_reset() {
+	#[NoReturn]
+	protected function feature_reset() : void {
 		$feature = $this->a()->subpanel;
 
 		check_ajax_referer( $this->a()->plugin_prefix . '-feature-reset-' . $feature );
@@ -160,14 +162,16 @@ abstract class GetBack {
 		exit;
 	}
 
-	protected function front_dismiss_plugin( $option ) {
+	#[NoReturn]
+	protected function front_dismiss_plugin( $option ) : void {
 		$this->a()->settings()->set( $option, true, 'core', true );
 
 		wp_redirect( $this->a()->current_url( false ) );
 		exit;
 	}
 
-	protected function tools_export() {
+	#[NoReturn]
+	protected function tools_export() : void {
 		check_ajax_referer( 'dev4press-plugin-' . $this->a()->plugin_prefix );
 
 		if ( ! WPR::is_current_user_admin() ) {

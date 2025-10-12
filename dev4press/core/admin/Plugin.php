@@ -76,7 +76,7 @@ abstract class Plugin {
 	public ?Panel $object = null;
 	public ?Enqueue $enqueue = null;
 
-	public function __construct() {
+	protected function __construct() {
 		if ( is_multisite() ) {
 			$this->is_multisite = true;
 		}
@@ -97,8 +97,20 @@ abstract class Plugin {
 		add_filter( 'set-screen-option', array( $this, 'screen_options_save' ), 10, 3 );
 	}
 
-	/** @return static */
-	public static function instance() {
+	public function __get( string $name ) {
+		if ( in_array( $name, array( 'url', 'path', 'plugin', 'plugin_prefix' ) ) ) {
+			return $this->plugin()->$name;
+		}
+
+		return null;
+	}
+
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {
@@ -112,8 +124,8 @@ abstract class Plugin {
 		return get_current_screen();
 	}
 
-	public function plugins_loaded() {
-		$this->is_debug = WordPress::instance()->is_script_debug();
+	public function plugins_loaded() : void {
+		$this->is_debug = WordPress::i()->is_script_debug();
 
 		$this->enqueue = Enqueue::instance( $this );
 
@@ -122,7 +134,7 @@ abstract class Plugin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}
 
-	public function plugins_preparation() {
+	public function plugins_preparation() : void {
 		add_action( 'admin_menu', array( $this, 'admin_menu_items' ), 1 );
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 	}
@@ -150,16 +162,16 @@ abstract class Plugin {
 		return $links;
 	}
 
-	public function admin_init() {
+	public function admin_init() : void {
 	}
 
-	public function after_setup_theme() {
+	public function after_setup_theme() : void {
 	}
 
-	public function admin_menu_items() {
+	public function admin_menu_items() : void {
 	}
 
-	protected function process_menu_items() {
+	protected function process_menu_items() : void {
 		foreach ( $this->menu_items as &$menu_item ) {
 			if ( isset( $menu_item['is_pro'] ) && $menu_item['is_pro'] ) {
 				$menu_item['title'] = ( $menu_item['short'] ?? $menu_item['title'] ) . '<strong class="dev4press-pro-badge" style="background: red; padding: 0 3px 1px; color: #fff; margin: 0 0 0 5px; font-size: 95%; border-radius: 3px;">PRO</strong>';
@@ -168,18 +180,18 @@ abstract class Plugin {
 	}
 
 	/**
-	 * Generate filter or action handle for the specified name, prefixed with plugin prefix and admin.
+	 * Generate a filter or action handle for the specified name, prefixed with plugin prefix and admin.
 	 *
 	 * @param string $hook
 	 *
 	 * @return string
 	 */
 	public function h( string $hook ) : string {
-		return $this->plugin_prefix . '_' . $hook;
+		return $this->plugin()->hook( $hook );
 	}
 
 	/**
-	 * Generate string to use for the postback or getback handler.
+	 * Generate a string to use for the postback or getback handler.
 	 *
 	 * @return string
 	 */
@@ -188,7 +200,7 @@ abstract class Plugin {
 	}
 
 	/**
-	 * Generate string to use for the form basic value name.
+	 * Generate a string to use for the form basic value name.
 	 *
 	 * @return string
 	 */
@@ -210,7 +222,7 @@ abstract class Plugin {
 	}
 
 	/**
-	 * Generate plugin name according to WordPress specification.
+	 * Generate a plugin name according to WordPress specification.
 	 *
 	 * @return string
 	 */
@@ -227,16 +239,16 @@ abstract class Plugin {
 		return $this->plugin_title;
 	}
 
-	public function admin_load_hooks() {
+	public function admin_load_hooks() : void {
 		foreach ( $this->page_ids as $id ) {
 			add_action( 'load-' . $id, array( $this, 'load_admin_page' ) );
 		}
 	}
 
-	public function load_admin_page() {
+	public function load_admin_page() : void {
 		$this->help_tab_sidebar();
 
-		do_action( $this->plugin_prefix . '_load_admin_page' );
+		do_action( $this->h( 'load_admin_page' ) );
 
 		if ( $this->panel !== false && $this->panel != '' ) {
 			do_action( $this->h( 'load_admin_page_' . $this->panel ) );
@@ -249,7 +261,7 @@ abstract class Plugin {
 		$this->help_tab_getting_help();
 	}
 
-	public function help_tab_sidebar() {
+	public function help_tab_sidebar() : void {
 		$links = apply_filters(
 			$this->plugin_prefix . '_admin_help_sidebar_links',
 			array(
@@ -263,8 +275,8 @@ abstract class Plugin {
 		$this->screen()->set_help_sidebar( '<p><strong>' . $this->title() . '</strong></p><p>' . join( '<br/>', $links ) . '</p>' );
 	}
 
-	public function help_tab_getting_help() {
-		do_action( $this->plugin_prefix . '_admin_help_tabs_before', $this );
+	public function help_tab_getting_help() : void {
+		do_action( $this->h( 'admin_help_tabs_before' ), $this );
 
 		$this->screen()->add_help_tab(
 			array(
@@ -287,7 +299,7 @@ abstract class Plugin {
 			)
 		);
 
-		do_action( $this->plugin_prefix . '_admin_help_tabs', $this );
+		do_action( $this->h( 'admin_help_tabs' ), $this );
 	}
 
 	public function install_or_update() : bool {
@@ -308,10 +320,10 @@ abstract class Plugin {
 	}
 
 	public function svg_icon() : string {
-		return '';
+		return $this->plugin()->svg_icon;
 	}
 
-	public function global_admin_notices() {
+	public function global_admin_notices() : void {
 		if ( $this->settings()->is_install() ) {
 			add_action( 'admin_notices', array( $this, 'install_notice' ) );
 		}
@@ -325,7 +337,7 @@ abstract class Plugin {
 		}
 	}
 
-	public function install_notice() {
+	public function install_notice() : void {
 		if ( current_user_can( 'install_plugins' ) && $this->page === false ) {
 			echo '<div class="notice notice-info"><p>';
 			/* translators: Plugin installation admin notice. %s: Plugin Name. */
@@ -335,7 +347,7 @@ abstract class Plugin {
 		}
 	}
 
-	public function license_notice() {
+	public function license_notice() : void {
 		if ( current_user_can( 'install_plugins' ) ) {
 			echo '<div class="notice notice-error"><p>';
 			/* translators: Plugin installation admin notice. %s: Plugin Name. */
@@ -345,7 +357,7 @@ abstract class Plugin {
 		}
 	}
 
-	public function update_notice() {
+	public function update_notice() : void {
 		if ( current_user_can( 'install_plugins' ) && $this->page === false ) {
 			echo '<div class="notice notice-info is-dismissible"><p>';
 			/* translators: Plugin updated admin notice. %s: Plugin Name. */
@@ -365,7 +377,7 @@ abstract class Plugin {
 		return $this->default_panel_object();
 	}
 
-	public function enqueue_scripts( $hook ) {
+	public function enqueue_scripts( $hook ) : void {
 		$this->register_scripts_and_styles();
 
 		if ( $this->page ) {
@@ -425,13 +437,13 @@ abstract class Plugin {
 		do_action( $this->h( 'enqueue_scripts_final' ), $hook, $this );
 	}
 
-	public function admin_panel() {
+	public function admin_panel() : void {
 		$this->object->prepare();
 		$this->object->show();
 	}
 
 	public function lib_path() : string {
-		return $this->path . Library::instance()->base_path() . '/';
+		return $this->path . Library::i()->base_path() . '/';
 	}
 
 	public function panels() : array {
@@ -558,7 +570,7 @@ abstract class Plugin {
 		return $this->menu_items[ $panel ]['cap'] ?? $this->menu_cap;
 	}
 
-	protected function screen_setup() {
+	protected function screen_setup() : void {
 		$this->install_or_update();
 		$this->load_post_get_back();
 
@@ -581,7 +593,7 @@ abstract class Plugin {
 		);
 	}
 
-	protected function load_post_get_back() {
+	protected function load_post_get_back() : void {
 		if ( isset( $_POST[ $this->v() ] ) && sanitize_key( $_POST[ $this->v() ] ) === 'postback' ) { // phpcs:ignore WordPress.Security.NonceVerification
 			$this->run_postback();
 		} else if ( isset( $_GET[ $this->v() ] ) && sanitize_key( $_GET[ $this->v() ] ) === 'getback' ) { // phpcs:ignore WordPress.Security.NonceVerification
@@ -589,22 +601,25 @@ abstract class Plugin {
 		}
 	}
 
-	protected function register_scripts_and_styles() {
+	protected function register_scripts_and_styles() : void {
 	}
 
-	protected function extra_enqueue_scripts_plugin() {
+	protected function extra_enqueue_scripts_plugin() : void {
 	}
 
-	protected function extra_enqueue_scripts_widgets( $hook ) {
+	protected function extra_enqueue_scripts_widgets( $hook ) : void {
 	}
 
-	protected function extra_enqueue_scripts_metabox( $hook ) {
+	protected function extra_enqueue_scripts_metabox( $hook ) : void {
 	}
 
-	protected function extra_enqueue_scripts_postslist( $hook ) {
+	protected function extra_enqueue_scripts_postslist( $hook ) : void {
 	}
 
-	protected function extra_enqueue_scripts_final( $hook ) {
+	protected function extra_enqueue_scripts_final( $hook ) : void {
+	}
+
+	public function constructor() :void {
 	}
 
 	abstract public function main_url() : string;
@@ -615,15 +630,13 @@ abstract class Plugin {
 
 	abstract public function subpanel_url( $subpanel = '', $args = '', $network = null ) : string;
 
-	abstract public function admin_menu();
+	abstract public function admin_menu() : void;
 
 	abstract public function current_screen( $screen );
 
-	abstract public function constructor();
+	abstract public function run_getback() : void;
 
-	abstract public function run_getback();
-
-	abstract public function run_postback();
+	abstract public function run_postback() : void;
 
 	/** @return \Dev4Press\v55\Core\Plugins\Wizard */
 	abstract public function wizard();

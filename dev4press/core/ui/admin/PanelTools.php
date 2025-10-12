@@ -9,13 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class PanelTools extends Panel {
-	public function __construct( $admin ) {
-		parent::__construct( $admin );
-
-		$this->init_default_subpanels();
-	}
-
-	protected function init_default_subpanels() {
+	protected function init_default_subpanels() : void {
 		$this->subpanels = array(
 			'index'   => array(
 				'title'        => __( 'Tools Index', 'd4plib' ),
@@ -60,13 +54,13 @@ abstract class PanelTools extends Panel {
 		);
 	}
 
-	public function screen_options_show() {
+	public function screen_options_show() : void {
 		if ( $this->current_subpanel() == 'import' ) {
 			$this->form_multiform = true;
 		}
 	}
 
-	public function prepare() {
+	public function prepare() : void {
 		$_subpanel = $this->a()->subpanel;
 
 		if ( isset( $this->subpanels[ $_subpanel ] ) ) {
@@ -78,7 +72,7 @@ abstract class PanelTools extends Panel {
 		}
 	}
 
-	public function include_accessibility_control() {
+	public function include_accessibility_control() : void {
 		$_subpanel = $this->a()->subpanel;
 
 		if ( isset( $this->subpanels[ $_subpanel ] ) ) {

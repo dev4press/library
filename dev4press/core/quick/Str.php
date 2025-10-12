@@ -203,7 +203,7 @@ class Str {
 		}
 
 		if ( null === $charset ) {
-			$charset = Library::instance()->charset();
+			$charset = Library::i()->charset();
 		}
 
 		return html_entity_decode( $content, $quote_style, $charset );

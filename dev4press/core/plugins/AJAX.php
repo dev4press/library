@@ -40,8 +40,7 @@ abstract class AJAX {
 		add_action( $this->prefix . '_ajax_request_error', array( $this, 'process_error' ), 10, 5 );
 	}
 
-	/** @return static */
-	public static function instance() {
+	public static function instance() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {
@@ -51,7 +50,7 @@ abstract class AJAX {
 		return $instance[ static::class ];
 	}
 
-	public function process_error( string $error, $request = null, string $message = '', int $code = 400, $data = null ) {
+	public function process_error( string $error, $request = null, string $message = '', int $code = 400, $data = null ) : void {
 		if ( empty( $message ) ) {
 			$message = 'Unspecified Problem.';
 		}
@@ -147,23 +146,23 @@ abstract class AJAX {
 		return array();
 	}
 
-	protected function raise_error( string $error, $request = null, string $message = '', int $code = 400, $data = null ) {
+	protected function raise_error( string $error, $request = null, string $message = '', int $code = 400, $data = null ) : void {
 		do_action( $this->prefix . '_ajax_request_error', $error, $request, $message, $code, $data );
 	}
 
-	protected function raise_malformed_error( $request ) {
+	protected function raise_malformed_error( $request ) : void {
 		$this->raise_error( 'request_malformed', $request, __( 'Malformed Request.', 'd4plib' ) );
 	}
 
-	protected function raise_unauthorized_error( $request ) {
+	protected function raise_unauthorized_error( $request ) : void {
 		$this->raise_error( 'request_unauthorized', $request, __( 'Unauthorized Request.', 'd4plib' ), 401 );
 	}
 
-	protected function return_error_html( string $message = '', int $code = 400 ) {
+	protected function return_error_html( string $message = '', int $code = 400 ) : void {
 		$this->respond( $message, false, $code );
 	}
 
-	protected function return_error( string $message = '', int $code = 400, array $args = array() ) {
+	protected function return_error( string $message = '', int $code = 400, array $args = array() ) : void {
 		$result = array(
 			'status'  => 'error',
 			'message' => empty( $message ) ? __( 'Invalid Request', 'd4plib' ) : $message,

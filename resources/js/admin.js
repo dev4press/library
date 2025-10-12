@@ -26,6 +26,10 @@
                 wp.dev4press.admin.panels.features.run();
             }
 
+            if ($(".d4p-background-job-loader").length === 1) {
+                wp.dev4press.admin.components.job.run();
+            }
+
             $(window).on(
                 "load resize orientationchange",
                 function() {
@@ -357,6 +361,46 @@
             }
         },
         components: {
+            job: {
+                run: function() {
+                    setTimeout(function() {
+                        var loader = $(".d4p-background-job-loader");
+
+                        wp.dev4press.admin.components.job.ajax(loader.data("nonce"), loader.data("code"));
+                    }, 5000);
+                },
+                ajax: function(nonce, code) {
+                    var loader = $(".d4p-background-job-loader"),
+                        message = $(".d4p-background-job-messages");
+
+                    loader.show();
+
+                    $.ajax({
+                        url: ajaxurl + "?action=" + code + "&_ajax_nonce=" + nonce,
+                        type: "post",
+                        dataType: "html",
+                        success: function(html) {
+                            loader.hide();
+
+                            if (html.length > 0) {
+                                message.html(html);
+
+                                var total = $("ul", message).data('total'),
+                                    done = $("ul", message).data('done'),
+                                    percentage = $("ul", message).data('percentage'),
+                                    info = done + ' (' + percentage + '%)';
+
+                                $(".d4p-background-job-total").html(total);
+                                $(".d4p-background-job-done").html(info);
+                            }
+
+                            setTimeout(function() {
+                                wp.dev4press.admin.components.job.ajax(nonce, code);
+                            }, 5000);
+                        }
+                    });
+                }
+            },
             scroller: {
                 run: function() {
                     var $sidebar = $(".d4p-panel-scroller"),
@@ -628,6 +672,12 @@
 
                         $(any).addClass("d4p-switch-option-is-hidden");
                         $(any + active).removeClass("d4p-switch-option-is-hidden");
+                    } else if (type === 'group') {
+                        any = ".d4p-switch-group-" + option;
+                        active = ".d4p-switch-group-value-" + value;
+
+                        $(any).addClass("d4p-switch-group-is-hidden");
+                        $(any + active).removeClass("d4p-switch-group-is-hidden");
                     } else if (type === 'section') {
                         any = ".d4p-switch-section-" + option;
                         active = ".d4p-switch-section-value-" + value;
@@ -678,101 +728,6 @@
 
                         $(this).removeClass("__active").prev().val("");
                     });
-                }
-            }
-        }
-    };
-
-    window.wp.dev4press.ajaxtask = {
-        prefix: '',
-        button: '',
-        handler: '',
-        nonce: '',
-        progres: {
-            active: false,
-            stop: false,
-            done: 0,
-            total: 0
-        },
-        init: function(prefix, button, handler, nonce) {
-            this.prefix = prefix;
-            this.button = button;
-            this.handler = handler;
-            this.nonce = nonce;
-
-            $(document).on(
-                "click",
-                this.button,
-                function() {
-                    if (wp.dev4press.ajaxtask.progres.active) {
-                        wp.dev4press.ajaxtask.stop();
-                    } else {
-                        wp.dev4press.ajaxtask.start();
-                    }
-                }
-            );
-        },
-        start: function() {
-            this.progres.active = true;
-
-            $(this.button).val(d4plib_admin_dialogs.buttons.stop);
-
-            $("#" + this.prefix + "-process").slideDown();
-            $("#" + this.prefix + "-progress pre").html("");
-
-            this._call({operation: "start"}, this._callback.start);
-        },
-        stop: function() {
-            this.progres.stop = true;
-
-            $(this.button).attr("disabled", true);
-        },
-        run: function() {
-            this._call({operation: "run"}, this._callback.process);
-        },
-        _call: function(data, callback) {
-            var args = {
-                url: ajaxurl + "?action=" + this.handler + "&_ajax_nonce=" + this.nonce,
-                type: "post",
-                dataType: "json",
-                data: data,
-                success: callback
-            };
-
-            $.ajax(args);
-        },
-        _write: function(message) {
-            $("#" + this.prefix + "-progress pre").append(message + "\r\n");
-        },
-        _callback: {
-            start: function(json) {
-                var p = wp.dev4press.ajaxtask.progres;
-
-                p.current = 0;
-                p.total = json.total;
-
-                wp.dev4press.ajaxtask._write(json.message);
-
-                wp.dev4press.ajaxtask.run();
-            },
-            stop: function(json) {
-                wp.dev4press.ajaxtask.progres.active = false;
-                wp.dev4press.ajaxtask._write(json.message);
-            },
-            process: function(json) {
-                if (wp.dev4press.ajaxtask.progres.stop) {
-                    wp.dev4press.ajaxtask._call({operation: "break"}, wp.dev4press.ajaxtask._callback.stop);
-                } else {
-                    wp.dev4press.ajaxtask.progres.done = json.done;
-
-                    wp.dev4press.ajaxtask._write(json.message);
-
-                    if (wp.dev4press.ajaxtask.progres.done < wp.dev4press.ajaxtask.progres.total) {
-                        wp.dev4press.ajaxtask.run();
-                    } else {
-                        wp.dev4press.ajaxtask.stop();
-                        wp.dev4press.ajaxtask._call({operation: "stop"}, wp.dev4press.ajaxtask._callback.stop);
-                    }
                 }
             }
         }

@@ -43,15 +43,51 @@ class HTAccess {
 	}
 
 	public function is_writable() : bool {
-		return is_writable( $this->path );
+		return is_writable( $this->path ) && is_writable( dirname( $this->path ) );
 	}
 
 	public function file_exists() : bool {
 		return file_exists( $this->path );
 	}
 
-	public function load() {
-		if ( $this->file_exists() ) {
+	public function insert( string $marker, array $insertion = array(), string $location = 'end', bool $cleanup = false, bool $backup = false ) : bool {
+		if ( $this->is_writable() ) {
+			if ( $backup ) {
+				$this->create_backup();
+			}
+
+			$content = $this->generate_content( $marker, $insertion, $location, $cleanup );
+			$tempath = $this->path . '.' . substr( md5( wp_generate_uuid4() ), 0, 16 ) . '.txt';
+
+			$result = $this->write_content( $content, $tempath );
+
+			if ( $result ) {
+				$temp_file = $this->load( $tempath );
+				$temp_diff = array_diff( $content, $temp_file );
+
+				if ( empty( $temp_diff ) ) {
+					if ( $this->file_exists( $this->path ) ) {
+						wp_delete_file( $this->path );
+					}
+
+					$result = rename( $tempath, $this->path );
+				} else {
+					wp_delete_file( $tempath );
+
+					$result = false;
+				}
+			}
+
+			return $result;
+		}
+
+		return false;
+	}
+
+	public function load( string $path = '' ) {
+		if ( ! empty( $path ) && file_exists( $path ) ) {
+			return file( $path, FILE_IGNORE_NEW_LINES );
+		} else if ( $this->file_exists() ) {
 			return file( $this->path, FILE_IGNORE_NEW_LINES );
 		} else {
 			return array();
@@ -60,196 +96,6 @@ class HTAccess {
 
 	public function remove( string $marker, bool $cleanup = false, bool $backup = false ) : bool {
 		return $this->insert( $marker, array(), 'end', $cleanup, $backup );
-	}
-
-	public function insert( string $marker, array $insertion = array(), string $location = 'end', bool $cleanup = false, bool $backup = false ) : bool {
-		if ( ! $this->file_exists() || $this->is_writable() ) {
-			if ( ! $this->file_exists() ) {
-				$marker_data = '';
-			} else {
-				$marker_data = $this->load();
-			}
-
-			if ( $backup ) {
-				$backup_path = $this->path . '.backup';
-
-				if ( file_exists( $backup_path ) ) {
-					wp_delete_file( $backup_path );
-				}
-
-				copy( $this->path, $backup_path );
-			}
-
-			$f = fopen( $this->path, 'w' );
-
-			if ( $f === false ) {
-				return false;
-			}
-
-			$result = true;
-			if ( flock( $f, LOCK_EX ) ) {
-				if ( $location == 'start' ) {
-					$this->write( $f, $marker, $insertion );
-
-					$insertion = array();
-				}
-
-				if ( $marker_data ) {
-					$state = true;
-
-					foreach ( $marker_data as $marker_line ) {
-						if ( strpos( $marker_line, '# ' . $this->begin . ' ' . $marker ) !== false ) {
-							$state = false;
-						}
-
-						if ( $state ) {
-							fwrite( $f, $marker_line . PHP_EOL );
-						}
-
-						if ( strpos( $marker_line, '# ' . $this->end . ' ' . $marker ) !== false ) {
-							$state = true;
-						}
-					}
-				}
-
-				if ( $location == 'end' ) {
-					$this->write( $f, $marker, $insertion );
-				}
-
-				fflush( $f );
-				flock( $f, LOCK_UN );
-			} else {
-				$result = false;
-			}
-
-			fclose( $f );
-
-			if ( $cleanup ) {
-				$this->cleanup();
-			}
-
-			return $result;
-		} else {
-			return false;
-		}
-	}
-
-	public function write( $f, string $marker, array $insertion = array() ) {
-		if ( is_array( $insertion ) && ! empty( $insertion ) ) {
-			fwrite( $f, PHP_EOL . '# BEGIN ' . $marker . PHP_EOL );
-
-			foreach ( $insertion as $insert_line ) {
-				fwrite( $f, $insert_line . PHP_EOL );
-			}
-
-			fwrite( $f, '# END ' . $marker . PHP_EOL );
-		}
-	}
-
-	public function cleanup() : bool {
-		if ( $this->file_exists() && $this->is_writable() ) {
-			$marker_data = $this->load();
-			$modded_data = array();
-
-			$f = fopen( $this->path, 'w' );
-
-			if ( $f === false ) {
-				return false;
-			}
-
-			if ( flock( $f, LOCK_EX ) ) {
-				$line_start  = 0;
-				$line_end    = 0;
-				$marker_size = count( $marker_data );
-
-				for ( $i = 0; $i < $marker_size; $i ++ ) {
-					if ( ! empty( trim( $marker_data[ $i ] ) ) ) {
-						$line_start = $i;
-						break;
-					}
-				}
-
-				for ( $i = $marker_size - 1; $i > 0; $i -- ) {
-					if ( ! empty( trim( $marker_data[ $i ] ) ) ) {
-						$line_end = $i;
-						break;
-					}
-				}
-
-				$prev_empty     = false;
-				$prev_comment   = false;
-				$prev_directive = false;
-				for ( $i = $line_start; $i < $line_end + 1; $i ++ ) {
-					$begin      = false;
-					$comment    = false;
-					$end        = false;
-					$directive  = false;
-					$add_before = false;
-					$add_after  = false;
-					$marker     = $marker_data[ $i ];
-					$line       = trim( $marker );
-
-					if ( substr( $line, 0, 8 ) == '# BEGIN ' ) {
-						$begin = true;
-					} else if ( substr( $line, 0, 5 ) == '# END' ) {
-						$end = true;
-					} else if ( substr( $line, 0, 2 ) == '# ' ) {
-						$comment = true;
-					} else if ( ! empty( $line ) ) {
-						$directive = true;
-					}
-
-					if ( $directive ) {
-						if ( ! $prev_comment && ! $prev_directive && ! $prev_empty ) {
-							$add_before = true;
-						}
-					}
-
-					if ( $comment ) {
-						if ( $prev_directive || ( ! $prev_empty && ! $prev_comment ) ) {
-							$add_before = true;
-						}
-					}
-
-					if ( $end ) {
-						$add_after = true;
-					}
-
-					if ( $add_before ) {
-						$modded_data[] = '';
-					}
-
-					if ( $directive || $begin || $end || $comment ) {
-						$modded_data[] = $marker;
-					}
-
-					if ( $add_after ) {
-						$modded_data[] = '';
-					}
-
-					$prev_comment   = $begin || $end || $comment;
-					$prev_empty     = $add_after;
-					$prev_directive = $directive;
-				}
-
-				foreach ( $modded_data as $marker_line ) {
-					fwrite( $f, $marker_line . PHP_EOL );
-				}
-
-				fflush( $f );
-				flock( $f, LOCK_UN );
-			} else {
-				fclose( $f );
-
-				return false;
-			}
-
-			fclose( $f );
-
-			return true;
-		}
-
-		return false;
 	}
 
 	public function check() : array {
@@ -280,5 +126,170 @@ class HTAccess {
 		}
 
 		return $check;
+	}
+
+	protected function create_backup() {
+		$backup_path = $this->path . '.backup';
+
+		if ( file_exists( $this->path ) && is_writable( $backup_path ) ) {
+			if ( file_exists( $backup_path ) ) {
+				wp_delete_file( $backup_path );
+			}
+
+			copy( $this->path, $backup_path );
+		}
+	}
+
+	protected function generate_content( string $marker, array $insertion = array(), string $location = 'end', bool $cleanup = false ) : array {
+		$content = array();
+
+		if ( ! $this->file_exists() ) {
+			$input = array();
+		} else {
+			$input = $this->load();
+
+			if ( ! $input ) {
+				$input = array();
+			}
+		}
+
+		if ( ! empty( $insertion ) ) {
+			$insertion = array_merge(
+				array( '# BEGIN ' . $marker ),
+				$insertion,
+				array( '# END ' . $marker ) );
+		}
+
+		if ( $location == 'start' ) {
+			$content = $insertion;
+		}
+
+		if ( ! empty( $input ) ) {
+			$state = true;
+
+			foreach ( $input as $marker_line ) {
+				if ( str_starts_with( $marker_line, '# ' . $this->begin . ' ' . $marker ) ) {
+					$state = false;
+				}
+
+				if ( $state ) {
+					$content[] = $marker_line;
+				}
+
+				if ( str_starts_with( $marker_line, '# ' . $this->end . ' ' . $marker ) ) {
+					$state = true;
+				}
+			}
+		}
+
+		if ( $location == 'end' ) {
+			$content = array_merge( $content, $insertion );
+		}
+
+		if ( $cleanup ) {
+			$content = $this->cleanup_content( $content );
+		}
+
+		return $content;
+	}
+
+	protected function cleanup_content( array $marker_data = array() ) : array {
+		$modded_data = array();
+		$line_start  = 0;
+		$line_end    = 0;
+		$marker_size = count( $marker_data );
+
+		for ( $i = 0; $i < $marker_size; $i ++ ) {
+			if ( ! empty( trim( $marker_data[ $i ] ) ) ) {
+				$line_start = $i;
+				break;
+			}
+		}
+
+		for ( $i = $marker_size - 1; $i > 0; $i -- ) {
+			if ( ! empty( trim( $marker_data[ $i ] ) ) ) {
+				$line_end = $i;
+				break;
+			}
+		}
+
+		$prev_empty     = false;
+		$prev_comment   = false;
+		$prev_directive = false;
+		for ( $i = $line_start; $i < $line_end + 1; $i ++ ) {
+			$begin      = false;
+			$comment    = false;
+			$end        = false;
+			$directive  = false;
+			$add_before = false;
+			$add_after  = false;
+			$marker     = $marker_data[ $i ];
+			$line       = trim( $marker );
+
+			if ( substr( $line, 0, 8 ) == '# BEGIN ' ) {
+				$begin = true;
+			} else if ( substr( $line, 0, 5 ) == '# END' ) {
+				$end = true;
+			} else if ( substr( $line, 0, 2 ) == '# ' ) {
+				$comment = true;
+			} else if ( ! empty( $line ) ) {
+				$directive = true;
+			}
+
+			if ( $directive ) {
+				if ( ! $prev_comment && ! $prev_directive && ! $prev_empty ) {
+					$add_before = true;
+				}
+			}
+
+			if ( $comment ) {
+				if ( $prev_directive || ( ! $prev_empty && ! $prev_comment ) ) {
+					$add_before = true;
+				}
+			}
+
+			if ( $end ) {
+				$add_after = true;
+			}
+
+			if ( $add_before ) {
+				$modded_data[] = '';
+			}
+
+			if ( $directive || $begin || $end || $comment ) {
+				$modded_data[] = $marker;
+			}
+
+			if ( $add_after ) {
+				$modded_data[] = '';
+			}
+
+			$prev_comment   = $begin || $end || $comment;
+			$prev_empty     = $add_after;
+			$prev_directive = $directive;
+		}
+
+		return $modded_data;
+	}
+
+	protected function write_content( array $content, string $path ) : bool {
+		$f = fopen( $path, 'w' );
+
+		if ( $f === false ) {
+			return false;
+		}
+
+		$result = true;
+		if ( flock( $f, LOCK_EX ) ) {
+			fwrite( $f, implode( PHP_EOL, $content ) );
+			fflush( $f );
+			flock( $f, LOCK_UN );
+		} else {
+			$result = false;
+		}
+
+		fclose( $f );
+
+		return $result;
 	}
 }

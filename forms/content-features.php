@@ -4,24 +4,24 @@ use Dev4Press\v55\Core\Options\Render;
 use function Dev4Press\v55\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 ?>
 
 <div class="d4p-content">
-	<?php
+    <?php
 
-	panel()->settings_fields();
+    panel()->settings_fields();
 
-	$subpanel = panel()->a()->subpanel;
-	$class    = panel()->settings_class;
-	$options  = $class::instance( $subpanel );
-	$groups   = $options->get();
+    $subpanel = panel()->a()->subpanel;
+    $class    = panel()->settings_class;
+    $options  = $class::instance( $subpanel );
+    $groups   = $options->get();
 
-	Render::instance( panel()->a()->n(), panel()->a()->plugin_prefix )->prepare( $subpanel, $groups )->render();
+    Render::instance( panel()->a()->n(), panel()->a()->plugin_prefix )->prepare( $subpanel, $groups )->render();
 
-	?>
+    ?>
 
-	<?php panel()->include_accessibility_control(); ?>
+    <?php panel()->include_accessibility_control(); ?>
 </div>

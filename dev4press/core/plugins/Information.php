@@ -53,8 +53,8 @@ abstract class Information {
 	public string $author_name = 'Milan Petrovic';
 	public string $author_url = 'https://www.dev4press.com/';
 
-	public string $php = '7.4';
-	public string $mysql = '5.5';
+	public string $php = '8.0';
+	public string $mysql = '5.1';
 
 	public array $cms = array(
 		'wordpress'    => '6.0',
@@ -82,8 +82,7 @@ abstract class Information {
 		return (array) $this;
 	}
 
-	/** @return static */
-	public static function instance() {
+	public static function instance() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {

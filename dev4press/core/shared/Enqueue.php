@@ -59,7 +59,7 @@ class Enqueue {
 	);
 
 	public function __construct() {
-		$this->_url = Library::instance()->url();
+		$this->_url = Library::i()->url();
 
 		$this->_libraries['js']  = Resources::instance()->shared_js();
 		$this->_libraries['css'] = Resources::instance()->shared_css();
@@ -109,8 +109,12 @@ class Enqueue {
 
 	public function start() {
 		$this->_rtl   = is_rtl();
-		$this->_debug = WordPress::instance()->is_script_debug();
+		$this->_debug = WordPress::i()->is_script_debug();
 
+		/** HOOK: `dev4press_v55_shared_enqueue_start` */
+		do_action( Library::i()->hook( 'shared_enqueue_start' ) );
+
+		/** @deprecated 5.5.0 */
 		do_action( 'd4plib_shared_enqueue_prepare' );
 
 		$this->register_styles();
@@ -145,7 +149,7 @@ class Enqueue {
 		foreach ( $this->_libraries['css'] as $name => $args ) {
 			$code = $args['lib'] ? $this->_enqueue_prefix . $name : $name;
 			$req  = $args['req'] ?? array();
-			$ver  = $args['ver'] ?? Library::instance()->version();
+			$ver  = $args['ver'] ?? Library::i()->version();
 
 			if ( ! empty( $args['int'] ) ) {
 				foreach ( $args['int'] as $lib ) {

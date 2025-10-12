@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 ?>
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( '_devid' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( '_devid' ) ); ?>" type="text" value="<?php echo esc_attr( $instance['_devid'] ); ?>"/>
 
             <em>
-				<?php esc_html_e( 'This is custom string (alphanumeric, underscore and minus signs allowed) that can be used to identify the widget in code, and it can be useful for developers customizing the website.', 'd4plib' ); ?>
+                <?php esc_html_e( 'This is custom string (alphanumeric, underscore and minus signs allowed) that can be used to identify the widget in code, and it can be useful for developers customizing the website.', 'd4plib' ); ?>
             </em>
         </td>
     </tr>

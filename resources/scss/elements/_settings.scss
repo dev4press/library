@@ -191,6 +191,21 @@
                         list-style: disc outside;
                         margin: 0 0 0 1.5em;
                     }
+
+                    table {
+                        margin: 0;
+                        width: 100%;
+                        border-collapse: collapse;
+                        clear: both;
+
+                        tr {
+                            td {
+                                padding: 5px 10px;
+                                margin: 0;
+                                vertical-align: middle;
+                            }
+                        }
+                    }
                 }
 
                 &.__is-open {

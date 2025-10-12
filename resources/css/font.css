@@ -348,6 +348,10 @@ a > .d4p-icon {
   content: "\f131";
 }
 
+.d4p-icon.d4p-plugin-coremailer:before {
+  content: "\f13f";
+}
+
 .d4p-icon.d4p-plugin-coresocial:before {
   content: "\f132";
 }

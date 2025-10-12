@@ -38,7 +38,16 @@ abstract class Transient {
 	protected array $elements = array();
 
 	public function __construct() {
+	}
 
+	public static function i() : static {
+		static $instance = array();
+
+		if ( ! isset( $instance[ static::class ] ) ) {
+			$instance[ static::class ] = new static();
+		}
+
+		return $instance[ static::class ];
 	}
 
 	protected function _key( $name, $args = array() ) : string {

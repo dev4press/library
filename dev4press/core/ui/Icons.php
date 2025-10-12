@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Icons {
+final class Icons {
 	protected string $base = 'd4p-icon';
 	protected string $prefix = 'd4p-';
 	protected string $prefix_control = 'd4p-icon-';
@@ -401,7 +401,12 @@ class Icons {
 
 	}
 
+	/** @deprecated 5.5.0 Use self::i() instead. */
 	public static function instance() : Icons {
+		return Icons::i();
+	}
+
+	public static function i() : Icons {
 		static $instance = false;
 
 		if ( $instance === false ) {

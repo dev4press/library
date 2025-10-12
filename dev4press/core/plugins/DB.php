@@ -55,7 +55,7 @@ abstract class DB extends DBLite {
 	}
 
 	/** @global \wpdb $wpdb */
-	public function init() {
+	public function init() : void {
 		global $wpdb;
 
 		$plugin        = new stdClass();

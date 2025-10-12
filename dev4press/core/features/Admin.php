@@ -46,11 +46,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Admin {
 	public string $name = '';
 
-	public function __construct() {
+	protected function __construct() {
 	}
 
-	/** @return static */
-	public static function instance() {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {

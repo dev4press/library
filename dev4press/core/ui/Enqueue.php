@@ -64,8 +64,8 @@ final class Enqueue {
 
 		$this->_url     = $admin->url;
 		$this->_admin   = $admin;
-		$this->_version = Library::instance()->version();
-		$this->_library = Library::instance()->base_path();
+		$this->_version = Library::i()->version();
+		$this->_library = Library::i()->base_path();
 
 		add_action( 'admin_init', array( $this, 'start' ), 15 );
 	}
@@ -93,7 +93,7 @@ final class Enqueue {
 
 	public function start() {
 		$this->_rtl   = is_rtl();
-		$this->_debug = WordPress::instance()->is_script_debug();
+		$this->_debug = WordPress::i()->is_script_debug();
 	}
 
 	public function register( $type, $name, $args = array() ) : Enqueue {

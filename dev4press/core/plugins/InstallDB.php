@@ -27,6 +27,7 @@
 
 namespace Dev4Press\v55\Core\Plugins;
 
+use Dev4Press\v55\Library;
 use wpdb;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -42,8 +43,12 @@ abstract class InstallDB {
 	public function __construct() {
 	}
 
-	/** @return static */
-	public static function instance() {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {
@@ -53,7 +58,7 @@ abstract class InstallDB {
 		return $instance[ static::class ];
 	}
 
-	public function install() {
+	public function install() : array {
 		$query   = '';
 		$collate = $this->collate();
 
@@ -66,7 +71,7 @@ abstract class InstallDB {
 		return $this->delta( $query );
 	}
 
-	public function check() {
+	public function check() : array {
 		$result = array();
 
 		foreach ( $this->tables as $obj ) {
@@ -97,25 +102,29 @@ abstract class InstallDB {
 		return $result;
 	}
 
-	public function truncate() {
+	public function truncate() : void {
 		foreach ( $this->tables as $obj ) {
 			$this->wpdb()->query( 'TRUNCATE TABLE ' . $this->table( $obj ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		}
 	}
 
-	public function drop() {
+	public function drop() : void {
 		foreach ( $this->tables as $obj ) {
 			$this->wpdb()->query( 'DROP TABLE IF EXISTS ' . $this->table( $obj ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		}
 	}
 
-	public function current_version() {
+	public function current_version() : int {
 		return $this->version;
 	}
 
 	private function delta( $query ) : array {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
+		/** HOOK: `dev4press_v55_install_db_delta` */
+		do_action( Library::i()->hook( 'install_db_delta' ) );
+
+		/** @deprecated 5.5.0 */
 		do_action( 'dev4press_install_db_delta', $this->plugin, $this->prefix, $query );
 
 		return dbDelta( $query );

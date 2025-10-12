@@ -153,6 +153,17 @@
   list-style: disc outside;
   margin: 0 0 0 1.5em;
 }
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper .d4p-more-content table {
+  margin: 0;
+  width: 100%;
+  border-collapse: collapse;
+  clear: both;
+}
+.d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper .d4p-more-content table tr td {
+  padding: 5px 10px;
+  margin: 0;
+  vertical-align: middle;
+}
 .d4p-settings-section .d4p-settings-table .d4p-setting-wrapper .d4p-more-wrapper.__is-open i {
   transform: rotate(90deg);
 }
@@ -539,12 +550,26 @@ details.d4p-section-details > div .form-table code {
   text-align: center;
   flex: 1 1 100%;
 }
-.d4p-features-wrapper .d4p-feature-box ._info ._icon {
+.d4p-features-wrapper .d4p-feature-box ._info ._icon,
+.d4p-features-wrapper .d4p-feature-box ._info ._logo {
   line-height: 1;
   background-color: #F2F2F2;
   padding: 1em;
-  display: inline-block;
   border-radius: var(--d4p-layout-main-border-radius);
+}
+.d4p-features-wrapper .d4p-feature-box ._info ._logo {
+  width: 96px;
+  height: 96px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.d4p-features-wrapper .d4p-feature-box ._info ._logo img {
+  width: 100%;
+  height: auto;
+}
+.d4p-features-wrapper .d4p-feature-box ._info ._icon {
+  display: inline-block;
 }
 .d4p-features-wrapper .d4p-feature-box ._info ._icon i {
   font-size: 2em;
@@ -571,6 +596,7 @@ details.d4p-section-details > div .form-table code {
   color: var(--d4p-color-section-text);
   padding: 1em;
   display: flex;
+  gap: 1em;
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._open {
   flex: 1 1 100%;
@@ -612,6 +638,8 @@ details.d4p-section-details > div .form-table code {
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._scope span,
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._scope a,
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._purchase span,
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._purchase a,
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._settings span,
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._settings a {
   background: none;
@@ -624,17 +652,17 @@ details.d4p-section-details > div .form-table code {
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._scope span i,
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._scope a i,
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._purchase span i,
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._purchase a i,
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._settings span i,
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._settings a i {
   vertical-align: bottom;
   color: #111;
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._scope span i.d4p-ui-cog-slash,
+.d4p-features-wrapper .d4p-feature-box ._ctrl ._purchase span i.d4p-ui-cog-slash,
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._settings span i.d4p-ui-cog-slash {
   opacity: 0.5;
-}
-.d4p-features-wrapper .d4p-feature-box ._ctrl ._scope {
-  padding-left: 1em;
 }
 .d4p-features-wrapper .d4p-feature-box ._ctrl ._scope span {
   cursor: help;

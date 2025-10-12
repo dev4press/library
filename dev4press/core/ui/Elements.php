@@ -40,11 +40,16 @@ class Elements {
 	public function __construct() {
 	}
 
-	public static function instance() : Elements {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $_instance = null;
 
 		if ( ! $_instance ) {
-			$_instance = new Elements();
+			$_instance = new static();
 		}
 
 		return $_instance;

@@ -47,5 +47,5 @@ require DEV4PRESS_V55_PATH . 'functions/Bridge.php';
 
 require DEV4PRESS_V55_PATH . 'autoload.php';
 
-WordPress::instance();
-Library::instance();
+WordPress::i();
+Library::i();

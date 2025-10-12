@@ -8,6 +8,10 @@
     max-width: 955px;
     width: 100%;
 
+    &.d4p-switch-group-is-hidden {
+        display: none;
+    }
+
     h3 {
         margin: 0;
         background: #{$color-header-background};
@@ -191,8 +195,7 @@
             margin: 0 -1.5em 1.5em;
 
             > div {
-                flex-basis: 50%;
-                padding: 0 1.5em;
+                flex-basis: calc(50% - 0.75em);
 
                 &.d4p-group-element-full {
                     flex-basis: 100%;
@@ -225,6 +228,11 @@
             &.d4p-elements-next {
                 border-top: 1px solid #DDD;
                 padding-top: 1em;
+            }
+
+            &.d4p-regular-flow {
+                column-gap: 1.5em;
+                margin: 0 0 1.5em;
             }
         }
     }
@@ -291,7 +299,7 @@
             background: #{$color-header-background};
             color: #{$color-header-text};
             border-bottom: 1px solid #{$color-main-border};
-            padding: .4em 1em .4em;
+            padding: .6em .8em .6em;
             text-align: left;
             line-height: 1.6;
             font-size: 1.4em;
@@ -300,6 +308,13 @@
             box-sizing: border-box;
 
             div[role="tablist"] {
+                border-bottom: 0;
+
+                .d4p-ctrl-tab {
+                    font-size: .85em;
+                    padding: .2em 1em;
+                }
+
                 button[role="tab"] {
                     padding: .3em 1em .4em;
                     margin: 0;
@@ -322,6 +337,11 @@
                 margin: 0;
                 border: 0;
                 background-color: transparent;
+            }
+
+            .d4p-ctrl-tabs-content {
+                border: 0;
+                padding: 0;
             }
         }
     }

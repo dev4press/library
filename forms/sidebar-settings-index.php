@@ -4,7 +4,7 @@ use Dev4Press\v55\Core\Quick\KSES;
 use function Dev4Press\v55\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 $_panel     = panel()->a()->panel_object();
@@ -16,29 +16,29 @@ $_subpanels = panel()->subpanels();
     <div class="d4p-panel-scroller d4p-scroll-active">
         <div class="d4p-panel-title">
             <div class="_icon">
-				<?php echo KSES::strong( panel()->r()->icon( $_panel->icon ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                <?php echo KSES::strong( panel()->r()->icon( $_panel->icon ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
             <h3><?php echo KSES::strong( $_panel->title ); ?></h3>
 
             <div class="_info">
-				<?php
+                <?php
 
-				echo esc_html( $_subpanels[ $_subpanel ]['info'] );
+                echo esc_html( $_subpanels[ $_subpanel ]['info'] );
 
-				if ( isset( $_panel->kb ) ) {
-					$url   = $_panel->kb['url'];
-					$label = $_panel->kb['label'] ?? __( 'Knowledge Base', 'd4plib' );
+                if ( isset( $_panel->kb ) ) {
+                    $url   = $_panel->kb['url'];
+                    $label = $_panel->kb['label'] ?? __( 'Knowledge Base', 'd4plib' );
 
-					?>
+                    ?>
 
                     <div class="_kb">
                         <a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $label ); ?></a>
                     </div>
 
-					<?php
-				}
+                    <?php
+                }
 
-				?>
+                ?>
             </div>
         </div>
         <div class="d4p-panel-buttons">

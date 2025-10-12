@@ -202,6 +202,7 @@ class Store {
 			'color'       => '#AD0067',
 			'free'        => false,
 			'pro'         => true,
+			'internal'    => true,
 		),
 		'gd-forum-manager-for-bbpress'     => array(
 			'code'        => 'gd-forum-manager-for-bbpress',
@@ -232,12 +233,13 @@ class Store {
 			'free'        => false,
 			'pro'         => true,
 		),
-		'gd-mail-queue'                    => array(
-			'code'        => 'gd-mail-queue',
-			'name'        => 'GD Mail Queue',
+		'coremailer'                    => array(
+			'code'        => 'coremailer',
+			'name'        => 'coreMailer',
 			'description' => 'Intercept wp_mail function, convert emails to HTML and implements flexible mail queue system for sending emails, with support for email sending engines and services.',
 			'punchline'   => 'Queue based, enhanced email sending system',
 			'color'       => '#773355',
+			'freemius'    => true,
 			'free'        => true,
 			'pro'         => true,
 		),
@@ -288,6 +290,7 @@ class Store {
 			'color'       => '#262261',
 			'free'        => true,
 			'pro'         => true,
+			'internal'    => true,
 		),
 		'gd-topic-polls'                   => array(
 			'code'        => 'gd-topic-polls',

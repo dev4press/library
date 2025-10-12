@@ -130,12 +130,29 @@
             text-align: center;
             flex: 1 1 100%;
 
-            ._icon {
+            ._icon,
+            ._logo {
                 line-height: 1;
                 background-color: #F2F2F2;
                 padding: 1em;
-                display: inline-block;
                 border-radius: var(--d4p-layout-main-border-radius);
+            }
+
+            ._logo {
+                width: 96px;
+                height: 96px;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            ._icon {
+                display: inline-block;
 
                 i {
                     font-size: 2em;
@@ -167,6 +184,7 @@
             color: var(--d4p-color-section-text);
             padding: 1em;
             display: flex;
+            gap: 1em;
 
             ._open {
                 flex: 1 1 100%;
@@ -216,6 +234,7 @@
             }
 
             ._scope,
+            ._purchase,
             ._settings {
                 span,
                 a {
@@ -241,8 +260,6 @@
             }
 
             ._scope {
-                padding-left: 1em;
-
                 span {
                     cursor: help;
                 }

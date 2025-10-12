@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Store {
-	protected $_data = array();
+	protected array $_data = array();
 
 	public function __get( $name ) {
 		return $this->_data[ $name ] ?? '';
@@ -50,7 +50,7 @@ abstract class Store {
 		}
 	}
 
-	public function init_data( $data ) {
+	public function init_data( $data ) : void {
 		$this->_data = $data;
 	}
 

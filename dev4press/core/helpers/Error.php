@@ -38,11 +38,11 @@ class Error extends WP_Error {
 		return ! empty( $this->errors );
 	}
 
-	public function merge_errors( $errors ) {
+	public function merge_errors( $errors ) : void {
 		$this->errors = array_merge( $this->errors, $errors );
 	}
 
-	public function merge_errors_data( $error_data ) {
+	public function merge_errors_data( $error_data ) : void {
 		$this->error_data = array_merge( $this->error_data, $error_data );
 	}
 }

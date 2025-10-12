@@ -29,6 +29,7 @@ namespace Dev4Press\v55\Core\Admin;
 
 use Dev4Press\v55\Core\Options\Process;
 use Dev4Press\v55\Core\Quick\Sanitize;
+use JetBrains\PhpStorm\NoReturn;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -40,7 +41,6 @@ abstract class PostBack {
 
 	public function __construct( $admin ) {
 		$this->admin = $admin;
-
 		$this->page = isset( $_POST['option_page'] ) ? sanitize_key( $_POST['option_page'] ) : false; // phpcs:ignore WordPress.Security.NonceVerification
 
 		if ( $this->page !== false ) {
@@ -61,7 +61,7 @@ abstract class PostBack {
 		return $this->a()->plugin . '-' . $name;
 	}
 
-	public function check_referer( $name ) {
+	public function check_referer( $name ) : void {
 		check_admin_referer( $this->get_page_name( $name ) . '-options' );
 	}
 
@@ -73,7 +73,7 @@ abstract class PostBack {
 		return true;
 	}
 
-	protected function process() {
+	protected function process() : void {
 		if ( $this->p() == $this->get_page_name( 'tools' ) ) {
 			$this->check_referer( 'tools' );
 			$this->check_capability( 'tools' );
@@ -100,7 +100,7 @@ abstract class PostBack {
 		}
 	}
 
-	protected function tools() {
+	protected function tools() : void {
 		if ( $this->a()->subpanel == 'remove' ) {
 			$this->remove();
 		} else if ( $this->a()->subpanel == 'import' ) {
@@ -108,7 +108,8 @@ abstract class PostBack {
 		}
 	}
 
-	protected function settings( $request ) {
+	#[NoReturn]
+	protected function settings( $request ) : void {
 		$base = $this->a()->settings_definitions()->settings( $this->a()->subpanel );
 		$this->_process_save_data( $base, $request );
 
@@ -120,7 +121,8 @@ abstract class PostBack {
 		exit;
 	}
 
-	protected function features( $request ) {
+	#[NoReturn]
+	protected function features( $request ) : void {
 		$base = $this->a()->features_definitions( $this->a()->subpanel )->settings();
 		$this->_process_save_data( $base, $request );
 
@@ -132,7 +134,8 @@ abstract class PostBack {
 		exit;
 	}
 
-	protected function import() {
+	#[NoReturn]
+	protected function import() : void {
 		global $wp_filesystem;
 
 		$url = $this->a()->current_url();
@@ -166,7 +169,7 @@ abstract class PostBack {
 		exit;
 	}
 
-	protected function _process_save_data( $base, $request ) {
+	protected function _process_save_data( $base, $request ) : void {
 		$data = Process::instance( $this->a()->n(), $this->a()->plugin_prefix )->prepare( $base )->process( $request );
 
 		$filter  = $this->a()->h( 'settings_save_settings_value' );

@@ -3,7 +3,7 @@
 use function Dev4Press\v55\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 ?>
@@ -20,11 +20,11 @@ if ( ! defined( 'ABSPATH' ) ) {
         <h3><?php esc_html_e( 'Import from File', 'd4plib' ); ?></h3>
         <div class="d4p-group-inner">
             <p>
-				<?php esc_html_e( 'Select file you want to import from', 'd4plib' ); ?>:
+                <?php esc_html_e( 'Select file you want to import from', 'd4plib' ); ?>:
             </p>
             <input type="file" name="import_file"/>
         </div>
     </div>
 
-	<?php panel()->include_accessibility_control(); ?>
+    <?php panel()->include_accessibility_control(); ?>
 </div>

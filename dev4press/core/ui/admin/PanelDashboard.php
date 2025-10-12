@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class PanelDashboard extends Panel {
 	protected bool $cards = true;
-	public $sidebar_links = array(
+	public array $sidebar_links = array(
 		'plugin' => array(),
 		'basic'  => array(),
 		'about'  => array(),

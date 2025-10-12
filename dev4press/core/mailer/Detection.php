@@ -29,6 +29,7 @@ namespace Dev4Press\v55\Core\Mailer;
 
 use Dev4Press\v55\Core\Helpers\Source;
 use Dev4Press\v55\Core\Quick\Str;
+use Dev4Press\v55\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -40,6 +41,7 @@ class Detection {
 	protected array $aliases = array(
 		'bp_send_email',
 	);
+	protected bool $has_regex = false;
 
 	public function __construct() {
 		$this->reset();
@@ -47,11 +49,16 @@ class Detection {
 		$this->listen();
 	}
 
-	public static function instance() : Detection {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = false;
 
 		if ( $instance === false ) {
-			$instance = new Detection();
+			$instance = new static();
 		}
 
 		return $instance;
@@ -75,12 +82,17 @@ class Detection {
 
 		$this->caller();
 
-		do_action( 'dev4press_mailer_notification_detected', $this->detection, $atts );
+		/** HOOK: `dev4press_v55_mailer_notification_detected` */
+		do_action( Library::i()->hook( 'mailer_notification_detected' ), $this->detection, $atts );
 
 		return $atts;
 	}
 
 	public function get_label( $name = '' ) : string {
+		if ( ! empty( $this->supported[ $name ]['label'] ) ) {
+			return $this->supported[ $name ]['label'];
+		}
+
 		$labels = $this->get_labels();
 
 		return $labels[ $name ] ?? _x( 'Unknown', 'Email Detection Type', 'd4plib' );
@@ -94,6 +106,41 @@ class Detection {
 		return $this->supported;
 	}
 
+	public function test_regex( $atts, $regex ) : bool {
+		$tests = array();
+
+		if ( $regex['subject'] !== false && ! empty( $atts['subject'] ) ) {
+			$tests['subject'] = preg_match( $regex['subject'], $atts['subject'] ) !== false;
+		}
+
+		if ( $regex['message'] !== false && ! empty( $atts['message'] ) ) {
+			$tests['message'] = preg_match( $regex['message'], $atts['message'] ) !== false;
+		}
+
+		if ( $regex['headers'] !== false && ! empty( $atts['headers'] ) ) {
+			$tests['headers'] = false;
+
+			foreach ( $atts['headers'] as $header ) {
+				if ( preg_match( $regex['message'], $header ) ) {
+					$tests['headers'] = true;
+					break;
+				}
+			}
+		}
+
+		if ( empty( $tests ) ) {
+			return false;
+		}
+
+		foreach ( $tests as $test ) {
+			if ( $test !== true ) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	public function intercept_wp_mail( $atts ) {
 		if ( is_string( $atts['headers'] ) && ! empty( $atts['headers'] ) ) {
 			if ( str_contains( $atts['headers'], 'X-WPCF7-Content-Type' ) ) {
@@ -101,10 +148,27 @@ class Detection {
 			}
 		}
 
+		if ( $this->has_regex && empty( $this->detection['name'] ) ) {
+			$input = shortcode_atts( array(
+				'subject' => '',
+				'message' => '',
+				'headers' => array(),
+			), $atts );
+
+			foreach ( $this->supported as $code => $data ) {
+				if ( isset( $data['regex'] ) ) {
+					if ( $this->test_regex( $input, $data['regex'] ) ) {
+						$this->detection['name'] = $code;
+						break;
+					}
+				}
+			}
+		}
+
 		return $atts;
 	}
 
-	public function intercept_buddypress( &$email, $email_type ) {
+	public function intercept_buddypress( &$email, $email_type ) : void {
 		$this->detection['name'] = 'buddypress-' . $email_type;
 	}
 
@@ -146,11 +210,11 @@ class Detection {
 		return $return;
 	}
 
-	public function intercept_action() {
+	public function intercept_action() : void {
 		$this->identify( current_action(), 'action' );
 	}
 
-	protected function caller() {
+	protected function caller() : void {
 		$backtrace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
 		$file_path = '';
 		$file_line = '';
@@ -171,7 +235,7 @@ class Detection {
 		}
 	}
 
-	protected function identify( string $name, string $type ) {
+	protected function identify( string $name, string $type ) : void {
 		foreach ( $this->supported as $code => $data ) {
 			if ( isset( $data[ $type ] ) && $data[ $type ] == $name ) {
 				$this->detection['name'] = $code;
@@ -199,7 +263,7 @@ class Detection {
 		add_action( 'wp_mail_failed', array( $this, 'reset' ), 100000 );
 	}
 
-	protected function init() {
+	protected function init() : void {
 		$this->supported = array(
 			'wp-comment-notify-moderator'                            => array(
 				'filter' => 'comment_moderation_headers',
@@ -509,6 +573,38 @@ class Detection {
 				'source' => 'WooCommerce',
 			),
 		);
+
+		/** HOOK: `dev4press_v55_mailer_custom_regex` */
+		$_custom_regex = apply_filters( Library::i()->hook( 'mailer_custom_regex' ), array() );
+
+		foreach ( $_custom_regex as $regex ) {
+			$regex = shortcode_atts( array(
+				'code'   => '',
+				'label'  => '',
+				'source' => '',
+				'regex'  => array(
+					'subject' => false,
+					'message' => false,
+					'headers' => false,
+				),
+			), $regex );
+
+			if ( ! empty( $regex['code'] ) && ! empty( $regex['label'] ) && ! empty( $regex['source'] ) && ( isset( $regex['regex']['subject'] ) || isset( $regex['regex']['message'] ) || isset( $regex['regex']['headers'] ) ) ) {
+				if ( ! isset( $this->supported[ $regex['code'] ] ) ) {
+					$this->has_regex = true;
+
+					$this->supported[ $regex['code'] ] = array(
+						'label'  => $regex['label'],
+						'source' => $regex['source'],
+						'regex'  => array(
+							'subject' => $regex['regex']['subject'] ?? '',
+							'message' => $regex['regex']['message'] ?? '',
+							'headers' => $regex['regex']['headers'] ?? '',
+						),
+					);
+				}
+			}
+		}
 	}
 
 	public function get_labels() : array {

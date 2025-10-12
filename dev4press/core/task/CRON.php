@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class CRON extends Background {
 	protected string $method = 'cron';
-	protected $job = '';
+	protected string $job = '';
 
 	public function __construct() {
 		parent::__construct();
@@ -43,7 +43,7 @@ abstract class CRON extends Background {
 		add_action( $this->job, array( $this, 'handler' ) );
 	}
 
-	protected function spawn() {
+	protected function spawn() : void {
 		if ( ! wp_next_scheduled( $this->job ) ) {
 			wp_schedule_single_event( time() + $this->delay, $this->job );
 		}

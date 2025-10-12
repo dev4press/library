@@ -43,8 +43,7 @@ abstract class License {
 		$this->site_url = wp_parse_url( network_site_url(), PHP_URL_HOST );
 	}
 
-	/** @return static */
-	public static function instance() {
+	public static function instance() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {
@@ -54,7 +53,7 @@ abstract class License {
 		return $instance[ static::class ];
 	}
 
-	public function dashboard() {
+	public function dashboard() : void {
 		if ( $this->is_freemius() ) {
 			return;
 		}
@@ -148,7 +147,7 @@ abstract class License {
 		return $this->process_response( $response, $format );
 	}
 
-	public function validate( $dashboard = false ) {
+	public function validate( $dashboard = false ) : void {
 		if ( $this->is_freemius() ) {
 			return;
 		}

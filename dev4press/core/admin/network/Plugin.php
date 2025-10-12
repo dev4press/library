@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Plugin extends BasePlugin {
 	public bool $plugin_network = true;
 
-	public function plugins_preparation() {
+	public function plugins_preparation() : void {
 		$blog_menus = true;
 
 		if ( $this->is_multisite ) {
@@ -58,7 +58,7 @@ abstract class Plugin extends BasePlugin {
 		}
 	}
 
-	public function global_admin_notices() {
+	public function global_admin_notices() : void {
 		$blog_notices = true;
 
 		if ( $this->is_multisite ) {
