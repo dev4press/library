@@ -301,7 +301,10 @@ abstract class Panel {
         $this->include_generic( 'element', 'runner', $subname, $args );
     }
 
-    public function get_table_object() : ?Table {
+    /**
+     * @return null|\Dev4Press\v54\WordPress\Admin\Table|\Dev4Press\v55\WordPress\Admin\Table
+     */
+    public function get_table_object() {
         return null;
     }
 

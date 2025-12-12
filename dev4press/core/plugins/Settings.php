@@ -56,17 +56,6 @@ abstract class Settings {
 
 	public function __construct() {
 		$this->constructor();
-
-		if ( $this->info->is_pro() ) {
-			$this->settings['license'] = array(
-				'code'      => '',
-				'info'      => array(),
-				'last'      => array(),
-				'check'     => 0,
-				'record'    => 'empty',
-				'dashboard' => 0,
-			);
-		}
 	}
 
 	public static function instance() : static {
@@ -266,10 +255,6 @@ abstract class Settings {
 
 		if ( ! $silent ) {
 			do_action( $this->hook( 'settings_saved_to_db_' . $group ), $this->changed[ $group ] ?? array() );
-
-			if ( $group == 'license' ) {
-				$this->_license_control();
-			}
 		}
 	}
 
@@ -479,10 +464,6 @@ abstract class Settings {
 			}
 		}
 
-		if ( $this->info->is_pro() ) {
-			$this->_license_schedule();
-		}
-
 		if ( $this->has_db ) {
 			$this->_db();
 		}
@@ -629,37 +610,6 @@ abstract class Settings {
 		}
 
 		return $scope;
-	}
-
-	protected function _license_action() : string {
-		return $this->plugin . '-license-validation';
-	}
-
-	protected function _license_control() : void {
-		if ( isset( $this->changed['license']['code'] ) ) {
-			if ( empty( $this->changed['license']['code']['new'] ) ) {
-				$this->bulk( array(
-					'info'   => array(),
-					'last'   => array(),
-					'check'  => time(),
-					'record' => 'empty',
-				), 'license', true, true );
-			} else {
-				$this->_license_schedule();
-			}
-		}
-	}
-
-	protected function _license_schedule() : void {
-		if ( ! empty( $this->plugin ) ) {
-			$this->set( 'record', 'in-progress', 'license', true, true );
-
-			do_action( $this->_license_action() );
-
-			if ( ! WPR::is_scheduled_single( $this->_license_action() ) ) {
-				wp_schedule_single_event( time() + 5, $this->_license_action() );
-			}
-		}
 	}
 
 	protected function _install_db() {

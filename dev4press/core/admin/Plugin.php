@@ -331,10 +331,6 @@ abstract class Plugin {
 		if ( $this->settings()->is_update() ) {
 			add_action( 'admin_notices', array( $this, 'update_notice' ) );
 		}
-
-		if ( $this->plugin()->show_license_notice() ) {
-			add_action( 'admin_notices', array( $this, 'license_notice' ) );
-		}
 	}
 
 	public function install_notice() : void {
@@ -343,16 +339,6 @@ abstract class Plugin {
 			/* translators: Plugin installation admin notice. %s: Plugin Name. */
 			echo esc_html( sprintf( __( '%s is activated and it needs to finish installation.', 'd4plib' ), $this->title() ) );
 			echo ' <a href="' . esc_url( $this->main_url() ) . '">' . esc_html__( 'Click Here', 'd4plib' ) . '</a>.';
-			echo '</p></div>';
-		}
-	}
-
-	public function license_notice() : void {
-		if ( current_user_can( 'install_plugins' ) ) {
-			echo '<div class="notice notice-error"><p>';
-			/* translators: Plugin installation admin notice. %s: Plugin Name. */
-			echo esc_html( sprintf( __( '%s requires license code to be activated. All plugin features will be disabled until the license is activated.', 'd4plib' ), $this->title() ) );
-			echo ' <a href="' . esc_url( $this->panel_url( 'settings', 'license' ) ) . '">' . esc_html__( 'Add License', 'd4plib' ) . '</a>.';
 			echo '</p></div>';
 		}
 	}
@@ -580,8 +566,6 @@ abstract class Plugin {
 		$this->object = $class::instance( $this );
 
 		$this->subpanel = $this->object->validate_subpanel( $this->subpanel );
-
-		$this->plugin()->maybe_license_validation();
 	}
 
 	protected function default_panel_object() : object {

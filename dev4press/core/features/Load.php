@@ -34,6 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Load {
+	protected bool $_early_phase = true;
 	protected bool $_network_enabled = false;
 	protected bool $_scope_enabled = true;
 	protected string $_default_scope = 'global';
@@ -66,6 +67,16 @@ abstract class Load {
 		if ( ! $this->is_hidden( $feature ) ) {
 			if ( $this->is_always_on( $feature ) || $this->is_enabled( $feature ) ) {
 				if ( $early === $this->is_early( $feature ) ) {
+					if ( ! $this->_early_phase ) {
+						if ( $this->is_user_only( $feature ) && ! is_user_logged_in() ) {
+							return false;
+						}
+
+						if ( $this->is_visitor_only( $feature ) && is_user_logged_in() ) {
+							return false;
+						}
+					}
+
 					$actual = $this->get_scope( $feature );
 
 					if ( empty( $scope ) || $actual == 'global' || $actual == $scope ) {
@@ -110,8 +121,10 @@ abstract class Load {
 		return $load;
 	}
 
-	public function load_main( bool $early = false ) {
-		$scope = Scope::instance()->is_frontend() ? 'front' : 'admin';
+	public function load_main( bool $early = false ) : void {
+		$this->_early_phase = $early;
+
+		$scope = Scope::i()->is_frontend() ? 'front' : 'admin';
 
 		foreach ( $this->list() as $feature ) {
 			if ( $this->allow_load( $feature, $early, $scope, is_main_site() ) ) {
@@ -124,7 +137,7 @@ abstract class Load {
 		}
 	}
 
-	public function load_admin() {
+	public function load_admin() : void {
 		foreach ( $this->list() as $feature ) {
 			if ( ! empty( $this->_list[ $feature ]['admin'] ) && class_exists( $this->_list[ $feature ]['admin'] ) ) {
 				$this->_list[ $feature ]['admin']::instance();
@@ -173,6 +186,8 @@ abstract class Load {
 				'is_active',
 				'is_enabled',
 				'is_always_on',
+				'is_user_only',
+				'is_visitor_only',
 				'is_early',
 				'is_hidden',
 				'is_main_site_only',
@@ -255,6 +270,14 @@ abstract class Load {
 		return (bool) $this->attribute( 'is_always_on', $feature );
 	}
 
+	public function is_user_only( string $feature ) : bool {
+		return (bool) $this->attribute( 'is_user_only', $feature );
+	}
+
+	public function is_visitor_only( string $feature ) : bool {
+		return (bool) $this->attribute( 'is_visitor_only', $feature );
+	}
+
 	public function is_early( string $feature ) : bool {
 		return (bool) $this->attribute( 'is_early', $feature );
 	}
@@ -318,7 +341,7 @@ abstract class Load {
 		return $panels;
 	}
 
-	public function activation( string $feature, bool $status ) {
+	public function activation( string $feature, bool $status ) : void {
 		if ( $this->is_valid( $feature ) ) {
 			$this->s()->set( $feature, $status, 'load', true );
 		}

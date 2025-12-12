@@ -555,7 +555,7 @@ class WPR {
 
 		$dir = wp_upload_dir();
 
-		if ( false !== strpos( $url, $dir['baseurl'] . '/' ) ) {
+		if ( str_contains( $url, $dir['baseurl'] . '/' ) ) {
 			$file       = basename( $url );
 			$query_args = array(
 				'post_type'   => 'attachment',

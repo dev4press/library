@@ -42,6 +42,10 @@ if ( ! defined( 'DEV4PRESS_V55_PATH' ) ) {
 	define( 'DEV4PRESS_V55_PATH', $_library_path );
 }
 
+if ( ! defined( 'DEV4PRESS_NO_SYSREQ_CHECK' ) ) {
+	define( 'DEV4PRESS_NO_SYSREQ_CHECK', false );
+}
+
 require DEV4PRESS_V55_PATH . 'functions/Core.php';
 require DEV4PRESS_V55_PATH . 'functions/Bridge.php';
 

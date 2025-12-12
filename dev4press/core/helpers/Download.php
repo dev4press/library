@@ -140,7 +140,7 @@ class Download {
 			$http_range = sanitize_text_field( wp_unslash( $_SERVER['HTTP_RANGE'] ) );
 
 			list( , $range ) = explode( '=', $http_range, 2 );
-			if ( strpos( $range, ',' ) !== false ) {
+			if ( str_contains( $range, ',' ) ) {
 				header( 'HTTP/1.1 416 Requested Range Not Satisfiable' );
 				header( "Content-Range: bytes $start-$end/$size" );
 				exit;

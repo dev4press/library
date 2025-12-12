@@ -27,7 +27,7 @@
 
 namespace Dev4Press\v55\Core\Plugins;
 
-use Dev4Press\v55\API\Four;
+use Dev4Press\v55\API\Store;
 use Dev4Press\v55\Core\DateTime;
 use Dev4Press\v55\Core\Quick\BBP;
 use Dev4Press\v55\Core\Quick\KSES;
@@ -121,7 +121,6 @@ abstract class Core {
 			}
 		} else {
 			$this->init_capabilities();
-			$this->cron_controls();
 			$this->run();
 		}
 	}
@@ -151,40 +150,11 @@ abstract class Core {
 		deactivate_plugins( $this->plugin_name() );
 	}
 
-	public function recommend( $panel = 'update' ) : string {
-		$four = Four::instance( 'plugin', $this->plugin, $this->s()->i()->version, $this->s()->i()->build );
-		$four->ad();
-
-		return $four->ad_render( $panel );
+	public function recommend() : string {
+		return Store::i()->render( $this->plugin );
 	}
 
 	public function after_setup_theme() : void {
-	}
-
-	public function cron_controls() : void {
-		if ( $this->license ) {
-			$this->license_control();
-		}
-	}
-
-	public function show_license_notice() : bool {
-		if ( $this->license ) {
-			if ( ! $this->l()->has_free_version() && ! $this->l()->is_freemius() && ! $this->l()->is_valid() ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	public function license_control() : void {
-		if ( ! $this->l()->is_freemius() ) {
-			add_action( $this->get_license_action(), array( $this, 'cron_license_validation' ) );
-
-			if ( ! wp_next_scheduled( $this->get_license_action() ) ) {
-				wp_schedule_event( time() + HOUR_IN_SECONDS, 'weekly', $this->get_license_action() );
-			}
-		}
 	}
 
 	public function widgets_init() {
@@ -225,33 +195,8 @@ abstract class Core {
 		return $this->_widget_instance;
 	}
 
-	public function maybe_license_validation() : void {
-		if ( $this->license && ! $this->l()->is_freemius() ) {
-			$timestamp = $this->l()->last_validation_timestamp();
-
-			if ( $timestamp + WEEK_IN_SECONDS < time() ) {
-				$this->l()->validate();
-			}
-		}
-	}
-
-	public function cron_license_validation() : void {
-		if ( $this->license ) {
-			$this->l()->validate();
-		}
-	}
-
-	public function dashboard_license_validation() : void {
-		$dashboard = $this->s()->get( 'dashboard', 'license' );
-
-		if ( $dashboard + DAY_IN_SECONDS < time() ) {
-			$this->s()->set( 'dashboard', time(), 'license', true, true );
-			$this->l()->validate( true );
-		}
-	}
-
 	protected function check_system_requirements() : array {
-		if ( defined( 'DEV4PRESS_NO_SYSREQ_CHECK' ) && DEV4PRESS_NO_SYSREQ_CHECK ) {
+		if ( DEV4PRESS_NO_SYSREQ_CHECK ) {
 			return array();
 		}
 
@@ -294,10 +239,6 @@ abstract class Core {
 		return $list;
 	}
 
-	protected function get_license_action() : string {
-		return $this->plugin . '-license-validation';
-	}
-
 	public function hook( string $name ) : string {
 		return $this->plugin_prefix . '_' . $name;
 	}
@@ -316,7 +257,4 @@ abstract class Core {
 
 	/** @return NULL|\Dev4Press\v55\Core\Features\Load */
 	abstract public function f();
-
-	/** @return NULL|\Dev4Press\v55\Core\Plugins\License */
-	abstract public function l();
 }

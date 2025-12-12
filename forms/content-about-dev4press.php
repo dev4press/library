@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-$_plugins = Store::instance()->plugins();
+$_plugins = Store::i()->plugins();
 
 ?>
 
@@ -14,9 +14,9 @@ $_plugins = Store::instance()->plugins();
     <?php
 
     foreach ( $_plugins as $_plugin ) {
-        $_url     = Store::instance()->url( $_plugin['code'] );
-        $_pro     = Store::instance()->is_pro( $_plugin['code'] );
-        $_free    = Store::instance()->is_free( $_plugin['code'] );
+        $_url     = Store::i()->url( $_plugin['code'] );
+        $_pro     = Store::i()->is_pro( $_plugin['code'] );
+        $_free    = Store::i()->is_free( $_plugin['code'] );
         $_edition = $_pro && $_free ? '_both' : '_single';
 
         if ( isset( $_plugin['internal'] ) && $_plugin['internal'] ) {

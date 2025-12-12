@@ -85,7 +85,7 @@ class IP {
 	}
 
 	public static function is_ipv4_in_range( $ip, $range ) : bool {
-		if ( strpos( $range, '/' ) !== false ) {
+		if ( str_contains( $range, '/' ) ) {
 			list( $subnet, $mask ) = explode( '/', $range, 2 );
 
 			if ( $mask <= 0 ) {
@@ -97,13 +97,13 @@ class IP {
 
 			return ( substr_compare( $ip_binary, $net_binary, 0, $mask ) === 0 );
 		} else {
-			if ( strpos( $range, '*' ) !== false ) {
+			if ( str_contains( $range, '*' ) ) {
 				$lower = str_replace( '*', '0', $range );
 				$upper = str_replace( '*', '255', $range );
 				$range = "$lower-$upper";
 			}
 
-			if ( strpos( $range, '-' ) !== false ) {
+			if ( str_contains( $range, '-' ) ) {
 				list( $lower, $upper ) = explode( '-', $range, 2 );
 
 				$lower_dec = (float) sprintf( '%u', ip2long( $lower ) );
@@ -164,7 +164,7 @@ class IP {
 			$ip = self::visitor();
 		}
 
-		if ( strpos( $ip, ':' ) === false ) {
+		if ( ! str_contains( $ip, ':' ) ) {
 			foreach ( self::$private_ipv4 as $cf ) {
 				if ( self::is_ipv4_in_range( $ip, $cf ) ) {
 					return true;
@@ -207,7 +207,7 @@ class IP {
 			return false;
 		}
 
-		if ( strpos( $ip, ':' ) === false ) {
+		if ( ! str_contains( $ip, ':' ) ) {
 			foreach ( self::$cloudflare_ipv4 as $cf ) {
 				if ( self::is_ipv4_in_range( $ip, $cf ) ) {
 					return true;
@@ -313,11 +313,70 @@ class IP {
 		foreach ( $ips as $_ip ) {
 			$_ip = trim( $_ip );
 
+			if ( $_ip === '' ) {
+				continue;
+			}
+
+			if ( str_contains( $_ip, '/' ) ) {
+				$filtered = self::validate_range( $_ip );
+
+				if ( $filtered !== false ) {
+					return $filtered;
+				}
+			}
+
 			$filtered = filter_var( $_ip, FILTER_VALIDATE_IP );
 
 			if ( $filtered !== false ) {
 				return $filtered;
 			}
+		}
+
+		return false;
+	}
+
+	public static function validate_range( $ip ) {
+		list( $addr, $mask ) = explode( '/', $ip, 2 );
+
+		$addr = trim( $addr );
+		$mask = trim( $mask );
+
+		// IPv4 CIDR
+		if ( filter_var( $addr, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
+			if ( ctype_digit( $mask ) ) {
+				$prefix = (int) $mask;
+
+				if ( $prefix >= 0 && $prefix <= 32 ) {
+					return $addr . '/' . $prefix;
+				}
+			} else {
+				if ( filter_var( $mask, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
+					$bin = sprintf( '%032b', ip2long( $mask ) );
+
+					if ( preg_match( '/^1+0*$/', $bin ) ) {
+						$prefix = strlen( rtrim( $bin, '0' ) );
+
+						return $addr . '/' . $prefix;
+					}
+				}
+			}
+
+			return false;
+		}
+
+		// IPv6 CIDR
+		if ( filter_var( $addr, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) ) {
+			if ( ctype_digit( $mask ) ) {
+				$prefix = (int) $mask;
+
+				if ( $prefix >= 0 && $prefix <= 128 ) {
+					$norm = inet_ntop( inet_pton( $addr ) );
+
+					return $norm . '/' . $prefix;
+				}
+			}
+
+			return false;
 		}
 
 		return false;

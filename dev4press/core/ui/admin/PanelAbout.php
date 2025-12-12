@@ -59,7 +59,7 @@ abstract class PanelAbout extends Panel {
 		}
 	}
 
-	public function enqueue_scripts() {
+	public function enqueue_scripts() : void {
 		$this->a()->enqueue->css( 'about' );
 	}
 }

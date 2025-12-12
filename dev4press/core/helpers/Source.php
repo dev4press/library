@@ -81,7 +81,7 @@ class Source {
 		$value = '';
 
 		foreach ( $this->paths as $scope => $dir ) {
-			if ( $dir && ( strpos( $file, trailingslashit( $dir ) ) === 0 ) ) {
+			if ( $dir && ( str_starts_with( $file, trailingslashit( $dir ) ) ) ) {
 				break;
 			}
 		}
@@ -114,7 +114,7 @@ class Source {
 		if ( $strip_abspath ) {
 			$abspath = wp_normalize_path( ABSPATH );
 
-			if ( strpos( $file, $abspath ) === 0 ) {
+			if ( str_starts_with( $file, $abspath ) ) {
 				$input = '/' . substr( $file, strlen( $abspath ) );
 			}
 		}

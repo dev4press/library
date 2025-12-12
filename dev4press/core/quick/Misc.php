@@ -96,7 +96,13 @@ class Misc {
 		return implode( ',', $rgb );
 	}
 
-	public static function flag_from_country_code( string $country_code, string $location, string $status = 'active', string $not_found = 'image' ) : string {
+	public static function flag_from_country_code( string $country_code, string $location = '', string $status = 'active', string $not_found = 'image' ) : string {
+		if ( $country_code == 'cidr' ) {
+			$_base = Library::i()->url() . 'resources/gfx/flag_icon_cidr.png';
+
+			return '<img src="' . $_base . '" class="cidr" title="' . esc_html__( 'CIDR IP Range', 'd4plib' ) . '" alt="' . esc_html__( 'CIDR IP Range', 'd4plib' ) . '" />';
+		}
+
 		$_base = Library::i()->url() . 'resources/vendor/flags/img/flag_placeholder.png';
 
 		if ( $status == 'active' ) {

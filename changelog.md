@@ -2,11 +2,13 @@
 
 ## Changelog
 
-### Version 5.5 - 2025.12.08
+### Version 5.5 - 2026.02.07
 
 * New: system requirements - `PHP` 8.0 or newer 
+* New: system requirements - `WordPress` 6.2 or newer
 * New: many `PHP` related changes and improvements
 * New: shared code for background `Runner` interface
+* New: helper `IP` class can validate CIDR ranges
 * New: additional functions for string manipulation
 * New: refactoring and core improvements
 * Edit: changes related to WordPress and PHP code standards
@@ -14,6 +16,9 @@
 * Edit: improvements to the settings and options rendering
 * Edit: updates to the plugin code classes
 * Edit: improved styling for the plugin settings panel
+* Edit: updated several icons in the webfont
+* Removed: legacy `License` class and handling code
+* Removed: legacy `Four` class and related code
 
 ### Version 5.4 - 2025.05.23
 

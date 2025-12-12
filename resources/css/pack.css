@@ -2859,6 +2859,7 @@ a > .d4p-icon {
   border-left: 1px solid var(--d4p-color-layout-border);
   padding: 1.5em 0 1.5em 1.5em;
   flex: 1 1 100%;
+  gap: 1.5em;
 }
 @media screen and (max-width: 640px) {
   .d4p-wrap.d4p-with-sidebar .d4p-content-wrapper {
@@ -3782,7 +3783,6 @@ a > .d4p-icon {
 }
 .d4p-wrap .d4p-setup-wrapper .d4p-update-info {
   flex: 1 1 100%;
-  padding-right: 2em;
 }
 .d4p-wrap .d4p-setup-wrapper .d4p-update-info .d4p-install-block {
   margin: 0 0 15px;
@@ -3808,7 +3808,7 @@ a > .d4p-icon {
 .d4p-wrap .d4p-setup-wrapper #dev4press-recommend > div {
   background-color: #333;
   border-radius: 5px;
-  border: 2px solid #111;
+  border: 1px solid transparent;
   color: #FFF;
   padding: 0;
   margin-bottom: 1em;
@@ -3822,18 +3822,20 @@ a > .d4p-icon {
 .d4p-wrap .d4p-setup-wrapper #dev4press-recommend h5 {
   background-color: #666;
   color: #FFF;
-  padding: 1em 1em;
+  padding: 0.5em;
   margin: 0 0 1.5em;
   text-align: center;
   font-size: 16px;
   font-weight: 400;
   border-radius: 5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 .d4p-wrap .d4p-setup-wrapper #dev4press-recommend h6 {
-  font-size: 18px;
+  font-size: 16px;
   margin: 0;
   line-height: 1.5;
-  padding: 0.5em 1em;
+  padding: 0.25em 0.5em;
   text-align: center;
 }
 .d4p-wrap .d4p-setup-wrapper #dev4press-recommend .dev4press-plugin-inner {
@@ -3852,9 +3854,7 @@ a > .d4p-icon {
   height: 92px;
 }
 .d4p-wrap .d4p-setup-wrapper #dev4press-recommend .dev4press-plugin-thumb i {
-  font-size: 90px;
-  width: 116px;
-  height: 96px;
+  font-size: 64px;
   display: block;
   line-height: 1;
 }
@@ -3866,8 +3866,12 @@ a > .d4p-icon {
 }
 .d4p-wrap .d4p-setup-wrapper #dev4press-recommend .dev4press-plugin-links a {
   margin: 0 1%;
-  width: 31.33%;
+  width: 48%;
   text-align: center;
+  border: none;
+}
+.d4p-wrap .d4p-setup-wrapper #dev4press-recommend .dev4press-plugin-links a.button-primary {
+  font-weight: bold;
 }
 .d4p-wrap .d4p-setup-wrapper #dev4press-recommend .dev4press-plugin-links a.button-secondary {
   color: #111;
@@ -3876,8 +3880,7 @@ a > .d4p-icon {
 .d4p-wrap .d4p-setup-wrapper #dev4press-recommend .dev4press-plugin-links a.dev4press-buynow {
   background: #BA0000;
   box-shadow: none;
-  border-color: #F0F0F0;
-  text-shadow: 0 -1px 1px #900, 1px 0 1px #900, 0 1px 1px #900, -1px 0 1px #900;
+  text-shadow: none;
 }
 @media screen and (max-width: 1200px) {
   .d4p-wrap .d4p-setup-wrapper {
