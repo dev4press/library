@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Plugins\Wizard
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Plugins\Wizard
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Plugins;
+namespace Dev4Press\v55\Core\Plugins;
 
-use Dev4Press\v54\Core\Quick\Sanitize;
-use Dev4Press\v54\Core\UI\Elements;
+use Dev4Press\v55\Core\Quick\Sanitize;
+use Dev4Press\v55\Core\UI\Elements;
+use JetBrains\PhpStorm\NoReturn;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -47,8 +48,7 @@ abstract class Wizard {
 		$this->init_data();
 	}
 
-	/** @return static */
-	public static function instance() {
+	public static function instance() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {
@@ -58,7 +58,7 @@ abstract class Wizard {
 		return $instance[ static::class ];
 	}
 
-	public function setup_panel( $panel ) {
+	public function setup_panel( $panel ) : void {
 		$this->panel = $panel;
 
 		if ( ! isset( $this->panels[ $panel ] ) || $panel === false || is_null( $panel ) ) {
@@ -66,7 +66,7 @@ abstract class Wizard {
 		}
 	}
 
-	public function current_panel() {
+	public function current_panel() : string {
 		return $this->panel;
 	}
 
@@ -105,11 +105,12 @@ abstract class Wizard {
 		return $this->a()->plugin_prefix . '-wizard-nonce-' . $panel;
 	}
 
-	public function get_form_nonce() {
+	public function get_form_nonce() : string {
 		return wp_create_nonce( $this->get_form_nonce_key( $this->current_panel() ) );
 	}
 
-	public function panel_postback() {
+	#[NoReturn]
+    public function panel_postback() : void {
 		$post = isset( $_POST[ $this->a()->plugin_prefix ]['wizard'] ) ? Sanitize::deep( $_POST[ $this->a()->plugin_prefix ]['wizard'], 'text' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 		$goto = $this->a()->panel_url();
 
@@ -134,7 +135,7 @@ abstract class Wizard {
 		exit;
 	}
 
-	public function render_hidden_elements() {
+	public function render_hidden_elements() : void {
 		$_name = $this->a()->plugin_prefix . '[wizard]';
 
 		?>
@@ -147,7 +148,7 @@ abstract class Wizard {
 		<?php
 	}
 
-	public function render_yes_no( string $panel, string $name, string $value = 'yes', array $labels = array() ) {
+	public function render_yes_no( string $panel, string $name, string $value = 'yes', array $labels = array() ) : void {
 		$_name = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
 		$_id   = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
 
@@ -168,7 +169,7 @@ abstract class Wizard {
 		<?php
 	}
 
-	public function render_checkboxes_list( string $panel, string $name, array $value = array(), array $list = array() ) {
+	public function render_checkboxes_list( string $panel, string $name, array $value = array(), array $list = array() ) : void {
 		Elements::instance()->checkboxes( $list, array(
 			'selected' => $value,
 			'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
@@ -176,7 +177,7 @@ abstract class Wizard {
 		) );
 	}
 
-	public function render_select( string $panel, string $name, string $value = '', array $list = array() ) {
+	public function render_select( string $panel, string $name, string $value = '', array $list = array() ) : void {
 		Elements::instance()->select( $list, array(
 			'selected' => $value,
 			'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
@@ -184,7 +185,7 @@ abstract class Wizard {
 		) );
 	}
 
-	public function render_input( string $panel, string $name, string $value, array $args = array() ) {
+	public function render_input( string $panel, string $name, string $value, array $args = array() ) : void {
 		$args['class'] = $args['class'] ?? 'widefat';
 		$args['name']  = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
 		$args['id']    = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
@@ -192,7 +193,7 @@ abstract class Wizard {
 		Elements::instance()->input( $value, $args );
 	}
 
-	public function render_hidden( string $panel, string $name, string $value = 'no' ) {
+	public function render_hidden( string $panel, string $name, string $value = 'no' ) : void {
 		$_name = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
 
 		?>
@@ -202,7 +203,7 @@ abstract class Wizard {
 		<?php
 	}
 
-	public function render_license( string $panel, string $name, string $value, array $args = array() ) {
+	public function render_license( string $panel, string $name, string $value, array $args = array() ) : void {
 		$args['class']   = $args['class'] ?? 'widefat';
 		$args['name']    = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
 		$args['id']      = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
@@ -212,7 +213,6 @@ abstract class Wizard {
 	}
 
 	protected function item_saved( string $panel, string $key, $value ) {
-
 	}
 
 	protected function postback_default( string $panel, $data ) : bool {
@@ -298,10 +298,9 @@ abstract class Wizard {
 	}
 
 	protected function postback_custom( string $panel, $data ) {
-
 	}
 
-	/** @return \Dev4Press\v54\Core\Admin\Plugin */
+	/** @return \Dev4Press\v55\Core\Admin\Plugin */
 	abstract public function a();
 
 	abstract protected function init_panels();

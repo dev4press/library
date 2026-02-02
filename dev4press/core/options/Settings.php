@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Options\Settings
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Options\Settings
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Options;
+namespace Dev4Press\v55\Core\Options;
 
-use Dev4Press\v54\Core\DateTime;
-use Dev4Press\v54\Core\Quick\Str;
+use Dev4Press\v55\Core\DateTime;
+use Dev4Press\v55\Core\Quick\Str;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -41,8 +41,7 @@ abstract class Settings {
 		$this->init();
 	}
 
-	/** @return static */
-	public static function instance() {
+	public static function instance() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {
@@ -135,133 +134,9 @@ abstract class Settings {
 		return $list;
 	}
 
-	protected function settings_license() : array {
-		$code = $this->value( 'code', 'license' );
-		$info = $this->value( 'info', 'license' );
-		$time = $this->value( 'check', 'license' );
-		$last = $this->value( 'last', 'license' );
-
-		$valid  = $info['valid'] ?? '';
-		$status = $info['status'] ?? '';
-		$domain = $info['domain'] ?? '/';
-		$type   = $info['type'] ?? '/';
-		$error  = $info['error'] ?? '';
-
-		if ( empty( $code ) ) {
-			$items = array(
-				'<strong>' . __( 'License Code is not set.', 'd4plib' ) . '</strong>',
-			);
-		} else if ( $time == 0 || empty( $info ) ) {
-			$items = array(
-				'<strong>' . __( 'License Code has not been checked yet.', 'd4plib' ) . '</strong>',
-			);
-		} else {
-			$time = DateTime::instance()->timestamp_gmt_to_local($time);
-
-			$items = array(
-				'<span>' . __( 'Last Checked', 'd4plib' ) . '</span>: <strong>' . DateTime::instance()->mysql_date( true, $time ) . '</strong>',
-				'<hr/>',
-				'<span>' . __( 'Valid', 'd4plib' ) . '</span>: <strong>' . ( $valid === 'yes' ? esc_html__( 'Yes', 'd4plib' ) : esc_html__( 'No', 'd4plib' ) ) . '</strong><br/>',
-				'<span>' . __( 'Status', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $status, '-' ) ) . '</strong>',
-			);
-
-			if ( ! empty( $error ) ) {
-				$items[] = '<br/><span>' . __( 'Error', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $error, '-' ) ) . '</strong>';
-			}
-
-			if ( ! empty( $domain ) ) {
-				$items[] = '<hr/><span>' . __( 'Domain', 'd4plib' ) . '</span>: <strong>' . esc_html( $domain ) . '</strong>';
-
-				if ( ! empty( $type ) ) {
-					$items[] = '<br/><span>' . __( 'Type', 'd4plib' ) . '</span>: <strong>' . esc_html( Str::slug_to_name( $type, '-' ) ) . '</strong>';
-				}
-			}
-		}
-
-		$buttons = array(
-			array(
-				'type'   => 'a',
-				'target' => '_blank',
-				'link'   => 'https://www.dev4press.com/account/licenses/license/?code=' . $code,
-				'class'  => 'button-primary',
-				'title'  => __( 'Manage License Code', 'd4plib' ),
-			),
-			array(
-				'type'   => 'a',
-				'target' => '_blank',
-				'link'   => 'https://www.dev4press.com/account/licenses/',
-				'class'  => 'button-secondary',
-				'title'  => __( 'Dev4Press Dashboard Licenses', 'd4plib' ),
-			),
-		);
-
-		if ( empty( $code ) ) {
-			unset( $buttons[0] );
-		}
-
-		$settings = array(
-			'license-code' => array(
-				'name'     => __( 'Dev4Press License', 'd4plib' ),
-				'sections' => array(
-					array(
-						'label'    => __( 'License Code', 'd4plib' ),
-						'name'     => '',
-						'class'    => '',
-						'settings' => array(
-							$this->i( 'license', 'code', __( 'Code', 'd4plib' ), __( 'You can find your license code in the Dev4Press Dashboard.', 'd4plib' ), Type::LICENSE )->more( array(
-								__( 'Make sure to enter the license code exactly as it is listed on the Dev4Press Dashboard.', 'd4plib' ),
-								__( 'License code is case sensitive, and all letters must be uppercase.', 'd4plib' ),
-								__( 'License code is valid even after the subscription period has expired, as long it was not refunded or terminated.', 'd4plib' ),
-							) )->buttons( $buttons ),
-						),
-					),
-					array(
-						'label'    => __( 'License Information', 'd4plib' ),
-						'name'     => '',
-						'class'    => '',
-						'settings' => array(
-							$this->info( __( 'Status', 'd4plib' ), join( '', $items ) ),
-						),
-					),
-				),
-			),
-		);
-
-		if ( empty( $code ) || empty( $valid ) ) {
-			$settings['license-code']['footer'] = array(
-				'class'   => '',
-				'content' => '<a class="button-primary" href="' . $this->admin()->plugin()->fs()->get_upgrade_url() . '" target="_blank">' . __( 'Buy Pro License', 'd4plib' ) . '</a>',
-			);
-		}
-
-		if ( ! empty( $last ) ) {
-			$error   = $last['error'] ?? '';
-			$message = $last['message'] ?? '';
-
-			$settings['license-code']['sections'][] = array(
-				'label'    => __( 'Verification Error', 'd4plib' ),
-				'name'     => '',
-				'class'    => '',
-				'settings' => array(
-					$this->info( __( 'Status', 'd4plib' ), '<strong>' . $error . '</strong><br/>' . $message ),
-				),
-			);
-		}
-
-		return $settings;
-	}
-
-	protected function init_license() {
-		if ( ! is_null( $this->admin()->plugin()->l() ) && $this->admin()->plugin()->l()->is_freemius() === false ) {
-			$this->settings = array_merge( array(
-				'license' => $this->settings_license(),
-			), $this->settings );
-		}
-	}
-
 	abstract protected function init();
 
-	/** @return \Dev4Press\v54\Core\Admin\Plugin */
+	/** @return \Dev4Press\v55\Core\Admin\Plugin */
 	abstract protected function admin();
 
 	abstract protected function value( $name, $group = 'settings', $default = null );

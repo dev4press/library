@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Quick\Str
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Quick\Str
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Quick;
+namespace Dev4Press\v55\Core\Quick;
 
 use DateTime;
-use Dev4Press\v54\Library;
+use Dev4Press\v55\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -99,6 +99,12 @@ class Str {
 		return null !== json_decode( $input );
 	}
 
+	public static function has_html( string $text ) : bool {
+		$result = preg_match( '/<\s?[^\>]*\/?\s?>/i', $text );
+
+		return $result === 1;
+	}
+
 	public static function starts_with( string $haystack, string $needle ) : bool {
 		$length = strlen( $needle );
 
@@ -111,11 +117,11 @@ class Str {
 		return ! ( $length === 0 ) && substr( $haystack, - $length ) === $needle;
 	}
 
-	public static function left( string $s1, string $s2 ) {
+	public static function left( string $s1, string $s2 ) : string {
 		return substr( $s1, 0, strpos( $s1, $s2 ) );
 	}
 
-	public static function replace_first( string $search, string $replace, string $subject ) {
+	public static function replace_first( string $search, string $replace, string $subject ) : string {
 		$pos = strpos( $subject, $search );
 
 		if ( $pos !== false ) {
@@ -146,7 +152,7 @@ class Str {
 		foreach ( $tags as $tag => $replace ) {
 			$_tag = $before . $tag . $after;
 
-			if ( strpos( $content, $_tag ) !== false ) {
+			if ( str_contains( $content, $_tag ) ) {
 				$content = str_replace( $_tag, $replace, $content );
 			}
 		}
@@ -154,7 +160,7 @@ class Str {
 		return $content;
 	}
 
-	public static function split_to_list( string $value, bool $empty_lines = false ) {
+	public static function split_to_list( string $value, bool $empty_lines = false ) : array|bool {
 		$elements = preg_split( "/[\n\r]/", $value );
 
 		if ( ! $empty_lines ) {
@@ -180,7 +186,6 @@ class Str {
 			strlen( $text );
 
 		if ( ! empty( $length ) && ( $text_length > $length ) ) {
-
 			$text = function_exists( 'mb_substr' )
 				?
 				mb_substr( $text, 0, $length - 1 )
@@ -198,7 +203,7 @@ class Str {
 		}
 
 		if ( null === $charset ) {
-			$charset = Library::instance()->charset();
+			$charset = Library::i()->charset();
 		}
 
 		return html_entity_decode( $content, $quote_style, $charset );

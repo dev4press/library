@@ -1,10 +1,10 @@
 <?php
 
-use Dev4Press\v54\Core\Quick\KSES;
-use function Dev4Press\v54\Functions\panel;
+use Dev4Press\v55\Core\Quick\KSES;
+use function Dev4Press\v55\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 $_panel     = panel()->a()->panel_object();
@@ -12,9 +12,9 @@ $_subpanel  = panel()->a()->subpanel;
 $_subpanels = panel()->subpanels();
 
 if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
-	$counters = panel()->get_filter_counters_for_override();
+    $counters = panel()->get_filter_counters_for_override();
 } else {
-	$counters = panel()->get_filter_counters();
+    $counters = panel()->get_filter_counters();
 }
 
 ?>
@@ -22,22 +22,22 @@ if ( panel()->a()->plugin()->f()->network_mode() && ! is_network_admin() ) {
     <div class="d4p-panel-scroller d4p-scroll-active">
         <div class="d4p-panel-title">
             <div class="_icon">
-				<?php echo KSES::strong( panel()->r()->icon( $_panel->icon ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                <?php echo KSES::strong( panel()->r()->icon( $_panel->icon ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
             <h3><?php echo KSES::strong( $_panel->title ); ?></h3>
             <div class="_info">
-				<?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
+                <?php echo esc_html( $_subpanels[ $_subpanel ]['info'] ); ?>
             </div>
         </div>
 
         <div class="d4p-panel-features-counts">
-			<?php
+            <?php
 
-			foreach ( $counters as $code => $counter ) {
-				echo '<div data-selector="' . esc_attr( $counter['selector'] ) . '">' . esc_html( $counter['label'] ) . '<span>0</span></div>';
-			}
+            foreach ( $counters as $code => $counter ) {
+                echo '<div data-selector="' . esc_attr( $counter['selector'] ) . '">' . esc_html( $counter['label'] ) . '<span>0</span></div>';
+            }
 
-			?>
+            ?>
         </div>
 
         <div class="d4p-panel-control">

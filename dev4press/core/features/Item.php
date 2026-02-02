@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Features\Item
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Features\Item
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Features;
+namespace Dev4Press\v55\Core\Features;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -46,14 +46,18 @@ abstract class Item {
 	public string $name = '';
 	public array $settings = array();
 
-	public function __construct() {
+	protected function __construct() {
 		if ( $this->has_settings() ) {
 			$this->settings = $this->f()->get_settings( $this->name );
 		}
 	}
 
-	/** @return static */
-	public static function instance() {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {

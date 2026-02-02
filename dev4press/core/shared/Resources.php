@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Shared\Enqueue
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Shared\Enqueue
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Shared;
+namespace Dev4Press\v55\Core\Shared;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -188,7 +188,7 @@ class Resources {
 				'lib'  => true,
 				'path' => '',
 				'file' => 'micromodal.min',
-				'ver'  => '0.4.10',
+				'ver'  => '0.6.1',
 				'ext'  => 'js',
 				'min'  => false,
 			),
@@ -334,7 +334,7 @@ class Resources {
 				'lib'  => false,
 				'path' => 'css',
 				'file' => 'micromodal',
-				'ver'  => '0.4.10',
+				'ver'  => '0.6.1',
 				'ext'  => 'css',
 				'min'  => true,
 			),

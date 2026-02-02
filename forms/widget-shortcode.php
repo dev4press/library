@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 $shortcode_notice = $this->get_shortcode_notice();
@@ -24,13 +24,13 @@ $shortcode_notice = $this->get_shortcode_notice();
             </div>
         </td>
     </tr>
-	<?php if ( ! empty( $shortcode_notice ) ) { ?>
+    <?php if ( ! empty( $shortcode_notice ) ) { ?>
         <tr>
             <td class="cell-singular">
                 <h5><?php esc_html_e( 'Notice', 'd4plib' ); ?>:</h5>
-				<?php echo esc_html( $shortcode_notice ); ?>
+                <?php echo esc_html( $shortcode_notice ); ?>
             </td>
         </tr>
-	<?php } ?>
+    <?php } ?>
     </tbody>
 </table>

@@ -1,324 +1,356 @@
 <?php
 
-namespace Dev4Press\v54\Core\UI\Admin;
+namespace Dev4Press\v55\Core\UI\Admin;
 
-use Dev4Press\v54\Core\Quick\KSES;
-use Dev4Press\v54\Library;
+use Dev4Press\v55\Core\Quick\KSES;
+use Dev4Press\v55\Core\Task\Runner;
+use Dev4Press\v55\Library;
+use Dev4Press\v55\WordPress\Admin\Table;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 abstract class Panel {
-	private static $_current_instance = null;
+    private static $_current_instance = null;
+
+    /** @var \Dev4Press\v55\Core\Admin\Plugin|\Dev4Press\v55\Core\Admin\Menu\Plugin|\Dev4Press\v55\Core\Admin\Submenu\Plugin */
+    private $admin;
 
-	/** @var \Dev4Press\v54\Core\Admin\Plugin|\Dev4Press\v54\Core\Admin\Menu\Plugin|\Dev4Press\v54\Core\Admin\Submenu\Plugin */
-	private $admin;
+    /** @var \Dev4Press\v55\Core\UI\Admin\Render */
+    private $render;
+    protected $render_class = '\\Dev4Press\\v55\\Core\\UI\\Admin\\Render';
+    protected $table_object = null;
+
+    protected array $subpanels = array();
+    protected bool $sidebar = true;
+    protected bool $form = false;
+    protected bool $table = false;
+    protected bool $cards = false;
+    protected bool $runner = false;
+    protected bool $form_multiform = false;
+    protected string $form_autocomplete = 'off';
+    protected string $form_method = 'post';
+    protected string $wrapper_class = '';
+    protected string $default_subpanel = 'index';
+    protected string $directory = '';
+    protected string $override_sidebar = '';
+    protected string $override_content = '';
+    protected string $override_footer = '';
+
+    public function __construct( $admin ) {
+        $render = $this->render_class;
 
-	/** @var \Dev4Press\v54\Core\UI\Admin\Render */
-	private $render;
-	protected $render_class = '\\Dev4Press\\v54\\Core\\UI\\Admin\\Render';
-	protected $table_object = null;
+        $this->admin  = $admin;
+        $this->render = $render::instance();
+
+        $page_id = $this->admin->screen_id;
+
+        if ( is_network_admin() && str_ends_with( $page_id, '-network' ) ) {
+            $page_id = substr( $page_id, 0, - 8 );
+        }
+
+        add_action( 'load-' . $page_id, array( $this, 'screen_options_show' ) );
+
+        add_action( $this->h( 'enqueue_scripts_early' ), array( $this, 'enqueue_scripts_early' ) );
+        add_action( $this->h( 'enqueue_scripts' ), array( $this, 'enqueue_scripts' ) );
+
+        $this->init_default_subpanels();
+    }
+
+    public static function instance( $admin = null ) : static {
+        if ( is_null( self::$_current_instance ) && ! is_null( $admin ) ) {
+            self::$_current_instance = new static( $admin );
+        }
+
+        return self::$_current_instance;
+    }
+
+    public function a() {
+        return $this->admin;
+    }
+
+    public function r() {
+        return $this->render;
+    }
+
+    public function h( $name ) : string {
+        return $this->a()->h( $name );
+    }
 
-	protected array $subpanels = array();
-	protected bool $sidebar = true;
-	protected bool $form = false;
-	protected bool $table = false;
-	protected bool $cards = false;
-	protected bool $form_multiform = false;
-	protected string $form_autocomplete = 'off';
-	protected string $form_method = 'post';
-	protected string $wrapper_class = '';
-	protected string $default_subpanel = 'index';
-	protected string $directory = '';
-
-	public function __construct( $admin ) {
-		$render = $this->render_class;
+    public function subpanels() : array {
+        return $this->subpanels;
+    }
 
-		$this->admin  = $admin;
-		$this->render = $render::instance();
-
-		$page_id = $this->admin->screen_id;
-
-		if ( is_network_admin() && str_ends_with( $page_id, '-network' ) ) {
-			$page_id = substr( $page_id, 0, - 8 );
-		}
-
-		add_action( 'load-' . $page_id, array( $this, 'screen_options_show' ) );
-
-		add_action( $this->h( 'enqueue_scripts_early' ), array( $this, 'enqueue_scripts_early' ) );
-		add_action( $this->h( 'enqueue_scripts' ), array( $this, 'enqueue_scripts' ) );
-	}
-
-	/** @return static */
-	public static function instance( $admin = null ) {
-		if ( is_null( self::$_current_instance ) && ! is_null( $admin ) ) {
-			self::$_current_instance = new static( $admin );
-		}
-
-		return self::$_current_instance;
-	}
+    public function header_fill() : string {
+        return '';
+    }
 
-	public function a() {
-		return $this->admin;
-	}
+    public function object() : object {
+        $subpanel = $this->current_subpanel();
 
-	public function r() {
-		return $this->render;
-	}
+        if ( isset( $this->subpanels[ $subpanel ] ) ) {
+            return (object) $this->subpanels[ $subpanel ];
+        }
 
-	public function h( $hook ) : string {
-		return $this->a()->plugin_prefix . '_' . $hook;
-	}
+        return $this->a()->panel_object();
+    }
 
-	public function subpanels() : array {
-		return $this->subpanels;
-	}
+    public function current_subpanel() : string {
+        $_subpanel = $this->a()->subpanel;
 
-	public function header_fill() : string {
-		return '';
-	}
+        if ( ! empty( $this->subpanels ) ) {
+            $_available = array_keys( $this->subpanels );
 
-	public function object() : object {
-		$subpanel = $this->current_subpanel();
+            if ( ! in_array( $_subpanel, $_available ) ) {
+                $_subpanel = $this->default_subpanel;
+            }
+        }
 
-		if ( isset( $this->subpanels[ $subpanel ] ) ) {
-			return (object) $this->subpanels[ $subpanel ];
-		}
+        return $_subpanel;
+    }
 
-		return $this->a()->panel_object();
-	}
+    public function has_form() : bool {
+        return $this->form;
+    }
 
-	public function current_subpanel() : string {
-		$_subpanel = $this->a()->subpanel;
+    public function has_sidebar() : bool {
+        return $this->sidebar;
+    }
 
-		if ( ! empty( $this->subpanels ) ) {
-			$_available = array_keys( $this->subpanels );
+    public function has_table() : bool {
+        return $this->table;
+    }
 
-			if ( ! in_array( $_subpanel, $_available ) ) {
-				$_subpanel = $this->default_subpanel;
-			}
-		}
+    public function has_cards() : bool {
+        return $this->cards;
+    }
 
-		return $_subpanel;
-	}
+    public function wrapper_class() : array {
+        $_classes = array(
+                'd4p-wrap',
+                'd4p-plugin-' . $this->a()->plugin,
+                'd4p-panel-' . $this->a()->panel,
+        );
 
-	public function has_form() : bool {
-		return $this->form;
-	}
+        $_subpanel = $this->current_subpanel();
 
-	public function has_sidebar() : bool {
-		return $this->sidebar;
-	}
+        if ( ! empty( $_subpanel ) ) {
+            $_classes[] = 'd4p-subpanel-' . $_subpanel;
+        }
+
+        if ( $this->has_sidebar() ) {
+            $_classes[] = 'd4p-with-sidebar';
+        } else {
+            $_classes[] = 'd4p-full-width';
+        }
 
-	public function has_table() : bool {
-		return $this->table;
-	}
+        if ( $this->table ) {
+            $_classes[] = 'd4p-with-table';
+        }
 
-	public function has_cards() : bool {
-		return $this->cards;
-	}
+        if ( $this->cards ) {
+            $_classes[] = 'd4p-with-cards';
+        }
 
-	public function wrapper_class() : array {
-		$_classes = array(
-			'd4p-wrap',
-			'd4p-plugin-' . $this->a()->plugin,
-			'd4p-panel-' . $this->a()->panel,
-		);
+        if ( ! empty( $this->wrapper_class ) ) {
+            $_classes[] = $this->wrapper_class;
+        }
 
-		$_subpanel = $this->current_subpanel();
+        return $_classes;
+    }
 
-		if ( ! empty( $_subpanel ) ) {
-			$_classes[] = 'd4p-subpanel-' . $_subpanel;
-		}
+    public function validate_subpanel( $name ) {
+        if ( empty( $this->subpanels ) ) {
+            return '';
+        }
 
-		if ( $this->has_sidebar() ) {
-			$_classes[] = 'd4p-with-sidebar';
-		} else {
-			$_classes[] = 'd4p-full-width';
-		}
+        if ( isset( $this->subpanels[ $name ] ) ) {
+            return $name;
+        }
 
-		if ( $this->table ) {
-			$_classes[] = 'd4p-with-table';
-		}
+        $valid = array_keys( $this->subpanels );
 
-		if ( $this->cards ) {
-			$_classes[] = 'd4p-with-cards';
-		}
+        return $valid[0];
+    }
 
-		if ( ! empty( $this->wrapper_class ) ) {
-			$_classes[] = $this->wrapper_class;
-		}
+    public function enqueue_scripts_early() : void {
+    }
 
-		return $_classes;
-	}
+    public function enqueue_scripts() : void {
+    }
 
-	public function validate_subpanel( $name ) {
-		if ( empty( $this->subpanels ) ) {
-			return '';
-		}
+    public function screen_options_show() : void {
+    }
 
-		if ( isset( $this->subpanels[ $name ] ) ) {
-			return $name;
-		}
+    public function prepare() : void {
+    }
 
-		$valid = array_keys( $this->subpanels );
+    public function show() : void {
+        $this->include_header();
 
-		return $valid[0];
-	}
+        echo '<div class="d4p-inside-wrapper">';
+        if ( $this->has_form() ) {
+            $this->form_tag_open();
+        }
 
-	public function enqueue_scripts_early() {
+        echo '<div class="d4p-content-wrapper">';
+        if ( $this->has_sidebar() ) {
+            $this->include_sidebar( $this->override_sidebar );;
+        }
 
-	}
+        $this->include_content( $this->override_content );;
+        echo '</div>';
 
-	public function enqueue_scripts() {
+        if ( $this->has_form() ) {
+            $this->form_tag_close();
+        }
+        echo '</div>';
 
-	}
+        $this->include_footer( $this->override_footer );
+    }
 
-	public function screen_options_show() {
-	}
+    public function forms_path_library( $path = '' ) : string {
+        return $this->a()->path . Library::i()->base_path() . '/forms/' . ( empty( $path ) ? '' : $path . '/' );
+    }
 
-	public function prepare() {
-	}
+    public function forms_path_plugin( $path = '' ) : string {
+        return $this->a()->path . 'forms/' . ( empty( $path ) ? '' : $path . '/' );
+    }
 
-	public function show() {
-		$this->include_header();
+    public function include_header_fill() : void {
+        echo KSES::standard( $this->header_fill() ); // phpcs:ignore WordPress.Security.EscapeOutput
+    }
 
-		echo '<div class="d4p-inside-wrapper">';
-		if ( $this->has_form() ) {
-			$this->form_tag_open();
-		}
+    public function include_messages() : void {
+        $this->load( 'message.php' );
+    }
 
-		echo '<div class="d4p-content-wrapper">';
-		if ( $this->has_sidebar() ) {
-			$this->include_sidebar();
-		}
+    public function include_notices() : void {
+        if ( $this->a()->panel == 'dashboard' ) {
+            if ( $this->a()->settings()->i()->is_bbpress_plugin ) {
+                $this->load( 'notices-bbpress.php' );
+            }
+        }
+    }
 
-		$this->include_content();
-		echo '</div>';
+    public function include_header( $name = '', $subname = '' ) : void {
+        $this->interface_colors();
+        $this->include_generic( 'header', $name, $subname );
+    }
 
-		if ( $this->has_form() ) {
-			$this->form_tag_close();
-		}
-		echo '</div>';
+    public function include_footer( $name = '', $subname = '' ) : void {
+        $this->include_generic( 'footer', $name, $subname );
+    }
 
-		$this->include_footer();
-	}
+    public function include_sidebar( $name = '', $subname = '' ) : void {
+        $this->include_generic( 'sidebar', $name, $subname );
+    }
 
-	public function forms_path_library( $path = '' ) : string {
-		return $this->a()->path . Library::instance()->base_path() . '/forms/' . ( empty( $path ) ? '' : $path . '/' );
-	}
+    public function include_content( $name = '', $subname = '' ) : void {
+        $this->include_generic( 'content', $name, $subname );
+    }
 
-	public function forms_path_plugin( $path = '' ) : string {
-		return $this->a()->path . 'forms/' . ( empty( $path ) ? '' : $path . '/' );
-	}
+    public function form_tag_open() : void {
+        $id  = $this->a()->plugin_prefix . '-form-' . $this->a()->panel;
+        $enc = $this->form_multiform ? 'enctype="multipart/form-data"' : '';
 
-	public function include_header_fill() {
-		echo KSES::standard( $this->header_fill() ); // phpcs:ignore WordPress.Security.EscapeOutput
-	}
+        echo '<form method="' . esc_attr( $this->form_method ) . '" action="" id="' . esc_attr( $id ) . '" ' . $enc . ' autocomplete="' . esc_attr( $this->form_autocomplete ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    }
 
-	public function include_messages() {
-		$this->load( 'message.php' );
-	}
+    public function settings_fields( $action = 'update', $subpanel = false ) : void {
+        $group   = $this->a()->plugin . '-' . $this->a()->panel;
+        $handler = $this->a()->v();
 
-	public function include_notices() {
-		if ( $this->a()->panel == 'dashboard' ) {
-			if ( $this->a()->settings()->i()->is_bbpress_plugin ) {
-				$this->load( 'notices-bbpress.php' );
-			}
-		}
-	}
+        echo "<input type='hidden' name='option_page' value='" . esc_attr( $group ) . "' />";
+        echo "<input type='hidden' name='" . esc_attr( $handler ) . "' value='postback' />";
 
-	public function include_header( $name = '', $subname = '' ) {
-		$this->interface_colors();
-		$this->include_generic( 'header', $name, $subname );
-	}
+        if ( ! empty( $action ) ) {
+            echo "<input type='hidden' name='action' value='" . esc_attr( $action ) . "' />";
+        }
 
-	public function include_footer( $name = '', $subname = '' ) {
-		$this->include_generic( 'footer', $name, $subname );
-	}
+        if ( $subpanel ) {
+            echo "<input type='hidden' name='" . esc_attr( $this->a()->n() ) . "[subpanel]' value='" . esc_attr( $this->a()->subpanel ) . "' />";
+        }
 
-	public function include_sidebar( $name = '', $subname = '' ) {
-		$this->include_generic( 'sidebar', $name, $subname );
-	}
+        wp_nonce_field( $group . '-options' );
+    }
 
-	public function include_content( $name = '', $subname = '' ) {
-		$this->include_generic( 'content', $name, $subname );
-	}
+    public function form_tag_close() : void {
+        echo '</form>';
+    }
 
-	public function form_tag_open() {
-		$id  = $this->a()->plugin_prefix . '-form-' . $this->a()->panel;
-		$enc = $this->form_multiform ? 'enctype="multipart/form-data"' : '';
+    public function include_accessibility_control() : void {
+    }
 
-		echo '<form method="' . esc_attr( $this->form_method ) . '" action="" id="' . esc_attr( $id ) . '" ' . $enc . ' autocomplete="' . esc_attr( $this->form_autocomplete ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	}
+    public function include_generic( $base, $name = '', $subname = '', $args = array() ) : void {
+        $name    = $this->get_panel_suffix( $name );
+        $subname = $this->get_subpanel_suffix( $subname );
 
-	public function settings_fields( $action = 'update', $subpanel = false ) {
-		$group   = $this->a()->plugin . '-' . $this->a()->panel;
-		$handler = $this->a()->v();
+        $fallback = $this->get_fallback_include( $base, $name, $subname );
+        $content  = $this->get_content_include( $base, $name, $subname );
 
-		echo "<input type='hidden' name='option_page' value='" . esc_attr( $group ) . "' />";
-		echo "<input type='hidden' name='" . esc_attr( $handler ) . "' value='postback' />";
+        $this->load( $content, $fallback, $base . '.php', $args );
+    }
 
-		if ( ! empty( $action ) ) {
-			echo "<input type='hidden' name='action' value='" . esc_attr( $action ) . "' />";
-		}
+    public function include_element( $name = '', $subname = '', $args = array() ) : void {
+        $this->include_generic( 'element', $name, $subname, $args );
+    }
 
-		if ( $subpanel ) {
-			echo "<input type='hidden' name='" . esc_attr( $this->a()->n() ) . "[subpanel]' value='" . esc_attr( $this->a()->subpanel ) . "' />";
-		}
+    public function include_runner( $subname = '', $args = array() ) : void {
+        $this->include_generic( 'element', 'runner', $subname, $args );
+    }
 
-		wp_nonce_field( $group . '-options' );
-	}
+    /**
+     * @return null|\Dev4Press\v54\WordPress\Admin\Table|\Dev4Press\v55\WordPress\Admin\Table
+     */
+    public function get_table_object() {
+        return null;
+    }
 
-	public function form_tag_close() {
-		echo '</form>';
-	}
+    public function get_runner_object() : ?Runner {
+        return null;
+    }
 
-	public function include_accessibility_control() {
-	}
+    public function status_badge( string $label, string $color = 'blue' ) : void {
+        echo '<span class="d4p-card-badge d4p-badge-' . esc_attr( $color ) . '">' . esc_html( $label ) . '</span>';
+    }
 
-	public function include_generic( $base, $name = '', $subname = '', $args = array() ) {
-		$name    = $this->get_panel_suffix( $name );
-		$subname = $this->get_subpanel_suffix( $subname );
+    public function action_button( string $label, array $args = array(), bool $primary = true ) : void {
+        echo '<a class="' . ( $primary ? 'button-primary' : 'button-secondary' ) . '" href="' . $this->a()->action_url( ...$args ) . '">' . esc_html( $label ) . '</a>';
+    }
 
-		$fallback = $this->get_fallback_include( $base, $name, $subname );
-		$content  = $this->get_content_include( $base, $name, $subname );
+    protected function init_default_subpanels() : void {
 
-		$this->load( $content, $fallback, $base . '.php', $args );
-	}
+    }
 
-	public function get_table_object() {
-		return null;
-	}
+    protected function get_content_include( $base, $name, $subname = '' ) : string {
+        $content = $base . '-' . $name;
 
-	protected function get_content_include( $base, $name, $subname = '' ) : string {
-		$content = $base . '-' . $name;
+        if ( ! empty( $subname ) ) {
+            $content .= '-' . $subname;
+        }
 
-		if ( ! empty( $subname ) ) {
-			$content .= '-' . $subname;
-		}
+        $content .= '.php';
 
-		$content .= '.php';
+        return $content;
+    }
 
-		return $content;
-	}
+    protected function get_fallback_include( $base, $name, $subname = '' ) : string {
+        return $base . '-' . $name . '.php';
+    }
 
-	protected function get_fallback_include( $base, $name, $subname = '' ) : string {
-		return $base . '-' . $name . '.php';
-	}
+    protected function get_panel_suffix( $name = '' ) {
+        return empty( $name ) ? $this->a()->panel : $name;
+    }
 
-	protected function get_panel_suffix( $name = '' ) {
-		return empty( $name ) ? $this->a()->panel : $name;
-	}
+    protected function get_subpanel_suffix( $subname = '' ) : string {
+        return empty( $subname ) ? ( empty( $this->a()->subpanel ) ? '' : $this->a()->subpanel ) : $subname;
+    }
 
-	protected function get_subpanel_suffix( $subname = '' ) : string {
-		return empty( $subname ) ? ( empty( $this->a()->subpanel ) ? '' : $this->a()->subpanel ) : $subname;
-	}
-
-	protected function interface_colors() {
-		if ( $this->a()->auto_mod_interface_colors ) {
-			?>
+    protected function interface_colors() : void {
+        if ( $this->a()->auto_mod_interface_colors ) {
+            ?>
 
             <style>
                 .<?php echo 'd4p-plugin-' . esc_html( $this->a()->plugin ); ?> {
@@ -327,34 +359,34 @@ abstract class Panel {
                 }
             </style>
 
-			<?php
-		}
-	}
+            <?php
+        }
+    }
 
-	protected function load( $name, $fallback = '', $default = '', $args = array() ) {
-		$list = array(
-			$this->forms_path_plugin( $this->directory ) . $name,
-			$this->forms_path_plugin() . $name,
-			$this->forms_path_library() . $name,
-		);
+    protected function load( $name, $fallback = '', $default = '', $args = array() ) : void {
+        $list = array(
+                $this->forms_path_plugin( $this->directory ) . $name,
+                $this->forms_path_plugin() . $name,
+                $this->forms_path_library() . $name,
+        );
 
-		if ( ! empty( $fallback ) ) {
-			$list[] = $this->forms_path_plugin( $this->directory ) . $fallback;
-			$list[] = $this->forms_path_plugin() . $fallback;
-			$list[] = $this->forms_path_library() . $fallback;
-		}
+        if ( ! empty( $fallback ) ) {
+            $list[] = $this->forms_path_plugin( $this->directory ) . $fallback;
+            $list[] = $this->forms_path_plugin() . $fallback;
+            $list[] = $this->forms_path_library() . $fallback;
+        }
 
-		if ( ! empty( $default ) ) {
-			$list[] = $this->forms_path_plugin( $this->directory ) . $fallback;
-			$list[] = $this->forms_path_plugin() . $default;
-			$list[] = $this->forms_path_library() . $default;
-		}
+        if ( ! empty( $default ) ) {
+            $list[] = $this->forms_path_plugin( $this->directory ) . $fallback;
+            $list[] = $this->forms_path_plugin() . $default;
+            $list[] = $this->forms_path_library() . $default;
+        }
 
-		foreach ( $list as $path ) {
-			if ( file_exists( $path ) ) {
-				include $path;
-				break;
-			}
-		}
-	}
+        foreach ( $list as $path ) {
+            if ( file_exists( $path ) ) {
+                include $path;
+                break;
+            }
+        }
+    }
 }

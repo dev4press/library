@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev4Press\v54\Core\UI\Admin;
+namespace Dev4Press\v55\Core\UI\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class PanelDashboard extends Panel {
 	protected bool $cards = true;
-	public $sidebar_links = array(
+	public array $sidebar_links = array(
 		'plugin' => array(),
 		'basic'  => array(),
 		'about'  => array(),

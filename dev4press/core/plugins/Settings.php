@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Plugins\Settings
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Plugins\Settings
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,11 +25,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Plugins;
+namespace Dev4Press\v55\Core\Plugins;
 
-use Dev4Press\v54\Core\DateTime;
-use Dev4Press\v54\Core\Helpers\DB;
-use Dev4Press\v54\Core\Quick\WPR;
+use Dev4Press\v55\Core\DateTime;
+use Dev4Press\v55\Core\Helpers\DB;
+use Dev4Press\v55\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -56,21 +56,9 @@ abstract class Settings {
 
 	public function __construct() {
 		$this->constructor();
-
-		if ( $this->info->is_pro() ) {
-			$this->settings['license'] = array(
-				'code'      => '',
-				'info'      => array(),
-				'last'      => array(),
-				'check'     => 0,
-				'record'    => 'empty',
-				'dashboard' => 0,
-			);
-		}
 	}
 
-	/** @return static */
-	public static function instance() {
+	public static function instance() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {
@@ -80,18 +68,21 @@ abstract class Settings {
 		return $instance[ static::class ];
 	}
 
-	/** @return Information */
-	public function i() {
+	public function i() : Information {
 		return $this->info;
 	}
 
-	public function __get( $name ) {
+	public function __get( string $name ) {
 		$get = explode( '_', $name, 2 );
 
 		return $this->get( $get[1], $get[0] );
 	}
 
-	public function init() {
+	public function hook( string $name, bool $with_scope = false ) : string {
+		return $with_scope ? $this->base . '_' . $this->scope . '_' . $name : $this->base . '_' . $name;
+	}
+
+	public function init() : void {
 		if ( $this->scope == 'network' ) {
 			if ( is_multisite() ) {
 				$this->_force_load_sitemeta();
@@ -102,8 +93,8 @@ abstract class Settings {
 
 		$this->current['info'] = $this->_settings_get( 'info' );
 
-		do_action( $this->base . '_settings_init' );
-		do_action( $this->base . '_' . $this->scope . '_settings_init' );
+		do_action( $this->hook( 'settings_init' ) );
+		do_action( $this->hook( 'settings_init', true ) );
 
 		$installed = is_array( $this->current['info'] ) && isset( $this->current['info']['build'] );
 
@@ -139,15 +130,15 @@ abstract class Settings {
 			}
 		}
 
-		do_action( $this->base . '_' . $this->scope . '_settings_loaded' );
-		do_action( $this->base . '_settings_loaded' );
+		do_action( $this->hook( 'settings_loaded', true ) );
+		do_action( $this->hook( 'settings_loaded' ) );
 	}
 
-	public function group( $group ) {
+	public function group( string $group ) {
 		return $this->settings[ $group ] ?? null;
 	}
 
-	public function exists( $name, $group = 'settings' ) : bool {
+	public function exists( string $name, string $group = 'settings' ) : bool {
 		if ( isset( $this->current[ $group ][ $name ] ) ) {
 			return true;
 		} else if ( isset( $this->settings[ $group ][ $name ] ) ) {
@@ -157,21 +148,21 @@ abstract class Settings {
 		}
 	}
 
-	public function storage_get( $name, $get_defaults = false ) : array {
+	public function storage_get( string $name, bool $get_defaults = false ) : array {
 		return $this->prefix_get( $name . '__', 'storage', $get_defaults );
 	}
 
-	public function feature_get( $name, $get_defaults = false ) : array {
+	public function feature_get( string $name, bool $get_defaults = false ) : array {
 		return $this->prefix_get( $name . '__', 'features', $get_defaults );
 	}
 
-	public function prefix_get( $prefix, $group = 'settings', $get_defaults = false ) : array {
+	public function prefix_get( string $prefix, string $group = 'settings', bool $get_defaults = false ) : array {
 		$settings = array_merge( array_keys( $this->settings[ $group ] ), array_keys( $this->current[ $group ] ) );
 
 		$results = array();
 
 		foreach ( $settings as $key ) {
-			if ( substr( $key, 0, strlen( $prefix ) ) == $prefix ) {
+			if ( str_starts_with( $key, $prefix ) ) {
 				$new = substr( $key, strlen( $prefix ) );
 
 				$results[ $new ] = $get_defaults ? $this->get_default( $key, $group ) : $this->get( $key, $group );
@@ -181,7 +172,7 @@ abstract class Settings {
 		return $results;
 	}
 
-	public function group_get( $group, $get_defaults = false ) {
+	public function group_get( string $group, bool $get_defaults = false ) {
 		if ( $get_defaults ) {
 			return $this->settings[ $group ];
 		}
@@ -192,33 +183,39 @@ abstract class Settings {
 		return wp_parse_args( $current, $default );
 	}
 
-	public function register_group( $group ) {
+	public function register_group( string $group ) : void {
 		$this->settings[ $group ] = array();
 	}
 
-	public function register( $group, $name, $value ) {
+	public function register( string $group, string $name, mixed $value ) : void {
 		$this->settings[ $group ][ $name ] = $value;
 	}
 
-	public function get_default( $name, $group = 'settings', $default = null ) {
+	public function register_bulk( string $group, array $values, string $prefix = '' ) : void {
+		foreach ( $values as $name => $value ) {
+			$this->settings[ $group ][ $prefix . $name ] = $value;
+		}
+	}
+
+	public function get_default( string $name, string $group = 'settings', $default = null ) {
 		return $this->settings[ $group ][ $name ] ?? $default;
 	}
 
-	public function raw_get( $name, $group = 'settings', $default = null ) {
+	public function raw_get( string $name, string $group = 'settings', $default = null ) {
 		return $this->current[ $group ][ $name ] ?? ( $this->settings[ $group ][ $name ] ?? $default );
 	}
 
-	public function get( $name, $group = 'settings', $default = null ) {
+	public function get( string $name, string $group = 'settings', $default = null ) {
 		return apply_filters( $this->base . '_' . $this->scope . '_settings_get', $this->raw_get( $name, $group, $default ), $name, $group );
 	}
 
-	public function set( $name, $value, $group = 'settings', $save = false, $silent = false ) {
+	public function set( string $name, mixed $value, string $group = 'settings', bool $save = false, bool $silent = false ) : void {
 		$old = $this->current[ $group ][ $name ] ?? null;
 
 		$this->current[ $group ][ $name ] = $value;
 
 		if ( ! $silent && $old != $value ) {
-			do_action( $this->base . '_settings_value_changed', $name, $group, $old, $value );
+			do_action( $this->hook( 'settings_value_changed' ), $name, $group, $old, $value );
 
 			if ( ! isset( $this->changed[ $group ] ) ) {
 				$this->changed[ $group ] = array();
@@ -235,9 +232,17 @@ abstract class Settings {
 		}
 	}
 
-	public function bulk( $values, $group = 'settings', $save = false, $silent = false ) {
+	public function set_group( string $group, array $values, bool $save = false ) : void {
+		$this->current[ $group ] = $values;
+
+		if ( $save ) {
+			$this->save( $group );
+		}
+	}
+
+	public function bulk( array $values, string $group = 'settings', bool $save = false, bool $silent = false, string $prefix = '' ) : void {
 		foreach ( $values as $name => $value ) {
-			$this->set( $name, $value, $group, false, true );
+			$this->set( $prefix . $name, $value, $group, false, true );
 		}
 
 		if ( $save ) {
@@ -245,15 +250,11 @@ abstract class Settings {
 		}
 	}
 
-	public function save( $group, $silent = false ) {
+	public function save( string $group, bool $silent = false ) : void {
 		$this->_settings_update( $group, $this->current[ $group ] );
 
 		if ( ! $silent ) {
-			do_action( $this->base . '_settings_saved_to_db_' . $group, $this->changed[ $group ] ?? array() );
-
-			if ( $group == 'license' ) {
-				$this->_license_control();
-			}
+			do_action( $this->hook( 'settings_saved_to_db_' . $group ), $this->changed[ $group ] ?? array() );
 		}
 	}
 
@@ -265,27 +266,27 @@ abstract class Settings {
 		return (bool) $this->get( 'update', 'info' );
 	}
 
-	public function mark_for_update() {
+	public function mark_for_update() : void {
 		$this->current['info']['update'] = true;
 
 		$this->save( 'info' );
 	}
 
-	public function remove_by_prefix( $prefix, $group, $save = true ) {
+	public function remove_by_prefix( string $prefix, string $group, bool $save = true, bool $silent = false ) : void {
 		$keys = array_keys( $this->current[ $group ] );
 
 		foreach ( $keys as $key ) {
-			if ( substr( $key, 0, strlen( $prefix ) ) == $prefix ) {
+			if ( str_starts_with( $key, $prefix ) ) {
 				unset( $this->current[ $group ][ $key ] );
 			}
 		}
 
 		if ( $save ) {
-			$this->save( $group );
+			$this->save( $group, $silent );
 		}
 	}
 
-	public function remove_plugin_settings() {
+	public function remove_plugin_settings() : void {
 		$this->_settings_delete( 'info' );
 
 		foreach ( $this->_groups() as $group ) {
@@ -293,11 +294,11 @@ abstract class Settings {
 		}
 	}
 
-	public function remove_plugin_settings_by_group( $group ) {
+	public function remove_plugin_settings_by_group( string $group ) : void {
 		$this->_settings_delete( $group );
 	}
 
-	public function import_from_object( $import, $list = array() ) {
+	public function import_from_object( object|array $import, array $list = array(), bool $silent = false ) : void {
 		if ( empty( $list ) ) {
 			$list = $this->_groups();
 		}
@@ -308,12 +309,12 @@ abstract class Settings {
 			if ( in_array( $key, $list ) ) {
 				$this->current[ $key ] = (array) $data;
 
-				$this->save( $key );
+				$this->save( $key, $silent );;
 			}
 		}
 	}
 
-	public function import_from_secure_json( $import, $list = array() ) : bool {
+	public function import_from_secure_json( array $import, array $list = array(), bool $silent = false ) : bool {
 		$name = $import['name'] ?? false;
 		$ctrl = $import['ctrl'] ?? false;
 		$raw  = $import['data'] ?? false;
@@ -327,7 +328,7 @@ abstract class Settings {
 
 			if ( $ctrl_import === $ctrl ) {
 				$data = json_decode( $data, true );
-				$this->import_from_object( $data, $list );
+				$this->import_from_object( $data, $list, $silent );
 
 				return true;
 			}
@@ -336,11 +337,11 @@ abstract class Settings {
 		return false;
 	}
 
-	public function export_to_json( $list = array() ) {
+	public function export_to_json( array $list = array() ) : bool|string {
 		return wp_json_encode( $this->_settings_to_array( $list ) );
 	}
 
-	public function export_to_secure_json( $list = array() ) {
+	public function export_to_secure_json( array $list = array() ) : bool|string {
 		$export = $this->_settings_to_array( $list );
 
 		$encoded = wp_json_encode( $export );
@@ -391,15 +392,15 @@ abstract class Settings {
 		return $this->current['core']['db_version'] ?? 0;
 	}
 
-	public function updated_db_version( $version ) {
+	public function updated_db_version( $version ) : void {
 		$this->set( 'db_version', $version, 'core', true );
 	}
 
-	protected function _name( $name, $force_scope = '' ) : string {
+	protected function _name( string $name, string $force_scope = '' ) : string {
 		return 'd4p_' . $this->_group_scope( $name, $force_scope ) . '_' . $this->info->code . '_' . $name;
 	}
 
-	protected function _install() {
+	protected function _install() : void {
 		$this->current = $this->_merge();
 
 		$this->current['info'] = $this->info->to_array();
@@ -420,7 +421,7 @@ abstract class Settings {
 		}
 	}
 
-	protected function _update() {
+	protected function _update() : void {
 		$old_build = $this->current['info']['build'];
 
 		$this->current['info'] = $this->info->to_array();
@@ -463,10 +464,6 @@ abstract class Settings {
 			}
 		}
 
-		if ( $this->info->is_pro() ) {
-			$this->_license_schedule();
-		}
-
 		if ( $this->has_db ) {
 			$this->_db();
 		}
@@ -474,7 +471,7 @@ abstract class Settings {
 		$this->_migrate();
 	}
 
-	protected function _db() {
+	protected function _db() : void {
 		$installed_version = $this->get_installed_db_version();
 		$current_version   = $this->_install_db()->current_version();
 
@@ -485,13 +482,7 @@ abstract class Settings {
 		}
 	}
 
-	protected function _install_db() {
-	}
-
-	protected function _migrate() {
-	}
-
-	protected function _upgrade( $old, $new ) {
+	protected function _upgrade( array $old, array $new ) : array {
 		foreach ( $new as $key => $value ) {
 			if ( ! array_key_exists( $key, $old ) ) {
 				$old[ $key ] = $value;
@@ -522,7 +513,7 @@ abstract class Settings {
 		return $this->settings;
 	}
 
-	protected function _force_load_sitemeta() {
+	protected function _force_load_sitemeta() : void {
 		$core_options = array( $this->_name( 'info' ) );
 
 		foreach ( $this->_groups() as $group ) {
@@ -544,7 +535,7 @@ abstract class Settings {
 		}
 	}
 
-	protected function _force_load_options() {
+	protected function _force_load_options() : void {
 		$core_options = array( $this->_name( 'info' ) );
 
 		foreach ( $this->_groups() as $group ) {
@@ -561,7 +552,7 @@ abstract class Settings {
 		}
 	}
 
-	protected function _settings_get( $name, $force_scope = '' ) {
+	protected function _settings_get( string $name, string $force_scope = '' ) {
 		$scope = $this->_group_scope( $name, $force_scope );
 		$_name = $this->_name( $name, $force_scope );
 
@@ -572,7 +563,7 @@ abstract class Settings {
 		}
 	}
 
-	protected function _settings_delete( $name, $force_scope = '' ) {
+	protected function _settings_delete( string $name, string $force_scope = '' ) : void {
 		$scope = $this->_group_scope( $name, $force_scope );
 		$_name = $this->_name( $name, $force_scope );
 
@@ -583,7 +574,7 @@ abstract class Settings {
 		}
 	}
 
-	protected function _settings_update( $name, $data ) {
+	protected function _settings_update( string $name, mixed $data ) : void {
 		$scope = $this->_group_scope( $name );
 		$_name = $this->_name( $name );
 
@@ -594,7 +585,7 @@ abstract class Settings {
 		}
 	}
 
-	protected function _settings_to_array( $list = array() ) : array {
+	protected function _settings_to_array( array $list = array() ) : array {
 		if ( empty( $list ) ) {
 			$list = $this->_groups();
 			$list = array_diff( $list, $this->skip_export );
@@ -611,7 +602,7 @@ abstract class Settings {
 		return $data;
 	}
 
-	protected function _group_scope( $name, $force_scope = '' ) {
+	protected function _group_scope( string $name, string $force_scope = '' ) : string {
 		$scope = empty( $force_scope ) ? $this->scope : $force_scope;
 
 		if ( empty( $force_scope ) && $scope == 'blog' && in_array( $name, $this->network_groups ) ) {
@@ -621,35 +612,10 @@ abstract class Settings {
 		return $scope;
 	}
 
-	protected function _license_action() : string {
-		return $this->plugin . '-license-validation';
+	protected function _install_db() {
 	}
 
-	protected function _license_control() {
-		if ( isset( $this->changed['license']['code'] ) ) {
-			if ( empty( $this->changed['license']['code']['new'] ) ) {
-				$this->bulk( array(
-					'info'   => array(),
-					'last'   => array(),
-					'check'  => time(),
-					'record' => 'empty',
-				), 'license', true, true );
-			} else {
-				$this->_license_schedule();
-			}
-		}
-	}
-
-	protected function _license_schedule() {
-		if ( ! empty( $this->plugin ) ) {
-			$this->set( 'record', 'in-progress', 'license', true, true );
-
-			do_action( $this->_license_action() );
-
-			if ( ! WPR::is_scheduled_single( $this->_license_action() ) ) {
-				wp_schedule_single_event( time() + 5, $this->_license_action() );
-			}
-		}
+	protected function _migrate() {
 	}
 
 	abstract protected function constructor();

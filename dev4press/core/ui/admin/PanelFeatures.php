@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev4Press\v54\Core\UI\Admin;
+namespace Dev4Press\v55\Core\UI\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -11,13 +11,7 @@ abstract class PanelFeatures extends Panel {
 
 	public $settings_class = '';
 
-	public function __construct( $admin ) {
-		parent::__construct( $admin );
-
-		$this->init_default_subpanels();
-	}
-
-	protected function init_default_subpanels() {
+	protected function init_default_subpanels() : void {
 		$this->subpanels = array(
 			'index' => array(
 				'title' => __( 'Features Index', 'd4plib' ),
@@ -27,7 +21,7 @@ abstract class PanelFeatures extends Panel {
 		);
 	}
 
-	public function enqueue_scripts_early() {
+	public function enqueue_scripts_early() : void {
 		$this->a()->enqueue->js( 'mark' )->js( 'confirmsubmit' );
 	}
 

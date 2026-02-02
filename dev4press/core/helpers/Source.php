@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Helpers\ObjectsSort
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Helpers\ObjectsSort
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Helpers;
+namespace Dev4Press\v55\Core\Helpers;
 
-use Dev4Press\v54\WordPress;
+use Dev4Press\v55\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -44,7 +44,7 @@ class Source {
 				'mu-plugin'   => WPMU_PLUGIN_DIR,
 				'stylesheet'  => get_stylesheet_directory(),
 				'template'    => get_template_directory(),
-				'uploads'     => WordPress::instance()->uploads_directory(),
+				'uploads'     => WordPress::i()->uploads_directory(),
 				'wp-content'  => WP_CONTENT_DIR,
 				'wp-includes' => ABSPATH . 'wp-includes',
 				'wp-admin'    => ABSPATH . 'wp-admin',
@@ -81,7 +81,7 @@ class Source {
 		$value = '';
 
 		foreach ( $this->paths as $scope => $dir ) {
-			if ( $dir && ( strpos( $file, trailingslashit( $dir ) ) === 0 ) ) {
+			if ( $dir && ( str_starts_with( $file, trailingslashit( $dir ) ) ) ) {
 				break;
 			}
 		}
@@ -114,7 +114,7 @@ class Source {
 		if ( $strip_abspath ) {
 			$abspath = wp_normalize_path( ABSPATH );
 
-			if ( strpos( $file, $abspath ) === 0 ) {
+			if ( str_starts_with( $file, $abspath ) ) {
 				$input = '/' . substr( $file, strlen( $abspath ) );
 			}
 		}

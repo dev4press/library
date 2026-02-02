@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Library
- * Version: v5.4
+ * Name:    Dev4Press\v55\Library
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,18 +25,19 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54;
+namespace Dev4Press\v55;
 
 use Composer\CaBundle\CaBundle;
-use Dev4Press\v54\Core\DateTime;
+use Dev4Press\v55\Core\DateTime;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Library {
-	private string $_version = '5.4';
-	private string $_build = '5400';
+final class Library {
+	private string $_version = '5.5';
+	private string $_code = 'v55';
+	private string $_build = '5500';
 	private string $_php_version;
 	private int $_php_code;
 	private string $_library_url;
@@ -54,11 +55,16 @@ class Library {
 		$this->_cacert_path  = CaBundle::getSystemCaRootBundlePath();
 	}
 
-	public static function instance() : Library {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : self {
+		return self::i();
+	}
+
+	public static function i() : self {
 		static $instance = null;
 
 		if ( ! isset( $instance ) ) {
-			$instance = new Library();
+			$instance = new self();
 		}
 
 		return $instance;
@@ -66,6 +72,10 @@ class Library {
 
 	public function datetime() : DateTime {
 		return $this->_datetime;
+	}
+
+	public function hook( string $name ) : string {
+		return 'dev4press_' . $this->_code . '_' . $name;
 	}
 
 	public function charset() {

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\UI\Elements
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\UI\Elements
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,12 +25,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\UI;
+namespace Dev4Press\v55\Core\UI;
 
-use Dev4Press\v54\Core\Quick\Arr;
-use Dev4Press\v54\Core\Quick\KSES;
-use Dev4Press\v54\Core\Quick\Sanitize;
-use Dev4Press\v54\WordPress\Walker\CheckboxRadio;
+use Dev4Press\v55\Core\Quick\Arr;
+use Dev4Press\v55\Core\Quick\KSES;
+use Dev4Press\v55\Core\Quick\Sanitize;
+use Dev4Press\v55\WordPress\Walker\CheckboxRadio;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -40,11 +40,16 @@ class Elements {
 	public function __construct() {
 	}
 
-	public static function instance() : Elements {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $_instance = null;
 
 		if ( ! $_instance ) {
-			$_instance = new Elements();
+			$_instance = new static();
 		}
 
 		return $_instance;

@@ -1,10 +1,10 @@
 <?php
 
-use Dev4Press\v54\API\Languages;
-use function Dev4Press\v54\Functions\panel;
+use Dev4Press\v55\API\Languages;
+use function Dev4Press\v55\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 $_plugin  = panel()->a()->settings()->i();
@@ -17,7 +17,7 @@ $translations = Languages::instance()->plugin_translations( $translations );
 
     <div class="d4p-info-block">
         <h3>
-			<?php esc_html_e( 'Current Version', 'd4plib' ); ?>
+            <?php esc_html_e( 'Current Version', 'd4plib' ); ?>
         </h3>
         <div>
             <ul class="d4p-info-list">
@@ -48,17 +48,17 @@ $translations = Languages::instance()->plugin_translations( $translations );
 
     <div class="d4p-info-block">
         <h3>
-			<?php esc_html_e( 'System Requirements', 'd4plib' ); ?>
+            <?php esc_html_e( 'System Requirements', 'd4plib' ); ?>
         </h3>
         <div>
             <ul class="d4p-info-list">
-				<?php
+                <?php
 
-				foreach ( $_sys_req as $name => $version ) {
-					echo '<li><span>' . esc_html( $name ) . ':</span><strong>' . esc_html( $version ) . '</strong></li>';
-				}
+                foreach ( $_sys_req as $name => $version ) {
+                    echo '<li><span>' . esc_html( $name ) . ':</span><strong>' . esc_html( $version ) . '</strong></li>';
+                }
 
-				?>
+                ?>
             </ul>
         </div>
     </div>
@@ -67,36 +67,36 @@ $translations = Languages::instance()->plugin_translations( $translations );
 
 if ( ! empty( $translations ) ) {
 
-	?>
+    ?>
     <div class="d4p-info-block">
         <h3>
-			<?php esc_html_e( 'List of included Languages', 'd4plib' ); ?>
+            <?php esc_html_e( 'List of included Languages', 'd4plib' ); ?>
         </h3>
         <div>
-			<?php
+            <?php
 
-			foreach ( $translations as $code => $obj ) {
-				$_lang = $code . ': ' . $obj['native'] . ' / ' . $obj['english'];
+            foreach ( $translations as $code => $obj ) {
+                $_lang = $code . ': ' . $obj['native'] . ' / ' . $obj['english'];
 
-				echo '<div class="d4p-block-language"><h4>' . esc_html( $_lang ) . '</h4>';
-				echo '<p>' . esc_html__( 'Plugin Version', 'd4plib' ) . ': ' . esc_html( $obj['version'] ) . '</p>';
+                echo '<div class="d4p-block-language"><h4>' . esc_html( $_lang ) . '</h4>';
+                echo '<p>' . esc_html__( 'Plugin Version', 'd4plib' ) . ': ' . esc_html( $obj['version'] ) . '</p>';
 
-				if ( ! empty( $obj['contributors'] ) ) {
-					$contributors = array();
+                if ( ! empty( $obj['contributors'] ) ) {
+                    $contributors = array();
 
-					foreach ( $obj['contributors'] as $c ) {
-						$contributors[] = '<a href="' . $c['url'] . '" target="_blank" rel="noopener">' . esc_html( $c['name'] ) . '</a>';
-					}
+                    foreach ( $obj['contributors'] as $c ) {
+                        $contributors[] = '<a href="' . $c['url'] . '" target="_blank" rel="noopener">' . esc_html( $c['name'] ) . '</a>';
+                    }
 
-					echo '<p>' . esc_html__( 'Contributors', 'd4plib' ) . ': ' . join( ', ', $contributors ) . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				}
+                    echo '<p>' . esc_html__( 'Contributors', 'd4plib' ) . ': ' . join( ', ', $contributors ) . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                }
 
-				echo '</div>';
-			}
+                echo '</div>';
+            }
 
-			?>
+            ?>
         </div>
     </div>
-	<?php
+    <?php
 
 }

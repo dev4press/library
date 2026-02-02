@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Admin\Submenu\Plugin
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Admin\Submenu\Plugin
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Admin\Submenu;
+namespace Dev4Press\v55\Core\Admin\Submenu;
 
-use Dev4Press\v54\Core\Admin\Plugin as BasePlugin;
-use Dev4Press\v54\Core\Quick\Sanitize;
+use Dev4Press\v55\Core\Admin\Plugin as BasePlugin;
+use Dev4Press\v55\Core\Quick\Sanitize;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -78,7 +78,7 @@ abstract class Plugin extends BasePlugin {
 		return $url;
 	}
 
-	public function admin_menu() {
+	public function admin_menu() : void {
 		$this->page_ids[] = add_submenu_page(
 			$this->menu,
 			$this->plugin_title,

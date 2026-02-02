@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Quick\Misc
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Quick\Misc
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Quick;
+namespace Dev4Press\v55\Core\Quick;
 
-use Dev4Press\v54\Library;
+use Dev4Press\v55\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -96,8 +96,14 @@ class Misc {
 		return implode( ',', $rgb );
 	}
 
-	public static function flag_from_country_code( string $country_code, string $location, string $status = 'active', string $not_found = 'image' ) : string {
-		$_base = Library::instance()->url() . 'resources/vendor/flags/img/flag_placeholder.png';
+	public static function flag_from_country_code( string $country_code, string $location = '', string $status = 'active', string $not_found = 'image' ) : string {
+		if ( $country_code == 'cidr' ) {
+			$_base = Library::i()->url() . 'resources/gfx/flag_icon_cidr.png';
+
+			return '<img src="' . $_base . '" class="cidr" title="' . esc_html__( 'CIDR IP Range', 'd4plib' ) . '" alt="' . esc_html__( 'CIDR IP Range', 'd4plib' ) . '" />';
+		}
+
+		$_base = Library::i()->url() . 'resources/vendor/flags/img/flag_placeholder.png';
 
 		if ( $status == 'active' ) {
 			if ( $country_code != '' ) {

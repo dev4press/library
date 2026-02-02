@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\UI\Grid
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\UI\Grid
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,12 +25,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\UI;
+namespace Dev4Press\v55\Core\UI;
 
-use Dev4Press\v54\Core\Plugins\DBLite;
-use Dev4Press\v54\Core\Quick\Sanitize;
-use Dev4Press\v54\Core\Quick\URL;
-use Dev4Press\v54\Library;
+use Dev4Press\v55\Core\Plugins\DBLite;
+use Dev4Press\v55\Core\Quick\Sanitize;
+use Dev4Press\v55\Core\Quick\URL;
+use Dev4Press\v55\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -162,7 +162,7 @@ abstract class Grid {
 	}
 
 	protected function timestamp_to_date( $value, string $split = '<br/>' ) : string {
-		$timestamp = Library::instance()->datetime()->timestamp_gmt_to_local( $value );
+		$timestamp = Library::i()->datetime()->timestamp_gmt_to_local( $value );
 
 		return gmdate( 'Y.m.d', $timestamp ) . $split . '@ ' . gmdate( 'H:i:s', $timestamp );
 	}

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\UI\Icons
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\UI\Icons
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,13 +25,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\UI;
+namespace Dev4Press\v55\Core\UI;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Icons {
+final class Icons {
 	protected string $base = 'd4p-icon';
 	protected string $prefix = 'd4p-';
 	protected string $prefix_control = 'd4p-icon-';
@@ -401,7 +401,12 @@ class Icons {
 
 	}
 
+	/** @deprecated 5.5.0 Use self::i() instead. */
 	public static function instance() : Icons {
+		return Icons::i();
+	}
+
+	public static function i() : Icons {
 		static $instance = false;
 
 		if ( $instance === false ) {

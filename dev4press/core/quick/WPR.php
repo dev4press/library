@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Quick\WP
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Quick\WP
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Quick;
+namespace Dev4Press\v55\Core\Quick;
 
-use Dev4Press\v54\Core\Helpers\Error;
+use Dev4Press\v55\Core\Helpers\Error;
 use WP_Error;
 use WP_Query;
 use WP_Term;
@@ -312,7 +312,7 @@ class WPR {
 	public static function remove_site_url( string $url ) {
 		$site_url = untrailingslashit( site_url() );
 
-		if ( substr( $url, 0, strlen( $site_url ) ) == $site_url ) {
+		if ( str_starts_with( $url, $site_url ) ) {
 			$url = str_replace( $site_url, '', $url );
 		}
 
@@ -336,162 +336,6 @@ class WPR {
 
 	public static function switch_to_default_theme() {
 		switch_theme( WP_DEFAULT_THEME, WP_DEFAULT_THEME );
-	}
-
-	public static function kses_expanded_list_of_tags() : array {
-		return array(
-			'a'          => array(
-				'class'    => true,
-				'href'     => true,
-				'title'    => true,
-				'rel'      => true,
-				'style'    => true,
-				'download' => true,
-				'target'   => true,
-			),
-			'abbr'       => array(),
-			'blockquote' => array(
-				'class' => true,
-				'style' => true,
-				'cite'  => true,
-			),
-			'div'        => array(
-				'class' => true,
-				'style' => true,
-			),
-			'span'       => array(
-				'class' => true,
-				'style' => true,
-			),
-			'code'       => array(
-				'class' => true,
-				'style' => true,
-			),
-			'p'          => array(
-				'class' => true,
-				'style' => true,
-			),
-			'pre'        => array(
-				'class' => true,
-				'style' => true,
-			),
-			'em'         => array(
-				'class' => true,
-				'style' => true,
-			),
-			'i'          => array(
-				'class' => true,
-				'style' => true,
-			),
-			'b'          => array(
-				'class' => true,
-				'style' => true,
-			),
-			'strong'     => array(
-				'class' => true,
-				'style' => true,
-			),
-			'del'        => array(
-				'datetime' => true,
-				'class'    => true,
-				'style'    => true,
-			),
-			'h1'         => array(
-				'align' => true,
-				'class' => true,
-				'style' => true,
-			),
-			'h2'         => array(
-				'align' => true,
-				'class' => true,
-				'style' => true,
-			),
-			'h3'         => array(
-				'align' => true,
-				'class' => true,
-				'style' => true,
-			),
-			'h4'         => array(
-				'align' => true,
-				'class' => true,
-				'style' => true,
-			),
-			'h5'         => array(
-				'align' => true,
-				'class' => true,
-				'style' => true,
-			),
-			'h6'         => array(
-				'align' => true,
-				'class' => true,
-				'style' => true,
-			),
-			'ul'         => array(
-				'class' => true,
-				'style' => true,
-			),
-			'ol'         => array(
-				'class' => true,
-				'style' => true,
-				'start' => true,
-			),
-			'li'         => array(
-				'class' => true,
-				'style' => true,
-			),
-			'img'        => array(
-				'class'  => true,
-				'style'  => true,
-				'src'    => true,
-				'border' => true,
-				'alt'    => true,
-				'height' => true,
-				'width'  => true,
-			),
-			'table'      => array(
-				'align'   => true,
-				'bgcolor' => true,
-				'border'  => true,
-				'class'   => true,
-				'style'   => true,
-			),
-			'tbody'      => array(
-				'align'  => true,
-				'valign' => true,
-				'class'  => true,
-				'style'  => true,
-			),
-			'td'         => array(
-				'align'  => true,
-				'valign' => true,
-				'class'  => true,
-				'style'  => true,
-			),
-			'tfoot'      => array(
-				'align'  => true,
-				'valign' => true,
-				'class'  => true,
-				'style'  => true,
-			),
-			'th'         => array(
-				'align'  => true,
-				'valign' => true,
-				'class'  => true,
-				'style'  => true,
-			),
-			'thead'      => array(
-				'align'  => true,
-				'valign' => true,
-				'class'  => true,
-				'style'  => true,
-			),
-			'tr'         => array(
-				'align'  => true,
-				'valign' => true,
-				'class'  => true,
-				'style'  => true,
-			),
-		);
 	}
 
 	public static function list_post_types( $args = array() ) : array {
@@ -711,7 +555,7 @@ class WPR {
 
 		$dir = wp_upload_dir();
 
-		if ( false !== strpos( $url, $dir['baseurl'] . '/' ) ) {
+		if ( str_contains( $url, $dir['baseurl'] . '/' ) ) {
 			$file       = basename( $url );
 			$query_args = array(
 				'post_type'   => 'attachment',
@@ -744,5 +588,12 @@ class WPR {
 		}
 
 		return $attachment_id;
+	}
+
+	/**
+	 * @deprecated since 5.5 use `KSES::allowed_html_expanded()` instead. To be removed in 6.0.
+	 */
+	public static function kses_expanded_list_of_tags() : array {
+		return KSES::allowed_html_expanded();
 	}
 }

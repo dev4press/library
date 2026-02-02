@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Plugins\Information
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Plugins\Information
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Plugins;
+namespace Dev4Press\v55\Core\Plugins;
 
-use Dev4Press\v54\API\Store;
-use Dev4Press\v54\Core\Quick\WPR;
+use Dev4Press\v55\API\Store;
+use Dev4Press\v55\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -53,11 +53,11 @@ abstract class Information {
 	public string $author_name = 'Milan Petrovic';
 	public string $author_url = 'https://www.dev4press.com/';
 
-	public string $php = '7.4';
-	public string $mysql = '5.5';
+	public string $php = '8.0';
+	public string $mysql = '5.1';
 
 	public array $cms = array(
-		'wordpress'    => '6.0',
+		'wordpress'    => '6.2',
 		'classicpress' => '2.0',
 	);
 
@@ -82,8 +82,7 @@ abstract class Information {
 		return (array) $this;
 	}
 
-	/** @return static */
-	public static function instance() {
+	public static function instance() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {
@@ -106,23 +105,23 @@ abstract class Information {
 	}
 
 	public function name() : string {
-		return Store::instance()->name( $this->code );
+		return Store::i()->name( $this->code );
 	}
 
 	public function description() : string {
-		return Store::instance()->description( $this->code );
+		return Store::i()->description( $this->code );
 	}
 
 	public function punchline() : string {
-		return Store::instance()->punchline( $this->code );
+		return Store::i()->punchline( $this->code );
 	}
 
 	public function color() : string {
-		return Store::instance()->color( $this->code );
+		return Store::i()->color( $this->code );
 	}
 
 	public function url() : string {
-		return ! empty( $this->plugin_url ) ? $this->plugin_url : Store::instance()->url( $this->code );
+		return ! empty( $this->plugin_url ) ? $this->plugin_url : Store::i()->url( $this->code );
 	}
 
 	public function system_requirements() : array {

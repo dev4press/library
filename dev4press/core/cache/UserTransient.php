@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Cache\UserTransient
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Cache\UserTransient
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Cache;
+namespace Dev4Press\v55\Core\Cache;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -35,17 +35,22 @@ class UserTransient {
 	public function __construct() {
 	}
 
-	public static function instance() : UserTransient {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = null;
 
 		if ( ! isset( $instance ) ) {
-			$instance = new UserTransient();
+			$instance = new static();
 		}
 
 		return $instance;
 	}
 
-	public function delete( $user_id, $transient ) {
+	public function delete( $user_id, $transient ) : void {
 		$transient_option  = '_transient_' . $transient;
 		$transient_timeout = '_transient_timeout_' . $transient;
 
@@ -67,7 +72,7 @@ class UserTransient {
 		return get_user_meta( $user_id, $transient_option, true );
 	}
 
-	public function set( $user_id, $transient, $value, $expiration = 86400 ) {
+	public function set( $user_id, $transient, $value, $expiration = 86400 ) : void {
 		$transient_option  = '_transient_' . $transient;
 		$transient_timeout = '_transient_timeout_' . $transient;
 

@@ -1,36 +1,36 @@
 <?php
 
-use Dev4Press\v54\Core\Quick\KSES;
-use Dev4Press\v54\Core\Quick\Sanitize;
-use function Dev4Press\v54\Functions\panel;
+use Dev4Press\v55\Core\Quick\KSES;
+use Dev4Press\v55\Core\Quick\Sanitize;
+use function Dev4Press\v55\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 ?>
 <div class="d4p-content">
     <div class="d4p-features-wrapper">
-		<?php
+        <?php
 
-		foreach ( panel()->subpanels() as $subpanel => $obj ) {
-			if ( $subpanel == 'index' ) {
-				continue;
-			}
+        foreach ( panel()->subpanels() as $subpanel => $obj ) {
+            if ( $subpanel == 'index' ) {
+                continue;
+            }
 
-			$_classes = array(
-				'd4p-feature-box',
-				'tool-' . $subpanel,
-				'_is-tool',
-			);
+            $_classes = array(
+                    'd4p-feature-box',
+                    'tool-' . $subpanel,
+                    '_is-tool',
+            );
 
-			$url = panel()->a()->panel_url( 'tools', $subpanel );
+            $url = panel()->a()->panel_url( 'tools', $subpanel );
 
-			if ( isset( $obj['break'] ) ) {
-				echo KSES::standard( panel()->r()->settings_break( $obj['break'], $obj['break-icon'] ?? '', $obj['break-info'] ?? '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}
+            if ( isset( $obj['break'] ) ) {
+                echo KSES::standard( panel()->r()->settings_break( $obj['break'], $obj['break-icon'] ?? '', $obj['break-info'] ?? '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            }
 
-			?>
+            ?>
 
             <div class="<?php echo Sanitize::html_classes( $_classes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
                 <div class="_info">
@@ -45,10 +45,10 @@ if ( ! defined( 'ABSPATH' ) ) {
                 </div>
             </div>
 
-			<?php
+            <?php
 
-		}
+        }
 
-		?>
+        ?>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 ?>
@@ -11,10 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     <tr>
         <td class="cell-singular">
             <label for="<?php echo esc_attr( $this->get_field_id( '_cached' ) ); ?>"><?php esc_html_e( 'Cache Period', 'd4plib' ); ?>:</label>
-            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( '_cached' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( '_cached' ) ); ?>" type="number" min="0" step="1" value="<?php echo esc_attr( esc_attr( $instance['_cached'] ) ); ?>"/>
+            <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( '_cached' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( '_cached' ) ); ?>" type="number" min="0" step="1" value="<?php echo esc_attr( $instance['_cached'] ); ?>"/>
 
             <em>
-				<?php esc_html_e( 'To use cache and speed up the widget, enter number of hours for cached results to be kept. Leave 0 to disable cache.', 'd4plib' ); ?>
+                <?php esc_html_e( 'To use cache and speed up the widget, enter number of hours for cached results to be kept. Leave 0 to disable cache.', 'd4plib' ); ?>
             </em>
         </td>
     </tr>

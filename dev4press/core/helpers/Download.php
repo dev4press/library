@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Helpers\Download
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Helpers\Download
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -27,7 +27,7 @@
 
 // phpcs:ignoreFile WordPress.WP.AlternativeFunctions
 
-namespace Dev4Press\v54\Core\Helpers;
+namespace Dev4Press\v55\Core\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -140,7 +140,7 @@ class Download {
 			$http_range = sanitize_text_field( wp_unslash( $_SERVER['HTTP_RANGE'] ) );
 
 			list( , $range ) = explode( '=', $http_range, 2 );
-			if ( strpos( $range, ',' ) !== false ) {
+			if ( str_contains( $range, ',' ) ) {
 				header( 'HTTP/1.1 416 Requested Range Not Satisfiable' );
 				header( "Content-Range: bytes $start-$end/$size" );
 				exit;

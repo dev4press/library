@@ -1,40 +1,40 @@
 <?php
 
-use Dev4Press\v54\Core\Quick\KSES;
-use Dev4Press\v54\Core\Options\Render;
-use function Dev4Press\v54\Functions\panel;
+use Dev4Press\v55\Core\Options\Render;
+use Dev4Press\v55\Core\Quick\KSES;
+use function Dev4Press\v55\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 ?>
 
 <div class="d4p-content">
-	<?php
+    <?php
 
-	panel()->settings_fields();
+    panel()->settings_fields();
 
-	$class   = panel()->settings_class;
-	$options = $class::instance();
+    $class   = panel()->settings_class;
+    $options = $class::instance();
 
-	foreach ( panel()->subpanels() as $subpanel => $obj ) {
-		if ( $subpanel == 'index' || $subpanel == 'full' ) {
-			continue;
-		}
+    foreach ( panel()->subpanels() as $subpanel => $obj ) {
+        if ( $subpanel == 'index' || $subpanel == 'full' ) {
+            continue;
+        }
 
-		if ( isset( $obj['break'] ) ) {
-			echo KSES::standard( panel()->r()->settings_break( $obj['break'], $obj['break-icon'] ?? '', $obj['break-info'] ?? '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		}
+        if ( isset( $obj['break'] ) ) {
+            echo KSES::standard( panel()->r()->settings_break( $obj['break'], $obj['break-icon'] ?? '', $obj['break-info'] ?? '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        }
 
-		echo KSES::standard( panel()->r()->settings_group_break( $obj['title'], $obj['icon'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo KSES::standard( panel()->r()->settings_group_break( $obj['title'], $obj['icon'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-		$groups = $options->get( $subpanel );
+        $groups = $options->get( $subpanel );
 
-		Render::instance( panel()->a()->n(), panel()->a()->plugin_prefix )->prepare( $subpanel, $groups )->render();
-	}
+        Render::instance( panel()->a()->n(), panel()->a()->plugin_prefix )->prepare( $subpanel, $groups )->render();
+    }
 
-	?>
+    ?>
 
-	<?php panel()->include_accessibility_control(); ?>
+    <?php panel()->include_accessibility_control(); ?>
 </div>

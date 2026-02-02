@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Blocks\Register
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Blocks\Register
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Blocks;
+namespace Dev4Press\v55\Core\Blocks;
 
-use Dev4Press\v54\WordPress;
+use Dev4Press\v55\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,7 +37,7 @@ abstract class Register {
 	public function __construct() {
 		add_action( 'init', array( $this, 'blocks' ), 20 );
 
-		if ( WordPress::instance()->is_version_equal_or_higher( '5.8', 'wp' ) ) {
+		if ( WordPress::i()->is_version_equal_or_higher( '5.8', 'wp' ) ) {
 			add_filter( 'block_categories_all', array( $this, 'categories' ) );
 		} else {
 			add_filter( 'block_categories', array( $this, 'categories' ) );
@@ -47,7 +47,7 @@ abstract class Register {
 	}
 
 	public function is_editor() : bool {
-		return WordPress::instance()->is_rest() && isset( $_GET['context'] ) && $_GET['context'] === 'edit'; // phpcs:ignore WordPress.Security.NonceVerification
+		return WordPress::i()->is_rest() && isset( $_GET['context'] ) && $_GET['context'] === 'edit'; // phpcs:ignore WordPress.Security.NonceVerification
 	}
 
 	public function categories( array $categories ) : array {

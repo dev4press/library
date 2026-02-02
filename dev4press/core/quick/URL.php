@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Quick\URL
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Quick\URL
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Quick;
+namespace Dev4Press\v55\Core\Quick;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -38,6 +38,19 @@ class URL {
 		}
 
 		return wp_parse_url( $url, PHP_URL_HOST );
+	}
+
+	public static function clean_domain_name( string $url = '' ) : string {
+		$url = empty( $url ) ? get_option( 'siteurl' ) : $url;
+
+		$domain = preg_replace( '|https?://|', '', $url );
+		$slash  = strpos( $domain, '/' );
+
+		if ( $slash ) {
+			$domain = substr( $domain, 0, $slash );
+		}
+
+		return $domain;
 	}
 
 	public static function current_request_path() {

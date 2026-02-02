@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Options\Render
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Options\Render
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,12 +25,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Options;
+namespace Dev4Press\v55\Core\Options;
 
-use Dev4Press\v54\Core\Quick\Arr;
-use Dev4Press\v54\Core\Quick\KSES;
-use Dev4Press\v54\Core\Quick\Sanitize;
-use Dev4Press\v54\Core\UI\Elements;
+use Dev4Press\v55\Core\Quick\Arr;
+use Dev4Press\v55\Core\Quick\KSES;
+use Dev4Press\v55\Core\Quick\Sanitize;
+use Dev4Press\v55\Core\UI\Elements;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -49,11 +49,16 @@ class Render {
 		$this->prefix = $prefix;
 	}
 
-	public static function instance( string $base = 'd4pvalue', string $prefix = 'd4p' ) : Render {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance( string $base = 'd4pvalue', string $prefix = 'd4p' ) : static {
+		return static::i( $base, $prefix );
+	}
+
+	public static function i( string $base = 'd4pvalue', string $prefix = 'd4p' ) : static {
 		static $render = array();
 
 		if ( ! isset( $render[ $base ] ) ) {
-			$render[ $base ] = new Render( $base, $prefix );
+			$render[ $base ] = new static( $base, $prefix );
 		}
 
 		return $render[ $base ];
@@ -66,11 +71,11 @@ class Render {
 		return $this;
 	}
 
-	public function call( $call_function, $setting, $name_base, $id_base ) {
+	public function call( $call_function, $setting, $name_base, $id_base ) : void {
 		call_user_func( $call_function, $setting, $setting->value, $name_base, $id_base );
 	}
 
-	public function render() {
+	public function render() : void {
 		foreach ( $this->groups as $group => $obj ) {
 			if ( isset( $obj['type'] ) && $obj['type'] == 'separator' ) {
 				echo '<div class="d4p-group-separator">';
@@ -87,6 +92,19 @@ class Render {
 
 				if ( isset( $args['class'] ) && $args['class'] != '' ) {
 					$classes[] = $args['class'];
+				}
+
+				if ( ! empty( $obj['switch'] ) ) {
+					$_switch = $obj['switch'];
+
+					if ( $_switch['role'] == 'value' ) {
+						$classes[] = 'd4p-switch-group-' . $_switch['name'];
+						$classes[] = 'd4p-switch-group-value-' . $_switch['value'];
+
+						if ( $_switch['value'] != $_switch['ref'] ) {
+							$classes[] = 'd4p-switch-group-is-hidden';
+						}
+					}
 				}
 
 				$toggle = '';
@@ -186,7 +204,7 @@ class Render {
 		return str_replace( '[', '_', str_replace( ']', '', $name ) );
 	}
 
-	protected function render_section( $section, $group ) {
+	protected function render_section( $section, $group ) : void {
 		$class = 'd4p-settings-section';
 
 		if ( ! empty( $section['name'] ) ) {
@@ -229,7 +247,7 @@ class Render {
 		echo '</div>';
 	}
 
-	protected function render_option( Element $setting, $group ) {
+	protected function render_option( Element $setting, $group ) : void {
 		if ( isset( $setting->args['skip_render'] ) && $setting->args['skip_render'] === true ) {
 			return;
 		}
@@ -342,27 +360,29 @@ class Render {
 		}
 	}
 
-	protected function render_clear_button() {
+	protected function render_clear_button() : void {
 		echo '<button class="d4p-field-clear-button" type="button" aria-label="' . esc_html__( 'Clear Value', 'd4plib' ) . '"><i class="d4p-icon d4p-ui-clear"></i></button>';
 	}
 
-	protected function _render_description( Element $setting ) {
+	protected function _render_description( Element $setting ) : void {
 		if ( ! empty( $setting->notice ) && $setting->input != 'info' ) {
 			echo '<div class="d4p-description">' . KSES::standard( $setting->notice ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
-	protected function _render_buttons( Element $setting ) {
+	protected function _render_buttons( Element $setting ) : void {
 		if ( ! empty( $setting->buttons ) ) {
 			Elements::instance()->buttons( $setting->buttons );
 		}
 	}
 
-	protected function _render_more( Element $setting ) {
+	protected function _render_more( Element $setting ) : void {
 		if ( ! empty( $setting->more ) ) {
+			$label = ! empty( $setting->more_label ) ? esc_html( $setting->more_label ) : esc_html__( 'Toggle Additional Information', 'd4plib' );
+
 			echo '<div class="d4p-more-wrapper">';
 			echo '<div class="d4p-more-title">';
-			echo '<i aria-hidden="true" class="d4p-icon d4p-ui-chevron-square-down d4p-icon-fw"></i> <button type="button">' . esc_html__( 'Toggle Additional Information', 'd4plib' ) . '</button>';
+			echo '<i aria-hidden="true" class="d4p-icon d4p-ui-chevron-square-down d4p-icon-fw"></i> <button type="button">' . $label . '</button>';
 			echo '</div>';
 			echo '<div class="d4p-more-content">';
 
@@ -370,6 +390,14 @@ class Render {
 				echo KSES::standard( '<ul><li>' . join( '</li><li>', $setting->more ) . '</li></ul>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} else if ( $setting->more_method == 'paragraphs' ) {
 				echo KSES::standard( '<p>' . join( '</p><p>', $setting->more ) . '</p>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			} else if ( $setting->more_method == 'table' ) {
+				echo '<table><tbody>';
+
+				foreach ( $setting->more as $row ) {
+					echo '<tr><td>' . join( '</td><td>', $row ) . '</td></tr>';
+				}
+
+				echo '</tbody></table>';
 			} else {
 				echo KSES::standard( join( '', $setting->more ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
@@ -379,7 +407,7 @@ class Render {
 		}
 	}
 
-	protected function _render_check_uncheck_all() {
+	protected function _render_check_uncheck_all() : void {
 		echo '<div class="d4p-check-uncheck">';
 
 		echo '<a href="#checkall" class="d4p-check-all"><i class="d4p-icon d4p-ui-check-square"></i> ' . esc_html__( 'Check All', 'd4plib' ) . '</a>';
@@ -388,7 +416,7 @@ class Render {
 		echo '</div>';
 	}
 
-	protected function _pair_element( $name, $id, $i, $value, $element, $hide = false, $layout = 'normal' ) {
+	protected function _pair_element( $name, $id, $i, $value, $element, $hide = false, $layout = 'normal' ) : void {
 		$type_key    = $element->args['type_key'] ?? 'text';
 		$type_value  = $element->args['type_value'] ?? 'text';
 		$label_key   = $element->args['label_key'] ?? __( 'Key', 'd4plib' );
@@ -413,7 +441,7 @@ class Render {
 		echo '</div>';
 	}
 
-	protected function _text_element( $name, $id, $i, $value, $element, $hide = false ) {
+	protected function _text_element( $name, $id, $i, $value, $element, $hide = false ) : void {
 		echo '<li class="exp-text-element exp-text-element-' . esc_attr( $i ) . '" ' . ( $hide ? 'style="display: none"' : '' ) . '>';
 
 		$button = isset( $element->args['label_button_remove'] ) ? esc_html( $element->args['label_button_remove'] ) : '<i class="d4p-icon d4p-ui-clear d4p-icon-fw"></i>';
@@ -425,7 +453,7 @@ class Render {
 		echo '</li>';
 	}
 
-	protected function _datetime_element( Element $element, $value, $name_base, $id_base, $type = 'text', $class = '' ) {
+	protected function _datetime_element( Element $element, $value, $name_base, $id_base, $type = 'text', $class = '' ) : void {
 		$readonly  = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 		$min       = isset( $element->args['min'] ) ? ' min="' . esc_attr( $element->args['min'] ) . '"' : '';
 		$max       = isset( $element->args['max'] ) ? ' max="' . esc_attr( $element->args['max'] ) . '"' : '';
@@ -447,23 +475,23 @@ class Render {
 		);
 	}
 
-	protected function draw_date( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_date( Element $element, $value, $name_base, $id_base ) : void {
 		$this->_datetime_element( $element, $value, $name_base, $id_base, 'date', 'd4p-input-field-date' );
 	}
 
-	protected function draw_time( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_time( Element $element, $value, $name_base, $id_base ) : void {
 		$this->_datetime_element( $element, $value, $name_base, $id_base, 'time', 'd4p-input-field-time' );
 	}
 
-	protected function draw_month( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_month( Element $element, $value, $name_base, $id_base ) : void {
 		$this->_datetime_element( $element, $value, $name_base, $id_base, 'month', 'd4p-input-field-month' );
 	}
 
-	protected function draw_datetime( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_datetime( Element $element, $value, $name_base, $id_base ) : void {
 		$this->_datetime_element( $element, $value, $name_base, $id_base, 'datetime-local', 'd4p-input-field-datetime' );
 	}
 
-	protected function draw_license( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_license( Element $element, $value, $name_base, $id_base ) : void {
 		Elements::instance()->input( $value, array(
 			'echo'        => true,
 			'id'          => $id_base,
@@ -480,7 +508,7 @@ class Render {
 		$this->render_clear_button();
 	}
 
-	protected function draw_text( Element $element, $value, $name_base, $id_base, $type = 'text' ) {
+	protected function draw_text( Element $element, $value, $name_base, $id_base, $type = 'text' ) : void {
 		Elements::instance()->input( $value, array(
 			'echo'        => true,
 			'id'          => $id_base,
@@ -501,7 +529,7 @@ class Render {
 		}
 	}
 
-	protected function draw_html( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_html( Element $element, $value, $name_base, $id_base ) : void {
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
 		echo sprintf(
@@ -514,7 +542,7 @@ class Render {
 		);
 	}
 
-	protected function draw_number( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_number( Element $element, $value, $name_base, $id_base ) : void {
 		Elements::instance()->input( $value, array(
 			'echo'        => true,
 			'id'          => $id_base,
@@ -535,7 +563,7 @@ class Render {
 		}
 	}
 
-	protected function draw_integer( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_integer( Element $element, $value, $name_base, $id_base ) : void {
 		if ( ! isset( $element->args['step'] ) ) {
 			$element->args['step'] = 1;
 		}
@@ -543,7 +571,7 @@ class Render {
 		$this->draw_number( $element, $value, $name_base, $id_base );
 	}
 
-	protected function draw_checkboxes_hierarchy( Element $element, $value, $name_base, $id_base, $multiple = true ) {
+	protected function draw_checkboxes_hierarchy( Element $element, $value, $name_base, $id_base, $multiple = true ) : void {
 		switch ( $element->source ) {
 			case 'function':
 				$data = call_user_func( $element->data );
@@ -565,7 +593,7 @@ class Render {
 		) );
 	}
 
-	protected function draw_checkboxes_group( Element $element, $value, $name_base, $id_base, $multiple = true ) {
+	protected function draw_checkboxes_group( Element $element, $value, $name_base, $id_base, $multiple = true ) : void {
 		switch ( $element->source ) {
 			case 'function':
 				$data = call_user_func( $element->data );
@@ -588,7 +616,7 @@ class Render {
 		);
 	}
 
-	protected function draw_checkboxes( Element $element, $value, $name_base, $id_base, $multiple = true ) {
+	protected function draw_checkboxes( Element $element, $value, $name_base, $id_base, $multiple = true ) : void {
 		switch ( $element->source ) {
 			case 'function':
 				$data = call_user_func( $element->data );
@@ -611,7 +639,7 @@ class Render {
 		);
 	}
 
-	protected function draw_group_multi( Element $element, $value, $name_base, $id_base, $multiple = true ) {
+	protected function draw_group_multi( Element $element, $value, $name_base, $id_base, $multiple = true ) : void {
 		switch ( $element->source ) {
 			case 'function':
 				$data = call_user_func( $element->data );
@@ -636,7 +664,7 @@ class Render {
 		);
 	}
 
-	protected function draw_select_multi( Element $element, $value, $name_base, $id_base, $multiple = true ) {
+	protected function draw_select_multi( Element $element, $value, $name_base, $id_base, $multiple = true ) : void {
 		switch ( $element->source ) {
 			case 'function':
 				$data = call_user_func( $element->data );
@@ -662,7 +690,7 @@ class Render {
 		);
 	}
 
-	protected function draw_expandable_text( Element $element, $value, $name_base, $id_base = '' ) {
+	protected function draw_expandable_text( Element $element, $value, $name_base, $id_base = '' ) : void {
 		echo '<ol>';
 
 		$this->_text_element( $name_base . '[0]', $id_base . '_0', 0, '', $element, true );
@@ -684,7 +712,7 @@ class Render {
 		echo '<input type="hidden" value="' . esc_attr( $i ) . '" class="d4p-next-id" />';
 	}
 
-	protected function draw_dropdown_categories( Element $element, $value, $name_base, $id_base = '' ) {
+	protected function draw_dropdown_categories( Element $element, $value, $name_base, $id_base = '' ) : void {
 		$label_none   = $element->args['label_none'] ?? ' ';
 		$taxonomy     = $element->args['taxonomy'] ?? 'category';
 		$hierarchical = $element->args['hierarchical'] ?? true;
@@ -724,7 +752,7 @@ class Render {
 		}
 	}
 
-	protected function draw_dropdown_pages( Element $element, $value, $name_base, $id_base = '' ) {
+	protected function draw_dropdown_pages( Element $element, $value, $name_base, $id_base = '' ) : void {
 		$label_none = $element->args['label_none'] ?? ' ';
 		$post_type  = $element->args['post_type'] ?? 'page';
 		$child      = $element->args['child_of'] ?? 0;
@@ -761,11 +789,11 @@ class Render {
 		}
 	}
 
-	protected function draw_info( Element $element, $value, $name_base, $id_base = '' ) {
+	protected function draw_info( Element $element, $value, $name_base, $id_base = '' ) : void {
 		echo KSES::standard( $element->notice ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
-	protected function draw_images( Element $element, $value, $name_base, $id_base = '' ) {
+	protected function draw_images( Element $element, $value, $name_base, $id_base = '' ) : void {
 		$value = (array) $value;
 
 		echo '<a role="button" href="#" class="button d4plib-button-inner d4plib-images-add"><i aria-hidden="true" class="d4p-icon d4p-ui-photo"></i> ' . esc_html__( 'Add Image', 'd4plib' ) . '</a>';
@@ -792,7 +820,7 @@ class Render {
 		echo '</div>';
 	}
 
-	protected function draw_image( Element $element, $value, $name_base, $id_base = '' ) {
+	protected function draw_image( Element $element, $value, $name_base, $id_base = '' ) : void {
 		echo sprintf(
 			'<input class="d4plib-image" type="hidden" name="%s" id="%s" value="%s" />',
 			esc_attr( $name_base ),
@@ -820,7 +848,7 @@ class Render {
 		echo '</div>';
 	}
 
-	protected function draw_hidden( Element $element, $value, $name_base, $id_base = '' ) {
+	protected function draw_hidden( Element $element, $value, $name_base, $id_base = '' ) : void {
 		echo sprintf(
 			'<input type="hidden" name="%s" id="%s" value="%s" />',
 			esc_attr( $name_base ),
@@ -829,7 +857,7 @@ class Render {
 		);
 	}
 
-	protected function draw_bool( Element $element, $value, $name_base, $id_base = '' ) {
+	protected function draw_bool( Element $element, $value, $name_base, $id_base = '' ) : void {
 		$selected = $value == 1 || $value === true ? ' checked="checked"' : '';
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly disabled ' : '';
 		$label    = isset( $element->args['label'] ) && $element->args['label'] != '' ? $element->args['label'] : __( 'Enabled', 'd4plib' );
@@ -848,11 +876,11 @@ class Render {
 		);
 	}
 
-	protected function draw_range_absint( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_range_absint( Element $element, $value, $name_base, $id_base ) : void {
 		$this->draw_range_integer( $element, $value, $name_base, $id_base );
 	}
 
-	protected function draw_range_integer( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_range_integer( Element $element, $value, $name_base, $id_base ) : void {
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
 		$pairs = explode( '=>', $value );
@@ -878,7 +906,7 @@ class Render {
 		);
 	}
 
-	protected function draw_x_by_y( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_x_by_y( Element $element, $value, $name_base, $id_base ) : void {
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
 		$pairs = explode( 'x', $value );
@@ -904,11 +932,11 @@ class Render {
 		);
 	}
 
-	protected function draw_listing( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_listing( Element $element, $value, $name_base, $id_base ) : void {
 		$this->draw_html( $element, join( PHP_EOL, $value ), $name_base, $id_base );
 	}
 
-	protected function draw_code( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_code( Element $element, $value, $name_base, $id_base ) : void {
 		$mode = isset( $element->args['mode'] ) && $element->args['mode'] ? $element->args['mode'] : 'htmlmixed';
 
 		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
@@ -926,11 +954,11 @@ class Render {
 		);
 	}
 
-	protected function draw_textarea( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_textarea( Element $element, $value, $name_base, $id_base ) : void {
 		$this->draw_html( $element, $value, $name_base, $id_base );
 	}
 
-	protected function draw_slug( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_slug( Element $element, $value, $name_base, $id_base ) : void {
 		if ( ! isset( $element->args['pattern'] ) ) {
 			$element->args['pattern'] = '[a-z0-9\-]+';
 		}
@@ -938,7 +966,7 @@ class Render {
 		$this->draw_text( $element, $value, $name_base, $id_base );
 	}
 
-	protected function draw_slug_ext( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_slug_ext( Element $element, $value, $name_base, $id_base ) : void {
 		if ( ! isset( $element->args['pattern'] ) ) {
 			$element->args['pattern'] = '[a-z0-9_\.\-]+';
 		}
@@ -946,7 +974,7 @@ class Render {
 		$this->draw_text( $element, $value, $name_base, $id_base );
 	}
 
-	protected function draw_slug_slash( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_slug_slash( Element $element, $value, $name_base, $id_base ) : void {
 		if ( ! isset( $element->args['pattern'] ) ) {
 			$element->args['pattern'] = '[a-z0-9\-\.\/]+';
 		}
@@ -954,7 +982,7 @@ class Render {
 		$this->draw_text( $element, $value, $name_base, $id_base );
 	}
 
-	protected function draw_link( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_link( Element $element, $value, $name_base, $id_base ) : void {
 		if ( ! isset( $element->args['placeholder'] ) ) {
 			$element->args['placeholder'] = 'https://';
 		}
@@ -962,15 +990,15 @@ class Render {
 		$this->draw_text( $element, $value, $name_base, $id_base, 'url' );
 	}
 
-	protected function draw_email( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_email( Element $element, $value, $name_base, $id_base ) : void {
 		$this->draw_text( $element, $value, $name_base, $id_base, 'email' );
 	}
 
-	protected function draw_text_html( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_text_html( Element $element, $value, $name_base, $id_base ) : void {
 		$this->draw_text( $element, $value, $name_base, $id_base );
 	}
 
-	protected function draw_password( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_password( Element $element, $value, $name_base, $id_base ) : void {
 		$readonly     = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 		$autocomplete = isset( $element->args['autocomplete'] ) ? Sanitize::slug( $element->args['autocomplete'] ) : 'off';
 
@@ -990,7 +1018,7 @@ class Render {
 		}
 	}
 
-	protected function draw_file( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_file( Element $element, $value, $name_base, $id_base ) : void {
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
 		echo sprintf(
@@ -1004,7 +1032,7 @@ class Render {
 		);
 	}
 
-	protected function draw_color( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_color( Element $element, $value, $name_base, $id_base ) : void {
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
 		echo sprintf(
@@ -1018,27 +1046,27 @@ class Render {
 		);
 	}
 
-	protected function draw_absint( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_absint( Element $element, $value, $name_base, $id_base ) : void {
 		$this->draw_integer( $element, $value, $name_base, $id_base );
 	}
 
-	protected function draw_select( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_select( Element $element, $value, $name_base, $id_base ) : void {
 		$this->draw_select_multi( $element, $value, $name_base, $id_base, false );
 	}
 
-	protected function draw_group( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_group( Element $element, $value, $name_base, $id_base ) : void {
 		$this->draw_group_multi( $element, $value, $name_base, $id_base, false );
 	}
 
-	protected function draw_radios_hierarchy( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_radios_hierarchy( Element $element, $value, $name_base, $id_base ) : void {
 		$this->draw_checkboxes_hierarchy( $element, $value, $name_base, $id_base, false );
 	}
 
-	protected function draw_radios( Element $element, $value, $name_base, $id_base ) {
+	protected function draw_radios( Element $element, $value, $name_base, $id_base ) : void {
 		$this->draw_checkboxes( $element, $value, $name_base, $id_base, false );
 	}
 
-	protected function draw_expandable_pairs( Element $element, $value, $name_base, $id_base = '' ) {
+	protected function draw_expandable_pairs( Element $element, $value, $name_base, $id_base = '' ) : void {
 		$layout = $element->args['layout'] ?? 'normal';
 		$class  = array(
 			'd4p-expandable-pairs-wrapper',
@@ -1111,11 +1139,11 @@ class Render {
 		echo '</div>';
 	}
 
-	protected function draw_expandable_raw( Element $element, $value, $name_base, $id_base = '' ) {
+	protected function draw_expandable_raw( Element $element, $value, $name_base, $id_base = '' ) : void {
 		$this->draw_expandable_text( $element, $value, $name_base, $id_base );
 	}
 
-	protected function draw_css_size( Element $element, $value, $name_base, $id_base = '' ) {
+	protected function draw_css_size( Element $element, $value, $name_base, $id_base = '' ) : void {
 		$sizes = Arr::get_css_size_units();
 
 		$pairs = array();

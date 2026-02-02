@@ -1,11 +1,11 @@
 <?php
 
-use Dev4Press\v54\Core\Quick\KSES;
-use Dev4Press\v54\Core\Quick\Sanitize;
-use function Dev4Press\v54\Functions\panel;
+use Dev4Press\v55\Core\Quick\KSES;
+use Dev4Press\v55\Core\Quick\Sanitize;
+use function Dev4Press\v55\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 $_panels    = panel()->a()->panels();
@@ -16,96 +16,106 @@ $_classes   = panel()->wrapper_class();
 $_features  = false;
 
 if ( panel()->a()->plugin()->f() ) {
-	$_features = $_panel == 'features';
+    $_features = $_panel == 'features';
 }
 
 ?>
 <div class="<?php echo Sanitize::html_classes( $_classes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
-	<?php panel()->include_notices(); ?>
+    <?php panel()->include_notices(); ?>
 
     <div class="d4p-header">
         <div class="d4p-navigator">
             <ul>
                 <li class="d4p-nav-button">
                     <a href="#"><?php echo KSES::strong( panel()->r()->icon( $_panels[ $_panel ]['icon'] ) );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo $_panels[ $_panel ]['title'];  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
-					<?php if ( $_panel != 'install' && $_panel != 'update' ) { ?>
+                    <?php if ( $_panel != 'install' && $_panel != 'update' ) { ?>
                         <ul>
-							<?php
+                            <?php
 
-							foreach ( $_panels as $panel => $obj ) {
-								if ( ! isset( $obj['type'] ) ) {
-									$scope = $obj['scope'] ?? array();
-									$add   = true;
+                            foreach ( $_panels as $panel => $obj ) {
+                                if ( ! isset( $obj['type'] ) ) {
+                                    $scope = $obj['scope'] ?? array();
+                                    $add   = true;
 
-									if ( ! empty( $scope ) && is_multisite() ) {
-										$current = is_network_admin() ? 'network' : 'blog';
-										$add     = in_array( $current, $scope );
-									}
+                                    if ( ! empty( $scope ) && is_multisite() ) {
+                                        $current = is_network_admin() ? 'network' : 'blog';
+                                        $add     = in_array( $current, $scope );
+                                    }
 
-									if ( $add ) {
-										if ( $panel != $_panel ) {
-											echo '<li><a href="' . esc_url( panel()->a()->panel_url( $panel ) ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-										} else {
-											echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-										}
-									}
-								}
-							}
+                                    if ( $add ) {
+                                        if ( $panel != $_panel ) {
+                                            echo '<li><a href="' . esc_url( panel()->a()->panel_url( $panel ) ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                        } else {
+                                            echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . $obj['title'] . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                        }
+                                    }
+                                }
+                            }
 
-							?>
+                            ?>
                         </ul>
-					<?php } ?>
+                    <?php } ?>
                 </li>
-				<?php if ( ! empty( $_subpanels ) ) { ?>
+                <?php if ( ! empty( $_subpanels ) ) { ?>
                     <li class="d4p-nav-button">
                         <a href="#"><?php echo KSES::strong( panel()->r()->icon( $_subpanels[ $_subpanel ]['icon'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html( $_subpanels[ $_subpanel ]['title'] ); ?></a>
                         <ul>
-							<?php
+                            <?php
 
-							foreach ( $_subpanels as $subpanel => $obj ) {
-								$_feature_status = '';
+                            foreach ( $_subpanels as $subpanel => $obj ) {
+                                $_feature_status = '';
+                                $_badge          = '';
 
-								$modd = $obj['modd'] ?? 'regular';
+                                $modd = $obj['modd'] ?? 'regular';
 
-								if ( panel()->a()->plugin()->license === false ) {
-									$modd = 'regular';
-								}
+                                if ( panel()->a()->plugin()->license === false ) {
+                                    $modd = 'regular';
+                                }
 
-								if ( $modd === 'premium' || ( isset( $obj['skip'] ) && in_array( 'menu', $obj['skip'] ) ) ) {
-									continue;
-								}
+                                if ( isset( $obj['skip'] ) && in_array( 'menu', $obj['skip'] ) ) {
+                                    continue;
+                                }
 
-								if ( $_features && $subpanel != 'index' && isset( $obj['active'] ) ) {
-									$icon = 'd4p-ui-times';
+                                if ( $_features && $subpanel != 'index' && isset( $obj['active'] ) ) {
+                                    $icon = 'd4p-ui-times';
 
-									if ( $obj['hidden'] ) {
-										$icon = 'd4p-ui-eye-slash';
-									} else if ( $obj['active'] || $obj['always_on'] ) {
-										$icon = 'd4p-ui-check';
-									}
+                                    if ( $obj['hidden'] ) {
+                                        $icon = 'd4p-ui-eye-slash';
+                                    } else if ( $obj['active'] || $obj['always_on'] ) {
+                                        $icon = 'd4p-ui-check';
+                                    }
 
-									$_feature_status = '<i class="d4p-features-mark d4p-icon ' . $icon . '"></i>';
-								}
+                                    $_feature_status = '<i class="d4p-features-mark d4p-icon ' . $icon . '"></i>';
+                                }
 
-								$_url = $obj['url'] ?? panel()->a()->panel_url( $_panel, $subpanel );
+                                if ( $modd === 'premium' ) {
+                                    $_url   = panel()->a()->plugin()->fs()->get_upgrade_url();
+                                    $_badge = '<span class="d4p-nav-badge">PRO</span>';
+                                } else {
+                                    $_url = $obj['url'] ?? panel()->a()->panel_url( $_panel, $subpanel );
+                                }
 
-								if ( $subpanel != $_subpanel ) {
-									echo '<li><a href="' . esc_url( $_url ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . esc_html( $obj['title'] ) . $_feature_status . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-								} else {
-									echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . esc_html( $obj['title'] ) . $_feature_status . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-								}
-							}
+                                if ( isset( $obj['break'] ) ) {
+                                    echo '<li class="d4p-nav-break">' . panel()->r()->icon( $obj['break-icon'], 'fw' ) . esc_html( $obj['break'] ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                }
 
-							?>
+                                if ( $subpanel != $_subpanel ) {
+                                    echo '<li><a href="' . esc_url( $_url ) . '">' . panel()->r()->icon( $obj['icon'], 'fw' ) . esc_html( $obj['title'] ) . $_badge . $_feature_status . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                } else {
+                                    echo '<li class="d4p-nav-current">' . panel()->r()->icon( $obj['icon'], 'fw' ) . esc_html( $obj['title'] ) . $_feature_status . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                }
+                            }
+
+                            ?>
                         </ul>
                     </li>
-				<?php } ?>
-				<?php panel()->include_header_fill(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                <?php } ?>
+                <?php panel()->include_header_fill(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </ul>
         </div>
         <div class="d4p-plugin">
-			<?php echo esc_html( panel()->a()->title() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+            <?php echo esc_html( panel()->a()->title() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         </div>
     </div>
-	<?php panel()->include_messages(); ?>
+    <?php panel()->include_messages(); ?>
     <div class="d4p-main">

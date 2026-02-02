@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Options\Process
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Options\Process
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,11 +25,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Options;
+namespace Dev4Press\v55\Core\Options;
 
-use Dev4Press\v54\Core\Quick\Arr;
-use Dev4Press\v54\Core\Quick\Sanitize;
-use Dev4Press\v54\Core\Quick\Str;
+use Dev4Press\v55\Core\Quick\Arr;
+use Dev4Press\v55\Core\Quick\Sanitize;
+use Dev4Press\v55\Core\Quick\Str;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -49,11 +49,16 @@ class Process {
 		$this->prefix = $prefix;
 	}
 
-	public static function instance( $base = 'dev4press-value', $prefix = 'dev4press' ) : Process {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance( string $base = 'dev4press-value', string $prefix = 'dev4press' ) : static {
+		return static::i( $base, $prefix );
+	}
+
+	public static function i( string $base = 'dev4press-value', string $prefix = 'dev4press' ) : static {
 		static $process = array();
 
 		if ( ! isset( $process[ $base ] ) ) {
-			$process[ $base ] = new Process( $base, $prefix );
+			$process[ $base ] = new static( $base, $prefix );
 		}
 
 		return $process[ $base ];
@@ -202,7 +207,7 @@ class Process {
 				if ( empty( $base ) ) {
 					$value = array();
 				} else {
-					$value = array_map( '\Dev4Press\v54\Core\Quick\Sanitize::text', (array) $base );
+					$value = array_map( '\Dev4Press\v55\Core\Quick\Sanitize::text', (array) $base );
 				}
 				break;
 			case 'css_size':

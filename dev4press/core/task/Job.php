@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Task\Job
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Task\Job
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,23 +25,26 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Task;
+namespace Dev4Press\v55\Core\Task;
 
 abstract class Job {
 	protected $data;
-	protected $max;
-	protected $timer = 0;
-	protected $offset = 5;
+	protected int $max;
+	protected int $timer = 0;
+	protected int $offset = 5;
 
 	public function __construct() {
 		$this->timer = $this->now();
-		$this->max   = ini_get( 'max_execution_time' );
+		$this->max   = absint( ini_get( 'max_execution_time' ) );
+
+		if ( $this->max == 0 ) {
+			$this->max = 30;
+		}
 
 		$this->prepare();
 	}
 
-	/** @return static */
-	public static function instance() {
+	public static function instance() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Helpers\Errors
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Helpers\Errors
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Helpers;
+namespace Dev4Press\v55\Core\Helpers;
 
 use WP_Error;
 
@@ -38,11 +38,11 @@ class Error extends WP_Error {
 		return ! empty( $this->errors );
 	}
 
-	public function merge_errors( $errors ) {
+	public function merge_errors( $errors ) : void {
 		$this->errors = array_merge( $this->errors, $errors );
 	}
 
-	public function merge_errors_data( $error_data ) {
+	public function merge_errors_data( $error_data ) : void {
 		$this->error_data = array_merge( $this->error_data, $error_data );
 	}
 }

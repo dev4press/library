@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\API\Store
- * Version: v5.4
+ * Name:    Dev4Press\v55\API\Store
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\API;
+namespace Dev4Press\v55\API;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -147,6 +147,7 @@ class Store {
 			'color'       => '#2791D3',
 			'free'        => true,
 			'pro'         => false,
+			'internal'    => true,
 		),
 		'gd-pages-navigator'               => array(
 			'code'        => 'gd-pages-navigator',
@@ -163,6 +164,7 @@ class Store {
 			'description' => 'Attachments upload to the topics and replies in bbPress plugin using media library. Control file size and number of files, integration elements and more.',
 			'punchline'   => 'Attachments for forums powered by bbPress',
 			'color'       => '#426A62',
+			'freemius'    => true,
 			'free'        => true,
 			'pro'         => false,
 		),
@@ -196,10 +198,11 @@ class Store {
 		),
 		'gd-content-tools'                 => array(
 			'code'        => 'gd-content-tools',
-			'name'        => 'GD Content Tools',
+			'name'        => 'FormaPress',
 			'description' => 'Register and control custom post types and taxonomies. Powerful meta fields and meta boxes management. Extra widgets, custom rewrite rules, enhanced features...',
 			'punchline'   => 'Enhancing WordPress Content Management',
 			'color'       => '#AD0067',
+			'freemius'    => true,
 			'free'        => false,
 			'pro'         => true,
 		),
@@ -232,12 +235,13 @@ class Store {
 			'free'        => false,
 			'pro'         => true,
 		),
-		'gd-mail-queue'                    => array(
-			'code'        => 'gd-mail-queue',
-			'name'        => 'GD Mail Queue',
+		'coremailer'                       => array(
+			'code'        => 'coremailer',
+			'name'        => 'coreMailer',
 			'description' => 'Intercept wp_mail function, convert emails to HTML and implements flexible mail queue system for sending emails, with support for email sending engines and services.',
 			'punchline'   => 'Queue based, enhanced email sending system',
 			'color'       => '#773355',
+			'internal'    => true,
 			'free'        => true,
 			'pro'         => true,
 		),
@@ -288,6 +292,7 @@ class Store {
 			'color'       => '#262261',
 			'free'        => true,
 			'pro'         => true,
+			'internal'    => true,
 		),
 		'gd-topic-polls'                   => array(
 			'code'        => 'gd-topic-polls',
@@ -311,11 +316,11 @@ class Store {
 		),
 	);
 
-	public function __construct() {
+	protected function __construct() {
 	}
 
 	/** @return Store */
-	public static function instance() : Store {
+	public static function i() : Store {
 		static $instance = null;
 
 		if ( ! isset( $instance ) ) {
@@ -331,31 +336,91 @@ class Store {
 		return $this->_plugins;
 	}
 
-	public function name( $code ) : string {
+	public function name( string $code ) : string {
 		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['name'] : '';
 	}
 
-	public function description( $code ) : string {
+	public function description( string $code ) : string {
 		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['description'] : '';
 	}
 
-	public function punchline( $code ) : string {
+	public function punchline( string $code ) : string {
 		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['punchline'] : '';
 	}
 
-	public function color( $code ) : string {
+	public function color( string $code ) : string {
 		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['color'] : '';
 	}
 
-	public function url( $code ) : string {
+	public function url( string $code ) : string {
 		return isset( $this->_plugins[ $code ] ) ? 'https://www.dev4press.com/plugins/' . $code . '/' : '';
 	}
 
-	public function is_free( $code ) : bool {
+	public function is_available( string $code ) : bool {
+		return isset( $this->_plugins[ $code ] ) && ! isset( $this->_plugins[ $code ]['internal'] );
+	}
+
+	public function is_freemius( string $code ) : bool {
+		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['freemius'] : false;
+	}
+
+	public function is_free( string $code ) : bool {
 		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['free'] : false;
 	}
 
-	public function is_pro( $code ) : bool {
+	public function is_pro( string $code ) : bool {
 		return isset( $this->_plugins[ $code ] ) ? $this->_plugins[ $code ]['pro'] : false;
+	}
+
+	public function get_all_freemius() : array {
+		$plugins = array();
+
+		foreach ( $this->_plugins as $code => $plugin ) {
+			if ( ( $plugin['freemius'] ?? false ) && $plugin['pro'] ) {
+				$plugins[ $code ] = $plugin;
+			}
+		}
+
+		return $plugins;
+	}
+
+	public function render( string $code, int $show = 2 ) : string {
+		$render  = '<div id="dev4press-recommend"><h5>Recommended Plugins</h5>';
+		$plugins = $this->get_all_freemius();
+
+		shuffle( $plugins );
+
+		$i = 0;
+		foreach ( $plugins as $plugin ) {
+			if ( $plugin['code'] == $code ) {
+				continue;
+			}
+
+			$url = 'https://www.dev4press.com/plugins/' . $plugin['code'] . '/';
+
+			$render .= '<div class="dev4press-recommend-plugin" style="background-color: ' . esc_attr( $plugin['color'] ) . '">';
+			$render .= '<h6 style="border-bottom: 1px solid #F8F8F8"><a target="_blank" rel="noopener" href="' . esc_url( $url ) . '">' . esc_html( $plugin['name'] ) . '</a></h6>';
+			$render .= '<div class="dev4press-plugin-inner">';
+			$render .= '<div class="dev4press-plugin-thumb">';
+			$render .= '<a target="_blank" rel="noopener" href="' . esc_url( $url ) . '"><i class="d4p-icon d4p-plugin-' . esc_attr( $plugin['code'] ) . '"></i></a>';
+			$render .= '</div>';
+			$render .= '<em>' . esc_html( $plugin['description'] ) . '</em>';
+			$render .= '<div class="dev4press-plugin-links">';
+			$render .= '<a target="_blank" rel="noopener" class="button-primary dev4press-buynow" href="' . esc_url( $url . 'pricing/' ) . '">Buy Now</a>';
+			$render .= '<a target="_blank" class="button-secondary" href="' . esc_url( $url ) . '">Home Page</a>';
+			$render .= '</div>';
+			$render .= '</div>';
+			$render .= '</div>';
+
+			$i ++;
+
+			if ( $i == $show ) {
+				break;
+			}
+		}
+
+		$render .= '</div>';
+
+		return $render;
 	}
 }

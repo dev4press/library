@@ -1,6 +1,6 @@
 @font-face {
   font-family: "dev4press";
-  src: url("fonts/dev4press.woff2?5.4.0") format("woff2"), url("fonts/dev4press.woff?5.4.0") format("woff");
+  src: url("fonts/dev4press.woff2?5.5.0") format("woff2"), url("fonts/dev4press.woff?5.5.0") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: auto;
@@ -346,6 +346,10 @@ a > .d4p-icon {
 
 .d4p-icon.d4p-plugin-gd-seo-toolbox:before {
   content: "\f131";
+}
+
+.d4p-icon.d4p-plugin-coremailer:before {
+  content: "\f13f";
 }
 
 .d4p-icon.d4p-plugin-coresocial:before {

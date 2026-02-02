@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Base\Background
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Base\Background
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Base;
+namespace Dev4Press\v55\Core\Base;
 
-use DateTime;
-use Dev4Press\v54\Core\Helpers\IP;
+use Dev4Press\v55\Core\Helpers\IP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -41,23 +40,31 @@ abstract class Background {
 
 	protected array $data = array();
 
-	protected $timer = 0;
-	protected $offset = 0;
-	protected $max = 0;
-	protected $delay = 10;
-	protected $abort = '';
+	protected float $timer = 0;
+	protected int $offset = 0;
+	protected int $max = 0;
+	protected int $delay = 10;
+	protected string $abort = '';
 
 	public function __construct() {
-		$this->max   = ini_get( 'max_execution_time' );
 		$this->timer = $this->now();
+		$this->max   = absint( ini_get( 'max_execution_time' ) );
+
+		if ( $this->max < 1 ) {
+			$this->max = 30;
+		}
 
 		if ( $this->offset == 0 ) {
 			$this->offset = absint( $this->max * .6 );
 		}
 	}
 
-	/** @return static */
-	public static function instance() {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {
@@ -71,7 +78,7 @@ abstract class Background {
 		return $this->abort === 'abort';
 	}
 
-	public function load() {
+	public function load() : void {
 		if ( empty( $this->data ) ) {
 			wp_raise_memory_limit();
 
@@ -80,7 +87,7 @@ abstract class Background {
 		}
 	}
 
-	public function handler() {
+	public function handler() : void {
 		$this->load();
 
 		if ( $this->abort == 'abort' ) {
@@ -104,7 +111,7 @@ abstract class Background {
 		}
 	}
 
-	public function get() {
+	public function get() : void {
 		$_data  = get_site_transient( $this->transient );
 		$_abort = get_site_transient( $this->abort_transient );
 
@@ -121,21 +128,21 @@ abstract class Background {
 		}
 	}
 
-	public function abort() {
+	public function abort() : void {
 		set_site_transient( $this->abort_transient, 'abort' );
 	}
 
-	public function delete() {
+	public function delete() : void {
 		delete_site_transient( $this->transient );
 
 		$this->delete_abort();
 	}
 
-	public function delete_abort() {
+	public function delete_abort() : void {
 		delete_site_transient( $this->abort_transient );
 	}
 
-	public function stalled() {
+	public function stalled() : void {
 		$this->load();
 
 		if ( $this->data['status'] == 'working' && $this->has_more() ) {
@@ -152,29 +159,12 @@ abstract class Background {
 	}
 
 	protected function init() {
-
 	}
 
 	protected function prepare() {
-
 	}
 
-	protected function worker() {
-		$this->add_message( __( 'Starting the thread worker processing.', 'd4plib' ) );
-
-		$this->save();
-		$result = true;
-
-		if ( $this->has_more() ) {
-			while ( $this->has_more() && $this->is_on_time() ) {
-				$result = $this->task();
-
-				if ( ! $result ) {
-					break;
-				}
-			}
-		}
-
+	protected function worker_done( $result ) : void {
 		if ( $result && $this->has_more() ) {
 			/* translators: Background process threads finished. %s: Thread elapsed time. */
 			$this->add_message( sprintf( __( 'Processing thread finished after %s seconds.', 'd4plib' ), number_format( $this->elapsed(), 2 ) ) );
@@ -212,11 +202,30 @@ abstract class Background {
 		$this->delete_abort();
 	}
 
-	protected function status( string $status ) {
+	protected function worker() : void {
+		$this->add_message( __( 'Starting the thread worker processing.', 'd4plib' ) );
+
+		$this->save();
+		$result = true;
+
+		if ( $this->has_more() ) {
+			while ( $this->has_more() && $this->is_on_time() ) {
+				$result = $this->task();
+
+				if ( ! $result ) {
+					break;
+				}
+			}
+		}
+
+		$this->worker_done( $result );
+	}
+
+	protected function status( string $status ) : void {
 		$this->data['status'] = $status;
 	}
 
-	protected function task_start( string $title ) {
+	protected function task_start( string $title ) : void {
 		$this->data['info']['tasks'] ++;
 
 		if ( ! isset( $this->data['tasks'][ $title ] ) ) {
@@ -232,7 +241,7 @@ abstract class Background {
 		$this->save();
 	}
 
-	protected function task_end( string $title, bool $done = false ) {
+	protected function task_end( string $title, bool $done = false ) : void {
 		if ( $done ) {
 			$this->data['info']['done'] ++;
 		}
@@ -265,17 +274,17 @@ abstract class Background {
 		);
 	}
 
-	protected function save() {
+	protected function save() : void {
 		$this->data['info']['latest'] = $this->now();
 
 		set_site_transient( $this->transient, $this->data );
 	}
 
-	protected function now() {
+	protected function now() : float {
 		return microtime( true );
 	}
 
-	protected function elapsed() {
+	protected function elapsed() : float {
 		return $this->now() - $this->timer;
 	}
 
@@ -287,7 +296,7 @@ abstract class Background {
 		return $this->data['info']['done'] < $this->data['info']['total'];
 	}
 
-	protected function add_message( string $message, string $type = 'system' ) {
+	protected function add_message( string $message, string $type = 'system' ) : void {
 		$this->data['messages'][] = array(
 			'time'    => $this->now(),
 			'message' => $message,
@@ -295,7 +304,7 @@ abstract class Background {
 		);
 	}
 
-	protected function check_abort() {
+	protected function check_abort() : void {
 		wp_cache_delete( $this->abort_transient, 'site-transient' );
 
 		$this->abort = get_site_transient( $this->abort_transient );
@@ -305,64 +314,20 @@ abstract class Background {
 		}
 	}
 
-	protected function do_abort() {
+	protected function do_abort() : void {
 		$this->add_message( __( 'Process has been aborted.', 'd4plib' ) );
 		$this->status( 'abort' );
 
 		$this->save();
 	}
 
-	abstract public function start();
+	abstract public function start() : void;
 
-	abstract public function finish();
+	abstract public function finish() : void;
 
-	abstract protected function spawn();
+	abstract protected function spawn() : void;
 
 	abstract protected function task() : bool;
 
 	abstract protected function defaults() : array;
-
-	public static function render_messages( array $messages, bool $reverse = false ) : string {
-		if ( $reverse ) {
-			$messages = array_reverse( $messages );
-		}
-
-		$_icons = array(
-			'info'     => 'ui-info',
-			'system'   => 'ui-server',
-			'activity' => 'ui-play',
-			'warning'  => 'ui-warning',
-			'error'    => 'ui-close-square',
-		);
-
-		$_labels = array(
-			'info'     => __( 'Process', 'd4plib' ),
-			'system'   => __( 'System', 'd4plib' ),
-			'activity' => __( 'Activity', 'd4plib' ),
-			'warning'  => __( 'Warning', 'd4plib' ),
-			'error'    => __( 'Error', 'd4plib' ),
-		);
-
-		$render = '<ul>';
-
-		foreach ( $messages as $message ) {
-			$now = DateTime::createFromFormat( 'U.u', $message['time'] );
-
-			if ( $now === false ) {
-				$now = DateTime::createFromFormat( 'U', absint( $message['time'] ?? 0 ) );
-			}
-
-			$date_time = $now === false ? '/' : $now->format( 'm-d-Y H:i:s' );
-
-			$render .= '<li class="__message __message-' . esc_attr( $message['type'] ) . '">';
-			$render .= '<span class="__date-time">' . $date_time . '</span>';
-			$render .= '<span class="__icon" title="' . esc_attr( $_labels[ $message['type'] ] ) . '"><i class="d4p-icon d4p-' . esc_attr( $_icons[ $message['type'] ] ) . ' d4p-icon-fw"></i></span>';
-			$render .= '<span class="__content">' . esc_html( $message['message'] ) . '</span>';
-			$render .= '</li>';
-		}
-
-		$render .= '</ul>';
-
-		return $render;
-	}
 }

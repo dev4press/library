@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Plugins\DB
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Plugins\DB
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Plugins;
+namespace Dev4Press\v55\Core\Plugins;
 
 use stdClass;
 
@@ -55,7 +55,7 @@ abstract class DB extends DBLite {
 	}
 
 	/** @global \wpdb $wpdb */
-	public function init() {
+	public function init() : void {
 		global $wpdb;
 
 		$plugin        = new stdClass();

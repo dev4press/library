@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v54\Core\Task\CRON
- * Version: v5.4
+ * Name:    Dev4Press\v55\Core\Task\CRON
+ * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v54\Core\Task;
+namespace Dev4Press\v55\Core\Task;
 
-use Dev4Press\v54\Core\Base\Background;
+use Dev4Press\v55\Core\Base\Background;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class CRON extends Background {
 	protected string $method = 'cron';
-	protected $job = '';
+	protected string $job = '';
 
 	public function __construct() {
 		parent::__construct();
@@ -43,7 +43,7 @@ abstract class CRON extends Background {
 		add_action( $this->job, array( $this, 'handler' ) );
 	}
 
-	protected function spawn() {
+	protected function spawn() : void {
 		if ( ! wp_next_scheduled( $this->job ) ) {
 			wp_schedule_single_event( time() + $this->delay, $this->job );
 		}
