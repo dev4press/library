@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class DateTime {
 	protected string $_mysql_format = 'Y-m-d H:i:s';
 
-	public function __construct() {
+	protected function __construct() {
 	}
 
 	/** @deprecated 5.5.0 Use self::i() instead. */

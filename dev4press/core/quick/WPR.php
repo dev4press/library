@@ -28,6 +28,7 @@
 namespace Dev4Press\v55\Core\Quick;
 
 use Dev4Press\v55\Core\Helpers\Error;
+use JetBrains\PhpStorm\NoReturn;
 use WP_Error;
 use WP_Query;
 use WP_Term;
@@ -399,7 +400,8 @@ class WPR {
 		}
 	}
 
-	public static function json_die( $data, $response = null ) {
+	#[NoReturn]
+	public static function json_die( $data, $response = null ) : void {
 		if ( ! headers_sent() ) {
 			header( 'Content-Type: application/json; charset=utf-8' );
 

@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class UserTransient {
-	public function __construct() {
+	protected function __construct() {
 	}
 
 	/** @deprecated 5.5.0 Use self::i() instead. */

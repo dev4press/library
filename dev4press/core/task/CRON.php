@@ -37,7 +37,7 @@ abstract class CRON extends Background {
 	protected string $method = 'cron';
 	protected string $job = '';
 
-	public function __construct() {
+	protected function __construct() {
 		parent::__construct();
 
 		add_action( $this->job, array( $this, 'handler' ) );

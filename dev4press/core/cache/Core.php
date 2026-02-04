@@ -58,7 +58,7 @@ abstract class Core {
 	}
 
 	public function store() : Store {
-		return Store::instance();
+		return Store::i();
 	}
 
 	public function add( $group, $key, $data ) : bool {
@@ -83,7 +83,7 @@ abstract class Core {
 		return $this->store()->in( $this->_key( $group, $key ), $this->store );
 	}
 
-	public function clear() {
+	public function clear() : void {
 		$this->store()->flush( $this->store );
 	}
 

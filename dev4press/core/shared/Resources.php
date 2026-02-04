@@ -382,11 +382,15 @@ class Resources {
 		),
 	);
 
-	public function __construct() {
-
+	protected function __construct() {
 	}
 
-	public static function instance() : Resources {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = null;
 
 		if ( ! isset( $instance ) ) {

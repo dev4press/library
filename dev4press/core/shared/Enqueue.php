@@ -58,7 +58,7 @@ class Enqueue {
 		'css' => array(),
 	);
 
-	public function __construct() {
+	protected function __construct() {
 		$this->_url = Library::i()->url();
 
 		$this->_libraries['js']  = Resources::instance()->shared_js();
@@ -68,7 +68,7 @@ class Enqueue {
 	}
 
 	/** @return Enqueue */
-	public static function init() {
+	public static function init() : static {
 		if ( is_null( self::$_current_instance ) ) {
 			self::$_current_instance = new Enqueue();
 		}
@@ -77,7 +77,7 @@ class Enqueue {
 	}
 
 	/** @return Enqueue */
-	public static function i() {
+	public static function i() : static {
 		return self::init();
 	}
 

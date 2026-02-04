@@ -43,12 +43,17 @@ abstract class Wizard {
 	public array $default = array();
 	public array $storage = array();
 
-	public function __construct() {
+	protected function __construct() {
 		$this->init_panels();
 		$this->init_data();
 	}
 
-	public static function instance() : static {
+    /** @deprecated 5.5.0 Use self::i() instead. */
+    public static function instance() : static {
+        return static::i();
+    }
+
+    public static function i() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {
@@ -170,7 +175,7 @@ abstract class Wizard {
 	}
 
 	public function render_checkboxes_list( string $panel, string $name, array $value = array(), array $list = array() ) : void {
-		Elements::instance()->checkboxes( $list, array(
+		Elements::i()->checkboxes( $list, array(
 			'selected' => $value,
 			'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
 			'id'       => $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name,
@@ -178,7 +183,7 @@ abstract class Wizard {
 	}
 
 	public function render_select( string $panel, string $name, string $value = '', array $list = array() ) : void {
-		Elements::instance()->select( $list, array(
+		Elements::i()->select( $list, array(
 			'selected' => $value,
 			'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
 			'id'       => $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name,
@@ -190,7 +195,7 @@ abstract class Wizard {
 		$args['name']  = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
 		$args['id']    = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
 
-		Elements::instance()->input( $value, $args );
+		Elements::i()->input( $value, $args );
 	}
 
 	public function render_hidden( string $panel, string $name, string $value = 'no' ) : void {
@@ -209,7 +214,7 @@ abstract class Wizard {
 		$args['id']      = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
 		$args['pattern'] = '^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$';
 
-		Elements::instance()->input( $value, $args );
+		Elements::i()->input( $value, $args );
 	}
 
 	protected function item_saved( string $panel, string $key, $value ) {

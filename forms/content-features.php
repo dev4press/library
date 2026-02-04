@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     $options  = $class::instance( $subpanel );
     $groups   = $options->get();
 
-    Render::instance( panel()->a()->n(), panel()->a()->plugin_prefix )->prepare( $subpanel, $groups )->render();
+    Render::i( panel()->a()->n(), panel()->a()->plugin_prefix )->prepare( $subpanel, $groups )->render();
 
     ?>
 

@@ -50,7 +50,7 @@ class Micromodal {
 	protected array $args = array();
 	protected array $settings = array();
 
-	public function __construct() {
+	protected function __construct() {
 		if ( $this->defaults_args['modal-class'] == 'dev4press' ) {
 			$this->defaults_args['modal-class'] = 'dev4press-v55';
 		}

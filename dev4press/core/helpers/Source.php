@@ -37,7 +37,7 @@ class Source {
 	private array $paths = array();
 	private array $origins = array();
 
-	public function __construct() {
+	private function __construct() {
 		foreach (
 			array(
 				'plugin'      => WP_PLUGIN_DIR,
@@ -60,7 +60,12 @@ class Source {
 		}
 	}
 
-	public static function instance() : Source {
+	/** @deprecated 5.5.0 Use self::i() instead. */
+	public static function instance() : self {
+		return static::i();
+	}
+
+	public static function i() : self {
 		static $instance = false;
 
 		if ( $instance === false ) {

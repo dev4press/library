@@ -73,9 +73,13 @@ final class Enqueue {
 	/**
 	 * @param $admin \Dev4Press\v55\Core\Admin\Plugin|\Dev4Press\v55\Core\Admin\Menu\Plugin|\Dev4Press\v55\Core\Admin\Submenu\Plugin
 	 *
-	 * @return \Dev4Press\v55\Core\UI\Enqueue
+	 * @deprecated 5.5.0 Use self::i() instead.
 	 */
-	public static function instance( $admin ) : Enqueue {
+	public static function instance( $admin ) : self {
+		return self::i( $admin );
+	}
+
+	public static function i( $admin ) : self {
 		static $_d4p_lib_loader = array();
 
 		$base = $admin->plugin;

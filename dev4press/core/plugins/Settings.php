@@ -54,7 +54,7 @@ abstract class Settings {
 	public array $network_groups = array();
 	public Information $info;
 
-	public function __construct() {
+	protected function __construct() {
 		$this->constructor();
 	}
 
@@ -309,7 +309,7 @@ abstract class Settings {
 			if ( in_array( $key, $list ) ) {
 				$this->current[ $key ] = (array) $data;
 
-				$this->save( $key, $silent );;
+				$this->save( $key, $silent );
 			}
 		}
 	}
@@ -409,7 +409,7 @@ abstract class Settings {
 		$this->current['info']['update']  = false;
 
 		if ( isset( $this->current['core'] ) ) {
-			$this->current['core']['installed'] = DateTime::instance()->mysql_date();
+			$this->current['core']['installed'] = DateTime::i()->mysql_date();
 		}
 
 		foreach ( $this->current as $key => $data ) {
@@ -455,7 +455,7 @@ abstract class Settings {
 				$this->current[ $key ] = $now;
 
 				if ( $key == 'core' ) {
-					$this->current['core']['updated'] = DateTime::instance()->mysql_date();
+					$this->current['core']['updated'] = DateTime::i()->mysql_date();
 				}
 
 				$this->_settings_update( $key, $now );
@@ -521,9 +521,9 @@ abstract class Settings {
 		}
 
 		$site_id = get_current_network_id();
-		$options = DB::instance()->prepare_in_list( $core_options );
-		$query   = DB::instance()->prepare( 'SELECT `meta_key`, `meta_value` FROM ' . DB::instance()->sitemeta . " WHERE `meta_key` IN ($options) AND `site_id` = %d", $site_id );
-		$options = DB::instance()->get_results( $query );
+		$options = DB::i()->prepare_in_list( $core_options );
+		$query   = DB::i()->prepare( 'SELECT `meta_key`, `meta_value` FROM ' . DB::i()->sitemeta . " WHERE `meta_key` IN ($options) AND `site_id` = %d", $site_id );
+		$options = DB::i()->get_results( $query );
 
 		foreach ( $options as $option ) {
 			$key   = $option->meta_key;
@@ -542,8 +542,8 @@ abstract class Settings {
 			$core_options[] = $this->_name( $group );
 		}
 
-		$options = DB::instance()->prepare_in_list( $core_options );
-		$options = DB::instance()->get_results( 'SELECT `option_name`, `option_value` FROM ' . DB::instance()->options . " WHERE `option_name` IN ($options)" );
+		$options = DB::i()->prepare_in_list( $core_options );
+		$options = DB::i()->get_results( 'SELECT `option_name`, `option_value` FROM ' . DB::i()->options . " WHERE `option_name` IN ($options)" );
 
 		foreach ( $options as $option ) {
 			$option->option_value = maybe_unserialize( $option->option_value );

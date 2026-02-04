@@ -196,10 +196,10 @@ abstract class Panel {
 
         echo '<div class="d4p-content-wrapper">';
         if ( $this->has_sidebar() ) {
-            $this->include_sidebar( $this->override_sidebar );;
+            $this->include_sidebar( $this->override_sidebar );
         }
 
-        $this->include_content( $this->override_content );;
+        $this->include_content( $this->override_content );
         echo '</div>';
 
         if ( $this->has_form() ) {

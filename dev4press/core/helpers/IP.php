@@ -149,7 +149,7 @@ class IP {
 		} else if ( self::is_v6( $ip ) ) {
 			$hex = bin2hex( inet_pton( $ip ) );
 
-			if ( substr( $hex, 0, 24 ) == '00000000000000000000ffff' ) {
+			if ( str_starts_with( $hex, '00000000000000000000ffff' ) ) {
 				return long2ip( hexdec( substr( $hex, - 8 ) ) );
 			}
 

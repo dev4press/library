@@ -53,7 +53,7 @@ final class WordPress {
 	private array $_switches;
 	private array $_cached;
 
-	public function __construct() {
+	private function __construct() {
 		global $wp_version;
 
 		$this->_cached = array();

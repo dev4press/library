@@ -43,7 +43,7 @@ class Detection {
 	);
 	protected bool $has_regex = false;
 
-	public function __construct() {
+	protected function __construct() {
 		$this->reset();
 		$this->init();
 		$this->listen();
@@ -64,7 +64,7 @@ class Detection {
 		return $instance;
 	}
 
-	public function reset() {
+	public function reset() : void {
 		$this->detection = array(
 			'name' => '',
 			'data' => '',
@@ -244,7 +244,7 @@ class Detection {
 		}
 	}
 
-	protected function listen() {
+	protected function listen() : void {
 		add_filter( 'wp_mail', array( $this, 'intercept_wp_mail' ), 1 );
 		add_action( 'bp_send_email', array( $this, 'intercept_buddypress' ), 10, 2 );
 		add_filter( 'wpmem_email_filter', array( $this, 'intercept_wp_members' ) );

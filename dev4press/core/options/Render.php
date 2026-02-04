@@ -372,7 +372,7 @@ class Render {
 
 	protected function _render_buttons( Element $setting ) : void {
 		if ( ! empty( $setting->buttons ) ) {
-			Elements::instance()->buttons( $setting->buttons );
+			Elements::i()->buttons( $setting->buttons );
 		}
 	}
 
@@ -492,7 +492,7 @@ class Render {
 	}
 
 	protected function draw_license( Element $element, $value, $name_base, $id_base ) : void {
-		Elements::instance()->input( $value, array(
+		Elements::i()->input( $value, array(
 			'echo'        => true,
 			'id'          => $id_base,
 			'name'        => $name_base,
@@ -509,7 +509,7 @@ class Render {
 	}
 
 	protected function draw_text( Element $element, $value, $name_base, $id_base, $type = 'text' ) : void {
-		Elements::instance()->input( $value, array(
+		Elements::i()->input( $value, array(
 			'echo'        => true,
 			'id'          => $id_base,
 			'name'        => $name_base,
@@ -543,7 +543,7 @@ class Render {
 	}
 
 	protected function draw_number( Element $element, $value, $name_base, $id_base ) : void {
-		Elements::instance()->input( $value, array(
+		Elements::i()->input( $value, array(
 			'echo'        => true,
 			'id'          => $id_base,
 			'name'        => $name_base,
@@ -585,7 +585,7 @@ class Render {
 
 		$value = is_null( $value ) || $value === true ? array_keys( $data ) : (array) $value;
 
-		Elements::instance()->checkboxes_with_hierarchy( $data, array(
+		Elements::i()->checkboxes_with_hierarchy( $data, array(
 			'selected' => $value,
 			'name'     => $name_base,
 			'id'       => $id_base,
@@ -603,7 +603,7 @@ class Render {
 				break;
 		}
 
-		Elements::instance()->checkboxes_grouped(
+		Elements::i()->checkboxes_grouped(
 			$data,
 			array(
 				'selected' => $value,
@@ -626,7 +626,7 @@ class Render {
 				break;
 		}
 
-		Elements::instance()->checkboxes(
+		Elements::i()->checkboxes(
 			$data,
 			array(
 				'selected' => $value,
@@ -651,7 +651,7 @@ class Render {
 
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
-		Elements::instance()->select_grouped(
+		Elements::i()->select_grouped(
 			$data,
 			array(
 				'selected' => $value,
@@ -676,7 +676,7 @@ class Render {
 
 		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
 
-		Elements::instance()->select(
+		Elements::i()->select(
 			$data,
 			array(
 				'selected' => $value,
@@ -737,7 +737,7 @@ class Render {
 		);
 
 		if ( empty( $list ) ) {
-			Elements::instance()->select(
+			Elements::i()->select(
 				array( '0' => __( 'No items to show', 'd4plib' ) ),
 				array(
 					'selected' => 0,
@@ -774,7 +774,7 @@ class Render {
 		);
 
 		if ( empty( $list ) ) {
-			Elements::instance()->select(
+			Elements::i()->select(
 				array( '0' => __( 'No items to show', 'd4plib' ) ),
 				array(
 					'selected' => 0,
@@ -1149,7 +1149,7 @@ class Render {
 		$pairs = array();
 
 		foreach ( array_keys( $sizes ) as $unit ) {
-			if ( substr( $value, - strlen( $unit ) ) === $unit ) {
+			if ( str_ends_with( $value, $unit ) ) {
 				$pairs[0] = substr( $value, 0, strlen( $value ) - strlen( $unit ) );
 				$pairs[1] = $unit;
 			}
@@ -1182,7 +1182,7 @@ class Render {
 
 		echo sprintf( '<label for="%s_unit"><span class="d4p-accessibility-show-for-sr">' . esc_html__( 'Unit', 'd4plib' ) . ': </span></label>', esc_attr( $id_base ) );
 
-		Elements::instance()->select(
+		Elements::i()->select(
 			$allowed_sizes,
 			array(
 				'selected' => $pairs[1],

@@ -326,7 +326,7 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function _get_period_where( string $period, string $column ) : string {
-		if ( substr( $period, 0, 5 ) == 'last-' ) {
+		if ( str_starts_with( $period, 'last-' ) ) {
 			$periods = array(
 				'hour'     => '1 HOUR',
 				'half-day' => '12 HOUR',
@@ -357,11 +357,11 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function _get_search_where( array $fields, string $s ) : string {
-		$search = '%' . DB::instance()->wpdb()->esc_like( $s ) . '%';
+		$search = '%' . DB::i()->wpdb()->esc_like( $s ) . '%';
 		$where  = array();
 
 		foreach ( $fields as $field ) {
-			$where[] = DB::instance()->prepare( "$field LIKE %s", $search );
+			$where[] = DB::i()->prepare( "$field LIKE %s", $search );
 		}
 
 		return '(' . join( ' OR ', $where ) . ')';

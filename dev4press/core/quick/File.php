@@ -111,7 +111,7 @@ class File {
 				$ext = pathinfo( $file, PATHINFO_EXTENSION );
 
 				if ( empty( $extensions ) || in_array( $ext, $extensions ) ) {
-					if ( substr( $file, 0, 1 ) != '.' ) {
+					if ( ! str_starts_with( $file, '.' ) ) {
 						if (
 							( is_dir( $path . $file ) && ( in_array( $filter, array( 'folders', 'all' ) ) ) ) ||
 							( is_file( $path . $file ) && ( in_array( $filter, array( 'files', 'all' ) ) ) ) ||

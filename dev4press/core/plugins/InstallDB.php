@@ -40,7 +40,7 @@ abstract class InstallDB {
 	protected string $plugin = '';
 	protected array $tables = array();
 
-	public function __construct() {
+	protected function __construct() {
 	}
 
 	/** @deprecated 5.5.0 Use self::i() instead. */
