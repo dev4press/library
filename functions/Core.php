@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'dev4press_v55_autoload_for_plugin' ) ) {
 	function dev4press_v55_autoload_for_plugin( $class, $base, $path, $path_prefix = '' ) {
-		if ( substr( $class, 0, strlen( $base ) ) == $base ) {
+		if ( str_starts_with( $class, $base ) ) {
 			$clean = substr( $class, strlen( $base ) );
 			$parts = explode( '\\', $clean );
 

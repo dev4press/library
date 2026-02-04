@@ -33,7 +33,7 @@ abstract class Job {
 	protected int $timer = 0;
 	protected int $offset = 5;
 
-	public function __construct() {
+	protected function __construct() {
 		$this->timer = $this->now();
 		$this->max   = absint( ini_get( 'max_execution_time' ) );
 
@@ -44,7 +44,12 @@ abstract class Job {
 		$this->prepare();
 	}
 
+	/** @deprecated 5.5.0 Use self::i() instead. */
 	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {

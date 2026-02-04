@@ -26,7 +26,7 @@ class Render {
 	public function icon_class( $name, $modifiers = array(), $extra_class = '' ) : string {
 		$dashicons = false;
 
-		if ( substr( $name, 0, 9 ) == 'dashicons' ) {
+		if ( str_starts_with( $name, 'dashicons' ) ) {
 			$dashicons = true;
 			$class     = 'dashicons ' . $name;
 		} else {

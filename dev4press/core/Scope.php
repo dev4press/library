@@ -43,7 +43,7 @@ class Scope {
 	private bool $frontend = false;
 	private int $blog_id;
 
-	public function __construct() {
+	protected function __construct() {
 		$this->multisite = is_multisite();
 		$this->blog_id   = get_current_blog_id();
 

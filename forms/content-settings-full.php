@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         $groups = $options->get( $subpanel );
 
-        Render::instance( panel()->a()->n(), panel()->a()->plugin_prefix )->prepare( $subpanel, $groups )->render();
+        Render::i( panel()->a()->n(), panel()->a()->plugin_prefix )->prepare( $subpanel, $groups )->render();
     }
 
     ?>

@@ -28,6 +28,7 @@
 namespace Dev4Press\v55\Core\Plugins;
 
 use Dev4Press\v55\Core\Quick\Sanitize;
+use JetBrains\PhpStorm\NoReturn;
 
 abstract class AJAX {
 	protected string $prefix = 'd4plib';
@@ -36,11 +37,16 @@ abstract class AJAX {
 	protected bool $no_cache_headers = true;
 	protected array $validation = array();
 
-	public function __construct() {
+	protected function __construct() {
 		add_action( $this->prefix . '_ajax_request_error', array( $this, 'process_error' ), 10, 5 );
 	}
 
+	/** @deprecated 5.5.0 Use self::i() instead. */
 	public static function instance() : static {
+		return static::i();
+	}
+
+	public static function i() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {
@@ -158,10 +164,12 @@ abstract class AJAX {
 		$this->raise_error( 'request_unauthorized', $request, __( 'Unauthorized Request.', 'd4plib' ), 401 );
 	}
 
+	#[NoReturn]
 	protected function return_error_html( string $message = '', int $code = 400 ) : void {
 		$this->respond( $message, false, $code );
 	}
 
+	#[NoReturn]
 	protected function return_error( string $message = '', int $code = 400, array $args = array() ) : void {
 		$result = array(
 			'status'  => 'error',
@@ -175,7 +183,8 @@ abstract class AJAX {
 		$this->respond( $result, true, $code );
 	}
 
-	protected function respond( $response, bool $json = false, int $code = 200 ) {
+	#[NoReturn]
+	protected function respond( $response, bool $json = false, int $code = 200 ) : void {
 		status_header( $code );
 
 		if ( $this->no_cache_headers ) {

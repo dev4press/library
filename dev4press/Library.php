@@ -46,8 +46,8 @@ final class Library {
 	private string $_base_path = 'vendor/dev4press/library';
 	private DateTime $_datetime;
 
-	public function __construct() {
-		$this->_datetime     = new DateTime();
+	private function __construct() {
+		$this->_datetime     = DateTime::i();
 		$this->_php_version  = (string) phpversion();
 		$this->_php_code     = absint( substr( str_replace( '.', '', $this->_php_version ), 0, 2 ) );
 		$this->_library_url  = str_replace( '/' . $this->_base_path . '/dev4press/', '/' . $this->_base_path . '/', plugins_url( '/', __FILE__ ) );

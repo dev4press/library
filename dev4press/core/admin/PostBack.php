@@ -170,7 +170,7 @@ abstract class PostBack {
 	}
 
 	protected function _process_save_data( $base, $request ) : void {
-		$data = Process::instance( $this->a()->n(), $this->a()->plugin_prefix )->prepare( $base )->process( $request );
+		$data = Process::i( $this->a()->n(), $this->a()->plugin_prefix )->prepare( $base )->process( $request );
 
 		$filter  = $this->a()->h( 'settings_save_settings_value' );
 		$primary = $this->a()->is_save_destination_primary();

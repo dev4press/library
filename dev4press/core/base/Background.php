@@ -46,7 +46,7 @@ abstract class Background {
 	protected int $delay = 10;
 	protected string $abort = '';
 
-	public function __construct() {
+	protected function __construct() {
 		$this->timer = $this->now();
 		$this->max   = absint( ini_get( 'max_execution_time' ) );
 

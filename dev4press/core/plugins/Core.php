@@ -59,7 +59,7 @@ abstract class Core {
 	protected int $_after_setup_theme_priority = 10;
 	protected string $_library_code = 'v55';
 
-	public function __construct() {
+	protected function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), $this->_plugins_loaded_priority );
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), $this->_after_setup_theme_priority );
 	}

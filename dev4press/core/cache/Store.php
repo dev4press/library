@@ -41,7 +41,7 @@ class Store {
 	public int $cache_hits = 0;
 	public int $cache_misses = 0;
 
-	public function __construct() {
+	protected function __construct() {
 		$this->multisite   = is_multisite();
 		$this->blog_prefix = $this->multisite ? get_current_blog_id() . ':' : '';
 	}

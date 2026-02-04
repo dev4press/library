@@ -38,14 +38,14 @@ abstract class AJAX extends Background {
 	protected string $nonce = '';
 	protected string $action = '';
 
-	public function __construct() {
+	protected function __construct() {
 		parent::__construct();
 
 		add_action( 'wp_ajax_' . $this->action, array( $this, 'handler' ) );
 		add_action( 'wp_ajax_nopriv_' . $this->action, array( $this, 'handler' ) );
 	}
 
-	protected function prepare() {
+	protected function prepare() : void {
 		if ( isset( $_REQUEST['_ajax_nonce'] ) && wp_verify_nonce( $_REQUEST['_ajax_nonce'], $this->nonce ) ) {
 			return;
 		}
@@ -53,7 +53,7 @@ abstract class AJAX extends Background {
 		wp_die( - 1 );
 	}
 
-	protected function spawn() {
+	protected function spawn() : void {
 		$url = admin_url( 'admin-ajax.php' );
 		$url = add_query_arg( array(
 			'action'      => $this->action,

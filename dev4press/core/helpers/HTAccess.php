@@ -66,7 +66,7 @@ class HTAccess {
 				$temp_diff = array_diff( $content, $temp_file );
 
 				if ( empty( $temp_diff ) ) {
-					if ( $this->file_exists( $this->path ) ) {
+					if ( $this->file_exists() ) {
 						wp_delete_file( $this->path );
 					}
 
@@ -226,11 +226,11 @@ class HTAccess {
 			$marker     = $marker_data[ $i ];
 			$line       = trim( $marker );
 
-			if ( substr( $line, 0, 8 ) == '# BEGIN ' ) {
+			if ( str_starts_with( $line, '# BEGIN ' ) ) {
 				$begin = true;
-			} else if ( substr( $line, 0, 5 ) == '# END' ) {
+			} else if ( str_starts_with( $line, '# END' ) ) {
 				$end = true;
-			} else if ( substr( $line, 0, 2 ) == '# ' ) {
+			} else if ( str_starts_with( $line, '# ' ) ) {
 				$comment = true;
 			} else if ( ! empty( $line ) ) {
 				$directive = true;

@@ -82,7 +82,12 @@ abstract class Information {
 		return (array) $this;
 	}
 
+	/** @deprecated 5.5.0 Use self::i() instead. */
 	public static function instance() : static {
+		return static::i();
+	}
+
+	protected static function i() : static {
 		static $instance = array();
 
 		if ( ! isset( $instance[ static::class ] ) ) {

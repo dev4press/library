@@ -45,7 +45,7 @@ $_panel = panel()->object();
 
         <div class="d4p-panel-links">
             <p><?php echo KSES::standard( $_panel->links['info'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-            <?php Elements::instance()->buttons( $_panel->links['buttons'] ); ?>
+            <?php Elements::i()->buttons( $_panel->links['buttons'] ); ?>
         </div>
 
     <?php } ?>

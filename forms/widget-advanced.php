@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <td class="cell-singular">
             <label for="<?php echo esc_attr( $this->get_field_id( '_users' ) ); ?>"><?php esc_html_e( 'Show widget to', 'd4plib' ); ?>:</label>
             <?php
-            Elements::instance()->select(
+            Elements::i()->select(
                     $this->get_list_user_visibility(),
                     array(
                             'id'       => $this->get_field_id( '_users' ),
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             <td class="cell-singular">
                 <label for="<?php echo esc_attr( $this->get_field_id( '_roles' ) ); ?>"><?php esc_html_e( 'Roles', 'd4plib' ); ?>:</label>
                 <?php
-                Elements::instance()->checkboxes(
+                Elements::i()->checkboxes(
                         WPR::list_user_roles(),
                         array(
                                 'id'       => $this->get_field_id( '_roles' ),

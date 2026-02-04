@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Settings {
 	protected array $settings;
 
-	public function __construct() {
+	protected function __construct() {
 		$this->init();
 	}
 

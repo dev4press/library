@@ -37,7 +37,7 @@ abstract class Transient {
 	protected $expiration = DAY_IN_SECONDS;
 	protected array $elements = array();
 
-	public function __construct() {
+	protected function __construct() {
 	}
 
 	public static function i() : static {

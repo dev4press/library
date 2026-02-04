@@ -93,7 +93,7 @@ abstract class DBLite {
 	protected static array $_queries_log = array();
 	protected array $_methods_log = array( 'query', 'get_results', 'get_row', 'get_var', 'insert', 'update', 'delete' );
 
-	public function __construct() {
+	protected function __construct() {
 	}
 
 	public function init() {

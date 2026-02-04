@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Divider extends Control {
 	public $type = 'd4p-ctrl-divider';
 
-	protected function render_content() {
+	protected function render_content() : void {
 		$show_hr = true;
 
 		if ( isset( $this->input_attrs['hide_line'] ) && $this->input_attrs['hide_line'] === true ) {
