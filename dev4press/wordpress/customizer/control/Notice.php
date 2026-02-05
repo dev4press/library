@@ -48,6 +48,5 @@ class Notice extends Control {
 			<?php } ?>
         </div>
 		<?php
-
 	}
 }

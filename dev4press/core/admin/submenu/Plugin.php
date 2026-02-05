@@ -91,7 +91,7 @@ abstract class Plugin extends BasePlugin {
 		$this->admin_load_hooks();
 	}
 
-	public function current_screen( $screen ) {
+	public function current_screen( $screen ) : void {
 		if ( ! empty( $this->page_ids[0] ) && $screen->id == $this->page_ids[0] ) {
 			$this->page = true;
 		}

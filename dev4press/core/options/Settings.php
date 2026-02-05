@@ -27,9 +27,6 @@
 
 namespace Dev4Press\v55\Core\Options;
 
-use Dev4Press\v55\Core\DateTime;
-use Dev4Press\v55\Core\Quick\Str;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
