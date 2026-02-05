@@ -5,7 +5,6 @@ namespace Dev4Press\v55\Core\UI\Admin;
 use Dev4Press\v55\Core\Quick\KSES;
 use Dev4Press\v55\Core\Task\Runner;
 use Dev4Press\v55\Library;
-use Dev4Press\v55\WordPress\Admin\Table;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;

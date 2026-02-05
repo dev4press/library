@@ -130,7 +130,7 @@ abstract class Plugin extends BasePlugin {
 		$this->admin_load_hooks();
 	}
 
-	public function current_screen( $screen ) {
+	public function current_screen( $screen ) : void {
 		$this->screen_id = $screen->id;
 
 		$parts = explode( '_page_', $this->screen_id, 2 );
