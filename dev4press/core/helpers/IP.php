@@ -9,7 +9,7 @@
  * @package Dev4PressLibrary
  *
  * == Copyright ==
- * Copyright 2008 - 2025 Milan Petrovic (email: support@dev4press.com)
+ * Copyright 2008 - 2026 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -73,11 +73,21 @@ class IP {
 	);
 
 	public static function is_v4( $ip ) : bool {
-		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 );
+		if ( ! is_string( $ip ) || preg_match( '/^[0-9.]+$/', $ip ) !== 1 ) {
+			return false;
+		}
+
+		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) === $ip;
 	}
 
 	public static function is_v6( $ip ) : bool {
-		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 );
+		if ( ! is_string( $ip ) || strlen( $ip ) > 45 ) {
+			if ( preg_match( '/^[0-9a-fA-F:]+$/', $ip ) !== 1 ) {
+				return false;
+			}
+		}
+
+		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) === $ip;
 	}
 
 	public static function is_in_range( $ip, $range ) : bool {
@@ -89,58 +99,71 @@ class IP {
 			list( $subnet, $mask ) = explode( '/', $range, 2 );
 
 			if ( $mask <= 0 ) {
-				return false;
+				return true;
 			}
 
-			$ip_binary  = sprintf( '%032b', ip2long( $ip ) );
-			$net_binary = sprintf( '%032b', ip2long( $subnet ) );
-
-			return ( substr_compare( $ip_binary, $net_binary, 0, $mask ) === 0 );
-		} else {
-			if ( str_contains( $range, '*' ) ) {
-				$lower = str_replace( '*', '0', $range );
-				$upper = str_replace( '*', '255', $range );
-				$range = "$lower-$upper";
+			if ( $mask >= 32 ) {
+				return $ip === $subnet;
 			}
 
-			if ( str_contains( $range, '-' ) ) {
-				list( $lower, $upper ) = explode( '-', $range, 2 );
+			$ip_long     = ip2long( $ip );
+			$subnet_long = ip2long( $subnet );
 
-				$lower_dec = (float) sprintf( '%u', ip2long( $lower ) );
-				$upper_dec = (float) sprintf( '%u', ip2long( $upper ) );
-				$ip_dec    = (float) sprintf( '%u', ip2long( $ip ) );
+			$netmask = - 1 << ( 32 - $mask );
 
-				return ( ( $ip_dec >= $lower_dec ) && ( $ip_dec <= $upper_dec ) );
-			}
-
-			return false;
+			return ( ( $ip_long & $netmask ) === ( $subnet_long & $netmask ) );
 		}
+
+		if ( str_contains( $range, '*' ) ) {
+			$lower = str_replace( '*', '0', $range );
+			$upper = str_replace( '*', '255', $range );
+			$range = "$lower-$upper";
+		}
+
+		if ( str_contains( $range, '-' ) ) {
+			list( $lower, $upper ) = explode( '-', $range, 2 );
+
+			$ip_dec    = sprintf( '%u', ip2long( $ip ) );
+			$lower_dec = sprintf( '%u', ip2long( trim( $lower ) ) );
+			$upper_dec = sprintf( '%u', ip2long( trim( $upper ) ) );
+
+			return ( $ip_dec >= $lower_dec && $ip_dec <= $upper_dec );
+		}
+
+		return false;
 	}
 
 	public static function is_ipv6_in_range( $ip, $range ) : bool {
+		if ( ! str_contains( $range, '/' ) ) {
+			return $ip === $range;
+		}
+
 		list( $subnet, $mask ) = explode( '/', $range, 2 );
 
-		$subnet = inet_pton( $subnet );
-		$ip     = inet_pton( $ip );
+		$subnet_bin = inet_pton( $subnet );
+		$ip_bin     = inet_pton( $ip );
 
-		$mask_binary = str_repeat( 'f', $mask / 4 );
+		if ( strlen( $subnet_bin ) !== 16 || strlen( $ip_bin ) !== 16 ) {
+			return false;
+		}
+
+		$mask_hex = str_repeat( 'f', (int) ( $mask / 4 ) );
 		switch ( $mask % 4 ) {
-			case 0:
-				break;
 			case 1:
-				$mask_binary .= '8';
+				$mask_hex .= '8';
 				break;
 			case 2:
-				$mask_binary .= 'c';
+				$mask_hex .= 'c';
 				break;
 			case 3:
-				$mask_binary .= 'e';
+				$mask_hex .= 'e';
 				break;
 		}
-		$mask_binary = str_pad( $mask_binary, 32, '0' );
-		$mask_binary = pack( 'H*', $mask_binary );
 
-		return ( $ip & $mask_binary ) == $subnet;
+		$mask_hex = str_pad( $mask_hex, 32, '0' );
+		$mask_bin = pack( 'H*', $mask_hex );
+
+		return ( $ip_bin & $mask_bin ) === ( $subnet_bin & $mask_bin );
 	}
 
 	public static function full_ip( $ip ) : string {
@@ -192,12 +215,13 @@ class IP {
 	public static function is_cloudflare( $ip = null ) : bool {
 		if ( is_null( $ip ) ) {
 			if ( isset( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
-				$ip = $_SERVER['HTTP_X_REAL_IP'] ?? ( $_SERVER['REMOTE_ADDR'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-				$ip = self::validate( $ip );
+				$ip = $_SERVER['REMOTE_ADDR'] ?? '';
 
-				if ( $ip === false ) {
+				if ( empty( $ip ) ) {
 					return false;
 				}
+
+				return self::is_cloudflare( $ip );
 			} else {
 				return false;
 			}
@@ -207,17 +231,38 @@ class IP {
 			return false;
 		}
 
-		if ( ! str_contains( $ip, ':' ) ) {
+		if ( self::is_v4( $ip ) ) {
 			foreach ( self::$cloudflare_ipv4 as $cf ) {
 				if ( self::is_ipv4_in_range( $ip, $cf ) ) {
 					return true;
 				}
 			}
-		} else {
+		} else if ( self::is_v6( $ip ) ) {
 			foreach ( self::$cloudflare_ipv6 as $cf ) {
 				if ( self::is_ipv6_in_range( $ip, $cf ) ) {
 					return true;
 				}
+			}
+		}
+
+		return false;
+	}
+
+	public static function is_loopback( $ip ) : bool {
+		if ( $ip === '127.0.0.1' || $ip === '::1' ) {
+			return true;
+		}
+
+		$binary = @inet_pton( $ip );
+		if ( ! $binary ) {
+			return false;
+		}
+
+		if ( strlen( $binary ) === 16 ) {
+			$hex = bin2hex( $binary );
+
+			if ( str_starts_with( $hex, '00000000000000000000ffff7f' ) ) {
+				return true;
 			}
 		}
 
@@ -231,78 +276,27 @@ class IP {
 
 		$ip = self::validate( $_SERVER['SERVER_ADDR'] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 
-		if ( $ip == '::1' ) {
+		if ( self::is_loopback( $ip ) ) {
 			$ip = '127.0.0.1';
 		}
 
 		return (string) $ip;
 	}
 
-	public static function all() : array {
-		$keys = array(
-			'HTTP_CF_CONNECTING_IP',
-			'HTTP_CLIENT_IP',
-			'HTTP_X_REAL_IP',
-			'HTTP_X_FORWARDED_FOR',
-			'HTTP_X_FORWARDED',
-			'HTTP_X_CLUSTER_CLIENT_IP',
-			'HTTP_FORWARDED_FOR',
-			'HTTP_FORWARDED',
-			'REMOTE_ADDR',
-			'SERVER_ADDR',
-		);
-
-		$ips = array();
-
-		foreach ( $keys as $key ) {
-			$ip = self::get_ip_key_value( $key );
-
-			if ( $ip !== false ) {
-				$ips[ $key ] = $ip;
-			}
-		}
-
-		return $ips;
-	}
-
 	public static function visitor( bool $forwarded = true, bool $standard = true ) : string {
 		$ip = false;
 
 		if ( self::is_cloudflare() ) {
-			$ip = self::get_ip_key_value( 'HTTP_CF_CONNECTING_IP' );
+			$ips = self::get_all_ips( true, false, false, false, false );
 
-			if ( $ip !== false ) {
-				return $ip;
+			if ( ! empty( $ips ) ) {
+				return $ips[0]['ip'];
 			}
 		}
 
-		if ( $forwarded ) {
-			$ip = self::get_ip_key_value( 'HTTP_CLIENT_IP' );
+		$ips = self::get_all_ips( false, true, false, $forwarded, ! $standard );
 
-			if ( ! $ip ) {
-				$ip = self::get_ip_key_value( 'HTTP_X_FORWARDED_FOR' );
-			}
-
-			if ( ! $ip ) {
-				$ip = self::get_ip_key_value( 'HTTP_X_FORWARDED' );
-			}
-		}
-
-		if ( ! $standard ) {
-			$ip = self::get_visitor_ip_non_standard();
-		}
-
-		if ( ! $ip ) {
-			$ip = self::get_ip_key_value( 'REMOTE_ADDR' );
-		}
-
-		if ( $ip === false ) {
-			$ip = '';
-		}
-
-		if ( $ip === '::1' ) {
-			$ip = '127.0.0.1';
-		}
+		$ip  = self::process_ips_list_for_one_ip( $ips );
 
 		return (string) $ip;
 	}
@@ -323,6 +317,10 @@ class IP {
 				if ( $filtered !== false ) {
 					return $filtered;
 				}
+			}
+
+			if ( ! self::is_v6( $_ip ) && ! self::is_v4( $_ip ) ) {
+				continue;
 			}
 
 			$filtered = filter_var( $_ip, FILTER_VALIDATE_IP );
@@ -407,19 +405,123 @@ class IP {
 	}
 
 	public static function get_visitor_ip_non_standard() {
-		$keys = array(
-			'HTTP_X_CLUSTER_CLIENT_IP',
-			'HTTP_X_REAL_IP',
-			'HTTP_FORWARDED_FOR',
-			'HTTP_FORWARDED',
-		);
+		$ips = self::get_all_ips( false, false, false, false, true );
 
-		foreach ( $keys as $key ) {
-			$ip = self::get_ip_key_value( $key );
+		return self::process_ips_list_for_one_ip( $ips );
+	}
 
-			if ( $ip !== false ) {
-				break;
+	public static function process_ips_list_for_one_ip( $ips ) {
+		$public   = array();
+		$private  = array();
+		$loopback = array();
+
+		foreach ( $ips as $entry ) {
+			if ( ! $entry['is_valid'] ) {
+				continue;
 			}
+
+			if ( ! $entry['is_private'] && ! $entry['is_loopback'] ) {
+				$public[] = $entry['ip'];
+			} else if ( $entry['is_private'] && ! $entry['is_loopback'] ) {
+				$private[] = $entry['ip'];
+			} else if ( $entry['is_loopback'] ) {
+				$loopback[] = $entry['ip'];
+			}
+		}
+
+		if ( ! empty( $public ) ) {
+			return $public[0];
+		}
+
+		if ( ! empty( $private ) ) {
+			return $private[0];
+		}
+
+		if ( ! empty( $loopback ) ) {
+			return '127.0.0.1';
+		}
+
+		return false;
+	}
+
+	public static function get_all_ips( $cloudflare = true, $remote = true, $server = true, $forwarded = true, $nonstandard = true ) : array {
+		$results = array();
+		$headers = array();
+
+		if ( $cloudflare ) {
+			$headers[] = 'HTTP_CF_CONNECTING_IP';
+		}
+
+		if ( $remote ) {
+			$headers[] = 'REMOTE_ADDR';
+		}
+
+		if ( $forwarded ) {
+			$headers = array_merge( $headers, array(
+				'HTTP_X_FORWARDED_FOR',
+				'HTTP_X_FORWARDED',
+			) );
+		}
+
+		if ( $nonstandard ) {
+			$headers = array_merge( $headers, array(
+				'HTTP_FORWARDED_FOR',
+				'HTTP_FORWARDED',
+				'HTTP_X_CLUSTER_CLIENT_IP',
+				'HTTP_CLIENT_IP',
+				'HTTP_X_REAL_IP',
+			) );
+		}
+		if ( $server ) {
+			$headers[] = 'SERVER_ADDR';
+		}
+
+		foreach ( $headers as $key ) {
+			if ( ! empty( $_SERVER[ $key ] ) ) {
+				$raw = explode( ',', $_SERVER[ $key ] );
+
+				foreach ( $raw as $raw_ip ) {
+					$trimmed_ip = self::get_ip_without_port( $raw_ip );
+
+					$ip = array(
+						'ip'          => $trimmed_ip,
+						'source'      => $key,
+						'is_v4'       => self::is_v4( $trimmed_ip ),
+						'is_v6'       => self::is_v6( $trimmed_ip ),
+						'is_loopback' => false,
+						'is_private'  => false,
+					);
+
+					$ip['is_valid'] = $ip['is_v4'] || $ip['is_v6'];
+
+					if ( $ip['is_valid'] ) {
+						$ip['is_loopback'] = self::is_loopback( $trimmed_ip );
+						$ip['is_private']  = self::is_private( $trimmed_ip );
+					}
+
+					$results[] = $ip;
+				}
+			}
+		}
+
+		return $results;
+	}
+
+	public static function get_ip_without_port( string $ip ) : string {
+		$ip = trim( $ip );
+
+		if ( str_starts_with( $ip, '[' ) ) {
+			$endBracket = strpos( $ip, ']' );
+
+			if ( $endBracket !== false ) {
+				return substr( $ip, 1, $endBracket - 1 );
+			}
+		}
+
+		$colonCount = substr_count( $ip, ':' );
+
+		if ( $colonCount === 1 ) {
+			return explode( ':', $ip )[0];
 		}
 
 		return $ip;
