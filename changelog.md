@@ -2,37 +2,43 @@
 
 ## Changelog
 
-### Version 5.5 - 2026.02.07
+### Version 5.5.1 - 2026.02.06
 
-* New: system requirements - `PHP` 8.0 or newer 
-* New: system requirements - `WordPress` 6.2 or newer
-* New: many `PHP` related changes and improvements
-* New: shared code for background `Runner` interface
-* New: helper `IP` class can validate CIDR ranges
-* New: additional functions for string manipulation
-* New: refactoring and core improvements
-* Edit: changes related to WordPress and PHP code standards
-* Edit: improvements to the rendering of various panels
-* Edit: improvements to the settings and options rendering
-* Edit: updates to the plugin code classes
-* Edit: improved styling for the plugin settings panel
-* Edit: updated several icons in the webfont
-* Removed: legacy `License` class and handling code
-* Removed: legacy `Four` class and related code
+* **edit**: additional tweaks and improvements to the code
+* **fix**: small regression issues with inheritance
+* **fix**: some minor code formatting issues
+
+### Version 5.5 - 2026.02.04
+
+* **new**: system requirements - `PHP` 8.0 or newer 
+* **new**: system requirements - `WordPress` 6.2 or newer
+* **new**: many `PHP` related changes and improvements
+* **new**: shared code for background `Runner` interface
+* **new**: helper `IP` class can validate CIDR ranges
+* **new**: additional functions for string manipulation
+* **new**: refactoring and core improvements
+* **edit**: changes related to WordPress and PHP code standards
+* **edit**: improvements to the rendering of various panels
+* **edit**: improvements to the settings and options rendering
+* **edit**: updates to the plugin code classes
+* **edit**: improved styling for the plugin settings panel
+* **edit**: updated several icons in the webfont
+* **removed**: legacy `License` class and handling code
+* **removed**: legacy `Four` class and related code
 
 ### Version 5.4 - 2025.05.23
 
-* New: additional free flag in the `License`
-* New: show admin notices when license is not activated
-* New: updated license validation on save
-* New: improved weekly license validation
+* **new**: additional free flag in the `License`
+* **new**: show admin notices when license is not activated
+* **new**: updated license validation on save
+* **new**: improved weekly license validation
 
 ### Version 5.3 - 2025.01.26
 
-* New: composer file requirements expanded
-* New: many PHP related changes and improvements
-* New: expanded `DBLite` with few new methods
-* Edit: improvements to the frontend `Grid` object
-* Edit: improved styling for the plugin settings panel
-* Removed: built-in cacert.pem
-* Removed: unused balloon stylesheet
+* **new**: composer file requirements expanded
+* **new**: many PHP related changes and improvements
+* **new**: expanded `DBLite` with few new methods
+* **edit**: improvements to the frontend `Grid` object
+* **edit**: improved styling for the plugin settings panel
+* **removed**: built-in cacert.pem
+* **removed**: unused balloon stylesheet

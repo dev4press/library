@@ -9,7 +9,7 @@
  * @package Dev4PressLibrary
  *
  * == Copyright ==
- * Copyright 2008 - 2025 Milan Petrovic (email: support@dev4press.com)
+ * Copyright 2008 - 2026 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,9 +35,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Library {
-	private string $_version = '5.5';
+	private string $_version = '5.5.1';
 	private string $_code = 'v55';
-	private string $_build = '5500';
+	private string $_build = '5510';
 	private string $_php_version;
 	private int $_php_code;
 	private string $_library_url;
