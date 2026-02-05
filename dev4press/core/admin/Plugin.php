@@ -616,7 +616,7 @@ abstract class Plugin {
 
 	abstract public function admin_menu() : void;
 
-	abstract public function current_screen( $screen );
+	abstract public function current_screen( $screen ) : void;
 
 	abstract public function run_getback() : void;
 

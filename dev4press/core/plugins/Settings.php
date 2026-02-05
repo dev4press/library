@@ -29,7 +29,6 @@ namespace Dev4Press\v55\Core\Plugins;
 
 use Dev4Press\v55\Core\DateTime;
 use Dev4Press\v55\Core\Helpers\DB;
-use Dev4Press\v55\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

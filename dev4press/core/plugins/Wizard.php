@@ -32,21 +32,21 @@ use Dev4Press\v55\Core\UI\Elements;
 use JetBrains\PhpStorm\NoReturn;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 abstract class Wizard {
-	public string $panel = '';
-	public array $panels = array();
-	public array $types = array();
-	public array $allowed = array();
-	public array $default = array();
-	public array $storage = array();
+    public string $panel = '';
+    public array $panels = array();
+    public array $types = array();
+    public array $allowed = array();
+    public array $default = array();
+    public array $storage = array();
 
-	protected function __construct() {
-		$this->init_panels();
-		$this->init_data();
-	}
+    protected function __construct() {
+        $this->init_panels();
+        $this->init_data();
+    }
 
     /** @deprecated 5.5.0 Use self::i() instead. */
     public static function instance() : static {
@@ -54,113 +54,113 @@ abstract class Wizard {
     }
 
     public static function i() : static {
-		static $instance = array();
+        static $instance = array();
 
-		if ( ! isset( $instance[ static::class ] ) ) {
-			$instance[ static::class ] = new static();
-		}
+        if ( ! isset( $instance[ static::class ] ) ) {
+            $instance[ static::class ] = new static();
+        }
 
-		return $instance[ static::class ];
-	}
+        return $instance[ static::class ];
+    }
 
-	public function setup_panel( $panel ) : void {
-		$this->panel = $panel;
+    public function setup_panel( $panel ) : void {
+        $this->panel = $panel;
 
-		if ( ! isset( $this->panels[ $panel ] ) || $panel === false || is_null( $panel ) ) {
-			$this->panel = 'intro';
-		}
-	}
+        if ( ! isset( $this->panels[ $panel ] ) || $panel === false || is_null( $panel ) ) {
+            $this->panel = 'intro';
+        }
+    }
 
-	public function current_panel() : string {
-		return $this->panel;
-	}
+    public function current_panel() : string {
+        return $this->panel;
+    }
 
-	public function panels_index() : array {
-		return array_keys( $this->panels );
-	}
+    public function panels_index() : array {
+        return array_keys( $this->panels );
+    }
 
-	public function next_panel() {
-		$panel = $this->current_panel();
-		$all   = $this->panels_index();
+    public function next_panel() {
+        $panel = $this->current_panel();
+        $all   = $this->panels_index();
 
-		$index = array_search( $panel, $all );
-		$next  = $index + 1;
+        $index = array_search( $panel, $all );
+        $next  = $index + 1;
 
-		if ( $next == count( $all ) ) {
-			$next = 0;
-		}
+        if ( $next == count( $all ) ) {
+            $next = 0;
+        }
 
-		return $all[ $next ];
-	}
+        return $all[ $next ];
+    }
 
-	public function is_last_panel() : bool {
-		$panel = $this->current_panel();
-		$all   = $this->panels_index();
+    public function is_last_panel() : bool {
+        $panel = $this->current_panel();
+        $all   = $this->panels_index();
 
-		$index = array_search( $panel, $all );
+        $index = array_search( $panel, $all );
 
-		return $index + 1 == count( $all );
-	}
+        return $index + 1 == count( $all );
+    }
 
-	public function get_form_action() : string {
-		return $this->a()->panel_url( 'wizard', $this->current_panel() );
-	}
+    public function get_form_action() : string {
+        return $this->a()->panel_url( 'wizard', $this->current_panel() );
+    }
 
-	public function get_form_nonce_key( string $panel ) : string {
-		return $this->a()->plugin_prefix . '-wizard-nonce-' . $panel;
-	}
+    public function get_form_nonce_key( string $panel ) : string {
+        return $this->a()->plugin_prefix . '-wizard-nonce-' . $panel;
+    }
 
-	public function get_form_nonce() : string {
-		return wp_create_nonce( $this->get_form_nonce_key( $this->current_panel() ) );
-	}
+    public function get_form_nonce() : string {
+        return wp_create_nonce( $this->get_form_nonce_key( $this->current_panel() ) );
+    }
 
-	#[NoReturn]
+    #[NoReturn]
     public function panel_postback() : void {
-		$post = isset( $_POST[ $this->a()->plugin_prefix ]['wizard'] ) ? Sanitize::deep( $_POST[ $this->a()->plugin_prefix ]['wizard'], 'text' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
-		$goto = $this->a()->panel_url();
+        $post = isset( $_POST[ $this->a()->plugin_prefix ]['wizard'] ) ? Sanitize::deep( $_POST[ $this->a()->plugin_prefix ]['wizard'], 'text' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
+        $goto = $this->a()->panel_url();
 
-		if ( ! empty( $post ) ) {
-			$this->setup_panel( Sanitize::slug( $post['_page'] ) );
+        if ( ! empty( $post ) ) {
+            $this->setup_panel( Sanitize::slug( $post['_page'] ) );
 
-			if ( wp_verify_nonce( $post['_nonce'], $this->get_form_nonce_key( $this->current_panel() ) ) ) {
-				$data = isset( $post[ $this->current_panel() ] ) ? (array) $post[ $this->current_panel() ] : array();
+            if ( wp_verify_nonce( $post['_nonce'], $this->get_form_nonce_key( $this->current_panel() ) ) ) {
+                $data = isset( $post[ $this->current_panel() ] ) ? (array) $post[ $this->current_panel() ] : array();
 
-				$this->postback_default( $this->current_panel(), $data );
-				$this->postback_custom( $this->current_panel(), $data );
+                $this->postback_default( $this->current_panel(), $data );
+                $this->postback_custom( $this->current_panel(), $data );
 
-				if ( $this->current_panel() != 'finish' ) {
-					$goto = $this->a()->panel_url( 'wizard', $this->next_panel() );
-				}
-			} else {
-				$goto = $this->a()->panel_url( 'wizard', $this->current_panel() );
-			}
-		}
+                if ( $this->current_panel() != 'finish' ) {
+                    $goto = $this->a()->panel_url( 'wizard', $this->next_panel() );
+                }
+            } else {
+                $goto = $this->a()->panel_url( 'wizard', $this->current_panel() );
+            }
+        }
 
-		wp_redirect( $goto );
-		exit;
-	}
+        wp_redirect( $goto );
+        exit;
+    }
 
-	public function render_hidden_elements() : void {
-		$_name = $this->a()->plugin_prefix . '[wizard]';
+    public function render_hidden_elements() : void {
+        $_name = $this->a()->plugin_prefix . '[wizard]';
 
-		?>
+        ?>
 
         <input type="hidden" name="<?php echo esc_attr( $_name ); ?>[_nonce]" value="<?php echo esc_attr( $this->get_form_nonce() ); ?>"/>
         <input type="hidden" name="<?php echo esc_attr( $_name ); ?>[_page]" value="<?php echo esc_attr( $this->current_panel() ); ?>"/>
         <input type="hidden" name="<?php echo esc_attr( $this->a()->plugin_prefix ); ?>_handler" value="postback"/>
         <input type="hidden" name="option_page" value="<?php echo esc_attr( $this->a()->plugin ); ?>-wizard"/>
 
-		<?php
-	}
+        <?php
+    }
 
-	public function render_yes_no( string $panel, string $name, string $value = 'yes', array $labels = array() ) : void {
-		$_name = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
-		$_id   = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
+    public function render_yes_no( string $panel, string $name, string $value = 'yes', array $labels = array() ) : void {
+        $_name = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
+        $_id   = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
 
-		$_yes = $labels['yes'] ?? __( 'Yes', 'd4plib' );
-		$_no  = $labels['no'] ?? __( 'No', 'd4plib' );
+        $_yes = $labels['yes'] ?? __( 'Yes', 'd4plib' );
+        $_no  = $labels['no'] ?? __( 'No', 'd4plib' );
 
-		?>
+        ?>
 
         <span>
 			<input type="radio" name="<?php echo esc_attr( $_name ); ?>" value="yes" id="<?php echo esc_attr( $_id ); ?>-yes"<?php echo $value == 'yes' ? ' checked' : ''; ?>/>
@@ -171,144 +171,145 @@ abstract class Wizard {
 			<label for="<?php echo esc_attr( $_id ); ?>-no"><?php echo esc_html( $_no ); ?></label>
 		</span>
 
-		<?php
-	}
+        <?php
+    }
 
-	public function render_checkboxes_list( string $panel, string $name, array $value = array(), array $list = array() ) : void {
-		Elements::i()->checkboxes( $list, array(
-			'selected' => $value,
-			'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
-			'id'       => $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name,
-		) );
-	}
+    public function render_checkboxes_list( string $panel, string $name, array $value = array(), array $list = array() ) : void {
+        Elements::i()->checkboxes( $list, array(
+                'selected' => $value,
+                'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
+                'id'       => $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name,
+        ) );
+    }
 
-	public function render_select( string $panel, string $name, string $value = '', array $list = array() ) : void {
-		Elements::i()->select( $list, array(
-			'selected' => $value,
-			'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
-			'id'       => $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name,
-		) );
-	}
+    public function render_select( string $panel, string $name, string $value = '', array $list = array() ) : void {
+        Elements::i()->select( $list, array(
+                'selected' => $value,
+                'name'     => $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']',
+                'id'       => $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name,
+        ) );
+    }
 
-	public function render_input( string $panel, string $name, string $value, array $args = array() ) : void {
-		$args['class'] = $args['class'] ?? 'widefat';
-		$args['name']  = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
-		$args['id']    = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
+    public function render_input( string $panel, string $name, string $value, array $args = array() ) : void {
+        $args['class'] = $args['class'] ?? 'widefat';
+        $args['name']  = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
+        $args['id']    = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
 
-		Elements::i()->input( $value, $args );
-	}
+        Elements::i()->input( $value, $args );
+    }
 
-	public function render_hidden( string $panel, string $name, string $value = 'no' ) : void {
-		$_name = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
+    public function render_hidden( string $panel, string $name, string $value = 'no' ) : void {
+        $_name = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
 
-		?>
+        ?>
 
         <input type="hidden" name="<?php echo esc_attr( $_name ); ?>" value="<?php echo esc_attr( $value ); ?>"/>
 
-		<?php
-	}
+        <?php
+    }
 
-	public function render_license( string $panel, string $name, string $value, array $args = array() ) : void {
-		$args['class']   = $args['class'] ?? 'widefat';
-		$args['name']    = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
-		$args['id']      = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
-		$args['pattern'] = '^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$';
+    public function render_license( string $panel, string $name, string $value, array $args = array() ) : void {
+        $args['class']   = $args['class'] ?? 'widefat';
+        $args['name']    = $this->a()->plugin_prefix . '[wizard][' . $panel . '][' . $name . ']';
+        $args['id']      = $this->a()->plugin_prefix . '-wizard-' . $panel . '-' . $name;
+        $args['pattern'] = '^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$';
 
-		Elements::i()->input( $value, $args );
-	}
+        Elements::i()->input( $value, $args );
+    }
 
-	protected function item_saved( string $panel, string $key, $value ) {
-	}
+    protected function item_saved( string $panel, string $key, $value ) {
+    }
 
-	protected function postback_default( string $panel, $data ) : bool {
-		$map    = $this->default[ $panel ] ?? array();
-		$groups = array();
+    protected function postback_default( string $panel, $data ) : bool {
+        $map    = $this->default[ $panel ] ?? array();
+        $groups = array();
+        $value  = null;
 
-		foreach ( $map as $key => $settings ) {
-			$type = $this->types[ $panel ][ $key ] ?? 'yesno';
+        foreach ( $map as $key => $settings ) {
+            $type = $this->types[ $panel ][ $key ] ?? 'yesno';
 
-			if ( $type == 'yesno' ) {
-				$value = $data[ $key ] ?? 'no';
-				$value = in_array( $value, array( 'yes', 'no' ) ) ? $value : 'no';
+            if ( $type == 'yesno' ) {
+                $value = $data[ $key ] ?? 'no';
+                $value = in_array( $value, array( 'yes', 'no' ) ) ? $value : 'no';
 
-				$this->storage[ $panel ][ $key ] = $value == 'yes';
+                $this->storage[ $panel ][ $key ] = $value == 'yes';
 
-				foreach ( $settings as $s ) {
-					$group = $s[0];
-					$keys  = (array) $s[1];
-					$set   = $s[2][ $value ];
+                foreach ( $settings as $s ) {
+                    $group = $s[0];
+                    $keys  = (array) $s[1];
+                    $set   = $s[2][ $value ];
 
-					if ( ! in_array( $group, $groups ) ) {
-						$groups[] = $group;
-					}
+                    if ( ! in_array( $group, $groups ) ) {
+                        $groups[] = $group;
+                    }
 
-					foreach ( $keys as $k ) {
-						$this->a()->settings()->set( $k, $set, $group );
-					}
-				}
-			} else if ( $type == 'select' || $type == 'input' ) {
-				$value = $data[ $key ] ?? '';
-				$value = wp_unslash( $value );
-				$value = sanitize_text_field( $value );
-				$value = isset( $this->allowed[ $panel ][ $key ] ) ? ( in_array( $value, $this->allowed[ $panel ][ $key ] ) ? $value : '' ) : $value;
+                    foreach ( $keys as $k ) {
+                        $this->a()->settings()->set( $k, $set, $group );
+                    }
+                }
+            } else if ( $type == 'select' || $type == 'input' ) {
+                $value = $data[ $key ] ?? '';
+                $value = wp_unslash( $value );
+                $value = sanitize_text_field( $value );
+                $value = isset( $this->allowed[ $panel ][ $key ] ) ? ( in_array( $value, $this->allowed[ $panel ][ $key ] ) ? $value : '' ) : $value;
 
-				$this->storage[ $panel ][ $key ] = $value;
+                $this->storage[ $panel ][ $key ] = $value;
 
-				foreach ( $settings as $s ) {
-					$group = $s[0];
-					$keys  = (array) $s[1];
+                foreach ( $settings as $s ) {
+                    $group = $s[0];
+                    $keys  = (array) $s[1];
 
-					if ( ! in_array( $group, $groups ) ) {
-						$groups[] = $group;
-					}
+                    if ( ! in_array( $group, $groups ) ) {
+                        $groups[] = $group;
+                    }
 
-					foreach ( $keys as $k ) {
-						$this->a()->settings()->set( $k, $value, $group );
-					}
-				}
-			} else if ( $type == 'checkboxes' ) {
-				$value = isset( $data[ $key ] ) ? (array) $data[ $key ] : array();
+                    foreach ( $keys as $k ) {
+                        $this->a()->settings()->set( $k, $value, $group );
+                    }
+                }
+            } else if ( $type == 'checkboxes' ) {
+                $value = isset( $data[ $key ] ) ? (array) $data[ $key ] : array();
 
-				if ( ! empty( $value ) ) {
-					$value = wp_unslash( $value );
-					$value = array_map( 'strtolower', $value );
-					$value = array_map( 'sanitize_key', $value );
-					$value = array_intersect( $value, $this->allowed[ $panel ][ $key ] );
-				}
+                if ( ! empty( $value ) ) {
+                    $value = wp_unslash( $value );
+                    $value = array_map( 'strtolower', $value );
+                    $value = array_map( 'sanitize_key', $value );
+                    $value = array_intersect( $value, $this->allowed[ $panel ][ $key ] );
+                }
 
-				$this->storage[ $panel ][ $key ] = $value;
+                $this->storage[ $panel ][ $key ] = $value;
 
-				foreach ( $settings as $s ) {
-					$group = $s[0];
-					$keys  = (array) $s[1];
+                foreach ( $settings as $s ) {
+                    $group = $s[0];
+                    $keys  = (array) $s[1];
 
-					if ( ! in_array( $group, $groups ) ) {
-						$groups[] = $group;
-					}
+                    if ( ! in_array( $group, $groups ) ) {
+                        $groups[] = $group;
+                    }
 
-					foreach ( $keys as $k ) {
-						$this->a()->settings()->set( $k, $value, $group );
-					}
-				}
-			}
+                    foreach ( $keys as $k ) {
+                        $this->a()->settings()->set( $k, $value, $group );
+                    }
+                }
+            }
 
-			$this->item_saved( $panel, $key, $value );
-		}
+            $this->item_saved( $panel, $key, $value );
+        }
 
-		foreach ( $groups as $group ) {
-			$this->a()->settings()->save( $group );
-		}
+        foreach ( $groups as $group ) {
+            $this->a()->settings()->save( $group );
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	protected function postback_custom( string $panel, $data ) {
-	}
+    protected function postback_custom( string $panel, $data ) {
+    }
 
-	/** @return \Dev4Press\v55\Core\Admin\Plugin */
-	abstract public function a();
+    /** @return \Dev4Press\v55\Core\Admin\Plugin */
+    abstract public function a();
 
-	abstract protected function init_panels();
+    abstract protected function init_panels();
 
-	abstract protected function init_data();
+    abstract protected function init_data();
 }

@@ -80,7 +80,7 @@ abstract class Plugin extends BasePlugin {
 		}
 	}
 
-	public function current_screen( $screen ) {
+	public function current_screen( $screen ) : void {
 		if ( $this->is_multisite && is_network_admin() ) {
 			$this->screen_id = $screen->id;
 

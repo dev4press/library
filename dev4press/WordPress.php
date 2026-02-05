@@ -149,7 +149,7 @@ final class WordPress {
 		return version_compare( $this->version( $key ), $version, '<' );
 	}
 
-	public function rest_api() {
+	public function rest_api() : void {
 		$this->_switches['rest'] = defined( 'REST_REQUEST' ) && REST_REQUEST;
 	}
 

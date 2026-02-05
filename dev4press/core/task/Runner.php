@@ -192,31 +192,31 @@ abstract class Runner {
 	public function list_statuses() : array {
 		return array(
 			'empty'   => array(
-				'label' => __( 'Empty', 'sweeppress' ),
+				'label' => __( 'Empty', 'd4plib' ),
 				'color' => 'purple',
 			),
 			'idle'    => array(
-				'label' => __( 'Idle', 'sweeppress' ),
+				'label' => __( 'Idle', 'd4plib' ),
 				'color' => 'purple',
 			),
 			'done'    => array(
-				'label' => __( 'Done', 'sweeppress' ),
+				'label' => __( 'Done', 'd4plib' ),
 				'color' => 'green',
 			),
 			'error'   => array(
-				'label' => __( 'Error', 'sweeppress' ),
+				'label' => __( 'Error', 'd4plib' ),
 				'color' => 'red',
 			),
 			'abort'   => array(
-				'label' => __( 'Aborted', 'sweeppress' ),
+				'label' => __( 'Aborted', 'd4plib' ),
 				'color' => 'red',
 			),
 			'working' => array(
-				'label' => __( 'Working', 'sweeppress' ),
+				'label' => __( 'Working', 'd4plib' ),
 				'color' => 'blue',
 			),
 			'waiting' => array(
-				'label' => __( 'Waiting', 'sweeppress' ),
+				'label' => __( 'Waiting', 'd4plib' ),
 				'color' => 'blue',
 			),
 		);
