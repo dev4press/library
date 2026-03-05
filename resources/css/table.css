@@ -96,7 +96,7 @@
   .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td:last-child {
     border-bottom: none;
   }
-  .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td:before {
+  .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td::before {
     display: block;
     border-bottom: 1px solid #F0F0F0;
     content: attr(data-label);
@@ -117,7 +117,7 @@
     padding: 0;
     display: flex;
   }
-  .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td:before {
+  .d4p-grid-table-wrapper table.d4p-grid-table tbody tr td::before {
     flex: 1 0 25%;
     padding: 0.5em;
     content: attr(data-label);

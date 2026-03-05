@@ -22,12 +22,12 @@
   --d4p-color-button-inactive-background: #A32A00;
 }
 
-.d4p-clearfix:before, .d4p-clearfix:after {
+.d4p-clearfix::before, .d4p-clearfix::after {
   content: " ";
   display: table;
 }
 
-.d4p-clearfix:after {
+.d4p-clearfix::after {
   clear: both;
 }
 

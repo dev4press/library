@@ -1,3 +1,6 @@
+@use '../includes/functions' as *;
+@use '../includes/variables' as *;
+
 .d4p-wrap {
     .d4p-setup-wrapper {
         display: flex;
@@ -38,7 +41,7 @@
                 color: #FFF;
                 padding: 0;
                 margin-bottom: 1em;
-                width: 100%
+                width: 100%;
             }
 
             a,

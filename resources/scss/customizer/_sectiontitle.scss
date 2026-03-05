@@ -1,8 +1,10 @@
+@use '../includes/functions' as *;
+@use '../includes/variables' as *;
+
 #customize-theme-controls {
     .d4p-link-section-title {
         font-size: 14px;
         border-bottom: 1px solid #DDD;
-        border-left: 4px solid #FFF;
         transition: 0s color ease-in-out, 0s background-color ease-in-out, 0s border-color ease-in-out;
         margin: 0;
         padding: 0;
@@ -14,14 +16,13 @@
         -ms-user-select: none;
         user-select: none;
 
-        &:after {
+        &::after {
             position: absolute;
             top: 12px;
             right: 10px;
             z-index: 1;
             content: "\f504";
             font: normal 20px/1 dashicons;
-            speak: none;
             display: block;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;

@@ -1,6 +1,7 @@
 @use "sass:map";
-
-@import "../font/icons";
+@use '../includes/functions' as *;
+@use '../includes/variables' as *;
+@use "../font/icons" as *;
 
 .d4p-panel-features-counts {
     background: var(--d4p-color-main-background);
@@ -197,7 +198,7 @@
                 text-align: left;
                 position: relative;
 
-                input[type=checkbox] {
+                input[type="checkbox"] {
                     height: 24px;
                     width: 32px;
                     opacity: 0;
@@ -213,7 +214,7 @@
                         vertical-align: top;
                     }
 
-                    + label:before {
+                    + label::before {
                         font-family: "dev4press";
                         display: inline-block;
                         content: icon(map.get($icons, "ui-toggle-off"));
@@ -222,7 +223,7 @@
                     }
 
                     &:checked {
-                        + label:before {
+                        + label::before {
                             content: icon(map.get($icons, "ui-toggle-on"));
                         }
                     }
@@ -285,27 +286,25 @@
             ._ctrl {
                 border-color: var(--d4p-color-feature-active-text);
                 background-color: var(--d4p-color-feature-active-background);
-            }
 
-            ._info {
-                ._icon {
-                    background-color: var(--d4p-color-feature-active-background);
-
-                    i {
-                        color: var(--d4p-color-feature-active-text);
-                    }
-                }
-            }
-
-            ._ctrl {
                 ._activation {
-                    label:before {
+                    label::before {
                         color: var(--d4p-color-feature-active-text);
                     }
                 }
 
                 ._scope,
                 ._settings {
+                    i {
+                        color: var(--d4p-color-feature-active-text);
+                    }
+                }
+            }
+
+            ._info {
+                ._icon {
+                    background-color: var(--d4p-color-feature-active-background);
+
                     i {
                         color: var(--d4p-color-feature-active-text);
                     }
@@ -319,27 +318,25 @@
             ._ctrl {
                 border-color: var(--d4p-color-feature-beta-text);
                 background-color: var(--d4p-color-feature-beta-background);
-            }
 
-            ._info {
-                ._icon {
-                    background-color: var(--d4p-color-feature-beta-background);
-
-                    i {
-                        color: var(--d4p-color-feature-beta-text);
-                    }
-                }
-            }
-
-            ._ctrl {
                 ._activation {
-                    label:before {
+                    label::before {
                         color: var(--d4p-color-feature-beta-text);
                     }
                 }
 
                 ._scope,
                 ._settings {
+                    i {
+                        color: var(--d4p-color-feature-beta-text);
+                    }
+                }
+            }
+
+            ._info {
+                ._icon {
+                    background-color: var(--d4p-color-feature-beta-background);
+
                     i {
                         color: var(--d4p-color-feature-beta-text);
                     }

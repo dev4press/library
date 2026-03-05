@@ -1,12 +1,12 @@
-@import 'includes/_functions';
-@import 'includes/_variables';
+@use 'includes/functions' as *;
+@use 'includes/variables' as *;
 
-@import 'elements/_root';
-@import 'elements/_layout';
-@import 'elements/_groups';
-@import 'elements/_dashboard';
-@import 'elements/_table';
-@import 'elements/_setup';
-@import 'elements/_dialogs';
+@use 'elements/root';
+@use 'elements/layout';
+@use 'elements/groups';
+@use 'elements/dashboard';
+@use 'elements/table';
+@use 'elements/setup';
+@use 'elements/dialogs';
 
-@import 'components/_legacy';
+@use 'components/legacy';

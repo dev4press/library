@@ -1,6 +1,6 @@
-@import 'includes/_functions';
-@import 'includes/_variables';
+@use 'includes/functions' as *;
+@use 'includes/variables' as *;
 
-@import 'elements/_settings';
-@import 'elements/_features';
-@import 'elements/_shared';
+@use 'elements/settings';
+@use 'elements/features';
+@use 'elements/shared';

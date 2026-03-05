@@ -1,3 +1,6 @@
+@use '../includes/functions' as *;
+@use '../includes/variables' as *;
+
 .d4plib-#{$library-code}-meta-box-wrapper {
     box-sizing: border-box;
 
@@ -125,7 +128,7 @@
         }
 
         select,
-        input:not([type=checkbox]):not([type=radio]) {
+        input:not([type="checkbox"], [type="radio"]) {
             display: block;
             margin-top: .25em;
         }

@@ -1,11 +1,14 @@
+@use '../includes/functions' as *;
+@use '../includes/variables' as *;
+@use 'icons' as *;
+@use "sass:math";
 
 .#{$font-prefix-ctrl} {
-    font: normal normal normal $font-size/1 $font-name;
+    font: normal normal normal #{math.div($font-size, 1)} $font-name;
     font-size: inherit;
     text-transform: none;
     display: inline-block;
     vertical-align: text-bottom;
-    speak: none;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -34,7 +37,7 @@ a {
 
 @each $icon, $char in $icons {
     .#{$font-prefix-ctrl}.#{$font-prefix}-#{$icon} {
-        &:before {
+        &::before {
             content: icon($char);
         }
     }
@@ -42,13 +45,13 @@ a {
 
 /* Full Width */
 .#{$font-prefix-ctrl}-fw {
-    width: 1.28571429em;
+    width: 1.2857em;
     text-align: center;
 }
 
 /* Sizes */
 .#{$font-prefix-ctrl}-lg {
-    font-size: 1.33333333em;
+    font-size: 1.3333em;
     line-height: 0.75em;
     vertical-align: -25%;
 }

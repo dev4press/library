@@ -1,13 +1,16 @@
+@use '../includes/functions' as *;
+@use '../includes/variables' as *;
+
 .d4p-slider-ctrl {
     margin-bottom: 30px;
 
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
 
-    input[type=number] {
+    input[type="number"] {
         -moz-appearance: textfield;
         text-align: right;
         width: 50px;
@@ -118,13 +121,13 @@
         border-radius: 50%;
     }
 
-    .dashicons-image-rotate:hover {
-        color: #A7A7A7;
-    }
-
     .dashicons-image-rotate {
         margin-top: 10px;
         color: #D4D4D4;
         font-size: 16px;
+
+        &:hover {
+            color: #A7A7A7;
+        }
     }
 }

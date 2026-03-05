@@ -1,5 +1,5 @@
-@import 'includes/_functions';
-@import 'includes/_variables';
+@use 'includes/functions' as *;
+@use 'includes/variables' as *;
 
-@import 'elements/_meta';
-@import 'elements/_shared';
+@use 'elements/meta';
+@use 'elements/shared';

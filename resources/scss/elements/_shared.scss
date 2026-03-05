@@ -1,3 +1,6 @@
+@use '../includes/functions' as *;
+@use '../includes/variables' as *;
+
 .d4p-setting-checkboxes {
     &.d4p-setting-checkboxes-hierarchy {
         .d4p-inside-wrapper {
@@ -123,10 +126,6 @@
                     background: #FFF;
                     border-radius: 5px;
                     padding: 0.1em 0.3em;
-                }
-
-                .__content {
-
                 }
 
                 &.__message-info {

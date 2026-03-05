@@ -1,16 +1,7 @@
-.show {
-    display: block !important;
-}
+@use '../includes/grid' as *;
+@use "sass:list";
 
-.core-row.show {
-    display: flex !important;
-}
-
-.hide {
-    display: none !important;
-}
-
-// Mixin to run inside of for loop - creates visibility classes * Not for developer use *
+// Helper mixin stays at root for reuse inside output mixin.
 @mixin vis-factory($thisPrefix) {
     .show-#{$thisPrefix} {
         display: block !important;
@@ -23,43 +14,57 @@
     }
 }
 
-// Mixin to run inside of for loop - creates visibility classes * Not for developer use *
+// Output mixin to allow scoped inclusion from grid.scss.
+@mixin core-visibility-output() {
+    .show {
+        display: block !important;
+    }
 
-@for $i from 1 through length($breakpoint-all-prefixes) {
-    $thisPrefix: nth($breakpoint-all-prefixes, $i);
-    @if $thisPrefix == "xs" {
-        @include vis-factory($thisPrefix);
-    } @else if $thisPrefix == "xs-only" {
-        @media #{$breakpoint-xs-only} {
+    .core-row.show {
+        display: flex !important;
+    }
+
+    .hide {
+        display: none !important;
+    }
+
+    // Mixin to run inside of for loop - creates visibility classes * Not for developer use *
+    @for $i from 1 through list.length($breakpoint-all-prefixes) {
+        $thisPrefix: list.nth($breakpoint-all-prefixes, $i);
+        @if $thisPrefix == "xs" {
             @include vis-factory($thisPrefix);
-        }
-    } @else if $thisPrefix == "sm" {
-        @media #{$breakpoint-sm-up} {
-            @include vis-factory($thisPrefix);
-        }
-    } @else if $thisPrefix == "sm-only" {
-        @media #{$breakpoint-sm-only} {
-            @include vis-factory($thisPrefix);
-        }
-    } @else if $thisPrefix == "md" {
-        @media #{$breakpoint-md-up} {
-            @include vis-factory($thisPrefix);
-        }
-    } @else if $thisPrefix == "md-only" {
-        @media #{$breakpoint-md-only} {
-            @include vis-factory($thisPrefix);
-        }
-    } @else if $thisPrefix == "lg" {
-        @media #{$breakpoint-lg-up} {
-            @include vis-factory($thisPrefix);
-        }
-    } @else if $thisPrefix == "lg-only" {
-        @media #{$breakpoint-lg-only} {
-            @include vis-factory($thisPrefix);
-        }
-    } @else if $thisPrefix == "xl" {
-        @media #{$breakpoint-xl-up} {
-            @include vis-factory($thisPrefix);
+        } @else if $thisPrefix == "xs-only" {
+            @media #{$breakpoint-xs-only} {
+                @include vis-factory($thisPrefix);
+            }
+        } @else if $thisPrefix == "sm" {
+            @media #{$breakpoint-sm-up} {
+                @include vis-factory($thisPrefix);
+            }
+        } @else if $thisPrefix == "sm-only" {
+            @media #{$breakpoint-sm-only} {
+                @include vis-factory($thisPrefix);
+            }
+        } @else if $thisPrefix == "md" {
+            @media #{$breakpoint-md-up} {
+                @include vis-factory($thisPrefix);
+            }
+        } @else if $thisPrefix == "md-only" {
+            @media #{$breakpoint-md-only} {
+                @include vis-factory($thisPrefix);
+            }
+        } @else if $thisPrefix == "lg" {
+            @media #{$breakpoint-lg-up} {
+                @include vis-factory($thisPrefix);
+            }
+        } @else if $thisPrefix == "lg-only" {
+            @media #{$breakpoint-lg-only} {
+                @include vis-factory($thisPrefix);
+            }
+        } @else if $thisPrefix == "xl" {
+            @media #{$breakpoint-xl-up} {
+                @include vis-factory($thisPrefix);
+            }
         }
     }
 }

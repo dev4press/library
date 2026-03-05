@@ -1,3 +1,6 @@
+@use '../includes/functions' as *;
+@use '../includes/variables' as *;
+
 .d4p-wrap,
 .d4p-wrap * {
     box-sizing: border-box;
@@ -371,10 +374,6 @@
                 i {
                     font-size: 1.1em;
                     margin-right: .2em;
-                }
-
-                span {
-
                 }
             }
 

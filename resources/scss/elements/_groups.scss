@@ -1,3 +1,6 @@
+@use '../includes/functions' as *;
+@use '../includes/variables' as *;
+
 .d4p-group {
     background: var(--d4p-color-main-background);
     border: 1px solid var(--d4p-color-main-border);

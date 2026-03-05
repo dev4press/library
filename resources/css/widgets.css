@@ -164,7 +164,7 @@
   height: 28px;
   margin: 0 0.4em 0 0;
 }
-.d4plib-widget .d4plib-widget-tabs-content .wp-color-result:after {
+.d4plib-widget .d4plib-widget-tabs-content .wp-color-result::after {
   line-height: 28px;
 }
 .d4plib-widget .d4plib-widget-tabs-content .d4p-wrapper-hierarchy {

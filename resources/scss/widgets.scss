@@ -1,4 +1,4 @@
-@import 'includes/_functions';
-@import 'includes/_variables';
+@use 'includes/functions' as *;
+@use 'includes/variables' as *;
 
-@import 'components/_widgets';
+@use 'components/widgets';

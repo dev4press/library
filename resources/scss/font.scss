@@ -1,6 +1,6 @@
-@import 'includes/_functions';
-@import 'includes/_variables';
+@use 'includes/functions' as *;
+@use 'includes/variables' as *;
 
-@import 'font/_icons';
-@import 'font/_font';
-@import 'font/_shared';
+@use 'font/icons';
+@use 'font/font';
+@use 'font/shared';

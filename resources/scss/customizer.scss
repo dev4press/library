@@ -1,5 +1,5 @@
-@import 'includes/_functions';
-@import 'includes/_variables';
+@use 'includes/functions' as *;
+@use 'includes/variables' as *;
 
-@import 'customizer/_sectiontitle';
-@import 'customizer/_slider';
+@use 'customizer/sectiontitle';
+@use 'customizer/slider';

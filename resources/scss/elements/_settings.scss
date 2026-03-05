@@ -1,3 +1,6 @@
+@use '../includes/functions' as *;
+@use '../includes/variables' as *;
+
 .d4p-settings-section {
     h4 {
         padding: .75em .75em .75em 1.5em;
@@ -113,21 +116,21 @@
                 line-height: 1.8;
             }
 
-            input[type=datetime-local],
-            input[type=datetime],
-            input[type=number],
-            input[type=text],
-            input[type=url],
-            input[type=email],
-            input[type=password] {
+            input[type="datetime-local"],
+            input[type="datetime"],
+            input[type="number"],
+            input[type="text"],
+            input[type="url"],
+            input[type="email"],
+            input[type="password"] {
                 border-radius: var(--d4p-layout-main-border-radius);
                 padding: .3em .8em;
                 width: 100%;
             }
 
-            input[type=time],
-            input[type=month],
-            input[type=number] {
+            input[type="time"],
+            input[type="month"],
+            input[type="number"] {
                 width: 40%;
             }
 
@@ -248,11 +251,11 @@
 
             &.d4p-setting-color {
                 .wp-picker-input-wrap {
-                    input[type=text] {
+                    input[type="text"] {
                         width: 5rem;
                     }
 
-                    input[type=button] {
+                    input[type="button"] {
                         line-height: 3.1em;
                     }
                 }
@@ -315,7 +318,7 @@
             }
 
             &.d4p-setting-css_size {
-                input[type=number] {
+                input[type="number"] {
                     width: 80px;
                     vertical-align: top;
                     margin-right: .5em;
@@ -384,9 +387,9 @@
             }
 
             @media screen and (max-width: 840px) {
-                input[type=time],
-                input[type=month],
-                input[type=number] {
+                input[type="time"],
+                input[type="month"],
+                input[type="number"] {
                     width: 60%;
                 }
 
@@ -395,7 +398,7 @@
                 }
 
                 &.d4p-setting-css_size {
-                    input[type=number] {
+                    input[type="number"] {
                         width: 50%;
                     }
 
@@ -408,7 +411,7 @@
             @media screen and (max-width: 768px) {
                 &.d4p-setting-color {
                     .wp-picker-input-wrap {
-                        input[type=button] {
+                        input[type="button"] {
                             line-height: 2.8em;
                         }
                     }
@@ -420,14 +423,14 @@
             }
 
             @media screen and (max-width: 480px) {
-                input[type=time],
-                input[type=month],
-                input[type=number] {
+                input[type="time"],
+                input[type="month"],
+                input[type="number"] {
                     width: 100%;
                 }
 
                 &.d4p-setting-css_size {
-                    input[type=number] {
+                    input[type="number"] {
                         width: 50%;
                     }
                 }
