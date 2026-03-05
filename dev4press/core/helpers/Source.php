@@ -1,6 +1,6 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Helpers\ObjectsSort
+ * Name:    Dev4Press\v55\Core\Helpers\Source
  * Version: v5.5
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com

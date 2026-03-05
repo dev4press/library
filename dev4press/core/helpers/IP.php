@@ -72,16 +72,16 @@ class IP {
 		'2c0f:f248::/32',
 	);
 
-	public static function is_v4( $ip ) : bool {
-		if ( ! is_string( $ip ) || preg_match( '/^[0-9.]+$/', $ip ) !== 1 ) {
+	public static function is_v4( string $ip ) : bool {
+		if ( preg_match( '/^[0-9.]+$/', $ip ) !== 1 ) {
 			return false;
 		}
 
 		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) === $ip;
 	}
 
-	public static function is_v6( $ip ) : bool {
-		if ( ! is_string( $ip ) || strlen( $ip ) > 45 ) {
+	public static function is_v6( string $ip ) : bool {
+		if ( strlen( $ip ) > 45 ) {
 			if ( preg_match( '/^[0-9a-fA-F:]+$/', $ip ) !== 1 ) {
 				return false;
 			}
@@ -90,11 +90,11 @@ class IP {
 		return filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) === $ip;
 	}
 
-	public static function is_in_range( $ip, $range ) : bool {
+	public static function is_in_range( string $ip, string $range ) : bool {
 		return self::is_v6( $ip ) ? self::is_ipv6_in_range( $ip, $range ) : self::is_ipv4_in_range( $ip, $range );
 	}
 
-	public static function is_ipv4_in_range( $ip, $range ) : bool {
+	public static function is_ipv4_in_range( string $ip, string $range ) : bool {
 		if ( str_contains( $range, '/' ) ) {
 			list( $subnet, $mask ) = explode( '/', $range, 2 );
 
@@ -133,7 +133,7 @@ class IP {
 		return false;
 	}
 
-	public static function is_ipv6_in_range( $ip, $range ) : bool {
+	public static function is_ipv6_in_range( string $ip, string $range ) : bool {
 		if ( ! str_contains( $range, '/' ) ) {
 			return $ip === $range;
 		}
@@ -166,7 +166,7 @@ class IP {
 		return ( $ip_bin & $mask_bin ) === ( $subnet_bin & $mask_bin );
 	}
 
-	public static function full_ip( $ip ) : string {
+	public static function full_ip( string $ip ) : string {
 		if ( self::is_v4( $ip ) ) {
 			return $ip;
 		} else if ( self::is_v6( $ip ) ) {
@@ -182,7 +182,7 @@ class IP {
 		return '';
 	}
 
-	public static function is_private( $ip = null ) : bool {
+	public static function is_private( string $ip = null ) : bool {
 		if ( is_null( $ip ) ) {
 			$ip = self::visitor();
 		}
@@ -204,7 +204,7 @@ class IP {
 		return false;
 	}
 
-	public static function is_private_regex( $ip = null ) : bool {
+	public static function is_private_regex( string $ip = null ) : bool {
 		if ( preg_match( '/^((127\.)|(192\.168\.)|(10\.)|(172\.1[6-9]\.)|(172\.2[0-9]\.)|(172\.3[0-1]\.)|(::1)|(fe80::))/', $ip ) ) {
 			return true;
 		}
@@ -212,7 +212,7 @@ class IP {
 		return false;
 	}
 
-	public static function is_cloudflare( $ip = null ) : bool {
+	public static function is_cloudflare( string $ip = null ) : bool {
 		if ( is_null( $ip ) ) {
 			if ( isset( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
 				$ip = $_SERVER['REMOTE_ADDR'] ?? '';
@@ -248,7 +248,7 @@ class IP {
 		return false;
 	}
 
-	public static function is_loopback( $ip ) : bool {
+	public static function is_loopback( string $ip ) : bool {
 		if ( $ip === '127.0.0.1' || $ip === '::1' ) {
 			return true;
 		}
@@ -301,7 +301,7 @@ class IP {
 		return (string) $ip;
 	}
 
-	public static function validate( $ip ) {
+	public static function validate( string $ip ) {
 		$ips = explode( ',', $ip );
 
 		foreach ( $ips as $_ip ) {
@@ -333,7 +333,7 @@ class IP {
 		return false;
 	}
 
-	public static function validate_range( $ip ) {
+	public static function validate_range( string $ip ) : bool|string {
 		list( $addr, $mask ) = explode( '/', $ip, 2 );
 
 		$addr = trim( $addr );
@@ -380,7 +380,7 @@ class IP {
 		return false;
 	}
 
-	public static function cleanup( $ip ) : string {
+	public static function cleanup( string $ip ) : string {
 		$ip = self::validate( $ip );
 
 		return $ip === false ? '' : $ip;
@@ -390,7 +390,7 @@ class IP {
 		return wp_rand( 0, 255 ) . '.' . wp_rand( 0, 255 ) . '.' . wp_rand( 0, 255 ) . '.' . wp_rand( 0, 255 );
 	}
 
-	public static function get_ip_key_value( $key ) {
+	public static function get_ip_key_value( string $key ) {
 		$ip = false;
 
 		if ( array_key_exists( $key, $_SERVER ) === true ) {
@@ -410,7 +410,7 @@ class IP {
 		return self::process_ips_list_for_one_ip( $ips );
 	}
 
-	public static function process_ips_list_for_one_ip( $ips ) {
+	public static function process_ips_list_for_one_ip( array $ips ) {
 		$public   = array();
 		$private  = array();
 		$loopback = array();
@@ -444,7 +444,7 @@ class IP {
 		return false;
 	}
 
-	public static function get_all_ips( $cloudflare = true, $remote = true, $server = true, $forwarded = true, $nonstandard = true ) : array {
+	public static function get_all_ips( bool $cloudflare = true, bool $remote = true, bool $server = true, bool $forwarded = true, bool $nonstandard = true ) : array {
 		$results = array();
 		$headers = array();
 

@@ -253,14 +253,18 @@ class WPR {
 		$wp_rewrite->flush_rules();
 	}
 
+	#[NoReturn]
 	public static function redirect_self() {
 		$url = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_url( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/'; // phpcs:ignore WordPress.Security.EscapeOutput,WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput,WordPress.WP.DeprecatedFunctions
 
 		wp_redirect( $url );
+		exit;
 	}
 
+	#[NoReturn]
 	public static function redirect_referer() {
 		wp_redirect( wp_get_referer() );
+		exit;
 	}
 
 	public static function get_the_slug( $post = null ) {
@@ -513,11 +517,20 @@ class WPR {
 
 	public static function has_gravatar( $email ) : bool {
 		$hash = md5( strtolower( trim( $email ) ) );
+		$url  = 'https://www.gravatar.com/avatar/' . $hash . '?d=404';
 
-		$url     = 'https://www.gravatar.com/avatar/' . $hash . '?d=404';
-		$headers = get_headers( $url );
+		$response = wp_remote_head( $url, array(
+			'timeout'     => 3,
+			'redirection' => 0,
+		) );
 
-		return preg_match( '/200/', $headers[0] ) === 1;
+		if ( is_wp_error( $response ) ) {
+			return false;
+		}
+
+		$code = wp_remote_retrieve_response_code( $response );
+
+		return $code === 200;
 	}
 
 	public static function get_user_display_name( $user_id = 0 ) : string {

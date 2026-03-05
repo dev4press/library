@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Num {
 	public static function is_odd( $number ) : bool {
-		return $number % 2 == 0;
+		return $number % 2 != 0;
 	}
 
 	public static function is_divisible( $number, $by_number ) : bool {

@@ -84,10 +84,22 @@ class Arr {
 		);
 	}
 
-	public static function insert_before( array $array, string $key, array $new ) : array {
+	public static function insert_before( array $array, string $key, array $new, bool $append_if_missing = true ) : array {
 		$keys = array_keys( $array );
-		$pos  = array_search( $key, $keys );
+		$pos  = array_search( $key, $keys, true );
 
-		return array_merge( array_slice( $array, 0, $pos ), $new, array_slice( $array, $pos ) );
+		if ( $pos === false ) {
+			if ( ! $append_if_missing ) {
+				return $array;
+			}
+
+			return array_merge( $array, $new );
+		}
+
+		return array_merge(
+			array_slice( $array, 0, $pos, true ),
+			$new,
+			array_slice( $array, $pos, null, true )
+		);
 	}
 }

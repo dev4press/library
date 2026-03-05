@@ -131,7 +131,7 @@ class HTAccess {
 	protected function create_backup() {
 		$backup_path = $this->path . '.backup';
 
-		if ( file_exists( $this->path ) && is_writable( $backup_path ) ) {
+		if ( file_exists( $this->path ) && is_writable( dirname( $backup_path ) ) ) {
 			if ( file_exists( $backup_path ) ) {
 				wp_delete_file( $backup_path );
 			}

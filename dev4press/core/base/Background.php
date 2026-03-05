@@ -121,7 +121,7 @@ abstract class Background {
 			$this->data = $_data;
 		}
 
-		if ( ! is_string( $this->abort ) ) {
+		if ( ! is_string( $_abort ) ) {
 			$this->abort = '';
 		} else {
 			$this->abort = $_abort;
@@ -307,10 +307,12 @@ abstract class Background {
 	protected function check_abort() : void {
 		wp_cache_delete( $this->abort_transient, 'site-transient' );
 
-		$this->abort = get_site_transient( $this->abort_transient );
+		$_abort = get_site_transient( $this->abort_transient );
 
-		if ( ! is_string( $this->abort ) ) {
+		if ( ! is_string( $_abort ) ) {
 			$this->abort = '';
+		} else {
+			$this->abort = $_abort;
 		}
 	}
 

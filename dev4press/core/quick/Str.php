@@ -42,7 +42,14 @@ class Str {
 	}
 
 	public static function is_regex_valid( string $regex ) {
-		if ( preg_match( '/' . $regex . '/i', 'dev4press' ) !== false ) {
+		if ( empty( $regex ) ) {
+			return false;
+		}
+
+		$pattern = '/' . str_replace( '/', '\/', $regex ) . '/i';
+		$result  = @preg_match( $pattern, 'dev4press' );
+
+		if ( $result !== false ) {
 			return true;
 		}
 
@@ -118,7 +125,13 @@ class Str {
 	}
 
 	public static function left( string $s1, string $s2 ) : string {
-		return substr( $s1, 0, strpos( $s1, $s2 ) );
+		$pos = strpos( $s1, $s2 );
+
+		if ( $pos === false ) {
+			return $s1;
+		}
+
+		return substr( $s1, 0, $pos );
 	}
 
 	public static function replace_first( string $search, string $replace, string $subject ) : string {
