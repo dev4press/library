@@ -2,6 +2,14 @@
 
 ## Changelog
 
+### Version 5.6 - 2026.02.10
+
+* **new**: tools for SASS and JS linting
+* **edit**: reorganized SASS code to modernize loading
+* **edit**: many improvements to the SASS code and styling
+* **edit**: many improvements to the JS code
+* **removed**: legacy `Languages` class and related code
+
 ### Version 5.5.2 - 2026.02.10
 
 * **new**: helper `IP` class uses improved method for IP validation
@@ -39,13 +47,3 @@
 * **new**: show admin notices when license is not activated
 * **new**: updated license validation on save
 * **new**: improved weekly license validation
-
-### Version 5.3 - 2025.01.26
-
-* **new**: composer file requirements expanded
-* **new**: many PHP related changes and improvements
-* **new**: expanded `DBLite` with few new methods
-* **edit**: improvements to the frontend `Grid` object
-* **edit**: improved styling for the plugin settings panel
-* **removed**: built-in cacert.pem
-* **removed**: unused balloon stylesheet

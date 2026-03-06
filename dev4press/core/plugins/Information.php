@@ -70,8 +70,6 @@ abstract class Information {
 	public bool $update = false;
 	public int $previous = 0;
 
-	public array $translations = array();
-
 	public function __construct() {
 		if ( $this->is_bbpress_plugin ) {
 			$this->plugins['bbpress'] = '2.6.2';

@@ -10,9 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 $_plugin  = panel()->a()->settings()->i();
 $_sys_req = $_plugin->system_requirements();
 
-$translations = panel()->a()->settings()->i()->translations;
-$translations = Languages::instance()->plugin_translations( $translations );
-
 ?>
 
     <div class="d4p-info-block">
@@ -62,41 +59,3 @@ $translations = Languages::instance()->plugin_translations( $translations );
             </ul>
         </div>
     </div>
-
-<?php
-
-if ( ! empty( $translations ) ) {
-
-    ?>
-    <div class="d4p-info-block">
-        <h3>
-            <?php esc_html_e( 'List of included Languages', 'd4plib' ); ?>
-        </h3>
-        <div>
-            <?php
-
-            foreach ( $translations as $code => $obj ) {
-                $_lang = $code . ': ' . $obj['native'] . ' / ' . $obj['english'];
-
-                echo '<div class="d4p-block-language"><h4>' . esc_html( $_lang ) . '</h4>';
-                echo '<p>' . esc_html__( 'Plugin Version', 'd4plib' ) . ': ' . esc_html( $obj['version'] ) . '</p>';
-
-                if ( ! empty( $obj['contributors'] ) ) {
-                    $contributors = array();
-
-                    foreach ( $obj['contributors'] as $c ) {
-                        $contributors[] = '<a href="' . $c['url'] . '" target="_blank" rel="noopener">' . esc_html( $c['name'] ) . '</a>';
-                    }
-
-                    echo '<p>' . esc_html__( 'Contributors', 'd4plib' ) . ': ' . join( ', ', $contributors ) . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                }
-
-                echo '</div>';
-            }
-
-            ?>
-        </div>
-    </div>
-    <?php
-
-}

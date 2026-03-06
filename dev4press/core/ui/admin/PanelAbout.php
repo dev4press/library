@@ -51,12 +51,6 @@ abstract class PanelAbout extends Panel {
 		if ( ! $this->history ) {
 			unset( $this->subpanels['history'] );
 		}
-
-		$translations = $this->a()->settings()->i()->translations;
-
-		if ( empty( $translations ) ) {
-			unset( $this->subpanels['translations'] );
-		}
 	}
 
 	public function enqueue_scripts() : void {
