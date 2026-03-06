@@ -1,5 +1,5 @@
 ;/*jslint regexp: true, nomen: true, undef: true, sloppy: true, eqeq: true, vars: true, white: true, plusplus: true, maxerr: 50, indent: 4 */
-(function($, window, document, undefined) {
+(function($, window, document) {
     window.wp = window.wp || {};
     window.wp.dev4press = window.wp.dev4press || {};
 
@@ -64,7 +64,8 @@
                 ".d4plib-div-switch",
                 function() {
                     var method = $(this).val(),
-                        prefix = $(this).data().hasOwnProperty("prefix") ? $(this).data("prefix") : '',
+                        data = $(this).data(),
+                        prefix = Object.prototype.hasOwnProperty.call(data, "prefix") ? $(this).data("prefix") : '',
                         block = prefix === "" ? ".d4p-div-block" : ".d4p-div-block-" + prefix,
                         parent = $(this).closest(".widget-content");
 

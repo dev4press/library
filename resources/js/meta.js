@@ -1,5 +1,5 @@
 ;/*jslint regexp: true, nomen: true, undef: true, sloppy: true, eqeq: true, vars: true, white: true, plusplus: true, maxerr: 50, indent: 4 */
-(function($, window, document, undefined) {
+(function($, window, document) {
     window.wp = window.wp || {};
     window.wp.dev4press = window.wp.dev4press || {};
     window.wp.dev4press.v55 = window.wp.dev4press.v55 || {};

@@ -1,7 +1,7 @@
 ;/*jslint regexp: true, nomen: true, undef: true, sloppy: true, eqeq: true, vars: true, white: true, plusplus: true, maxerr: 50, indent: 4 */
 /*global d4plib_admin_dialogs*/
 
-(function($, window, document, undefined) {
+(function($, window, document) {
     window.wp = window.wp || {};
     window.wp.dev4press = window.wp.dev4press || {};
 
