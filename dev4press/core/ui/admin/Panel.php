@@ -1,10 +1,10 @@
 <?php
 
-namespace Dev4Press\v55\Core\UI\Admin;
+namespace Dev4Press\v56\Core\UI\Admin;
 
-use Dev4Press\v55\Core\Quick\KSES;
-use Dev4Press\v55\Core\Task\Runner;
-use Dev4Press\v55\Library;
+use Dev4Press\v56\Core\Quick\KSES;
+use Dev4Press\v56\Core\Task\Runner;
+use Dev4Press\v56\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
@@ -13,12 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Panel {
     private static $_current_instance = null;
 
-    /** @var \Dev4Press\v55\Core\Admin\Plugin|\Dev4Press\v55\Core\Admin\Menu\Plugin|\Dev4Press\v55\Core\Admin\Submenu\Plugin */
+    /** @var \Dev4Press\v56\Core\Admin\Plugin|\Dev4Press\v56\Core\Admin\Menu\Plugin|\Dev4Press\v56\Core\Admin\Submenu\Plugin */
     private $admin;
 
-    /** @var \Dev4Press\v55\Core\UI\Admin\Render */
+    /** @var \Dev4Press\v56\Core\UI\Admin\Render */
     private $render;
-    protected $render_class = '\\Dev4Press\\v55\\Core\\UI\\Admin\\Render';
+    protected $render_class = '\\Dev4Press\\v56\\Core\\UI\\Admin\\Render';
     protected $table_object = null;
 
     protected array $subpanels = array();
@@ -301,7 +301,7 @@ abstract class Panel {
     }
 
     /**
-     * @return null|\Dev4Press\v54\WordPress\Admin\Table|\Dev4Press\v55\WordPress\Admin\Table
+     * @return null|\Dev4Press\v54\WordPress\Admin\Table|\Dev4Press\v56\WordPress\Admin\Table
      */
     public function get_table_object() {
         return null;

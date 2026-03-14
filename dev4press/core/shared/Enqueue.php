@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Shared\Enqueue
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Shared\Enqueue
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Shared;
+namespace Dev4Press\v56\Core\Shared;
 
-use Dev4Press\v55\Library;
-use Dev4Press\v55\WordPress;
+use Dev4Press\v56\Library;
+use Dev4Press\v56\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Enqueue {
 	private static $_current_instance = null;
 
-	private string $_enqueue_prefix = 'd4plib-v55-';
+	private string $_enqueue_prefix = 'd4plib-v56-';
 	private string $_url;
 	private bool $_rtl = false;
 	private bool $_debug = false;
@@ -111,7 +111,7 @@ class Enqueue {
 		$this->_rtl   = is_rtl();
 		$this->_debug = WordPress::i()->is_script_debug();
 
-		/** HOOK: `dev4press_v55_shared_enqueue_start` */
+		/** HOOK: `dev4press_v56_shared_enqueue_start` */
 		do_action( Library::i()->hook( 'shared_enqueue_start' ) );
 
 		/** @deprecated 5.5.0 */

@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Name:    Dev4Press\v55\API\Access
- * Version: v5.5
+ * Name:    Dev4Press\v56\API\Access
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -26,11 +26,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\API;
+namespace Dev4Press\v56\API;
 
-use Dev4Press\v55\Core\Quick\URL;
-use Dev4Press\v55\Library;
-use Dev4Press\v55\WordPress;
+use Dev4Press\v56\Core\Quick\URL;
+use Dev4Press\v56\Library;
+use Dev4Press\v56\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -41,7 +41,7 @@ abstract class Access {
 	protected string $site_url;
 	protected bool $sslverify = true;
 
-	public function __construct() {
+	private function __construct() {
 		$url = WordPress::i()->is_multisite() ? network_home_url() : site_url();
 
 		$this->site_url = wp_parse_url( $url, PHP_URL_HOST );

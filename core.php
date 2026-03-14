@@ -1,7 +1,7 @@
 <?php
 /**
  * Name:    Dev4Press Core Loader
- * Version: v5.5
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,8 +25,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-use Dev4Press\v55\Library;
-use Dev4Press\v55\WordPress;
+use Dev4Press\v56\Library;
+use Dev4Press\v56\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -38,18 +38,18 @@ if ( ! defined( 'DEV4PRESS_TAB' ) ) {
 	define( 'DEV4PRESS_TAB', "\t" );
 }
 
-if ( ! defined( 'DEV4PRESS_V55_PATH' ) ) {
-	define( 'DEV4PRESS_V55_PATH', $_library_path );
+if ( ! defined( 'DEV4PRESS_V56_PATH' ) ) {
+	define( 'DEV4PRESS_V56_PATH', $_library_path );
 }
 
 if ( ! defined( 'DEV4PRESS_NO_SYSREQ_CHECK' ) ) {
 	define( 'DEV4PRESS_NO_SYSREQ_CHECK', false );
 }
 
-require DEV4PRESS_V55_PATH . 'functions/Core.php';
-require DEV4PRESS_V55_PATH . 'functions/Bridge.php';
+require DEV4PRESS_V56_PATH . 'functions/Core.php';
+require DEV4PRESS_V56_PATH . 'functions/Bridge.php';
 
-require DEV4PRESS_V55_PATH . 'autoload.php';
+require DEV4PRESS_V56_PATH . 'autoload.php';
 
 WordPress::i();
 Library::i();

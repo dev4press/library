@@ -202,6 +202,9 @@
   line-height: inherit;
   vertical-align: bottom;
 }
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul .d4p-nav-current .d4p-features-mark {
+  float: right;
+}
 .d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-header-special-button {
   display: flex;
   align-items: center;

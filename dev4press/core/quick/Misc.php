@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Quick\Misc
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Quick\Misc
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,15 +25,23 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Quick;
+namespace Dev4Press\v56\Core\Quick;
 
-use Dev4Press\v55\Library;
+use Dev4Press\v56\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class Misc {
+	/**
+	 * Retrieves a human-readable error message for a given PCRE (Perl Compatible Regular Expressions) error code.
+	 *
+	 * @param mixed $error_code The error code to map to a descriptive message.
+	 *
+	 * @return string A descriptive error message corresponding to the provided error code, or 'UNKNOWN_ERROR'
+	 *                if the code is not found in the predefined PCRE constants.
+	 */
 	public static function get_regex_error( $error_code ) : string {
 		if ( is_bool( $error_code ) ) {
 			return 'OK';
@@ -48,7 +56,15 @@ class Misc {
 		return 'UNKNOWN_ERROR';
 	}
 
-	public static function php_ini_size_value( $name ) {
+	/**
+	 * Converts a PHP INI configuration value (e.g., post_max_size, upload_max_filesize)
+	 * into its corresponding size in bytes.
+	 *
+	 * @param string $name The name of the INI configuration option to retrieve and convert.
+	 *
+	 * @return float|int The size in bytes, or 0 if the INI value is not set or invalid.
+	 */
+	public static function php_ini_size_value( string $name ) : float|int {
 		$ini = ini_get( $name );
 
 		if ( $ini === false ) {
@@ -74,6 +90,14 @@ class Misc {
 		return $ini;
 	}
 
+	/**
+	 * Converts a hexadecimal color code to its equivalent RGBA (Red, Green, Blue, Alpha) representation as a comma-separated string.
+	 *
+	 * @param string $color   The hexadecimal color code (e.g., "#RRGGBB" or "#RGB").
+	 * @param string $default The default RGBA value to return if the input color is invalid or empty. Defaults to "0,0,0".
+	 *
+	 * @return string The RGBA representation of the color as a comma-separated string (e.g., "255,255,255"), or the default value if the input is invalid.
+	 */
 	public static function hex_to_rgba( string $color, string $default = '0,0,0' ) : string {
 		if ( empty( $color ) ) {
 			return $default;
@@ -96,6 +120,16 @@ class Misc {
 		return implode( ',', $rgb );
 	}
 
+	/**
+	 * Generates an HTML image tag for a country flag based on the provided country code and parameters.
+	 *
+	 * @param string $country_code The ISO country code or identifier (e.g., 'US', 'GB', 'cidr').
+	 * @param string $location     An optional location name for the flag tooltip (used in the HTML "title" and "alt" attributes).
+	 * @param string $status       Specifies the status of the flag; possible values are 'active' (default) or 'private'.
+	 * @param string $not_found    Determines the behavior when the flag cannot be located; possible values are 'image' (default) or an empty string ('').
+	 *
+	 * @return string The HTML image tag representing the flag, or an empty string if the flag image is not found and $not_found is set to ''.
+	 */
 	public static function flag_from_country_code( string $country_code, string $location = '', string $status = 'active', string $not_found = 'image' ) : string {
 		if ( $country_code == 'cidr' ) {
 			$_base = Library::i()->url() . 'resources/gfx/flag_icon_cidr.png';

@@ -1633,12 +1633,16 @@ a > .d4p-icon {
   position: absolute !important;
   width: 1px;
   height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .d4p-break-hypen {
-  word-break: break-word;
+  overflow-wrap: break-word;
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   -ms-hyphens: auto;
@@ -1824,6 +1828,9 @@ a > .d4p-icon {
 .d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul .d4p-nav-current i.d4p-icon {
   line-height: inherit;
   vertical-align: bottom;
+}
+.d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-nav-button ul .d4p-nav-current .d4p-features-mark {
+  float: right;
 }
 .d4p-wrap .d4p-header .d4p-navigator > ul > li.d4p-header-special-button {
   display: flex;

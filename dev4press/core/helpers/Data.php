@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Helpers\Data
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Helpers\Data
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,13 +25,18 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Helpers;
+namespace Dev4Press\v56\Core\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class Data {
+	/**
+	 * Retrieves a list of continents with their corresponding codes.
+	 *
+	 * @return array An associative array of continents.
+	 */
 	public static function list_of_continents() : array {
 		return array(
 			'AF' => __( 'Africa', 'd4plib' ),

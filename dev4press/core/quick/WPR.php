@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Quick\WP
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Quick\WP
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Quick;
+namespace Dev4Press\v56\Core\Quick;
 
-use Dev4Press\v55\Core\Helpers\Error;
+use Dev4Press\v56\Core\Helpers\Error;
 use JetBrains\PhpStorm\NoReturn;
 use WP_Error;
 use WP_Query;
@@ -39,7 +39,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class WPR {
-	public static function is_plugin_installed( $plugin ) : bool {
+	/**
+	 * Check whether a plugin is installed.
+	 *
+	 * @param string $plugin Plugin basename, for example `woocommerce/woocommerce.php`.
+	 *
+	 * @return bool
+	 */
+	public static function is_plugin_installed( string $plugin ) : bool {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 		$installed_plugins = get_plugins();
@@ -47,11 +54,25 @@ class WPR {
 		return in_array( $plugin, array_keys( $installed_plugins ) );
 	}
 
-	public static function is_plugin_active( $plugin ) : bool {
+	/**
+	 * Check whether a plugin is active.
+	 *
+	 * @param string $plugin Plugin basename.
+	 *
+	 * @return bool
+	 */
+	public static function is_plugin_active( string $plugin ) : bool {
 		return in_array( $plugin, (array) get_option( 'active_plugins', array() ), true ) || self::is_plugin_active_for_network( $plugin );
 	}
 
-	public static function is_plugin_active_for_network( $plugin ) : bool {
+	/**
+	 * Check whether a plugin is network-active.
+	 *
+	 * @param string $plugin Plugin basename.
+	 *
+	 * @return bool
+	 */
+	public static function is_plugin_active_for_network( string $plugin ) : bool {
 		if ( ! is_multisite() ) {
 			return false;
 		}
@@ -64,28 +85,62 @@ class WPR {
 		return false;
 	}
 
+	/**
+	 * Check whether the site is running ClassicPress.
+	 *
+	 * @return bool
+	 */
 	public static function is_classicpress() : bool {
 		return function_exists( 'classicpress_version' ) &&
 		       function_exists( 'classicpress_version_short' );
 	}
 
-	public static function is_wp_error( $thing ) : bool {
+	/**
+	 * Check whether a value is a WordPress or plugin error object.
+	 *
+	 * @param mixed $thing Value to check.
+	 *
+	 * @return bool
+	 */
+	public static function is_wp_error( mixed $thing ) : bool {
 		return ( $thing instanceof WP_Error ) || ( $thing instanceof Error );
 	}
 
+	/**
+	 * Check whether the current page is the login page.
+	 *
+	 * @return bool
+	 */
 	public static function is_login_page() : bool {
 		return isset( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] === 'wp-login.php';
 	}
 
+	/**
+	 * Check whether the current page is the signup page.
+	 *
+	 * @return bool
+	 */
 	public static function is_signup_page() : bool {
 		return isset( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] === 'wp-signup.php';
 	}
 
+	/**
+	 * Check whether the current page is the activation page.
+	 *
+	 * @return bool
+	 */
 	public static function is_activate_page() : bool {
 		return isset( $GLOBALS['pagenow'] ) && $GLOBALS['pagenow'] == 'wp-activate.php';
 	}
 
-	public static function is_login_page_action( $action = '' ) : bool {
+	/**
+	 * Check whether the current page is a login-related page, optionally matching a specific action.
+	 *
+	 * @param string $action Optional login action to match.
+	 *
+	 * @return bool
+	 */
+	public static function is_login_page_action( string $action = '' ) : bool {
 		$login_page = isset( $GLOBALS['pagenow'] ) && in_array(
 				$GLOBALS['pagenow'],
 				array(
@@ -107,18 +162,33 @@ class WPR {
 		}
 	}
 
+	/**
+	 * Check whether the current query is the posts page.
+	 *
+	 * @return bool
+	 */
 	public static function is_posts_page() : bool {
 		global $wp_query;
 
 		return $wp_query->is_posts_page;
 	}
 
+	/**
+	 * Check whether the current view is any taxonomy archive.
+	 *
+	 * @return bool
+	 */
 	public static function is_any_tax() : bool {
 		return is_tag() ||
 		       is_tax() ||
 		       is_category();
 	}
 
+	/**
+	 * Check whether bbPress is available and active.
+	 *
+	 * @return bool
+	 */
 	public static function is_bbpress() : bool {
 		if ( class_exists( 'bbPress' ) && function_exists( 'is_bbpress' ) ) {
 			return is_bbpress();
@@ -127,7 +197,14 @@ class WPR {
 		}
 	}
 
-	public static function is_oembed_link( $url ) : bool {
+	/**
+	 * Check whether a URL is a valid oEmbed link.
+	 *
+	 * @param string $url URL to check.
+	 *
+	 * @return bool
+	 */
+	public static function is_oembed_link( string $url ) : bool {
 		require_once ABSPATH . WPINC . '/class-oembed.php';
 
 		$oembed = _wp_oembed_get_object();
@@ -136,7 +213,16 @@ class WPR {
 		return ! ( $result === false );
 	}
 
-	public static function is_user_allowed( $super_admin, $user_roles, $visitor ) : bool {
+	/**
+	 * Determine whether the current visitor is allowed.
+	 *
+	 * @param bool       $super_admin Allowed state for super admins.
+	 * @param bool|array $user_roles  Allowed roles configuration.
+	 * @param bool       $visitor     Allowed state for visitors.
+	 *
+	 * @return bool
+	 */
+	public static function is_user_allowed( bool $super_admin, bool|array $user_roles, bool $visitor ) : bool {
 		if ( is_super_admin() ) {
 			return $super_admin;
 		} else if ( is_user_logged_in() ) {
@@ -162,15 +248,32 @@ class WPR {
 		return false;
 	}
 
+	/**
+	 * Check whether permalinks are enabled.
+	 *
+	 * @return bool
+	 */
 	public static function is_permalinks_enabled() : bool {
 		return ! empty( get_option( 'permalink_structure' ) );
 	}
 
+	/**
+	 * Check whether the current user has administrator role.
+	 *
+	 * @return bool
+	 */
 	public static function is_current_user_admin() : bool {
 		return self::is_current_user_roles( 'administrator' );
 	}
 
-	public static function is_current_user_roles( $roles = array() ) : bool {
+	/**
+	 * Check whether the current user has any of the provided roles.
+	 *
+	 * @param string|string[] $roles Roles to match.
+	 *
+	 * @return bool
+	 */
+	public static function is_current_user_roles( string|array $roles = array() ) : bool {
 		$current = self::current_user_roles();
 		$roles   = (array) $roles;
 
@@ -183,7 +286,15 @@ class WPR {
 		}
 	}
 
-	public static function is_user_roles( int $user_id, $roles = array() ) : bool {
+	/**
+	 * Check whether a specific user has any of the provided roles.
+	 *
+	 * @param int          $user_id User ID.
+	 * @param string|array $roles   Roles to match.
+	 *
+	 * @return bool
+	 */
+	public static function is_user_roles( int $user_id, string|array $roles = array() ) : bool {
 		$current = self::get_user_roles( $user_id );
 		$roles   = (array) $roles;
 
@@ -196,6 +307,13 @@ class WPR {
 		}
 	}
 
+	/**
+	 * Get roles for a specific user.
+	 *
+	 * @param int $user_id User ID.
+	 *
+	 * @return array
+	 */
 	public static function get_user_roles( int $user_id ) : array {
 		$user = get_user_by( 'id', $user_id );
 
@@ -206,6 +324,11 @@ class WPR {
 		return array();
 	}
 
+	/**
+	 * Get roles for the current user.
+	 *
+	 * @return array
+	 */
 	public static function current_user_roles() : array {
 		if ( is_user_logged_in() ) {
 			global $current_user;
@@ -216,7 +339,17 @@ class WPR {
 		}
 	}
 
-	public static function add_action( $tags, $function_to_add, $priority = 10, $accepted_args = 1 ) {
+	/**
+	 * Register one or more actions.
+	 *
+	 * @param string|string[] $tags            Action hook name(s).
+	 * @param callable        $function_to_add Callback to register.
+	 * @param int             $priority       Hook priority.
+	 * @param int             $accepted_args   Number of accepted arguments.
+	 *
+	 * @return void
+	 */
+	public static function add_action( string|array $tags, callable $function_to_add, int $priority = 10, int $accepted_args = 1 ) : void {
 		$tags = (array) $tags;
 
 		foreach ( $tags as $tag ) {
@@ -224,7 +357,17 @@ class WPR {
 		}
 	}
 
-	public static function add_filter( $tags, $function_to_add, $priority = 10, $accepted_args = 1 ) {
+	/**
+	 * Register one or more filters.
+	 *
+	 * @param string|string[] $tags            Filter hook name(s).
+	 * @param callable        $function_to_add Callback to register.
+	 * @param int             $priority       Hook priority.
+	 * @param int             $accepted_args   Number of accepted arguments.
+	 *
+	 * @return void
+	 */
+	public static function add_filter( string|array $tags, callable $function_to_add, int $priority = 10, int $accepted_args = 1 ) : void {
 		$tags = (array) $tags;
 
 		foreach ( $tags as $tag ) {
@@ -232,7 +375,15 @@ class WPR {
 		}
 	}
 
-	public static function cache_flush( bool $cache = true, bool $queries = true ) {
+	/**
+	 * Flush object cache and optionally reset query cache.
+	 *
+	 * @param bool $cache   Whether to flush cache.
+	 * @param bool $queries Whether to clear stored query data.
+	 *
+	 * @return void
+	 */
+	public static function cache_flush( bool $cache = true, bool $queries = true ) : void {
 		if ( $cache ) {
 			wp_cache_flush();
 		}
@@ -247,33 +398,64 @@ class WPR {
 		}
 	}
 
-	public static function flush_rewrite_rules() {
+	/**
+	 * Flush rewrite rules.
+	 *
+	 * @return void
+	 */
+	public static function flush_rewrite_rules() : void {
 		global $wp_rewrite;
 
 		$wp_rewrite->flush_rules();
 	}
 
+	/**
+	 * Redirect to the current request URI.
+	 *
+	 * @return void
+	 */
 	#[NoReturn]
-	public static function redirect_self() {
+	public static function redirect_self() : void {
 		$url = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_url( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/'; // phpcs:ignore WordPress.Security.EscapeOutput,WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput,WordPress.WP.DeprecatedFunctions
 
 		wp_redirect( $url );
 		exit;
 	}
 
+	/**
+	 * Redirect to the HTTP referer.
+	 *
+	 * @return void
+	 */
 	#[NoReturn]
-	public static function redirect_referer() {
+	public static function redirect_referer() : void {
 		wp_redirect( wp_get_referer() );
 		exit;
 	}
 
-	public static function get_the_slug( $post = null ) {
+	/**
+	 * Get the slug for a post.
+	 *
+	 * @param int|object|null $post Post object, ID, or null for the current global post.
+	 *
+	 * @return string|false
+	 */
+	public static function get_the_slug( int|object|null $post = null ) {
 		$post = get_post( $post );
 
 		return ! empty( $post ) ? $post->post_name : false;
 	}
 
-	public static function get_post_excerpt( $post, $word_limit = 50, $append = '...' ) : string {
+	/**
+	 * Get a trimmed excerpt from a post object.
+	 *
+	 * @param object $post       Post object.
+	 * @param int    $word_limit Maximum number of words.
+	 * @param string $append     Text appended when the excerpt is trimmed.
+	 *
+	 * @return string
+	 */
+	public static function get_post_excerpt( object $post, int $word_limit = 50, string $append = '...' ) : string {
 		$content = $post->post_excerpt == '' ? $post->post_content : $post->post_excerpt;
 
 		$content = strip_shortcodes( $content );
@@ -292,7 +474,14 @@ class WPR {
 		return $content;
 	}
 
-	public static function get_post_content( $post ) {
+	/**
+	 * Get rendered post content.
+	 *
+	 * @param object $post Post object.
+	 *
+	 * @return string
+	 */
+	public static function get_post_content( object $post ) : string {
 		$content = $post->post_content;
 
 		if ( post_password_required( $post ) ) {
@@ -304,7 +493,15 @@ class WPR {
 		return str_replace( ']]>', ']]&gt;', $content );
 	}
 
-	public static function get_thumbnail_url( $post_id, $size = 'full' ) : string {
+	/**
+	 * Get the featured image URL for a post.
+	 *
+	 * @param int|object $post_id Post ID or object accepted by WordPress functions.
+	 * @param string     $size    Image size.
+	 *
+	 * @return string
+	 */
+	public static function get_thumbnail_url( int|object $post_id, string $size = 'full' ) : string {
 		if ( has_post_thumbnail( $post_id ) ) {
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), $size );
 
@@ -314,7 +511,14 @@ class WPR {
 		}
 	}
 
-	public static function remove_site_url( string $url ) {
+	/**
+	 * Remove the site URL prefix from a URL.
+	 *
+	 * @param string $url URL to normalize.
+	 *
+	 * @return string
+	 */
+	public static function remove_site_url( string $url ) : string {
 		$site_url = untrailingslashit( site_url() );
 
 		if ( str_starts_with( $url, $site_url ) ) {
@@ -324,7 +528,15 @@ class WPR {
 		return $url;
 	}
 
-	public static function get_post_id_by_slug( $slug, $post_type = 'page' ) {
+	/**
+	 * Get a post ID by slug.
+	 *
+	 * @param string       $slug      Post slug.
+	 * @param string|array $post_type Post type name or list of post types.
+	 *
+	 * @return int
+	 */
+	public static function get_post_id_by_slug( string $slug, string|array $post_type = 'page' ) : int {
 		$query = new WP_Query(
 			array(
 				'name'                   => $slug,
@@ -339,11 +551,23 @@ class WPR {
 		return empty( $posts ) ? 0 : array_shift( $posts );
 	}
 
-	public static function switch_to_default_theme() {
+	/**
+	 * Switch to the default WordPress theme.
+	 *
+	 * @return void
+	 */
+	public static function switch_to_default_theme() : void {
 		switch_theme( WP_DEFAULT_THEME, WP_DEFAULT_THEME );
 	}
 
-	public static function list_post_types( $args = array() ) : array {
+	/**
+	 * Get a list of post types keyed by post type name.
+	 *
+	 * @param array $args Optional query arguments.
+	 *
+	 * @return array
+	 */
+	public static function list_post_types( array $args = array() ) : array {
 		$list       = array();
 		$post_types = get_post_types( $args, 'objects' );
 
@@ -354,7 +578,14 @@ class WPR {
 		return $list;
 	}
 
-	public static function list_taxonomies( $args = array() ) : array {
+	/**
+	 * Get a list of taxonomies keyed by taxonomy name.
+	 *
+	 * @param array $args Optional query arguments.
+	 *
+	 * @return array
+	 */
+	public static function list_taxonomies( array $args = array() ) : array {
 		$list       = array();
 		$taxonomies = get_taxonomies( $args, 'objects' );
 
@@ -365,6 +596,11 @@ class WPR {
 		return $list;
 	}
 
+	/**
+	 * Get a list of available user roles.
+	 *
+	 * @return array
+	 */
 	public static function list_user_roles() : array {
 		$roles = array();
 
@@ -375,11 +611,29 @@ class WPR {
 		return $roles;
 	}
 
-	public static function html_excerpt( $text, $limit, $more = null ) : string {
+	/**
+	 * Return a shortened HTML-safe excerpt.
+	 *
+	 * @param string $text  Input text.
+	 * @param int    $limit Maximum length.
+	 * @param string|null $more Optional suffix.
+	 *
+	 * @return string
+	 */
+	public static function html_excerpt( string $text, int $limit, ?string $more = null ) : string {
 		return wp_html_excerpt( strip_shortcodes( $text ), $limit, $more );
 	}
 
-	public static function check_ajax_referer( $action, $nonce, $die = true ) {
+	/**
+	 * Verify an AJAX nonce and optionally stop execution on failure.
+	 *
+	 * @param string     $action Action name.
+	 * @param string|int $nonce  Nonce value.
+	 * @param bool       $die    Whether to stop execution when verification fails.
+	 *
+	 * @return int|false
+	 */
+	public static function check_ajax_referer( string $action, string|int $nonce, bool $die = true ) {
 		$result = wp_verify_nonce( $nonce, $action );
 
 		if ( $die && false === $result ) {
@@ -395,7 +649,14 @@ class WPR {
 		return $result;
 	}
 
-	public static function post_type_has_archive( $post_type ) : bool {
+	/**
+	 * Check whether a post type supports archives.
+	 *
+	 * @param string $post_type Post type name.
+	 *
+	 * @return bool
+	 */
+	public static function post_type_has_archive( string $post_type ) : bool {
 		if ( post_type_exists( $post_type ) ) {
 			$cpt = get_post_type_object( $post_type );
 
@@ -405,8 +666,16 @@ class WPR {
 		}
 	}
 
+	/**
+	 * Output JSON and terminate execution.
+	 *
+	 * @param mixed     $data     Data to encode as JSON.
+	 * @param int|null  $response Optional HTTP status code.
+	 *
+	 * @return void
+	 */
 	#[NoReturn]
-	public static function json_die( $data, $response = null ) : void {
+	public static function json_die( mixed $data, ?int $response = null ) : void {
 		if ( ! headers_sent() ) {
 			header( 'Content-Type: application/json; charset=utf-8' );
 
@@ -420,7 +689,15 @@ class WPR {
 		die( wp_json_encode( $data ) );
 	}
 
-	public static function is_scheduled_single( $hook, $args = array() ) : bool {
+	/**
+	 * Check whether a single event is scheduled for a hook.
+	 *
+	 * @param string $hook Action hook name.
+	 * @param array  $args Event arguments.
+	 *
+	 * @return bool
+	 */
+	public static function is_scheduled_single( string $hook, array $args = array() ) : bool {
 		$next_event = wp_get_scheduled_event( $hook, $args );
 
 		if ( ! $next_event ) {
@@ -430,7 +707,15 @@ class WPR {
 		return $next_event->schedule === false;
 	}
 
-	public static function next_scheduled( $hook, $args = null ) {
+	/**
+	 * Get the next scheduled timestamp for a hook.
+	 *
+	 * @param string     $hook Action hook name.
+	 * @param array|null $args Optional event arguments.
+	 *
+	 * @return int|false
+	 */
+	public static function next_scheduled( string $hook, ?array $args = null ) {
 		if ( ! is_null( $args ) ) {
 			return wp_next_scheduled( $hook, $args );
 		} else {
@@ -453,7 +738,16 @@ class WPR {
 		}
 	}
 
-	public static function delete_cron_job( $timestamp, $hook, $hash ) {
+	/**
+	 * Delete a scheduled cron event by timestamp, hook and hash.
+	 *
+	 * @param int          $timestamp Event timestamp.
+	 * @param string        $hook      Action hook name.
+	 * @param array|object|string $hash Event hash or original arguments used to generate the hash.
+	 *
+	 * @return void
+	 */
+	public static function delete_cron_job( int $timestamp, string $hook, array|object|string $hash ) : void {
 		$crons = _get_cron_array();
 
 		if ( ! empty( $crons ) ) {
@@ -482,7 +776,14 @@ class WPR {
 		}
 	}
 
-	public static function remove_cron( $hook ) {
+	/**
+	 * Remove all cron events for a hook.
+	 *
+	 * @param string $hook Action hook name.
+	 *
+	 * @return void
+	 */
+	public static function remove_cron( string $hook ) : void {
 		$crons = _get_cron_array();
 
 		if ( ! empty( $crons ) ) {
@@ -505,7 +806,17 @@ class WPR {
 		}
 	}
 
-	public static function get_term( $term, $taxonomy = '', $output = OBJECT, $filter = 'raw' ) {
+	/**
+	 * Get a term by ID or slug.
+	 *
+	 * @param int|string|WP_Term $term    Term ID, slug, or term object.
+	 * @param string             $taxonomy Taxonomy name.
+	 * @param string             $output   Output format.
+	 * @param string             $filter   Filter context.
+	 *
+	 * @return WP_Term|array|false
+	 */
+	public static function get_term( int|string|WP_Term $term, string $taxonomy = '', string $output = OBJECT, string $filter = 'raw' ) {
 		if ( $term instanceof WP_Term || is_numeric( $term ) ) {
 			return get_term( $term, $taxonomy, $output, $filter );
 		} else if ( is_string( $term ) ) {
@@ -515,7 +826,14 @@ class WPR {
 		return false;
 	}
 
-	public static function has_gravatar( $email ) : bool {
+	/**
+	 * Check whether a Gravatar exists for an email address.
+	 *
+	 * @param string $email Email address.
+	 *
+	 * @return bool
+	 */
+	public static function has_gravatar( string $email ) : bool {
 		$hash = md5( strtolower( trim( $email ) ) );
 		$url  = 'https://www.gravatar.com/avatar/' . $hash . '?d=404';
 
@@ -533,7 +851,14 @@ class WPR {
 		return $code === 200;
 	}
 
-	public static function get_user_display_name( $user_id = 0 ) : string {
+	/**
+	 * Get a user's display name.
+	 *
+	 * @param int $user_id User ID, or 0 for current user.
+	 *
+	 * @return string
+	 */
+	public static function get_user_display_name( int $user_id = 0 ) : string {
 		if ( $user_id == 0 ) {
 			$user_id = get_current_user_id();
 		}
@@ -551,6 +876,11 @@ class WPR {
 		return '';
 	}
 
+	/**
+	 * Get the number of blogs on the network.
+	 *
+	 * @return int
+	 */
 	public static function get_blogs_count() : int {
 		if ( is_multisite() ) {
 			return absint( get_sites( array(
@@ -562,11 +892,18 @@ class WPR {
 		return 1;
 	}
 
+	/**
+	 * Get attachment ID from an uploaded file URL.
+	 *
+	 * @param string $url Attachment URL.
+	 *
+	 * @return int
+	 */
 	/*
 	 * Function by Micah Wood
 	 * https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
 	 */
-	public static function get_attachment_id_from_url( $url ) : int {
+	public static function get_attachment_id_from_url( string $url ) : int {
 		$attachment_id = 0;
 
 		$dir = wp_upload_dir();
@@ -607,7 +944,11 @@ class WPR {
 	}
 
 	/**
+	 * Get the allowed HTML tags list used by KSES.
+	 *
 	 * @deprecated since 5.5 use `KSES::allowed_html_expanded()` instead. To be removed in 6.0.
+	 *
+	 * @return array
 	 */
 	public static function kses_expanded_list_of_tags() : array {
 		return KSES::allowed_html_expanded();

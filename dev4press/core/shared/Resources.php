@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Shared\Enqueue
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Shared\Enqueue
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,14 +25,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Shared;
+namespace Dev4Press\v56\Core\Shared;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class Resources {
-	private $_ui = array(
+	private array $_ui = array(
 		'js'  => array(
 			'meta'          => array(
 				'path' => 'js/',
@@ -174,13 +174,13 @@ class Resources {
 		),
 	);
 
-	private $_shared = array(
+	private array $_shared = array(
 		'js'  => array(
-			'animated-popup'         => array(
+			'flyin'         => array(
 				'lib'  => true,
-				'path' => 'animated-popup/',
-				'file' => 'animated-popup.min',
-				'ver'  => '2.0',
+				'path' => 'flyin/',
+				'file' => 'flyin.umd',
+				'ver'  => '1.2.0',
 				'ext'  => 'js',
 				'min'  => false,
 			),
@@ -188,80 +188,9 @@ class Resources {
 				'lib'  => true,
 				'path' => '',
 				'file' => 'micromodal.min',
-				'ver'  => '0.6.1',
+				'ver'  => '0.7.0',
 				'ext'  => 'js',
 				'min'  => false,
-			),
-			'flatpickr'              => array(
-				'lib'        => true,
-				'path'       => 'flatpickr/',
-				'file'       => 'flatpickr.min',
-				'ver'        => '4.6.13',
-				'ext'        => 'js',
-				'min'        => false,
-				'min_locale' => true,
-				'locales'    => array(
-					'bg',
-					'da',
-					'de',
-					'es',
-					'fr',
-					'it',
-					'nl',
-					'nn',
-					'no',
-					'pl',
-					'pt',
-					'ru',
-					'sl',
-					'sr',
-					'sv',
-				),
-			),
-			'flatpickr-confirm-date' => array(
-				'lib'  => true,
-				'path' => 'flatpickr/plugins',
-				'file' => 'confirm-date',
-				'ver'  => '4.6.13',
-				'ext'  => 'js',
-				'min'  => true,
-				'int'  => array( 'flatpickr' ),
-			),
-			'flatpickr-month-select' => array(
-				'lib'  => true,
-				'path' => 'flatpickr/plugins',
-				'file' => 'month-select',
-				'ver'  => '4.6.13',
-				'ext'  => 'js',
-				'min'  => true,
-				'int'  => array( 'flatpickr' ),
-			),
-			'flatpickr-week-select'  => array(
-				'lib'  => true,
-				'path' => 'flatpickr/plugins',
-				'file' => 'week-select',
-				'ver'  => '4.6.13',
-				'ext'  => 'js',
-				'min'  => true,
-				'int'  => array( 'flatpickr' ),
-			),
-			'flatpickr-minmax-time'  => array(
-				'lib'  => true,
-				'path' => 'flatpickr/plugins',
-				'file' => 'minmax-time',
-				'ver'  => '4.6.13',
-				'ext'  => 'js',
-				'min'  => true,
-				'int'  => array( 'flatpickr' ),
-			),
-			'flatpickr-range'        => array(
-				'lib'  => true,
-				'path' => 'flatpickr/plugins',
-				'file' => 'range',
-				'ver'  => '4.6.13',
-				'ext'  => 'js',
-				'min'  => true,
-				'int'  => array( 'flatpickr' ),
 			),
 			'cookies'                => array(
 				'lib'  => true,
@@ -322,11 +251,11 @@ class Resources {
 				'ext'  => 'css',
 				'min'  => true,
 			),
-			'animated-popup'         => array(
+			'flyin'         => array(
 				'lib'  => true,
-				'path' => 'animated-popup/',
-				'file' => 'animated-popup.min',
-				'ver'  => '2.0',
+				'path' => 'flyin/',
+				'file' => 'flyin',
+				'ver'  => '1.2.0',
 				'ext'  => 'css',
 				'min'  => false,
 			),
@@ -334,7 +263,7 @@ class Resources {
 				'lib'  => false,
 				'path' => 'css',
 				'file' => 'micromodal',
-				'ver'  => '0.6.1',
+				'ver'  => '0.7.0',
 				'ext'  => 'css',
 				'min'  => true,
 			),
@@ -345,32 +274,6 @@ class Resources {
 				'ver'  => '2015.10',
 				'ext'  => 'css',
 				'min'  => false,
-			),
-			'flatpickr'              => array(
-				'lib'  => true,
-				'path' => 'flatpickr/',
-				'file' => 'flatpickr.min',
-				'ver'  => '4.6.13',
-				'ext'  => 'css',
-				'min'  => false,
-			),
-			'flatpickr-confirm-date' => array(
-				'lib'  => true,
-				'path' => 'flatpickr/plugins',
-				'file' => 'confirm-date',
-				'ver'  => '4.6.13',
-				'ext'  => 'css',
-				'min'  => true,
-				'int'  => array( 'flatpickr' ),
-			),
-			'flatpickr-month-select' => array(
-				'lib'  => true,
-				'path' => 'flatpickr/plugins',
-				'file' => 'month-select',
-				'ver'  => '4.6.13',
-				'ext'  => 'css',
-				'min'  => true,
-				'int'  => array( 'flatpickr' ),
 			),
 			'grid-table'             => array(
 				'lib'  => false,

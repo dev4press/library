@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Quick\Display
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Quick\Display
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,41 +25,95 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Quick;
+namespace Dev4Press\v56\Core\Quick;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class KSES {
+	/**
+	 * Sanitize content using WordPress post KSES rules.
+	 *
+	 * @param string $render HTML content to sanitize.
+	 *
+	 * @return string Sanitized HTML.
+	 */
 	public static function post( string $render ) : string {
 		return wp_kses_post( $render );
 	}
 
+	/**
+	 * Sanitize content using the standard allowed HTML set.
+	 *
+	 * @param string $render HTML content to sanitize.
+	 *
+	 * @return string Sanitized HTML.
+	 */
 	public static function standard( string $render ) : string {
 		return wp_kses( $render, self::allowed_html_standard() );
 	}
 
+	/**
+	 * Sanitize content using the strong-text allowed HTML set.
+	 *
+	 * @param string $render HTML content to sanitize.
+	 *
+	 * @return string Sanitized HTML.
+	 */
 	public static function strong( string $render ) : string {
 		return wp_kses( $render, self::allowed_html_strong() );
 	}
 
+	/**
+	 * Sanitize content using the button allowed HTML set.
+	 *
+	 * @param string $render HTML content to sanitize.
+	 *
+	 * @return string Sanitized HTML.
+	 */
 	public static function buttons( string $render ) : string {
 		return wp_kses( $render, self::allowed_html_button() );
 	}
 
+	/**
+	 * Sanitize content using the select allowed HTML set.
+	 *
+	 * @param string $render HTML content to sanitize.
+	 *
+	 * @return string Sanitized HTML.
+	 */
 	public static function select( string $render ) : string {
 		return wp_kses( $render, self::allowed_html_select() );
 	}
 
+	/**
+	 * Sanitize content using the input allowed HTML set.
+	 *
+	 * @param string $render HTML content to sanitize.
+	 *
+	 * @return string Sanitized HTML.
+	 */
 	public static function input( string $render ) : string {
 		return wp_kses( $render, self::allowed_html_input() );
 	}
 
+	/**
+	 * Sanitize content using the checkbox allowed HTML set.
+	 *
+	 * @param string $render HTML content to sanitize.
+	 *
+	 * @return string Sanitized HTML.
+	 */
 	public static function checkboxes( string $render ) : string {
 		return wp_kses( $render, self::allowed_html_checkboxes() );
 	}
 
+	/**
+	 * Get allowed HTML tags and attributes for strong text markup.
+	 *
+	 * @return array<string, array<string, bool>>
+	 */
 	public static function allowed_html_strong() : array {
 		return array(
 			'strong' => array(
@@ -77,6 +131,11 @@ class KSES {
 		);
 	}
 
+	/**
+	 * Get allowed HTML tags and attributes for button markup.
+	 *
+	 * @return array<string, array<string, bool>>
+	 */
 	public static function allowed_html_button() : array {
 		return array(
 			'div'    => array(
@@ -107,6 +166,11 @@ class KSES {
 		);
 	}
 
+	/**
+	 * Get allowed HTML tags and attributes for select markup.
+	 *
+	 * @return array<string, array<string, bool>>
+	 */
 	public static function allowed_html_select() : array {
 		return array(
 			'select'   => array(
@@ -129,6 +193,11 @@ class KSES {
 		);
 	}
 
+	/**
+	 * Get allowed HTML tags and attributes for input markup.
+	 *
+	 * @return array<string, array<string, bool>>
+	 */
 	public static function allowed_html_input() : array {
 		return array(
 			'input' => array(
@@ -160,6 +229,11 @@ class KSES {
 		);
 	}
 
+	/**
+	 * Get allowed HTML tags and attributes for checkbox markup.
+	 *
+	 * @return array<string, array<string, bool>>
+	 */
 	public static function allowed_html_checkboxes() : array {
 		return array(
 			'a'     => array(
@@ -196,6 +270,11 @@ class KSES {
 		);
 	}
 
+	/**
+	 * Get allowed HTML tags and attributes for standard markup.
+	 *
+	 * @return array<string, array<string, bool>>
+	 */
 	public static function allowed_html_standard() : array {
 		$list = array(
 			'code'   => array(),
@@ -235,6 +314,11 @@ class KSES {
 		return self::expand_tags_with_attributes( $list );
 	}
 
+	/**
+	 * Get allowed HTML tags and attributes for expanded markup.
+	 *
+	 * @return array<string, array<string, bool>>
+	 */
 	public static function allowed_html_expanded() : array {
 		$list = array(
 			'abbr'       => array(),
@@ -318,7 +402,14 @@ class KSES {
 		return self::expand_tags_with_attributes( $list );
 	}
 
-	public static function expand_tags_with_attributes( $tags ) {
+	/**
+	 * Add common attributes to each allowed HTML tag definition.
+	 *
+	 * @param array<string, array<string, bool>> $tags Allowed tags and their attributes.
+	 *
+	 * @return array<string, array<string, bool>> Updated allowed tags.
+	 */
+	public static function expand_tags_with_attributes( array $tags ) : array {
 		foreach ( $tags as &$attrs ) {
 			$attrs['id']     = true;
 			$attrs['class']  = true;

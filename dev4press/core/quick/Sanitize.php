@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Quick\Sanitize
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Quick\Sanitize
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Quick;
+namespace Dev4Press\v56\Core\Quick;
 
 use DateTime;
 
@@ -34,7 +34,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Sanitize {
-	public static function date( $value, $format = 'Y-m-d', $return_on_error = '' ) : string {
+	/**
+	 * Sanitize a date-like value using a specific format.
+	 *
+	 * @param string $value           The value to sanitize.
+	 * @param string $format          Date format used for parsing and output.
+	 * @param string $return_on_error Value returned when parsing fails.
+	 *
+	 * @return string
+	 */
+	public static function date( string $value, string $format = 'Y-m-d', string $return_on_error = '' ) : string {
 		$dt = DateTime::createFromFormat( '!' . $format, $value );
 
 		if ( $dt === false ) {
@@ -44,33 +53,86 @@ class Sanitize {
 		return $dt->format( $format );
 	}
 
-	public static function time( $value, $format = 'H:i:s', $return_on_error = '' ) : string {
+	/**
+	 * Sanitize a time-like value using a specific format.
+	 *
+	 * @param string $value The value to sanitize.
+	 * @param string $format Time format used for parsing and output.
+	 * @param string $return_on_error Value returned when parsing fails.
+	 *
+	 * @return string
+	 */
+	public static function time( string $value, string $format = 'H:i:s', string $return_on_error = '' ) : string {
 		return self::date( $value, $format, $return_on_error );
 	}
 
-	public static function month( $value, $format = 'Y-m', $return_on_error = '' ) : string {
+	/**
+	 * Sanitize a month-like value using a specific format.
+	 *
+	 * @param string $value The value to sanitize.
+	 * @param string $format Month format used for parsing and output.
+	 * @param string $return_on_error Value returned when parsing fails.
+	 *
+	 * @return string
+	 */
+	public static function month( string $value, string $format = 'Y-m', string $return_on_error = '' ) : string {
 		return self::date( $value, $format, $return_on_error );
 	}
 
-	public static function absint( $value ) : int {
+	/**
+	 * Sanitize a value as absolute integer.
+	 *
+	 * @param mixed $value The value to sanitize.
+	 *
+	 * @return int
+	 */
+	public static function absint( mixed $value ) : int {
 		return absint( $value );
 	}
 
-	public static function email( $email ) : string {
+	/**
+	 * Sanitize a value as email address.
+	 *
+	 * @param string $email The email to sanitize.
+	 *
+	 * @return string
+	 */
+	public static function email( string $email ) : string {
 		return sanitize_email( $email );
 	}
 
-	public static function url( $url ) : string {
+	/**
+	 * Sanitize a value as URL.
+	 *
+	 * @param string $url The URL to sanitize.
+	 *
+	 * @return string
+	 */
+	public static function url( string $url ) : string {
 		return sanitize_url( $url ); // phpcs:ignore WordPress.WP.DeprecatedFunctions
 	}
 
-	public static function key( $text ) : string {
+	/**
+	 * Sanitize a value as a key string.
+	 *
+	 * @param mixed $text The value to sanitize.
+	 *
+	 * @return string
+	 */
+	public static function key( mixed $text ) : string {
 		$text = stripslashes( (string) $text );
 
 		return sanitize_key( $text );
 	}
 
-	public static function slug( $text ) : string {
+	/**
+	 * Sanitize a value as a slug.
+	 *
+	 * @param mixed $text The value to sanitize.
+	 *
+	 * @return string
+	 */
+	public static function slug( mixed $text ) : string {
 		if ( is_null( $text ) ) {
 			return '';
 		}
@@ -80,7 +142,14 @@ class Sanitize {
 		return trim( sanitize_title_with_dashes( $text ), "-_ \t\n\r\0\x0B" );
 	}
 
-	public static function slag_with_slashes( $text ) : string {
+	/**
+	 * Sanitize a value as a slug that can contain slashes.
+	 *
+	 * @param mixed $text The value to sanitize.
+	 *
+	 * @return string
+	 */
+	public static function slag_with_slashes( mixed $text ) : string {
 		if ( is_null( $text ) ) {
 			return '';
 		}
@@ -91,7 +160,15 @@ class Sanitize {
 		return preg_replace( '/[^a-z0-9.\/_\-]/', '', $text );
 	}
 
-	public static function text( $text, bool $strip_shortcodes = false ) : string {
+	/**
+	 * Sanitize a value as plain text.
+	 *
+	 * @param mixed $text The value to sanitize.
+	 * @param bool $strip_shortcodes Whether shortcodes should be removed first.
+	 *
+	 * @return string
+	 */
+	public static function text( mixed $text, bool $strip_shortcodes = false ) : string {
 		if ( is_null( $text ) ) {
 			return '';
 		}
@@ -105,7 +182,17 @@ class Sanitize {
 		return trim( wp_kses( $text, array() ) );
 	}
 
-	public static function html( $text, $tags = null, $protocols = array(), bool $strip_shortcodes = false ) : string {
+	/**
+	 * Sanitize a value as HTML.
+	 *
+	 * @param mixed $text The value to sanitize.
+	 * @param array|string|null $tags Allowed HTML tags. Defaults to 'post'.
+	 * @param array $protocols Allowed protocols.
+	 * @param bool $strip_shortcodes Whether shortcodes should be removed first.
+	 *
+	 * @return string
+	 */
+	public static function html( mixed $text, mixed $tags = null, array $protocols = array(), bool $strip_shortcodes = false ) : string {
 		if ( is_null( $text ) ) {
 			return '';
 		}
@@ -120,20 +207,29 @@ class Sanitize {
 		return wp_kses( trim( $text ), $tags, $protocols );
 	}
 
+	/**
+	 * Deep-sanitize array values using one of the supported sanitizers.
+	 *
+	 * @param array $input Input array to sanitize.
+	 * @param string $method Sanitizing method: html, text, key, or slug.
+	 * @param bool $strip_shortcodes Whether shortcodes should be removed first.
+	 *
+	 * @return array
+	 */
 	public static function deep( array $input, string $method, bool $strip_shortcodes = false ) : array {
 		switch ( $method ) {
 			default:
 			case 'html':
-				$input = map_deep( $input, '\Dev4Press\v55\Core\Quick\Sanitize::html' );
+				$input = map_deep( $input, '\Dev4Press\v56\Core\Quick\Sanitize::html' );
 				break;
 			case 'text':
-				$input = map_deep( $input, '\Dev4Press\v55\Core\Quick\Sanitize::text' );
+				$input = map_deep( $input, '\Dev4Press\v56\Core\Quick\Sanitize::text' );
 				break;
 			case 'key':
-				$input = map_deep( $input, '\Dev4Press\v55\Core\Quick\Sanitize::key' );
+				$input = map_deep( $input, '\Dev4Press\v56\Core\Quick\Sanitize::key' );
 				break;
 			case 'slug':
-				$input = map_deep( $input, '\Dev4Press\v55\Core\Quick\Sanitize::slug' );
+				$input = map_deep( $input, '\Dev4Press\v56\Core\Quick\Sanitize::slug' );
 				break;
 		}
 
@@ -144,14 +240,29 @@ class Sanitize {
 		return $input;
 	}
 
-	public static function html_classes( $classes ) : string {
+	/**
+	 * Sanitize a list of CSS classes.
+	 *
+	 * @param array|string $classes Classes as array or space-separated string.
+	 *
+	 * @return string
+	 */
+	public static function html_classes( array|string $classes ) : string {
 		$list = is_array( $classes ) ? $classes : explode( ' ', trim( stripslashes( $classes ) ) );
 		$list = array_map( 'sanitize_html_class', $list );
 
 		return trim( join( ' ', $list ) );
 	}
 
-	public static function ids_list( $ids, $map = 'absint' ) : array {
+	/**
+	 * Sanitize a list of IDs.
+	 *
+	 * @param array|scalar|null $ids IDs to sanitize.
+	 * @param callable|string $map Mapping callback used for each value.
+	 *
+	 * @return array
+	 */
+	public static function ids_list( mixed $ids, string $map = 'absint' ) : array {
 		if ( empty( $ids ) ) {
 			return array();
 		}
@@ -164,7 +275,14 @@ class Sanitize {
 		return array_filter( $ids );
 	}
 
-	public static function file_path( $filename ) : string {
+	/**
+	 * Sanitize a file path or filename.
+	 *
+	 * @param string $filename The filename/path to sanitize.
+	 *
+	 * @return string
+	 */
+	public static function file_path( string $filename ) : string {
 		$filename_raw = $filename;
 
 		$special_chars = apply_filters(
@@ -211,7 +329,16 @@ class Sanitize {
 		return apply_filters( __NAMESPACE__ . '\sanitize\file_path', $filename, $filename_raw );
 	}
 
-	public static function _get_switch_array( $key, $sub_key = false, $value = 'on' ) : array {
+	/**
+	 * Read a switch-style array from POST data.
+	 *
+	 * @param string      $key     Main POST key.
+	 * @param bool|string $sub_key Optional sub-key to read from.
+	 * @param string      $value   Expected value for enabled entries.
+	 *
+	 * @return array
+	 */
+	public static function _get_switch_array( string $key, bool|string $sub_key = false, string $value = 'on' ) : array {
 		$source = self::deep( $_POST[ $key ] ?? array(), 'key' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 		$source = $sub_key !== false ? ( $source[ $sub_key ] ?? array() ) : $source;
 		$result = array();
@@ -225,18 +352,50 @@ class Sanitize {
 		return $result;
 	}
 
+	/**
+	 * Get a slug value from query parameters.
+	 *
+	 * @param string $name Query parameter name.
+	 * @param string $default Default value if parameter is missing.
+	 *
+	 * @return string
+	 */
 	public static function _get_slug( string $name, string $default = '' ) : string {
 		return ! empty( $_GET[ $name ] ) ? self::slug( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 	}
 
+	/**
+	 * Get a text value from query parameters.
+	 *
+	 * @param string $name Query parameter name.
+	 * @param string $default Default value if parameter is missing.
+	 *
+	 * @return string
+	 */
 	public static function _get_text( string $name, string $default = '' ) : string {
 		return ! empty( $_GET[ $name ] ) ? self::text( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 	}
 
+	/**
+	 * Get an absolute integer value from query parameters.
+	 *
+	 * @param string $name Query parameter name.
+	 * @param int $default Default value if parameter is missing.
+	 *
+	 * @return int
+	 */
 	public static function _get_absint( string $name, int $default = 0 ) : int {
 		return ! empty( $_GET[ $name ] ) ? absint( $_GET[ $name ] ) : $default; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 	}
 
+	/**
+	 * Get a list of IDs from query parameters.
+	 *
+	 * @param string $name Query parameter name.
+	 * @param array $default Default value if parameter is missing.
+	 *
+	 * @return array
+	 */
 	public static function _get_ids( string $name, array $default = array() ) : array {
 		$ids = isset( $_GET[ $name ] ) ? (array) $_GET[ $name ] : $default; // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
 

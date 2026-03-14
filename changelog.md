@@ -2,13 +2,22 @@
 
 ## Changelog
 
-### Version 5.6 - 2026.02.10
+### Version 5.6 - 2026.08.17
 
-* **new**: tools for SASS and JS linting
+* **new**: node tools for SASS and JS linting
+* **new**: background task class with memory usage limitation
+* **new**: added `.gitattribures` file for ignoring files for export
+* **new**: added `Flyin` popup library, version 1.2.0
 * **edit**: reorganized SASS code to modernize loading
 * **edit**: many improvements to the SASS code and styling
 * **edit**: many improvements to the JS code
+* **edit**: added a lot of documentation to the code
+* **edit**: Micromodal JS library 0.7.0
+* **edit**: Parsedown library to 0.9.0
 * **removed**: legacy `Languages` class and related code
+* **removed**: legacy `Smart Animated Popup` JS library
+* **removed**: legacy `Flatpickr` JS library
+* **fix**: several smaller styling issues
 
 ### Version 5.5.2 - 2026.02.10
 

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Task\AJAX
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Task\AJAX
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Task;
+namespace Dev4Press\v56\Core\Task;
 
-use Dev4Press\v55\Core\Base\Background;
+use Dev4Press\v56\Core\Base\Background;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -62,7 +62,8 @@ abstract class AJAX extends Background {
 
 		sleep( $this->delay );
 
-		wp_remote_get( $url, array(
+		wp_remote_get( $url,
+			array(
 				'method'      => 'GET',
 				'timeout'     => 60,
 				'redirection' => 5,

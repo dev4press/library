@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Quick\BP
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Quick\BP
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,14 +25,21 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Quick;
+namespace Dev4Press\v56\Core\Quick;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class BP {
-	public static function is_active( $min_version = '7.0' ) : bool {
+	/**
+	 * Checks if a BuddyPress plugin is active and meets the minimum required version.
+	 *
+	 * @param string $min_version Minimum version of the BuddyPress plugin required (default is '7.0').
+	 *
+	 * @return bool True if the plugin is active and meets the minimum version, false otherwise.
+	 */
+	public static function is_active( string $min_version = '7.0' ) : bool {
 		if ( WPR::is_plugin_active( 'buddypress/bp-loader.php' ) && function_exists( 'bp_get_version' ) ) {
 			return version_compare( bp_get_version(), $min_version, '>=' );
 		} else {

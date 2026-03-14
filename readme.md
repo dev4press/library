@@ -1,9 +1,9 @@
 # Dev4Press Library
 ## About
 
-* Version: v5.5.2
-* Build:   5520
-* Release: 2026.02.10.
+* Version: v5.6
+* Build:   5600
+* Release: 2026.08.17.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
@@ -27,4 +27,4 @@
 ### Optional
 
 * bbPress 2.6.2 or newer
-* BuddyPress 10.0 or newer
+* BuddyPress 12.0 or newer

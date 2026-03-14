@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Mailer\Detection
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Mailer\Detection
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,11 +25,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Mailer;
+namespace Dev4Press\v56\Core\Mailer;
 
-use Dev4Press\v55\Core\Helpers\Source;
-use Dev4Press\v55\Core\Quick\Str;
-use Dev4Press\v55\Library;
+use Dev4Press\v56\Core\Helpers\Source;
+use Dev4Press\v56\Core\Quick\Str;
+use Dev4Press\v56\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -82,7 +82,7 @@ class Detection {
 
 		$this->caller();
 
-		/** HOOK: `dev4press_v55_mailer_notification_detected` */
+		/** HOOK: `dev4press_v56_mailer_notification_detected` */
 		do_action( Library::i()->hook( 'mailer_notification_detected' ), $this->detection, $atts );
 
 		return $atts;
@@ -574,7 +574,7 @@ class Detection {
 			),
 		);
 
-		/** HOOK: `dev4press_v55_mailer_custom_regex` */
+		/** HOOK: `dev4press_v56_mailer_custom_regex` */
 		$_custom_regex = apply_filters( Library::i()->hook( 'mailer_custom_regex' ), array() );
 
 		foreach ( $_custom_regex as $regex ) {

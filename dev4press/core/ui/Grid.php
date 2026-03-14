@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\UI\Grid
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\UI\Grid
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,12 +25,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\UI;
+namespace Dev4Press\v56\Core\UI;
 
-use Dev4Press\v55\Core\Plugins\DBLite;
-use Dev4Press\v55\Core\Quick\Sanitize;
-use Dev4Press\v55\Core\Quick\URL;
-use Dev4Press\v55\Library;
+use Dev4Press\v56\Core\Plugins\DBLite;
+use Dev4Press\v56\Core\Quick\Sanitize;
+use Dev4Press\v56\Core\Quick\URL;
+use Dev4Press\v56\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

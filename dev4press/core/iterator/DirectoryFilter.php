@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Name:    Dev4Press\v55\Core\Iterator\DirectoryFilter
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Iterator\DirectoryFilter
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -26,7 +26,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Iterator;
+namespace Dev4Press\v56\Core\Iterator;
 
 use RecursiveFilterIterator;
 use RecursiveIterator;
@@ -36,8 +36,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class DirectoryFilter extends RecursiveFilterIterator {
-	public $exclude_paths;
-	public $exclude_names;
+	public array $exclude_paths;
+	public array $exclude_names;
 
 	public function __construct( RecursiveIterator $iterator, array $exclude_paths = array(), array $exclude_names = array() ) {
 		parent::__construct( $iterator );

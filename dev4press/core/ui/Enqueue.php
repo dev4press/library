@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\UI\Enqueue
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\UI\Enqueue
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,11 +25,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\UI;
+namespace Dev4Press\v56\Core\UI;
 
-use Dev4Press\v55\Core\Shared\Resources;
-use Dev4Press\v55\Library;
-use Dev4Press\v55\WordPress;
+use Dev4Press\v56\Core\Shared\Resources;
+use Dev4Press\v56\Library;
+use Dev4Press\v56\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Enqueue {
 	private string $_version;
-	private string $_enqueue_prefix = 'd4plib-v55-';
+	private string $_enqueue_prefix = 'd4plib-v56-';
 	private string $_library;
 	private string $_url;
 	private bool $_debug = false;
@@ -52,11 +52,11 @@ final class Enqueue {
 		'css' => array(),
 	);
 
-	/** @var \Dev4Press\v55\Core\Admin\Plugin|\Dev4Press\v55\Core\Admin\Menu\Plugin|\Dev4Press\v55\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v56\Core\Admin\Plugin|\Dev4Press\v56\Core\Admin\Menu\Plugin|\Dev4Press\v56\Core\Admin\Submenu\Plugin */
 	private $_admin;
 
 	/**
-	 * @param $admin \Dev4Press\v55\Core\Admin\Plugin|\Dev4Press\v55\Core\Admin\Menu\Plugin|\Dev4Press\v55\Core\Admin\Submenu\Plugin
+	 * @param $admin \Dev4Press\v56\Core\Admin\Plugin|\Dev4Press\v56\Core\Admin\Menu\Plugin|\Dev4Press\v56\Core\Admin\Submenu\Plugin
 	 */
 	public function __construct( $admin ) {
 		$this->_libraries['js']  = Resources::instance()->ui_js() + Resources::instance()->shared_js();
@@ -71,7 +71,7 @@ final class Enqueue {
 	}
 
 	/**
-	 * @param $admin \Dev4Press\v55\Core\Admin\Plugin|\Dev4Press\v55\Core\Admin\Menu\Plugin|\Dev4Press\v55\Core\Admin\Submenu\Plugin
+	 * @param $admin \Dev4Press\v56\Core\Admin\Plugin|\Dev4Press\v56\Core\Admin\Menu\Plugin|\Dev4Press\v56\Core\Admin\Submenu\Plugin
 	 *
 	 * @deprecated 5.5.0 Use self::i() instead.
 	 */
@@ -114,20 +114,6 @@ final class Enqueue {
 
 	public function css( $name ) : Enqueue {
 		$this->add( 'css', $name );
-
-		return $this;
-	}
-
-	public function flatpickr( $plugins = array() ) : Enqueue {
-		$this->add( 'js', 'flatpickr' );
-		$this->add( 'css', 'flatpickr' );
-
-		if ( ! empty( $plugins ) ) {
-			foreach ( $plugins as $plug ) {
-				$this->add( 'js', 'flatpickr-' . $plug );
-				$this->add( 'css', 'flatpickr-' . $plug );
-			}
-		}
 
 		return $this;
 	}
@@ -374,7 +360,6 @@ final class Enqueue {
 	private function localize_shared_args() : array {
 		return array(
 			'lib' => array(
-				'flatpickr' => $this->locale_js_code( 'flatpickr' ),
 			),
 			'ui'  => array(
 				'messages' => array(

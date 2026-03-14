@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Quick\URL
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Quick\URL
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,14 +25,21 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Quick;
+namespace Dev4Press\v56\Core\Quick;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class URL {
-	public static function domain_name( string $url = '' ) {
+	/**
+	 * Extracts the domain name from a given URL.
+	 *
+	 * @param string $url The URL to extract the domain name from. If an empty string is provided, returns an empty string.
+	 *
+	 * @return bool|string The domain name extracted from the URL.
+	 */
+	public static function domain_name( string $url = '' ) : bool|string {
 		if ( empty( $url ) ) {
 			return '';
 		}
@@ -40,6 +47,13 @@ class URL {
 		return wp_parse_url( $url, PHP_URL_HOST );
 	}
 
+	/**
+	 * Cleans the provided URL to extract and return only its domain name.
+	 *
+	 * @param string $url The full URL whose domain needs cleaning.
+	 *
+	 * @return string The cleaned domain extracted from the provided URL.
+	 */
 	public static function clean_domain_name( string $url = '' ) : string {
 		$url = empty( $url ) ? get_option( 'siteurl' ) : $url;
 
@@ -53,12 +67,22 @@ class URL {
 		return $domain;
 	}
 
+	/**
+	 * Retrieves the current request path from the server environment.
+	 *
+	 * @return string The sanitized current request path.
+	 */
 	public static function current_request_path() {
 		$uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_url( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput,WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput,WordPress.WP.DeprecatedFunctions
 
 		return wp_parse_url( $uri, PHP_URL_PATH );
 	}
 
+	/**
+	 * Retrieves the current URL request path, excluding the site home path and optionally appending the query string if present.
+	 *
+	 * @return string The current URL request path, relative to the site home, with the query string included if applicable.
+	 */
 	public static function current_url_request() : string {
 		$path_info = $_SERVER['PATH_INFO'] ?? ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification
 		list( $path_info ) = explode( '?', $path_info );
@@ -85,6 +109,13 @@ class URL {
 		return $url_request;
 	}
 
+	/**
+	 * Retrieves the current URL of the request.
+	 *
+	 * @param bool $use_wp  Optional. Determines whether to use WordPress's home_url function.
+	 *
+	 * @return string The full URL of the current request.
+	 */
 	public static function current_url( bool $use_wp = true ) : string {
 		if ( $use_wp ) {
 			return home_url( self::current_url_request() );
@@ -98,6 +129,18 @@ class URL {
 		}
 	}
 
+	/**
+	 * Appends UTM campaign tracking parameters to a given URL.
+	 *
+	 * @param string      $url      The base URL to which campaign tracking parameters will be added.
+	 * @param string      $campaign Optional. The campaign name (utm_campaign) to track the marketing campaign.
+	 * @param string      $medium   Optional. The medium (utm_medium) used, such as email, CPC, or social.
+	 * @param string      $content  Optional. The content (utm_content) to differentiate ads or links.
+	 * @param string      $term     Optional. The term (utm_term), typically a keyword for paid search campaigns.
+	 * @param string|null $source   Optional. The source (utm_source), such as a website or platform. Defaults to the current site URL's host.
+	 *
+	 * @return string The URL with appended campaign tracking parameters.
+	 */
 	public static function add_campaign_tracking( string $url, string $campaign = '', string $medium = '', string $content = '', string $term = '', ?string $source = null ) : string {
 		if ( ! empty( $campaign ) ) {
 			$url = add_query_arg( 'utm_campaign', $campaign, $url );
