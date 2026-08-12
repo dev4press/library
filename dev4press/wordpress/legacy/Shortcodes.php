@@ -32,9 +32,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Shortcodes {
-	public $prefix = 'd4p';
-	public $shortcodes = array();
-	public $registered = array();
+	public string $prefix = 'd4p';
+	public array $shortcodes = array();
+	public array $registered = array();
 
 	public function __construct() {
 		$this->init();

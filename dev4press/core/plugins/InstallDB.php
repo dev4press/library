@@ -43,7 +43,7 @@ abstract class InstallDB {
 	protected function __construct() {
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
 	public static function instance() : static {
 		return static::i();
 	}
@@ -124,7 +124,7 @@ abstract class InstallDB {
 		/** HOOK: `dev4press_v56_install_db_delta` */
 		do_action( Library::i()->hook( 'install_db_delta' ) );
 
-		/** @deprecated 5.5.0 */
+		/** @deprecated 5.5.0 To be removed in 5.7.0. */
 		do_action( 'dev4press_install_db_delta', $this->plugin, $this->prefix, $query );
 
 		return dbDelta( $query );

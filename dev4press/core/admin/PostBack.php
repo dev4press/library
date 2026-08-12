@@ -41,7 +41,7 @@ abstract class PostBack {
 
 	public function __construct( $admin ) {
 		$this->admin = $admin;
-		$this->page = isset( $_POST['option_page'] ) ? sanitize_key( $_POST['option_page'] ) : false; // phpcs:ignore WordPress.Security.NonceVerification
+		$this->page  = isset( $_POST['option_page'] ) ? sanitize_key( $_POST['option_page'] ) : false; // phpcs:ignore WordPress.Security.NonceVerification
 
 		if ( $this->page !== false ) {
 			$this->process();

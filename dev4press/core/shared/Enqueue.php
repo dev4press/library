@@ -114,7 +114,7 @@ class Enqueue {
 		/** HOOK: `dev4press_v56_shared_enqueue_start` */
 		do_action( Library::i()->hook( 'shared_enqueue_start' ) );
 
-		/** @deprecated 5.5.0 */
+		/** @deprecated 5.5.0 To be removed in 5.7.0. */
 		do_action( 'd4plib_shared_enqueue_prepare' );
 
 		$this->register_styles();

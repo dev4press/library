@@ -36,10 +36,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class LoremIpsum extends Words {
-	protected $first = true;
-	protected $first_count = 8;
+	protected bool $first = true;
+	protected int $first_count = 8;
 
-	public $words = array(
+	public array $words = array(
 		'lorem',
 		'ipsum',
 		'dolor',

@@ -58,9 +58,9 @@ final class Library {
 	/**
 	 * Get the singleton instance.
 	 *
-	 * @deprecated 5.5.0 Use self::i() instead.
-	 *
 	 * @return self
+	 * @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0.
+	 *
 	 */
 	public static function instance() : self {
 		return self::i();

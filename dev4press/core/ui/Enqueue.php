@@ -73,7 +73,7 @@ final class Enqueue {
 	/**
 	 * @param $admin \Dev4Press\v56\Core\Admin\Plugin|\Dev4Press\v56\Core\Admin\Menu\Plugin|\Dev4Press\v56\Core\Admin\Submenu\Plugin
 	 *
-	 * @deprecated 5.5.0 Use self::i() instead.
+	 * @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0.
 	 */
 	public static function instance( $admin ) : self {
 		return self::i( $admin );
@@ -359,8 +359,7 @@ final class Enqueue {
 
 	private function localize_shared_args() : array {
 		return array(
-			'lib' => array(
-			),
+			'lib' => array(),
 			'ui'  => array(
 				'messages' => array(
 					'areyousure' => __( 'Are you sure you want to do this?', 'd4plib' ),

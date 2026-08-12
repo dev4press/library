@@ -36,11 +36,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Generator {
-	protected $sentence_mean = 24.46;
-	protected $sentence_dev = 5.08;
+	protected float $sentence_mean = 24.46;
+	protected float $sentence_dev = 5.08;
 
-	protected $paragraph_mean = 5.8;
-	protected $paragraph_dev = 1.93;
+	protected float $paragraph_mean = 5.8;
+	protected float $paragraph_dev = 1.93;
 
 	public function __construct() {
 	}
@@ -65,14 +65,14 @@ abstract class Generator {
 		return $this->output( $sentences, $tags, $array );
 	}
 
-	public function set_sentence_gauss( $mean = 24.46, $dev = 5.08 ) {
+	public function set_sentence_gauss( $mean = 24.46, $dev = 5.08 ) : static {
 		$this->sentence_mean = floatval( $mean );
 		$this->sentence_dev  = floatval( $dev );
 
 		return $this;
 	}
 
-	public function set_paragraph_gauss( $mean = 5.8, $dev = 1.93 ) {
+	public function set_paragraph_gauss( $mean = 5.8, $dev = 1.93 ) : static {
 		$this->paragraph_mean = floatval( $mean );
 		$this->paragraph_dev  = floatval( $dev );
 
@@ -237,7 +237,7 @@ abstract class Generator {
 		return $this;
 	}
 
-	public function change_paragraph_gauss( $method = 'medium' ) {
+	public function change_paragraph_gauss( $method = 'medium' ) : static {
 		switch ( $method ) {
 			case 'short':
 				$this->set_paragraph_gauss( 2.1, 1.1 );

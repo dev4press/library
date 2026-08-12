@@ -400,7 +400,7 @@ final class Icons {
 	protected function __construct() {
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
 	public static function instance() : Icons {
 		return Icons::i();
 	}

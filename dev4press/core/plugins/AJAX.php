@@ -41,7 +41,7 @@ abstract class AJAX {
 		add_action( $this->prefix . '_ajax_request_error', array( $this, 'process_error' ), 10, 5 );
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
 	public static function instance() : static {
 		return static::i();
 	}

@@ -36,10 +36,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 abstract class Words extends Generator {
-	protected $first = false;
-	protected $first_count = 0;
+	protected bool $first = false;
+	protected int $first_count = 0;
 
-	protected $words = array();
+	protected array $words = array();
 
 	public function words( $count = 1, $tags = false, $array = false ) {
 		$words      = array();

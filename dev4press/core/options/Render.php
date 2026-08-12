@@ -49,7 +49,7 @@ class Render {
 		$this->prefix = $prefix;
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
 	public static function instance( string $base = 'd4pvalue', string $prefix = 'd4p' ) : static {
 		return static::i( $base, $prefix );
 	}
@@ -454,10 +454,10 @@ class Render {
 	}
 
 	protected function _datetime_element( Element $element, $value, $name_base, $id_base, $type = 'text', $class = '' ) : void {
-		$readonly  = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
-		$min       = isset( $element->args['min'] ) ? ' min="' . esc_attr( $element->args['min'] ) . '"' : '';
-		$max       = isset( $element->args['max'] ) ? ' max="' . esc_attr( $element->args['max'] ) . '"' : '';
-		$class     = 'widefat ' . $class;
+		$readonly = isset( $element->args['readonly'] ) && $element->args['readonly'] ? ' readonly' : '';
+		$min      = isset( $element->args['min'] ) ? ' min="' . esc_attr( $element->args['min'] ) . '"' : '';
+		$max      = isset( $element->args['max'] ) ? ' max="' . esc_attr( $element->args['max'] ) . '"' : '';
+		$class    = 'widefat ' . $class;
 
 		echo sprintf(
 			'<input aria-labelledby="%s__label" type="%s" name="%s" id="%s" value="%s" class="%s"%s%s%s />',

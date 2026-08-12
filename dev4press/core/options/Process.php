@@ -49,7 +49,7 @@ class Process {
 		$this->prefix = $prefix;
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
 	public static function instance( string $base = 'dev4press-value', string $prefix = 'dev4press' ) : static {
 		return static::i( $base, $prefix );
 	}
@@ -229,7 +229,7 @@ class Process {
 				$value = Sanitize::key( $base );
 				break;
 			case 'slug_slash':
-				$value = Sanitize::slag_with_slashes( $base );
+				$value = Sanitize::slug_with_slashes( $base );
 				break;
 			case 'email':
 				$value = Sanitize::email( $base );

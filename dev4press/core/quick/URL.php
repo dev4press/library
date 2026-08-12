@@ -112,7 +112,7 @@ class URL {
 	/**
 	 * Retrieves the current URL of the request.
 	 *
-	 * @param bool $use_wp  Optional. Determines whether to use WordPress's home_url function.
+	 * @param bool $use_wp Optional. Determines whether to use WordPress's home_url function.
 	 *
 	 * @return string The full URL of the current request.
 	 */

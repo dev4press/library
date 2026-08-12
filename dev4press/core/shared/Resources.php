@@ -176,7 +176,7 @@ class Resources {
 
 	private array $_shared = array(
 		'js'  => array(
-			'flyin'         => array(
+			'flyin'      => array(
 				'lib'  => true,
 				'path' => 'flyin/',
 				'file' => 'flyin.umd',
@@ -184,7 +184,7 @@ class Resources {
 				'ext'  => 'js',
 				'min'  => false,
 			),
-			'micromodal'             => array(
+			'micromodal' => array(
 				'lib'  => true,
 				'path' => '',
 				'file' => 'micromodal.min',
@@ -192,7 +192,7 @@ class Resources {
 				'ext'  => 'js',
 				'min'  => false,
 			),
-			'cookies'                => array(
+			'cookies'    => array(
 				'lib'  => true,
 				'path' => '',
 				'file' => 'cookies.min',
@@ -200,7 +200,7 @@ class Resources {
 				'ext'  => 'js',
 				'min'  => false,
 			),
-			'kjua'                   => array(
+			'kjua'       => array(
 				'lib'  => true,
 				'path' => '',
 				'file' => 'kjua.min',
@@ -208,7 +208,7 @@ class Resources {
 				'ext'  => 'js',
 				'min'  => false,
 			),
-			'mark'                   => array(
+			'mark'       => array(
 				'lib'  => true,
 				'path' => '',
 				'file' => 'jquery.mark.min',
@@ -217,7 +217,7 @@ class Resources {
 				'min'  => false,
 				'req'  => array( 'jquery' ),
 			),
-			'fitvids'                => array(
+			'fitvids'    => array(
 				'lib'  => true,
 				'path' => '',
 				'file' => 'jquery.fitvids.min',
@@ -226,7 +226,7 @@ class Resources {
 				'min'  => false,
 				'req'  => array( 'jquery' ),
 			),
-			'select'                 => array(
+			'select'     => array(
 				'lib'  => true,
 				'path' => '',
 				'file' => 'jquery.select.min',
@@ -237,21 +237,21 @@ class Resources {
 			),
 		),
 		'css' => array(
-			'font'                   => array(
+			'font'       => array(
 				'lib'  => false,
 				'path' => 'css/',
 				'file' => 'font',
 				'ext'  => 'css',
 				'min'  => true,
 			),
-			'font-embed'             => array(
+			'font-embed' => array(
 				'lib'  => false,
 				'path' => 'css/',
 				'file' => 'font-embed',
 				'ext'  => 'css',
 				'min'  => true,
 			),
-			'flyin'         => array(
+			'flyin'      => array(
 				'lib'  => true,
 				'path' => 'flyin/',
 				'file' => 'flyin',
@@ -259,7 +259,7 @@ class Resources {
 				'ext'  => 'css',
 				'min'  => false,
 			),
-			'micromodal'             => array(
+			'micromodal' => array(
 				'lib'  => false,
 				'path' => 'css',
 				'file' => 'micromodal',
@@ -267,7 +267,7 @@ class Resources {
 				'ext'  => 'css',
 				'min'  => true,
 			),
-			'flags'                  => array(
+			'flags'      => array(
 				'lib'  => true,
 				'path' => 'flags/css/',
 				'file' => 'flags.min',
@@ -275,7 +275,7 @@ class Resources {
 				'ext'  => 'css',
 				'min'  => false,
 			),
-			'grid-table'             => array(
+			'grid-table' => array(
 				'lib'  => false,
 				'path' => 'css/',
 				'file' => 'table',
@@ -288,7 +288,7 @@ class Resources {
 	protected function __construct() {
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
 	public static function instance() : static {
 		return static::i();
 	}

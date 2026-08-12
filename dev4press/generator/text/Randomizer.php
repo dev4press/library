@@ -32,10 +32,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Randomizer extends Generator {
-	protected $word_mean = 6.16;
-	protected $word_dev = 3.32;
+	protected float $word_mean = 6.16;
+	protected float $word_dev = 3.32;
 
-	private $vowels = array(
+	private array $vowels = array(
 		'a',
 		'e',
 		'i',
@@ -43,7 +43,7 @@ class Randomizer extends Generator {
 		'u',
 	);
 
-	private $consonants = array(
+	private array $consonants = array(
 		'b',
 		'c',
 		'd',
@@ -76,14 +76,14 @@ class Randomizer extends Generator {
 		return $this->output( $words, $tags, $array );
 	}
 
-	public function set_word_gauss( $mean = 6.16, $dev = 3.32 ) {
+	public function set_word_gauss( $mean = 6.16, $dev = 3.32 ) : static {
 		$this->word_mean = floatval( $mean );
 		$this->word_dev  = floatval( $dev );
 
 		return $this;
 	}
 
-	public function random( $length = true ) {
+	public function random( $length = true ) : string {
 		$length = $length === true ? $this->gauss( $this->word_mean, $this->word_dev ) : $length;
 
 		if ( $length < 2 ) {

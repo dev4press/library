@@ -399,17 +399,6 @@ class WPR {
 	}
 
 	/**
-	 * Flush rewrite rules.
-	 *
-	 * @return void
-	 */
-	public static function flush_rewrite_rules() : void {
-		global $wp_rewrite;
-
-		$wp_rewrite->flush_rules();
-	}
-
-	/**
 	 * Redirect to the current request URI.
 	 *
 	 * @return void
@@ -898,8 +887,7 @@ class WPR {
 	 * @param string $url Attachment URL.
 	 *
 	 * @return int
-	 */
-	/*
+     *
 	 * Function by Micah Wood
 	 * https://wpscholar.com/blog/get-attachment-id-from-wp-image-url/
 	 */
@@ -946,11 +934,24 @@ class WPR {
 	/**
 	 * Get the allowed HTML tags list used by KSES.
 	 *
-	 * @deprecated since 5.5 use `KSES::allowed_html_expanded()` instead. To be removed in 6.0.
+	 * @deprecated 5.5.0 use `KSES::allowed_html_expanded()` instead. To be removed in 5.7.0.
 	 *
 	 * @return array
 	 */
 	public static function kses_expanded_list_of_tags() : array {
 		return KSES::allowed_html_expanded();
+	}
+
+	/**
+	 * Flush rewrite rules.
+	 *
+	 * @return void
+	 *
+	 * @deprecated 5.6.0 Use flush_rewrite_rules() instead.
+	 */
+	public static function flush_rewrite_rules() : void {
+		_deprecated_function( __FUNCTION__, '5.6.0', 'flush_rewrite_rules' );
+
+		flush_rewrite_rules();
 	}
 }

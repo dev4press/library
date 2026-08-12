@@ -296,7 +296,7 @@ class IP {
 
 		$ips = self::get_all_ips( false, true, false, $forwarded, ! $standard );
 
-		$ip  = self::process_ips_list_for_one_ip( $ips );
+		$ip = self::process_ips_list_for_one_ip( $ips );
 
 		return (string) $ip;
 	}

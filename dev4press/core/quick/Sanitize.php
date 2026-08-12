@@ -56,8 +56,8 @@ class Sanitize {
 	/**
 	 * Sanitize a time-like value using a specific format.
 	 *
-	 * @param string $value The value to sanitize.
-	 * @param string $format Time format used for parsing and output.
+	 * @param string $value           The value to sanitize.
+	 * @param string $format          Time format used for parsing and output.
 	 * @param string $return_on_error Value returned when parsing fails.
 	 *
 	 * @return string
@@ -69,8 +69,8 @@ class Sanitize {
 	/**
 	 * Sanitize a month-like value using a specific format.
 	 *
-	 * @param string $value The value to sanitize.
-	 * @param string $format Month format used for parsing and output.
+	 * @param string $value           The value to sanitize.
+	 * @param string $format          Month format used for parsing and output.
 	 * @param string $return_on_error Value returned when parsing fails.
 	 *
 	 * @return string
@@ -149,7 +149,7 @@ class Sanitize {
 	 *
 	 * @return string
 	 */
-	public static function slag_with_slashes( mixed $text ) : string {
+	public static function slug_with_slashes( mixed $text ) : string {
 		if ( is_null( $text ) ) {
 			return '';
 		}
@@ -163,8 +163,8 @@ class Sanitize {
 	/**
 	 * Sanitize a value as plain text.
 	 *
-	 * @param mixed $text The value to sanitize.
-	 * @param bool $strip_shortcodes Whether shortcodes should be removed first.
+	 * @param mixed $text             The value to sanitize.
+	 * @param bool  $strip_shortcodes Whether shortcodes should be removed first.
 	 *
 	 * @return string
 	 */
@@ -185,10 +185,10 @@ class Sanitize {
 	/**
 	 * Sanitize a value as HTML.
 	 *
-	 * @param mixed $text The value to sanitize.
-	 * @param array|string|null $tags Allowed HTML tags. Defaults to 'post'.
-	 * @param array $protocols Allowed protocols.
-	 * @param bool $strip_shortcodes Whether shortcodes should be removed first.
+	 * @param mixed             $text             The value to sanitize.
+	 * @param array|string|null $tags             Allowed HTML tags. Defaults to 'post'.
+	 * @param array             $protocols        Allowed protocols.
+	 * @param bool              $strip_shortcodes Whether shortcodes should be removed first.
 	 *
 	 * @return string
 	 */
@@ -210,9 +210,9 @@ class Sanitize {
 	/**
 	 * Deep-sanitize array values using one of the supported sanitizers.
 	 *
-	 * @param array $input Input array to sanitize.
-	 * @param string $method Sanitizing method: html, text, key, or slug.
-	 * @param bool $strip_shortcodes Whether shortcodes should be removed first.
+	 * @param array  $input            Input array to sanitize.
+	 * @param string $method           Sanitizing method: html, text, key, or slug.
+	 * @param bool   $strip_shortcodes Whether shortcodes should be removed first.
 	 *
 	 * @return array
 	 */
@@ -258,7 +258,7 @@ class Sanitize {
 	 * Sanitize a list of IDs.
 	 *
 	 * @param array|scalar|null $ids IDs to sanitize.
-	 * @param callable|string $map Mapping callback used for each value.
+	 * @param callable|string   $map Mapping callback used for each value.
 	 *
 	 * @return array
 	 */
@@ -355,7 +355,7 @@ class Sanitize {
 	/**
 	 * Get a slug value from query parameters.
 	 *
-	 * @param string $name Query parameter name.
+	 * @param string $name    Query parameter name.
 	 * @param string $default Default value if parameter is missing.
 	 *
 	 * @return string
@@ -367,7 +367,7 @@ class Sanitize {
 	/**
 	 * Get a text value from query parameters.
 	 *
-	 * @param string $name Query parameter name.
+	 * @param string $name    Query parameter name.
 	 * @param string $default Default value if parameter is missing.
 	 *
 	 * @return string
@@ -379,8 +379,8 @@ class Sanitize {
 	/**
 	 * Get an absolute integer value from query parameters.
 	 *
-	 * @param string $name Query parameter name.
-	 * @param int $default Default value if parameter is missing.
+	 * @param string $name    Query parameter name.
+	 * @param int    $default Default value if parameter is missing.
 	 *
 	 * @return int
 	 */
@@ -391,8 +391,8 @@ class Sanitize {
 	/**
 	 * Get a list of IDs from query parameters.
 	 *
-	 * @param string $name Query parameter name.
-	 * @param array $default Default value if parameter is missing.
+	 * @param string $name    Query parameter name.
+	 * @param array  $default Default value if parameter is missing.
 	 *
 	 * @return array
 	 */
@@ -400,5 +400,14 @@ class Sanitize {
 		$ids = isset( $_GET[ $name ] ) ? (array) $_GET[ $name ] : $default; // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput
 
 		return self::ids_list( $ids );
+	}
+
+	/**
+	 * @deprecated 5.6.0 Use Sanitize::slug_with_slashes() instead.
+	 */
+	public static function slag_with_slashes( mixed $text ) : string {
+		_deprecated_function( __FUNCTION__, '5.6.0', 'Sanitize::slug_with_slashes()' );
+
+		return Sanitize::slug_with_slashes( $text );
 	}
 }
