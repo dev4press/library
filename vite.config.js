@@ -98,6 +98,20 @@ export default defineConfig({
                     }
                 },
                 {
+                    src: 'node_modules/@dev4press/field-text/dist/field-text.css',
+                    dest: 'field-text',
+                    rename: {
+                        stripBase: true
+                    }
+                },
+                {
+                    src: 'node_modules/@dev4press/field-text/dist/field-text.umd.js',
+                    dest: 'field-text',
+                    rename: {
+                        stripBase: true
+                    }
+                },
+                {
                     src: 'node_modules/@dev4press/flyin/dist/flyin.css',
                     dest: 'flyin',
                     rename: {

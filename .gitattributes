@@ -7,5 +7,7 @@ composer.lock export-ignore
 package-lock.json export-ignore
 /.ai export-ignore
 /.github export-ignore
-/src/ export-ignore
+/src/flags/ export-ignore
+/src/gfx/ export-ignore
+/src/scss/ export-ignore
 /scripts/ export-ignore

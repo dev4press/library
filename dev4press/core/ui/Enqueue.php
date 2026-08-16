@@ -222,10 +222,18 @@ final class Enqueue {
 
 	private function url( $obj ) : string {
 		$base   = $this->_url;
+		$lib    = $obj['lib'] ?? false;
 		$min    = $obj['min'] ?? false;
 		$plugin = isset( $obj['src'] ) && $obj['src'] == 'plugin';
-		$src    = $min && ! $plugin && $obj['ext'] === 'js' ? 'src/scripts/' : 'resources/dist/';
-		$path   = $plugin ? trailingslashit( ( $obj['path'] ?? '' ) ) : trailingslashit( $src . ( $obj['path'] ?? '' ) );
+		$src    = 'resources/dist/';
+
+		if ( $min && $obj['ext'] === 'js' ) {
+			$src = 'src/scripts/';
+		} else if ( ! $lib && $obj['ext'] === 'css' ) {
+			$src = 'resources/css/';
+		}
+
+		$path = $plugin ? trailingslashit( ( $obj['path'] ?? '' ) ) : trailingslashit( $src . ( $obj['path'] ?? '' ) );
 
 		$path .= $obj['file'];
 

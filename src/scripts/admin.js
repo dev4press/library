@@ -39,6 +39,8 @@
         panels: {
             features: {
                 run: function() {
+                    wp.dev4press.admin.panels.features.form();
+
                     $(document).on(
                         "click",
                         ".d4p-features-filter-buttons button",
@@ -175,6 +177,9 @@
                     wp.dev4press.admin.panels.features.counters();
                     wp.dev4press.admin.panels.features.filter();
                 },
+                form: function() {
+                    new ConfirmSubmit($("#" + d4plib_admin_data.plugin.prefix + "-form-features")[0]);
+                },
                 filter: function() {
                     var button = $(".d4p-features-filter-buttons button.is-selected"),
                         wrapper = $(".d4p-features-wrapper"),
@@ -246,8 +251,7 @@
             settings: {
                 run: function() {
                     wp.dev4press.admin.settings.init();
-
-                    $("#" + d4plib_admin_data.plugin.prefix + "-form-settings").confirmsubmit();
+                    wp.dev4press.admin.panels.settings.form();
 
                     if ($("#d4p-settings-mark").length === 1) {
                         wp.dev4press.admin.panels.settings.mark();
@@ -269,6 +273,9 @@
                             $(this).attr("aria-pressed", c ? "false" : "true");
                         });
                 },
+                form: function() {
+                    new ConfirmSubmit($("#" + d4plib_admin_data.plugin.prefix + "-form-settings")[0]);
+                },
                 mark: function() {
                     $(document).on(
                         "click",
@@ -286,17 +293,22 @@
                     $("#d4p-settings-mark").on(
                         "input",
                         function() {
-                            var term = $(this).val();
+                            const term = $(this).val();
+
+                            const mark_titles = new Mark(".d4p-group > h3");
+                            const mark_sections = new Mark(".d4p-settings-section > h4");
+                            const mark_content = new Mark(".d4p-settings-table > tbody > tr");
+
+                            mark_titles.unmark();
+                            mark_sections.unmark();
+                            mark_content.unmark();
 
                             $groups.show();
-                            new Mark($titles.toArray()).unmark();
                             $sections.show();
-                            new Mark($sections.toArray()).unmark();
                             $content.show();
-                            new Mark($content.toArray()).unmark();
 
                             if (term) {
-                                new Mark($content.toArray()).mark(
+                                mark_content.mark(
                                     term,
                                     {
                                         done: function() {
@@ -305,7 +317,7 @@
                                     }
                                 );
 
-                                new Mark($sections.toArray()).mark(
+                                mark_sections.mark(
                                     term,
                                     {
                                         done: function() {
@@ -322,7 +334,7 @@
                                     }
                                 );
 
-                                new Mark($titles.toArray()).mark(
+                                mark_titles.mark(
                                     term,
                                     {
                                         done: function() {

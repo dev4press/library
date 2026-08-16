@@ -208,7 +208,15 @@ class Enqueue {
 
 	private function url( $obj ) : string {
 		$min = $obj['min'] ?? false;
-		$src = $min && $obj['ext'] === 'js' ? 'src/scripts/' : 'resources/dist/';
+		$lib = $obj['lib'] ?? false;
+		$src = 'resources/dist/';
+
+		if ( $min && $obj['ext'] === 'js' ) {
+			$src = 'src/scripts/';
+		} else if ( ! $lib && $obj['ext'] === 'css' ) {
+			$src = 'resources/css/';
+		}
+
 		$url = trailingslashit( $this->_url . $src . ( $obj['path'] ?? '' ) );
 
 		if ( ! empty( $obj['url'] ) ) {

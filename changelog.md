@@ -2,19 +2,21 @@
 
 ## Changelog
 
-### Version 5.6 - 2026.08.18
+### Version 5.6 - 2026.08.17
 
 * **new**: node tools for SASS and JS linting
 * **new**: background task class with memory usage limitation
-* **new**: added `.gitattribures` file for ignoring files for export
+* **new**: using `Vite` to build all the JS and CSS files
 * **new**: added `Flyin` popup library, version 1.2.0
 * **new**: added `FieldUp` upload library, version 0.9.0
 * **new**: added `FieldText` input library, version 0.9.0
 * **edit**: reorganized SASS code to modernize loading
+* **edit**: icon fonts now use only embedded woff2 font variant
 * **edit**: many improvements to the SASS code and styling
 * **edit**: many improvements to the JS code
+* **edit**: optimized the size of the build artifacts
 * **edit**: added a lot of documentation to the code
-* **edit**: `Micromodal` JS library 0.7.0
+* **edit**: improved composer support when publishing the library
 * **edit**: `Parsedown` library to 0.9.0
 * **removed**: legacy `Languages` class and related code
 * **removed**: legacy `Smart Animated Popup` JS library

@@ -14,6 +14,8 @@ module.exports = [
       globals: {
         ...globals.browser,
         ...globals.jquery,
+        ConfirmSubmit: "readonly",
+        fitvids: "readonly",
         Mark: "readonly",
         wp: "readonly",
         ajaxurl: "readonly",
