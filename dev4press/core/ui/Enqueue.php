@@ -59,8 +59,8 @@ final class Enqueue {
 	 * @param $admin \Dev4Press\v56\Core\Admin\Plugin|\Dev4Press\v56\Core\Admin\Menu\Plugin|\Dev4Press\v56\Core\Admin\Submenu\Plugin
 	 */
 	public function __construct( $admin ) {
-		$this->_libraries['js']  = Resources::instance()->ui_js() + Resources::instance()->shared_js();
-		$this->_libraries['css'] = Resources::instance()->ui_css() + Resources::instance()->shared_css();
+		$this->_libraries['js']  = Resources::i()->ui_js() + Resources::i()->shared_js();
+		$this->_libraries['css'] = Resources::i()->ui_css() + Resources::i()->shared_css();
 
 		$this->_url     = $admin->url;
 		$this->_admin   = $admin;
@@ -95,7 +95,7 @@ final class Enqueue {
 		return $this->_rtl;
 	}
 
-	public function start() {
+	public function start() : void {
 		$this->_rtl   = is_rtl();
 		$this->_debug = WordPress::i()->is_script_debug();
 	}
@@ -157,10 +157,12 @@ final class Enqueue {
 		return $this->_enqueue_prefix;
 	}
 
+	/** @deprecated 5.6.0 To be removed in 5.7.0. */
 	public function locale() {
 		return apply_filters( 'plugin_locale', determine_locale(), 'd4plib' );
 	}
 
+	/** @deprecated 5.6.0 To be removed in 5.7.0. */
 	public function locale_js_code( $script ) {
 		$locale = $this->locale();
 
@@ -175,7 +177,7 @@ final class Enqueue {
 		return false;
 	}
 
-	private function add( $type, $name ) {
+	private function add( $type, $name ) : void {
 		if ( isset( $this->_libraries[ $type ][ $name ] ) ) {
 			if ( ! $this->is_added( $type, $name ) ) {
 				$obj = $this->_libraries[ $type ][ $name ];
@@ -199,14 +201,6 @@ final class Enqueue {
 
 				$this->_loaded[ $type ][] = $name;
 
-				if ( isset( $obj['locales'] ) ) {
-					$_locale = $this->locale_js_code( $name );
-
-					if ( $_locale !== false ) {
-						$this->enqueue( $type, $handle . '-' . $_locale, $this->url( $obj, $_locale ), array( $handle ), $ver, $footer );
-					}
-				}
-
 				if ( $name == 'admin' ) {
 					$this->localize_admin();
 				}
@@ -226,23 +220,14 @@ final class Enqueue {
 		}
 	}
 
-	private function url( $obj, $locale = null ) : string {
-		$plugin = isset( $obj['src'] ) && $obj['src'] == 'plugin';
-		$path   = $plugin ? trailingslashit( $obj['path'] ) : trailingslashit( 'resources/' . $obj['path'] );
+	private function url( $obj ) : string {
 		$base   = $this->_url;
+		$min    = $obj['min'] ?? false;
+		$plugin = isset( $obj['src'] ) && $obj['src'] == 'plugin';
+		$src    = $min && ! $plugin && $obj['ext'] === 'js' ? 'src/scripts/' : 'resources/dist/';
+		$path   = $plugin ? trailingslashit( ( $obj['path'] ?? '' ) ) : trailingslashit( $src . ( $obj['path'] ?? '' ) );
 
-		if ( ! $plugin ) {
-			$dir  = isset( $obj['lib'] ) && $obj['lib'] === true ? 'resources/vendor/' : 'resources/';
-			$path = trailingslashit( $dir . $obj['path'] );
-		}
-
-		if ( is_null( $locale ) ) {
-			$min  = $obj['min'];
-			$path .= $obj['file'];
-		} else {
-			$min  = $obj['min_locale'];
-			$path .= 'l10n/' . $locale;
-		}
+		$path .= $obj['file'];
 
 		if ( $min && ! $this->_debug ) {
 			$path .= '.min';
@@ -261,7 +246,7 @@ final class Enqueue {
 		return in_array( $name, $this->_loaded[ $type ] );
 	}
 
-	private function enqueue( $type, $handle, $url, $req, $version, $footer = true ) {
+	private function enqueue( $type, $handle, $url, $req, $version, $footer = true ) : void {
 		if ( $type == 'js' ) {
 			wp_enqueue_script( $handle, $url, $req, $version, $footer );
 		} else if ( $type == 'css' ) {
@@ -269,7 +254,7 @@ final class Enqueue {
 		}
 	}
 
-	private function localize_dialogs() {
+	private function localize_dialogs() : void {
 		wp_localize_script(
 			$this->prefix() . 'dialogs',
 			'd4plib_admin_dialogs',
@@ -304,7 +289,7 @@ final class Enqueue {
 		);
 	}
 
-	private function localize_admin() {
+	private function localize_admin() : void {
 		wp_localize_script(
 			$this->prefix() . 'admin',
 			'd4plib_admin_data',
@@ -328,7 +313,7 @@ final class Enqueue {
 		);
 	}
 
-	private function localize_meta() {
+	private function localize_meta() : void {
 		wp_localize_script(
 			$this->prefix() . 'meta',
 			'd4plib_meta_data',
@@ -336,7 +321,7 @@ final class Enqueue {
 		);
 	}
 
-	private function localize_media() {
+	private function localize_media() : void {
 		wp_localize_script(
 			$this->prefix() . 'media',
 			'd4plib_media_data',

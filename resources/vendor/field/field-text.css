@@ -1,1 +1,0 @@
-:root{--field-text-counter-warning-color: #f00}.field-text-counter{box-sizing:border-box;font-size:12px;text-align:right;opacity:0;transition:opacity .15s ease-in-out}.field-text-counter--visible{opacity:1}.field-text-counter--warning{color:var(--field-text-counter-warning-color)}

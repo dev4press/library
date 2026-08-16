@@ -19,6 +19,9 @@
 * **removed**: legacy `Languages` class and related code
 * **removed**: legacy `Smart Animated Popup` JS library
 * **removed**: legacy `Flatpickr` JS library
+* **removed**: legacy `Select` JS library
+* **removed**: unused `Micromodal` JS library
+* **removed**: unused `Kjua` JS library
 * **fix**: several smaller styling issues
 
 ### Version 5.5.2 - 2026.02.10

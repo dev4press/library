@@ -7,13 +7,14 @@ module.exports = [
   },
   js.configs.recommended,
   {
-    files: ["resources/js/**/*.js"],
+    files: ["src/scripts/**/*.js"],
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: "script",
       globals: {
         ...globals.browser,
         ...globals.jquery,
+        Mark: "readonly",
         wp: "readonly",
         ajaxurl: "readonly",
         jQuery: "readonly",
