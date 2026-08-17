@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Service\Media\Pixabay\Query
- * Version: v5.5
+ * Name:    Dev4Press\v56\Service\Media\Pixabay\Query
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Service\Media\Pixabay;
+namespace Dev4Press\v56\Service\Media\Pixabay;
 
 use WP_Error;
 
@@ -34,23 +34,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Query {
-	private $_api_key;
-	private $_api_url = 'https://pixabay.com/api/';
+	private string $_api_key;
+	private string $_api_url = 'https://pixabay.com/api/';
 
-	private $_cache = array();
+	private array $_cache = array();
 
 	public function __construct( $api_key ) {
 		$this->_api_key = $api_key;
 	}
 
-	public static function instance( $api_key ) {
-		static $_d4p_pixabay = false;
+	public static function instance( $api_key ) : Query {
+		static $instance = false;
 
-		if ( ! $_d4p_pixabay ) {
-			$_d4p_pixabay = new Query( $api_key );
+		if ( ! $instance ) {
+			$instance = new Query( $api_key );
 		}
 
-		return $_d4p_pixabay;
+		return $instance;
 	}
 
 	public function image( $id, $args = array() ) {

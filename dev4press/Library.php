@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Library
- * Version: v5.5
+ * Name:    Dev4Press\v56\Library
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,19 +25,19 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55;
+namespace Dev4Press\v56;
 
 use Composer\CaBundle\CaBundle;
-use Dev4Press\v55\Core\DateTime;
+use Dev4Press\v56\Core\DateTime;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 final class Library {
-	private string $_version = '5.5.2';
-	private string $_code = 'v55';
-	private string $_build = '5520';
+	private string $_version = '5.6.0';
+	private string $_code = 'v56';
+	private string $_build = '5600';
 	private string $_php_version;
 	private int $_php_code;
 	private string $_library_url;
@@ -55,11 +55,22 @@ final class Library {
 		$this->_cacert_path  = CaBundle::getSystemCaRootBundlePath();
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/**
+	 * Get the singleton instance.
+	 *
+	 * @return self
+	 * @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0.
+	 *
+	 */
 	public static function instance() : self {
 		return self::i();
 	}
 
+	/**
+	 * Get the singleton instance.
+	 *
+	 * @return self
+	 */
 	public static function i() : self {
 		static $instance = null;
 
@@ -70,46 +81,103 @@ final class Library {
 		return $instance;
 	}
 
+	/**
+	 * Get the cached DateTime helper instance.
+	 *
+	 * @return DateTime
+	 */
 	public function datetime() : DateTime {
 		return $this->_datetime;
 	}
 
+	/**
+	 * Build a namespaced hook name.
+	 *
+	 * @param string $name Hook suffix.
+	 *
+	 * @return string
+	 */
 	public function hook( string $name ) : string {
 		return 'dev4press_' . $this->_code . '_' . $name;
 	}
 
-	public function charset() {
+	/**
+	 * Get the WordPress blog charset.
+	 *
+	 * @return string|false
+	 */
+	public function charset() : string|false {
 		return get_option( 'blog_charset' );
 	}
 
+	/**
+	 * Get the library version.
+	 *
+	 * @return string
+	 */
 	public function version() : string {
 		return $this->_version;
 	}
 
+	/**
+	 * Get the library build number.
+	 *
+	 * @return string
+	 */
 	public function build() : string {
 		return $this->_build;
 	}
 
+	/**
+	 * Get the current PHP version string.
+	 *
+	 * @return string
+	 */
 	public function php_version() : string {
 		return $this->_php_version;
 	}
 
+	/**
+	 * Get the current PHP version code.
+	 *
+	 * @return int
+	 */
 	public function php_code() : int {
 		return $this->_php_code;
 	}
 
+	/**
+	 * Get the normalized library path.
+	 *
+	 * @return string
+	 */
 	public function path() : string {
 		return $this->_library_path;
 	}
 
+	/**
+	 * Get the base library path relative to plugins.
+	 *
+	 * @return string
+	 */
 	public function base_path() : string {
 		return $this->_base_path;
 	}
 
+	/**
+	 * Get the library URL.
+	 *
+	 * @return string
+	 */
 	public function url() : string {
 		return $this->_library_url;
 	}
 
+	/**
+	 * Get the system CA certificate bundle path.
+	 *
+	 * @return string
+	 */
 	public function cacert_path() : string {
 		return $this->_cacert_path;
 	}

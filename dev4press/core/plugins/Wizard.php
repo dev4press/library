@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Plugins\Wizard
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Plugins\Wizard
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Plugins;
+namespace Dev4Press\v56\Core\Plugins;
 
-use Dev4Press\v55\Core\Quick\Sanitize;
-use Dev4Press\v55\Core\UI\Elements;
+use Dev4Press\v56\Core\Quick\Sanitize;
+use Dev4Press\v56\Core\UI\Elements;
 use JetBrains\PhpStorm\NoReturn;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -48,7 +48,7 @@ abstract class Wizard {
         $this->init_data();
     }
 
-    /** @deprecated 5.5.0 Use self::i() instead. */
+    /** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
     public static function instance() : static {
         return static::i();
     }
@@ -306,7 +306,7 @@ abstract class Wizard {
     protected function postback_custom( string $panel, $data ) {
     }
 
-    /** @return \Dev4Press\v55\Core\Admin\Plugin */
+    /** @return \Dev4Press\v56\Core\Admin\Plugin */
     abstract public function a();
 
     abstract protected function init_panels();

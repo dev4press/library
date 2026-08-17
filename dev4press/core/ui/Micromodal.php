@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\UI\Micromodal
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\UI\Micromodal
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\UI;
+namespace Dev4Press\v56\Core\UI;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -52,11 +52,11 @@ class Micromodal {
 
 	protected function __construct() {
 		if ( $this->defaults_args['modal-class'] == 'dev4press' ) {
-			$this->defaults_args['modal-class'] = 'dev4press-v55';
+			$this->defaults_args['modal-class'] = 'dev4press-v56';
 		}
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
 	public static function instance() : static {
 		return static::i();
 	}

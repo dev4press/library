@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Plugins\DB
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Plugins\DB
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,9 +25,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Plugins;
+namespace Dev4Press\v56\Core\Plugins;
 
-use Dev4Press\v55\Core\Quick\Sanitize;
+use Dev4Press\v56\Core\Quick\Sanitize;
 use wpdb;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -99,7 +99,7 @@ abstract class DBLite {
 	public function init() {
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
 	public static function instance() : static {
 		return static::i();
 	}
@@ -260,7 +260,7 @@ abstract class DBLite {
 		return $this->query( $sql );
 	}
 
-	public function insert_meta_data( string $table, string $column, int $id, array $meta, bool $skip_empty_values = false, bool $json_serialization = false ) {
+	public function insert_meta_data( string $table, string $column, int $id, array $meta, bool $skip_empty_values = false, bool $json_serialization = false ) : void {
 		foreach ( $meta as $key => $value ) {
 			if ( is_array( $value ) || is_object( $value ) ) {
 				$insert = $json_serialization ? wp_json_encode( $value ) : maybe_serialize( $value );
@@ -374,11 +374,11 @@ abstract class DBLite {
 		return false;
 	}
 
-	public function timestamp( $gmt = true ) {
+	public function timestamp( $gmt = true ) : int|string {
 		return current_time( 'timestamp', $gmt );
 	}
 
-	public function datetime( $gmt = true ) {
+	public function datetime( $gmt = true ) : int|string {
 		return current_time( 'mysql', $gmt );
 	}
 
@@ -432,7 +432,7 @@ abstract class DBLite {
 		return $var;
 	}
 
-	protected function _copy_logged_query() {
+	protected function _copy_logged_query() : void {
 		if ( $this->save_queries() ) {
 			$id = count( $this->wpdb()->queries ) - 1;
 

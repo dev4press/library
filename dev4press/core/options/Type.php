@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Options\Type
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Options\Type
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,7 +25,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Options;
+namespace Dev4Press\v56\Core\Options;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -81,7 +81,7 @@ class Type {
 	public const TIME = 'time';
 	public const X_BY_Y = 'x_by_y';
 
-	public static $_values = array(
+	public static array $_values = array(
 		'info'                 => self::INFO,
 		'absint'               => self::ABSINT,
 		'block'                => self::BLOCK,

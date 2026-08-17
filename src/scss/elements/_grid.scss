@@ -1,0 +1,146 @@
+@use '../includes/grid' as *;
+@use '../mixins/grid' as *;
+@use "sass:list";
+
+// Creds to https://github.com/kristoferjoseph/flexboxgrid
+// No gutters
+// No text alignment with justified container classes (center-xs, for example)
+
+// Helper mixin stays at root for reuse inside output mixin.
+@mixin col-factory($thisPrefix) {
+    .core-col-#{$thisPrefix} {
+        box-sizing: border-box;
+        flex-grow: 1;
+        flex-basis: 0;
+        max-width: 100%;
+        padding: $gutter;
+    }
+    @for $i from 1 through $grid-columns {
+        .core-col-#{$thisPrefix}-#{$i} {
+            box-sizing: border-box;
+            flex-basis: calc(100% / $grid-columns * $i);
+            max-width: calc(100% / $grid-columns * $i);
+            padding: $gutter;
+        }
+        .core-col-#{$thisPrefix}-offset-#{$i} {
+            margin-left:  calc(100% / $grid-columns * $i);
+        }
+    }
+    .core-row.start-#{$thisPrefix} {
+        justify-content: flex-start;
+    }
+    .core-row.center-#{$thisPrefix} {
+        justify-content: center;
+    }
+    .core-row.end-#{$thisPrefix} {
+        justify-content: flex-end;
+    }
+    .core-row.top-#{$thisPrefix} {
+        align-items: flex-start;
+    }
+    .core-row.middle-#{$thisPrefix} {
+        align-items: center;
+    }
+    .core-row.bottom-#{$thisPrefix} {
+        align-items: flex-end;
+    }
+    .core-row.around-#{$thisPrefix} {
+        justify-content: space-around;
+    }
+    .core-row.between-#{$thisPrefix} {
+        justify-content: space-between;
+    }
+    .first-#{$thisPrefix} {
+        order: -1;
+    }
+    .last-#{$thisPrefix} {
+        order: 1;
+    }
+}
+
+// Output mixin to allow scoped inclusion from grid.scss.
+@mixin core-grid-output() {
+    .core-row {
+        @include row;
+
+        &.reverse {
+            @include row-reverse;
+        }
+
+        &.natural-height {
+            @include row-natural-height;
+        }
+
+        &.flex-column {
+            @include row-flex-column;
+        }
+    }
+
+    .core-col {
+        @include col;
+
+        &.reverse {
+            @include col-reverse;
+        }
+    }
+
+    .first {
+        order: -1;
+    }
+
+    .last {
+        order: 1;
+    }
+
+    .align-start {
+        align-self: flex-start;
+    }
+
+    .align-end {
+        align-self: flex-end;
+    }
+
+    .align-center {
+        align-self: center;
+    }
+
+    .align-baseline {
+        align-self: baseline;
+    }
+
+    .align-stretch {
+        align-self: stretch;
+    }
+
+    // Mixin to run inside of for loop - creates col/breakpoint classes
+    @for $i from 1 through list.length($breakpoint-up-prefixes) {
+        $thisPrefix: list.nth($breakpoint-up-prefixes, $i);
+        @if $thisPrefix == "xs" {
+            @include col-factory($thisPrefix);
+        } @else if $thisPrefix == "sm" {
+            @media #{$breakpoint-sm-up} {
+                @include col-factory($thisPrefix);
+            }
+        } @else if $thisPrefix == "md" {
+            @media #{$breakpoint-md-up} {
+                @include col-factory($thisPrefix);
+            }
+        } @else if $thisPrefix == "lg" {
+            @media #{$breakpoint-lg-up} {
+                @include col-factory($thisPrefix);
+            }
+        } @else if $thisPrefix == "xl" {
+            @media #{$breakpoint-xl-up} {
+                @include col-factory($thisPrefix);
+            }
+        }
+    }
+
+    .core-col-gutter-lr {
+        padding: 0 $gutter;
+    }
+
+    .core-col-no-gutter {
+        padding: 0;
+    }
+}

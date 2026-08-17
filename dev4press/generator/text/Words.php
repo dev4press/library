@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Generator\Text\Words
- * Version: v5.5
+ * Name:    Dev4Press\v56\Generator\Text\Words
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -29,17 +29,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Generator\Text;
+namespace Dev4Press\v56\Generator\Text;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 abstract class Words extends Generator {
-	protected $first = false;
-	protected $first_count = 0;
+	protected bool $first = false;
+	protected int $first_count = 0;
 
-	protected $words = array();
+	protected array $words = array();
 
 	public function words( $count = 1, $tags = false, $array = false ) {
 		$words      = array();

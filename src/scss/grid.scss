@@ -1,0 +1,13 @@
+@use 'includes/grid' as *;
+
+@use 'mixins/grid' as *;
+@use 'mixins/visibility' as *;
+@use 'elements/grid' as grid;
+@use 'elements/visibility' as visibility;
+
+.core-grid {
+    margin: 0 -#{$gutter};
+
+    @include grid.core-grid-output;
+    @include visibility.core-visibility-output;
+}

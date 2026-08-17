@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\WordPress\Legacy\Widget
- * Version: v5.5
+ * Name:    Dev4Press\v56\WordPress\Legacy\Widget
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,16 +25,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\WordPress\Legacy;
+namespace Dev4Press\v56\WordPress\Legacy;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 abstract class Shortcodes {
-	public $prefix = 'd4p';
-	public $shortcodes = array();
-	public $registered = array();
+	public string $prefix = 'd4p';
+	public array $shortcodes = array();
+	public array $registered = array();
 
 	public function __construct() {
 		$this->init();

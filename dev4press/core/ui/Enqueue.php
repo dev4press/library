@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\UI\Enqueue
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\UI\Enqueue
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,11 +25,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\UI;
+namespace Dev4Press\v56\Core\UI;
 
-use Dev4Press\v55\Core\Shared\Resources;
-use Dev4Press\v55\Library;
-use Dev4Press\v55\WordPress;
+use Dev4Press\v56\Core\Shared\Resources;
+use Dev4Press\v56\Library;
+use Dev4Press\v56\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Enqueue {
 	private string $_version;
-	private string $_enqueue_prefix = 'd4plib-v55-';
+	private string $_enqueue_prefix = 'd4plib-v56-';
 	private string $_library;
 	private string $_url;
 	private bool $_debug = false;
@@ -52,15 +52,15 @@ final class Enqueue {
 		'css' => array(),
 	);
 
-	/** @var \Dev4Press\v55\Core\Admin\Plugin|\Dev4Press\v55\Core\Admin\Menu\Plugin|\Dev4Press\v55\Core\Admin\Submenu\Plugin */
+	/** @var \Dev4Press\v56\Core\Admin\Plugin|\Dev4Press\v56\Core\Admin\Menu\Plugin|\Dev4Press\v56\Core\Admin\Submenu\Plugin */
 	private $_admin;
 
 	/**
-	 * @param $admin \Dev4Press\v55\Core\Admin\Plugin|\Dev4Press\v55\Core\Admin\Menu\Plugin|\Dev4Press\v55\Core\Admin\Submenu\Plugin
+	 * @param $admin \Dev4Press\v56\Core\Admin\Plugin|\Dev4Press\v56\Core\Admin\Menu\Plugin|\Dev4Press\v56\Core\Admin\Submenu\Plugin
 	 */
 	public function __construct( $admin ) {
-		$this->_libraries['js']  = Resources::instance()->ui_js() + Resources::instance()->shared_js();
-		$this->_libraries['css'] = Resources::instance()->ui_css() + Resources::instance()->shared_css();
+		$this->_libraries['js']  = Resources::i()->ui_js() + Resources::i()->shared_js();
+		$this->_libraries['css'] = Resources::i()->ui_css() + Resources::i()->shared_css();
 
 		$this->_url     = $admin->url;
 		$this->_admin   = $admin;
@@ -71,9 +71,9 @@ final class Enqueue {
 	}
 
 	/**
-	 * @param $admin \Dev4Press\v55\Core\Admin\Plugin|\Dev4Press\v55\Core\Admin\Menu\Plugin|\Dev4Press\v55\Core\Admin\Submenu\Plugin
+	 * @param $admin \Dev4Press\v56\Core\Admin\Plugin|\Dev4Press\v56\Core\Admin\Menu\Plugin|\Dev4Press\v56\Core\Admin\Submenu\Plugin
 	 *
-	 * @deprecated 5.5.0 Use self::i() instead.
+	 * @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0.
 	 */
 	public static function instance( $admin ) : self {
 		return self::i( $admin );
@@ -95,7 +95,7 @@ final class Enqueue {
 		return $this->_rtl;
 	}
 
-	public function start() {
+	public function start() : void {
 		$this->_rtl   = is_rtl();
 		$this->_debug = WordPress::i()->is_script_debug();
 	}
@@ -114,20 +114,6 @@ final class Enqueue {
 
 	public function css( $name ) : Enqueue {
 		$this->add( 'css', $name );
-
-		return $this;
-	}
-
-	public function flatpickr( $plugins = array() ) : Enqueue {
-		$this->add( 'js', 'flatpickr' );
-		$this->add( 'css', 'flatpickr' );
-
-		if ( ! empty( $plugins ) ) {
-			foreach ( $plugins as $plug ) {
-				$this->add( 'js', 'flatpickr-' . $plug );
-				$this->add( 'css', 'flatpickr-' . $plug );
-			}
-		}
 
 		return $this;
 	}
@@ -171,10 +157,12 @@ final class Enqueue {
 		return $this->_enqueue_prefix;
 	}
 
+	/** @deprecated 5.6.0 To be removed in 5.7.0. */
 	public function locale() {
 		return apply_filters( 'plugin_locale', determine_locale(), 'd4plib' );
 	}
 
+	/** @deprecated 5.6.0 To be removed in 5.7.0. */
 	public function locale_js_code( $script ) {
 		$locale = $this->locale();
 
@@ -189,7 +177,7 @@ final class Enqueue {
 		return false;
 	}
 
-	private function add( $type, $name ) {
+	private function add( $type, $name ) : void {
 		if ( isset( $this->_libraries[ $type ][ $name ] ) ) {
 			if ( ! $this->is_added( $type, $name ) ) {
 				$obj = $this->_libraries[ $type ][ $name ];
@@ -213,14 +201,6 @@ final class Enqueue {
 
 				$this->_loaded[ $type ][] = $name;
 
-				if ( isset( $obj['locales'] ) ) {
-					$_locale = $this->locale_js_code( $name );
-
-					if ( $_locale !== false ) {
-						$this->enqueue( $type, $handle . '-' . $_locale, $this->url( $obj, $_locale ), array( $handle ), $ver, $footer );
-					}
-				}
-
 				if ( $name == 'admin' ) {
 					$this->localize_admin();
 				}
@@ -240,23 +220,22 @@ final class Enqueue {
 		}
 	}
 
-	private function url( $obj, $locale = null ) : string {
-		$plugin = isset( $obj['src'] ) && $obj['src'] == 'plugin';
-		$path   = $plugin ? trailingslashit( $obj['path'] ) : trailingslashit( 'resources/' . $obj['path'] );
+	private function url( $obj ) : string {
 		$base   = $this->_url;
+		$lib    = $obj['lib'] ?? false;
+		$min    = $obj['min'] ?? false;
+		$plugin = isset( $obj['src'] ) && $obj['src'] == 'plugin';
+		$src    = 'resources/dist/';
 
-		if ( ! $plugin ) {
-			$dir  = isset( $obj['lib'] ) && $obj['lib'] === true ? 'resources/vendor/' : 'resources/';
-			$path = trailingslashit( $dir . $obj['path'] );
+		if ( $min && $obj['ext'] === 'js' ) {
+			$src = 'src/scripts/';
+		} else if ( ! $lib && $obj['ext'] === 'css' ) {
+			$src = 'resources/css/';
 		}
 
-		if ( is_null( $locale ) ) {
-			$min  = $obj['min'];
-			$path .= $obj['file'];
-		} else {
-			$min  = $obj['min_locale'];
-			$path .= 'l10n/' . $locale;
-		}
+		$path = $plugin ? trailingslashit( ( $obj['path'] ?? '' ) ) : trailingslashit( $src . ( $obj['path'] ?? '' ) );
+
+		$path .= $obj['file'];
 
 		if ( $min && ! $this->_debug ) {
 			$path .= '.min';
@@ -275,7 +254,7 @@ final class Enqueue {
 		return in_array( $name, $this->_loaded[ $type ] );
 	}
 
-	private function enqueue( $type, $handle, $url, $req, $version, $footer = true ) {
+	private function enqueue( $type, $handle, $url, $req, $version, $footer = true ) : void {
 		if ( $type == 'js' ) {
 			wp_enqueue_script( $handle, $url, $req, $version, $footer );
 		} else if ( $type == 'css' ) {
@@ -283,7 +262,7 @@ final class Enqueue {
 		}
 	}
 
-	private function localize_dialogs() {
+	private function localize_dialogs() : void {
 		wp_localize_script(
 			$this->prefix() . 'dialogs',
 			'd4plib_admin_dialogs',
@@ -318,7 +297,7 @@ final class Enqueue {
 		);
 	}
 
-	private function localize_admin() {
+	private function localize_admin() : void {
 		wp_localize_script(
 			$this->prefix() . 'admin',
 			'd4plib_admin_data',
@@ -342,7 +321,7 @@ final class Enqueue {
 		);
 	}
 
-	private function localize_meta() {
+	private function localize_meta() : void {
 		wp_localize_script(
 			$this->prefix() . 'meta',
 			'd4plib_meta_data',
@@ -350,7 +329,7 @@ final class Enqueue {
 		);
 	}
 
-	private function localize_media() {
+	private function localize_media() : void {
 		wp_localize_script(
 			$this->prefix() . 'media',
 			'd4plib_media_data',
@@ -373,9 +352,7 @@ final class Enqueue {
 
 	private function localize_shared_args() : array {
 		return array(
-			'lib' => array(
-				'flatpickr' => $this->locale_js_code( 'flatpickr' ),
-			),
+			'lib' => array(),
 			'ui'  => array(
 				'messages' => array(
 					'areyousure' => __( 'Are you sure you want to do this?', 'd4plib' ),

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Admin\Table
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Admin\Table
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,14 +25,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\WordPress\Admin;
+namespace Dev4Press\v56\WordPress\Admin;
 
-use Dev4Press\v55\Core\Helpers\DB;
-use Dev4Press\v55\Core\Plugins\DBLite;
-use Dev4Press\v55\Core\Quick\Sanitize;
-use Dev4Press\v55\Library;
+use Dev4Press\v56\Core\Helpers\DB;
+use Dev4Press\v56\Core\Plugins\DBLite;
+use Dev4Press\v56\Core\Quick\KSES;
+use Dev4Press\v56\Core\Quick\Sanitize;
+use Dev4Press\v56\Library;
 use WP_List_Table;
-use function Dev4Press\v55\Functions\panel;
+use function Dev4Press\v56\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -106,7 +107,7 @@ abstract class Table extends WP_List_Table {
 		foreach ( $views as $class => $view ) {
 			$views[ $class ] = "\t<li class='$class'>$view";
 		}
-		echo implode( $this->_views_separator . "</li>\n", $views ) . "</li>\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo KSES::standard( implode( $this->_views_separator . "</li>\n", $views ) . "</li>\n" ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</ul>';
 	}
 

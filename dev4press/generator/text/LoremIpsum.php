@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Generator\Text\LoremIpsum
- * Version: v5.5
+ * Name:    Dev4Press\v56\Generator\Text\LoremIpsum
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -29,17 +29,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Generator\Text;
+namespace Dev4Press\v56\Generator\Text;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class LoremIpsum extends Words {
-	protected $first = true;
-	protected $first_count = 8;
+	protected bool $first = true;
+	protected int $first_count = 8;
 
-	public $words = array(
+	public array $words = array(
 		'lorem',
 		'ipsum',
 		'dolor',

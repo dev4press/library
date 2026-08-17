@@ -1,9 +1,9 @@
 <?php
 
-use Dev4Press\v55\Core\Quick\KSES;
-use Dev4Press\v55\Core\Quick\URL;
-use Dev4Press\v55\Core\Quick\WPR;
-use function Dev4Press\v55\Functions\panel;
+use Dev4Press\v56\Core\Quick\KSES;
+use Dev4Press\v56\Core\Quick\URL;
+use Dev4Press\v56\Core\Quick\WPR;
+use function Dev4Press\v56\Functions\panel;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;

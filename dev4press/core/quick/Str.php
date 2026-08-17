@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Quick\Str
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Quick\Str
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,34 +25,71 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Quick;
+namespace Dev4Press\v56\Core\Quick;
 
 use DateTime;
-use Dev4Press\v55\Library;
+use Dev4Press\v56\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class Str {
+	/**
+	 * Check if the provided date is valid based on provided format.
+	 *
+	 * @param string $date
+	 * @param string $format
+	 *
+	 * @return bool
+	 */
 	public static function is_valid_datetime( string $date, string $format = 'Y-m-d H:i:s' ) : bool {
 		$d = DateTime::createFromFormat( $format, $date );
 
 		return $d && $d->format( $format ) == $date;
 	}
 
+	/**
+	 * Check if the provided regular expression is valid.
+	 *
+	 * @param string $regex
+	 *
+	 * @return bool|int
+	 */
 	public static function is_regex_valid( string $regex ) {
-		if ( preg_match( '/' . $regex . '/i', 'dev4press' ) !== false ) {
+		if ( empty( $regex ) ) {
+			return false;
+		}
+
+		$pattern = '/' . str_replace( '/', '\/', $regex ) . '/i';
+		$result  = @preg_match( $pattern, 'dev4press' );
+
+		if ( $result !== false ) {
 			return true;
 		}
 
 		return preg_last_error();
 	}
 
+	/**
+	 * Check if the provided string is a valid MD5 hash.
+	 *
+	 * @param string $hash
+	 *
+	 * @return bool
+	 */
 	public static function is_valid_md5( string $hash = '' ) : bool {
 		return strlen( $hash ) == 32 && ctype_xdigit( $hash );
 	}
 
+	/**
+	 * Check if the provided input is valid JSON.
+	 *
+	 * @param $input
+	 * @param $allow_scalar
+	 *
+	 * @return bool
+	 */
 	public static function is_json( $input, $allow_scalar = true ) : bool {
 		if ( empty( trim( $input ) ) ) {
 			return false;
@@ -105,20 +142,14 @@ class Str {
 		return $result === 1;
 	}
 
-	public static function starts_with( string $haystack, string $needle ) : bool {
-		$length = strlen( $needle );
-
-		return ! ( $length === 0 ) && substr( $haystack, 0, $length ) === $needle;
-	}
-
-	public static function ends_with( string $haystack, string $needle ) : bool {
-		$length = strlen( $needle );
-
-		return ! ( $length === 0 ) && substr( $haystack, - $length ) === $needle;
-	}
-
 	public static function left( string $s1, string $s2 ) : string {
-		return substr( $s1, 0, strpos( $s1, $s2 ) );
+		$pos = strpos( $s1, $s2 );
+
+		if ( $pos === false ) {
+			return $s1;
+		}
+
+		return substr( $s1, 0, $pos );
 	}
 
 	public static function replace_first( string $search, string $replace, string $subject ) : string {
@@ -180,17 +211,13 @@ class Str {
 
 	public static function to_length( string $text, int $length = 200, string $append = '&hellip;' ) : string {
 		$text_length = function_exists( 'mb_strlen' )
-			?
-			mb_strlen( $text )
-			:
-			strlen( $text );
+			? mb_strlen( $text )
+			: strlen( $text );
 
 		if ( ! empty( $length ) && ( $text_length > $length ) ) {
 			$text = function_exists( 'mb_substr' )
-				?
-				mb_substr( $text, 0, $length - 1 )
-				:
-				substr( $text, 0, $length - 1 );
+				? mb_substr( $text, 0, $length - 1 )
+				: substr( $text, 0, $length - 1 );
 			$text .= $append;
 		}
 
@@ -270,5 +297,23 @@ class Str {
 		}
 
 		return wp_specialchars_decode( trim( $content ), ENT_QUOTES );
+	}
+
+	/**
+	 * @deprecated 5.6.0 Use str_starts_with() instead.
+	 */
+	public static function starts_with( string $haystack, string $needle ) : bool {
+		_deprecated_function( __FUNCTION__, '5.6.0', 'str_starts_with' );
+
+		return str_starts_with( $haystack, $needle );
+	}
+
+	/**
+	 * @deprecated 5.6.0 Use str_ends_with() instead.
+	 */
+	public static function ends_with( string $haystack, string $needle ) : bool {
+		_deprecated_function( __FUNCTION__, '5.6.0', 'str_ends_with' );
+
+		return str_ends_with( $haystack, $needle );
 	}
 }

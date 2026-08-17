@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Shared\Enqueue
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Shared\Enqueue
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Shared;
+namespace Dev4Press\v56\Core\Shared;
 
-use Dev4Press\v55\Library;
-use Dev4Press\v55\WordPress;
+use Dev4Press\v56\Library;
+use Dev4Press\v56\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,12 +37,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Enqueue {
 	private static $_current_instance = null;
 
-	private string $_enqueue_prefix = 'd4plib-v55-';
+	private string $_enqueue_prefix = 'd4plib-v56-';
 	private string $_url;
 	private bool $_rtl = false;
 	private bool $_debug = false;
 
-	private array $_locales = array();
 	private array $_actual = array(
 		'js'  => array(),
 		'css' => array(),
@@ -57,6 +56,9 @@ class Enqueue {
 		'js'  => array(),
 		'css' => array(),
 	);
+
+	/** @deprecated 5.6.0 To be removed in 5.7.0. */
+	private array $_locales = array();
 
 	protected function __construct() {
 		$this->_url = Library::i()->url();
@@ -85,11 +87,13 @@ class Enqueue {
 		return $this->_enqueue_prefix;
 	}
 
+	/** @deprecated 5.6.0 To be removed in 5.7.0. */
 	public function locale() {
 		return apply_filters( 'plugin_locale', determine_locale(), 'd4plib' );
 	}
 
-	public function locale_js_code( $script ) {
+	/** @deprecated 5.6.0 To be removed in 5.7.0. */
+	public function locale_js_code( $script ) : bool|string {
 		$locale = $this->locale();
 
 		if ( ! empty( $locale ) && isset( $this->_libraries['js'][ $script ]['locales'] ) ) {
@@ -103,29 +107,30 @@ class Enqueue {
 		return false;
 	}
 
+	/** @deprecated 5.6.0 To be removed in 5.7.0. */
 	public function registered_locale( $script ) {
 		return $this->_locales[ $script ] ?? false;
 	}
 
-	public function start() {
+	public function start() : void {
 		$this->_rtl   = is_rtl();
 		$this->_debug = WordPress::i()->is_script_debug();
 
-		/** HOOK: `dev4press_v55_shared_enqueue_start` */
+		/** HOOK: `dev4press_v56_shared_enqueue_start` */
 		do_action( Library::i()->hook( 'shared_enqueue_start' ) );
 
-		/** @deprecated 5.5.0 */
+		/** @deprecated 5.5.0 To be removed in 5.7.0. */
 		do_action( 'd4plib_shared_enqueue_prepare' );
 
 		$this->register_styles();
 		$this->register_scripts();
 	}
 
-	public function add_css( $name, $args = array() ) {
+	public function add_css( $name, $args = array() ) : void {
 		$this->_libraries['css'][ $name ] = $args;
 	}
 
-	public function add_js( $name, $args = array() ) {
+	public function add_js( $name, $args = array() ) : void {
 		$this->_libraries['js'][ $name ] = $args;
 	}
 
@@ -145,7 +150,7 @@ class Enqueue {
 		return $this->_debug;
 	}
 
-	public function register_styles() {
+	public function register_styles() : void {
 		foreach ( $this->_libraries['css'] as $name => $args ) {
 			$code = $args['lib'] ? $this->_enqueue_prefix . $name : $name;
 			$req  = $args['req'] ?? array();
@@ -166,7 +171,7 @@ class Enqueue {
 		}
 	}
 
-	public function register_scripts() {
+	public function register_scripts() : void {
 		foreach ( $this->_libraries['js'] as $name => $args ) {
 			$code   = $args['lib'] ? $this->_enqueue_prefix . $name : $name;
 			$req    = $args['req'] ?? array();
@@ -184,20 +189,6 @@ class Enqueue {
 
 			$this->_actual['js'][ $name ] = $code;
 			$this->_deps['js'][ $name ]   = $req;
-
-			if ( isset( $args['locales'] ) ) {
-				$_locale = $this->locale_js_code( $name );
-
-				if ( $_locale !== false ) {
-					$this->_locales[ $name ] = $_locale;
-
-					$loc_code = $code . '-' . $_locale;
-
-					wp_register_script( $loc_code, $this->url( $args, $_locale ), array( $code ), $args['ver'], $footer );
-
-					$this->_actual['js'][ $name ] = $loc_code;
-				}
-			}
 		}
 	}
 
@@ -215,16 +206,24 @@ class Enqueue {
 		return $handle;
 	}
 
-	private function url( $obj, $locale = null ) : string {
-		$url = $obj['lib'] ? trailingslashit( $this->_url . 'resources/vendor/' . $obj['path'] ) : ( isset( $obj['url'] ) ? trailingslashit( $obj['url'] ) : trailingslashit( $this->_url . 'resources/' . $obj['path'] ) );
+	private function url( $obj ) : string {
+		$min = $obj['min'] ?? false;
+		$lib = $obj['lib'] ?? false;
+		$src = 'resources/dist/';
 
-		if ( is_null( $locale ) ) {
-			$min = $obj['min'];
-			$url .= $obj['file'];
-		} else {
-			$min = $obj['min_locale'];
-			$url .= 'l10n/' . $locale;
+		if ( $min && $obj['ext'] === 'js' ) {
+			$src = 'src/scripts/';
+		} else if ( ! $lib && $obj['ext'] === 'css' ) {
+			$src = 'resources/css/';
 		}
+
+		$url = trailingslashit( $this->_url . $src . ( $obj['path'] ?? '' ) );
+
+		if ( ! empty( $obj['url'] ) ) {
+			$url = trailingslashit( $obj['url'] );
+		}
+
+		$url .= $obj['file'];
 
 		if ( $min && ! $this->_debug ) {
 			$url .= '.min';

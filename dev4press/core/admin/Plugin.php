@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Admin\Plugin
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Admin\Plugin
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,12 +25,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Admin;
+namespace Dev4Press\v56\Core\Admin;
 
-use Dev4Press\v55\Core\UI\Admin\Panel;
-use Dev4Press\v55\Core\UI\Enqueue;
-use Dev4Press\v55\Library;
-use Dev4Press\v55\WordPress;
+use Dev4Press\v56\Core\UI\Admin\Panel;
+use Dev4Press\v56\Core\UI\Enqueue;
+use Dev4Press\v56\Library;
+use Dev4Press\v56\WordPress;
 use WP_Screen;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -105,7 +105,7 @@ abstract class Plugin {
 		return null;
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
 	public static function instance() : static {
 		return static::i();
 	}
@@ -603,7 +603,7 @@ abstract class Plugin {
 	protected function extra_enqueue_scripts_final( $hook ) : void {
 	}
 
-	public function constructor() :void {
+	public function constructor() : void {
 	}
 
 	abstract public function main_url() : string;
@@ -622,18 +622,18 @@ abstract class Plugin {
 
 	abstract public function run_postback() : void;
 
-	/** @return \Dev4Press\v55\Core\Plugins\Wizard */
+	/** @return \Dev4Press\v56\Core\Plugins\Wizard */
 	abstract public function wizard();
 
-	/** @return \Dev4Press\v55\Core\Plugins\Core */
+	/** @return \Dev4Press\v56\Core\Plugins\Core */
 	abstract public function plugin();
 
-	/** @return \Dev4Press\v55\Core\Plugins\Settings */
+	/** @return \Dev4Press\v56\Core\Plugins\Settings */
 	abstract public function settings();
 
-	/** @return \Dev4Press\v55\Core\Plugins\Settings */
+	/** @return \Dev4Press\v56\Core\Plugins\Settings */
 	abstract public function settings_blog();
 
-	/** @return \Dev4Press\v55\Core\Options\Settings */
+	/** @return \Dev4Press\v56\Core\Options\Settings */
 	abstract public function settings_definitions();
 }

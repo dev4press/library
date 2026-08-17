@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Plugins\Core
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Plugins\Core
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,14 +25,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Plugins;
+namespace Dev4Press\v56\Core\Plugins;
 
-use Dev4Press\v55\API\Store;
-use Dev4Press\v55\Core\DateTime;
-use Dev4Press\v55\Core\Quick\BBP;
-use Dev4Press\v55\Core\Quick\KSES;
-use Dev4Press\v55\Library;
-use Dev4Press\v55\WordPress;
+use Dev4Press\v56\API\Store;
+use Dev4Press\v56\Core\DateTime;
+use Dev4Press\v56\Core\Quick\BBP;
+use Dev4Press\v56\Core\Quick\KSES;
+use Dev4Press\v56\Library;
+use Dev4Press\v56\WordPress;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -57,14 +57,14 @@ abstract class Core {
 	protected array $_widget_instance = array();
 	protected int $_plugins_loaded_priority = 10;
 	protected int $_after_setup_theme_priority = 10;
-	protected string $_library_code = 'v55';
+	protected string $_library_code = 'v56';
 
 	protected function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), $this->_plugins_loaded_priority );
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), $this->_after_setup_theme_priority );
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
 	public static function instance() : static {
 		return static::i();
 	}
@@ -249,12 +249,12 @@ abstract class Core {
 
 	abstract public function run();
 
-	/** @return NULL|\Dev4Press\v55\Core\Plugins\Settings */
+	/** @return NULL|\Dev4Press\v56\Core\Plugins\Settings */
 	abstract public function s();
 
-	/** @return NULL|\Dev4Press\v55\Core\Plugins\Settings */
+	/** @return NULL|\Dev4Press\v56\Core\Plugins\Settings */
 	abstract public function b();
 
-	/** @return NULL|\Dev4Press\v55\Core\Features\Load */
+	/** @return NULL|\Dev4Press\v56\Core\Features\Load */
 	abstract public function f();
 }

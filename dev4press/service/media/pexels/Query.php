@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Service\Media\Pexels\Query
- * Version: v5.5
+ * Name:    Dev4Press\v56\Service\Media\Pexels\Query
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,34 +25,34 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Service\Media\Pexels;
+namespace Dev4Press\v56\Service\Media\Pexels;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 class Query {
-	private $_api_key;
-	private $_api_url = 'https://api.pexels.com/';
+	private string $_api_key;
+	private string $_api_url = 'https://api.pexels.com/v1/';
 
-	private $_cache = array();
+	private array $_cache = array();
 
 	public function __construct( $api_key ) {
 		$this->_api_key = $api_key;
 	}
 
-	public static function instance( $api_key ) {
-		static $_d4p_pexels = false;
+	public static function instance( $api_key ) : Query {
+		static $instance = false;
 
-		if ( ! $_d4p_pexels ) {
-			$_d4p_pexels = new Query( $api_key );
+		if ( ! $instance ) {
+			$instance = new Query( $api_key );
 		}
 
-		return $_d4p_pexels;
+		return $instance;
 	}
 
 	public function image( $id ) {
-		$url = 'https://api.pexels.com/v1/photos/' . $id;
+		$url = $this->_api_url . 'photos/' . $id;
 
 		$raw = $this->_request( $url );
 
@@ -78,7 +78,7 @@ class Query {
 		$key = md5( 'images' . wp_json_encode( $args ) );
 
 		if ( ! isset( $this->_cache[ $key ] ) ) {
-			$url = add_query_arg( $args, $this->_api_url . 'v1/search' );
+			$url = add_query_arg( $args, $this->_api_url . 'search' );
 
 			$raw = $this->_request( $url );
 
@@ -107,7 +107,7 @@ class Query {
 	}
 
 	public function video( $id ) {
-		$url = 'https://api.pexels.com/videos/videos/' . $id;
+		$url = $this->_api_url . 'videos/videos/' . $id;
 
 		$raw = $this->_request( $url );
 

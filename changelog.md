@@ -2,6 +2,30 @@
 
 ## Changelog
 
+### Version 5.6 - 2026.08.17
+
+* **new**: node tools for SASS and JS linting
+* **new**: background task class with memory usage limitation
+* **new**: using `Vite` to build all the JS and CSS files
+* **new**: added `Flyin` popup library, version 1.2.0
+* **new**: added `FieldUp` upload library, version 0.9.0
+* **new**: added `FieldText` input library, version 0.9.0
+* **edit**: reorganized SASS code to modernize loading
+* **edit**: icon fonts now use only embedded woff2 font variant
+* **edit**: many improvements to the SASS code and styling
+* **edit**: many improvements to the JS code
+* **edit**: optimized the size of the build artifacts
+* **edit**: added a lot of documentation to the code
+* **edit**: improved composer support when publishing the library
+* **edit**: `Parsedown` library to 0.9.0
+* **removed**: legacy `Languages` class and related code
+* **removed**: legacy `Smart Animated Popup` JS library
+* **removed**: legacy `Flatpickr` JS library
+* **removed**: legacy `Select` JS library
+* **removed**: unused `Micromodal` JS library
+* **removed**: unused `Kjua` JS library
+* **fix**: several smaller styling issues
+
 ### Version 5.5.2 - 2026.02.10
 
 * **new**: helper `IP` class uses improved method for IP validation
@@ -39,13 +63,3 @@
 * **new**: show admin notices when license is not activated
 * **new**: updated license validation on save
 * **new**: improved weekly license validation
-
-### Version 5.3 - 2025.01.26
-
-* **new**: composer file requirements expanded
-* **new**: many PHP related changes and improvements
-* **new**: expanded `DBLite` with few new methods
-* **edit**: improvements to the frontend `Grid` object
-* **edit**: improved styling for the plugin settings panel
-* **removed**: built-in cacert.pem
-* **removed**: unused balloon stylesheet

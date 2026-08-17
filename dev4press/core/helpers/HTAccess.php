@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Helpers\HTAccess
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Helpers\HTAccess
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -27,7 +27,7 @@
 
 // phpcs:ignoreFile WordPress.WP.AlternativeFunctions
 
-namespace Dev4Press\v55\Core\Helpers;
+namespace Dev4Press\v56\Core\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -131,7 +131,7 @@ class HTAccess {
 	protected function create_backup() {
 		$backup_path = $this->path . '.backup';
 
-		if ( file_exists( $this->path ) && is_writable( $backup_path ) ) {
+		if ( file_exists( $this->path ) && is_writable( dirname( $backup_path ) ) ) {
 			if ( file_exists( $backup_path ) ) {
 				wp_delete_file( $backup_path );
 			}

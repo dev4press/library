@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Plugins\Information
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Plugins\Information
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -25,10 +25,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Plugins;
+namespace Dev4Press\v56\Core\Plugins;
 
-use Dev4Press\v55\API\Store;
-use Dev4Press\v55\Core\Quick\WPR;
+use Dev4Press\v56\API\Store;
+use Dev4Press\v56\Core\Quick\WPR;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -70,8 +70,6 @@ abstract class Information {
 	public bool $update = false;
 	public int $previous = 0;
 
-	public array $translations = array();
-
 	public function __construct() {
 		if ( $this->is_bbpress_plugin ) {
 			$this->plugins['bbpress'] = '2.6.2';
@@ -82,7 +80,7 @@ abstract class Information {
 		return (array) $this;
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
 	public static function instance() : static {
 		return static::i();
 	}

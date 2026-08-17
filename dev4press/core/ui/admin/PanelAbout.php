@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev4Press\v55\Core\UI\Admin;
+namespace Dev4Press\v56\Core\UI\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -50,12 +50,6 @@ abstract class PanelAbout extends Panel {
 
 		if ( ! $this->history ) {
 			unset( $this->subpanels['history'] );
-		}
-
-		$translations = $this->a()->settings()->i()->translations;
-
-		if ( empty( $translations ) ) {
-			unset( $this->subpanels['translations'] );
 		}
 	}
 

@@ -1,7 +1,7 @@
 <?php
 /**
- * Name:    Dev4Press\v55\Core\Base\Background
- * Version: v5.5
+ * Name:    Dev4Press\v56\Core\Base\Background
+ * Version: v5.6
  * Author:  Milan Petrovic
  * Email:   support@dev4press.com
  * Website: https://www.dev4press.com/
@@ -12,22 +12,23 @@
  * Copyright 2008 - 2026 Milan Petrovic (email: support@dev4press.com)
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-namespace Dev4Press\v55\Core\Base;
+namespace Dev4Press\v56\Core\Base;
 
-use Dev4Press\v55\Core\Helpers\IP;
+use Dev4Press\v56\Core\Helpers\IP;
+use Dev4Press\v56\Core\Quick\Num;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -46,20 +47,54 @@ abstract class Background {
 	protected int $delay = 10;
 	protected string $abort = '';
 
+	protected int $time_limit_threshold;
+	protected int $memory_limit_threshold = 0;
+	protected int $time_unlimited_max = 120;
+	protected int $time_unknown_max = 30;
+
 	protected function __construct() {
 		$this->timer = $this->now();
-		$this->max   = absint( ini_get( 'max_execution_time' ) );
 
-		if ( $this->max < 1 ) {
-			$this->max = 30;
+		$max = ini_get( 'max_execution_time' );
+
+		if ( $max === false || $max === '' ) {
+			$this->max = $this->time_unknown_max;
+		} else {
+			$this->max = absint( $max );
+
+			if ( $this->max === 0 ) {
+				$this->max = $this->time_unlimited_max;
+			}
 		}
 
-		if ( $this->offset == 0 ) {
-			$this->offset = absint( $this->max * .6 );
+		if ( $this->offset === 0 ) {
+			$this->offset = absint( $this->max * .2 );
+		}
+
+		$this->time_limit_threshold = $this->max - $this->offset;
+
+		$memory_limit = ini_get( 'memory_limit' );
+
+		if ( $memory_limit === false || $memory_limit === '' ) {
+			$this->memory_limit_threshold = 64 * 1024 * 1024;
+		} else {
+			$memory_limit = trim( $memory_limit );
+
+			if ( $memory_limit === '-1' ) {
+				$this->memory_limit_threshold = 0;
+			} else {
+				$limit_bytes = (int) Num::scale_numbers_conversion( $memory_limit );
+
+				if ( $limit_bytes > 0 ) {
+					$this->memory_limit_threshold = (int) floor( $limit_bytes * .8 );
+				} else {
+					$this->memory_limit_threshold = 64 * 1024 * 1024;
+				}
+			}
 		}
 	}
 
-	/** @deprecated 5.5.0 Use self::i() instead. */
+	/** @deprecated 5.5.0 Use self::i() instead. To be removed in 5.7.0. */
 	public static function instance() : static {
 		return static::i();
 	}
@@ -121,7 +156,7 @@ abstract class Background {
 			$this->data = $_data;
 		}
 
-		if ( ! is_string( $this->abort ) ) {
+		if ( ! is_string( $_abort ) ) {
 			$this->abort = '';
 		} else {
 			$this->abort = $_abort;
@@ -209,7 +244,7 @@ abstract class Background {
 		$result = true;
 
 		if ( $this->has_more() ) {
-			while ( $this->has_more() && $this->is_on_time() ) {
+			while ( $this->has_more() && $this->is_on_time() && $this->is_under_mem_limit() ) {
 				$result = $this->task();
 
 				if ( ! $result ) {
@@ -289,7 +324,19 @@ abstract class Background {
 	}
 
 	protected function is_on_time() : bool {
-		return $this->elapsed() < $this->max - $this->offset;
+		if ( $this->time_limit_threshold <= 0 ) {
+			return true;
+		}
+
+		return $this->elapsed() < $this->time_limit_threshold;
+	}
+
+	protected function is_under_mem_limit() : bool {
+		if ( $this->memory_limit_threshold <= 0 ) {
+			return true;
+		}
+
+		return memory_get_usage( true ) < $this->memory_limit_threshold;
 	}
 
 	protected function has_more() : bool {
@@ -307,10 +354,12 @@ abstract class Background {
 	protected function check_abort() : void {
 		wp_cache_delete( $this->abort_transient, 'site-transient' );
 
-		$this->abort = get_site_transient( $this->abort_transient );
+		$_abort = get_site_transient( $this->abort_transient );
 
-		if ( ! is_string( $this->abort ) ) {
+		if ( ! is_string( $_abort ) ) {
 			$this->abort = '';
+		} else {
+			$this->abort = $_abort;
 		}
 	}
 
