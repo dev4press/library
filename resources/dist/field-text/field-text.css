@@ -1,1 +1,2 @@
-:root{--field-text-counter-warning-color: #f00}.field-text-counter{box-sizing:border-box;font-size:12px;text-align:right;opacity:0;transition:opacity .15s ease-in-out}.field-text-counter--visible{opacity:1}.field-text-counter--warning{color:var(--field-text-counter-warning-color)}
+:root{--field-text-counter-warning-color:red;--field-text-counter-alignment:right}.field-text-counter{text-align:var(--field-text-counter-alignment);box-sizing:border-box;opacity:0;font-size:12px;transition:opacity .15s ease-in-out}.field-text-counter--visible{opacity:1}.field-text-counter--warning{color:var(--field-text-counter-warning-color)}
+/*$vite$:1*/

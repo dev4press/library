@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### Version 5.6.0.1 - 2026.08.18
+
+* **edit**: `FieldText` library to 0.9.1
+
 ### Version 5.6 - 2026.08.17
 
 * **new**: node tools for SASS and JS linting
