@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Library {
-	private string $_version = '5.6.0.1';
+	private string $_version = '5.6.1';
 	private string $_code = 'v56';
 	private string $_build = '5601';
 	private string $_php_version;

@@ -2,7 +2,7 @@
 
 ## Changelog
 
-### Version 5.6.0.1 - 2026.08.18
+### Version 5.6.1 - 2026.08.18
 
 * **edit**: `FieldText` library to 0.9.1
 
