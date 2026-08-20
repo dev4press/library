@@ -95,6 +95,10 @@ final class Enqueue {
 		return $this->_rtl;
 	}
 
+	public function is_debug() : bool {
+		return $this->_debug;
+	}
+
 	public function start() : void {
 		$this->_rtl   = is_rtl();
 		$this->_debug = WordPress::i()->is_script_debug();
@@ -227,7 +231,7 @@ final class Enqueue {
 		$plugin = isset( $obj['src'] ) && $obj['src'] == 'plugin';
 		$src    = 'resources/dist/';
 
-		if ( $min && $obj['ext'] === 'js' ) {
+		if ( $min && $obj['ext'] === 'js' && $this->is_debug() ) {
 			$src = 'src/scripts/';
 		} else if ( ! $lib && $obj['ext'] === 'css' ) {
 			$src = 'resources/css/';
@@ -237,7 +241,7 @@ final class Enqueue {
 
 		$path .= $obj['file'];
 
-		if ( $min && ! $this->_debug ) {
+		if ( $min && ! $this->is_debug() ) {
 			$path .= '.min';
 		}
 

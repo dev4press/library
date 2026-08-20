@@ -211,7 +211,7 @@ class Enqueue {
 		$lib = $obj['lib'] ?? false;
 		$src = 'resources/dist/';
 
-		if ( $min && $obj['ext'] === 'js' ) {
+		if ( $min && $obj['ext'] === 'js' && $this->is_debug() ) {
 			$src = 'src/scripts/';
 		} else if ( ! $lib && $obj['ext'] === 'css' ) {
 			$src = 'resources/css/';
@@ -225,7 +225,7 @@ class Enqueue {
 
 		$url .= $obj['file'];
 
-		if ( $min && ! $this->_debug ) {
+		if ( $min && ! $this->is_debug() ) {
 			$url .= '.min';
 		}
 

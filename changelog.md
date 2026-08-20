@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### Version 5.6.2 - 2026.08.20
+
+* **fix**: loading JS files issues with minified files
+
 ### Version 5.6.1 - 2026.08.18
 
 * **edit**: `FieldText` library to 0.9.1
