@@ -2,6 +2,13 @@
 
 ## Changelog
 
+### Version 5.4 - 2025.05.23
+
+* **new**: additional free flag in the `License`
+* **new**: show admin notices when license is not activated
+* **new**: updated license validation on save
+* **new**: improved weekly license validation
+
 ### Version 5.3 - 2025.01.26
 
 * **new**: composer file requirements expanded

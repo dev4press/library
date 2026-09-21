@@ -2,7 +2,7 @@
 
 ## Changelog
 
-### Version 5.6.3 - 2026.09.03
+### Version 5.6.3 - 2026.09.21
 
 * **edit**: updated various dependencies
 
@@ -68,10 +68,3 @@
 * **edit**: updated several icons in the webfont
 * **removed**: legacy `License` class and handling code
 * **removed**: legacy `Four` class and related code
-
-### Version 5.4 - 2025.05.23
-
-* **new**: additional free flag in the `License`
-* **new**: show admin notices when license is not activated
-* **new**: updated license validation on save
-* **new**: improved weekly license validation

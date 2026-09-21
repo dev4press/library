@@ -3,7 +3,7 @@
 
 * Version: v5.6.3
 * Build:   5630
-* Release: 2026.09.03.
+* Release: 2026.09.21.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/
