@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### Version 5.6.3 - 2026.09.03
+
+* **edit**: updated various dependencies
+
 ### Version 5.6.2 - 2026.08.20
 
 * **fix**: loading JS files issues with minified files
