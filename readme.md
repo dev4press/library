@@ -1,9 +1,9 @@
 # Dev4Press Library
 ## About
 
-* Version: v5.6.3
-* Build:   5630
-* Release: 2026.09.21.
+* Version: v5.6.4
+* Build:   5640
+* Release: 2026.10.22.
 * Author:  Milan Petrovic
 * Email:   support@dev4press.com
 * Website: https://www.dev4press.com/

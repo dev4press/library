@@ -1,7 +1,7 @@
 {
   "name": "dev4press-library",
   "private": true,
-  "version": "5.6.3",
+  "version": "5.6.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
