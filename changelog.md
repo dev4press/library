@@ -2,6 +2,14 @@
 
 ## Changelog
 
+### Version 5.6.5 - 2026.10.31
+
+* **edit**: several improvements to the main `Sanitize` class
+* **fix**: in few places the escaping was missing or incomplete
+* **fix**: several potential issues related to sanitization
+* **fix**: option for CSS size doesn't render PX values correctly
+* **fix**: styling issue with some select boxes in settings panels
+
 ### Version 5.6.4 - 2026.10.22
 
 * **edit**: updated various dependencies

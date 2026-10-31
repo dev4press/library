@@ -230,13 +230,13 @@ abstract class Table extends WP_List_Table {
 	}
 
 	protected function column_default( $item, $column_name ) : string {
-		return (string) $item->$column_name;
+		return esc_html( (string) $item->$column_name );
 	}
 
 	protected function column_cb( $item ) : string {
 		$key = $this->_checkbox_field;
 
-		return sprintf( '<input type="checkbox" name="%1$s[]" value="%2$s" />', $this->_args['singular'], $item->$key );
+		return sprintf( '<input type="checkbox" name="%1$s[]" value="%2$s" />', esc_attr( $this->_args['singular'] ), esc_attr( $item->$key ) );
 	}
 
 	protected function query_items( array $sql, int $per_page, bool $do_order = true, bool $do_limit = true, string $index_field = '' ) {
