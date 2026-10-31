@@ -186,7 +186,7 @@ class Render {
 					}
 
 					echo '<div class="' . Sanitize::html_classes( $classes ) . '">';
-					echo $obj['footer']['content'];
+					echo KSES::standard( $obj['footer']['content'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo '</div>';
 				}
 
@@ -394,7 +394,7 @@ class Render {
 				echo '<table><tbody>';
 
 				foreach ( $setting->more as $row ) {
-					echo '<tr><td>' . join( '</td><td>', $row ) . '</td></tr>';
+					echo '<tr><td>' . join( '</td><td>', array_map( array( KSES::class, 'standard' ), $row ) ) . '</td></tr>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 
 				echo '</tbody></table>';
@@ -1147,7 +1147,7 @@ class Render {
 		$pairs = array();
 
 		foreach ( array_keys( $sizes ) as $unit ) {
-			if ( str_ends_with( $value, $unit ) ) {
+			if ( str_ends_with( $value, $unit ) && ( empty( $pairs ) || strlen( $unit ) > strlen( $pairs[1] ) ) ) {
 				$pairs[0] = substr( $value, 0, strlen( $value ) - strlen( $unit ) );
 				$pairs[1] = $unit;
 			}

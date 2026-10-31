@@ -70,14 +70,14 @@ class Process {
 		return $this;
 	}
 
-	public function process( array $request ) : array {
+	public function process( array $request, bool $unslashed = false ) : array {
 		$list = array();
 
 		foreach ( $this->settings as $setting ) {
 			if ( $setting->type != '_' ) {
 				$post = $request[ $setting->type ] ?? array();
 
-				$list[ $setting->type ][ $setting->name ] = $this->process_single( $setting, $post );
+				$list[ $setting->type ][ $setting->name ] = $this->process_single( $setting, $post, $unslashed );
 			}
 		}
 
@@ -90,7 +90,7 @@ class Process {
 		return preg_replace( '/[^a-z0-9.\/_\-]/', '', $key );
 	}
 
-	public function process_single( $setting, $post ) {
+	public function process_single( $setting, $post, bool $unslashed = false ) {
 		$input = $setting->input;
 		$base  = $post[ $setting->name ] ?? '';
 
@@ -99,7 +99,7 @@ class Process {
 				$value = apply_filters( $this->prefix . '_process_option_call_back_for_' . $input, null, $base, $setting );
 
 				if ( is_null( $value ) ) {
-					$value = Sanitize::text( (string) $base );
+					$value = Sanitize::text( (string) $base, false, ! $unslashed );
 				}
 				break;
 			case 'skip':
@@ -114,7 +114,7 @@ class Process {
 				if ( is_array( $base ) ) {
 					foreach ( $base as $id => $data ) {
 						if ( $id > 0 ) {
-							$_val = trim( stripslashes( $data['value'] ) );
+							$_val = trim( $unslashed ? $data['value'] : stripslashes( $data['value'] ) );
 
 							if ( $_val != '' ) {
 								$value[] = $_val;
@@ -129,7 +129,7 @@ class Process {
 				if ( is_array( $base ) ) {
 					foreach ( $base as $id => $data ) {
 						if ( $id > 0 ) {
-							$_val = Sanitize::text( $data['value'] );
+							$_val = Sanitize::text( $data['value'], false, ! $unslashed );
 
 							if ( ! empty( $_val ) ) {
 								$value[] = $_val;
@@ -144,8 +144,8 @@ class Process {
 				if ( is_array( $base ) ) {
 					foreach ( $base as $id => $data ) {
 						if ( $id > 0 ) {
-							$_key = Sanitize::text( $data['key'] );
-							$_val = Sanitize::text( $data['value'] );
+							$_key = Sanitize::text( $data['key'], false, ! $unslashed );
+							$_val = Sanitize::text( $data['value'], false, ! $unslashed );
 
 							if ( ! empty( $_key ) && ! empty( $_val ) ) {
 								$value[ $_key ] = $_val;
@@ -161,13 +161,13 @@ class Process {
 				$value = absint( $base['a'] ?? 0 ) . '=>' . absint( $base['b'] ?? 0 );
 				break;
 			case 'x_by_y':
-				$value = Sanitize::text( $base['x'] ?? '' ) . 'x' . Sanitize::text( $base['y'] ?? '' );
+				$value = Sanitize::text( $base['x'] ?? '', false, ! $unslashed ) . 'x' . Sanitize::text( $base['y'] ?? '', false, ! $unslashed );
 				break;
 			case 'html':
 			case 'code':
 			case 'text_html':
 			case 'text_rich':
-				$value = Sanitize::html( $base );
+				$value = Sanitize::html( $base, null, array(), false, ! $unslashed );
 				break;
 			case 'bool':
 				$value = ! empty( $base ) ? $this->bool_values[0] : $this->bool_values[1];
@@ -192,7 +192,7 @@ class Process {
 				}
 				break;
 			case 'listing':
-				$value = Str::split_to_list( stripslashes( $base ) );
+				$value = Str::split_to_list( $unslashed ? $base : stripslashes( $base ) );
 				break;
 			case 'media':
 				$value = 0;
@@ -207,14 +207,14 @@ class Process {
 				if ( empty( $base ) ) {
 					$value = array();
 				} else {
-					$value = array_map( '\Dev4Press\v56\Core\Quick\Sanitize::text', (array) $base );
+					$value = array_map( static fn( $item ) => Sanitize::text( $item, false, ! $unslashed ), (array) $base );
 				}
 				break;
 			case 'css_size':
 				$sizes = Arr::get_css_size_units();
 
-				$value = Sanitize::text( $base['val'] ?? '' );
-				$unit  = strtolower( Sanitize::text( $base['unit'] ?? '' ) );
+				$value = Sanitize::text( $base['val'] ?? '', false, ! $unslashed );
+				$unit  = strtolower( Sanitize::text( $base['unit'] ?? '', false, ! $unslashed ) );
 
 				if ( ! isset( $sizes[ $unit ] ) ) {
 					$unit = 'px';
@@ -223,13 +223,13 @@ class Process {
 				$value = $value . $unit;
 				break;
 			case 'slug':
-				$value = Sanitize::slug( $base );
+				$value = Sanitize::slug( $base, ! $unslashed );
 				break;
 			case 'slug_ext':
-				$value = Sanitize::key( $base );
+				$value = Sanitize::key( $base, ! $unslashed );
 				break;
 			case 'slug_slash':
-				$value = Sanitize::slug_with_slashes( $base );
+				$value = Sanitize::slug_with_slashes( $base, ! $unslashed );
 				break;
 			case 'email':
 				$value = Sanitize::email( $base );
@@ -247,7 +247,7 @@ class Process {
 				$value = Sanitize::month( $base );
 				break;
 			case 'license':
-				$value = Sanitize::text( $base );
+				$value = Sanitize::text( $base, false, ! $unslashed );
 				$check = preg_match( '/^\d{4}-\d{8}-[A-Z0-9]{6}-[A-Z0-9]{6}-\d{4}$/', $value );
 
 				if ( $check !== 1 ) {
@@ -265,7 +265,7 @@ class Process {
 			case 'select':
 			case 'radios':
 			case 'radios_hierarchy':
-				$value = Sanitize::text( $base );
+				$value = Sanitize::text( $base, false, ! $unslashed );
 				break;
 		}
 

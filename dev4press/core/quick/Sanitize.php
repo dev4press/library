@@ -115,12 +115,13 @@ class Sanitize {
 	/**
 	 * Sanitize a value as a key string.
 	 *
-	 * @param mixed $text The value to sanitize.
+	 * @param mixed $text    The value to sanitize.
+	 * @param bool  $unslash Whether to remove request slashes first.
 	 *
 	 * @return string
 	 */
-	public static function key( mixed $text ) : string {
-		$text = stripslashes( (string) $text );
+	public static function key( mixed $text, bool $unslash = true ) : string {
+		$text = $unslash ? stripslashes( (string) $text ) : (string) $text;
 
 		return sanitize_key( $text );
 	}
@@ -128,16 +129,17 @@ class Sanitize {
 	/**
 	 * Sanitize a value as a slug.
 	 *
-	 * @param mixed $text The value to sanitize.
+	 * @param mixed $text    The value to sanitize.
+	 * @param bool  $unslash Whether to remove request slashes first.
 	 *
 	 * @return string
 	 */
-	public static function slug( mixed $text ) : string {
+	public static function slug( mixed $text, bool $unslash = true ) : string {
 		if ( is_null( $text ) ) {
 			return '';
 		}
 
-		$text = stripslashes( (string) $text );
+		$text = $unslash ? stripslashes( (string) $text ) : (string) $text;
 
 		return trim( sanitize_title_with_dashes( $text ), "-_ \t\n\r\0\x0B" );
 	}
@@ -145,16 +147,17 @@ class Sanitize {
 	/**
 	 * Sanitize a value as a slug that can contain slashes.
 	 *
-	 * @param mixed $text The value to sanitize.
+	 * @param mixed $text    The value to sanitize.
+	 * @param bool  $unslash Whether to remove request slashes first.
 	 *
 	 * @return string
 	 */
-	public static function slug_with_slashes( mixed $text ) : string {
+	public static function slug_with_slashes( mixed $text, bool $unslash = true ) : string {
 		if ( is_null( $text ) ) {
 			return '';
 		}
 
-		$text = stripslashes( (string) $text );
+		$text = $unslash ? stripslashes( (string) $text ) : (string) $text;
 		$text = strtolower( $text );
 
 		return preg_replace( '/[^a-z0-9.\/_\-]/', '', $text );
@@ -165,15 +168,16 @@ class Sanitize {
 	 *
 	 * @param mixed $text             The value to sanitize.
 	 * @param bool  $strip_shortcodes Whether shortcodes should be removed first.
+	 * @param bool  $unslash          Whether to remove request slashes first.
 	 *
 	 * @return string
 	 */
-	public static function text( mixed $text, bool $strip_shortcodes = false ) : string {
+	public static function text( mixed $text, bool $strip_shortcodes = false, bool $unslash = true ) : string {
 		if ( is_null( $text ) ) {
 			return '';
 		}
 
-		$text = stripslashes( (string) $text );
+		$text = $unslash ? stripslashes( (string) $text ) : (string) $text;
 
 		if ( $strip_shortcodes ) {
 			$text = strip_shortcodes( $text );
@@ -189,16 +193,17 @@ class Sanitize {
 	 * @param array|string|null $tags             Allowed HTML tags. Defaults to 'post'.
 	 * @param array             $protocols        Allowed protocols.
 	 * @param bool              $strip_shortcodes Whether shortcodes should be removed first.
+	 * @param bool              $unslash          Whether to remove request slashes first.
 	 *
 	 * @return string
 	 */
-	public static function html( mixed $text, mixed $tags = null, array $protocols = array(), bool $strip_shortcodes = false ) : string {
+	public static function html( mixed $text, mixed $tags = null, array $protocols = array(), bool $strip_shortcodes = false, bool $unslash = true ) : string {
 		if ( is_null( $text ) ) {
 			return '';
 		}
 
 		$tags = is_null( $tags ) ? 'post' : $tags;
-		$text = stripslashes( (string) $text );
+		$text = $unslash ? stripslashes( (string) $text ) : (string) $text;
 
 		if ( $strip_shortcodes ) {
 			$text = strip_shortcodes( $text );

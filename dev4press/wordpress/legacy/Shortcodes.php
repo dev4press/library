@@ -31,6 +31,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * @deprecated Since 5.6.5
+ */
 abstract class Shortcodes {
 	public string $prefix = 'd4p';
 	public array $shortcodes = array();

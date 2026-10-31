@@ -35,6 +35,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * @deprecated Since 5.6.5
+ */
 abstract class Widget extends WP_Widget {
 	public $selective_refresh = true;
 	public $allow_empty_title = false;
